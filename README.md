@@ -15,7 +15,7 @@ Create a library of animation templates for easily creating animations based on 
 </table>
 <h1> Template Naming Convention </h1>
 <table>
-  <th>Prefix</th>
+  <th>Template Name</th>
   <th>Description</th>
   <tr>
     <td>c1</td>
