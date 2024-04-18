@@ -12,6 +12,11 @@ Create a library of animation templates for easily creating animations based on 
     <td>s</td>
     <td>Square</td>
   </tr>
+   <tr>
+    <td>t</td>
+    <td>Triangle</td>
+  </tr>
+
 </table>
 <h1> Template Naming Convention </h1>
 <table>
