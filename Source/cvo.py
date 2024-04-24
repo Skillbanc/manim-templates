@@ -1,3 +1,10 @@
+# Project: Manim-Templates
+# Copyright(c) 2024 Skillbanc.com, Inc.
+# License: MIT License
+# Contributor(s):   
+#   Sudhakar Moparthy
+#   Rohit Vailla
+
 from cloup import Color
 
 
@@ -14,13 +21,18 @@ class CVO:
     return self
 
   def setc1o1Name(self,c1name,o1name):
-    self.setc1name(c1name)
+    self.setc1Name(c1name)
     self.seto1Name(o1name)
+    self.circle_radius=1
+    self.circle_color = Color.blue
     return self
     
   def setc2o2Name(self,c2name,o2name):
-    self.setc2name(c2name)
+    self.setc2Name(c2name)
     self.seto2Name(o2name)
+    self.circle_radius=1
+    self.circle_color = Color.blue
+    return self
     
   def setc1Name(self,c1name):
     self.c1name = c1name

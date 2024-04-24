@@ -1,3 +1,10 @@
+# Project: Manim-Templates
+# Copyright(c) 2024 Skillbanc.com, Inc.
+# License: MIT License
+# Contributor(s):   
+#   Sudhakar Moparthy
+#   Rohit Vailla
+
 from manim import *
 from numpy import size
 
@@ -8,8 +15,13 @@ class C2Anim(Scene):
     # cvolist=[0]
     def construct(self):
         #  p1=cvo.CVO().CreateCVO("o1name","o2name","c1name","c2name")
-         p1=cvo.CVO().CreateCVO("John","36","Person","Age")
-         cvolist=[p1]
+         p10=cvo.CVO().CreateCVO("John Doe","36","Person","Age")
+         p11=cvo.CVO().CreateCVO("John Doe","36","Person","Age")
+         
+         cvolist=[]
+         cvolist.append(p10)
+         cvolist.append(p11)
+         
          self.construct1(cvolist)
     def construct1(self,cvolist):
 
