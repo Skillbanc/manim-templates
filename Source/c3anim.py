@@ -14,65 +14,43 @@ class C3Anim(Scene):
     
     def construct(self):
         #  p1=cvo.CVO().CreateCVO("o1name","o2name","c1name","c2name")
-         p10=cvo.CVO().setc1o1Name("Person","John Doe")
-         p11=cvo.CVO().setc2o2Name("Age","36")
-         p12=cvo.CVO().setc2o2Name("First Name","John")
+         p10=cvo.CVO().CreateCVO("Person","John Doe").setPosition([0,2.5,0])
          
-         cvolist=[]
-         cvolist.append(p10)
-         cvolist.append(p11)
-         cvolist.append(p12)
+         p11=cvo.CVO().CreateCVO("Age","36").setPosition([2,0,0])
+         p12=cvo.CVO().CreateCVO("In Words","Thirty Six").setPosition([-2,0,0])
+         p11.cvolist.append(p12)
          
-         self.construct1(cvolist)
-    def construct1(self,cvolist):
-            # c1o1
-            cir1 = Circle(radius=cvolist[0].circle_radius,color=cvolist[0].circle_color)
-            
-            star = Star(outer_radius=0.15, inner_radius=0.1).move_to(cir1.get_center())
-            c1name = Tex(cvolist[0].c1name).move_to(cir1.get_top()).shift(UP * 0.25)
-            o1name = Tex(cvolist[0].o1name).move_to(star.get_top()).scale(0.5).shift(UP * 0.15)
+         p10.cvolist.append(p11)
+         
+         self.construct1(p10,p10)
 
-            self.play(Create(cir1,run_time=2),Create(c1name,run_time=2))
+    def construct1(self,cvo,cvoParent):
+        # c1o1
+        cir1 = Circle(radius=cvo.circle_radius,color=cvo.circle_color)
             
-            self.play(Create(o1name),Create(star))
-            grp1=VGroup(cir1,star,c1name,o1name)
-            self.play(grp1.animate.shift(UP * 2))
-           
-
-            # c2o2
-            cir2 = Circle(radius=cvolist[1].circle_radius,color=cvolist[1].circle_color).shift(DOWN * 0.5)
-            
-            staro2name1 = Star(outer_radius=0.15, inner_radius=0.1).move_to(cir2.get_center())
-            c2name1 = Tex(cvolist[1].c2name).move_to(cir2.get_top()).shift(UP * 0.25)
-            o2name1 = Tex(cvolist[1].o2name).move_to(staro2name1.get_top()).scale(0.5).shift(DOWN * 0.5)
-
-            self.play(Create(cir2,run_time=2),Create(c2name1,run_time=2))
-            
-            self.play(Create(o2name1),Create(staro2name1))
-            grp2=VGroup(cir2,staro2name1,c2name1,o2name1)
-            self.play(grp2.animate.shift(LEFT * 4))
-           
-
-            self.play(Create(CurvedArrow(star.get_center(),staro2name1.get_center())),run_time=2)
+        star = Star(outer_radius=0.15, inner_radius=0.1).move_to(cir1.get_center())
+        cname = Tex(cvo.cname).move_to(cir1.get_top()).shift(UP * 0.25)
+        oname = Tex(cvo.oname).move_to(star.get_top()).scale(0.5).shift(UP * 0.15)
         
-            # c2o2
-            cir3 = Circle(radius=cvolist[2].circle_radius,color=cvolist[2].circle_color).shift(DOWN * 0.5)
+        self.play(Create(cir1,run_time=2),Create(cname,run_time=2))
             
-            staro2name2 = Star(outer_radius=0.15, inner_radius=0.1).move_to(cir3.get_center())
-            c2name2 = Tex(cvolist[2].c2name).move_to(cir3.get_top()).shift(UP * .25)
-            o2name2 = Tex(cvolist[2].o2name).move_to(staro2name2.get_top()).scale(0.5).shift(DOWN * 0.5)
-            
-            self.play(Create(cir3,run_time=2),Create(c2name2,run_time=2))
-            
-            self.play(Create(o2name2),Create(staro2name2))
-            grp3=VGroup(cir3,staro2name2,c2name2,o2name2)
-            self.play(grp3.animate.shift(RIGHT * 4))
-            self.wait(2)
-
-            self.play(Create(CurvedArrow(star.get_center(),staro2name2.get_center())),run_time=2)
-            
+        self.play(Create(oname),Create(star))
+       
+        grp1=VGroup(cir1,star,cname,oname)
+        self.play(grp1.animate.move_to(cvo.pos).scale(0.75))
+        
+        arrow1 = CurvedArrow(cvoParent.pos,cvo.pos,angle=-TAU/3)
+        
+        self.play(Create(arrow1),run_time=2)
+        
+        
+        self.wait()
+        
+        if (len(cvo.cvolist) > 0):
+            for idx in range(0,len(cvo.cvolist)):
+                self.construct1(cvo.cvolist[idx],cvo)
            
-            self.wait(2)
+        
             
 if __name__ == "__main__":
     scene = C3Anim()
