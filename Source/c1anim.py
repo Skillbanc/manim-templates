@@ -15,7 +15,7 @@ class C1Anim(AbstractAnim):
     
     def construct(self):
         #  p1=cvo.CVO().CreateCVO("o1name","o2name","c1name","c2name")
-         p10=cvo.CVO().CreateCVO("Person","John Doe").setPosition([0,2.5,0])
+         p10=cvo.CVO().CreateCVO("Person","John Doe").setPosition([0,2.5,0]).setangle(TAU/4)
        
          self.construct1(p10,p10)
       

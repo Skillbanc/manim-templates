@@ -25,8 +25,17 @@ class AbstractAnim(Scene):
         cir1 = Circle(radius=cvo.circle_radius,color=self.colorChoice[colorChoiceIndex])
             
         star = Star(outer_radius=0.15, inner_radius=0.1,color=self.colorChoice[colorChoiceIndex]).move_to(cir1.get_center())
-        cname = Tex(cvo.cname,color=self.colorChoice[colorChoiceIndex]).move_to(cir1.get_top()).shift(UP * 0.25)
-        oname = Tex(cvo.oname,color=self.colorChoice[colorChoiceIndex]).move_to(star.get_top()).scale(0.5).shift(UP * 0.15)
+        c1nameposition = cvo.c1nameposition
+
+        if( c1nameposition == None):
+            c1nameposition = cir1.get_top()
+
+        cname = Tex(cvo.cname,color=self.colorChoice[colorChoiceIndex]).move_to(c1nameposition).shift(UP * 0.25)
+        o1nameposition = cvo.o1nameposition
+
+        if( o1nameposition == None):
+            o1nameposition = star.get_top()
+        oname = Tex(cvo.oname,color=self.colorChoice[colorChoiceIndex]).move_to(o1nameposition).scale(0.5).shift(UP * 0.15)
         
         self.play(Create(cir1,run_time=2),Create(cname,run_time=2))
             
@@ -34,8 +43,11 @@ class AbstractAnim(Scene):
        
         grp1=VGroup(cir1,star,cname,oname)
         self.play(grp1.animate.move_to(cvo.pos).scale(0.75))
+
+        if (cvo.angle == None):
+            self.cvo.angle == TAU/4
         
-        arrow1 = CurvedArrow(cvoParent.pos,cvo.pos,angle=-TAU/3,color=WHITE)
+        arrow1 = CurvedArrow(cvoParent.pos,cvo.pos,angle=cvo.angle,color=WHITE)
         
         self.play(Create(arrow1),run_time=2)
         
