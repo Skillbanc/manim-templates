@@ -60,7 +60,7 @@ class AbstractAnim(Scene):
 
     def construct2(self,cvo,cvoParent):
         colorChoiceIndex = random.randint(0, 5)
-        shapeChoiceIndex = 0 # random.randint(0,3)
+        shapeChoiceIndex = 0 #random.randint(0,3)
         # Circle to contain objects
         cir1 = Circle(radius=cvo.circle_radius,color=self.colorChoice[colorChoiceIndex])
         self.add(NumberPlane())
