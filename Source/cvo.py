@@ -27,6 +27,10 @@ class CVO:
     self.o1nameposition = o1nameposition
     return self
   
+  def setduration(self,duration):
+    self.duration = duration
+    return self
+  
   def CreateCVO(self,cname,oname):
     self.c1nameposition = None
     self.o1nameposition = None
@@ -37,6 +41,7 @@ class CVO:
     self.cvolist = []
     self.pos = [0,0,0]
     self.angle = TAU/4
+    self.duration = 2
     return self
 
   
