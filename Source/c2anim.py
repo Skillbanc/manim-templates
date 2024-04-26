@@ -17,11 +17,11 @@ class C2Anim(AbstractAnim):
         #  p1=cvo.CVO().CreateCVO("o1name","o2name","c1name","c2name")
          p10=cvo.CVO().CreateCVO("Person","John Doe")
          
-         p11=cvo.CVO().CreateCVO("Age","36").setPosition([0,-2.5,0])
+         p11=cvo.CVO().CreateCVO("Age","36")
                  
          p10.cvolist.append(p11)
          
-         self.construct2(p10,p10)
+         self.construct1(p10,p10)
   
             
 if __name__ == "__main__":
