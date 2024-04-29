@@ -14,18 +14,26 @@ import random
 class AbstractAnim(Scene):
     colorChoice=[RED,BLUE,GREEN,PURPLE,ORANGE,YELLOW]
     shapeChoice=[Circle,Triangle,Square,Rectangle]
-    positionChoice=[[0,2.5,0],[4,2,0],[5,-2,0],[-4,3,0],[-4,1,0],[-4,-1,0]]
+    positionChoice = [[0,0,0],[0,2.5,0],[4,2,0],[5,-2,0],[-4,3,0],[-4,1,0],[-4,-1,0]]
+    angleChoice = [TAU/5,TAU/4,TAU/3,TAU/2,-TAU/5,-TAU/4,-TAU/3,-TAU/2]
     def construct(self):
         pass
     
     def get_random_position(self):
-        positionChoiceIndex = random.randint(0, 5)
+        positionChoiceIndex = random.randint(1, len(self.positionChoice) - 1)
+        if (len(self.positionChoice) == 1):
+            positionChoiceIndex = 0;
         return positionChoiceIndex
 
     def construct1(self,cvo,cvoParent):
-        colorChoiceIndex = random.randint(0, 5)
+        angleChoiceIndex = random.randint(0,len(self.angleChoice) - 1)
+        cvo.angle = self.angleChoice[angleChoiceIndex]
+        colorChoiceIndex = random.randint(0, len(self.colorChoice) - 1)
+        
         positionChoiceIndex = self.get_random_position()
         cvo.pos=self.positionChoice[positionChoiceIndex]
+        self.positionChoice.remove(self.positionChoice[positionChoiceIndex])
+        
         shapeChoiceIndex = 0 # random.randint(0,3)
         # Circle to contain objects
         cir1 = Circle(radius=cvo.circle_radius,color=self.colorChoice[colorChoiceIndex])
@@ -51,50 +59,25 @@ class AbstractAnim(Scene):
         
         self.play(grp1.animate.move_to(cvo.pos).scale(0.75))
         
-        arrow1 = CurvedArrow(cvoParent.pos,cvo.pos,angle=cvo.angle,color=WHITE)
-        
+        arrow1 = CurvedArrow(cvoParent.pos,cvo.pos,angle=cvo.angle,stroke_width=2)
+        arrow1.tip.scale(0.5)
         self.play(Create(arrow1),run_time=cvo.duration)
-        
-        
-        self.wait()
-        
-        if (len(cvo.cvolist) > 0):
-            for idx in range(0,len(cvo.cvolist)):
-                self.construct1(cvo.cvolist[idx],cvo)
-
-    def construct2(self,cvo,cvoParent):
-        colorChoiceIndex = random.randint(0, 5)
-        shapeChoiceIndex = 0 #random.randint(0,3)
-        # Circle to contain objects
-        cir1 = Circle(radius=cvo.circle_radius,color=self.colorChoice[colorChoiceIndex])
-        self.add(NumberPlane())
-        self.play(Create(cir1,run_time=2))
-            
-        
+        # cname.remove()
+        # oname.remove()
+        # self.play(Create(cname),Create(oname))
+        self.bring_to_back(arrow1)
        
-        # grp1=VGroup(cir1,star,cname,oname)
-
-
-
-        if cvo!=cvoParent:
-            cir1.animate.move_to(cvo.pos)
-        cname = Tex(cvo.cname,color=self.colorChoice[colorChoiceIndex]).move_to(cir1.get_top()).shift(UP * 0.25)
-        star = Star(outer_radius=0.15, inner_radius=0.1,color=self.colorChoice[colorChoiceIndex]).move_to(cir1.get_center())
-        oname = Tex(cvo.oname,color=self.colorChoice[colorChoiceIndex]).move_to(star.get_top()).scale(0.5).shift(UP * 0.15)
-        self.play(Create(cname,run_time=cvo.duration))
-        self.play(Create(oname),Create(star))
-
         
-        arrow1 = CurvedArrow(cvoParent.pos,cvo.pos,angle=-TAU/3,color=WHITE)
-        self.play(oname.animate.move_to(star.get_bottom()))
         
-        self.play(Create(arrow1),run_time=cvo.duration)
-        
+        cvo.cnameMObject = cname
+        cvo.onameMObject = oname
         
         self.wait()
         
         if (len(cvo.cvolist) > 0):
             for idx in range(0,len(cvo.cvolist)):
                 self.construct1(cvo.cvolist[idx],cvo)
+
+    
                 
         

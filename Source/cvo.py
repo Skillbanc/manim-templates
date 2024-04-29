@@ -41,7 +41,9 @@ class CVO:
     self.cvolist = []
     self.pos = [0,0,0]
     self.angle = TAU/4
-    self.duration = 2
+    self.duration = 1
+    self.cnameMObject = None
+    self.onameMObject = None
     return self
 
   
