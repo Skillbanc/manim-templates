@@ -21,8 +21,8 @@ class C2Anim(AbstractAnim):
          p11 = cvo.CVO().CreateCVO("Previous Employer","Google")
          p10.cvolist.append(p11)
        
-         # p12 = cvo.CVO().CreateCVO("Previous Employer","Microsoft")
-         # p10.cvolist.append(p12)
+         p12 = cvo.CVO().CreateCVO("Previous Employer","Microsoft")
+         p10.cvolist.append(p12)
          
          self.construct1(p10,p10)
   

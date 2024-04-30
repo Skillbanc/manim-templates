@@ -38,7 +38,7 @@ class AbstractAnim(Scene):
         # Circle to contain objects
         cir1 = Circle(radius=cvo.circle_radius,color=self.colorChoice[colorChoiceIndex])
             
-        star = Star(outer_radius=0.15, inner_radius=0.1,color=self.colorChoice[colorChoiceIndex]).move_to(cir1.get_center())
+        star = Star(outer_radius=0.1, inner_radius=0.05,color=self.colorChoice[colorChoiceIndex]).move_to(cir1.get_center())
         c1nameposition = cvo.c1nameposition
 
         if( c1nameposition == None):
@@ -59,16 +59,21 @@ class AbstractAnim(Scene):
         
         self.play(grp1.animate.move_to(cvo.pos).scale(0.75))
         
-        arrow1 = CurvedArrow(cvoParent.pos,cvo.pos,angle=cvo.angle,stroke_width=2)
-        arrow1.tip.scale(0.5)
+        arrow1 = CurvedArrow(cvoParent.pos,cvo.pos,angle=cvo.angle,stroke_width=1.5)
+        arrow1.tip.scale(0.75)
         self.play(Create(arrow1),run_time=cvo.duration)
         # cname.remove()
         # oname.remove()
         # self.play(Create(cname),Create(oname))
         self.bring_to_back(arrow1)
        
-        
-        
+        if (len(cvo.onameList) > 0 ):
+            for onameLocal in cvo.onameList:
+                # starLocal = Star(outer_radius=0.15, inner_radius=0.1,color=self.colorChoice[colorChoiceIndex]).move_to(cir1.get_center())
+                starLocal = Star(outer_radius=0.1, inner_radius=0.05,color=self.colorChoice[colorChoiceIndex]).move_to(cir1.get_center()).shift(LEFT * .25, DOWN * .25).scale(0.5)
+                onameLocalText = Tex(onameLocal,color=self.colorChoice[colorChoiceIndex]).scale(0.25).next_to(starLocal).shift(LEFT * .20)
+                self.play(Create(starLocal),Create(onameLocalText))#grpLocal.animate.move_to(cir1.get_center()).scale(0.5).shift(DOWN * 2))#scale(0.25))
+                          
         cvo.cnameMObject = cname
         cvo.onameMObject = oname
         

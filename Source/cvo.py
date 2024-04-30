@@ -5,7 +5,6 @@
 #   Sudhakar Moparthy
 #   Rohit Vailla
 
-from cloup import Color
 from manim import*
 
 
@@ -31,19 +30,24 @@ class CVO:
     self.duration = duration
     return self
   
+  def appendOname(self,oname):
+    self.onameList.append(oname)
+    return self
+  
   def CreateCVO(self,cname,oname):
     self.c1nameposition = None
     self.o1nameposition = None
     self.oname = oname
     self.cname = cname
     self.circle_radius=1
-    self.circle_color = Color.blue
+    self.circle_color = BLUE
     self.cvolist = []
     self.pos = [0,0,0]
     self.angle = TAU/4
     self.duration = 1
     self.cnameMObject = None
     self.onameMObject = None
+    self.onameList = []
     return self
 
   
