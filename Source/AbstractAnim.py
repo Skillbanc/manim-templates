@@ -10,30 +10,32 @@ from numpy import size
 
 import cvo
 import random
-
+# class that has all common methods that can be used by subclasses
 class AbstractAnim(Scene):
     colorChoice=[RED,BLUE,GREEN,PURPLE,ORANGE,YELLOW]
     shapeChoice=[Circle,Triangle,Square,Rectangle]
-    positionChoice = [[0,0,0],[0,2.5,0],[4,2,0],[5,-2,0],[-4,3,0],[-4,1,0],[-4,-1,0]]
+    positionChoice = [[0,0,0],[0,2.5,0],[4,2,0],[5,-2,0],[-3,3,0],[-4,1,0],[-2,-1,0]]
     angleChoice = [TAU/5,TAU/4,TAU/3,TAU/2,-TAU/5,-TAU/4,-TAU/3,-TAU/2]
     def construct(self):
         pass
-    
+    # get the random position of the circle
     def get_random_position(self):
         positionChoiceIndex = random.randint(1, len(self.positionChoice) - 1)
         if (len(self.positionChoice) == 1):
             positionChoiceIndex = 0;
         return positionChoiceIndex
-
+    # current object and the parent object to render 2 circles 2 class names 2 object names  and one arrow
     def construct1(self,cvo,cvoParent):
         angleChoiceIndex = random.randint(0,len(self.angleChoice) - 1)
         cvo.angle = self.angleChoice[angleChoiceIndex]
         colorChoiceIndex = random.randint(0, len(self.colorChoice) - 1)
         
         positionChoiceIndex = self.get_random_position()
-        cvo.pos=self.positionChoice[positionChoiceIndex]
-        self.positionChoice.remove(self.positionChoice[positionChoiceIndex])
+        if (cvo.pos == None):
+            cvo.pos=self.positionChoice[positionChoiceIndex]
         
+        self.positionChoice.remove(cvo.pos)
+            
         shapeChoiceIndex = 0 # random.randint(0,3)
         # Circle to contain objects
         cir1 = Circle(radius=cvo.circle_radius,color=self.colorChoice[colorChoiceIndex])
@@ -43,7 +45,7 @@ class AbstractAnim(Scene):
 
         if( c1nameposition == None):
             c1nameposition = cir1.get_top()
-
+            
         cname = Tex(cvo.cname,color=self.colorChoice[colorChoiceIndex]).move_to(c1nameposition).shift(UP * 0.25)
         o1nameposition = cvo.o1nameposition
 
@@ -83,6 +85,27 @@ class AbstractAnim(Scene):
             for idx in range(0,len(cvo.cvolist)):
                 self.construct1(cvo.cvolist[idx],cvo)
 
-    
+    # pass the json object and the top level data object
+    def parsejson(self,json_data,cvo10):
+        nested_found = False
+        for key, value in json_data.items():
+            if isinstance(value, dict):
+                pass
+                # p10=cvo.CVO().CreateCVO(key,"")
+                # cvo10.cvolist.append(p10)
+                   
+                # self.parsejson(value,cvo10)                
+
+            if isinstance(value, list):
+                for item in value:
+                    p10=cvo.CVO().CreateCVO(key,item)
+                    cvo10.cvolist.append(p10)
+            
+            if isinstance(value,str):
+                p10=cvo.CVO().CreateCVO(key,value)
+                cvo10.cvolist.append(p10)
                 
+        if not nested_found:
+            print("No nested JSON found.")
+            
         

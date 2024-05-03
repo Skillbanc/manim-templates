@@ -42,7 +42,7 @@ class CVO:
     self.circle_radius=1
     self.circle_color = BLUE
     self.cvolist = []
-    self.pos = [0,0,0]
+    self.pos = None#[0,0,0]
     self.angle = TAU/4
     self.duration = 1
     self.cnameMObject = None
