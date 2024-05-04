@@ -14,13 +14,34 @@ import random
 class AbstractAnim(Scene):
     colorChoice=[RED,BLUE,GREEN,PURPLE,ORANGE,YELLOW]
     shapeChoice=[Circle,Triangle,Square,Rectangle]
-    positionChoice = [[0,0,0],[0,2.5,0],[4,2,0],[5,-2,0],[-3,3,0],[-4,1,0],[-2,-1,0]]
+    positionChoice = [[0,0,0],[-6,-2,0],[4,-2,0],[2,0,0],[-6,2,0],[-4,-2,0],[-4,2,0],[-2,-2,0],[4,0,0],[-4,0,0],[-2,2,0],[2,-2,0],[-6,0,0],[2,2,0],[6,0,0],[4,2,0],[6,-2,0],[-2,0,0],[6,2,0]]
+
     angleChoice = [TAU/5,TAU/4,TAU/3,TAU/2,-TAU/5,-TAU/4,-TAU/3,-TAU/2]
     def construct(self):
         pass
+    # # def setup(self):
+        
+    # #     self.buildPositionChoiceArray()
+        
+    # def buildPositionChoiceArray(self):
+        
+    #     xrange = [-6,-4,-2,0,2,4,6]
+    #     yrange = [-2,0,2]
+    #     for i in xrange:
+    #         for j in yrange:
+    #             if not (i == 0 & j ==0):
+    #                 print("[" + str(i) +"," + str(j) + ",0]" + ",")
+    #                 self.positionChoice.append([i,j,0])
+        
+        
+            
+    #     return self
+    
     # get the random position of the circle
     def get_random_position(self):
-        positionChoiceIndex = random.randint(1, len(self.positionChoice) - 1)
+        positionChoiceIndex = 1
+        if (len(self.positionChoice) > 2):
+            positionChoiceIndex = random.randint(1, len(self.positionChoice) - 1)
         if (len(self.positionChoice) == 1):
             positionChoiceIndex = 0;
         return positionChoiceIndex
@@ -84,10 +105,12 @@ class AbstractAnim(Scene):
         if (len(cvo.cvolist) > 0):
             for idx in range(0,len(cvo.cvolist)):
                 self.construct1(cvo.cvolist[idx],cvo)
+                
+        
 
     # pass the json object and the top level data object
     def parsejson(self,json_data,cvo10):
-        nested_found = False
+        
         for key, value in json_data.items():
             if isinstance(value, dict):
                 pass
@@ -105,7 +128,12 @@ class AbstractAnim(Scene):
                 p10=cvo.CVO().CreateCVO(key,value)
                 cvo10.cvolist.append(p10)
                 
-        if not nested_found:
-            print("No nested JSON found.")
-            
         
+    def fadeOut(scene: Scene):
+        animations = []
+        for mobject in scene.mobjects:
+            animations.append(FadeOut(mobject))
+        if (len(animations) > 0):
+            scene.play(*animations)
+        
+    

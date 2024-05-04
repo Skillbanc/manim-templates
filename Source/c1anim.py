@@ -15,8 +15,10 @@ class C1Anim(AbstractAnim):
 
     # use the appropriate method based on how the data is stored
     def construct(self):
-        #self.constructDataByCVO
+        self.constructDataByCVO()
+        self.fadeOut()
         self.constructDataByJSON()
+        self.fadeOut()
         
     # render using CVO data object
     def constructDataByCVO(self):
@@ -45,7 +47,7 @@ class C1Anim(AbstractAnim):
                     }
                     '''     
         try:
-            data = json.loads(json_string2)
+            data = json.loads(json_string1)
             for key, value in data.items():
                 
                 if isinstance(value, str):
@@ -62,6 +64,8 @@ class C1Anim(AbstractAnim):
             print("Invalid JSON format.")
          
         self.construct1(self.p10,self.p10)
+        
+        
       
 if __name__ == "__main__":
     scene = C1Anim()
