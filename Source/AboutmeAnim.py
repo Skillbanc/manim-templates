@@ -33,6 +33,7 @@ class Rohit(AbstractAnim):
         p10.cvolist.append(p14)
         p12.cvolist.append(p13)
         p12.cvolist.append(p15)
+        
         self.construct1(p10,p10)
     # render using a json string
     def constructDataByJSON(self):
