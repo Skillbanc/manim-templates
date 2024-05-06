@@ -23,7 +23,16 @@ class Rohit(AbstractAnim):
     # render using CVO data object
     def constructDataByCVO(self):
         p10=cvo.CVO().CreateCVO("Person","Vailla Rohit")
-        
+        p11=cvo.CVO().CreateCVO("College","IFHE")
+        p12=cvo.CVO().CreateCVO("Company","Skillbanc.com")
+        p13=cvo.CVO().CreateCVO("Project","Manim-Templates")
+        p14=cvo.CVO().CreateCVO("Location","Hyderabad")
+        p15=cvo.CVO().CreateCVO("Location","USA")
+        p10.cvolist.append(p11)
+        p10.cvolist.append(p12)
+        p10.cvolist.append(p14)
+        p12.cvolist.append(p13)
+        p12.cvolist.append(p15)
         self.construct1(p10,p10)
     # render using a json string
     def constructDataByJSON(self):
