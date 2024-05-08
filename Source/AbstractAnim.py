@@ -55,7 +55,8 @@ class AbstractAnim(Scene):
         if (cvo.pos == None):
             cvo.pos=self.positionChoice[positionChoiceIndex]
         
-        self.positionChoice.remove(cvo.pos)
+        if (self.positionChoice.__contains__(cvo.pos)):
+            self.positionChoice.remove(cvo.pos)
             
         shapeChoiceIndex = 0 # random.randint(0,3)
         # Circle to contain objects
