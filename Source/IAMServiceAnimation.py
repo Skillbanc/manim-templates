@@ -10,9 +10,9 @@ class IAMServiceAnimation(AbstractAnim):
    # Implement construct method to render
     def construct(self):
         
-        self.displayIAMServiceLevelRelationshipsPart1()
-        self.displayUserPerspectiveRelationsPart2()
-        self.displayUserGroupPerspectiveRelationsPart3()
+        # self.displayIAMServiceLevelRelationshipsPart1()
+        # self.displayUserPerspectiveRelationsPart2()
+        # self.displayUserGroupPerspectiveRelationsPart3()
         self.displayIAMPolicyPerspectiveRelationsPart4()
         
     # render using a json string
@@ -152,6 +152,9 @@ class IAMServiceAnimation(AbstractAnim):
                     }
                     '''     
         try:
+            self.positionChoice = [[0,0,0],[-6,-2,0],[6,-2,0],[0,3,0],[-6,2,0],[6,2,0]]
+            self.angleChoice = [TAU/4]#,-TAU/4]
+            
             data = json.loads(json_string2)
             for key, value in data.items():
                 
@@ -171,6 +174,7 @@ class IAMServiceAnimation(AbstractAnim):
         self.construct1(self.p10,self.p10)
         self.fadeOut()
         
+   
 if __name__ == "__main__":
     
     scene = IAMServiceAnimation()

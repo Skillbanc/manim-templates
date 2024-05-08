@@ -23,8 +23,8 @@ class AbstractAnim(Scene):
         
     # #     self.buildPositionChoiceArray()
         
-    # def buildPositionChoiceArray(self):
-        
+    def buildPositionChoiceArray(self):
+        pass    
     #     xrange = [-6,-4,-2,0,2,4,6]
     #     yrange = [-2,0,2]
     #     for i in xrange:
