@@ -41,6 +41,8 @@ class git(AbstractAnim):
         p15=cvo.CVO().CreateCVO("Command","git commit")
         p16=cvo.CVO().CreateCVO("Command","git stash")
         p17=cvo.CVO().CreateCVO("Command","git clone")
+        p18=cvo.CVO().CreateCVO("Command","git branch")
+        p19=cvo.CVO().CreateCVO("Command","git merge")
 
         p10.cvolist.append(p11)
         p10.cvolist.append(p12)
@@ -49,6 +51,8 @@ class git(AbstractAnim):
         p10.cvolist.append(p15)
         p10.cvolist.append(p16)
         p10.cvolist.append(p17)
+        p10.cvolist.append(p18)
+        p10.cvolist.append(p19)
         
         self.construct1(p10,p10)
 
