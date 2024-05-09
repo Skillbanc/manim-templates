@@ -22,37 +22,24 @@ class git(AbstractAnim):
         p10=cvo.CVO().CreateCVO("Git","")
         p11=cvo.CVO().CreateCVO("Repository","manim-templates")
         p12=cvo.CVO().CreateCVO("Repository Owner","Skillbanc.com,Inc")
-        p13=cvo.CVO().CreateCVO("Branch","main")
-        p14=cvo.CVO().CreateCVO("Branch","Vailla Rohit")
-        
+        p13=cvo.CVO().CreateCVO("Branch","")
+        p13onnamelist=["main","Vailla Rohit"]
+        p13.extendOname(p13onnamelist)
+        p11children=[p12,p13]
         p10.cvolist.append(p11)
-        p11.cvolist.append(p12)
-        p11.cvolist.append(p13)
-        p11.cvolist.append(p14)
+        p11.extendcvo(p11children)
+        
         
         self.construct1(p10,p10)
     
     def repositorycommands(self):
         p10=cvo.CVO().CreateCVO("Git","")
-        p11=cvo.CVO().CreateCVO("Command","git init")
-        p12=cvo.CVO().CreateCVO("Command","git add")
-        p13=cvo.CVO().CreateCVO("Command","git push")
-        p14=cvo.CVO().CreateCVO("Command","git pull")
-        p15=cvo.CVO().CreateCVO("Command","git commit")
-        p16=cvo.CVO().CreateCVO("Command","git stash")
-        p17=cvo.CVO().CreateCVO("Command","git clone")
-        p18=cvo.CVO().CreateCVO("Command","git branch")
-        p19=cvo.CVO().CreateCVO("Command","git merge")
+        p11=cvo.CVO().CreateCVO("Command","")
+        p11onamelist=["git pull","git push","git commit","git stage","git stash","git init","git branch","git merge","git add"]
 
         p10.cvolist.append(p11)
-        p10.cvolist.append(p12)
-        p10.cvolist.append(p13)
-        p10.cvolist.append(p14)
-        p10.cvolist.append(p15)
-        p10.cvolist.append(p16)
-        p10.cvolist.append(p17)
-        p10.cvolist.append(p18)
-        p10.cvolist.append(p19)
+        p11.extendOname(p11onamelist)
+        
         
         self.construct1(p10,p10)
 
