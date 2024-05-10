@@ -14,9 +14,10 @@ import cvo
 import random
 # class that has all common methods that can be used by subclasses
 class AbstractAnim(Scene):
-    # colorChoice=[RED,BLUE,GREEN,PURPLE,ORANGE,YELLOW,RED,BLUE,GREEN,PURPLE,ORANGE,YELLOW]
-    # shapeChoice=[Circle,Triangle,Square,Rectangle]
-    # positionChoice = [[0,0,0],[-6,-2,0],[4,-2,0],[2,0,0],[-6,2,0],[-4,-2,0],[-4,2,0],[-2,-2,0],[4,0,0],[-4,0,0],[-2,2,0],[2,-2,0],[-6,0,0],[2,2,0],[6,0,0],[4,2,0],[6,-2,0],[-2,0,0],[6,2,0]]
+
+    colorChoice=[RED,BLUE,GREEN,PURPLE,ORANGE,YELLOW]
+    shapeChoice=[Circle,Triangle,Square,Rectangle]
+    positionChoice = [[-6,-2,0],[4,-2,0],[2,0,0],[-6,2,0],[-4,-2,0],[-4,2,0],[-2,-2,0],[4,0,0],[-4,0,0],[-2,2,0],[2,-2,0],[-6,0,0],[2,2,0],[6,0,0],[4,2,0],[6,-2,0],[-2,0,0],[6,2,0]]
 
     # angleChoice = [TAU/5,TAU/4,TAU/3,TAU/2,-TAU/5,-TAU/4,-TAU/3,-TAU/2]
     isRandom = True
@@ -72,9 +73,7 @@ class AbstractAnim(Scene):
             positionChoiceIndex = 0;
         return positionChoiceIndex
     # current object and the parent object to render 2 circles 2 class names 2 object names  and one arrow
-    def construct1(self,cvo,cvoParent):
-        
-            
+    def construct1(self,cvo,cvoParent)
         if (self.isRandom):
             colorChoiceIndex = random.randint(0, len(self.colorChoice) - 1)
         else:
@@ -98,28 +97,30 @@ class AbstractAnim(Scene):
         shapeChoiceIndex = 0 # random.randint(0,3)
         # Circle to contain objects
         cir1 = Circle(radius=cvo.circle_radius,color=self.colorChoice[colorChoiceIndex])
-            
         star = Star(outer_radius=0.1, inner_radius=0.05,color=self.colorChoice[colorChoiceIndex]).move_to(cir1.get_center())
+        
         c1nameposition = cvo.c1nameposition
-
         if( c1nameposition == None):
             c1nameposition = cir1.get_top()
-            
         cname = Tex(cvo.cname,color=self.colorChoice[colorChoiceIndex]).move_to(c1nameposition).shift(UP * 0.25)
+        
         o1nameposition = cvo.o1nameposition
-
         if( o1nameposition == None):
             o1nameposition = star.get_top()
         oname = Tex(cvo.oname,color=self.colorChoice[colorChoiceIndex]).move_to(o1nameposition).scale(0.5).shift(UP * 0.15)
         
         self.play(Create(cir1,run_time=cvo.duration),Create(cname,run_time=cvo.duration))
-            
-        self.play(Create(oname),Create(star))
-       
-        grp1=VGroup(cir1,star,cname,oname)
+        
+        if len(cvo.onameList) == 0:
+            self.play(Create(oname),Create(star))
+            grp1=VGroup(cir1,star,cname,oname)
+        else: 
+            grp1=VGroup(cir1,cname)
         
         self.play(grp1.animate.move_to(cvo.pos).scale(0.75))
+    
         
+    
         if (cvo != cvoParent):
             if (self.isRandom):
                 angleChoiceIndex = random.randint(0,len(self.angleChoice) - 1)
@@ -131,17 +132,27 @@ class AbstractAnim(Scene):
             
             arrow1 = CurvedArrow(cvoParent.pos,cvo.pos,angle=cvo.angle,stroke_width=1.5)
             arrow1.tip.scale(0.75)
-            self.play(Create(arrow1),run_time=cvo.duration)
+            if len(cvo.onameList) == 0:
+                self.play(Create(arrow1),run_time=cvo.duration)
             self.bring_to_back(arrow1)
-            
-            
        
-        if (len(cvo.onameList) > 0 ):
-            for onameLocal in cvo.onameList:
+        if (len(cvo.onameList) > 0 and len(cvo.onameList) < 5):
+            for index in range(len(cvo.onameList)):
                 # starLocal = Star(outer_radius=0.15, inner_radius=0.1,color=self.colorChoice[colorChoiceIndex]).move_to(cir1.get_center())
-                starLocal = Star(outer_radius=0.1, inner_radius=0.05,color=self.colorChoice[colorChoiceIndex]).move_to(cir1.get_center()).shift(LEFT * .25, DOWN * .25).scale(0.5)
-                onameLocalText = Tex(onameLocal,color=self.colorChoice[colorChoiceIndex]).scale(0.25).next_to(starLocal).shift(LEFT * .20)
+                starLocal = Star(outer_radius=0.1, inner_radius=0.05,color=self.colorChoice[colorChoiceIndex]).move_to(cir1.get_top()).shift(LEFT * .35, DOWN * .25*(index+1)).scale(0.5)
+                onameLocalText = Tex(cvo.onameList[index],color=self.colorChoice[colorChoiceIndex]).scale(0.35).next_to(starLocal).shift(LEFT * .20)
+                arrow2 = CurvedArrow(cvoParent.pos,starLocal.get_center(),angle=cvo.angle)
                 self.play(Create(starLocal),Create(onameLocalText))#grpLocal.animate.move_to(cir1.get_center()).scale(0.5).shift(DOWN * 2))#scale(0.25))
+                self.play(Create(arrow2))
+        else:
+            self.play(grp1.animate.scale(1+0.1*len(cvo.onameList)))
+            for index in range(len(cvo.onameList)):
+                # starLocal = Star(outer_radius=0.15, inner_radius=0.1,color=self.colorChoice[colorChoiceIndex]).move_to(cir1.get_center())
+                starLocal = Star(outer_radius=0.1, inner_radius=0.05,color=self.colorChoice[colorChoiceIndex]).move_to(cir1.get_top()).shift(LEFT * .35, DOWN * .25*(index+1)).scale(0.6)
+                onameLocalText = Tex(cvo.onameList[index],color=self.colorChoice[colorChoiceIndex]).scale(0.45).next_to(starLocal).shift(LEFT * .20)
+                arrow2 = CurvedArrow(cvoParent.pos,starLocal.get_center(),angle=cvo.angle)
+                self.play(Create(starLocal),Create(onameLocalText))#grpLocal.animate.move_to(cir1.get_center()).scale(0.5).shift(DOWN * 2))#scale(0.25))
+                self.play(Create(arrow2))
                           
         cvo.cnameMObject = cname
         cvo.onameMObject = oname

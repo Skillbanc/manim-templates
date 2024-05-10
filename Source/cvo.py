@@ -34,6 +34,13 @@ class CVO:
     self.onameList.append(oname)
     return self
   
+  def extendOname(self,oname):
+    self.onameList.extend(oname)
+    return self
+  
+  def extendcvo(self,cvoobj):
+    self.cvolist.extend(cvoobj)
+  
   def CreateCVO(self,cname,oname):
     self.c1nameposition = None
     self.o1nameposition = None
@@ -49,5 +56,6 @@ class CVO:
     self.onameMObject = None
     self.onameList = []
     return self
+  
 
   
