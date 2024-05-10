@@ -5,6 +5,8 @@
 #   Sudhakar Moparthy
 #   Rohit Vailla
 
+from pickle import TRUE
+from xmlrpc.client import Boolean
 from manim import *
 from numpy import size
 
@@ -12,16 +14,40 @@ import cvo
 import random
 # class that has all common methods that can be used by subclasses
 class AbstractAnim(Scene):
-    colorChoice=[RED,BLUE,GREEN,PURPLE,ORANGE,YELLOW]
-    shapeChoice=[Circle,Triangle,Square,Rectangle]
-    positionChoice = [[0,0,0],[-6,-2,0],[4,-2,0],[2,0,0],[-6,2,0],[-4,-2,0],[-4,2,0],[-2,-2,0],[4,0,0],[-4,0,0],[-2,2,0],[2,-2,0],[-6,0,0],[2,2,0],[6,0,0],[4,2,0],[6,-2,0],[-2,0,0],[6,2,0]]
+    # colorChoice=[RED,BLUE,GREEN,PURPLE,ORANGE,YELLOW,RED,BLUE,GREEN,PURPLE,ORANGE,YELLOW]
+    # shapeChoice=[Circle,Triangle,Square,Rectangle]
+    # positionChoice = [[0,0,0],[-6,-2,0],[4,-2,0],[2,0,0],[-6,2,0],[-4,-2,0],[-4,2,0],[-2,-2,0],[4,0,0],[-4,0,0],[-2,2,0],[2,-2,0],[-6,0,0],[2,2,0],[6,0,0],[4,2,0],[6,-2,0],[-2,0,0],[6,2,0]]
 
-    angleChoice = [TAU/5,TAU/4,TAU/3,TAU/2,-TAU/5,-TAU/4,-TAU/3,-TAU/2]
+    # angleChoice = [TAU/5,TAU/4,TAU/3,TAU/2,-TAU/5,-TAU/4,-TAU/3,-TAU/2]
+    isRandom = True
+    
+    def initChoices(self):
+        self.colorChoice=[RED,BLUE,GREEN,PURPLE,ORANGE,YELLOW,RED,BLUE,GREEN,PURPLE,ORANGE,YELLOW]
+        self.shapeChoice=[Circle,Triangle,Square,Rectangle]
+        self.positionChoice = [[0,0,0],[-6,-2,0],[4,-2,0],[2,0,0],[-6,2,0],[-4,-2,0],[-4,2,0],[-2,-2,0],[4,0,0],[-4,0,0],[-2,2,0],[2,-2,0],[-6,0,0],[2,2,0],[6,0,0],[4,2,0],[6,-2,0],[-2,0,0],[6,2,0]]
+        self.angleChoice = [TAU/5,TAU/4,TAU/3,TAU/2,-TAU/5,-TAU/4,-TAU/3,-TAU/2]
+    
+    def setNumberOfClasses(self,numberOfCircles : int):
+        match numberOfCircles:
+            case 1:
+                self.positionChoice = [[0,0,0][0,-2,0]]
+            case 2:
+                self.positionChoice = [[0,0,0],[-4,-2,0],[4,2,0]]
+            case 3:
+                self.positionChoice = [[0,0,0],[-4,-2,0],[4,-2,0],[-4,2,0],[4,2,0]]
+            case 4:
+                self.positionChoice = [[0,0,0],[-4,-2,0],[4,-2,0],[-4,2,0],[4,2,0]]
+            case 5:
+                self.positionChoice = [[0,0,0],[-4,-2,0],[4,-2,0],[-4,2,0],[4,2,0],[0,-2,0]]
+            case 6:
+                 self.positionChoice = [[0,0,0],[-6,-2,0],[6,-2,0],[0,3,0],[-6,2,0],[6,2,0],[0,-3,0]]
+        
     def construct(self):
         pass
-    # # def setup(self):
+    def setup(self):
+        self.initChoices()
         
-    # #     self.buildPositionChoiceArray()
+        # self.buildPositionChoiceArray()
         
     def buildPositionChoiceArray(self):
         pass    
@@ -47,16 +73,27 @@ class AbstractAnim(Scene):
         return positionChoiceIndex
     # current object and the parent object to render 2 circles 2 class names 2 object names  and one arrow
     def construct1(self,cvo,cvoParent):
-        angleChoiceIndex = random.randint(0,len(self.angleChoice) - 1)
-        cvo.angle = self.angleChoice[angleChoiceIndex]
-        colorChoiceIndex = random.randint(0, len(self.colorChoice) - 1)
         
-        positionChoiceIndex = self.get_random_position()
+            
+        if (self.isRandom):
+            colorChoiceIndex = random.randint(0, len(self.colorChoice) - 1)
+        else:
+            colorChoiceIndex = 0
+        
+        cvo.color = self.colorChoice[colorChoiceIndex]
+        
+       
+            
+        # if random ness position then use random
+        if (self.isRandom):
+            positionChoiceIndex = self.get_random_position()
+        else:
+            positionChoiceIndex = 0
+            
         if (cvo.pos == None):
             cvo.pos=self.positionChoice[positionChoiceIndex]
         
-        if (self.positionChoice.__contains__(cvo.pos)):
-            self.positionChoice.remove(cvo.pos)
+       
             
         shapeChoiceIndex = 0 # random.randint(0,3)
         # Circle to contain objects
@@ -83,13 +120,21 @@ class AbstractAnim(Scene):
         
         self.play(grp1.animate.move_to(cvo.pos).scale(0.75))
         
-        arrow1 = CurvedArrow(cvoParent.pos,cvo.pos,angle=cvo.angle,stroke_width=1.5)
-        arrow1.tip.scale(0.75)
-        self.play(Create(arrow1),run_time=cvo.duration)
-        # cname.remove()
-        # oname.remove()
-        # self.play(Create(cname),Create(oname))
-        self.bring_to_back(arrow1)
+        if (cvo != cvoParent):
+            if (self.isRandom):
+                angleChoiceIndex = random.randint(0,len(self.angleChoice) - 1)
+            else:
+                angleChoiceIndex = 0
+            
+            cvo.angle = self.angleChoice[angleChoiceIndex]
+            
+            
+            arrow1 = CurvedArrow(cvoParent.pos,cvo.pos,angle=cvo.angle,stroke_width=1.5)
+            arrow1.tip.scale(0.75)
+            self.play(Create(arrow1),run_time=cvo.duration)
+            self.bring_to_back(arrow1)
+            
+            
        
         if (len(cvo.onameList) > 0 ):
             for onameLocal in cvo.onameList:
@@ -101,13 +146,23 @@ class AbstractAnim(Scene):
         cvo.cnameMObject = cname
         cvo.onameMObject = oname
         
-        self.wait()
+        #self.wait()
+        
+       
+                
+        if (self.positionChoice.__contains__(cvo.pos)):
+            self.positionChoice.remove(cvo.pos)
+            
+        if (cvo != cvoParent):
+            if (self.angleChoice.__contains__(cvo.angle)):
+                self.angleChoice.remove(cvo.angle)
+                
+        if (self.colorChoice.__contains__(cvo.color)):
+            self.colorChoice.remove(cvo.color)
         
         if (len(cvo.cvolist) > 0):
             for idx in range(0,len(cvo.cvolist)):
                 self.construct1(cvo.cvolist[idx],cvo)
-                
-        
 
     # pass the json object and the top level data object
     def parsejson(self,json_data,cvo10):
@@ -130,11 +185,13 @@ class AbstractAnim(Scene):
                 cvo10.cvolist.append(p10)
                 
         
-    def fadeOut(scene: Scene):
+    def fadeOut(self):
         animations = []
-        for mobject in scene.mobjects:
+        for mobject in self.mobjects:
             animations.append(FadeOut(mobject))
         if (len(animations) > 0):
-            scene.play(*animations)
+            self.play(*animations)
+        
+        self.initChoices()
         
     

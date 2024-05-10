@@ -14,17 +14,19 @@ import cvo
 class C2Anim(AbstractAnim):
     
     def construct(self):
-        #  p1=cvo.CVO().CreateCVO("o1name","o2name","c1name","c2name")
-         p10=cvo.CVO().CreateCVO("Person","John Doe")
+        #  p1=cvo.CVO().CreateCVO("cname","oname")
+        p10=cvo.CVO().CreateCVO("Person","John Doe")
          
-         # p11=cvo.CVO().CreateCVO("Age","36")
-         p11 = cvo.CVO().CreateCVO("Previous Employer","Google")
-         p10.cvolist.append(p11)
-       
-         p12 = cvo.CVO().CreateCVO("Previous Employer","Microsoft")
-         p10.cvolist.append(p12)
+        p11 = cvo.CVO().CreateCVO("Previous Employer","Google")
+        p10.cvolist.append(p11)
+               
+        self.setNumberOfClasses(2)
          
-         self.construct1(p10,p10)
+        self.positionChoice = [[-4,-2,0],[4,2,0]]
+        self.angleChoice = [TAU/4]
+        self.colorChoice=[ORANGE,YELLOW]
+        self.isRandom = False
+        self.construct1(p10,p10)
   
             
 if __name__ == "__main__":
