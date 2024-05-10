@@ -16,6 +16,7 @@ class C3Anim(AbstractAnim):
     
     def construct(self):
         #  p1=cvo.CVO().CreateCVO("o1name","o2name","c1name","c2name")
+         
          p10=cvo.CVO().CreateCVO("Person","John Doe").setPosition([0,2.5,0])
          
          p11=cvo.CVO().CreateCVO("Age","36").setPosition([2,0,0])
