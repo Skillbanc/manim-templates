@@ -70,10 +70,10 @@ class AbstractAnim(Scene):
         if (len(self.positionChoice) > 2):
             positionChoiceIndex = random.randint(1, len(self.positionChoice) - 1)
         if (len(self.positionChoice) == 1):
-            positionChoiceIndex = 0;
+            positionChoiceIndex = 0
         return positionChoiceIndex
     # current object and the parent object to render 2 circles 2 class names 2 object names  and one arrow
-    def construct1(self,cvo,cvoParent)
+    def construct1(self,cvo,cvoParent):
         if (self.isRandom):
             colorChoiceIndex = random.randint(0, len(self.colorChoice) - 1)
         else:
