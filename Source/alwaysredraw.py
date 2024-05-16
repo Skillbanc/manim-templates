@@ -16,3 +16,6 @@ class AlwaysRedraw(Scene):
         self.play(cir.animate.to_edge(UR), run_time=3)
 
         self.wait()
+if __name__=="__main__":
+    vt=AlwaysRedraw()
+    vt.render()
