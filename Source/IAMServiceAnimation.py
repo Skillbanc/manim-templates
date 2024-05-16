@@ -13,7 +13,7 @@ class IAMServiceAnimation(AbstractAnim):
     def construct(self):
         self.isRandom = False
         
-        self.RenderLOGO().fadeOut()
+        self.RenderLOGO().fadeOutCurrentScene()
         # self.RenderMovieTitles().fadeOut()
         # self.RenderAboutMe().fadeOut()
         # self.displayIAMServiceLevelRelationshipsPart1()
@@ -60,7 +60,7 @@ class IAMServiceAnimation(AbstractAnim):
                 break
             
             self.construct1(self.p10,self.p10)
-            self.fadeOut()
+            self.fadeOutCurrentScene()
             
         except json.JSONDecodeError:
             print("Invalid JSON format.")
@@ -101,7 +101,7 @@ class IAMServiceAnimation(AbstractAnim):
             print("Invalid JSON format.")
          
         self.construct1(self.p10,self.p10)
-        self.fadeOut()
+        self.fadeOutCurrentScene()
         
     def displayUserGroupPerspectiveRelationsPart3(self):
          
@@ -137,7 +137,7 @@ class IAMServiceAnimation(AbstractAnim):
             print("Invalid JSON format.")
          
         self.construct1(self.p10,self.p10)
-        self.fadeOut()
+        self.fadeOutCurrentScene()
         
     # render using a json string
     def displayIAMPolicyPerspectiveRelationsPart4(self):
@@ -179,7 +179,7 @@ class IAMServiceAnimation(AbstractAnim):
             print("Invalid JSON format.")
          
         self.construct1(self.p10,self.p10)
-        self.fadeOut()
+        self.fadeOutCurrentScene()
         
     def RenderLOGO(self):
         # Define colors for dots and circles
@@ -292,7 +292,7 @@ class IAMServiceAnimation(AbstractAnim):
         
         p10.cvolist.append(p12)
         
-        self.setNumberOfClasses(count)
+        self.setNumberOfCirclePositions(count)
        
        
         self.construct1(p10,p10)

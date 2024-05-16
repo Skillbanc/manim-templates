@@ -16,9 +16,9 @@ class C1Anim(AbstractAnim):
     # use the appropriate method based on how the data is stored
     def construct(self):
         self.constructDataByCVO()
-        self.fadeOut()
-        self.constructDataByJSON()
-        self.fadeOut()
+        # self.fadeOut()
+        # self.constructDataByJSON()
+        # self.fadeOut()
         
     # render using CVO data object
     def constructDataByCVO(self):

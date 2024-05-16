@@ -23,12 +23,12 @@ class AbstractAnim(Scene):
     isRandom = True
     
     def initChoices(self):
-        self.colorChoice=[RED,BLUE,GREEN,PURPLE,ORANGE,YELLOW,RED,BLUE,GREEN,PURPLE,ORANGE,YELLOW]
+        self.colorChoice=[RED,BLUE,GREEN,PURPLE,ORANGE,YELLOW]
         self.shapeChoice=[Circle,Triangle,Square,Rectangle]
         self.positionChoice = [[0,0,0],[-6,-2,0],[4,-2,0],[2,0,0],[-6,2,0],[-4,-2,0],[-4,2,0],[-2,-2,0],[4,0,0],[-4,0,0],[-2,2,0],[2,-2,0],[-6,0,0],[2,2,0],[6,0,0],[4,2,0],[6,-2,0],[-2,0,0],[6,2,0]]
         self.angleChoice = [TAU/5,TAU/4,TAU/3,TAU/2,-TAU/5,-TAU/4,-TAU/3,-TAU/2]
     
-    def setNumberOfClasses(self,numberOfCircles : int):
+    def setNumberOfCirclePositions(self,numberOfCircles : int):
         match numberOfCircles:
             case 1:
                 self.positionChoice = [[0,0,0]]
@@ -43,6 +43,10 @@ class AbstractAnim(Scene):
             case 6:
                  self.positionChoice = [[-6,-2,0],[6,-2,0],[0,3,0],[-6,2,0],[6,2,0],[0,-3,0]]
         
+    def setNumberOfAngleChoices(self,numberOfAngles : int):
+        match numberOfAngles:
+            case 9:
+                self.angleChoice = [TAU/5,TAU/4,TAU/3,TAU/2,-TAU/5,-TAU/4,-TAU/3,-TAU/2,TAU/5,TAU/4]
     def construct(self):
         pass
     def setup(self):
@@ -196,7 +200,7 @@ class AbstractAnim(Scene):
                 cvo10.cvolist.append(p10)
                 
         
-    def fadeOut(self):
+    def fadeOutCurrentScene(self):
         animations = []
         for mobject in self.mobjects:
             animations.append(FadeOut(mobject))
