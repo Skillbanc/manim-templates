@@ -20,7 +20,7 @@ class C2Anim(AbstractAnim):
         p11 = cvo.CVO().CreateCVO("Previous Employer","Google")
         p10.cvolist.append(p11)
                
-        self.setNumberOfClasses(2)
+        self.setNumberOfCirclePositions(2)
          
         self.positionChoice = [[-4,-2,0],[4,2,0]]
         self.angleChoice = [TAU/4]
