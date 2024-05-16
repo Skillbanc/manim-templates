@@ -73,7 +73,7 @@ class AbstractAnim(Scene):
             positionChoiceIndex = 0;
         return positionChoiceIndex
     # current object and the parent object to render 2 circles 2 class names 2 object names  and one arrow
-    def construct1(self,cvo,cvoParent)
+    def construct1(self,cvo,cvoParent):
         if (self.isRandom):
             colorChoiceIndex = random.randint(0, len(self.colorChoice) - 1)
         else:
