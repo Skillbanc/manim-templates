@@ -23,3 +23,6 @@ class ValueTrackerExample(Scene):
         self.play(tracker.animate.set_value(3))
         self.play(tracker.animate.increment_value(-2))
         self.wait(2)
+if __name__=="__main__":
+    vt=ValueTrackerExample()
+    vt.render()
