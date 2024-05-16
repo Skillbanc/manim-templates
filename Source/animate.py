@@ -38,3 +38,6 @@ class AnimateMethod(Scene):
         
         # Wait for 1 second
         self.wait(1)
+if __name__=="__main__":
+    vt=AnimateMethod()
+    vt.render()
