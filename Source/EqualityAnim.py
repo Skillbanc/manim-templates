@@ -25,14 +25,18 @@ class EqualityAnim(AbstractAnim):
         
         textArray.append("1=1")
         textArray.append("1+1=1+1")
-        # textArray.append("1+1=2")
-        # textArray.append("2=2")
-        # textArray.append("2+1=2+1")
-        
-        grp1 = VGroup()
+        textArray.append("1+1=2")
+        textArray.append("2=2")
+        textArray.append("2+1=2+1")
+        textArray.append("2+1=3")
+        textArray.append("3=3")
+        textArray.append("3+1=3+1")
+        textArray.append("3+1=4")
+       
         text0 = Tex(textArray[0],color=BLUE)
+        
         self.play(Create(text0))
-        grp1.add(text0)
+       
         
         for i in range(1,len(textArray)):
                     
@@ -40,16 +44,11 @@ class EqualityAnim(AbstractAnim):
            
            text1 = Tex(textArray[i],color=BLUE)
            
-           #self.play(Transform(text0,text1))
-           
-           text0.remove()
-           self.play(Create(text1))
+           self.play(ReplacementTransform(text0,text1))
            text0 = text1
+           # self.wait(2)
+          
            
-           #grp1.shift(UP *0.5)
-           
-           #self.play(Create(text1))
-           #grp1.add(text1)
            
         self.wait(2)
         
