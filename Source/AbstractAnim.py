@@ -31,17 +31,17 @@ class AbstractAnim(Scene):
     def setNumberOfClasses(self,numberOfCircles : int):
         match numberOfCircles:
             case 1:
-                self.positionChoice = [[0,0,0][0,-2,0]]
+                self.positionChoice = [[0,0,0]]
             case 2:
-                self.positionChoice = [[0,0,0],[-4,-2,0],[4,2,0]]
+                self.positionChoice = [[-4,0,0],[4,0,0]]
             case 3:
-                self.positionChoice = [[0,0,0],[-4,-2,0],[4,-2,0],[-4,2,0],[4,2,0]]
+                self.positionChoice = [[-4,0,0],[4,2,0],[4,-2,0]]
             case 4:
-                self.positionChoice = [[0,0,0],[-4,-2,0],[4,-2,0],[-4,2,0],[4,2,0]]
+                self.positionChoice = [[-4,-2,0],[4,-2,0],[-4,2,0],[4,2,0]]
             case 5:
-                self.positionChoice = [[0,0,0],[-4,-2,0],[4,-2,0],[-4,2,0],[4,2,0],[0,-2,0]]
+                self.positionChoice = [[-4,-2,0],[4,-2,0],[-4,2,0],[4,2,0],[0,-2,0]]
             case 6:
-                 self.positionChoice = [[0,0,0],[-6,-2,0],[6,-2,0],[0,3,0],[-6,2,0],[6,2,0],[0,-3,0]]
+                 self.positionChoice = [[-6,-2,0],[6,-2,0],[0,3,0],[-6,2,0],[6,2,0],[0,-3,0]]
         
     def construct(self):
         pass
@@ -117,7 +117,7 @@ class AbstractAnim(Scene):
         else: 
             grp1=VGroup(cir1,cname)
         
-        self.play(grp1.animate.move_to(cvo.pos).scale(0.75))
+        self.play(grp1.animate.scale(0.75).move_to(cvo.pos).shift(UP*0.16))
     
         
     
@@ -134,7 +134,7 @@ class AbstractAnim(Scene):
             arrow1.tip.scale(0.75)
             if len(cvo.onameList) == 0:
                 self.play(Create(arrow1),run_time=cvo.duration)
-            self.bring_to_back(arrow1)
+            #self.bring_to_back(arrow1)
        
         if (len(cvo.onameList) > 0 and len(cvo.onameList) < 5):
             for index in range(len(cvo.onameList)):

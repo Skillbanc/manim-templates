@@ -4,31 +4,32 @@
 # Contributor(s):   
 #   Sudhakar Moparthy
 #   Rohit Vailla
-
 from manim import *
-from numpy import size
 from AbstractAnim import AbstractAnim
-
 import cvo
 
-class C2Anim(AbstractAnim):
-    
+class mlintro(AbstractAnim):
+
+    # use the appropriate method based on how the data is stored
     def construct(self):
-        #  p1=cvo.CVO().CreateCVO("cname","oname")
-        p10=cvo.CVO().CreateCVO("Person","John Doe")
-         
-        p11 = cvo.CVO().CreateCVO("Previous Employer","Google")
+        self.mlintro()
+        
+    # render using CVO data object
+    def mlintro(self):
+        p10=cvo.CVO().CreateCVO("Machine Learning","")
+        p11=cvo.CVO().CreateCVO("Types of ML","")
+        p11onnamelist=["Supervised","Unsupervised","Semi-supervised","Reinforced"]
+        p11.extendOname(p11onnamelist)
+        p11.setcircleradius(1.5)
         p10.cvolist.append(p11)
-               
         self.setNumberOfClasses(2)
-        self.add(NumberPlane())
-        self.positionChoice = [[-4,-2,0],[4,2,0]]
         self.angleChoice = [TAU/4]
         self.colorChoice=[ORANGE,YELLOW]
         self.isRandom = False
         self.construct1(p10,p10)
-  
-            
+
+
+      
 if __name__ == "__main__":
-    scene = C2Anim()
+    scene = mlintro()
     scene.render()

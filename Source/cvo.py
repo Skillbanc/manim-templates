@@ -40,6 +40,9 @@ class CVO:
   
   def extendcvo(self,cvoobj):
     self.cvolist.extend(cvoobj)
+
+  def setcircleradius(self,radius):
+    self.circle_radius=radius
   
   def CreateCVO(self,cname,oname):
     self.c1nameposition = None
