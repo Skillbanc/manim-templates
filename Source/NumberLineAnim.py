@@ -6,7 +6,7 @@ class NumberLineAnim(Scene):
         self.RenderNaturalNumbers()
     
     def RenderNaturalNumbers(self):
-        number_line = NumberLine()
+        number_line = NumberLine(x_range=[1,10,1],include_numbers=1)
         pointer = Vector(DOWN)
         label = MathTex("x").add_updater(lambda m: m.next_to(pointer, UP))
 
@@ -18,7 +18,7 @@ class NumberLineAnim(Scene):
                     )
         )
         self.add(number_line, pointer,label)
-        for i in range(1,10):
+        for i in range(1,11):
             self.play(tracker.animate.set_value(i))
 
     def RenderNegativeNumbers(self):
