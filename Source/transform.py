@@ -14,3 +14,6 @@ class TransformExample(Scene):
         self.wait(1)
         self.play(FadeOut(circle1))
         self.wait(1)
+if __name__=="__main__":
+    vt=TransformExample()
+    vt.render()
