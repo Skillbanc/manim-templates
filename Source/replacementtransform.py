@@ -1,6 +1,6 @@
 from manim import *
 
-class TransformExample(Scene):
+class ReplacementTransformExample(Scene):
     def construct(self):
 
         square2 = Square(color=RED, fill_opacity=0.5)
@@ -12,3 +12,6 @@ class TransformExample(Scene):
         self.wait(1)
         self.play(FadeOut(circle2))
         self.wait(1)
+if __name__=="__main__":
+    vt=ReplacementTransformExample()
+    vt.render()

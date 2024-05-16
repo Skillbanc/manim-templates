@@ -20,3 +20,6 @@ class Updaters(Scene):
         self.play(box.animate.to_edge(RIGHT), run_time=3)
 
         self.wait()
+if __name__=="__main__":
+    vt=Updaters()
+    vt.render()
