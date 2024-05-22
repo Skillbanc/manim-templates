@@ -14,7 +14,8 @@ import cvo
 import random
 # class that has all common methods that can be used by subclasses
 class AbstractAnim(Scene):
-
+    grpAll = VGroup()
+    isFadeOutAtTheEndOfThisScene = False
     colorChoice=[RED,BLUE,GREEN,PURPLE,ORANGE,YELLOW]
     shapeChoice=[Circle,Triangle,Square,Rectangle]
     positionChoice = [[-6,-2,0],[4,-2,0],[2,0,0],[-6,2,0],[-4,-2,0],[-4,2,0],[-2,-2,0],[4,0,0],[-4,0,0],[-2,2,0],[2,-2,0],[-6,0,0],[2,2,0],[6,0,0],[4,2,0],[6,-2,0],[-2,0,0],[6,2,0]]
@@ -139,7 +140,8 @@ class AbstractAnim(Scene):
             if len(cvo.onameList) == 0:
                 self.play(Create(arrow1),run_time=cvo.duration)
             #self.bring_to_back(arrow1)
-       
+            grp1.add(arrow1)
+            
         if (len(cvo.onameList) > 0 and len(cvo.onameList) < 5):
             for index in range(len(cvo.onameList)):
                 # starLocal = Star(outer_radius=0.15, inner_radius=0.1,color=self.colorChoice[colorChoiceIndex]).move_to(cir1.get_center())
@@ -178,7 +180,13 @@ class AbstractAnim(Scene):
         if (len(cvo.cvolist) > 0):
             for idx in range(0,len(cvo.cvolist)):
                 self.construct1(cvo.cvolist[idx],cvo)
-
+        
+        self.grpAll.add(grp1)
+        
+        
+        if (self.isFadeOutAtTheEndOfThisScene):
+            self.play(self.grpAll.animate.scale(0))
+            
     # pass the json object and the top level data object
     def parsejson(self,json_data,cvo10):
         
