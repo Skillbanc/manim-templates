@@ -14,6 +14,7 @@ import cvo
 class C2Anim(AbstractAnim):
     
     def construct(self):
+        self.isFadeOutAtTheEndOfThisScene = True
         #  p1=cvo.CVO().CreateCVO("cname","oname")
         p10=cvo.CVO().CreateCVO("Person","John Doe")
          
