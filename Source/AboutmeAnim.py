@@ -43,7 +43,7 @@ class AboutMe(AbstractAnim):
         
         p10.cvolist.append(p12)
         
-        self.setNumberOfClasses(count)
+        self.setNumberOfCirclePositions(count)
        
        
         self.construct1(p10,p10)

@@ -23,26 +23,30 @@ class AbstractAnim(Scene):
     isRandom = True
     
     def initChoices(self):
-        self.colorChoice=[RED,BLUE,GREEN,PURPLE,ORANGE,YELLOW,RED,BLUE,GREEN,PURPLE,ORANGE,YELLOW]
+        self.colorChoice=[RED,BLUE,GREEN,PURPLE,ORANGE,YELLOW]
         self.shapeChoice=[Circle,Triangle,Square,Rectangle]
         self.positionChoice = [[0,0,0],[-6,-2,0],[4,-2,0],[2,0,0],[-6,2,0],[-4,-2,0],[-4,2,0],[-2,-2,0],[4,0,0],[-4,0,0],[-2,2,0],[2,-2,0],[-6,0,0],[2,2,0],[6,0,0],[4,2,0],[6,-2,0],[-2,0,0],[6,2,0]]
         self.angleChoice = [TAU/5,TAU/4,TAU/3,TAU/2,-TAU/5,-TAU/4,-TAU/3,-TAU/2]
     
-    def setNumberOfClasses(self,numberOfCircles : int):
+    def setNumberOfCirclePositions(self,numberOfCircles : int):
         match numberOfCircles:
             case 1:
-                self.positionChoice = [[0,0,0][0,-2,0]]
+                self.positionChoice = [[0,0,0]]
             case 2:
-                self.positionChoice = [[0,0,0],[-4,-2,0],[4,2,0]]
+                self.positionChoice = [[-4,0,0],[4,0,0]]
             case 3:
-                self.positionChoice = [[0,0,0],[-4,-2,0],[4,-2,0],[-4,2,0],[4,2,0]]
+                self.positionChoice = [[-4,0,0],[4,2,0],[4,-2,0]]
             case 4:
-                self.positionChoice = [[0,0,0],[-4,-2,0],[4,-2,0],[-4,2,0],[4,2,0]]
+                self.positionChoice = [[-4,-2,0],[4,-2,0],[-4,2,0],[4,2,0]]
             case 5:
-                self.positionChoice = [[0,0,0],[-4,-2,0],[4,-2,0],[-4,2,0],[4,2,0],[0,-2,0]]
+                self.positionChoice = [[-4,-2,0],[4,-2,0],[-4,2,0],[4,2,0],[0,-2,0]]
             case 6:
-                 self.positionChoice = [[0,0,0],[-6,-2,0],[6,-2,0],[0,3,0],[-6,2,0],[6,2,0],[0,-3,0]]
+                 self.positionChoice = [[-6,-2,0],[6,-2,0],[0,3,0],[-6,2,0],[6,2,0],[0,-3,0]]
         
+    def setNumberOfAngleChoices(self,numberOfAngles : int):
+        match numberOfAngles:
+            case 9:
+                self.angleChoice = [TAU/5,TAU/4,TAU/3,TAU/2,-TAU/5,-TAU/4,-TAU/3,-TAU/2,TAU/5,TAU/4]
     def construct(self):
         pass
     def setup(self):
@@ -117,7 +121,7 @@ class AbstractAnim(Scene):
         else: 
             grp1=VGroup(cir1,cname)
         
-        self.play(grp1.animate.move_to(cvo.pos).scale(0.75))
+        self.play(grp1.animate.scale(0.75).move_to(cvo.pos).shift(UP*0.16))
     
         
     
@@ -134,7 +138,7 @@ class AbstractAnim(Scene):
             arrow1.tip.scale(0.75)
             if len(cvo.onameList) == 0:
                 self.play(Create(arrow1),run_time=cvo.duration)
-            self.bring_to_back(arrow1)
+            #self.bring_to_back(arrow1)
        
         if (len(cvo.onameList) > 0 and len(cvo.onameList) < 5):
             for index in range(len(cvo.onameList)):
@@ -196,7 +200,7 @@ class AbstractAnim(Scene):
                 cvo10.cvolist.append(p10)
                 
         
-    def fadeOut(self):
+    def fadeOutCurrentScene(self):
         animations = []
         for mobject in self.mobjects:
             animations.append(FadeOut(mobject))
@@ -205,4 +209,60 @@ class AbstractAnim(Scene):
         
         self.initChoices()
         
-    
+    def RenderSkillbancLogo(self):
+        
+        self.orange = "#D76800"
+        self.blue = "#3F64A7"
+        self.green = "#96D24D"
+        self.circles = VGroup(
+            Circle(radius=1).rotate(PI/2).set_fill(self.orange, opacity=1).set_stroke(self.orange, opacity=1).shift(LEFT*3),
+            Circle(radius=1).rotate(PI/2).set_fill(self.blue, opacity=1).set_stroke(self.blue, opacity=1),
+            Circle(radius=1).rotate(PI/2).set_fill(self.green, opacity=1).set_stroke(self.green, opacity=1).shift(RIGHT*3)
+        )
+        circle1, circle2, circle3 = self.circles
+        
+        lines = VGroup(
+            Arrow(circle1.get_right(), circle2.get_left(), max_tip_length_to_length_ratio=2),
+            Arrow(circle2.get_right(), circle3.get_left(), max_tip_length_to_length_ratio=2),
+            CurvedArrow(circle1.get_top(), circle3.get_top(), angle=-TAU/4),
+            CurvedArrow(circle1.get_bottom(), circle3.get_bottom(), angle=TAU/4)
+        )
+
+        # Adjust the starting points of the straight arrows to touch the circumference
+        lines[0].put_start_and_end_on(circle1.get_right(), circle2.get_left())
+        lines[1].put_start_and_end_on(circle2.get_right(), circle3.get_left())
+
+        # Add the text "skillbanc" below the curved arrows
+        self.play(Create(circle1), Create(circle2), Create(circle3), rate_func=smooth, run_time=1)
+        self.play(Create(lines), rate_func=smooth, run_time=1)
+        text = Text("Skillbanc.com, Inc.").next_to(lines[3], DOWN)
+        self.play(Create(text), rate_func=smooth, run_time=0.75)
+        
+        self.logoGroup = VGroup().add(self.circles).add(lines).add(text)
+        self.play(self.logoGroup.animate.scale(0),run_time=1)
+        # self.play(self.circles.animate.scale(0),lines.animate.scale(0),text.animate.scale(0),run_time=3)
+        
+         
+    def construct2(self,p10,cvoParent):  
+        text0 = Tex(p10.onameList[0],color=BLUE)
+        text01 = Tex(p10.onameList[0],color=BLUE)
+        
+        self.play(Create(text0))
+        grp1 = VGroup(text01)
+        
+        for i in range(1,len(p10.onameList)):
+                    
+          
+           
+           text1 = Tex(p10.onameList[i],color=BLUE)
+           text01 = Tex(p10.onameList[i],color=BLUE)
+           self.play(grp1.animate.shift(UP * 1))
+           self.play(ReplacementTransform(text0,text1))
+           
+           grp1.add(text01)
+           text0 = text1
+           # self.wait(2)
+          
+           
+           
+        self.wait(2)
