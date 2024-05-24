@@ -12,14 +12,14 @@ from AbstractAnim import AbstractAnim
 import cvo
 
 
-class Redshift3(AbstractAnim):
+class Redshiftanim3(AbstractAnim):
     
     
     def construct(self):
         #  p1=cvo.CVO().CreateCVO("o1name","o2name","c1name","c2name")
          p10=cvo.CVO().CreateCVO("Components of RedshiftCluster","").setPosition([0,2.5,0])
-         p11=cvo.CVO().CreateCVO("LeaderNode","").setPosition([4,2.5,0])
-         p12=cvo.CVO().CreateCVO("ComputeNode","").setPosition([4,0,0])
+         p11=cvo.CVO().CreateCVO("LeaderNode","").setPosition([4,2.5,0]).setangle(TAU/4)
+         p12=cvo.CVO().CreateCVO("ComputeNode","").setPosition([4,0,0]).setangle(TAU/3)
          p13=cvo.CVO().CreateCVO("NodeSlices","").setPosition([4,-2.5,0]).setangle(-TAU/4)
          p14=cvo.CVO().CreateCVO("ClusterStorage","").setPosition([-4,2.5,0]).setangle(-TAU/4)
          p15=cvo.CVO().CreateCVO("SystemTables","").setPosition([-4,0,0]).setangle(-TAU/4)
@@ -37,5 +37,5 @@ class Redshift3(AbstractAnim):
 
       
 if __name__ == "__main__":
-    scene = Redshift3()
+    scene = Redshiftanim3()
     scene.render()

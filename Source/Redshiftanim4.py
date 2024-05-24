@@ -12,7 +12,7 @@ from AbstractAnim import AbstractAnim
 import cvo
 
 
-class Redshift4(AbstractAnim):
+class Redshiftanim4(AbstractAnim):
      
     
     def construct(self):
@@ -33,5 +33,5 @@ class Redshift4(AbstractAnim):
 
       
 if __name__ == "__main__":
-    scene = Redshift4()
+    scene = Redshiftanim4()
     scene.render()
