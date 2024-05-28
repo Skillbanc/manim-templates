@@ -24,7 +24,7 @@ class AbstractAnim(Scene):
     isRandom = True
     
     def initChoices(self):
-        self.colorChoice=[RED,BLUE,GREEN,PURPLE,ORANGE,YELLOW,LIGHT_PINK]
+        self.colorChoice=[RED,BLUE,GREEN,PURPLE,ORANGE,YELLOW,LIGHT_PINK,WHITE,LIGHT_GRAY,LIGHT_BROWN,PINK,GRAY_BROWN]
         self.shapeChoice=[Circle,Triangle,Square,Rectangle]
         self.positionChoice = [[0,0,0],[-6,-2,0],[4,-2,0],[2,0,0],[-6,2,0],[-4,-2,0],[-4,2,0],[-2,-2,0],[4,0,0],[-4,0,0],[-2,2,0],[2,-2,0],[-6,0,0],[2,2,0],[6,0,0],[4,2,0],[6,-2,0],[-2,0,0],[6,2,0]]
         self.angleChoice = [TAU/5,TAU/4,TAU/3,TAU/2,-TAU/5,-TAU/4,-TAU/3,-TAU/2]
