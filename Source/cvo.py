@@ -44,6 +44,10 @@ class CVO:
   def setcircleradius(self,radius):
     self.circle_radius=radius
   
+  def SetIsMathText(self,b):
+    self.IsMathText = b
+    return self
+    
   def CreateCVO(self,cname,oname):
     self.c1nameposition = None
     self.o1nameposition = None
@@ -58,6 +62,7 @@ class CVO:
     self.cnameMObject = None
     self.onameMObject = None
     self.onameList = []
+    self.SetIsMathText(False)
     return self
   
 
