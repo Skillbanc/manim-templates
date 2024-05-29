@@ -16,7 +16,7 @@ import random
 class AbstractAnim(Scene):
     grpAll = VGroup()
     isFadeOutAtTheEndOfThisScene = False
-    colorChoice=[RED,BLUE,GREEN,PURPLE,ORANGE,YELLOW]
+    colorChoice=[RED,BLUE,GREEN,PURPLE,ORANGE,YELLOW,LIGHT_PINK,WHITE,LIGHT_GRAY,LIGHT_BROWN,PINK,GRAY_BROWN]
     shapeChoice=[Circle,Triangle,Square,Rectangle]
     positionChoice = [[-6,-2,0],[4,-2,0],[2,0,0],[-6,2,0],[-4,-2,0],[-4,2,0],[-2,-2,0],[4,0,0],[-4,0,0],[-2,2,0],[2,-2,0],[-6,0,0],[2,2,0],[6,0,0],[4,2,0],[6,-2,0],[-2,0,0],[6,2,0]]
 
@@ -24,7 +24,7 @@ class AbstractAnim(Scene):
     isRandom = True
     
     def initChoices(self):
-        self.colorChoice=[RED,BLUE,GREEN,PURPLE,ORANGE,YELLOW]
+        self.colorChoice=[RED,BLUE,GREEN,PURPLE,ORANGE,YELLOW,LIGHT_PINK,WHITE,LIGHT_GRAY,LIGHT_BROWN,PINK,GRAY_BROWN]
         self.shapeChoice=[Circle,Triangle,Square,Rectangle]
         self.positionChoice = [[0,0,0],[-6,-2,0],[4,-2,0],[2,0,0],[-6,2,0],[-4,-2,0],[-4,2,0],[-2,-2,0],[4,0,0],[-4,0,0],[-2,2,0],[2,-2,0],[-6,0,0],[2,2,0],[6,0,0],[4,2,0],[6,-2,0],[-2,0,0],[6,2,0]]
         self.angleChoice = [TAU/5,TAU/4,TAU/3,TAU/2,-TAU/5,-TAU/4,-TAU/3,-TAU/2]
@@ -107,12 +107,19 @@ class AbstractAnim(Scene):
         c1nameposition = cvo.c1nameposition
         if( c1nameposition == None):
             c1nameposition = cir1.get_top()
-        cname = Tex(cvo.cname,color=self.colorChoice[colorChoiceIndex]).move_to(c1nameposition).shift(UP * 0.25)
+        if (cvo.IsMathText):
+            cname = MathTex(cvo.cname,color=self.colorChoice[colorChoiceIndex]).move_to(c1nameposition).shift(UP * 0.25)
+        else:
+            cname = Tex(cvo.cname,color=self.colorChoice[colorChoiceIndex]).move_to(c1nameposition).shift(UP * 0.25)
         
         o1nameposition = cvo.o1nameposition
         if( o1nameposition == None):
             o1nameposition = star.get_top()
-        oname = Tex(cvo.oname,color=self.colorChoice[colorChoiceIndex]).move_to(o1nameposition).scale(0.5).shift(UP * 0.15)
+        
+        if (cvo.IsMathText):
+            oname = MathTex(cvo.oname,color=self.colorChoice[colorChoiceIndex]).move_to(o1nameposition).scale(0.5).shift(UP * 0.15)
+        else:
+            oname = Tex(cvo.oname,color=self.colorChoice[colorChoiceIndex]).move_to(o1nameposition).scale(0.5).shift(UP * 0.15)
         
         self.play(Create(cir1,run_time=cvo.duration),Create(cname,run_time=cvo.duration))
         
@@ -261,9 +268,14 @@ class AbstractAnim(Scene):
         for i in range(1,len(p10.onameList)):
                     
           
+           if (p10.IsMathText):
+            text1 = MathTex(p10.onameList[i],color=BLUE)
+            text01 = MathTex(p10.onameList[i],color=BLUE)
+           else:   
+            text1 = Tex(p10.onameList[i],color=BLUE)
+            text01 = MathTex(p10.onameList[i],color=BLUE)
+            
            
-           text1 = Tex(p10.onameList[i],color=BLUE)
-           text01 = Tex(p10.onameList[i],color=BLUE)
            self.play(grp1.animate.shift(UP * 1))
            self.play(ReplacementTransform(text0,text1))
            
