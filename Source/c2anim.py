@@ -17,8 +17,9 @@ class C2Anim(AbstractAnim):
         self.isFadeOutAtTheEndOfThisScene = True
         #  p1=cvo.CVO().CreateCVO("cname","oname")
         p10=cvo.CVO().CreateCVO("Person","John Doe")
-         
+        p10.speech = "I am John Doe"
         p11 = cvo.CVO().CreateCVO("Previous Employer","Google")
+        p11.speech = "I worked at Google previously"
         p10.cvolist.append(p11)
         self.setNumberOfCirclePositions(2)
          

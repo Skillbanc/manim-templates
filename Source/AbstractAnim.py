@@ -5,10 +5,9 @@
 #   Sudhakar Moparthy
 #   Rohit Vailla
 
-from pickle import TRUE
-from xmlrpc.client import Boolean
+
 from manim import *
-from numpy import size
+
 
 import cvo
 import random
@@ -69,6 +68,7 @@ class AbstractAnim(Scene):
             
     #     return self
     
+        
     # get the random position of the circle
     def get_random_position(self):
         positionChoiceIndex = 1
@@ -117,14 +117,19 @@ class AbstractAnim(Scene):
             o1nameposition = star.get_top()
         
         if (cvo.IsMathText):
-            oname = MathTex(cvo.oname,color=self.colorChoice[colorChoiceIndex]).move_to(o1nameposition).scale(0.5).shift(UP * 0.15)
+            oname = MathTex(cvo.oname,color=self.colorChoice[colorChoiceIndex]).move_to(o1nameposition).shift(UP * 0.15)
         else:
-            oname = Tex(cvo.oname,color=self.colorChoice[colorChoiceIndex]).move_to(o1nameposition).scale(0.5).shift(UP * 0.15)
+            oname = Tex(cvo.oname,color=self.colorChoice[colorChoiceIndex]).move_to(o1nameposition).shift(UP * 0.15)
+        
         
         self.play(Create(cir1,run_time=cvo.duration),Create(cname,run_time=cvo.duration))
+            
+        
         
         if len(cvo.onameList) == 0:
             self.play(Create(oname),Create(star))
+            self.play(cname.animate.scale(2.0), oname.animate.scale(2.0),run_time=1)
+            self.play(cname.animate.scale(0.5), oname.animate.scale(0.3),run_time=1)
             grp1=VGroup(cir1,star,cname,oname)
         else: 
             grp1=VGroup(cir1,cname)

@@ -63,6 +63,7 @@ class CVO:
     self.onameMObject = None
     self.onameList = []
     self.SetIsMathText(False)
+    self.speech=""
     return self
   
 

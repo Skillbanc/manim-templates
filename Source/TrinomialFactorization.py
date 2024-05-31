@@ -62,9 +62,9 @@ class TrinomialFactorization(AbstractAnim):
         p10.onameList.append("Trinomial Expresession")
         p10.onameList.append("2x^2+5x+3")
         p10.onameList.append("a=2,b=5,c=3")
-        p10.onameList.append("ac= 2 * 3 = 6 , Factors Of ac = (2,3)(6,1)")
+        p10.onameList.append("ac= 2 * 3 = 6 , Factors of ac = (2,3)(6,1)")
         p10.onameList.append("2x^2+2x+3x+3")
-        p10.onameList.append("(2x^+2x)+(3x+3)")
+        p10.onameList.append("(2x^2+2x)+(3x+3)")
         p10.onameList.append("2x(x+1)+3(x+1)")
         p10.onameList.append("(x+1)(2x+3)")
       
