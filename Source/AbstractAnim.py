@@ -5,10 +5,9 @@
 #   Sudhakar Moparthy
 #   Rohit Vailla
 
-from pickle import TRUE
-from xmlrpc.client import Boolean
+
 from manim import *
-from numpy import size
+
 
 import cvo
 import random
@@ -69,6 +68,7 @@ class AbstractAnim(Scene):
             
     #     return self
     
+        
     # get the random position of the circle
     def get_random_position(self):
         positionChoiceIndex = 1
@@ -107,17 +107,29 @@ class AbstractAnim(Scene):
         c1nameposition = cvo.c1nameposition
         if( c1nameposition == None):
             c1nameposition = cir1.get_top()
-        cname = Tex(cvo.cname,color=self.colorChoice[colorChoiceIndex]).move_to(c1nameposition).shift(UP * 0.25)
+        if (cvo.IsMathText):
+            cname = MathTex(cvo.cname,color=self.colorChoice[colorChoiceIndex]).move_to(c1nameposition).shift(UP * 0.25)
+        else:
+            cname = Tex(cvo.cname,color=self.colorChoice[colorChoiceIndex]).move_to(c1nameposition).shift(UP * 0.25)
         
         o1nameposition = cvo.o1nameposition
         if( o1nameposition == None):
             o1nameposition = star.get_top()
-        oname = Tex(cvo.oname,color=self.colorChoice[colorChoiceIndex]).move_to(o1nameposition).scale(0.5).shift(UP * 0.15)
+        
+        if (cvo.IsMathText):
+            oname = MathTex(cvo.oname,color=self.colorChoice[colorChoiceIndex]).move_to(o1nameposition).shift(UP * 0.15)
+        else:
+            oname = Tex(cvo.oname,color=self.colorChoice[colorChoiceIndex]).move_to(o1nameposition).shift(UP * 0.15)
+        
         
         self.play(Create(cir1,run_time=cvo.duration),Create(cname,run_time=cvo.duration))
+            
+        
         
         if len(cvo.onameList) == 0:
             self.play(Create(oname),Create(star))
+            self.play(cname.animate.scale(2.0), oname.animate.scale(2.0),run_time=1)
+            self.play(cname.animate.scale(0.5), oname.animate.scale(0.3),run_time=1)
             grp1=VGroup(cir1,star,cname,oname)
         else: 
             grp1=VGroup(cir1,cname)
@@ -261,9 +273,14 @@ class AbstractAnim(Scene):
         for i in range(1,len(p10.onameList)):
                     
           
+           if (p10.IsMathText):
+            text1 = MathTex(p10.onameList[i],color=BLUE)
+            text01 = MathTex(p10.onameList[i],color=BLUE)
+           else:   
+            text1 = Tex(p10.onameList[i],color=BLUE)
+            text01 = MathTex(p10.onameList[i],color=BLUE)
+            
            
-           text1 = Tex(p10.onameList[i],color=BLUE)
-           text01 = Tex(p10.onameList[i],color=BLUE)
            self.play(grp1.animate.shift(UP * 1))
            self.play(ReplacementTransform(text0,text1))
            
