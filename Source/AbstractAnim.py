@@ -5,17 +5,17 @@
 #   Sudhakar Moparthy
 #   Rohit Vailla
 
-from pickle import TRUE
-from xmlrpc.client import Boolean
+
 from manim import *
-from numpy import size
+
 
 import cvo
 import random
 # class that has all common methods that can be used by subclasses
 class AbstractAnim(Scene):
-
-    colorChoice=[RED,BLUE,GREEN,PURPLE,ORANGE,YELLOW]
+    grpAll = VGroup()
+    isFadeOutAtTheEndOfThisScene = False
+    colorChoice=[RED,BLUE,GREEN,PURPLE,ORANGE,YELLOW,LIGHT_PINK,WHITE,LIGHT_GRAY,LIGHT_BROWN,PINK,GRAY_BROWN]
     shapeChoice=[Circle,Triangle,Square,Rectangle]
     positionChoice = [[-6,-2,0],[4,-2,0],[2,0,0],[-6,2,0],[-4,-2,0],[-4,2,0],[-2,-2,0],[4,0,0],[-4,0,0],[-2,2,0],[2,-2,0],[-6,0,0],[2,2,0],[6,0,0],[4,2,0],[6,-2,0],[-2,0,0],[6,2,0]]
 
@@ -23,7 +23,7 @@ class AbstractAnim(Scene):
     isRandom = True
     
     def initChoices(self):
-        self.colorChoice=[RED,BLUE,GREEN,PURPLE,ORANGE,YELLOW]
+        self.colorChoice=[RED,BLUE,GREEN,PURPLE,ORANGE,YELLOW,LIGHT_PINK,WHITE,LIGHT_GRAY,LIGHT_BROWN,PINK,GRAY_BROWN]
         self.shapeChoice=[Circle,Triangle,Square,Rectangle]
         self.positionChoice = [[0,0,0],[-6,-2,0],[4,-2,0],[2,0,0],[-6,2,0],[-4,-2,0],[-4,2,0],[-2,-2,0],[4,0,0],[-4,0,0],[-2,2,0],[2,-2,0],[-6,0,0],[2,2,0],[6,0,0],[4,2,0],[6,-2,0],[-2,0,0],[6,2,0]]
         self.angleChoice = [TAU/5,TAU/4,TAU/3,TAU/2,-TAU/5,-TAU/4,-TAU/3,-TAU/2]
@@ -68,6 +68,7 @@ class AbstractAnim(Scene):
             
     #     return self
     
+        
     # get the random position of the circle
     def get_random_position(self):
         positionChoiceIndex = 1
@@ -106,17 +107,29 @@ class AbstractAnim(Scene):
         c1nameposition = cvo.c1nameposition
         if( c1nameposition == None):
             c1nameposition = cir1.get_top()
-        cname = Tex(cvo.cname,color=self.colorChoice[colorChoiceIndex]).move_to(c1nameposition).shift(UP * 0.25)
+        if (cvo.IsMathText):
+            cname = MathTex(cvo.cname,color=self.colorChoice[colorChoiceIndex]).move_to(c1nameposition).shift(UP * 0.25)
+        else:
+            cname = Tex(cvo.cname,color=self.colorChoice[colorChoiceIndex]).move_to(c1nameposition).shift(UP * 0.25)
         
         o1nameposition = cvo.o1nameposition
         if( o1nameposition == None):
             o1nameposition = star.get_top()
-        oname = Tex(cvo.oname,color=self.colorChoice[colorChoiceIndex]).move_to(o1nameposition).scale(0.5).shift(UP * 0.15)
+        
+        if (cvo.IsMathText):
+            oname = MathTex(cvo.oname,color=self.colorChoice[colorChoiceIndex]).move_to(o1nameposition).shift(UP * 0.15)
+        else:
+            oname = Tex(cvo.oname,color=self.colorChoice[colorChoiceIndex]).move_to(o1nameposition).shift(UP * 0.15)
+        
         
         self.play(Create(cir1,run_time=cvo.duration),Create(cname,run_time=cvo.duration))
+            
+        
         
         if len(cvo.onameList) == 0:
             self.play(Create(oname),Create(star))
+            self.play(cname.animate.scale(2.0), oname.animate.scale(2.0),run_time=1)
+            self.play(cname.animate.scale(0.5), oname.animate.scale(0.3),run_time=1)
             grp1=VGroup(cir1,star,cname,oname)
         else: 
             grp1=VGroup(cir1,cname)
@@ -139,7 +152,8 @@ class AbstractAnim(Scene):
             if len(cvo.onameList) == 0:
                 self.play(Create(arrow1),run_time=cvo.duration)
             #self.bring_to_back(arrow1)
-       
+            #grp1.add(arrow1)
+            
         if (len(cvo.onameList) > 0 and len(cvo.onameList) < 5):
             for index in range(len(cvo.onameList)):
                 # starLocal = Star(outer_radius=0.15, inner_radius=0.1,color=self.colorChoice[colorChoiceIndex]).move_to(cir1.get_center())
@@ -147,7 +161,8 @@ class AbstractAnim(Scene):
                 onameLocalText = Tex(cvo.onameList[index],color=self.colorChoice[colorChoiceIndex]).scale(0.35).next_to(starLocal).shift(LEFT * .20)
                 arrow2 = CurvedArrow(cvoParent.pos,starLocal.get_center(),angle=cvo.angle)
                 self.play(Create(starLocal),Create(onameLocalText))#grpLocal.animate.move_to(cir1.get_center()).scale(0.5).shift(DOWN * 2))#scale(0.25))
-                self.play(Create(arrow2))
+                if cvoParent != cvo:
+                    self.play(Create(arrow2))
         else:
             self.play(grp1.animate.scale(1+0.1*len(cvo.onameList)))
             for index in range(len(cvo.onameList)):
@@ -156,7 +171,8 @@ class AbstractAnim(Scene):
                 onameLocalText = Tex(cvo.onameList[index],color=self.colorChoice[colorChoiceIndex]).scale(0.45).next_to(starLocal).shift(LEFT * .20)
                 arrow2 = CurvedArrow(cvoParent.pos,starLocal.get_center(),angle=cvo.angle)
                 self.play(Create(starLocal),Create(onameLocalText))#grpLocal.animate.move_to(cir1.get_center()).scale(0.5).shift(DOWN * 2))#scale(0.25))
-                self.play(Create(arrow2))
+                if cvoParent != cvo:
+                    self.play(Create(arrow2))
                           
         cvo.cnameMObject = cname
         cvo.onameMObject = oname
@@ -178,7 +194,13 @@ class AbstractAnim(Scene):
         if (len(cvo.cvolist) > 0):
             for idx in range(0,len(cvo.cvolist)):
                 self.construct1(cvo.cvolist[idx],cvo)
-
+        
+        self.grpAll.add(grp1)
+        
+        
+        if (self.isFadeOutAtTheEndOfThisScene):
+            self.play(self.grpAll.animate.scale(0))
+            
     # pass the json object and the top level data object
     def parsejson(self,json_data,cvo10):
         
@@ -253,9 +275,14 @@ class AbstractAnim(Scene):
         for i in range(1,len(p10.onameList)):
                     
           
+           if (p10.IsMathText):
+            text1 = MathTex(p10.onameList[i],color=BLUE)
+            text01 = MathTex(p10.onameList[i],color=BLUE)
+           else:   
+            text1 = Tex(p10.onameList[i],color=BLUE)
+            text01 = MathTex(p10.onameList[i],color=BLUE)
+            
            
-           text1 = Tex(p10.onameList[i],color=BLUE)
-           text01 = Tex(p10.onameList[i],color=BLUE)
            self.play(grp1.animate.shift(UP * 1))
            self.play(ReplacementTransform(text0,text1))
            

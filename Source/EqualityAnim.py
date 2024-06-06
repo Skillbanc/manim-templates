@@ -14,9 +14,9 @@ class EqualityAnim(AbstractAnim):
 
     # use the appropriate method based on how the data is stored
     def construct(self):
-        self.RenderSkillbancLogo()
+        #self.RenderSkillbancLogo()
         self.RenderEqualityC1C2Diagram()
-        self.RenderEquality1()
+        #self.RenderEquality1()
        
     def RenderEqualityC1C2Diagram(self):
         #self.positionChoice = [[0,0,0],[-6,-2,0],[4,-2,0],[2,0,0],[-6,2,0],[-4,-2,0],[-4,2,0],[-2,-2,0],[4,0,0],[-4,0,0],[-2,2,0],[2,-2,0],[-6,0,0],[2,2,0],[6,0,0],[4,2,0],[6,-2,0],[-2,0,0],[6,2,0]]
@@ -35,7 +35,7 @@ class EqualityAnim(AbstractAnim):
     # render using CVO data object
     def RenderEquality1(self):
         
-        p10=cvo.CVO().CreateCVO("Equality","x=x")
+        p10=cvo.CVO().CreateCVO("Equality","x=y")
         
        
         p10.onameList.append("Equality")
@@ -47,18 +47,18 @@ class EqualityAnim(AbstractAnim):
         p10.onameList.append("2+1=3")
         p10.onameList.append("3=3")
       
-        p10.onameList.append("x=x")
-        p10.onameList.append("x+1=x+1")
-        p10.onameList.append("x+2=x+2")
-        p10.onameList.append("x+K=x+K")
-        p10.onameList.append("x-2=x-2")
-        p10.onameList.append("x-K=x-K")
-        p10.onameList.append("x*2=x*2")
-        p10.onameList.append("x*3=x*3")
-        p10.onameList.append("x*K=x*K")
-        p10.onameList.append("x/2=x/2")
-        p10.onameList.append("x/3=x/3")
-        p10.onameList.append("x/K=x/K where K not equals 0")
+        p10.onameList.append("x=y")
+        p10.onameList.append("x+1=y+1")
+        p10.onameList.append("x+2=y+2")
+        p10.onameList.append("x+K=y+K")
+        p10.onameList.append("x-2=y-2")
+        p10.onameList.append("x-K=y-K")
+        p10.onameList.append("x*2=y*2")
+        p10.onameList.append("x*3=y*3")
+        p10.onameList.append("x*K=y*K")
+        p10.onameList.append("x/2=y/2")
+        p10.onameList.append("x/3=y/3")
+        p10.onameList.append("x/K=y/K where K not equals 0")
         
         
         # self.construct1(p10,p10)
