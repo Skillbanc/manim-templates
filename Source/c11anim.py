@@ -8,7 +8,6 @@
 from manim import *
 from numpy import size
 from AbstractAnim import AbstractAnim
-
 import cvo
 
 
