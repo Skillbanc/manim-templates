@@ -1,8 +1,11 @@
 from manim import *
+from AbstractAnim import AbstractAnim
+import cvo
 
-class coq6Amin(Scene):
+class coq6Amin(AbstractAnim):
+
     def construct(self):
-        # Title for the sequence
+        self.RenderSkillbancLogo()
         title = Text("Quadrilaterals").scale(0.9)
         self.play(Write(title))
         self.wait(1)
@@ -46,19 +49,6 @@ class coq6Amin(Scene):
         kite = Polygon([-1, 0, 0], [1, 0, 0], [0, 2, 0], [0, -2, 0], color=YELLOW)
         kite_props = "Two pairs of adjacent sides equal, diagonals intersect at 90 degrees"
         create_and_fade(kite, "Kite", kite_props)
-
-        # Another Trapezium
-        another_trapezium = Polygon([-2, 0, 0], [2, 0, 0], [1, 2, 0], [-1, 2, 0], color=BLUE)
-        create_and_fade(another_trapezium, "Trapezium", trapezium_props)
-
-# To render the scene, use the following command in your terminal:
-# manim -pql quadrilateral_animation.py QuadrilateralAnimation
-
-
-
-
-
-
 
 if __name__ == "__main__":
     scene = coq6Amin()
