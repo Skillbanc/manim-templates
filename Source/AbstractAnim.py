@@ -16,7 +16,7 @@ import random
 class AbstractAnim(Scene):
     grpAll = VGroup()
     isFadeOutAtTheEndOfThisScene = False
-    colorChoice=[RED,BLUE,GREEN,PURPLE,ORANGE,YELLOW,LIGHT_PINK,WHITE,LIGHT_GRAY,LIGHT_BROWN,PINK,GRAY_BROWN]
+    colorChoice=[RED,BLUE,GREEN,PURPLE,ORANGE,YELLOW,LIGHT_PINK,WHITE,LIGHT_GRAY,LIGHT_BROWN,PINK,GRAY_BROWN,DARK_BROWN,MAROON,MAROON_A,MAROON_B,MAROON_C,MAROON_D,MAROON_E]
     shapeChoice=[Circle,Triangle,Square,Rectangle]
     positionChoice = [[-6,-2,0],[4,-2,0],[2,0,0],[-6,2,0],[-4,-2,0],[-4,2,0],[-2,-2,0],[4,0,0],[-4,0,0],[-2,2,0],[2,-2,0],[-6,0,0],[2,2,0],[6,0,0],[4,2,0],[6,-2,0],[-2,0,0],[6,2,0]]
 
@@ -24,7 +24,7 @@ class AbstractAnim(Scene):
     isRandom = True
     
     def initChoices(self):
-        self.colorChoice=[RED,BLUE,GREEN,PURPLE,ORANGE,YELLOW,LIGHT_PINK,WHITE,LIGHT_GRAY,LIGHT_BROWN,PINK,GRAY_BROWN]
+        self.colorChoice=[RED,BLUE,GREEN,PURPLE,ORANGE,YELLOW,LIGHT_PINK,WHITE,LIGHT_GRAY,LIGHT_BROWN,PINK,GRAY_BROWN,DARK_BROWN,MAROON,MAROON_A,MAROON_B,MAROON_C,MAROON_D,MAROON_E]
         self.shapeChoice=[Circle,Triangle,Square,Rectangle]
         self.positionChoice = [[0,0,0],[-6,-2,0],[4,-2,0],[2,0,0],[-6,2,0],[-4,-2,0],[-4,2,0],[-2,-2,0],[4,0,0],[-4,0,0],[-2,2,0],[2,-2,0],[-6,0,0],[2,2,0],[6,0,0],[4,2,0],[6,-2,0],[-2,0,0],[6,2,0]]
         self.angleChoice = [TAU/5,TAU/4,TAU/3,TAU/2,-TAU/5,-TAU/4,-TAU/3,-TAU/2]
@@ -177,9 +177,9 @@ class AbstractAnim(Scene):
         if (self.positionChoice.__contains__(cvo.pos)):
             self.positionChoice.remove(cvo.pos)
             
-        if (cvo != cvoParent):
-            if (self.angleChoice.__contains__(cvo.angle)):
-                self.angleChoice.remove(cvo.angle)
+        # if (cvo != cvoParent):
+        #     if (self.angleChoice.__contains__(cvo.angle)):
+        #         self.angleChoice.remove(cvo.angle)
                 
         if (self.colorChoice.__contains__(cvo.color)):
             self.colorChoice.remove(cvo.color)
