@@ -152,7 +152,7 @@ class AbstractAnim(Scene):
             if len(cvo.onameList) == 0:
                 self.play(Create(arrow1),run_time=cvo.duration)
             #self.bring_to_back(arrow1)
-            grp1.add(arrow1)
+            #grp1.add(arrow1)
             
         if (len(cvo.onameList) > 0 and len(cvo.onameList) < 5):
             for index in range(len(cvo.onameList)):
@@ -161,7 +161,8 @@ class AbstractAnim(Scene):
                 onameLocalText = Tex(cvo.onameList[index],color=self.colorChoice[colorChoiceIndex]).scale(0.35).next_to(starLocal).shift(LEFT * .20)
                 arrow2 = CurvedArrow(cvoParent.pos,starLocal.get_center(),angle=cvo.angle)
                 self.play(Create(starLocal),Create(onameLocalText))#grpLocal.animate.move_to(cir1.get_center()).scale(0.5).shift(DOWN * 2))#scale(0.25))
-                self.play(Create(arrow2))
+                if cvoParent != cvo:
+                    self.play(Create(arrow2))
         else:
             self.play(grp1.animate.scale(1+0.1*len(cvo.onameList)))
             for index in range(len(cvo.onameList)):
@@ -170,7 +171,8 @@ class AbstractAnim(Scene):
                 onameLocalText = Tex(cvo.onameList[index],color=self.colorChoice[colorChoiceIndex]).scale(0.45).next_to(starLocal).shift(LEFT * .20)
                 arrow2 = CurvedArrow(cvoParent.pos,starLocal.get_center(),angle=cvo.angle)
                 self.play(Create(starLocal),Create(onameLocalText))#grpLocal.animate.move_to(cir1.get_center()).scale(0.5).shift(DOWN * 2))#scale(0.25))
-                self.play(Create(arrow2))
+                if cvoParent != cvo:
+                    self.play(Create(arrow2))
                           
         cvo.cnameMObject = cname
         cvo.onameMObject = oname
