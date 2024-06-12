@@ -18,15 +18,17 @@ class AbstractAnim(Scene):
     colorChoice=[RED,BLUE,GREEN,PURPLE,ORANGE,YELLOW,LIGHT_PINK,WHITE,LIGHT_GRAY,LIGHT_BROWN,PINK,GRAY_BROWN]
     shapeChoice=[Circle,Triangle,Square,Rectangle]
     positionChoice = [[-6,-2,0],[4,-2,0],[2,0,0],[-6,2,0],[-4,-2,0],[-4,2,0],[-2,-2,0],[4,0,0],[-4,0,0],[-2,2,0],[2,-2,0],[-6,0,0],[2,2,0],[6,0,0],[4,2,0],[6,-2,0],[-2,0,0],[6,2,0]]
+    DeveloperList=""
+    
 
     # angleChoice = [TAU/5,TAU/4,TAU/3,TAU/2,-TAU/5,-TAU/4,-TAU/3,-TAU/2]
     isRandom = True
-    
+   
     def initChoices(self):
         self.colorChoice=[RED,BLUE,GREEN,PURPLE,ORANGE,YELLOW,LIGHT_PINK,WHITE,LIGHT_GRAY,LIGHT_BROWN,PINK,GRAY_BROWN]
         self.shapeChoice=[Circle,Triangle,Square,Rectangle]
         self.positionChoice = [[0,0,0],[-6,-2,0],[4,-2,0],[2,0,0],[-6,2,0],[-4,-2,0],[-4,2,0],[-2,-2,0],[4,0,0],[-4,0,0],[-2,2,0],[2,-2,0],[-6,0,0],[2,2,0],[6,0,0],[4,2,0],[6,-2,0],[-2,0,0],[6,2,0]]
-        self.angleChoice = [TAU/5,TAU/4,TAU/3,TAU/2,-TAU/5,-TAU/4,-TAU/3,-TAU/2,TAU/4,TAU/4,TAU/4,TAU/4]
+        self.angleChoice = [TAU/5,TAU/4,TAU/3,TAU/2,-TAU/5,-TAU/4,-TAU/3,-TAU/2]
     
     def setNumberOfCirclePositions(self,numberOfCircles : int):
         match numberOfCircles:
@@ -161,8 +163,7 @@ class AbstractAnim(Scene):
                 onameLocalText = Tex(cvo.onameList[index],color=self.colorChoice[colorChoiceIndex]).scale(0.35).next_to(starLocal).shift(LEFT * .20)
                 arrow2 = CurvedArrow(cvoParent.pos,starLocal.get_center(),angle=cvo.angle)
                 self.play(Create(starLocal),Create(onameLocalText))#grpLocal.animate.move_to(cir1.get_center()).scale(0.5).shift(DOWN * 2))#scale(0.25))
-                if cvoParent != cvo:
-                    self.play(Create(arrow2))
+                self.play(Create(arrow2))
         else:
             self.play(grp1.animate.scale(1+0.1*len(cvo.onameList)))
             for index in range(len(cvo.onameList)):
@@ -171,8 +172,7 @@ class AbstractAnim(Scene):
                 onameLocalText = Tex(cvo.onameList[index],color=self.colorChoice[colorChoiceIndex]).scale(0.45).next_to(starLocal).shift(LEFT * .20)
                 arrow2 = CurvedArrow(cvoParent.pos,starLocal.get_center(),angle=cvo.angle)
                 self.play(Create(starLocal),Create(onameLocalText))#grpLocal.animate.move_to(cir1.get_center()).scale(0.5).shift(DOWN * 2))#scale(0.25))
-                if cvoParent != cvo:
-                    self.play(Create(arrow2))
+                self.play(Create(arrow2))
                           
         cvo.cnameMObject = cname
         cvo.onameMObject = oname
@@ -264,6 +264,31 @@ class AbstractAnim(Scene):
         self.play(self.logoGroup.animate.scale(0),run_time=1)
         # self.play(self.circles.animate.scale(0),lines.animate.scale(0),text.animate.scale(0),run_time=3)
         
+    def GithubSourceCodeReference(self): 
+        self.SetDeveloperList()
+        self.colorChoice=[BLUE,ORANGE,PINK,ORANGE,PURPLE]
+        p2 = cvo.CVO().CreateCVO("SOURCE CODE REFERENCE", "").setPosition([0,2.5,0])
+        p4 = cvo.CVO().CreateCVO("Github URL", "https://github.com/Skillbanc/manim-templates").setPosition([-4,1,0]).setangle(TAU / 3)
+        p5 = cvo.CVO().CreateCVO("File Name", "comparingquantities.py").setPosition([4,1,0]).setangle(TAU / 3)
+        p6=cvo.CVO().CreateCVO("Architected By","Sudhakar Moparthy").setPosition([5,-2,0]).setangle(-TAU / 4)
+
+        p7=cvo.CVO().CreateCVO("Developed By",self.GetDeveloperList()).setPosition([0,-2,0]).setangle(-TAU / 4)
+        
+        p2.cvolist.append(p4)
+        p2.cvolist.append(p5)
+        self.setNumberOfCirclePositions(5)
+        p4.setcircleradius(3)
+        p5.setcircleradius(2)
+        p6.setcircleradius(1.5)
+        p2.cvolist.append(p6)
+        p2.cvolist.append(p7)
+        self.construct1(p2,p2)
+        
+    def GetDeveloperList(self): 
+        return self.DeveloperList
+      
+    def SetDeveloperList(self):  
+        pass  
          
     def construct2(self,p10,cvoParent):  
         text0 = Tex(p10.onameList[0],color=BLUE)
@@ -289,7 +314,7 @@ class AbstractAnim(Scene):
            grp1.add(text01)
            text0 = text1
            # self.wait(2)
-          
+         
            
            
         self.wait(2)
