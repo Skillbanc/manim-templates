@@ -280,7 +280,7 @@ class AbstractAnim(Scene):
             text01 = MathTex(p10.onameList[i],color=BLUE)
            else:   
             text1 = Tex(p10.onameList[i],color=BLUE)
-            text01 = MathTex(p10.onameList[i],color=BLUE)
+            text01 = Tex(p10.onameList[i],color=BLUE)
             
            
            self.play(grp1.animate.shift(UP * 1))
