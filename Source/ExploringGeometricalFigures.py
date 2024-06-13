@@ -56,7 +56,7 @@ class ExploringGeometricalFigures(AbstractAnim):
          
          self.colorChoice = [PINK,BLUE,LOGO_GREEN,ORANGE,WHITE,YELLOW]
         #  p1=cvo.CVO().CreateCVO("o1name","o2name","c1name","c2name")
-         p10=cvo.CVO().CreateCVO("Exploring Geometric Figures","Introduction").setPosition([0,2.5,0])
+         p10=cvo.CVO().CreateCVO("Exploring Geometrical Figures","Introduction").setPosition([0,2.5,0])
          p11=cvo.CVO().CreateCVO("triangles","").setPosition([4,2,0])
          p12=cvo.CVO().CreateCVO("rectangles","").setPosition([5,-2,0])
          p13=cvo.CVO().CreateCVO("rhombus","").setPosition([-4,2,0]).setangle(-TAU/4)
