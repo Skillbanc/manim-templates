@@ -154,7 +154,7 @@ class AbstractAnim(Scene):
             if len(cvo.onameList) == 0:
                 self.play(Create(arrow1),run_time=cvo.duration)
             #self.bring_to_back(arrow1)
-            grp1.add(arrow1)
+            #grp1.add(arrow1)
             
         if (len(cvo.onameList) > 0 and len(cvo.onameList) < 5):
             for index in range(len(cvo.onameList)):
@@ -305,7 +305,7 @@ class AbstractAnim(Scene):
             text01 = MathTex(p10.onameList[i],color=BLUE)
            else:   
             text1 = Tex(p10.onameList[i],color=BLUE)
-            text01 = MathTex(p10.onameList[i],color=BLUE)
+            text01 = Tex(p10.onameList[i],color=BLUE)
             
            
            self.play(grp1.animate.shift(UP * 1))
