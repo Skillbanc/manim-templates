@@ -156,22 +156,24 @@ class SAV(AbstractAnim):
         self.play(Create(CurvedArrow(p12.pos,p13.pos)))
 
     def SourceReference(self):
-        self.setNumberOfCirclePositions(4)
+        self.setNumberOfCirclePositions(5)
         #self.angleChoice = [0,0,0]
         self.isRandom = False
 
         p10=cvo.CVO().CreateCVO("SOURCE CODE REFERENCE","").setPosition([0,3,0])
-        p12=cvo.CVO().CreateCVO("GITHUB URL","https://github.com/Skillbanc/manim-templates.git").setPosition([4,0,0])
+        p12=cvo.CVO().CreateCVO("GITHUB URL","https://github.com/Skillbanc/manim-templates.git").setPosition([-4,0,0])
         p13=cvo.CVO().CreateCVO("FILE NAME", "SAVanim.py").setPosition([4,0,0])
+        p14=cvo.CVO().CreateCVO("Architected By", "Sudhakar Moparthy").setPosition([-2,-3,0])
+        p15=cvo.CVO().CreateCVO("Designed By", "K.Suradhya Reddy").setPosition([2,-3,0])
         p10.cvolist.append(p12)
         p10.cvolist.append(p13)
+        p10.cvolist.append(p14)
+        p10.cvolist.append(p15)
         p12.setcircleradius(3)
         p13.setcircleradius(2)
         self.construct1(p10,p10)
-        self.construct1(p13,p13)
-        #self.play(Create(CurvedArrow(p12.pos,p13.pos)))
-
-
+        #self.construct1(p13,p13)
+        
 
 if __name__ == "__main__":
     scene = SAV()
