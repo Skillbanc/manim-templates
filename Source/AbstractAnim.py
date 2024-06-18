@@ -266,7 +266,7 @@ class AbstractAnim(Scene):
         self.colorChoice=[BLUE,ORANGE,PINK]
         p2 = cvo.CVO().CreateCVO("SOURCE CODE REFERENCE", "").setPosition([0,2.5,0])
         p4 = cvo.CVO().CreateCVO("Github URL", "https://github.com/Skillbanc/manim-templates").setPosition([-4,1,0]).setangle(TAU / 3)
-        p5 = cvo.CVO().CreateCVO("File Name", "AlgebraicAnim.py").setPosition([4,1,0]).setangle(TAU / 3)
+        p5 = cvo.CVO().CreateCVO("File Name", "AlgebraicAnim5.py").setPosition([4,1,0]).setangle(TAU / 3)
         
         p2.cvolist.append(p4)
         p2.cvolist.append(p5)
