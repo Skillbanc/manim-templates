@@ -46,6 +46,8 @@ class LineAngle(AbstractAnim):
         self.Triangle()
         self.fadeOutCurrentScene()
         self.Triangle1()
+        self.fadeOutCurrentScene()
+        self.GithubSourceCodeReference()
 
 
     def Line(self):
@@ -624,7 +626,11 @@ class LineAngle(AbstractAnim):
                          FadeOut(angle_sum),FadeOut(angle_sum_text))
         self.wait(1)
 
+    def SetDeveloperList(self):  
+        self.DeveloperList="Gayathri Veeramreddy"
 
+    def SetSourceCodeFileName(self):
+        self.SourceCodeFileName="LineAngles.py"
 
  
 
