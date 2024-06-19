@@ -542,18 +542,20 @@ class LineAngle(AbstractAnim):
         # Explanation
         explanation_text = VGroup(
             MathTex(r"\text{Angles formed by a transversal are categorized as:}"),
-            MathTex(r"\text{1. Corresponding Angles: } \angle 1, \angle 3 \text{ and } \angle 5, \angle 7"),
+            MathTex(r"\text{1. Corresponding Angles: } \angle 1 = \angle 3 \text{ and } \angle 5 = \angle 7"),
             MathTex(r"\text{2. Interior Angles: } \angle 3, \angle 4, \angle 5, \angle 6"),
             MathTex(r"\text{3. Exterior Angles: } \angle 1, \angle 2, \angle 7, \angle 8"),
-            MathTex(r"\text{4. Vertically Opposite Angles: } \angle 1, \angle 3 \text{ and } \angle 2, \angle 4"),
-            MathTex(r"\text{5. Alternate Interior Angles: } \angle 5, \angle 5 \text{ and } \angle 3, \angle 6"), 
-            MathTex(r"\text{6. Alternate Exterior Angles: } \angle 1, \angle 8 \text{ and } \angle 2, \angle 7")
+            MathTex(r"\text{4. Vertically Opposite Angles: } \angle 1 = \angle 3 \text{ and } \angle 2 = \angle 4"),
+            MathTex(r"\text{5. Alternate Interior Angles: } \angle 5 = \angle 4 \text{ and } \angle 3 = \angle 6"), 
+            MathTex(r"\text{6. Alternate Exterior Angles: } \angle 1, \angle 8 \text{ and } \angle 2, \angle 7"),
+            MathTex(r"\text{7. Consecutive Interior Angles: } \angle 5, \angle 3 \text{ and } \angle 6, \angle 4"),
+            MathTex(r"\text{8. Consecutive Exterior Angles: } \angle 1, \angle 7 \text{ and } \angle 2, \angle 8")
 
         ).arrange(DOWN, aligned_edge=LEFT).scale(0.8).to_edge(RIGHT)
 
         self.play(Write(explanation_text))
 
-        self.wait(7)
+        self.wait(10)
 
         # Clear the scene
         self.clear_scene()
@@ -621,6 +623,8 @@ class LineAngle(AbstractAnim):
                          FadeOut(arc_A), FadeOut(arc_B), FadeOut(arc_C), FadeOut(angle_A_label), FadeOut(angle_B_label), FadeOut(angle_C_label),
                          FadeOut(angle_sum),FadeOut(angle_sum_text))
         self.wait(1)
+
+
 
  
 
