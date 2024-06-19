@@ -49,6 +49,8 @@ class LinesAndAngles(AbstractAnim):
         self.TransversalAnim()
         self.fadeOutCurrentScene()
         self.TransversalIntersectsParallelLinesProperties()
+        self.fadeOutCurrentScene()
+        self.GithubSourceCodeReference()
 
 
     def Lines(self):
@@ -564,6 +566,11 @@ class LinesAndAngles(AbstractAnim):
         self.play(Write(step5))
         self.wait(2)
 
+    def SetDeveloperList(self):  
+        self.DeveloperList="Gayathri Veeramreddy"
+
+    def SetSourceCodeFileName(self):
+        self.SourceCodeFileName="LinesAndAngles.py"
 
 
 if __name__ == "__main__":
