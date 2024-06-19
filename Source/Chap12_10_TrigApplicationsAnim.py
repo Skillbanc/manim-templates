@@ -15,6 +15,7 @@ class TrigAppAnim(AbstractAnim):
 
     # use the appropriate method based on how the data is stored
     def construct(self):
+        self.SetDeveloperList()
         self.RenderSkillbancLogo()
         self.LoS()
         self.LoSAnim()
@@ -28,6 +29,9 @@ class TrigAppAnim(AbstractAnim):
         # self.constructDataByJSON()
         # self.fadeOut()
         
+    def SetDeveloperList(self):  
+        self.DeveloperList="Hriday Bhushan"
+    
     # render using CVO data object
     def LoS(self):
         self.isRandom = False
