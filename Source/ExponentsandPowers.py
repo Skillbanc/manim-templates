@@ -11,7 +11,7 @@ import cvo
 
 class PowerAnim(AbstractAnim):
     def construct(self):
-        """self.RenderSkillbancLogo()
+        self.RenderSkillbancLogo()
         self.constructDataByCVO()   
         self.fadeOutCurrentScene()
         self.LawsofExponents()
@@ -33,7 +33,7 @@ class PowerAnim(AbstractAnim):
         self.Example()
         self.fadeOutCurrentScene()
         self.Example2()
-        self.fadeOutCurrentScene()""" 
+        self.fadeOutCurrentScene()
         self.GithubSourceCodeReference()
         
     def constructDataByCVO(self):
