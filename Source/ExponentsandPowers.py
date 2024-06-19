@@ -11,7 +11,7 @@ import cvo
 
 class PowerAnim(AbstractAnim):
     def construct(self):
-        self.RenderSkillbancLogo()
+        """self.RenderSkillbancLogo()
         self.constructDataByCVO()   
         self.fadeOutCurrentScene()
         self.LawsofExponents()
@@ -33,8 +33,9 @@ class PowerAnim(AbstractAnim):
         self.Example()
         self.fadeOutCurrentScene()
         self.Example2()
-        self.fadeOutCurrentScene()
-               
+        self.fadeOutCurrentScene()""" 
+        self.GithubSourceCodeReference()
+        
     def constructDataByCVO(self):
         self.isRandom = False
         p10=cvo.CVO().CreateCVO("Term","$5^3$")
@@ -192,6 +193,13 @@ class PowerAnim(AbstractAnim):
        p10.onameList.append("$(-3)^3=-3^3$")
        self.construct2(p10, p10)
        
+
+    def SetDeveloperList(self): 
+       self.DeveloperList="Khanak Gupta" 
+
+    def SetSourceCodeFileName(self):
+       self.SourceCodeFileName="ExponentsandPowers.py"
+      
 
 if __name__ == "__main__":
     scene = PowerAnim()
