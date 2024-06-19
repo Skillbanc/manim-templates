@@ -28,7 +28,7 @@ class StatisticsAnim(AbstractAnim):
         self.Median2()
         self.Median3()
         self.Median4()
-        
+        self.GithubSourceCodeReference()
         # self.fadeOut()
         # self.constructDataByJSON()
         # self.fadeOut()
