@@ -537,6 +537,12 @@ class StatisticsAnim(AbstractAnim):
         self.play(Create(lines), run_time=2)
         self.wait()
         self.fadeOutCurrentScene()
+
+    def SetSourceCodeFileName(self):
+        self.SourceCodeFileName="StatisticsAnim.py"
+
+    def SetDeveloperList(self):  
+        self.DeveloperList="Lagichetty Kushal"
         
 if __name__ == "__main__":
     scene = StatisticsAnim()
