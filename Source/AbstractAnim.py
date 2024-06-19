@@ -18,6 +18,7 @@ class AbstractAnim(Scene):
     colorChoice=[RED,BLUE,GREEN,PURPLE,ORANGE,YELLOW,LIGHT_PINK,WHITE,LIGHT_GRAY,LIGHT_BROWN,PINK,GRAY_BROWN]
     shapeChoice=[Circle,Triangle,Square,Rectangle]
     positionChoice = [[-6,-2,0],[4,-2,0],[2,0,0],[-6,2,0],[-4,-2,0],[-4,2,0],[-2,-2,0],[4,0,0],[-4,0,0],[-2,2,0],[2,-2,0],[-6,0,0],[2,2,0],[6,0,0],[4,2,0],[6,-2,0],[-2,0,0],[6,2,0]]
+    SourceCodeFileName=""
     DeveloperList=""
     
 
@@ -268,10 +269,11 @@ class AbstractAnim(Scene):
         
     def GithubSourceCodeReference(self): 
         self.SetDeveloperList()
+        self.SetSourceCodeFileName()
         self.colorChoice=[BLUE,ORANGE,PINK,ORANGE,PURPLE]
         p2 = cvo.CVO().CreateCVO("SOURCE CODE REFERENCE", "").setPosition([0,2.5,0])
         p4 = cvo.CVO().CreateCVO("Github URL", "https://github.com/Skillbanc/manim-templates").setPosition([-4,1,0]).setangle(TAU / 3)
-        p5 = cvo.CVO().CreateCVO("File Name", "comparingquantities.py").setPosition([4,1,0]).setangle(TAU / 3)
+        p5 = cvo.CVO().CreateCVO("File Name", self.GetSourceCodeFileName()).setPosition([4,1,0]).setangle(TAU / 3)
         p6=cvo.CVO().CreateCVO("Architected By","Sudhakar Moparthy").setPosition([5,-2,0]).setangle(-TAU / 4)
 
         p7=cvo.CVO().CreateCVO("Developed By",self.GetDeveloperList()).setPosition([0,-2,0]).setangle(-TAU / 4)
@@ -285,7 +287,13 @@ class AbstractAnim(Scene):
         p2.cvolist.append(p6)
         p2.cvolist.append(p7)
         self.construct1(p2,p2)
+
+    def GetSourceCodeFileName(self):
+        return self.SourceCodeFileName
         
+    def SetSourceCodeFileName(self):
+        pass
+
     def GetDeveloperList(self): 
         return self.DeveloperList
       
