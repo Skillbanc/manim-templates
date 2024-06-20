@@ -1,8 +1,11 @@
 from manim import *
+from AbstractAnim import AbstractAnim
+import cvo
 
-class coq7Anim(Scene):
+class coq7Amin(AbstractAnim):
+
     def construct(self):
-        # Title of the animation
+        self.RenderSkillbancLogo()
         title = Text("Quadrilateral Construction").to_edge(UP)
         self.play(Write(title))
         self.wait(1)
@@ -62,5 +65,5 @@ class coq7Anim(Scene):
 
 
 if __name__ == "__main__":
-    scene = coq7Anim()
+    scene = coq7Amin()
     scene.render()
