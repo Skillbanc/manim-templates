@@ -9,7 +9,7 @@ from AbstractAnim import AbstractAnim
 
 import cvo
 
-class PowerAnim(AbstractAnim):
+class Poweranim(AbstractAnim):
     def construct(self):
         self.RenderSkillbancLogo()
         self.constructDataByCVO()   
@@ -202,5 +202,5 @@ class PowerAnim(AbstractAnim):
       
 
 if __name__ == "__main__":
-    scene = PowerAnim()
+    scene = Poweranim()
     scene.render()
