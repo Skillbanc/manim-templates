@@ -13,34 +13,35 @@ import cvo
 class trianglesAnim(AbstractAnim):
      # use the appropriate method based on how the data is stored
     def construct(self):
-        self.RenderSkillbancLogo()
-        self.constructDataByCVO()
-        self.fadeOutCurrentScene() 
-        self.trianglepqr()
-        self.fadeOutCurrentScene() 
-        self.triangles()
-        self.fadeOutCurrentScene() 
-        self.type1()
-        self.fadeOutCurrentScene()
-        self.type2()
-        self.fadeOutCurrentScene()
-        self.type3()
-        self.fadeOutCurrentScene()
-        self.triangles111()
-        self.fadeOutCurrentScene() 
-        self.type11()
-        self.fadeOutCurrentScene() 
-        self.triangles1155()
-        self.fadeOutCurrentScene()
+        # self.RenderSkillbancLogo()
+        # self.constructDataByCVO()
+        # self.fadeOutCurrentScene() 
+        # self.trianglepqr()
+        # self.fadeOutCurrentScene() 
+        # self.triangles()
+        # self.fadeOutCurrentScene() 
+        # self.type1()
+        # self.fadeOutCurrentScene()
+        # self.type2()
+        # self.fadeOutCurrentScene()
+        # self.type3()
+        # self.fadeOutCurrentScene()
+        # self.triangles111()
+        # self.fadeOutCurrentScene() 
+        # self.type11()
+        # self.fadeOutCurrentScene() 
+        # self.triangles1155()
+        # self.fadeOutCurrentScene()
        
-        self.triangles1122()
-        self.fadeOutCurrentScene()
-        self.triangles1133()
-        self.fadeOutCurrentScene()
-        self.triangles1144()
-        self.fadeOutCurrentScene() 
-        self.exteriorangle()
-        self.fadeOutCurrentScene() 
+        # self.triangles1122()
+        # self.fadeOutCurrentScene()
+        # self.triangles1133()
+        # self.fadeOutCurrentScene()
+        # self.triangles1144()
+        # self.fadeOutCurrentScene() 
+        # self.exteriorangle()
+       # self.fadeOutCurrentScene() 
+        self.GithubSourceCodeReference()
 
 
 # render using CVO data object
@@ -293,8 +294,13 @@ class trianglesAnim(AbstractAnim):
         self.play(Write(relation))
 
         self.wait(3)
+    def SetSourceCodeFileName(self):
+        self.SourceCodeFileName="trianglesandproperties.py"
 
-
+        
+    def SetDeveloperList(self):  
+        self.DeveloperList="Habeeb unissa"
+        
 if __name__ == "__main__":
     scene = trianglesAnim()
     scene.render()
