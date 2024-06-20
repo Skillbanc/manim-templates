@@ -47,7 +47,7 @@ class AlgebraicAnim5(AbstractAnim):
         self.GeometricVerification2()
         self.GeometricVerification3()
         self.GithubSourceCodeReference()
-        self.fadeOutCurrentScene()
+    
     
     def RenderSkillbancLogo(self):
         
