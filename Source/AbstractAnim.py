@@ -272,18 +272,22 @@ class AbstractAnim(Scene):
         p2 = cvo.CVO().CreateCVO("SOURCE CODE REFERENCE", "").setPosition([0,2.5,0])
         p4 = cvo.CVO().CreateCVO("Github URL", "https://github.com/Skillbanc/manim-templates").setPosition([-4,1,0]).setangle(TAU / 3)
         p5 = cvo.CVO().CreateCVO("File Name", "comparingquantities.py").setPosition([4,1,0]).setangle(TAU / 3)
-        p6=cvo.CVO().CreateCVO("Architected By","Sudhakar Moparthy").setPosition([5,-2,0]).setangle(-TAU / 4)
+        p6= cvo.CVO().CreateCVO("Architected By","").setPosition([5,-2,0]).setangle(-TAU / 4)
+        p6onnamelist=["Sudhakar Moparthy","Vailla Rohit"]
+        p6.extendOname(p6onnamelist)
 
         p7=cvo.CVO().CreateCVO("Developed By",self.GetDeveloperList()).setPosition([0,-2,0]).setangle(-TAU / 4)
         
-        p2.cvolist.append(p4)
-        p2.cvolist.append(p5)
         self.setNumberOfCirclePositions(5)
+
+        p2.cvolist.append(p4)
+        p2.cvolist.append(p5)      
+        p2.cvolist.append(p6)
+        p2.cvolist.append(p7)
         p4.setcircleradius(3)
         p5.setcircleradius(2)
         p6.setcircleradius(1.5)
-        p2.cvolist.append(p6)
-        p2.cvolist.append(p7)
+        
         self.construct1(p2,p2)
         
     def GetDeveloperList(self): 
