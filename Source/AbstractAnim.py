@@ -18,7 +18,6 @@ class AbstractAnim(Scene):
     colorChoice=[RED,BLUE,GREEN,PURPLE,ORANGE,YELLOW,LIGHT_PINK,WHITE,LIGHT_GRAY,LIGHT_BROWN,PINK,GRAY_BROWN]
     shapeChoice=[Circle,Triangle,Square,Rectangle]
     positionChoice = [[-6,-2,0],[4,-2,0],[2,0,0],[-6,2,0],[-4,-2,0],[-4,2,0],[-2,-2,0],[4,0,0],[-4,0,0],[-2,2,0],[2,-2,0],[-6,0,0],[2,2,0],[6,0,0],[4,2,0],[6,-2,0],[-2,0,0],[6,2,0]]
-    SourceCodeFileName=""
     DeveloperList=""
     SourceCodeFileName=""
 
@@ -285,13 +284,7 @@ class AbstractAnim(Scene):
         p2.cvolist.append(p6)
         p2.cvolist.append(p7)
         self.construct1(p2,p2)
-
-    def GetSourceCodeFileName(self):
-        return self.SourceCodeFileName
         
-    def SetSourceCodeFileName(self):
-        pass
-
     def GetDeveloperList(self): 
         return self.DeveloperList
     
