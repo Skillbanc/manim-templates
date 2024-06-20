@@ -1,0 +1,31 @@
+from manim import *
+
+class DirectProportion(Scene):
+    def construct(self):
+        # Title
+        title = Text("Direct Proportion", font_size=48).to_edge(UP)
+        self.play(Write(title))
+
+        # Axes
+        axes = Axes(
+            x_range=[0, 10, 1],
+            y_range=[0, 10, 1],
+            axis_config={"color": BLUE},
+        ).add_coordinates()
+        
+        labels = axes.get_axis_labels(x_label="x", y_label="y")
+        self.play(Create(axes), Write(labels))
+
+        # Direct proportion graph
+        graph = axes.plot(lambda x: 2 * x, color=YELLOW)
+        graph_label = axes.get_graph_label(graph, label="y = 2x")
+
+        self.play(Create(graph), Write(graph_label))
+        
+        # Animation showing change in x and y
+        dot = Dot().move_to(axes.coords_to_point(1, 2))
+        self.play(FadeIn(dot))
+        self.play(dot.animate.move_to(axes.coords_to_point(3, 6)), run_time=2)
+        self.play(dot.animate.move_to(axes.coords_to_point(5, 10)), run_time=2)
+        
+        self.wait(2)
