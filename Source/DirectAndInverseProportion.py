@@ -3,7 +3,7 @@ from AbstractAnim import AbstractAnim
 import cvo
 
 
-class propanim(AbstractAnim):
+class DirectAndInverseProportion(AbstractAnim):
 
     def construct(self):
         self.RenderSkillbancLogo()
@@ -17,6 +17,7 @@ class propanim(AbstractAnim):
         self.fadeOutCurrentScene()
         self.inverse_graph()
         self.fadeOutCurrentScene()
+        self.GithubSourceCodeReference()
      
 
     def Introduction(self):
@@ -105,9 +106,15 @@ class propanim(AbstractAnim):
         self.play(MoveAlongPath(dot, graph), run_time=4, rate_func=linear)
         self.add(tracing_line)
         self.wait(2)
+        
+    def SetDeveloperList(self): 
+       self.DeveloperList="Snehith" 
+    
+    def SetSourceCodeFileName(self):
+        self.SourceCodeFileName="DirectAndInverseProportion.py"
 
    
 
 if __name__ == "__main__":
-    scene = propanim()
+    scene = DirectAndInverseProportion()
     scene.render()
