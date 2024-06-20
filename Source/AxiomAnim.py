@@ -11,7 +11,7 @@ from AbstractAnim import AbstractAnim
 
 import cvo
 
-class AxiomsAnim(AbstractAnim):
+class AxiomAnim(AbstractAnim):
 
     # use the appropriate method based on how the data is stored
     def construct(self):
@@ -23,16 +23,8 @@ class AxiomsAnim(AbstractAnim):
         
     # render using CVO data object
     def constructDataByCVO(self):
+        self.positionChoice=[[-4.5,2,0],[0,2,0],[-5,-2,0],[-1,0,0],[-1,-2,0],[1,0,0],[1,-2,0],[5,0,0],[5,-2,0]]
         p10=cvo.CVO().CreateCVO("Mathematics Axioms","")
-<<<<<<< HEAD
-        p11=cvo.CVO().CreateCVO("Axiom","a+b=b+a")
-        p12=cvo.CVO().CreateCVO("Axiom","a*b=b*a")
-        p13=cvo.CVO().CreateCVO("Axiom","a+0=a")
-        p14=cvo.CVO().CreateCVO("Axiom","a+1=a")
-        p15=cvo.CVO().CreateCVO("Axiom","a(b+c)=ab+ac")
-        p16=cvo.CVO().CreateCVO("Axiom","a+(b+c)=(a+b)+c")
-
-=======
         p11=cvo.CVO().CreateCVO("Axiom", "a+b=b+a")
         p12=cvo.CVO().CreateCVO("Axiom", "a*b=b*a")
         p13=cvo.CVO().CreateCVO("Axiom", "a+0=a")
@@ -40,7 +32,6 @@ class AxiomsAnim(AbstractAnim):
         p15=cvo.CVO().CreateCVO("Axiom", "a(b+c)=ab+ac")
         p16=cvo.CVO().CreateCVO("Axiom", "a+(b+c)=(a+b)+c")
         
->>>>>>> 379af5a01e20e53e0ea18b6687c88c25c1bdd0d9
         p10.cvolist.append(p11)
         p10.cvolist.append(p12)
         p10.cvolist.append(p13)
@@ -48,26 +39,12 @@ class AxiomsAnim(AbstractAnim):
         p10.cvolist.append(p15)
         p10.cvolist.append(p16)
         self.setNumberOfCirclePositions(7)
-<<<<<<< HEAD
 
-        self.construct1(p10,p10)
-    
-    
-      
-
-=======
-        rectangle=Rectangle()
-        self.add(rectangle)
-        self.wait(1)
-        self.remove(rectangle)
-        self.wait(1)
         self.construct1(p10,p10)
 
 
         
       
->>>>>>> 379af5a01e20e53e0ea18b6687c88c25c1bdd0d9
 if __name__ == "__main__":
-    scene = AxiomsAnim()
+    scene = AxiomAnim()
     scene.render()
-    
