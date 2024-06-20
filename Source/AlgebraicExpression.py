@@ -64,7 +64,6 @@ class AlgebraicExpression(AbstractAnim):
         self.fadeOutCurrentScene()
         self.row1Anim()
         self.fadeOutCurrentScene()
-
         self.GithubSourceCodeReference()
 
         
@@ -787,7 +786,7 @@ class AlgebraicExpression(AbstractAnim):
         self.wait(2)
         self.play(Write(expression4))
         self.wait(2)
-        
+
     def SetDeveloperList(self): 
        self.DeveloperList="Potluri Divya Reddy" 
 
