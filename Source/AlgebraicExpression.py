@@ -64,10 +64,9 @@ class AlgebraicExpression(AbstractAnim):
         self.fadeOutCurrentScene()
         self.row1Anim()
         self.fadeOutCurrentScene()
-<<<<<<< HEAD
+
         self.GithubSourceCodeReference()
-=======
->>>>>>> 6d3524441cf9102a12e59d0b8936f3ca2f711798
+
         
      # render using CVO data object  
     def AlgebraicExpression(self):
@@ -788,16 +787,14 @@ class AlgebraicExpression(AbstractAnim):
         self.wait(2)
         self.play(Write(expression4))
         self.wait(2)
-
-<<<<<<< HEAD
+        
     def SetDeveloperList(self): 
        self.DeveloperList="Potluri Divya Reddy" 
 
     def SetSourceCodeFileName(self):
        self.SourceCodeFileName="AlgebraicExpression.py"
 
-=======
->>>>>>> 6d3524441cf9102a12e59d0b8936f3ca2f711798
+
 if __name__ == "__main__":
     scene = AlgebraicExpression()
     scene.render()
