@@ -1,5 +1,4 @@
 from manim import *
-
 class np(Scene):
     def construct(self):
         self.add(NumberPlane(axis_config={"include_tip":1}))
