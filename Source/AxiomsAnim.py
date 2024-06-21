@@ -40,15 +40,6 @@ class AxiomsAnim(AbstractAnim):
     # render using CVO data object
     def constructDataByCVO(self):
         p10=cvo.CVO().CreateCVO("Mathematics Axioms","")
-<<<<<<< HEAD
-        p11=cvo.CVO().CreateCVO("Axiom","a+b=b+a")
-        p12=cvo.CVO().CreateCVO("Axiom","a*b=b*a")
-        p13=cvo.CVO().CreateCVO("Axiom","a+0=a")
-        p14=cvo.CVO().CreateCVO("Axiom","a+1=a")
-        p15=cvo.CVO().CreateCVO("Axiom","a(b+c)=ab+ac")
-        p16=cvo.CVO().CreateCVO("Axiom","a+(b+c)=(a+b)+c")
-
-=======
         p11=cvo.CVO().CreateCVO("Axiom", "a+b=b+a")
         p12=cvo.CVO().CreateCVO("Axiom", "a*b=b*a")
         p13=cvo.CVO().CreateCVO("Axiom", "a+0=a")
@@ -56,11 +47,7 @@ class AxiomsAnim(AbstractAnim):
         p15=cvo.CVO().CreateCVO("Axiom", "a(b+c)=ab+ac")
         p16=cvo.CVO().CreateCVO("Axiom", "a+(b+c)=(a+b)+c")
         
-<<<<<<< main
 >>>>>>> 790924edeb67f3367e9dcfacd0ef999d6047a93b
-=======
->>>>>>> 379af5a01e20e53e0ea18b6687c88c25c1bdd0d9
->>>>>>> Divya
         p10.cvolist.append(p11)
         p10.cvolist.append(p12)
         p10.cvolist.append(p13)
@@ -77,14 +64,6 @@ class AxiomsAnim(AbstractAnim):
 =======
         p10.cvolist.append(p16)
         self.setNumberOfCirclePositions(7)
-<<<<<<< HEAD
-
-        self.construct1(p10,p10)
-    
-    
-      
-
-=======
         rectangle=Rectangle()
         self.add(rectangle)
         self.wait(1)
@@ -95,11 +74,8 @@ class AxiomsAnim(AbstractAnim):
 
         
       
-<<<<<<< main
 >>>>>>> 790924edeb67f3367e9dcfacd0ef999d6047a93b
-=======
->>>>>>> 379af5a01e20e53e0ea18b6687c88c25c1bdd0d9
->>>>>>> Divya
 if __name__ == "__main__":
     scene = AxiomsAnim()
     scene.render()
+    
