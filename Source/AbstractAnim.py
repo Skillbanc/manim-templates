@@ -263,6 +263,20 @@ class AbstractAnim(Scene):
         self.logoGroup = VGroup().add(self.circles).add(lines).add(text)
         self.play(self.logoGroup.animate.scale(0),run_time=1)
         # self.play(self.circles.animate.scale(0),lines.animate.scale(0),text.animate.scale(0),run_time=3)
+     
+    def GithubSourceCodeReference(self): 
+        self.colorChoice=[BLUE,ORANGE,PINK]
+        p2 = cvo.CVO().CreateCVO("SOURCE CODE REFERENCE", "").setPosition([0,2.5,0])
+        p4 = cvo.CVO().CreateCVO("Github URL", "https://github.com/Skillbanc/manim-templates").setPosition([-4,1,0]).setangle(TAU / 3)
+        p5 = cvo.CVO().CreateCVO("File Name", "AlgebraicAnim5.py").setPosition([4,1,0]).setangle(TAU / 3)
+        
+        p2.cvolist.append(p4)
+        p2.cvolist.append(p5)
+        self.setNumberOfCirclePositions(3)
+        p4.setcircleradius(3)
+        p5.setcircleradius(2)
+        
+        self.construct1(p2,p2)
         
     def GithubSourceCodeReference(self): 
         self.SetDeveloperList()
