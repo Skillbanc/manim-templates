@@ -363,10 +363,10 @@ class LinesAndAngles(AbstractAnim):
         O = Text("O").next_to(intersection, DOWN)
 
         # Drawing the angle arcs
-        angle_arc1 = Arc(radius=0.5, start_angle=0, angle=PI/2, color=YELLOW).shift(0.25*RIGHT + 0.25*UP)
-        angle_arc2 = Arc(radius=0.5, start_angle=PI/2, angle=PI/2, color=GREEN).shift(0.25*LEFT + 0.25*UP)
-        angle_arc3 = Arc(radius=0.5, start_angle=PI, angle=PI/2, color=YELLOW).shift(0.25*LEFT + 0.25*DOWN)
-        angle_arc4 = Arc(radius=0.5, start_angle=3*PI/2, angle=PI/2, color=GREEN).shift(0.25*RIGHT + 0.25*DOWN)
+        angle_arc1 = Arc(radius=0.5, angle=90 * DEGREES, start_angle=0, color=YELLOW).shift(0.25*RIGHT + 0.25*UP)
+        angle_arc2 = Arc(radius=0.5, angle=90 * DEGREES, start_angle=90 * DEGREES, color=GREEN).shift(0.25*LEFT + 0.25*UP)
+        angle_arc3 = Arc(radius=0.5, angle=90 * DEGREES, start_angle=180 * DEGREES, color=YELLOW).shift(0.25*LEFT + 0.25*DOWN)
+        angle_arc4 = Arc(radius=0.5, angle=90 * DEGREES, start_angle=270 * DEGREES, color=GREEN).shift(0.25*RIGHT + 0.25*DOWN)
         
         # Labels for angles
         angle1 = MathTex("\\angle 1").next_to(angle_arc1, UP + RIGHT)
@@ -379,8 +379,8 @@ class LinesAndAngles(AbstractAnim):
         self.play(Create(angle_arc1), Create(angle_arc2), Create(angle_arc3), Create(angle_arc4))
         self.play(Write(angle1), Write(angle2), Write(angle3), Write(angle4))
 
-        info=MathTex("\\angle 1=\\angle 3").next_to(B,RIGHT*2)
-        info1=MathTex("\\angle 2=\\angle 4").next_to(info,DOWN)
+        info=MathTex("\\angle 1=\\angle 3").next_to(B,RIGHT*2).set_color_by_tex("1",YELLOW).set_color_by_tex("3",YELLOW)
+        info1=MathTex("\\angle 2=\\angle 4").next_to(info,DOWN).set_color_by_tex("2",GREEN).set_color_by_tex("2",GREEN)
         self.play(Write(info))
         self.wait(1)
         self.play(Write(info1))
