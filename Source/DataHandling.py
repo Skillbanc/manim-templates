@@ -28,7 +28,8 @@ class DataHandling(AbstractAnim):
         self.piechart()
         self.fadeOutCurrentScene()
         self.dblgrph()
-        
+        self.GithubSourceCodeReference()
+        self.fadeOutCurrentScene()
     # render using CVO data object
     def Representation(self):
         self.positionChoice = [[-3,0,0],[3,0,0]]
@@ -358,7 +359,11 @@ class DataHandling(AbstractAnim):
         
         self.wait(2)
 
-        
+    def SetDeveloperList(self): 
+       self.DeveloperList="T Sai Rohith Reddy" 
+
+    def SetSourceCodeFileName(self):
+       self.SourceCodeFileName="DataHandling.py" 
 
 if __name__ == "__main__":
     scene = DataHandling()

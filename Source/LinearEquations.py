@@ -47,6 +47,7 @@ class LinearEq(AbstractAnim):
         self.example_substitution()
         self.Elim()
         self.solve_example()
+        self.GithubSourceCodeReference()
 
 
     def Pair(self):
@@ -550,6 +551,13 @@ class LinearEq(AbstractAnim):
 
     def clear_scene(self):
         self.play(*[FadeOut(mob) for mob in self.mobjects])
+
+
+    def SetDeveloperList(self):  
+        self.DeveloperList="Gayathri Veeramreddy"
+
+    def SetSourceCodeFileName(self):
+        self.SourceCodeFileName="LinearEquations.py"
 
 if __name__ == "__main__":
     scene=LinearEq()
