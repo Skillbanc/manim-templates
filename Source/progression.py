@@ -4,8 +4,10 @@ import cvo
 
 
 class Progression(AbstractAnim):
-
     def construct(self):
+        self.nthterm()
+
+    def FinalConstruct(self):
         self.RenderSkillbancLogo()
         self.Introduction()
         self.fadeOutCurrentScene()
@@ -80,7 +82,7 @@ class Progression(AbstractAnim):
         self.angleChoice = [TAU/4]
         self.isRandom = False
         p10=cvo.CVO().CreateCVO("Arithemetic Progression","")
-        p11=cvo.CVO().CreateCVO("General form","a,a+d,a+2d,a+3d.....")
+        p11=cvo.CVO().CreateCVO("General Form","a,a+d,a+2d,a+3d.....")
         p11.setcircleradius(1.5)
         p10.cvolist.append(p11)
         self.construct1(p10,p10)
@@ -91,8 +93,8 @@ class Progression(AbstractAnim):
         self.isRandom = False
 
         p10=cvo.CVO().CreateCVO("General Form","a,a+d,a+2d,a+3d.....")
-        p11=cvo.CVO().CreateCVO("First term","a")
-        p12=cvo.CVO().CreateCVO("Common difference","d")
+        p11=cvo.CVO().CreateCVO("First Term","a")
+        p12=cvo.CVO().CreateCVO("Common Difference","d")
         p10.setcircleradius(1.5)
         p10.cvolist.append(p11)
         p10.cvolist.append(p12)
