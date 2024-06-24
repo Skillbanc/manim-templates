@@ -46,6 +46,8 @@ class LineAngle(AbstractAnim):
         self.Triangle()
         self.fadeOutCurrentScene()
         self.Triangle1()
+        self.fadeOutCurrentScene()
+        self.GithubSourceCodeReference()
 
 
     def Line(self):
@@ -362,24 +364,40 @@ class LineAngle(AbstractAnim):
         self.play(Write(label_AB), Write(label_BA), Write(label_CD), Write(label_DC), Write(label_O))
 
         # Create arcs for angles
-        arc_AOC = Arc(radius=0.8, angle=TAU/8, start_angle=PI/4, color=YELLOW).move_arc_center_to(intersection)
-        arc_BOD = Arc(radius=0.8, angle=TAU/8, start_angle=PI+PI/4, color=YELLOW).move_arc_center_to(intersection)
-        arc_DOA = Arc(radius=0.8, angle=TAU/8, start_angle=-PI/4, color=YELLOW).move_arc_center_to(intersection)
-        arc_COB = Arc(radius=0.8, angle=TAU/8, start_angle=PI-PI/4, color=YELLOW).move_arc_center_to(intersection)
+        arc_AOC = Arc(radius=0.8, angle=90 * DEGREES, start_angle=0, color=YELLOW).move_arc_center_to(intersection)
+        arc_BOD = Arc(radius=0.8, angle=90 * DEGREES, start_angle=180 * DEGREES, color=GREEN).move_arc_center_to(intersection)
+        arc_DOA = Arc(radius=0.8, angle=90 * DEGREES, start_angle=270 * DEGREES, color=BLUE).move_arc_center_to(intersection)
+        arc_COB = Arc(radius=0.8, angle=90 * DEGREES, start_angle=90*DEGREES, color=ORANGE).move_arc_center_to(intersection)
 
         self.play(Create(arc_AOC), Create(arc_BOD), Create(arc_DOA), Create(arc_COB))
 
         # Labels for angles
-        label_AOC = MathTex(r"\angle AOC").next_to(arc_AOC.point_from_proportion(0.5), UR)
-        label_BOD = MathTex(r"\angle BOD").next_to(arc_BOD.point_from_proportion(0.5), UL)
-        label_DOA = MathTex(r"\angle DOA").next_to(arc_DOA.point_from_proportion(0.5), DR)
-        label_COB = MathTex(r"\angle COB").next_to(label_CD, DL)
+        label_AOC = MathTex(r"\angle AOC",color=YELLOW).next_to(arc_AOC.point_from_proportion(0.5), UR)
+        label_BOD = MathTex(r"\angle BOD",color=GREEN).next_to(label_BA, DR)
+        label_DOA = MathTex(r"\angle DOA",color=BLUE).next_to(arc_DOA.point_from_proportion(0.5), DR)
+        label_COB = MathTex(r"\angle COB",color=ORANGE).next_to(label_CD, DL)
 
-        explanation_text = VGroup(
-            MathTex(r"\angle AOC = \angle BOD"),
-            MathTex(r"\angle COB = \angle DOA"),
-        ).arrange(DOWN, aligned_edge=LEFT).scale(0.8).to_edge(DOWN)
+        # explanation_text = VGroup(
+        #             MathTex(r"\angle {AOC} = \angle {BOD}").set_color_by_tex(r"\angle {AOC}", YELLOW).set_color_by_tex(r"\angle {BOD}", GREEN),
+        #     MathTex(r"\angle {COB} = \angle {DOA}").set_color_by_tex(r"\angle {COB}", ORANGE).set_color_by_tex(r"\angle {DOA}", BLUE),
+        # ).arrange(DOWN, aligned_edge=LEFT).scale(0.8).to_edge(DOWN)
 
+        eq1 = VGroup(
+            MathTex(r"\angle {AOC}").set_color(YELLOW),
+            MathTex(r" = "),
+            MathTex(r"\angle {BOD}").set_color(GREEN)
+        ).arrange(RIGHT)
+        
+        eq2 = VGroup(
+            MathTex(r"\angle {COB}").set_color(ORANGE),
+            MathTex(r" = "),
+            MathTex(r"\angle {DOA}").set_color(BLUE)
+        ).arrange(RIGHT)
+
+        # Group and align
+        explanation_text = VGroup(eq1, eq2).arrange(DOWN, aligned_edge=LEFT).scale(0.8).to_edge(DOWN)
+
+        
         self.play(Write(label_AOC), Write(label_BOD), Write(label_DOA), Write(label_COB))
         self.wait(2)
         self.play(Write(explanation_text))
@@ -542,18 +560,20 @@ class LineAngle(AbstractAnim):
         # Explanation
         explanation_text = VGroup(
             MathTex(r"\text{Angles formed by a transversal are categorized as:}"),
-            MathTex(r"\text{1. Corresponding Angles: } \angle 1, \angle 3 \text{ and } \angle 5, \angle 7"),
+            MathTex(r"\text{1. Corresponding Angles: } \angle 1 = \angle 3 \text{ and } \angle 5 = \angle 7"),
             MathTex(r"\text{2. Interior Angles: } \angle 3, \angle 4, \angle 5, \angle 6"),
             MathTex(r"\text{3. Exterior Angles: } \angle 1, \angle 2, \angle 7, \angle 8"),
-            MathTex(r"\text{4. Vertically Opposite Angles: } \angle 1, \angle 3 \text{ and } \angle 2, \angle 4"),
-            MathTex(r"\text{5. Alternate Interior Angles: } \angle 5, \angle 5 \text{ and } \angle 3, \angle 6"), 
-            MathTex(r"\text{6. Alternate Exterior Angles: } \angle 1, \angle 8 \text{ and } \angle 2, \angle 7")
+            MathTex(r"\text{4. Vertically Opposite Angles: } \angle 1 = \angle 3 \text{ and } \angle 2 = \angle 4"),
+            MathTex(r"\text{5. Alternate Interior Angles: } \angle 5 = \angle 4 \text{ and } \angle 3 = \angle 6"), 
+            MathTex(r"\text{6. Alternate Exterior Angles: } \angle 1, \angle 8 \text{ and } \angle 2, \angle 7"),
+            MathTex(r"\text{7. Consecutive Interior Angles: } \angle 5, \angle 3 \text{ and } \angle 6, \angle 4"),
+            MathTex(r"\text{8. Consecutive Exterior Angles: } \angle 1, \angle 7 \text{ and } \angle 2, \angle 8")
 
         ).arrange(DOWN, aligned_edge=LEFT).scale(0.8).to_edge(RIGHT)
 
         self.play(Write(explanation_text))
 
-        self.wait(7)
+        self.wait(10)
 
         # Clear the scene
         self.clear_scene()
@@ -621,6 +641,12 @@ class LineAngle(AbstractAnim):
                          FadeOut(arc_A), FadeOut(arc_B), FadeOut(arc_C), FadeOut(angle_A_label), FadeOut(angle_B_label), FadeOut(angle_C_label),
                          FadeOut(angle_sum),FadeOut(angle_sum_text))
         self.wait(1)
+
+    def SetDeveloperList(self):  
+        self.DeveloperList="Gayathri Veeramreddy"
+
+    def SetSourceCodeFileName(self):
+        self.SourceCodeFileName="LineAngles.py"
 
  
 
