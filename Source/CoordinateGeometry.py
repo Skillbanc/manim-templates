@@ -32,6 +32,8 @@ class CoordinateGeoAnim(AbstractAnim):
         self.fadeOutCurrentScene()
         self.herani()
         self.fadeOutCurrentScene()
+        self.GithubSourceCodeReference()
+        self.fadeOutCurrentScene()
 
     def distance(self):
         self.isRandom=False
@@ -407,7 +409,11 @@ class CoordinateGeoAnim(AbstractAnim):
         self.play(Write(slope_equation,run_time=4))
         self.wait(2)
 
+    def SetDeveloperList(self): 
+       self.DeveloperList="T Sai Rohith Reddy" 
 
+    def SetSourceCodeFileName(self):
+       self.SourceCodeFileName="CoordinateGeometry.py"
         
     
 
