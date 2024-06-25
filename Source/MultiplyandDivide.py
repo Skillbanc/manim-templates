@@ -225,7 +225,7 @@ class MultiplyandDivide(AbstractAnim):
 
         quotient_in_circles = MathTex("3\\times 2").shift(UP*2,LEFT*2).set_color(YELLOW)
         # self.play(Write(quotient_in_circles))
-        remainder_in_circles = MathTex("2").next_to(quotient_in_circles,RIGHT,buff=2).set_color(PURE_RED)
+        remainder_in_circles = MathTex("2").next_to(quotient_in_circles,RIGHT,buff=1.5).set_color(PURE_RED)
         # self.play(Write(remainder_in_circles))
         multiline1 = MathTex("Dividend:8", "Divisor:3").arrange(DOWN, aligned_edge=LEFT).to_edge(RIGHT).scale(0.65).shift(UP*3,LEFT*0.5).set_color(YELLOW)
         self.play(Write(multiline1))
@@ -255,6 +255,7 @@ class MultiplyandDivide(AbstractAnim):
         self.play(Write(text1))
         self.wait(2)
         self.fadeOutCurrentScene()
+
 
         example = MathTex("\\text{Example : } 1440 \div 3").to_edge(UP).shift(LEFT*2)
         self.play(Write(example))
