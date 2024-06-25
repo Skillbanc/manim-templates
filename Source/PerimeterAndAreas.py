@@ -126,42 +126,49 @@ class PerimeterAndAreas(AbstractAnim):
         heading = Text("Perimeter of a Triangle")
         heading.to_edge(UP)
 
-        # Create a triangle
-        triangle = Polygon(
-            ORIGIN, 3 * RIGHT, 3 * RIGHT + 3 * UP,
-            stroke_color=BLUE,
-            stroke_width=2,
-            fill_color=BLUE,
-            fill_opacity=0.3
-        )
-        triangle.move_to(LEFT * 3)  # Move the triangle to the left side
+        # Define vertices of the triangle
+        A = np.array([0, 2, 0])
+        B = np.array([-2, -1, 0])
+        C = np.array([2, -1, 0])
 
-        # Get vertices of the triangle
-        v0, v1, v2 = triangle.get_vertices()
-
-        # Create two-sided arrows with length labels below each side
-        arrow_1 = DoubleArrow(start=v0 + DOWN * 0.5, end=v1 + DOWN * 0.5, buff=0.1)
-        length_label_1 = MathTex("a").next_to(arrow_1, DOWN)
+        # Create the triangle with no fill
+        triangle = Polygon(A, B, C, color=WHITE, fill_opacity=0).shift(LEFT*3)
         
-        arrow_2 = DoubleArrow(start=v1 + RIGHT * 0.5, end=v2 + RIGHT * 0.5, buff=0.1)
-        length_label_2 = MathTex("b").next_to(arrow_2, RIGHT)
-
-        arrow_3 = DoubleArrow(start=v2 + UP * 0.5, end=v0 + UP * 0.5, buff=0.1)
-        length_label_3 = MathTex("c").next_to(arrow_3, UP)
-
-        # Calculate perimeter and create the formula
-        perimeter_formula = MathTex("P = a + b + c")
-        perimeter_formula.to_corner(DR)
-
-        # Add heading, triangle, arrows, and labels to the scene
+        # Labels for the vertices
+        label_a = MathTex("A", color=WHITE).next_to(A + LEFT*3, UP)
+        label_b = MathTex("B", color=WHITE).next_to(B + LEFT*3, DOWN + LEFT*0.2)
+        label_c = MathTex("C", color=WHITE).next_to(C + LEFT*3, DOWN + RIGHT*0.2)
+        
+        # Create double-sided arrows and labels for the sides
+        side_ab = DoubleArrow(A, B, buff=0, color=WHITE).shift(UP*0.2 + LEFT*3)
+        side_bc = DoubleArrow(B, C, buff=0, color=WHITE).shift(DOWN*0.2 + LEFT*3)
+        side_ca = DoubleArrow(C, A, buff=0, color=WHITE).shift(RIGHT*0.2 + LEFT*3)
+        
+        label_ab = MathTex("a", color=WHITE).next_to(side_ab, LEFT)
+        label_bc = MathTex("b", color=WHITE).next_to(side_bc, DOWN)
+        label_ca = MathTex("c", color=WHITE).next_to(side_ca, RIGHT)
+        
+        # Create perimeter calculation text
+        perimeter_text = MathTex(
+            r"Perimeter = a + b + c", color=WHITE
+        ).to_edge(DOWN)
+        
         self.play(Write(heading))
+        # Animate the drawing of the triangle
         self.play(Create(triangle))
-        self.play(Create(arrow_1), Write(length_label_1))
-        self.play(Create(arrow_2), Write(length_label_2))
-        self.play(Create(arrow_3), Write(length_label_3))
-        self.play(Write(perimeter_formula))
-
-        # Hold the final frame for a few seconds
+        
+        # Animate the drawing of the sides with labels
+        self.play(GrowArrow(side_ab), Write(label_ab))
+        self.play(GrowArrow(side_bc), Write(label_bc))
+        self.play(GrowArrow(side_ca), Write(label_ca))
+        
+        # Show vertex labels
+        self.play(Write(label_a), Write(label_b), Write(label_c))
+        
+        # Animate the appearance of the perimeter calculation
+        self.play(Write(perimeter_text))
+        
+        # Keep the animation on screen for a few seconds
         self.wait(2)
         
         p10=cvo.CVO().CreateCVO("formula","a + b + c").setPosition([2,1,0])
@@ -178,34 +185,46 @@ class PerimeterAndAreas(AbstractAnim):
         heading = Text("Perimeter of a Square")
         heading.to_edge(UP)
 
-        # Create a square
-        square = Square(side_length=2)
-        square.move_to(LEFT * 3)
-        square.set_color(BLUE)
+         # Define vertices of the square
+        A = np.array([-1, 1, 0])
+        B = np.array([1, 1, 0])
+        C = np.array([1, -1, 0])
+        D = np.array([-1, -1, 0])
 
-        # Add side labels
-        side_label_1 = MathTex("a")
-        side_label_2 = side_label_1.copy()
-        side_label_3 = side_label_1.copy()
-        side_label_4 = side_label_1.copy()
-
-        # Position side labels
-        side_label_1.next_to(square.get_top(), UP)
-        side_label_2.next_to(square.get_bottom(), DOWN)
-        side_label_3.next_to(square.get_left(), LEFT)
-        side_label_4.next_to(square.get_right(), RIGHT)
-
-        # Create the perimeter formula
-        perimeter_formula = MathTex("P = 4a")
-        perimeter_formula.to_corner(DR)
-
-        # Add heading, square, and labels to the scene
+        # Create the square with no fill
+        square = Polygon(A, B, C, D, color=WHITE, fill_opacity=0).scale(0.8).shift(LEFT*3)
+        
+        # Labels for the vertices
+        label_a = MathTex("A", color=WHITE).next_to(A + LEFT*3, UP)
+        label_b = MathTex("B", color=WHITE).next_to(B + LEFT*3, UP)
+        label_c = MathTex("C", color=WHITE).next_to(C + LEFT*3, DOWN)
+        label_d = MathTex("D", color=WHITE).next_to(D + LEFT*3, DOWN)
+        
+        # Create double-sided arrows and labels for the sides
+        side_ab = DoubleArrow(A, B, buff=0, color=WHITE).shift(UP*0.1 + LEFT*3)
+        side_bc = DoubleArrow(B, C, buff=0, color=WHITE).shift(RIGHT*0.1 + LEFT*3)
+        side_cd = DoubleArrow(C, D, buff=0, color=WHITE).shift(DOWN*0.1 + LEFT*3)
+        side_da = DoubleArrow(D, A, buff=0, color=WHITE).shift(LEFT*0.1 + LEFT*3)
+        
+        label_ab = MathTex("s", color=WHITE).next_to(side_ab, UP)
+        label_bc = MathTex("s", color=WHITE).next_to(side_bc, RIGHT)
+        label_cd = MathTex("s", color=WHITE).next_to(side_cd, DOWN)
+        label_da = MathTex("s", color=WHITE).next_to(side_da, LEFT)
+        
         self.play(Write(heading))
+        # Animate the drawing of the square
         self.play(Create(square))
-        self.play(Write(side_label_1), Write(side_label_2), Write(side_label_3), Write(side_label_4))
-        self.play(Write(perimeter_formula))
-
-        # Hold the final frame for a few seconds
+        
+        # Animate the drawing of the sides with labels
+        self.play(GrowArrow(side_ab), Write(label_ab))
+        self.play(GrowArrow(side_bc), Write(label_bc))
+        self.play(GrowArrow(side_cd), Write(label_cd))
+        self.play(GrowArrow(side_da), Write(label_da))
+        
+        # Show vertex labels
+        self.play(Write(label_a), Write(label_b), Write(label_c), Write(label_d))
+        
+        # Keep the animation on screen for a few seconds
         self.wait(2)
         
         p10=cvo.CVO().CreateCVO("formula","4*length of a side(a)").setPosition([2,1,0])
@@ -222,37 +241,50 @@ class PerimeterAndAreas(AbstractAnim):
         heading = Text("Perimeter of a Rectangle")
         heading.to_edge(UP)
 
-        # Create a rectangle
-        rectangle = Rectangle(width=3, height=2)
-        rectangle.move_to(LEFT * 3)
-        rectangle.set_color(BLUE)
+         # Define vertices of the rectangle
+        A = np.array([-2, 1, 0])
+        B = np.array([2, 1, 0])
+        C = np.array([2, -1, 0])
+        D = np.array([-2, -1, 0])
 
-        # Get vertices of the rectangle
-        v0, v1, v2, v3 = rectangle.get_vertices()
-
-        # Create arrows for width (l) and height (b)
-        arrow_width = DoubleArrow(start=v0 + DOWN * 1.5, end=v1 + DOWN * 1.5, buff=0.1)
-        width_label = MathTex("l").next_to(arrow_width, DOWN)
+        # Create the rectangle with no fill
+        rectangle = Polygon(A, B, C, D, color=WHITE, fill_opacity=0).shift(LEFT*3)
         
-        arrow_height = DoubleArrow(start=v1 + RIGHT * 1.5, end=v2 + RIGHT * 1.5, buff=0.1)
-        height_label = MathTex("b").next_to(arrow_height, RIGHT)
-
-        # Calculate perimeter and create the formula
-        perimeter_formula = MathTex("P = 2l + 2b")
-        perimeter_formula.to_corner(DR)
-
-        # Add heading, rectangle, arrows, and labels to the scene
+        # Labels for the vertices
+        label_a = MathTex("A", color=WHITE).next_to(A + LEFT*3, UP)
+        label_b = MathTex("B", color=WHITE).next_to(B + LEFT*3, UP)
+        label_c = MathTex("C", color=WHITE).next_to(C + LEFT*3, DOWN)
+        label_d = MathTex("D", color=WHITE).next_to(D + LEFT*3, DOWN)
+        
+        # Create double-sided arrows and labels for the sides
+        side_ab = DoubleArrow(A, B, buff=0, color=WHITE).shift(UP*0.1 + LEFT*3)
+        side_bc = DoubleArrow(B, C, buff=0, color=WHITE).shift(RIGHT*0.1 + LEFT*3)
+        side_cd = DoubleArrow(C, D, buff=0, color=WHITE).shift(DOWN*0.1 + LEFT*3)
+        side_da = DoubleArrow(D, A, buff=0, color=WHITE).shift(LEFT*0.1 + LEFT*3)
+        
+        label_ab = MathTex("l", color=WHITE).next_to(side_ab, UP)
+        label_bc = MathTex("b", color=WHITE).next_to(side_bc, RIGHT)
+        label_cd = MathTex("l", color=WHITE).next_to(side_cd, DOWN)
+        label_da = MathTex("b", color=WHITE).next_to(side_da, LEFT)
+        
         self.play(Write(heading))
+        # Animate the drawing of the rectangle
         self.play(Create(rectangle))
-        self.play(Create(arrow_width), Write(width_label))
-        self.play(Create(arrow_height), Write(height_label))
-        self.play(Write(perimeter_formula))
-
-        # Hold the final frame for a few seconds
+        
+        # Animate the drawing of the sides with labels
+        self.play(GrowArrow(side_ab), Write(label_ab))
+        self.play(GrowArrow(side_bc), Write(label_bc))
+        self.play(GrowArrow(side_cd), Write(label_cd))
+        self.play(GrowArrow(side_da), Write(label_da))
+        
+        # Show vertex labels
+        self.play(Write(label_a), Write(label_b), Write(label_c), Write(label_d))
+        
+        # Keep the animation on screen for a few seconds
         self.wait(2)
 
         p10=cvo.CVO().CreateCVO("formula","2(l+b)").setPosition([2,1,0])
-        p11=cvo.CVO().CreateCVO("example","l=2,b=3,c=5").setPosition([4,1,0])
+        p11=cvo.CVO().CreateCVO("example","l=2,b=3").setPosition([4,1,0])
         p12=cvo.CVO().CreateCVO("perimeter","2(2+3) = 10").setPosition([3,-2,0]).setangle(-TAU/4)
         p10.cvolist.append(p11)
         p11.cvolist.append(p12)
@@ -260,35 +292,35 @@ class PerimeterAndAreas(AbstractAnim):
         self.construct1(p10,p10)    
 
     def perimeterofpentagon(self):
-        # Create a heading
-        heading = Text("Perimeter of a Regular Polygon(Pentagon)")
+         # Create a heading
+        heading = Text("Perimeter of a Regular Polygon (Pentagon)")
         heading.to_edge(UP)
 
         # Define side length of the pentagon
         side_length = 2
 
         # Create a pentagon
-        pentagon = RegularPolygon(n=5, start_angle=0, color=BLUE)
+        pentagon = RegularPolygon(n=5, start_angle=0, color=WHITE)
         pentagon.set_width(side_length)
         pentagon.move_to(LEFT * 3)
 
         # Get vertices of the pentagon
         vertices = pentagon.get_vertices()
 
-        # Calculate center point and perpendicular vector for the bottom side (index 2 in this case)
-        side_index = 2
-        side_vector = vertices[(side_index + 1) % 5] - vertices[side_index]
-        center_point = (vertices[side_index] + vertices[(side_index + 1) % 5]) / 2
+        # Choose one side of the pentagon (for example, the first side)
+        side_index = 0
+        start_point = vertices[side_index]
+        end_point = vertices[(side_index + 1) % 5]
 
-        # Calculate perpendicular vector (pointing downwards)
-        perpendicular_vector = np.array([-side_vector[1], side_vector[0], 0])  # Perpendicular vector
-        perpendicular_vector /= np.linalg.norm(perpendicular_vector)  # Normalize
+        # Calculate direction vector and perpendicular vector
+        direction_vector = (end_point - start_point) / np.linalg.norm(end_point - start_point)
+        perpendicular_vector = np.array([-direction_vector[1], direction_vector[0], 0])
 
-        # Adjust positions for arrow and label
-        arrow_start = vertices[side_index] + perpendicular_vector * 0.1
-        arrow_end = vertices[(side_index + 1) % 5] + perpendicular_vector * 0.1
-        arrow = DoubleArrow(start=arrow_start, end=arrow_end, buff=0.2, stroke_width=8)
-        label = MathTex("a").next_to(arrow, perpendicular_vector, buff=0.2)
+        # Position arrow and label
+        arrow_start = start_point + perpendicular_vector * 0.5
+        arrow_end = end_point + perpendicular_vector * 0.5
+        arrow = DoubleArrow(arrow_start, arrow_end, buff=0.2, stroke_width=8, color=BLUE)
+        label = MathTex("a", color=WHITE).next_to((arrow_start + arrow_end) / 2, perpendicular_vector, buff=0.2)
 
         # Calculate perimeter formula
         perimeter_formula = MathTex("P = 5 \\times a")
@@ -314,43 +346,47 @@ class PerimeterAndAreas(AbstractAnim):
         self.construct1(p10,p10)  
     
     def perimeterofhexagon(self):
-         # Create a heading
-        heading = Text("Perimeter of Regular Polygon(Hexagon)")
+        heading = Text("Perimeter of a Regular polygon(Hexagon)")
         heading.to_edge(UP)
 
         # Define side length of the hexagon
         side_length = 2
 
         # Create a hexagon
-        hexagon = RegularPolygon(n=6, start_angle=0, color=BLUE)
+        hexagon = RegularPolygon(n=6, start_angle=0, color=WHITE)
         hexagon.set_width(side_length)
         hexagon.move_to(LEFT * 3)
 
         # Get vertices of the hexagon
         vertices = hexagon.get_vertices()
 
-        # Calculate center point and perpendicular vector for the bottom side (index 2 in this case)
-        side_index = 2
-        side_vector = vertices[(side_index + 1) % 6] - vertices[side_index]
-        center_point = (vertices[side_index] + vertices[(side_index + 1) % 6]) / 2
+        # Animate the drawing of the hexagon
+        hexagon_edges = VGroup()
+        for i in range(6):
+            edge = Line(vertices[i], vertices[(i + 1) % 6], color=WHITE)
+            hexagon_edges.add(edge)
 
-        # Calculate perpendicular vector (pointing outwards from the hexagon)
-        perpendicular_vector = np.array([-side_vector[1], side_vector[0], 0])  # Perpendicular vector
-        perpendicular_vector /= np.linalg.norm(perpendicular_vector)  # Normalize
+        # Create arrow and label for one side (e.g., side A)
+        side_label = "s"
+        start_point = vertices[0]
+        end_point = vertices[1]
+        direction_vector = (end_point - start_point) / np.linalg.norm(end_point - start_point)
+        perpendicular_vector = np.array([-direction_vector[1], direction_vector[0], 0])
 
-        # Adjust positions for arrow and label outside the hexagon
-        arrow_start = vertices[side_index] + perpendicular_vector * 0.1
-        arrow_end = vertices[(side_index + 1) % 6] + perpendicular_vector * 0.5  # Increase length for larger arrow
-        arrow = DoubleArrow(start=arrow_start, end=arrow_end, buff=0.2, stroke_width=8)
-        label = MathTex("a").next_to(arrow, perpendicular_vector, buff=0.2)
+        # Calculate arrow positions
+        arrow_start = start_point + perpendicular_vector * 0.5
+        arrow_end = end_point + perpendicular_vector * 0.5
+
+        arrow = DoubleArrow(arrow_start, arrow_end, buff=0.2, stroke_width=8, color=BLUE)
+        label = MathTex(side_label, color=WHITE).next_to((start_point + end_point) / 2, perpendicular_vector, buff=0.2)
 
         # Calculate perimeter formula
-        perimeter_formula = MathTex("P = 6 \\times a")
+        perimeter_formula = MathTex("P = 6 \\times s")
         perimeter_formula.to_corner(DR)
 
         # Add heading, hexagon, arrow, label, and formula to the scene
         self.play(Write(heading))
-        self.play(Create(hexagon))
+        self.play(Create(hexagon_edges), run_time=3)
         self.play(Create(arrow), Write(label))
         self.play(Write(perimeter_formula))
 
@@ -369,52 +405,58 @@ class PerimeterAndAreas(AbstractAnim):
           
     def perimeterofoctagon(self):
         # Create a heading
-        heading = Text("Perimeter of regular polygon(Octagon)")
+        heading = Text("Perimeter of a Regular polygon(Octagon)")
         heading.to_edge(UP)
 
         # Define side length of the octagon
         side_length = 2
 
         # Create an octagon
-        octagon = RegularPolygon(n=8, start_angle=0, color=BLUE)
+        octagon = RegularPolygon(n=8, start_angle=0, color=WHITE)
         octagon.set_width(side_length)
         octagon.move_to(LEFT * 3)
 
         # Get vertices of the octagon
         vertices = octagon.get_vertices()
 
-        # Calculate center point and perpendicular vector for the bottom side (index 3 in this case)
-        side_index = 3
-        side_vector = vertices[(side_index + 1) % 8] - vertices[side_index]
-        center_point = (vertices[side_index] + vertices[(side_index + 1) % 8]) / 2
+        # Animate the drawing of the octagon
+        octagon_edges = VGroup()
+        for i in range(8):
+            edge = Line(vertices[i], vertices[(i + 1) % 8], color=WHITE)
+            octagon_edges.add(edge)
 
-        # Calculate perpendicular vector (pointing upwards)
-        perpendicular_vector = np.array([side_vector[1], -side_vector[0], 0])  # Perpendicular vector
-        perpendicular_vector /= np.linalg.norm(perpendicular_vector)  # Normalize
+        # Create double-sided arrow and label for one side (e.g., side A)
+        side_label = "s"
+        start_point = vertices[0]
+        end_point = vertices[1]
+        direction_vector = (end_point - start_point) / np.linalg.norm(end_point - start_point)
+        perpendicular_vector = np.array([-direction_vector[1], direction_vector[0], 0])
 
-        # Adjust positions for two-sided arrow and label beside the octagon
-        arrow_start = vertices[side_index] + perpendicular_vector * 0.2
-        arrow_end = vertices[(side_index + 1) % 8] + perpendicular_vector * 0.2
-        arrow = DoubleArrow(start=arrow_start, end=arrow_end, buff=0.1, stroke_width=6)
-        label = MathTex("a").next_to(arrow, perpendicular_vector, buff=0.1)
+        # Calculate arrow positions
+        arrow_start = start_point + perpendicular_vector * 0.3 + UP * 0.15
+        arrow_end = end_point + perpendicular_vector * 0.3 + UP * 0.15
+
+        arrow = DoubleArrow(arrow_start, arrow_end, buff=0.2, stroke_width=8, color=BLUE)
+        label = MathTex(side_label, color=WHITE).next_to(arrow_end, DOWN, buff=0.2)
 
         # Calculate perimeter formula
-        perimeter_formula = MathTex("P = 8 \\times a")
+        perimeter_formula = MathTex("P = 8 \\times s")
         perimeter_formula.to_corner(DR)
 
         # Add heading, octagon, arrow, label, and formula to the scene
         self.play(Write(heading))
-        self.play(Create(octagon))
+        self.play(Create(octagon_edges), run_time=3)
         self.play(Create(arrow), Write(label))
         self.play(Write(perimeter_formula))
 
         # Hold the final frame for a few seconds
         self.wait(2)
+
         
         p10=cvo.CVO().CreateCVO("octagon","8-sided polygon(all sides are equal)").setPosition([2,1,0])
         p11=cvo.CVO().CreateCVO("formula","8 x length of any side(a)").setPosition([5,1,0])
         p12=cvo.CVO().CreateCVO("example","a=2").setPosition([2,-2,0]).setangle(-TAU/4)
-        p13=cvo.CVO().CreateCVO("area","8*3 = 16").setPosition([5,-2,0]).setangle(-TAU/4)
+        p13=cvo.CVO().CreateCVO("Perimeter","8*3 = 16").setPosition([5,-2,0]).setangle(-TAU/4)
         p10.cvolist.append(p11)
         p11.cvolist.append(p12)
         p12.cvolist.append(p13)
@@ -428,20 +470,21 @@ class PerimeterAndAreas(AbstractAnim):
         self.play(Write(heading)) 
     
     def areaoftriangle(self):
-        
-        # Create a heading
-        heading = Text("Area of triangle")
+       # Create a heading
+        heading = Text("Area of Triangle")
         heading.to_edge(UP)
-         # Add heading at the end
         self.play(Write(heading))
-        self.wait(2)
-       
+        self.wait(1)
+
         # Define the vertices of the triangle
         A = np.array([-4, -2, 0])
         B = np.array([-1, -2, 0])
         C = np.array([-2, 2, 0])
 
-        # Create the triangle
+        # Create the triangle outline
+        triangle_outline = Polygon(A, B, C, stroke_color=WHITE, stroke_width=2, fill_opacity=0)
+        
+        # Create the triangle with shading
         triangle = Polygon(A, B, C, fill_color=BLUE, fill_opacity=0.5)
 
         # Create the labels for the vertices
@@ -458,20 +501,19 @@ class PerimeterAndAreas(AbstractAnim):
         arrow_height = DoubleArrow(C, height_point_on_AB, buff=0.1, stroke_width=5)
         label_height = MathTex("height").next_to(arrow_height, RIGHT, buff=0.1)
 
-        # Add all objects to the scene
-        self.add(triangle, label_A, label_B, label_C)
+        # Add triangle outline to the scene
+        self.play(Create(triangle_outline))
+        self.wait(1)
 
-        # Animate the triangle creation
-        self.play(Create(triangle))
-        self.wait(0.5)
+        # Add triangle with shading and labels
+        self.play(Transform(triangle_outline, triangle), Write(label_A), Write(label_B), Write(label_C))
+        self.wait(1)
 
-        # Add labels and arrows
-        self.play(Write(label_A), Write(label_B), Write(label_C))
-        self.wait(0.5)
+        # Add arrows and labels for base and height
         self.play(GrowArrow(arrow_base), Write(label_base))
         self.play(GrowArrow(arrow_height), Write(label_height))
         self.wait(1)
-       
+     
         p10=cvo.CVO().CreateCVO("formula","1/2(b*h)").setPosition([2,1,0])
         p11=cvo.CVO().CreateCVO("example","b=2,h=3").setPosition([4,1,0])
         p12=cvo.CVO().CreateCVO("area","1/2(2*3) = 3").setPosition([3,-2,0]).setangle(-TAU/4)
@@ -484,27 +526,51 @@ class PerimeterAndAreas(AbstractAnim):
          # Create heading for square area
         heading = Text("Area of a Square").to_edge(UP)
 
-        # Define side length of the square
-        side_length = 3
+        A = np.array([-1, 1, 0])
+        B = np.array([1, 1, 0])
+        C = np.array([1, -1, 0])
+        D = np.array([-1, -1, 0])
 
-        # Create square
-        square = Square(side_length=side_length, color=BLUE, fill_opacity=0.3)
-        square.move_to(LEFT * 3)  # Move the square to the left side
-
-        # Create two-sided arrow with label for side length of square
-        arrow_start = square.get_bottom() + LEFT * 0.5
-        arrow_end = square.get_top() + LEFT * 0.5
-        arrow_square = DoubleArrow(arrow_start, arrow_end, buff=0.1)
-        length_label_square = MathTex("s").next_to(arrow_square, LEFT)
-
-        # Add all elements to the scene
+        # Create the square with fill
+        square = Polygon(A, B, C, D, color=BLUE, fill_opacity=0).scale(0.8).shift(LEFT*3)
+        
+        # Labels for the vertices
+        label_a = MathTex("A", color=WHITE).next_to(A + LEFT*3, UP)
+        label_b = MathTex("B", color=WHITE).next_to(B + LEFT*3, UP)
+        label_c = MathTex("C", color=WHITE).next_to(C + LEFT*3, DOWN)
+        label_d = MathTex("D", color=WHITE).next_to(D + LEFT*3, DOWN)
+        
+        # Create double-sided arrows and labels for the sides
+        side_ab = DoubleArrow(A, B, buff=0, color=WHITE).shift(UP*0.1 + LEFT*3)
+        side_bc = DoubleArrow(B, C, buff=0, color=WHITE).shift(RIGHT*0.1 + LEFT*3)
+        side_cd = DoubleArrow(C, D, buff=0, color=WHITE).shift(DOWN*0.1 + LEFT*3)
+        side_da = DoubleArrow(D, A, buff=0, color=WHITE).shift(LEFT*0.1 + LEFT*3)
+        
+        label_ab = MathTex("s", color=WHITE).next_to(side_ab, UP)
+        label_bc = MathTex("s", color=WHITE).next_to(side_bc, RIGHT)
+        label_cd = MathTex("s", color=WHITE).next_to(side_cd, DOWN)
+        label_da = MathTex("s", color=WHITE).next_to(side_da, LEFT)
+        
         self.play(Write(heading))
+        # Animate the drawing and filling of the square
         self.play(Create(square))
-        self.play(Create(arrow_square), Write(length_label_square))
+        
+        # Animate the drawing of the sides with labels
+        self.play(GrowArrow(side_ab), Write(label_ab))
+        self.play(GrowArrow(side_bc), Write(label_bc))
+        self.play(GrowArrow(side_cd), Write(label_cd))
+        self.play(GrowArrow(side_da), Write(label_da))
+        
+        # Show vertex labels
+        self.play(Write(label_a), Write(label_b), Write(label_c), Write(label_d))
+        
+        # Fill the square
+        square.set_fill(color=BLUE, opacity=0.5)
+        self.wait(1)
 
+        # Keep the animation on screen for a few seconds
         self.wait(2)
 
-        self.wait(1)
         p10=cvo.CVO().CreateCVO("formula","side x side").setPosition([2,1,0])
         p11=cvo.CVO().CreateCVO("example","s=3").setPosition([4,1,0])
         p12=cvo.CVO().CreateCVO("area","3*3 = 9").setPosition([3,-2,0]).setangle(-TAU/4)
@@ -514,49 +580,53 @@ class PerimeterAndAreas(AbstractAnim):
         self.construct1(p10,p10) 
         
     def areaofrectangle(self):
-         # Define dimensions
-        width = 4
-        height = 3
+        heading = Text("Area of a Rectangle").to_edge(UP)
+        # Define vertices of the rectangle
+        A = np.array([-2, 1, 0])
+        B = np.array([2, 1, 0])
+        C = np.array([2, -1, 0])
+        D = np.array([-2, -1, 0])
 
-        # Create the rectangle and move it to the left
-        rect = Rectangle(width=width, height=height, color=BLUE)
-        rect.set_fill(BLUE, opacity=0.5)
-        rect.shift(LEFT * 3)
-
-        # Add labels for length and breadth, moving them slightly further away
-        length_label = Tex("l").next_to(rect, DOWN, buff=0.7)
-        breadth_label = Tex("b").next_to(rect, LEFT, buff=0.7)
-
-        # Create a VGroup for the labels to manage them together
-        labels = VGroup(length_label, breadth_label)
-
-        # Title
-        title = Text("Area of a Rectangle")
-        title.to_edge(UP)
-
-        # Create double-sided arrows, significantly shorter than the sides
-        length_arrow = DoubleArrow(
-            start=rect.get_corner(DL) + LEFT * 0.5 + RIGHT * 1,
-            end=rect.get_corner(DR) + RIGHT * 0.5 - RIGHT * 1,
-            buff=0
-        ).next_to(length_label, UP, buff=0.2)
+        # Create the rectangle with no fill initially
+        rectangle = Polygon(A, B, C, D, color=WHITE, fill_opacity=0).scale(0.8).shift(LEFT*3)
         
-        breadth_arrow = DoubleArrow(
-            start=rect.get_corner(UL) + UP * 0.5 + DOWN * 1,
-            end=rect.get_corner(DL) + DOWN * 0.5 - DOWN * 1,
-            buff=0
-        ).next_to(breadth_label, RIGHT, buff=0.2)
-
-        # Animate the rectangle, labels, and arrows
-        self.play(Create(rect))
-        self.play(Write(labels))
-        self.play(Create(length_arrow), Create(breadth_arrow))
+        # Labels for the vertices
+        label_a = MathTex("A", color=WHITE).next_to(A + LEFT*3, UP)
+        label_b = MathTex("B", color=WHITE).next_to(B + LEFT*3, UP)
+        label_c = MathTex("C", color=WHITE).next_to(C + LEFT*3, DOWN)
+        label_d = MathTex("D", color=WHITE).next_to(D + LEFT*3, DOWN)
+        
+        # Create double-sided arrows and labels for the sides
+        side_ab = DoubleArrow(A, B, buff=0, color=WHITE).shift(UP*0.1 + LEFT*3)
+        side_bc = DoubleArrow(B, C, buff=0, color=WHITE).shift(RIGHT*0.1 + LEFT*3)
+        side_cd = DoubleArrow(C, D, buff=0, color=WHITE).shift(DOWN*0.1 + LEFT*3)
+        side_da = DoubleArrow(D, A, buff=0, color=WHITE).shift(LEFT*0.1 + LEFT*3)
+        
+        label_ab = MathTex("l", color=WHITE).next_to(side_ab, UP)
+        label_bc = MathTex("b", color=WHITE).next_to(side_bc, RIGHT)
+        label_cd = MathTex("l", color=WHITE).next_to(side_cd, DOWN)
+        label_da = MathTex("b", color=WHITE).next_to(side_da, LEFT)
+        
+        self.play(Write(heading))
+        # Animate the drawing and filling of the rectangle
+        self.play(Create(rectangle))
+        
+        # Animate the drawing of the sides with labels
+        self.play(GrowArrow(side_ab), Write(label_ab))
+        self.play(GrowArrow(side_bc), Write(label_bc))
+        self.play(GrowArrow(side_cd), Write(label_cd))
+        self.play(GrowArrow(side_da), Write(label_da))
+        
+        # Show vertex labels
+        self.play(Write(label_a), Write(label_b), Write(label_c), Write(label_d))
+        
+        # Fill the rectangle
+        rectangle.set_fill(color=BLUE, opacity=0.5)
         self.wait(1)
 
-        # Animate the title
-        self.play(Write(title))
+        # Keep the animation on screen for a few seconds
         self.wait(2)
-             
+
         p10=cvo.CVO().CreateCVO("formula","length(l) x breadth(b)").setPosition([2,1,0])
         p11=cvo.CVO().CreateCVO("example","l=3,b=4").setPosition([4,1,0])
         p12=cvo.CVO().CreateCVO("area","3*4= 12").setPosition([3,-2,0]).setangle(-TAU/4)
@@ -564,6 +634,9 @@ class PerimeterAndAreas(AbstractAnim):
         p11.cvolist.append(p12)
          
         self.construct1(p10,p10) 
+    
+    def SetDeveloperList(self):
+        self.developerlist="vasudha"  
         
 if __name__ == "__main__":
     scene = PerimeterAndAreas()
