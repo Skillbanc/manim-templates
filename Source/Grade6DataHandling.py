@@ -12,7 +12,7 @@ class DATA_HANDLING(AbstractAnim):
         self.Recording_of_data()
         self.organising_data()
         self.representation_data()
-        # self.GithubSourceCodeReference()
+        self.GithubSourceCodeReference()
 
 
     def Data_Handling(self):
@@ -273,6 +273,14 @@ class DATA_HANDLING(AbstractAnim):
         self.play(text.animate.shift(LEFT * 5))
         self.wait(3)
         self.fadeOutCurrentScene()
+
+
+    def SetDeveloperList(self):
+        self.DeveloperList="Srujan"
+
+    def SetSourceCodeFileName(self):
+        self.SourceCodeFileName="Grade6DataHandling.py"
+
 
 
 if __name__ == "__main__":

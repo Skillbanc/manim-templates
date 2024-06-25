@@ -24,6 +24,7 @@ class FrequencyDistribution(AbstractAnim):
         self.cf()
         self.graph_rep_data()
         self.graph_rep_gfd()
+        self.GithubSourceCodeReference()
         
 
     def central_tendency_measure(self):
@@ -277,6 +278,12 @@ class FrequencyDistribution(AbstractAnim):
 
         self.construct1(p1,p1)
         self.fadeOutCurrentScene()
+
+    def SetDeveloperList(self):
+        self.DeveloperList="Srujan"
+
+    def SetSourceCodeFileName(self):
+        self.SourceCodeFileName="FrequencyDistribution.py"
 
         
 
