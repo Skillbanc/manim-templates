@@ -13,6 +13,7 @@ class sets(AbstractAnim):
         self.belongingness()
         self.typesofsets()
         self.operationsonset()
+        self.GithubSourceCodeReference()
 
     def Introduction(self):
         self.angleChoice=[TAU/4,TAU/4,TAU/4,TAU/4]
@@ -271,6 +272,12 @@ class sets(AbstractAnim):
 
         for elem in elements_B:
             self.play(Write(elem))
+
+    def SetSourceCodeFilename(self):
+        self.SourceCodeFilename="sets.py"
+
+    def SetDeveloperList(self):
+        self.DeveloperList="Sindhu"
         
         
         
