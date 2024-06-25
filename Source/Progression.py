@@ -34,6 +34,9 @@ class Progression(AbstractAnim):
         self.nthterm1()
         self.fadeOutCurrentScene()
         self.example3()
+        self.fadeOutCurrentScene()
+        self.GithubSourceCodeReference()
+        
 
         
     
@@ -349,6 +352,14 @@ class Progression(AbstractAnim):
         self.wait(2)
         
         self.play(FadeOut(a_text), FadeOut(title))
+
+    def SetDeveloperList(self):  
+        self.DeveloperList="Agraz Gopu"
+
+    def SetSourceCodeFileName(self):
+        self.SourceCodeFileName="Progression.py"
+
+
 
 
 
