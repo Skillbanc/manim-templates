@@ -24,7 +24,7 @@ class FrequencyDistribution(AbstractAnim):
         self.cf()
         self.graph_rep_data()
         self.graph_rep_gfd()
-        self.GitHubSourceCodeReference()
+        
 
     def central_tendency_measure(self):
         self.isRandom=False
@@ -194,10 +194,73 @@ class FrequencyDistribution(AbstractAnim):
         p1.cvolist.append(p2)
         p2.cvolist.append(p3)
         p2.cvolist.append(p4)
-       
-
         self.construct1(p1,p1)
         self.fadeOutCurrentScene()
+
+        values = [4, 7, 1, 8, 5]
+        bar_labels = ["A", "B", "C", "D", "E"]
+
+        # Create the bar chart
+        bar_chart = BarChart(
+            values=values,
+            bar_names=bar_labels,
+            bar_width=0.5,
+            bar_colors=[BLUE, GREEN, RED, YELLOW, ORANGE],
+            y_range=[0, 10, 2],  # Range and tick spacing for y-axis
+            x_axis_config={"font_size": 24},  # Configuration for x-axis
+            y_axis_config={"font_size": 24},  # Configuration for y-axis
+            
+        )
+
+        # Add title to the bar chart
+        title = Text("Vertical Bar Graph", font_size=48)
+        title.to_edge(UP)
+
+        # Add the bar chart and title to the scene
+        self.add(bar_chart, title)
+
+        # Optionally, you can animate the creation of the bar chart
+        self.play(Create(bar_chart))
+        self.wait(3)
+
+        self.fadeOutCurrentScene()
+
+        values = [4, 7, 1, 8, 5]
+        bar_labels = ["A", "B", "C", "D", "E"]
+
+        # Create the bar chart
+        bar_chart = BarChart(
+            values=values,
+            bar_names=bar_labels,
+            bar_width=0.5,
+            bar_colors=[BLUE, GREEN, RED, YELLOW, ORANGE],
+            y_range=[0, 10, 2],  # Range and tick spacing for y-axis
+            x_axis_config={"font_size": 24},  # Configuration for x-axis
+            y_axis_config={"font_size": 24},  # Configuration for y-axis
+            
+        )
+
+        # Rotate the bar chart to make it horizontal
+        bar_chart.rotate(PI / 2)
+
+        # Add title to the bar chart
+        title = Text("Horizontal Bar Graph", font_size=48)
+        title.to_edge(UP)
+
+        # Adjust the title position
+        title.shift(DOWN)
+
+        # Add the bar chart and title to the scene
+        self.add(bar_chart, title)
+
+        # Optionally, you can animate the creation of the bar chart
+        self.play(Create(bar_chart))
+        self.wait(3)
+        self.fadeOutCurrentScene()
+
+       
+
+        
          
     def graph_rep_gfd(self):
         self.isRandom=False
@@ -215,18 +278,9 @@ class FrequencyDistribution(AbstractAnim):
         self.construct1(p1,p1)
         self.fadeOutCurrentScene()
 
-    def GitHubSourceCodeReference(self):
         
-        p1 = cvo.CVO().CreateCVO("SOURCE CODE REFERENCE", ""). setPosition([0,2.5,0])
-        p2 = cvo.CVO().CreateCVO("Github URL", "https://github.com/Skillbanc/manim-templates").setPosition([-3,0,0])
-        p3 = cvo.CVO().CreateCVO("File Name", "FREQUENCY DISTRIBUTION ").setPosition([3,-1.5,0])
-        p1.cvolist.append(p2)
-        p1.cvolist.append(p3)
 
-        p2.setcircleradius(3)
-        p3.setcircleradius(3)
-        self.construct1(p1,p1)
-         
+   
 if __name__ == "__main__":
     scene = FrequencyDistribution()
     scene.render()
