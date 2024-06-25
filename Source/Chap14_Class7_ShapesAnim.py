@@ -5,7 +5,7 @@ from AbstractAnim import AbstractAnim
 
 import cvo
 
-class shapesanim(AbstractAnim):
+class Shapesanim(AbstractAnim):
 
     
     def construct(self):
@@ -28,10 +28,10 @@ class shapesanim(AbstractAnim):
     
 
     def Shapes(self):
-        p10=cvo.CVO().CreateCVO("Shapes", "").setPosition([0,2,0]).setangle(-TAU/6)
-        p11=cvo.CVO().CreateCVO("3DShapes", "").setPosition([3,0,0]).setangle(-TAU/6)
+        p10=cvo.CVO().CreateCVO("Shapes", "").setPosition([0,2,0])
+        p11=cvo.CVO().CreateCVO("3DShapes", "").setPosition([3,0,0]).setangle(-TAU/4)
         
-        p12=cvo.CVO().CreateCVO("2DShapes", "").setPosition([-3,0,0]).setangle(-TAU/6)
+        p12=cvo.CVO().CreateCVO("2DShapes", "").setPosition([-3,0,0]).setangle(-TAU/4)
         
         p10.cvolist.append(p11)
         p10.cvolist.append(p12)
@@ -60,19 +60,93 @@ class shapesanim(AbstractAnim):
 
     def ExampleCube(self):
         
-        p10=cvo.CVO().CreateCVO("Cube", "").setPosition([-6,0,0])
-        p11=cvo.CVO().CreateCVO("Components", "").setPosition([-3,0,0]).setangle(-TAU/4)
-        p12=cvo.CVO().CreateCVO("Faces", "6").setPosition([3,2.5,0]).setangle(-TAU/4)
-        p13=cvo.CVO().CreateCVO("Edges", "12").setPosition([3,0,0]).setangle(-TAU/4)
-        p14=cvo.CVO().CreateCVO("Vertices", "8").setPosition([2,-2.5,0]).setangle(-TAU/4)
-        
-        p10.cvolist.append(p11)
-        p11.cvolist.append(p12)
-        p11.cvolist.append(p13)
-        p11.cvolist.append(p14)
+        base_vertices = [
+            [-3, -0.75, 0], [-1.25, -0.75, 0], [0, -1.25, 0], [-1.75, -1.25, 0], [-3, -0.75, 0]
+        ]
+        top_vertices = [
+            [-3, 0.5, 0], [-1.25, 0.5, 0], [0, 0, 0], [-1.75, 0, 0], [-3, 0.5, 0]
+        ]
+        face1_vertices = [
+            [-3.1, 0.5, 0], [-3.1, -0.75, 0], [-1.75, -1.25, 0], [-1.75, 0, 0], [-3, 0.5, 0]
+        ]
+        face2_vertices = [
+            [-3.1, 0.5, 0], [-1.25, 0.5, 0], [-1.25, -0.75, 0], [-3.1, -0.75, 0], [-3.1, 0.5, 0]
+        ]
+        face3_vertices = [
+            [-1.25, 0.5, 0], [-1.25, -0.75, 0], [0.1, -1.25, 0], [0.1, 0, 0], [-1.25, 0.5, 0]
+        ]
+        face4_vertices = [
+            [-1.75, 0, 0], [-1.75, -1.25, 0], [0.1, -1.25, 0], [0.1, 0, 0], [-1.75, 0, 0]
+        ]
 
-        self.setNumberOfCirclePositions(5)
-        self.construct1(p10,p10)
+        # Create the cuboid faces with different colors
+        base = Polygon(*base_vertices, color=BLUE, fill_opacity=0.5, stroke_width=5)
+        top = Polygon(*top_vertices, color=YELLOW, fill_opacity=0.5, stroke_width=5)
+        face1 = Polygon(*face1_vertices, color=BLUE, fill_opacity=0.2, stroke_width=5)
+        face2 = Polygon(*face2_vertices, color=BLUE, fill_opacity=0.2, stroke_width=5)
+        face3 = Polygon(*face3_vertices, color=BLUE, fill_opacity=0.2, stroke_width=5)
+        face4 = Polygon(*face4_vertices, color=BLUE, fill_opacity=0.2, stroke_width=5)
+
+        # Animate the creation of the cuboid faces
+        self.play(Create(base))
+        self.play(Create(top))
+        self.play(Create(face1))
+        self.play(Create(face2))
+        self.play(Create(face3))
+        self.play(Create(face4))
+
+        # Add text indicating 3D Shape - Cuboid
+        t1 = Text( "Cuboid", font_size=45, color=PURPLE)
+        t1.move_to([0, 2.7, 0])
+        self.play(Write(t1))
+
+        # Highlight the vertices with dots
+        vertices = [
+            Dot(point=vert, color=RED, radius=0.07) for vert in 
+            [(-3.1, -0.75, 0), (-1.25, -0.75, 0), [0.1, -1.25, 0], [-1.75, -1.25, 0],
+             [-3.1, 0.5, 0], [-1.25, 0.5, 0], [0.1, 0, 0], [-1.75, 0, 0]]
+        ]
+        self.play(*[GrowFromCenter(vert) for vert in vertices])
+
+        # Highlight the edges with normal lines
+        edges = [
+            Line(start=[-3.1, -0.75, 0], end=[-1.25, -0.75, 0], color=WHITE),
+            Line(start=[-1.25, -0.75, 0], end=[0.1, -1.25, 0], color=WHITE),
+            Line(start=[0.1, -1.25, 0], end=[-1.75, -1.25, 0], color=WHITE),
+            Line(start=[-1.75, -1.25, 0], end=[-3.1, -0.75, 0], color=WHITE),
+            Line(start=[-3.1, 0.5, 0], end=[-1.25, 0.5, 0], color=WHITE),
+            Line(start=[-1.25, 0.5, 0], end=[0.1, 0, 0], color=WHITE),
+            Line(start=[0.1, 0, 0], end=[-1.75, 0, 0], color=WHITE),
+            Line(start=[-1.75, 0, 0], end=[-3.1, 0.5, 0], color=WHITE),
+            Line(start=[-3.1, -0.75, 0], end=[-3.1, 0.5, 0], color=WHITE),
+            Line(start=[-1.25, -0.75, 0], end=[-1.25, 0.5, 0], color=WHITE),
+            Line(start=[0.1, -1.25, 0], end=[0.1, 0, 0], color=WHITE),
+            Line(start=[-1.75, -1.25, 0], end=[-1.75, 0, 0], color=WHITE),
+        ]
+        self.play(*[Create(edge) for edge in edges])
+
+        # Annotate vertices, edges, and faces
+        a1 = Line(start=[-1.25, 0.5, 0], end=[0.2, 1, 0], color=RED).add_tip(at_start=True)
+        a2 = Line(start=[0, 0, 0], end=[0.2, 1, 0], color=RED).add_tip(at_start=True)
+        
+        t2 = Text("Vertices = 8", color="RED", font_size=24)
+        t2.move_to([0.2, 1.3, 0])
+
+        a3 = Line(start=[-2.5, -1, 0], end=[-3, -2, 0]).add_tip(at_start=True)
+        a4 = Line(start=[-1, -1.25, 0], end=[-3, -2, 0]).add_tip(at_start=True)
+        
+        t3 = Text("Edges = 12", color="WHITE", font_size=24)
+        t3.move_to([-3, -2.2, 0])
+
+        a5 = Line(start=[-1.6, 0.3, 0], end=[-2.5, 1.2, 0],color=YELLOW).add_tip(at_start=True)
+        
+        t4 = Text("Faces = 6", color=YELLOW, font_size=24)
+        t4.move_to([-2.5, 1.3, 0])
+
+        self.play(Write(a1), Write(a2), Write(t2))
+        self.play(Write(a3), Write(a4), Write(t3))
+        self.play(Write(a5), Write(t4))
+        self.wait(2)
         self.fadeOutCurrentScene()
 
     def Nets(self):
@@ -126,12 +200,12 @@ class shapesanim(AbstractAnim):
 
     def Sketches(self):
        p10=cvo.CVO().CreateCVO("Sketches","").setPosition([0,2.5,0])
-       p11=cvo.CVO().CreateCVO("Oblique Sketches", "").setPosition([-3,1,0]).setangle(-TAU/6)
-       p12=cvo.CVO().CreateCVO("Isometric Sketches", "").setPosition([3,1,0]).setangle(-TAU/6)
-       p13=cvo.CVO().CreateCVO("Property", "Focuses on face of object").setPosition([-5,-2,0]).setangle(-TAU/6)
-       p14=cvo.CVO().CreateCVO("Property", "45 degree for lines").setPosition([-2,-2,0]).setangle(-TAU/6)
-       p15=cvo.CVO().CreateCVO("Property", "Focuses on edge of object").setPosition([2,-2,0]).setangle(-TAU/6)
-       p16=cvo.CVO().CreateCVO("Property", "lines are drawn at 30 degree").setPosition([5,-2,0]).setangle(-TAU/6)
+       p11=cvo.CVO().CreateCVO("Oblique Sketches", "").setPosition([-3,1,0]).setangle(-TAU/4)
+       p12=cvo.CVO().CreateCVO("Isometric Sketches", "").setPosition([3,1,0]).setangle(-TAU/4)
+       p13=cvo.CVO().CreateCVO("Property", "Focuses on face of object").setPosition([-5,-2,0]).setangle(-TAU/4)
+       p14=cvo.CVO().CreateCVO("Property", "45 degree for lines").setPosition([-2,-2,0]).setangle(-TAU/4)
+       p15=cvo.CVO().CreateCVO("Property", "Focuses on edge of object").setPosition([2,-2,0]).setangle(-TAU/4)
+       p16=cvo.CVO().CreateCVO("Property", "lines are drawn at 30 degree").setPosition([5,-2,0]).setangle(-TAU/4)
       
        p10.cvolist.append(p11)
        p10.cvolist.append(p12)
@@ -309,6 +383,7 @@ class shapesanim(AbstractAnim):
       
        self.setNumberOfCirclePositions(2)
        self.construct1(p10,p10)
+       self.fadeOutCurrentScene()
     
     def SetSourceCodeFileName(self):
         self.SourceCodeFileName="ShapesAnim.py"
@@ -318,5 +393,5 @@ class shapesanim(AbstractAnim):
    
 
 if __name__ == "__main__":
-    scene = shapesanim()
+    scene = Shapesanim()
     scene.render()
