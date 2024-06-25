@@ -9,7 +9,7 @@ from AbstractAnim import AbstractAnim
 
 import cvo
 
-class PowerAnim(AbstractAnim):
+class Poweranim(AbstractAnim):
     def construct(self):
         self.RenderSkillbancLogo()
         self.constructDataByCVO()   
@@ -34,7 +34,8 @@ class PowerAnim(AbstractAnim):
         self.fadeOutCurrentScene()
         self.Example2()
         self.fadeOutCurrentScene()
-               
+        self.GithubSourceCodeReference()
+        
     def constructDataByCVO(self):
         self.isRandom = False
         p10=cvo.CVO().CreateCVO("Term","$5^3$")
@@ -193,6 +194,13 @@ class PowerAnim(AbstractAnim):
        self.construct2(p10, p10)
        
 
+    def SetDeveloperList(self): 
+       self.DeveloperList="Khanak Gupta" 
+
+    def SetSourceCodeFileName(self):
+       self.SourceCodeFileName="ExponentsandPowers.py"
+      
+
 if __name__ == "__main__":
-    scene = PowerAnim()
+    scene = Poweranim()
     scene.render()
