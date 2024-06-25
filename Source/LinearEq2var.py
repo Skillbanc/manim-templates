@@ -20,6 +20,10 @@ class LinearEq2var(AbstractAnim):
         self.fadeOutCurrentScene()
         self.graph1()
         self.fadeOutCurrentScene()
+        self.paralleltoX()
+        self.fadeOutCurrentScene()
+        self.paralleltoY()
+        self.fadeOutCurrentScene()
         self.GithubSourceCodeReference()
 
 
@@ -44,16 +48,20 @@ class LinearEq2var(AbstractAnim):
 
 
     def Terms(self):
-        self.setNumberOfCirclePositions(3)
-        self.angleChoice = [TAU/4,TAU/4]
+        self.setNumberOfCirclePositions(4)
+        self.angleChoice = [TAU/4,TAU/4,TAU/4]
         self.isRandom = False
         p10=cvo.CVO().CreateCVO("ax+by=c","")
-        p11=cvo.CVO().CreateCVO("Variable terms","")
-        p12=cvo.CVO().CreateCVO("Constant terms", "c")
-        p11.extendOname([" ax","by"])
+        p11=cvo.CVO().CreateCVO("Variable term1","ax")
+        p12=cvo.CVO().CreateCVO("Variable term2","by")
+        p13=cvo.CVO().CreateCVO("Constant term", "c")
+        #p11.extendOname([" ax","by"])
         p11.setcircleradius(1.5)
+        p12.setcircleradius(1.5)
+        p13.setcircleradius(1.5)
         p10.cvolist.append(p11)
         p10.cvolist.append(p12)
+        p10.cvolist.append(p13)
         self.construct1(p10,p10)
 
 
@@ -63,9 +71,10 @@ class LinearEq2var(AbstractAnim):
         self.isRandom = False
         p10=cvo.CVO().CreateCVO("Variable term ","")
         p11=cvo.CVO().CreateCVO("Properties", "")
-        p11.extendOname(["a,b!=0"," degree of x\&y=1"])
+        p11.extendOname(["a,b $\\neq$0"," degree of x\&y=1"])
         p11.SetIsMathText(True)
-        p11.setcircleradius(1.5)
+        
+        p11.setcircleradius(2)
         p10.cvolist.append(p11)
         self.construct1(p10,p10)
 
@@ -76,9 +85,9 @@ class LinearEq2var(AbstractAnim):
         self.angleChoice = [TAU/4,TAU/4]
         self.isRandom = False
         p10=cvo.CVO().CreateCVO("Homogenity","")
-        p11=cvo.CVO().CreateCVO("Homogenous", "c=0")
-        p12=cvo.CVO().CreateCVO(" Non-Homogenous", "c!=0")
-        
+        p11=cvo.CVO().CreateCVO("Homogenous","c=0")
+        p12=cvo.CVO().CreateCVO("Non-Homogenous","c $\\neq$ 0")
+        #p12.SetIsMathText(True)
         p10.cvolist.append(p11)
         p10.cvolist.append(p12)
         self.construct1(p10,p10)
@@ -231,7 +240,8 @@ class LinearEq2var(AbstractAnim):
 
     def graph1(self):
         # Create title text
-        title = Text("Graph of linear equation in two variables").scale(0.75)
+        # Create title text
+        title = Text("Graph of the linear equation: 4x+y=9 ").scale(0.75)
         
         # Display title
         self.play(Write(title))
@@ -243,7 +253,7 @@ class LinearEq2var(AbstractAnim):
         # Create axes with numbered ticks
         axes = Axes(
             x_range=[-10, 10, 1],
-            y_range=[-8, 8, 1],
+            y_range=[-10, 10, 1],
             axis_config={"color": BLUE, "include_numbers": True},
             tips=False,
             
@@ -252,23 +262,14 @@ class LinearEq2var(AbstractAnim):
         
         # Define the linear equation
         def linear_function(x):
-            return 2 * x + 1
+            return -4 * x + 9
 
         # Create the graph of the linear equation
         graph = axes.plot(linear_function, color=RED)
-        graph_label = axes.get_graph_label(graph, label='y=2x+1', x_val=2, direction=RIGHT)
-
-        # # Create dot for intercept
-        # intercept_dot = Dot(axes.coords_to_point(0, 1), color=YELLOW)
-        # intercept_label = MathTex("(0, 1)").next_to(intercept_dot,RIGHT)
-
-        # Add the axes, graph, and labels to the scene
-        # self.play(Create(axes), Write(labels))
-        # self.play(Create(graph), Write(graph_label))
-        # self.play(Create(intercept_dot), Write(intercept_label))
+        graph_label = axes.get_graph_label(graph, label='4x+y=9', x_val=2, direction=RIGHT)
 
          # Intercepts
-        intercepts = [(0, 1), (-3,-5), (3,7)]
+        intercepts = [(0, 9), (3,-3), (1,5)]
 
         # Create dots and labels for intercepts
         intercept_dots = []
@@ -291,6 +292,8 @@ class LinearEq2var(AbstractAnim):
 
         # Clear the scene
         self.play(*[FadeOut(mob) for mob in self.mobjects])
+
+    def paralleltoX(self):
 
         # Create title text for x-axis parallel line
         title_x = Text("Line Parallel to x-axis: y = 3").scale(0.75)
@@ -328,6 +331,8 @@ class LinearEq2var(AbstractAnim):
 
         # Clear the scene
         self.play(*[FadeOut(mob) for mob in self.mobjects])
+
+    def paralleltoY(self):
 
         # Title
         title = Text(" Line Parallel to Y-Axis: x = 3").scale(0.75)
