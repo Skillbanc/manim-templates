@@ -18,7 +18,7 @@ class C1Anim(AbstractAnim):
         self.constructDataByCVO()
         # self.fadeOut()
         # self.constructDataByJSON()
-        # self.fadeOut()
+        self.fadeOut()
         
     # render using CVO data object
     def constructDataByCVO(self):
