@@ -268,11 +268,10 @@ class AbstractAnim(Scene):
         self.colorChoice=[BLUE,ORANGE,PINK,ORANGE,PURPLE]
         p2 = cvo.CVO().CreateCVO("SOURCE CODE REFERENCE", "").setPosition([0,2.5,0])
         p4 = cvo.CVO().CreateCVO("Github URL", "https://github.com/Skillbanc/manim-templates").setPosition([-4,1,0]).setangle(TAU / 3)
-        p5 = cvo.CVO().CreateCVO("File Name", "comparingquantities.py").setPosition([4,1,0]).setangle(TAU / 3)
-        p6= cvo.CVO().CreateCVO("Architected By","").setPosition([5,-2,0]).setangle(-TAU / 4)
-        p6onnamelist=["Sudhakar Moparthy","Vailla Rohit"]
-        p6.extendOname(p6onnamelist)
-
+        p5 = cvo.CVO().CreateCVO("File Name", self.GetSourceCodeFileName()).setPosition([4,1,0]).setangle(TAU / 3)
+        p6=cvo.CVO().CreateCVO("Architected By","").setPosition([5,-2,0]).setangle(-TAU / 4)
+        p6onamelist=["Sudhakar Moparthy"]
+        p6.extendOname(p6onamelist)
         p7=cvo.CVO().CreateCVO("Developed By",self.GetDeveloperList()).setPosition([0,-2,0]).setangle(-TAU / 4)
         
         p2.cvolist.append(p4)
