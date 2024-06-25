@@ -28,8 +28,6 @@ class Exponents(AbstractAnim):
         self.fadeOutCurrentScene()
         self.ExpComparison()
         self.fadeOutCurrentScene()
-        self.GithubReference()
-
 
     def ExpForm(self):
         p10=cvo.CVO().CreateCVO("Mathematics Exponents","").setPosition([-2,2.5,0])
@@ -186,17 +184,9 @@ class Exponents(AbstractAnim):
         
         self.construct1(p10, p10)
 
-    def GithubReference(self):
-        p10=cvo.CVO().CreateCVO("Source Code Reference","").setPosition([0,2,0])
-        p11=cvo.CVO().CreateCVO("Github Url ", "https://github.com/Skillbanc/manim-templates.git").setPosition([-2,-1,0])
-        p12=cvo.CVO().CreateCVO("Filename", "Exponents.py").setPosition([2,-1,0])
-        
-        p10.cvolist.append(p11)
-        p10.cvolist.append(p12)
-        #p10.cvolist.append(p13)
-    
-
-        self.construct1(p10,p10)
+    def SetDeveloperList(self):  
+        self.DeveloperList = "Mukthanand Reddy"
+         
 if __name__ == "__main__":
     scene = Exponents()
     scene.render()
