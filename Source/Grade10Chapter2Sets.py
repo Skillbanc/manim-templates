@@ -103,7 +103,7 @@ class sets(AbstractAnim):
         self.fadeOutCurrentScene()
         text1 = Text("Subsets").scale(0.8).to_edge(UP)
         self.play(Write(text1))
-        text2 = Text("A={1,2,3,4,5,6} B={3,4,5}").scale(0.5).shift(LEFT*4)
+        text2 = Text("A={1,2,3,4,5,6}\nB={3,4,5}").scale(0.5).shift(LEFT*4)
         self.play(Write(text2))
         set_A = Circle(radius=2, color=BLUE)
         set_B = Circle(radius=1, color=GREEN)
@@ -283,7 +283,7 @@ class sets(AbstractAnim):
             self.play(Write(elem))
 
     def SetSourceCodeFilename(self):
-        self.SourceCodeFilename="sets.py"
+        self.SourceCodeFilename="Grade10Chapter2Sets.py"
 
     def SetDeveloperList(self):
         self.DeveloperList="Sindhu"
@@ -293,7 +293,6 @@ class sets(AbstractAnim):
 
 if __name__ == "__main__":
     import os
-    #os.system("manim -pql venn_diagram.py VennDiagram")
     scene = sets()
     scene.render()
 
