@@ -1,0 +1,2 @@
+# This file is used internally by FFMPEG.
+file 'file:C:/Users/lasya/manim-templates/Source/media/videos/understanding2D3DshapesAnim/1080p60/partial_movie_files/ExampleCone/2294704343_485816409_1380288954.mp4'
