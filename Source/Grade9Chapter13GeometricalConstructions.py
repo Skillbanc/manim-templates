@@ -29,6 +29,8 @@ class GeometricalConstructions3(AbstractAnim):
         self.fadeOutCurrentScene()
         self.SpecialCase()
         self.fadeOutCurrentScene()
+        self.GithubSourceCodeReference()
+        self.fadeOutCurrentScene()
         # self.constructDataByJSON()
         # self.fadeOut()
     # render using CVO data object
@@ -116,7 +118,12 @@ class GeometricalConstructions3(AbstractAnim):
         p11.cvolist.append(p12)   
         self.isRandom=False 
         self.setNumberOfCirclePositions(2)
-        self.construct1(p11,p11)    
+        self.construct1(p11,p11)   
+    def SetDeveloperList(self): 
+       self.DeveloperList="Preetham" 
+
+    def SetSourceCodeFileName(self):
+       self.SourceCodeFileName="Grade7Chapter15Symmetry.py"     
 if __name__ == "__main__":
     scene = GeometricalConstructions3()
     scene.render()
