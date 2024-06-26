@@ -87,7 +87,7 @@ class Time(AbstractAnim):
        self.DeveloperList="Khanak Gupta" 
 
     def SetSourceCodeFileName(self):
-       self.SourceCodeFileName="Time4.py"
+       self.SourceCodeFileName="Grade4Chapter11TickTockGoesTheClock.py"
 
 if __name__ == "__main__":
     scene = Time()

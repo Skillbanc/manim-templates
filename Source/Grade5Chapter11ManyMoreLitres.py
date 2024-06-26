@@ -198,7 +198,7 @@ class Litres(AbstractAnim):
        self.DeveloperList="Khanak Gupta" 
 
     def SetSourceCodeFileName(self):
-       self.SourceCodeFileName="Litres.py"
+       self.SourceCodeFileName="Grade5Chapter11ManyMoreLitres.py"
 
 if __name__ == "__main__":
     scene = Litres()
