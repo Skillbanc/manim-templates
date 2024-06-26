@@ -15,6 +15,7 @@ class QuadrilateralsAnim(AbstractAnim):
 
     # use the appropriate method based on how the data is stored
     def construct(self):
+        
         self.RenderSkillbancLogo()
         self.Quadrilaterals()
         self.Diagonals()
@@ -30,10 +31,17 @@ class QuadrilateralsAnim(AbstractAnim):
         self.Rhombus()
         self.Rectangle()
         self.Square()
+        self.GithubSourceCodeReference()
         # self.fadeOut()
         # self.constructDataByJSON()
         # self.fadeOut()
         
+    def SetDeveloperList(self):  
+        self.DeveloperList="Hriday Bhushan"
+
+    def SetSourceCodeFileName(self):
+        self.SourceCodeFileName="Chap12Class7QuadAnim.py"
+
     # render using CVO data object
     def Quadrilaterals(self):
         self.isRandom = False

@@ -4,7 +4,8 @@ from manim import *
 
 class MoveImageeee(AbstractAnim):
     def construct(self):
-        self.construct2()
+        #self.construct2()
+        self.GithubSourceCodeReference()
         
     def construct2(self):
         self.isRandom = False

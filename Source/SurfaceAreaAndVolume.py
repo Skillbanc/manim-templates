@@ -24,7 +24,7 @@ class SAV(AbstractAnim):
         self.fadeOutCurrentScene()
         self.volumecube()
         self.fadeOutCurrentScene()
-        self.SourceReference()
+        self.GithubSourceCodeReference()
          
 
     def Introduction(self):
@@ -155,23 +155,11 @@ class SAV(AbstractAnim):
         self.construct1(p13,p13)
         self.play(Create(CurvedArrow(p12.pos,p13.pos)))
 
-    def SourceReference(self):
-        self.setNumberOfCirclePositions(4)
-        #self.angleChoice = [0,0,0]
-        self.isRandom = False
+    def SetDeveloperList(self):
+        self.DeveloperList="SURADHYA REDDY"
 
-        p10=cvo.CVO().CreateCVO("SOURCE CODE REFERENCE","").setPosition([0,3,0])
-        p12=cvo.CVO().CreateCVO("GITHUB URL","https://github.com/Skillbanc/manim-templates.git").setPosition([4,0,0])
-        p13=cvo.CVO().CreateCVO("FILE NAME", "SAVanim.py").setPosition([4,0,0])
-        p10.cvolist.append(p12)
-        p10.cvolist.append(p13)
-        p12.setcircleradius(3)
-        p13.setcircleradius(2)
-        self.construct1(p10,p10)
-        self.construct1(p13,p13)
-        #self.play(Create(CurvedArrow(p12.pos,p13.pos)))
-
-
+    def SetSourceCodeFileName(self):
+        self.SourceCodeFileName="SurfaceAreaAndVolume.py"
 
 if __name__ == "__main__":
     scene = SAV()
