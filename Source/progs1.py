@@ -3,7 +3,7 @@ from AbstractAnim import AbstractAnim
 import cvo
 
 
-class Progression(AbstractAnim):
+class Progs1(AbstractAnim):
 
     def construct(self):
         self.RenderSkillbancLogo()
@@ -34,9 +34,6 @@ class Progression(AbstractAnim):
         self.nthterm1()
         self.fadeOutCurrentScene()
         self.example3()
-        self.fadeOutCurrentScene()
-        self.GithubSourceCodeReference()
-        
 
         
     
@@ -83,9 +80,12 @@ class Progression(AbstractAnim):
         self.angleChoice = [TAU/4]
         self.isRandom = False
         p10=cvo.CVO().CreateCVO("Arithemetic Progression","")
-        p11=cvo.CVO().CreateCVO("General form","a,a+d,a+2d,a+3d.....")
-        p11.setcircleradius(1.5)
-        p10.cvolist.append(p11)
+        #p11=cvo.CVO().CreateCVO("Definition"," Sequence of numbers in which each term,except the first term is obtained by adding a fixed number to preceding number")
+        p12=cvo.CVO().CreateCVO("General form","a,a+d,a+2d,a+3d.....")
+        #p11.setcircleradius(1.5)
+        p12.setcircleradius(1.5)
+        #p10.cvolist.append(p11)
+        p10.cvolist.append(p12)
         self.construct1(p10,p10)
 
 
@@ -96,6 +96,7 @@ class Progression(AbstractAnim):
         p10=cvo.CVO().CreateCVO("General Form","a,a+d,a+2d,a+3d.....")
         p11=cvo.CVO().CreateCVO("First term","a")
         p12=cvo.CVO().CreateCVO("Common difference","d")
+        #p12.SetIsMathText(True)
         p10.setcircleradius(1.5)
         p10.cvolist.append(p11)
         p10.cvolist.append(p12)
@@ -178,6 +179,14 @@ class Progression(AbstractAnim):
         self.wait(2)
         self.play( FadeOut(simplifying),Transform(a_text, Tex("Therefore").shift(UP)),Transform(d_text, simplifying3) )
         self.wait(2)
+        #FadeOut(simplifying)
+
+
+        
+        # Final result
+        # result = Tex(r"The 11th term of the AP is $-16$").shift(DOWN)
+        # self.play(Transform(a_text, result))
+        # self.wait(2)
         
         self.play(FadeOut(a_text),FadeOut(d_text), FadeOut(title))
 
@@ -235,6 +244,20 @@ class Progression(AbstractAnim):
         self.wait(2)
         self.play( FadeOut(simplifying),Transform(a_text, Tex("Therefore").shift(UP)),Transform(d_text, simplifying3),Transform(d_text, simplifying4) )
         self.wait(2)
+        # self.play(Transform(a_text, simplifying1), Transform(d_text, simplifying2))
+        # self.wait(2)
+        # self.play(Transform(a_text, simplifying3), Transform(d_text, simplifying4))
+        # self.wait(2)
+
+        # self.play(Transform(a_text, simplifying1), Transform(d_text, simplifying2))
+        # self.wait(2)
+        # self.play(Transform(d_text, simplifying4))
+        # self.wait(2)
+        
+        # # Final result
+        # result = Tex(r"The sum of the first 12 terms is $3960$").shift(DOWN)
+        # self.play(Transform(a_text, result))
+        # self.wait(2)
         
         self.play(FadeOut(a_text), FadeOut(title))
 
@@ -271,11 +294,13 @@ class Progression(AbstractAnim):
         self.angleChoice = [TAU/4]
         self.isRandom = False
         p10=cvo.CVO().CreateCVO("Geometric Progression","")
-
-        p11=cvo.CVO().CreateCVO("General form","a,ar,ar^2,ar^3....")
-        p11.setcircleradius(1.5)
-        p11.SetIsMathText(True)
-        p10.cvolist.append(p11)
+        #p11=cvo.CVO().CreateCVO("Definition"," Sequence of numbers in which we get each term by multipyling or divinding a particular number to the previous term , except the first term ")
+        p12=cvo.CVO().CreateCVO("General form","a,ar,ar^2,ar^3....")
+        #p11.setcircleradius(1.5)
+        p12.setcircleradius(1.5)
+        p12.SetIsMathText(True)
+        #p10.cvolist.append(p11)
+        p10.cvolist.append(p12)
         self.construct1(p10,p10)
 
     def generalform1(self):
@@ -346,20 +371,17 @@ class Progression(AbstractAnim):
         self.play( FadeOut(simplifying),Transform(a_text, Tex("Therefore").shift(UP)),Transform(r_text, simplifying3) )
         self.wait(2)
         
+        # self.play(Transform(a_text, simplifying1), Transform(r_text, simplifying2))
+        # self.wait(2)
+        # self.play(Transform(a_text, simplifying3), FadeOut(r_text))
+        # self.wait(1)
+        
         # Final result
         result = Tex(r"The 20th term of the GP is $1,048,576$").shift(DOWN)
         self.play(Transform(a_text, result))
         self.wait(2)
         
         self.play(FadeOut(a_text), FadeOut(title))
-
-    def SetDeveloperList(self):  
-        self.DeveloperList="Agraz Gopu"
-
-    def SetSourceCodeFileName(self):
-        self.SourceCodeFileName="Progression.py"
-
-
 
 
 
@@ -369,5 +391,5 @@ class Progression(AbstractAnim):
 
 if __name__ == "__main__":
      
-     scene = Progression()
+     scene = Progs1()
      scene.render()
