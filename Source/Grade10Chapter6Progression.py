@@ -357,7 +357,7 @@ class Progression(AbstractAnim):
         self.DeveloperList="Agraz Gopu"
 
     def SetSourceCodeFileName(self):
-        self.SourceCodeFileName="Progression.py"
+        self.SourceCodeFileName="Grade10Chapter6Progression.py"
 
 
 
