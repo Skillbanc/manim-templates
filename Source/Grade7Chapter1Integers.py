@@ -263,7 +263,7 @@ class Integers(AbstractAnim):
         self.DeveloperList="Shanmukha Priya"
     
     def SetSourceCodeFileName(self):
-        self.SourceCodeFileName="Grade7CH1Integers.py"
+        self.SourceCodeFileName="Grade7Chapter1Integers.py"
 
 if __name__ == "__main__":
         scene = Integers()
