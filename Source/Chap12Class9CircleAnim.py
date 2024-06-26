@@ -15,6 +15,7 @@ class CircleAnim(AbstractAnim):
 
     # use the appropriate method based on how the data is stored
     def construct(self):
+        
         self.RenderSkillbancLogo()
         self.Circle()
         self.Circumference()
@@ -32,11 +33,17 @@ class CircleAnim(AbstractAnim):
         self.ArcSubtend4()
         self.cyclicQuad()
         self.Quad2()
-        
+        self.GithubSourceCodeReference()
         # self.fadeOut()
         # self.constructDataByJSON()
         # self.fadeOut()
         
+
+    def SetDeveloperList(self):  
+        self.DeveloperList="Hriday Bhushan"
+
+    def SetSourceCodeFileName(self):
+        self.SourceCodeFileName="Chap12Class9CircleAnim.py"
 
     # render using CVO data object
     def Circle(self):
