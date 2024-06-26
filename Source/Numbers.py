@@ -22,6 +22,8 @@ class Numbers(AbstractAnim):
         self.fadeOutCurrentScene()
         self.names()
         self.fadeOutCurrentScene()
+        self.possibility()
+        self.fadeOutCurrentScene()
         self.compare()
         self.fadeOutCurrentScene()
         
@@ -85,7 +87,7 @@ class Numbers(AbstractAnim):
         extra_tags = VGroup(*[self.tie_tag(i, i, color=GREEN) for i in extra_tags_positions])
         self.play(FadeIn(extra_tags))
 
-        self.wait(4)
+        self.wait(6)
 
         # Fade out all elements
         self.play(FadeOut(beads), FadeOut(initial_tags), FadeOut(extra_tags), FadeOut(title),FadeOut(ex))
@@ -239,39 +241,89 @@ class Numbers(AbstractAnim):
             MathTex("80 \quad \\implies Tens", font_size=48),
             MathTex("2 \quad \\implies Ones", font_size=48),
         ).arrange(DOWN).next_to(number,DOWN*2)
+        text=Text("Three thousand four hundred and eighty two").to_edge(DOWN*2)
 
         self.play(Write(number))
         self.wait(1)
         self.play(Write(breakdown))
         self.wait(2)
+        self.play(Write(text))
+        self.wait(2)
         self.play(FadeOut(breakdown),FadeOut(number),FadeOut(title))
 
     def names(self):
-        self.setNumberOfCirclePositions(2)
+        self.positionChoice=[[-4,0,0],[2,2,0],[4,-2,0]]
         self.isRandom = False
         p10=cvo.CVO().CreateCVO("Number","127")
         p11=cvo.CVO().CreateCVO("Number Name","one hundred and twenty seven")
+        p12=cvo.CVO().CreateCVO("Representation","1 hundred + 2 tens + 7 ones")
         p11.setcircleradius(2)
+        p12.setcircleradius(2)
         p10.cvolist.append(p11)
+        p10.cvolist.append(p12)
         self.construct1(p10,p10)
+
+    def possibility(self):
+        # Title
+
+        title = Text("Possible Numbers of 7, 2, 3", font_size=48).to_edge(UP)
+        self.play(Write(title))
+
+        # Define the permutations and their colors
+        permutations = ["723", "237", "372", "732", "273", "327"]
+        colors = [BLUE, GREEN, YELLOW, RED, PURPLE, ORANGE]
+
+        # Define positions for each permutation at different corners
+        positions = [
+            [-4, 1, 0],  # Top Left
+            [0, 1, 0],   # Top Center
+            [4, 1, 0],   # Top Right
+            [-4, -1, 0], # Bottom Left
+            [0, -1, 0],  # Bottom Center
+            [4, -1, 0]   # Bottom Right
+        ]
+
+        # Create Text objects for each permutation and position them
+        permutation_texts = []
+        for perm, color, pos in zip(permutations, colors, positions):
+            perm_text = Text(perm, font_size=72, color=color)
+            perm_text.move_to(pos)
+            permutation_texts.append(perm_text)
+
+        # Add numbers to the scene with animations
+        for perm in permutation_texts:
+            self.play(FadeIn(perm, shift=UP), run_time=0.7)
+
+        self.wait(3)
+        text=Text("Ascending Order: 237, 273, 327, 372, 723, 732",font_size=35).to_edge(DOWN*2)
+        self.play(Write(text))
+        self.wait(2)
         
 
     def compare(self):
-        title = Text("Comparing Numbers",font_size=45).to_edge(UP)
+        title = Text("Comparing Numbers", font_size=45).to_edge(UP)
         self.play(Write(title))
 
-        num1 = Text("563", font_size=64).shift(LEFT*2)
-        num2 = Text("475", font_size=64).shift(RIGHT*2)
-        comparison = Text(">", font_size=64).next_to(num1, RIGHT*3)
-        text=Text("563 is greater than 475",font_size=35).next_to(num1,DOWN*3)
+        # Numbers to compare
+        num1 = Text("563", font_size=64).shift(LEFT * 2)
+        num2 = Text("475", font_size=64).shift(RIGHT * 2)
+        comparison = Text(">", font_size=64).next_to(num1, RIGHT * 3)
 
+        # Explanation text
+        explanation = Text(
+            "The digit in hundreds place of 563 is 5,\n"
+            "whereas in 475 it is 4. Since 5 > 4,\n"
+            "therefore 563 is greater than 475.",
+            font_size=30
+        ).next_to(num1, DOWN * 3)
+
+        # Animations
         self.play(Write(num1), Write(num2))
         self.wait(1)
         self.play(Write(comparison))
         self.wait(1)
-        self.play(Write(text))
-        self.wait(1)
-        self.play(FadeOut(num1), FadeOut(num2), FadeOut(comparison),FadeOut(title),FadeOut(text))
+        self.play(Write(explanation))
+        self.wait(4)
 
     def SetDeveloperList(self):  
         self.DeveloperList="Gayathri Veeramreddy"
