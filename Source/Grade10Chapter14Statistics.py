@@ -36,6 +36,7 @@ class StatisticsAnim(AbstractAnim):
     
 
     def Statistics(self):
+        
         p10=cvo.CVO().CreateCVO("Statistics", "").setPosition([-4,0,0])
         p11=cvo.CVO().CreateCVO("Mean", "").setPosition([1,2.5,0]).setangle(-TAU/4)
         p12=cvo.CVO().CreateCVO("Median", "").setPosition([2,0,0]).setangle(-TAU/4)
