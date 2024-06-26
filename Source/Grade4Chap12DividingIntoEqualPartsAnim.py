@@ -32,7 +32,7 @@ class EqualPartsAnim(AbstractAnim):
         self.DeveloperList="Hriday Bhushan"
 
     def SetSourceCodeFileName(self):
-        self.SourceCodeFileName="Chap12Class4EqualPartsAnim.py"
+        self.SourceCodeFileName="Grade4Chap12DividingIntoEqualParts.py"
     
     # render using CVO data object
     def Division(self):

@@ -31,7 +31,7 @@ class PatternAnim(AbstractAnim):
         self.DeveloperList="Hriday Bhushan"
 
     def SetSourceCodeFileName(self):
-        self.SourceCodeFileName="Chap12Class3.py"
+        self.SourceCodeFileName="Grade3Chap12Patterns.py"
     
     def Pattern(self):
         title = Text("Patterns", font_size=36).to_edge(UP)
