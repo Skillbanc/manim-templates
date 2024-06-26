@@ -25,12 +25,13 @@ class AreasAnim(AbstractAnim):
         self.fadeOutCurrentScene()
         self.shape7()
         self.fadeOutCurrentScene()
-       
+        self.GithubSourceCodeReference()
+    
 
     def Intro(self):
         
         self.isRandom = False
-        self.play(Write(NumberPlane()))
+        # self.play(Write(NumberPlane()))
         self.positionChoice=[[-4.5,2,0],[0,2,0],[-5,-2,0],[-1,0,0],[-1,-2,0],[1,0,0],[1,-2,0],[5,0,0],[5,-2,0]]
 
         p1=cvo.CVO().CreateCVO("Plane Figures and their Areas","")
@@ -84,7 +85,7 @@ class AreasAnim(AbstractAnim):
         p2=cvo.CVO().CreateCVO("Area Formula","1/2(3.14)r*r").setPosition([2.5,2,0])
         p3=cvo.CVO().CreateCVO("Radius","r").setPosition([6,2,0])
         p4=cvo.CVO().CreateCVO("Example", "r=7").setPosition([1,-2,0])
-        p5=cvo.CVO().CreateCVO("Area of Circle", "1/2(3.14)(7*7) = 77").setPosition([6,-2,0])
+        p5=cvo.CVO().CreateCVO("Area of Circle", "1/2(3.14)(7*7) = 77").setPosition([5,-2.5,0])
 
         p2.cvolist.append(p3)
         p2.cvolist.append(p4)
@@ -125,7 +126,7 @@ class AreasAnim(AbstractAnim):
         p4=cvo.CVO().CreateCVO("Side","a").setPosition([6,2,0])
         p5=cvo.CVO().CreateCVO("Area Formula","a*a").setPosition([2.5,2,0])
         p6=cvo.CVO().CreateCVO("Example", "a=4").setPosition([1,-2,0])
-        p7=cvo.CVO().CreateCVO("Area of Square", "4*4=16").setPosition([6,-2,0])
+        p7=cvo.CVO().CreateCVO("Area of Square", "4*4=16").setPosition([5,-2.5,0])
 
         p5.cvolist.append(p4)
         p5.cvolist.append(p6)
@@ -167,7 +168,7 @@ class AreasAnim(AbstractAnim):
         p3=cvo.CVO().CreateCVO("length","l").setPosition([6,2,0])
         p4=cvo.CVO().CreateCVO("breadth","b").setPosition([4,-0.5,0])
         p5=cvo.CVO().CreateCVO("Example","l=6 b=8").setPosition([1,-2,0])
-        p6=cvo.CVO().CreateCVO("Area of Rectangle", "6*8=48").setPosition([6,-2,0])
+        p6=cvo.CVO().CreateCVO("Area of Rectangle", "6*8=48").setPosition([5,-2.5,0])
         
         p2.cvolist.append(p3)
         p2.cvolist.append(p4)
@@ -206,10 +207,10 @@ class AreasAnim(AbstractAnim):
         self.wait(1)
 
         p2=cvo.CVO().CreateCVO("Area Formula", "1/2(b*h)").setPosition([2.5,2,0]).setangle(-TAU/4)
-        p3=cvo.CVO().CreateCVO("breadth","b").setPosition([6,2,0])
+        p3=cvo.CVO().CreateCVO("base","b").setPosition([6,2,0])
         p4=cvo.CVO().CreateCVO("height","h").setPosition([4,-0.5,0])
         p5=cvo.CVO().CreateCVO("Example", "b=8 h=8").setPosition([1,-2,0]).setangle(-TAU/4)
-        p6=cvo.CVO().CreateCVO("Area of Triangle", "1/2(8*8) = 32").setPosition([6,-2,0])
+        p6=cvo.CVO().CreateCVO("Area of Triangle", "1/2(8*8) = 32").setPosition([5,-2.5,0])
 
         p2.cvolist.append(p3)
         p2.cvolist.append(p4)
@@ -247,10 +248,10 @@ class AreasAnim(AbstractAnim):
         self.wait(1)
 
         p2=cvo.CVO().CreateCVO("Area Formula", "b*h").setPosition([2.5,2,0])
-        p3=cvo.CVO().CreateCVO("breadth","b").setPosition([6,2,0])
+        p3=cvo.CVO().CreateCVO("base","b").setPosition([6,2,0])
         p4=cvo.CVO().CreateCVO("height","h").setPosition([4,-0.5,0])
         p5=cvo.CVO().CreateCVO("Example", "b=8 h=8").setPosition([1,-2,0])
-        p6=cvo.CVO().CreateCVO("Area of Parallelogram", "8*8 = 64").setPosition([6,-2,0])
+        p6=cvo.CVO().CreateCVO("Area of Parallelogram", "8*8 = 64").setPosition([5,-2.5,0])
 
         p2.cvolist.append(p3)
         p2.cvolist.append(p4)
@@ -294,7 +295,7 @@ class AreasAnim(AbstractAnim):
         p3=cvo.CVO().CreateCVO("diagonal 1","d1").setPosition([6,2,0])
         p4=cvo.CVO().CreateCVO("diagonal 2","d2").setPosition([4,-0.5,0])
         p5=cvo.CVO().CreateCVO("Example","d1=8 d2=6").setPosition([1,-2,0])
-        p6=cvo.CVO().CreateCVO("Area of Rhombus", "1/2(8*6) = 24").setPosition([6,-2,0])
+        p6=cvo.CVO().CreateCVO("Area of Rhombus", "1/2(8*6) = 24").setPosition([5,-2.5,0])
 
         p2.cvolist.append(p3)
         p2.cvolist.append(p4)
@@ -345,13 +346,17 @@ class AreasAnim(AbstractAnim):
         p4=cvo.CVO().CreateCVO("parallel side 1","a").setPosition([4,-0.5,0])
         p5=cvo.CVO().CreateCVO("parallel side 2","b").setPosition([-0.5,2,0])
         p6=cvo.CVO().CreateCVO("Example", "a=8 b=8 h=4").setPosition([1,-2,0])
-        p7=cvo.CVO().CreateCVO("Area of Trapezium", "4*((8+8)/2) = 24").setPosition([6,-2,0])
+        p7=cvo.CVO().CreateCVO("Area of Trapezium", "4*((8+8)/2) = 24").setPosition([5,-2.5,0])
         p2.cvolist.append(p3)
         p2.cvolist.append(p4)
         p2.cvolist.append(p5)
         p2.cvolist.append(p6)
         p6.cvolist.append(p7)
         self.construct1(p2,p2)
+
+
+    def SetDeveloperList(self):
+        self.DeveloperList = "Lasya"
 
 
 if __name__ == "__main__":

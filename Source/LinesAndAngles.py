@@ -28,6 +28,8 @@ class LinesAndAngles(AbstractAnim):
         self.fadeOutCurrentScene()
         self.Linear()
         self.fadeOutCurrentScene()
+        self.Vertopp()
+        self.fadeOutCurrentScene()
         self.Transversal()
         self.fadeOutCurrentScene()
         self.Corresponding()
@@ -45,6 +47,10 @@ class LinesAndAngles(AbstractAnim):
         self.ConsecIntExt()
         self.fadeOutCurrentScene()
         self.TransversalAnim()
+        self.fadeOutCurrentScene()
+        self.TransversalIntersectsParallelLinesProperties()
+        self.fadeOutCurrentScene()
+        self.GithubSourceCodeReference()
 
 
     def Lines(self):
@@ -342,6 +348,49 @@ class LinesAndAngles(AbstractAnim):
         p10.cvolist.append(p11) 
         self.construct1(p10, p10)  
 
+    def Vertopp(self):
+        title=Text("Vertically opposite angles").to_edge(UP)
+        self.play(Write(title))
+        line1 = Line(LEFT*1.5, RIGHT*1.5)
+        line2 = Line(UP*1.5, DOWN*1.5)
+        intersection = Dot(ORIGIN)
+        
+        # Labels for points
+        A = Text("A").next_to(line1.get_start(), LEFT)
+        B = Text("B").next_to(line1.get_end(), RIGHT)
+        C = Text("C").next_to(line2.get_start(), UP)
+        D = Text("D").next_to(line2.get_end(), DOWN)
+        O = Text("O").next_to(intersection, DOWN)
+
+        # Drawing the angle arcs
+        angle_arc1 = Arc(radius=0.5, angle=90 * DEGREES, start_angle=0, color=YELLOW).shift(0.25*RIGHT + 0.25*UP)
+        angle_arc2 = Arc(radius=0.5, angle=90 * DEGREES, start_angle=90 * DEGREES, color=GREEN).shift(0.25*LEFT + 0.25*UP)
+        angle_arc3 = Arc(radius=0.5, angle=90 * DEGREES, start_angle=180 * DEGREES, color=YELLOW).shift(0.25*LEFT + 0.25*DOWN)
+        angle_arc4 = Arc(radius=0.5, angle=90 * DEGREES, start_angle=270 * DEGREES, color=GREEN).shift(0.25*RIGHT + 0.25*DOWN)
+        
+        # Labels for angles
+        angle1 = MathTex("\\angle 1").next_to(angle_arc1, UP + RIGHT)
+        angle2 = MathTex("\\angle 2").next_to(angle_arc2, UP + LEFT)
+        angle3 = MathTex("\\angle 3").next_to(angle_arc3, DOWN + LEFT)
+        angle4 = MathTex("\\angle 4").next_to(angle_arc4, DOWN + RIGHT)
+        
+        self.play(Create(line1), Create(line2), FadeIn(intersection))
+        self.play(Write(A), Write(B), Write(C), Write(D), Write(O))
+        self.play(Create(angle_arc1), Create(angle_arc2), Create(angle_arc3), Create(angle_arc4))
+        self.play(Write(angle1), Write(angle2), Write(angle3), Write(angle4))
+
+        info=MathTex("\\angle 1=\\angle 3").next_to(B,RIGHT*2).set_color_by_tex("1",YELLOW).set_color_by_tex("3",YELLOW)
+        info1=MathTex("\\angle 2=\\angle 4").next_to(info,DOWN).set_color_by_tex("2",GREEN).set_color_by_tex("2",GREEN)
+        self.play(Write(info))
+        self.wait(1)
+        self.play(Write(info1))
+        self.wait(1)
+        # Conclusion text
+        conclusion = Text("Therefore, Vertically opposite angles are equal.",font_size=35).to_edge(DOWN)
+        self.play(Write(conclusion))
+        self.wait(2)
+
+
 
     def Transversal(self):
         self.isRandom = False
@@ -474,24 +523,54 @@ class LinesAndAngles(AbstractAnim):
         # Explanation
         explanation_text = VGroup(
             MathTex(r"\text{Angles formed by a transversal are categorized as:}"),
-            MathTex(r"\text{1. Corresponding Angles: } \angle 1, \angle 3 \text{ and } \angle 5, \angle 7"),
+            MathTex(r"\text{1. Corresponding Angles: } \angle 1 = \angle 3 \text{ and } \angle 5 = \angle 7"),
             MathTex(r"\text{2. Interior Angles: } \angle 3, \angle 4, \angle 5, \angle 6"),
             MathTex(r"\text{3. Exterior Angles: } \angle 1, \angle 2, \angle 7, \angle 8"),
-            MathTex(r"\text{4. Vertically Opposite Angles: } \angle 1, \angle 3 \text{ and } \angle 2, \angle 4"),
-            MathTex(r"\text{5. Alternate Interior Angles: } \angle 5, \angle 5 \text{ and } \angle 3, \angle 6"), 
-            MathTex(r"\text{6. Alternate Exterior Angles: } \angle 1, \angle 8 \text{ and } \angle 2, \angle 7")
-
+            MathTex(r"\text{4. Vertically Opposite Angles: } \angle 1 = \angle 3 \text{ and } \angle 2 = \angle 4"),
+            MathTex(r"\text{5. Alternate Interior Angles: } \angle 5 = \angle 4 \text{ and } \angle 3 = \angle 6"), 
+            MathTex(r"\text{6. Alternate Exterior Angles: } \angle 1, \angle 8 \text{ and } \angle 2, \angle 7"),
+            MathTex(r"\text{7. Consecutive Interior Angles: } \angle 5, \angle 3 \text{ and } \angle 6, \angle 4"),
+            MathTex(r"\text{8. Consecutive Exterior Angles: } \angle 1, \angle 7 \text{ and } \angle 2, \angle 8")
         ).arrange(DOWN, aligned_edge=LEFT).scale(0.8).to_edge(RIGHT)
 
         self.play(Write(explanation_text))
 
-        self.wait(7)
+        self.wait(10)
 
         # Clear the scene
         self.clear_scene()
 
     def clear_scene(self):
         self.play(*[FadeOut(mob) for mob in self.mobjects])
+
+
+    def TransversalIntersectsParallelLinesProperties(self):
+        # Step-by-step text representations
+        title=Text("Properties of Parallel Lines").to_edge(UP)
+        step1 = Text("When a transversal intersects a pair of parallel lines:", font_size=34).next_to(title,DOWN)
+        step2 = Text("(i) Each pair of corresponding angles are equal.", font_size=30).next_to(step1, DOWN, aligned_edge=LEFT)
+        step3 = Text("(ii) Each pair of alternate interior angles are equal.", font_size=30).next_to(step2, DOWN, aligned_edge=LEFT)
+        step4 = Text("(iii) Each pair of alternate exterior angles are equal.", font_size=30).next_to(step3, DOWN, aligned_edge=LEFT)
+        step5 = Text("(iv) Each pair of interior angles on the same side of the transversal are \n supplementary.", font_size=30).next_to(step4, DOWN, aligned_edge=LEFT)
+        
+        # Animating the steps
+        self.play(Write(title))
+        self.play(Write(step1))
+        self.wait(1)
+        self.play(Write(step2))
+        self.wait(1)
+        self.play(Write(step3))
+        self.wait(1)
+        self.play(Write(step4))
+        self.wait(1)
+        self.play(Write(step5))
+        self.wait(2)
+
+    def SetDeveloperList(self):  
+        self.DeveloperList="Gayathri Veeramreddy"
+
+    def SetSourceCodeFileName(self):
+        self.SourceCodeFileName="LinesAndAngles.py"
 
 
 if __name__ == "__main__":
