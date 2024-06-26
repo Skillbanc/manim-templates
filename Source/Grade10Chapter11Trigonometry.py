@@ -270,7 +270,7 @@ class Trigonometry(AbstractAnim):
        self.DeveloperList="Khanak Gupta" 
 
     def SetSourceCodeFileName(self):
-       self.SourceCodeFileName="Trigonometry.py"
+       self.SourceCodeFileName="Grade10Chapter11Trigonometry.py"
 
 if __name__ == "__main__":
     scene = Trigonometry()
