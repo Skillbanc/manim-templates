@@ -17,7 +17,7 @@ class Multiplication(AbstractAnim):
         self.fadeOutCurrentScene()
         self.multiplybyone()
         self.fadeOutCurrentScene()
-        self.multiplybig()
+        self.multiplybignum()
         self.fadeOutCurrentScene()
 
         self.GithubSourceCodeReference()
@@ -284,7 +284,7 @@ class Multiplication(AbstractAnim):
         self.wait(1)
 
 
-    def multiplybig(self):
+    def multiplybignum(self):
 
          # Title and Underline
         title = Text("Multiplying Bigger Numbers").scale(0.8).to_edge(UP)

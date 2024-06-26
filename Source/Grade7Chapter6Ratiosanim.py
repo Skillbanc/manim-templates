@@ -36,6 +36,8 @@ class Ratiosanim(AbstractAnim):
         self.Simpleinterest1()
         self.fadeOutCurrentScene()
         self.example5()
+        self.fadeOutCurrentScene()
+        self.GithubSourceCodeReference()
 
     def Introduction(self):
         self.setNumberOfCirclePositions(2)
