@@ -1,9 +1,6 @@
 # Project: Manim-Templates
 # Copyright(c) 2024 Skillbanc.com, Inc.
 # License: MIT License
-# Contributor(s):   
-#   Sudhakar Moparthy
-#   Rohit Vailla
 
 
 from manim import *
@@ -19,7 +16,7 @@ class AbstractAnim(Scene):
     shapeChoice=[Circle,Triangle,Square,Rectangle]
     positionChoice = [[-6,-2,0],[4,-2,0],[2,0,0],[-6,2,0],[-4,-2,0],[-4,2,0],[-2,-2,0],[4,0,0],[-4,0,0],[-2,2,0],[2,-2,0],[-6,0,0],[2,2,0],[6,0,0],[4,2,0],[6,-2,0],[-2,0,0],[6,2,0]]
     DeveloperList=""
-    
+    SourceCodeFileName=""
 
     # angleChoice = [TAU/5,TAU/4,TAU/3,TAU/2,-TAU/5,-TAU/4,-TAU/3,-TAU/2]
     isRandom = True
@@ -163,8 +160,7 @@ class AbstractAnim(Scene):
                 onameLocalText = Tex(cvo.onameList[index],color=self.colorChoice[colorChoiceIndex]).scale(0.35).next_to(starLocal).shift(LEFT * .20)
                 arrow2 = CurvedArrow(cvoParent.pos,starLocal.get_center(),angle=cvo.angle)
                 self.play(Create(starLocal),Create(onameLocalText))#grpLocal.animate.move_to(cir1.get_center()).scale(0.5).shift(DOWN * 2))#scale(0.25))
-                if cvoParent != cvo:
-                    self.play(Create(arrow2))
+                self.play(Create(arrow2))
         else:
             self.play(grp1.animate.scale(1+0.1*len(cvo.onameList)))
             for index in range(len(cvo.onameList)):
@@ -173,8 +169,7 @@ class AbstractAnim(Scene):
                 onameLocalText = Tex(cvo.onameList[index],color=self.colorChoice[colorChoiceIndex]).scale(0.45).next_to(starLocal).shift(LEFT * .20)
                 arrow2 = CurvedArrow(cvoParent.pos,starLocal.get_center(),angle=cvo.angle)
                 self.play(Create(starLocal),Create(onameLocalText))#grpLocal.animate.move_to(cir1.get_center()).scale(0.5).shift(DOWN * 2))#scale(0.25))
-                if cvoParent != cvo:
-                    self.play(Create(arrow2))
+                self.play(Create(arrow2))
                           
         cvo.cnameMObject = cname
         cvo.onameMObject = oname
@@ -265,14 +260,18 @@ class AbstractAnim(Scene):
         self.logoGroup = VGroup().add(self.circles).add(lines).add(text)
         self.play(self.logoGroup.animate.scale(0),run_time=1)
         # self.play(self.circles.animate.scale(0),lines.animate.scale(0),text.animate.scale(0),run_time=3)
+
         
     def GithubSourceCodeReference(self): 
         self.SetDeveloperList()
+        self.SetSourceCodeFileName()
         self.colorChoice=[BLUE,ORANGE,PINK,ORANGE,PURPLE]
         p2 = cvo.CVO().CreateCVO("SOURCE CODE REFERENCE", "").setPosition([0,2.5,0])
         p4 = cvo.CVO().CreateCVO("Github URL", "https://github.com/Skillbanc/manim-templates").setPosition([-4,1,0]).setangle(TAU / 3)
-        p5 = cvo.CVO().CreateCVO("File Name", "comparingquantities.py").setPosition([4,1,0]).setangle(TAU / 3)
+        p5 = cvo.CVO().CreateCVO("File Name", self.GetSourceCodeFileName()).setPosition([4,1,0]).setangle(TAU / 3)
+
         p6=cvo.CVO().CreateCVO("Architected By","Sudhakar Moparthy").setPosition([5,-2,0]).setangle(-TAU / 4)
+
 
         p7=cvo.CVO().CreateCVO("Developed By",self.GetDeveloperList()).setPosition([0,-2,0]).setangle(-TAU / 4)
         
@@ -288,6 +287,13 @@ class AbstractAnim(Scene):
         
     def GetDeveloperList(self): 
         return self.DeveloperList
+    
+    def GetSourceCodeFileName(self):
+        return self.SourceCodeFileName
+
+
+    def SetSourceCodeFileName(self):
+        pass
       
     def SetDeveloperList(self):  
         pass  

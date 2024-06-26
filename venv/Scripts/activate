@@ -35,7 +35,7 @@ deactivate () {
 # unset irrelevant variables
 deactivate nondestructive
 
-VIRTUAL_ENV="D:\skillbanc\manim-templates\venv"
+VIRTUAL_ENV="C:\Users\saikr\OneDrive\Desktop\internship\manim\venv"
 export VIRTUAL_ENV
 
 _OLD_VIRTUAL_PATH="$PATH"
