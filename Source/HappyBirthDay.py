@@ -16,7 +16,7 @@ class HappyBirthDay(AbstractAnim):
     def construct(self):
         # p1=cvo.CVO().CreateCVO("cname","oname")
         
-        toList = ["John Doe!","Jane Doe!"]
+        toList = ["Arjun!","Arjun!"]
         
         # change the index to generate happy birthday greeting for the person in toList
         p10=cvo.CVO().CreateCVO("Happy Birthday", toList[0])
