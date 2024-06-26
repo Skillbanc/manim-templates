@@ -58,8 +58,8 @@ class TimeAnim(AbstractAnim):
         self.play(Create(title))
         self.isRandom = False
         self.angleChoice = [TAU/2]
-        p10=cvo.CVO().CreateCVO("1 Hour", "").setPosition([-4.5,1.5,0])
-        p11=cvo.CVO().CreateCVO("Consists of", "60 Minutes").setPosition([-4.5,-1.5,0])
+        p10=cvo.CVO().CreateCVO("Hours", "1").setPosition([-4.5,1.5,0])
+        p11=cvo.CVO().CreateCVO("Minutes", "60").setPosition([-4.5,-1.5,0])
         
         p10.cvolist.append(p11)
         
@@ -128,9 +128,8 @@ class TimeAnim(AbstractAnim):
         self.play(Create(title))
         
         self.isRandom = False
-        self.angleChoice = [TAU/2]
-        p10=cvo.CVO().CreateCVO("1 Minute", "").setPosition([-4.5,1.5,0])
-        p11=cvo.CVO().CreateCVO("Consists of", "60 Seconds").setPosition([-4.5,-1.5,0])
+        p10=cvo.CVO().CreateCVO("Minutes", "1").setPosition([-4.5,1.5,0])
+        p11=cvo.CVO().CreateCVO("Seconds", "60").setPosition([-4.5,-1.5,0])
         p10.cvolist.append(p11)
         
         p10.setcircleradius(1)
@@ -193,8 +192,8 @@ class TimeAnim(AbstractAnim):
     def ExampleTime(self):
         self.isRandom=False
         self.angleChoice=[TAU/2]
-        p10=cvo.CVO().CreateCVO("1 Hour", "").setPosition([4.5,1.5,0])
-        p11=cvo.CVO().CreateCVO("Consists of", "60 Minutes").setPosition([4.5,-1.5,0])
+        p10=cvo.CVO().CreateCVO("Hours", "1").setPosition([4.5,1.5,0])
+        p11=cvo.CVO().CreateCVO("Minutes", "60").setPosition([4.5,-1.5,0])
         
         p10.cvolist.append(p11)
         
@@ -324,7 +323,7 @@ class TimeAnim(AbstractAnim):
         
        
         self.wait(2)
-        self.fadeOutCurrentScene
+        self.fadeOutCurrentScene()
 
     
 if __name__ == "__main__":
