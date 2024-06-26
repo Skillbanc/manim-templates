@@ -266,7 +266,7 @@ class AbstractAnim(Scene):
         self.SetDeveloperList()
         self.SetSourceCodeFileName()
         self.colorChoice=[BLUE,ORANGE,PINK,ORANGE,PURPLE]
-        p2 = cvo.CVO().CreateCVO("SOURCE CODE REFERENCE", "").setPosition([0,2.5,0])
+        p2 = cvo.CVO().CreateCVO("SOURCE CODE FOR THIS VIDEO", "").setPosition([0,2.5,0])
         p4 = cvo.CVO().CreateCVO("Github URL", "https://github.com/Skillbanc/manim-templates").setPosition([-4,1,0]).setangle(TAU / 3)
         p5 = cvo.CVO().CreateCVO("File Name", self.GetSourceCodeFileName()).setPosition([4,1,0]).setangle(TAU / 3)
 
@@ -283,6 +283,17 @@ class AbstractAnim(Scene):
         p6.setcircleradius(1.5)
         p2.cvolist.append(p6)
         p2.cvolist.append(p7)
+        self.construct1(p2,p2)
+
+    def PurchaseSkillbancSubscription(self): 
+        
+        self.colorChoice=[BLUE,ORANGE,PINK,ORANGE,PURPLE]
+        p2 = cvo.CVO().CreateCVO("For Practice Worksheets", "").setPosition([0,2.5,0])
+        p4 = cvo.CVO().CreateCVO("Purchase Skillbanc Subscription", "https://skillbanc.com/SkillbancStore").setPosition([-4,1,0]).setangle(TAU / 3)
+        
+        p2.cvolist.append(p4)
+
+        self.setNumberOfCirclePositions(2)
         self.construct1(p2,p2)
         
     def GetDeveloperList(self): 
