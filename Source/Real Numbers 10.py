@@ -34,35 +34,6 @@ class Realanim(AbstractAnim):
         p11.cvolist.append(p12)
         self.construct1(p10, p10)
 
-
-        # Title
-        # title = Text("Euclid's Algorithm").to_edge(UP)
-        # self.play(Write(title))
-
-        # # Explanation
-        # explanation = VGroup(
-        #     Text("Euclid's Algorithm is a method for finding the greatest common divisor (GCD)", font_size=24),
-        #     Text("of two integers. It is based on the principle that the GCD of two numbers", font_size=24),
-        #     Text("also divides their difference.", font_size=24)
-        # ).arrange(DOWN, aligned_edge=LEFT, buff=0.3)
-        # explanation.next_to(title, DOWN, buff=1)
-
-        # self.play(Write(explanation))
-
-        # # Steps
-        # steps = VGroup(
-        #     Text("1. Given two numbers a and b, where a > b.", font_size=24),
-        #     Text("2. Divide a by b, and get the remainder r.", font_size=24),
-        #     Text("3. Replace a with b, and b with r.", font_size=24),
-        #     Text("4. Repeat the process until b is 0.", font_size=24),
-        #     Text("5. The non-zero remainder at this point is the GCD of the original a and b.", font_size=24)
-        # ).arrange(DOWN, aligned_edge=LEFT, buff=0.3)
-        # steps.next_to(explanation, DOWN, buff=1)
-
-        # self.play(Write(steps))
-
-        # self.wait(3)
-
     def Euclidsexample(self):
         title = Text("Euclid's Algorithm").to_edge(UP)
         
@@ -244,42 +215,7 @@ class Realanim(AbstractAnim):
         self.play(Write(example1),Write(example2),Write(example3),Write(example4),Write(example5))
         
         self.wait(5)
-         # def Exponentials(self):
-    #     title = Text("Exponentials ").to_edge(UP)
-    #     self.play(Write(title))
-
-    #     laws = [
-    #         r"a^m \cdot a^n = a^{m+n}",
-    #         r"\frac{a^m}{a^n} = a^{m-n}",
-    #         r"(a^m)^n = a^{mn}",
-    #         r"a^{-n} = \frac{1}{a^n}",
-    #         r"a^0 = 1",
-    #     ]
-
-    #     laws_tex = VGroup(*[MathTex(law).scale(0.8) for law in laws])
-    #     laws_tex.arrange(DOWN, center=False, aligned_edge=LEFT, buff=0.5)
-
-    #     laws_tex.next_to(title, DOWN, buff=1)
-    #     self.play(Write(laws_tex))
-    #     self.wait(3)
-    #     self.fadeOutCurrentScene()
-    # def example(self): 
-    #     title = Text("Exponentials ").to_edge(UP)
-    #     self.play(Write(title))
-
-    #     examples= [
-    #         r"Example: 2^3 \cdot 2^4 = 2^{3+4} = 2^7 = 128",
-    #         r"Example: \frac{2^5}{2^2} = 2^{5-2} = 2^3 = 8",
-    #         r"Example: (2^3)^2 = 2^{3 \cdot 2} = 2^6 = 64",
-    #     ]
-
-    #     examples_tex = VGroup(*[MathTex(example).scale(0.8) for example in examples])
-    #     examples_tex.arrange(DOWN, center=False, aligned_edge=LEFT, buff=0.5)
-        
-    #     examples_tex.next_to(examples_tex, DOWN, buff=1)
-    #     examples_tex.next_to(title, DOWN, buff=1)
-    #     self.play(Write(examples_tex))
-
+     
     def SetDeveloperList(self):  
         self.DeveloperList="Shanmukha Priya"
     
