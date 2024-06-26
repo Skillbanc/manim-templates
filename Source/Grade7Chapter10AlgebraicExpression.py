@@ -791,7 +791,7 @@ class AlgebraicExpression(AbstractAnim):
        self.DeveloperList="Potluri Divya Reddy" 
 
     def SetSourceCodeFileName(self):
-       self.SourceCodeFileName="AlgebraicExpression.py"
+       self.SourceCodeFileName="Grade7Chapter10AlgebraicExpression.py.py"
 
 
 if __name__ == "__main__":
