@@ -11,7 +11,7 @@ from AbstractAnim import AbstractAnim
 
 import cvo
 
-class SimilarTriangles(AbstractAnim):
+class Chap8G10_SimilarTriangles(AbstractAnim):
     # use the appropriate method based on how the data is stored
     def construct(self):
         self.RenderSkillbancLogo()
@@ -741,6 +741,6 @@ class SimilarTriangles(AbstractAnim):
 
                
 if __name__ == "__main__":
-    scene = SimilarTriangles()
+    scene = Chap8G10_SimilarTriangles()
     scene.render()
     

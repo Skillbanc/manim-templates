@@ -3,7 +3,6 @@ from AbstractAnim import AbstractAnim
 import cvo
 
 class Integers(AbstractAnim):
-
     def construct(self):
         self.RenderSkillbancLogo()
         self.Introduction1()
@@ -168,65 +167,6 @@ class Integers(AbstractAnim):
 
         self.wait(3)
 
-
-    # def Addition(self):
-    #     self.setNumberOfCirclePositions(4)
-    #     self.isRandom = False
-
-    #     p10 = cvo.CVO().CreateCVO("Addition of Integers", "X + Y")
-    #     p11 = cvo.CVO().CreateCVO("X variable", "2")
-    #     p12 = cvo.CVO().CreateCVO("Y variable", "3")
-    #     p13 = cvo.CVO().CreateCVO("Sum", "5")
-
-    #     p10.cvolist.append(p11)
-    #     p10.cvolist.append(p12)
-    #     self.construct1(p10, p10)
-    #     self.construct1(p13, p13)
-    #     self.play(Create(CurvedArrow(p11.pos, p13.pos)), Create(CurvedArrow(p12.pos, p13.pos)))
-
-    # def Subtraction(self):
-    #     self.setNumberOfCirclePositions(4)
-    #     self.isRandom = False
-
-    #     p10 = cvo.CVO().CreateCVO("Subtraction of Integers", "X - Y")
-    #     p11 = cvo.CVO().CreateCVO("X variable", "2")
-    #     p12 = cvo.CVO().CreateCVO("Y variable", "3")
-    #     p13 = cvo.CVO().CreateCVO("Difference", "-1")
-
-    #     p10.cvolist.append(p11)
-    #     p10.cvolist.append(p12)
-    #     self.construct1(p10, p10)
-
-    # def Multiplication(self):
-    #     self.setNumberOfCirclePositions(4)
-    #     self.isRandom = False
-
-    #     p10 = cvo.CVO().CreateCVO("Multiplication of Integers", "X * Y")
-    #     p11 = cvo.CVO().CreateCVO("X variable", "2")
-    #     p12 = cvo.CVO().CreateCVO("Y variable", "3")
-    #     p13 = cvo.CVO().CreateCVO("Product", "6")
-
-    #     p10.cvolist.append(p11)
-    #     p10.cvolist.append(p12)
-    #     self.construct1(p10, p10)
-    #     self.construct1(p13, p13)
-    #     self.play(Create(CurvedArrow(p11.pos, p13.pos)), Create(CurvedArrow(p12.pos, p13.pos)))
-
-    # def Division(self):
-    #     self.setNumberOfCirclePositions(4)
-    #     self.isRandom = False
-
-    #     p10 = cvo.CVO().CreateCVO("Division of Integers", "X / Y")
-    #     p11 = cvo.CVO().CreateCVO("X variable", "8")
-    #     p12 = cvo.CVO().CreateCVO("Y variable", "2")
-    #     p13 = cvo.CVO().CreateCVO("Quotient", "4")
-
-    #     p10.cvolist.append(p11)
-    #     p10.cvolist.append(p12)
-    #     self.construct1(p10, p10)
-    #     self.construct1(p13, p13)
-    #     self.play(Create(CurvedArrow(p11.pos, p13.pos)), Create(CurvedArrow(p12.pos, p13.pos)))
-
     def Introduction2(self):
         self.setNumberOfCirclePositions(2)
         self.isRandom = False
@@ -323,7 +263,7 @@ class Integers(AbstractAnim):
         self.DeveloperList="Shanmukha Priya"
     
     def SetSourceCodeFileName(self):
-        self.SourceCodeFileName="Integers 7.py"
+        self.SourceCodeFileName="Grade7Chapter1Integers.py"
 
 if __name__ == "__main__":
         scene = Integers()
