@@ -179,7 +179,7 @@ class ShapesWithText(AbstractAnim, ThreeDScene):
         self.DeveloperList="Shanmukha Priya"
     
     def SetSourceCodeFileName(self):
-        self.SourceCodeFileName="SHAPES AND SPATIAL UNDERSTANDING 3.py"
+        self.SourceCodeFileName="Grade3CH1SHAPESANDSPATIALUNDERSTANDING.py"
 
 if __name__ == "__main__":
     scene = ShapesWithText()
