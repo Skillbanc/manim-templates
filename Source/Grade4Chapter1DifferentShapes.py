@@ -337,7 +337,7 @@ class ShapeProperties(AbstractAnim, ThreeDScene):
         self.DeveloperList="Shanmukha Priya"
     
     def SetSourceCodeFileName(self):
-        self.SourceCodeFileName="Grade4CH1DifferentShapes.py"
+        self.SourceCodeFileName="Grade4Chapter1DifferentShapes.py"
 
 if __name__ == "__main__":
     scene = ShapeProperties()
