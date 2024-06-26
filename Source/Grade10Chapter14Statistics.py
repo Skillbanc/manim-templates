@@ -539,7 +539,7 @@ class StatisticsAnim(AbstractAnim):
         self.fadeOutCurrentScene()
 
     def SetSourceCodeFileName(self):
-        self.SourceCodeFileName="StatisticsAnim.py"
+        self.SourceCodeFileName="Grade10Chapter14Statistics.py"
 
     def SetDeveloperList(self):  
         self.DeveloperList="Lagichetty Kushal"
