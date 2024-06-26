@@ -85,25 +85,31 @@ class polynomials(AbstractAnim):
         p1=cvo.CVO().CreateCVO("g(x)","$ 4x^2+2x^2-2x+6 $").setPosition([0,2.5,0])
 
         p2=cvo.CVO().CreateCVO("X values","3").setPosition([-4,1,0])
-        p1.cvolist.append(p2)
 
         p3=cvo.CVO().CreateCVO("g(3)","54").setPosition([4,1,0])
-        p1.cvolist.append(p3)
-        self.play(Create(CurvedArrow(p2.pos,p3.pos)))
 
         p4=cvo.CVO().CreateCVO("No. of terms","4").setPosition([-2,-1,0])
-        p1.cvolist.append(p4)
 
-        p5=cvo.CVO().CreateCVO("Like terms","$ 4x^2 and 2x^2 $").setPosition([2,-1,0])
-        p1.cvolist.append(p5)
+        p5=cvo.CVO().CreateCVO("Like terms","$ 4x^2 $ and $ 2x^2 $").setPosition([2,-1,0])
 
-        p6=cvo.CVO().CreateCVO("unlike terms","$ 4x^2, 2x^2, -2x and 6 $").setPosition([-2,-3,0])
-        p1.cvolist.append(p6)
+        p6=cvo.CVO().CreateCVO("unlike terms","$ 4x^2, 2x^2, -2x $ and $ 6 $").setPosition([-2,-3,0])
 
         p7=cvo.CVO().CreateCVO("Addtional like terms","$ 6x^2 $").setPosition([2,-3,0])
-        p1.cvolist.append(p7)
 
         self.construct1(p1,p1)
+        self.construct1(p2,p2)
+        self.play(Create(CurvedArrow(p2.pos,p1.pos)))
+        self.construct1(p3,p3)
+        self.play(Create(CurvedArrow(p2.pos,p3.pos)),Create(CurvedArrow(p1.pos,p3.pos)))
+        self.construct1(p4,p4)
+        self.play(Create(CurvedArrow(p1.pos,p4.pos)))
+        self.construct1(p5,p5)
+        self.play(Create(CurvedArrow(p1.pos,p5.pos)))
+        self.construct1(p6,p6)
+        self.play(Create(CurvedArrow(p1.pos,p6.pos)))
+        self.construct1(p7,p7)
+        self.play(Create(CurvedArrow(p1.pos,p7.pos)))
+
         
         self.fadeOutCurrentScene()
 
