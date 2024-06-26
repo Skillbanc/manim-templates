@@ -40,7 +40,7 @@ class QuadrilateralsAnim(AbstractAnim):
         self.DeveloperList="Hriday Bhushan"
 
     def SetSourceCodeFileName(self):
-        self.SourceCodeFileName="Chap12Class7QuadAnim.py"
+        self.SourceCodeFileName="Grade7Chap12Quadrilaterals.py"
 
     # render using CVO data object
     def Quadrilaterals(self):
