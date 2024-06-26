@@ -806,7 +806,7 @@ class Mensuration(AbstractAnim,ThreeDScene):
        self.DeveloperList="Potluri Divya Reddy" 
 
     def SetSourceCodeFileName(self):
-       self.SourceCodeFileName="Mensuration.py"
+       self.SourceCodeFileName="Grade10Chapter10Mensuration.py"
 
 
 

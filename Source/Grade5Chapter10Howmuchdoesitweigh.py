@@ -588,7 +588,7 @@ class Howmuchdoesitweigh(AbstractAnim):
        self.DeveloperList="Potluri Divya Reddy" 
 
     def SetSourceCodeFileName(self):
-       self.SourceCodeFileName="Howmuchdoesitweigh.py"
+       self.SourceCodeFileName="Grade5Chapter10Howmuchdoesitweigh.py"
 
 if __name__ == "__main__":
     scene = Howmuchdoesitweigh()

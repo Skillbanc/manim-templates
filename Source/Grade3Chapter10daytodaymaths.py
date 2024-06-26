@@ -585,7 +585,7 @@ class daytodaymaths(AbstractAnim,ThreeDScene):
        self.DeveloperList="Potluri Divya Reddy" 
 
     def SetSourceCodeFileName(self):
-       self.SourceCodeFileName="daytodaymaths.py"      
+       self.SourceCodeFileName="Grade3Chapter10daytodaymaths.py"      
         
 if __name__ == "__main__":
     scene = daytodaymaths()
