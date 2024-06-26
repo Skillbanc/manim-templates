@@ -198,7 +198,7 @@ class Poweranim(AbstractAnim):
        self.DeveloperList="Khanak Gupta" 
 
     def SetSourceCodeFileName(self):
-       self.SourceCodeFileName="ExponentsandPowers.py"
+       self.SourceCodeFileName="Grade7Chapter11ExponentsandPowers.py"
       
 
 if __name__ == "__main__":
