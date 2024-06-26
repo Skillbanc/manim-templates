@@ -35,7 +35,7 @@ class TrigAppAnim(AbstractAnim):
         self.DeveloperList="Hriday Bhushan"
 
     def SetSourceCodeFileName(self):
-        self.SourceCodeFileName="Class10Chap12TrigApplicationsAnim.py"
+        self.SourceCodeFileName="Grade10Chap12TrignometryApplications.py"
     
     # render using CVO data object
     def LoS(self):
