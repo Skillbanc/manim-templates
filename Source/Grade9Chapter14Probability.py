@@ -246,7 +246,7 @@ class ProbabilityAnim(AbstractAnim):
         self.fadeOutCurrentScene()
 
     def SetSourceCodeFileName(self):
-        self.SourceCodeFileName="ProbabilityAnim.py"
+        self.SourceCodeFileName="Grade10Chapter14Probability.py"
 
     def SetDeveloperList(self):  
         self.DeveloperList="Lagichetty Kushal"
