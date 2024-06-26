@@ -131,16 +131,20 @@ class Factorization(AbstractAnim):
         self.construct2(p10, p10)
 
     def GithubSourceCodeReference(self):
-        self.colorChoice=[GREEN_C,BLUE_C,ORANGE]
+        self.colorChoice=[GREEN_C,BLUE_C,ORANGE,RED_A,BLUE_C]
         p2=cvo.CVO().CreateCVO("SOURCE CODE REFERENCE","").setPosition([0,2.5,0])
         p4=cvo.CVO().CreateCVO("Github URL","https://github.com/Skillbanc/manim-templates")
         p5=cvo.CVO().CreateCVO("File Name","Factorization.py")
+        p6=cvo.CVO().CreateCVO("Architected By","Sudhakar Moparthy").setPosition([5,-2,0]).setangle(-TAU / 4)
+        p7=cvo.CVO().CreateCVO("Developed By","Yaswanth").setPosition([0,-2,0]).setangle(-TAU / 4)
         p2.cvolist.append(p4)
         p2.cvolist.append(p5)
+        p2.cvolist.append(p6)
+        p2.cvolist.append(p7)
         self.setNumberOfCirclePositions(3)
         p4.setcircleradius(3)
         p5.setcircleradius(2.5)
-        self.construct1(p2,p2)
+        self.construct2(p2,p2)
 
 
 if __name__ == "__main__":
