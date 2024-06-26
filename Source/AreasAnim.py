@@ -358,6 +358,9 @@ class AreasAnim(AbstractAnim):
     def SetDeveloperList(self):
         self.DeveloperList = "Lasya"
 
+    def SetSourceCodeFileName(self):
+        self.SourceCodeFileName = "AreasAnim.py"    
+
 
 if __name__ == "__main__":
     scene = AreasAnim()
