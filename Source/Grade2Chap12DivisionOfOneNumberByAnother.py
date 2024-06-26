@@ -30,7 +30,7 @@ class DivAnim(AbstractAnim):
         self.DeveloperList="Hriday Bhushan"
 
     def SetSourceCodeFileName(self):
-        self.SourceCodeFileName="Chap12Class2.py"
+        self.SourceCodeFileName="Grade2Chap12DivisionOfOneNumberByAnother.py"
     
     # render using CVO data object
     def Division(self):

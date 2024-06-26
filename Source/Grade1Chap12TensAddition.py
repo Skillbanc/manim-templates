@@ -30,7 +30,7 @@ class TensAnim(AbstractAnim):
         self.DeveloperList="Hriday Bhushan"
 
     def SetSourceCodeFileName(self):
-        self.SourceCodeFileName="Chap12Class1.py"
+        self.SourceCodeFileName="Grade1Chap12TensAddition.py"
     
     # render using CVO data object
     def Introduction(self):
