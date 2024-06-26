@@ -138,16 +138,17 @@ class Realnumbersanim(AbstractAnim):
 
         # Add segments to the circle
         circle_segments = VGroup(
-            Sector(inner_radius=0, outer_radius=2, angle=PI/2, start_angle=0, color=YELLOW).set_fill(YELLOW, opacity=0.5),
-            Sector(inner_radius=0, outer_radius=2, angle=PI/2, start_angle=PI/2, color=YELLOW).set_fill(YELLOW, opacity=0.5),
-            Sector(inner_radius=0, outer_radius=2, angle=PI/2, start_angle=PI, color=YELLOW).set_fill(YELLOW, opacity=0.5),
-            Sector(inner_radius=0, outer_radius=2, angle=PI/2, start_angle=3*PI/2, color=GRAY).set_fill(GRAY, opacity=0.5),
+            Sector(inner_radius=0, outer_radius=2, angle=PI/2, start_angle=0, color=ORANGE).set_fill(ORANGE, opacity=0.5),
+            Sector(inner_radius=0, outer_radius=2, angle=PI/2, start_angle=PI/2, color=ORANGE).set_fill(ORANGE, opacity=0.5),
+            Sector(inner_radius=0, outer_radius=2, angle=PI/2, start_angle=PI, color=ORANGE).set_fill(ORANGE, opacity=0.5),
+            Sector(inner_radius=0, outer_radius=2, angle=PI/2, start_angle=3*PI/2, color=WHITE).set_fill(WHITE, opacity=0.5),
         )
 
         # Create the circle segments
         self.play(*[Create(segment) for segment in circle_segments])
-        circle_label = MathTex(r"\frac{3}{4}").next_to(circle, DOWN, buff=0.5)
-        self.play(Write(circle_label))
+        circle_label1 = MathTex(r"\frac{3}{4}",color=ORANGE).next_to(circle, LEFT, buff=0.5)
+        circle_label2 = MathTex(r"\frac{1}{4}",color=WHITE).next_to(circle, RIGHT, buff=0.5)
+        self.play(Write(circle_label1),Write(circle_label2))
 
         self.fadeOutCurrentScene()
 
