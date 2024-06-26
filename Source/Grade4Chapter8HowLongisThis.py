@@ -1,206 +1,219 @@
+# Project: Manim-Templates
+# Copyright(c) 2024 Skillbanc.com, Inc.
+# License: MIT License
+# Contributor(s):   
+#   Sudhakar Moparthy
+#   Rohit Vailla
 import json
-from manim import*
+from manim import *
+from numpy import size
 from AbstractAnim import AbstractAnim
+
 import cvo
 
-class TrianglesAnim(AbstractAnim):
+class Length4G(AbstractAnim):
+    # use the appropriate method based on how the data is stored
     def construct(self):
         self.RenderSkillbancLogo()
         self.LineSegment()
         self.fadeOutCurrentScene()
-        self.Anim1()
+        self.Anim1()        
         self.fadeOutCurrentScene()
         self.Triangle()
         self.fadeOutCurrentScene()
-        self.SSS()
+        self.Type1()
         self.fadeOutCurrentScene()
         self.Anim2()
         self.fadeOutCurrentScene()
-        self.SAS()
+        self.Type2()
         self.fadeOutCurrentScene()
         self.Anim3()
         self.fadeOutCurrentScene()
-        self.ASA()
+        self.Type3()
         self.fadeOutCurrentScene()
         self.Anim4()
         self.fadeOutCurrentScene()
-        self.RHS()
+        self.Type4()
         self.fadeOutCurrentScene()
         self.Anim5()
         self.fadeOutCurrentScene()
-        self.inequalities()
-        self.fadeOutCurrentScene()
-        self.GithubSourceCodeReference()
-        self.fadeOutCurrentScene()
-
-        # self.fadeOutCurrentScene()
         
     # render using CVO data object 
     
-    def LineSegment(self):
+    def Length(self):
         self.isRandom=False
-        self.positionChoice=[[-5,2,0],[-4,-0.5,0],[4,0,0]]
-        p13=cvo.CVO().CreateCVO("Line segment","").setangle(-TAU/4)
-        p10=cvo.CVO().CreateCVO("Congruency","")
-        p11=cvo.CVO().CreateCVO("Rule","Equal Lengths")
-        p13.cvolist.append(p10)
+        self.positionChoice=[[-4,0,0],[4,0,0]]
+        p10=cvo.CVO().CreateCVO("Length","Measurement")
+        p11=cvo.CVO().CreateCVO("Types","cm\\\\m\\\\inches")
         p10.cvolist.append(p11)
-        self.construct1(p13,p13)
-
-    def Anim1(self):
-        heading = Text("Congruent Line Segment")
-        heading.to_edge(UP)
-
-        # Define the length of the lines
-        line_length = 4
-        
-        # Create two lines with the specified length
-        line1 = Line(start=ORIGIN - line_length / 2 * RIGHT, end=ORIGIN + line_length / 2 * RIGHT)
-        line2 = Line(start=ORIGIN - line_length / 2 * RIGHT, end=ORIGIN + line_length / 2 * RIGHT)
-        
-        # Position the lines side by side
-        line1.move_to(2 * LEFT)
-        line2.next_to(line1, RIGHT, buff=1)
-        
-        # Create labels for the lines
-        label1_A = Text("A").next_to(line1.get_start(), DOWN)
-        label1_B = Text("B").next_to(line1.get_end(), DOWN)
-        label2_C = Text("C").next_to(line2.get_start(), DOWN)
-        label2_D = Text("D").next_to(line2.get_end(), DOWN)
-        mp_label1 = Text(str(line_length)).next_to(line1.get_center(), UP)
-        mp_label2 = Text(str(line_length)).next_to(line2.get_center(), UP)
-
-        # Animate the heading, lines, and labels
-        self.play(Write(heading))
-        self.play(Create(line1),  Write(label1_A), Write(label1_B), Write(mp_label1),)
-        self.play(Create(line2), Write(label2_C), Write(label2_D), Write(mp_label2))
-
-        # Hold the scene for a moment
-        self.wait(2)
-        
-        # Animate the merging of the lines
-        self.play(
-            line2.animate.move_to(line1.get_center()),
-            FadeOut(label2_C),
-            FadeOut(label2_D),
-            FadeOut(mp_label2),
-            FadeOut(label1_A),
-            FadeOut(label1_B)
-        )
-
-        # Remove old labels and add new merged labels
-        self.play(
-            FadeOut(label1_A),
-            FadeOut(label1_B),
-            FadeOut(mp_label1)
-        )
-
-        merged_label_start = Text("").next_to(line1.get_start(), DOWN)
-        merged_label_end = Text("").next_to(line1.get_end(), DOWN)
-        self.play(Write(merged_label_start), Write(merged_label_end), Write(mp_label1))
-        
-        # Hold the final scene
-        self.wait(2)
-
-    def Triangle(self):
-        self.isRandom=False
-        self.positionChoice=[[-5,2,0],[-4,-0.5,0],[4,2.25,0],[4,-2.25,0]]
-        
-        p13=cvo.CVO().CreateCVO("Triangle","").setangle(-TAU/4)
-        p10=cvo.CVO().CreateCVO("Congruency","").setangle(-TAU/4)
-        p11=cvo.CVO().CreateCVO("Types","")
-        p11onamelist=["SSS","SAS","ASA","RAH"]
-        p12=cvo.CVO().CreateCVO("Rules","")
-        p12onamelist=["Equal Vertices","Equal Sides","Equal Angles"]
-        
-        p10.setcircleradius(1.25)
-        p11.setcircleradius(1.6)
-        p12.setcircleradius(1.6)
-
-        p13.cvolist.append(p10)
-        p10.cvolist.append(p11)
-        p11.extendOname(p11onamelist)
-        p10.cvolist.append(p12)
-        p12.extendOname(p12onamelist)
-        self.construct1(p13,p13)
-
-    def SSS(self):
-        self.isRandom=False
-        self.positionChoice=[[-4,0,0],[4,2,0],[4,-2,0]]
-        p10=cvo.CVO().CreateCVO("SSS","").setangle(-TAU/4)
-        p11=cvo.CVO().CreateCVO("Abbreviation","Side-Side-Side")
-        p12=cvo.CVO().CreateCVO("Rule","All sides equal")
-
-        p12.setcircleradius(1.5)
-        p11.setcircleradius(1.5)
-
-        p10.cvolist.append(p11)
-        p10.cvolist.append(p12)
         self.construct1(p10,p10)
 
+    def Anim1(self):
+        # Title
+        title = Text("Measurement Rulers: cm and inches", font_size=48)
+        self.play(Write(title))
+        self.wait(2)
+        self.play(FadeOut(title))
+
+        # Ruler length in centimeters (1 meter = 100 cm)
+        ruler_length_cm = 100
+        cm_to_inch = 2.54
+        ruler_length_inch = int(ruler_length_cm / cm_to_inch)
+        
+        # Define scale factor for visualization
+        scale_factor = 0.1
+
+        # Draw the centimeter ruler
+        cm_ruler = Line(start=ORIGIN, end=RIGHT * ruler_length_cm * scale_factor, stroke_width=2).move_to(UP)
+        self.play(Create(cm_ruler))
+        
+        # Draw centimeter markings on the top ruler
+        cm_marks = VGroup()
+        for i in range(0, ruler_length_cm + 1):
+            if i % 10 == 0:
+                mark_length = 0.4
+            else:
+                mark_length = 0.2
+            mark = Line(start=UP * mark_length, end=ORIGIN).move_to(cm_ruler.point_from_proportion(i / ruler_length_cm))
+            cm_marks.add(mark)
+        self.play(*[Create(mark) for mark in cm_marks])
+        
+        # Add centimeter labels every 10 cm on the top ruler
+        cm_labels = VGroup()
+        for i in range(0, ruler_length_cm + 1, 10):
+            label = Text(f"{i} cm", font_size=24).next_to(cm_marks[i], UP)
+            cm_labels.add(label)
+        self.play(*[Write(label) for label in cm_labels])
+        
+        # Draw the inch ruler
+        inch_ruler = Line(start=ORIGIN, end=RIGHT * ruler_length_cm * scale_factor, stroke_width=2).next_to(cm_ruler, DOWN, buff=1)
+        self.play(Create(inch_ruler))
+        
+        # Draw inch markings on the bottom ruler
+        inch_marks = VGroup()
+        for i in range(0, ruler_length_inch + 1):
+            if i % 2 == 0:
+                mark_length = 0.3
+            else:
+                mark_length = 0.15
+            proportion = i * cm_to_inch / ruler_length_cm
+            if proportion <= 1:  # Ensure the proportion is within the ruler's length
+                mark = Line(start=DOWN * mark_length, end=ORIGIN).move_to(inch_ruler.point_from_proportion(proportion))
+                inch_marks.add(mark)
+        self.play(*[Create(mark) for mark in inch_marks])
+        
+        # Add inch labels every inch on the bottom ruler
+        inch_labels = VGroup()
+        for i in range(0, ruler_length_inch + 1, 1):
+            proportion = i * cm_to_inch / ruler_length_cm
+            if proportion <= 1:  # Ensure the proportion is within the ruler's length
+                label = Text(f"{i}\nin", font_size=12).next_to(inch_ruler.point_from_proportion(proportion), DOWN)
+                inch_labels.add(label)
+        self.play(*[Write(label) for label in inch_labels])
+        
+        # Add meter label at the end of the centimeter ruler
+        meter_label = Text(f"1 meter", font_size=36).next_to(cm_ruler.get_end(), UP, buff=0.5).shift(RIGHT+DOWN)
+        self.play(Write(meter_label))
+        
+        self.wait(2)
+        
+        # Fade out all elements
+        all_elements = VGroup(cm_ruler, cm_marks, cm_labels, inch_ruler, inch_marks, inch_labels, meter_label)
+        self.play(FadeOut(all_elements))
+        self.wait(1)
+
     def Anim2(self):
-        triangle1_vert=[[-2, 0, 0],[2, 0, 0],[0, 3, 0]] 
-        triangle2_vert=[[-2, 0, 0],[2, 0, 0],[0, 3, 0]]
-
-        triangle1 = Polygon(*triangle1_vert, color=BLUE)
-        triangle2 = Polygon(*triangle2_vert, color=GREEN)
-
-        triangle1.shift(3 * LEFT)
-        triangle2.shift(3 * RIGHT)
-        triangle1.shift(2*DOWN)
-        triangle2.shift(2*DOWN)
-
-        label1_A = Text("A").next_to(triangle1.get_vertices()[0], DOWN)
-        label1_B = Text("B").next_to(triangle1.get_vertices()[1], DOWN)
-        label1_C = Text("C").next_to(triangle1.get_vertices()[2], UP)
-
-        label2_D = Text("D").next_to(triangle2.get_vertices()[0], DOWN)
-        label2_E = Text("E").next_to(triangle2.get_vertices()[1], DOWN)
-        label2_F = Text("F").next_to(triangle2.get_vertices()[2], UP)
-
-        sss_rule = Text("Side-Side-Side (SSS) Rule").to_edge(UP)
+        title = Text("Measuring a pencil").to_edge(UP)
+        self.play(Write(title))
+        ruler_length_cm = 15
         
-        
-        # Side lengths
-        side1 = Text("a").next_to(Line(triangle1.get_vertices()[0], triangle1.get_vertices()[1]).get_center(), DOWN)
-        side2 = Text("b").next_to(Line(triangle1.get_vertices()[1], triangle1.get_vertices()[2]).get_center(), RIGHT)
-        side3 = Text("c").next_to(Line(triangle1.get_vertices()[2], triangle1.get_vertices()[0]).get_center(), LEFT)
-        
-        side4 = Text("a").next_to(Line(triangle2.get_vertices()[0], triangle2.get_vertices()[1]).get_center(), DOWN)
-        side5 = Text("b").next_to(Line(triangle2.get_vertices()[1], triangle2.get_vertices()[2]).get_center(), RIGHT)
-        side6 = Text("c").next_to(Line(triangle2.get_vertices()[2], triangle2.get_vertices()[0]).get_center(), LEFT)
+        # Define scale factor for visualization
+        scale_factor = 0.2
 
-        self.play(Write(sss_rule))
-        self.play(Create(triangle1), Write(label1_A), Write(label1_B), Write(label1_C))
-        self.play(Write(side1), Write(side2), Write(side3))
-        self.play(Create(triangle2), Write(label2_D), Write(label2_E), Write(label2_F))
-        self.play(Write(side4), Write(side5), Write(side6))
-
-        self.wait(2)
+        # Draw the centimeter ruler
+        cm_ruler = Line(start=ORIGIN, end=RIGHT * ruler_length_cm * scale_factor, stroke_width=2).move_to(UP * 1.5)
+        self.play(Create(cm_ruler))
         
-        # Animate merging the triangles
-        self.play(
-            triangle2.animate.move_to(triangle1.get_center()),
-            FadeOut(label2_D),
-            FadeOut(label2_E),
-            FadeOut(label2_F),
-            FadeOut(side4),
-            FadeOut(side5),
-            FadeOut(side6),
-            FadeOut(label1_A),
-            FadeOut(label1_B),
-            FadeOut(label1_C)
+        # Draw centimeter markings on the top ruler
+        cm_marks = VGroup()
+        for i in range(0, ruler_length_cm + 1):
+            if i % 5 == 0:
+                mark_length = 0.4
+            else:
+                mark_length = 0.2
+            mark = Line(start=UP * mark_length, end=ORIGIN).move_to(cm_ruler.point_from_proportion(i / ruler_length_cm))
+            cm_marks.add(mark)
+        self.play(*[Create(mark) for mark in cm_marks])
+        
+        # Add centimeter labels every 5 cm on the top ruler
+        cm_labels = VGroup()
+        for i in range(0, ruler_length_cm + 1, 5):
+            label = Text(f"{i} cm", font_size=24).next_to(cm_marks[i], UP)
+            cm_labels.add(label)
+        self.play(*[Write(label) for label in cm_labels])
+        
+        # Draw inch ruler below centimeter ruler
+        inch_ruler = Line(start=ORIGIN, end=RIGHT * ruler_length_cm * scale_factor, stroke_width=2).next_to(cm_ruler, DOWN, buff=1.5)
+        self.play(Create(inch_ruler))
+        
+        # Draw inch markings on the bottom ruler
+        inch_marks = VGroup()
+        inch_length = 15 / 2.54
+        for i in range(0, int(inch_length) + 1):
+            if i % 2 == 0:
+                mark_length = 0.3
+            else:
+                mark_length = 0.15
+            proportion = i * 2.54 / ruler_length_cm
+            if proportion <= 1:  # Ensure the proportion is within the ruler's length
+                mark = Line(start=DOWN * mark_length, end=ORIGIN).move_to(inch_ruler.point_from_proportion(proportion))
+                inch_marks.add(mark)
+        self.play(*[Create(mark) for mark in inch_marks])
+        
+        # Add inch labels every inch on the bottom ruler
+        inch_labels = VGroup()
+        for i in range(0, int(inch_length) + 1, 1):
+            proportion = i * 2.54 / ruler_length_cm
+            if proportion <= 1:  # Ensure the proportion is within the ruler's length
+                label = Text(f"{i}\nin", font_size=16).next_to(inch_ruler.point_from_proportion(proportion), DOWN)
+                inch_labels.add(label)
+        self.play(*[Write(label) for label in inch_labels])
+
+        # Draw the pencil with a simple triangular nib
+        pencil_length_cm = 10  # Length of the pencil in cm
+        pencil_body = Rectangle(height=0.2, width=(pencil_length_cm - 1) * scale_factor, color=BLUE, fill_opacity=1)
+        pencil_nib = Polygon(
+            pencil_body.get_right()+UP*0.1,
+            pencil_body.get_right() + RIGHT * 0.5 * scale_factor, 
+            pencil_body.get_right() + DOWN * 0.1, 
+            color=ORANGE, fill_opacity=1
         )
+        pencil = VGroup(pencil_body, pencil_nib)
+        pencil.next_to(cm_ruler, DOWN, buff=0.3)  # Position the pencil below the ruler
+        pencil.shift(LEFT * 0.5)  # Shift pencil to start from 0 cm mark
+        self.play(FadeIn(pencil))
+
+        # Show measurement label
+        measurement_label = Text(f"{pencil_length_cm} cm", font_size=24, color=YELLOW)
+        measurement_label.next_to(pencil, DOWN, buff=0.1)
+        self.play(Write(measurement_label))
 
         self.wait(2)
+        
+        # Fade out all elements
+        all_elements = VGroup(cm_ruler, cm_marks, cm_labels, inch_ruler, inch_marks, inch_labels, pencil, measurement_label)
+        self.play(FadeOut(all_elements))
+        self.wait(1)
 
-    def SAS(self):
+
+
+    def Type2(self):
         self.isRandom=False
         self.positionChoice=[[-4,0,0],[4,2,0],[4,-2,0]]
         p10=cvo.CVO().CreateCVO("SAS","").setangle(-TAU/4)
         p11=cvo.CVO().CreateCVO("Abbreviation","Side-Angle-Side")
         p12=cvo.CVO().CreateCVO("Rule","")
-        p12onameList=["2 sides equal","included angle equal"]
+        p12onameList=["2 sides equal","angle b/w equal"]
 
         p12.setcircleradius(1.5)
         p11.setcircleradius(1.5)
@@ -277,7 +290,7 @@ class TrianglesAnim(AbstractAnim):
 
         self.wait(2)
 
-    def ASA(self):
+    def Type3(self):
         self.isRandom=False
         self.positionChoice=[[-4,0,0],[4,2,0],[4,-2,0]]
         p10=cvo.CVO().CreateCVO("ASA","").setangle(-TAU/4)
@@ -359,24 +372,25 @@ class TrianglesAnim(AbstractAnim):
             FadeOut(angle3_label),
             FadeOut(angle4_label),
             FadeOut(side2),
-            FadeOut(side1),
             FadeOut(label1_A),
             FadeOut(label1_B),
             FadeOut(label1_C)
         )
-        self.play(Write(side1))
+
         self.wait(2)
 
-    def RHS(self):
+
+    def Type4(self):
         self.isRandom=False
         self.positionChoice=[[-4,0,0],[4,1.5,0],[4,-2,0]]
-        p10=cvo.CVO().CreateCVO("RHS","").setangle(-TAU/4)
-        p11=cvo.CVO().CreateCVO("Abbreviation","Right-Angle-Hypotenuse-Side")
+        p10=cvo.CVO().CreateCVO("RAH","").setangle(-TAU/4)
+        p11=cvo.CVO().CreateCVO("Abbreviation","Right-Angle-Hypotenuse")
         p12=cvo.CVO().CreateCVO("Rule","")
         p12onameList=["Hypotenuse equal","another side equal"]
 
         p12.setcircleradius(2)
         p11.setcircleradius(1.8)
+
         p10.cvolist.append(p11)
         p10.cvolist.append(p12)
         p12.extendOname(p12onameList)
@@ -442,29 +456,11 @@ class TrianglesAnim(AbstractAnim):
         )
 
         self.wait(2)
-    
-    def inequalities(self):
-        self.isRandom=False
-        self.positionChoice=[[-5,2,0],[-4,0,0],[4,1.5,0],[4,-2,0]]
-        p10=cvo.CVO().CreateCVO("inequalities","").setangle(-TAU/4)
-        p13=cvo.CVO().CreateCVO("triangle","").setangle(-TAU/4)
+
         
-        p11=cvo.CVO().CreateCVO("theorem","the angle opposite to the longer side is greater").setangle(-TAU/4)
-        p12=cvo.CVO().CreateCVO("theorem","side opposite to the larger angle is longer").setangle(-TAU/4)
-        p12.setcircleradius(2)
-        p11.setcircleradius(1.8)
-        p13.cvolist.append(p10)
-        p10.cvolist.append(p11)
-        p10.cvolist.append(p12)
-        self.construct1(p13,p13)
-
-    def SetDeveloperList(self): 
-       self.DeveloperList="T Sai Rohith Reddy" 
-
-    def SetSourceCodeFileName(self):
-       self.SourceCodeFileName="Grade9Chapter7Triangles.py"
-
+   
+               
 if __name__ == "__main__":
-    scene=TrianglesAnim()
+    scene = Length4G()
     scene.render()
-
+    

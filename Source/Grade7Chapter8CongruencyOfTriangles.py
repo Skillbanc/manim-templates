@@ -1,51 +1,52 @@
+# Project: Manim-Templates
+# Copyright(c) 2024 Skillbanc.com, Inc.
+# License: MIT License
+# Contributor(s):   
+#   Sudhakar Moparthy
+#   Rohit Vailla
 import json
-from manim import*
+from manim import *
+from numpy import size
 from AbstractAnim import AbstractAnim
+
 import cvo
 
-class TrianglesAnim(AbstractAnim):
+class Chap8G7_CongruencyOfTriangles(AbstractAnim):
+    # use the appropriate method based on how the data is stored
     def construct(self):
         self.RenderSkillbancLogo()
         self.LineSegment()
         self.fadeOutCurrentScene()
-        self.Anim1()
+        self.Anim1()        
         self.fadeOutCurrentScene()
         self.Triangle()
         self.fadeOutCurrentScene()
-        self.SSS()
+        self.Type1()
         self.fadeOutCurrentScene()
         self.Anim2()
         self.fadeOutCurrentScene()
-        self.SAS()
+        self.Type2()
         self.fadeOutCurrentScene()
         self.Anim3()
         self.fadeOutCurrentScene()
-        self.ASA()
+        self.Type3()
         self.fadeOutCurrentScene()
         self.Anim4()
         self.fadeOutCurrentScene()
-        self.RHS()
+        self.Type4()
         self.fadeOutCurrentScene()
         self.Anim5()
         self.fadeOutCurrentScene()
-        self.inequalities()
-        self.fadeOutCurrentScene()
-        self.GithubSourceCodeReference()
-        self.fadeOutCurrentScene()
-
-        # self.fadeOutCurrentScene()
         
     # render using CVO data object 
     
     def LineSegment(self):
         self.isRandom=False
-        self.positionChoice=[[-5,2,0],[-4,-0.5,0],[4,0,0]]
-        p13=cvo.CVO().CreateCVO("Line segment","").setangle(-TAU/4)
-        p10=cvo.CVO().CreateCVO("Congruency","")
+        self.positionChoice=[[-4,0,0],[4,0,0]]
+        p10=cvo.CVO().CreateCVO("Congruency of Line segment","")
         p11=cvo.CVO().CreateCVO("Rule","Equal Lengths")
-        p13.cvolist.append(p10)
         p10.cvolist.append(p11)
-        self.construct1(p13,p13)
+        self.construct1(p10,p10)
 
     def Anim1(self):
         heading = Text("Congruent Line Segment")
@@ -88,13 +89,6 @@ class TrianglesAnim(AbstractAnim):
             FadeOut(label1_B)
         )
 
-        # Remove old labels and add new merged labels
-        self.play(
-            FadeOut(label1_A),
-            FadeOut(label1_B),
-            FadeOut(mp_label1)
-        )
-
         merged_label_start = Text("").next_to(line1.get_start(), DOWN)
         merged_label_end = Text("").next_to(line1.get_end(), DOWN)
         self.play(Write(merged_label_start), Write(merged_label_end), Write(mp_label1))
@@ -104,10 +98,8 @@ class TrianglesAnim(AbstractAnim):
 
     def Triangle(self):
         self.isRandom=False
-        self.positionChoice=[[-5,2,0],[-4,-0.5,0],[4,2.25,0],[4,-2.25,0]]
-        
-        p13=cvo.CVO().CreateCVO("Triangle","").setangle(-TAU/4)
-        p10=cvo.CVO().CreateCVO("Congruency","").setangle(-TAU/4)
+        self.positionChoice=[[-4,0,0],[4,2.25,0],[4,-2.25,0]]
+        p10=cvo.CVO().CreateCVO("Congruency of Triangles","").setangle(-TAU/4)
         p11=cvo.CVO().CreateCVO("Types","")
         p11onamelist=["SSS","SAS","ASA","RAH"]
         p12=cvo.CVO().CreateCVO("Rules","")
@@ -117,14 +109,13 @@ class TrianglesAnim(AbstractAnim):
         p11.setcircleradius(1.6)
         p12.setcircleradius(1.6)
 
-        p13.cvolist.append(p10)
         p10.cvolist.append(p11)
         p11.extendOname(p11onamelist)
         p10.cvolist.append(p12)
         p12.extendOname(p12onamelist)
-        self.construct1(p13,p13)
+        self.construct1(p10,p10)
 
-    def SSS(self):
+    def Type1(self):
         self.isRandom=False
         self.positionChoice=[[-4,0,0],[4,2,0],[4,-2,0]]
         p10=cvo.CVO().CreateCVO("SSS","").setangle(-TAU/4)
@@ -194,13 +185,15 @@ class TrianglesAnim(AbstractAnim):
 
         self.wait(2)
 
-    def SAS(self):
+
+
+    def Type2(self):
         self.isRandom=False
         self.positionChoice=[[-4,0,0],[4,2,0],[4,-2,0]]
         p10=cvo.CVO().CreateCVO("SAS","").setangle(-TAU/4)
         p11=cvo.CVO().CreateCVO("Abbreviation","Side-Angle-Side")
         p12=cvo.CVO().CreateCVO("Rule","")
-        p12onameList=["2 sides equal","included angle equal"]
+        p12onameList=["2 sides equal","angle b/w equal"]
 
         p12.setcircleradius(1.5)
         p11.setcircleradius(1.5)
@@ -277,7 +270,7 @@ class TrianglesAnim(AbstractAnim):
 
         self.wait(2)
 
-    def ASA(self):
+    def Type3(self):
         self.isRandom=False
         self.positionChoice=[[-4,0,0],[4,2,0],[4,-2,0]]
         p10=cvo.CVO().CreateCVO("ASA","").setangle(-TAU/4)
@@ -359,24 +352,25 @@ class TrianglesAnim(AbstractAnim):
             FadeOut(angle3_label),
             FadeOut(angle4_label),
             FadeOut(side2),
-            FadeOut(side1),
             FadeOut(label1_A),
             FadeOut(label1_B),
             FadeOut(label1_C)
         )
-        self.play(Write(side1))
+
         self.wait(2)
 
-    def RHS(self):
+
+    def Type4(self):
         self.isRandom=False
         self.positionChoice=[[-4,0,0],[4,1.5,0],[4,-2,0]]
-        p10=cvo.CVO().CreateCVO("RHS","").setangle(-TAU/4)
-        p11=cvo.CVO().CreateCVO("Abbreviation","Right-Angle-Hypotenuse-Side")
+        p10=cvo.CVO().CreateCVO("RAH","").setangle(-TAU/4)
+        p11=cvo.CVO().CreateCVO("Abbreviation","Right-Angle-Hypotenuse")
         p12=cvo.CVO().CreateCVO("Rule","")
         p12onameList=["Hypotenuse equal","another side equal"]
 
         p12.setcircleradius(2)
         p11.setcircleradius(1.8)
+
         p10.cvolist.append(p11)
         p10.cvolist.append(p12)
         p12.extendOname(p12onameList)
@@ -442,29 +436,11 @@ class TrianglesAnim(AbstractAnim):
         )
 
         self.wait(2)
-    
-    def inequalities(self):
-        self.isRandom=False
-        self.positionChoice=[[-5,2,0],[-4,0,0],[4,1.5,0],[4,-2,0]]
-        p10=cvo.CVO().CreateCVO("inequalities","").setangle(-TAU/4)
-        p13=cvo.CVO().CreateCVO("triangle","").setangle(-TAU/4)
+
         
-        p11=cvo.CVO().CreateCVO("theorem","the angle opposite to the longer side is greater").setangle(-TAU/4)
-        p12=cvo.CVO().CreateCVO("theorem","side opposite to the larger angle is longer").setangle(-TAU/4)
-        p12.setcircleradius(2)
-        p11.setcircleradius(1.8)
-        p13.cvolist.append(p10)
-        p10.cvolist.append(p11)
-        p10.cvolist.append(p12)
-        self.construct1(p13,p13)
-
-    def SetDeveloperList(self): 
-       self.DeveloperList="T Sai Rohith Reddy" 
-
-    def SetSourceCodeFileName(self):
-       self.SourceCodeFileName="Grade9Chapter7Triangles.py"
-
+   
+               
 if __name__ == "__main__":
-    scene=TrianglesAnim()
+    scene = Chap8G7_CongruencyOfTriangles()
     scene.render()
-
+    
