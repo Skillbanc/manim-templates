@@ -30,7 +30,8 @@ class TrianglesAnim(AbstractAnim):
         self.fadeOutCurrentScene()
         self.inequalities()
         self.fadeOutCurrentScene()
-
+        self.GithubSourceCodeReference()
+        self.fadeOutCurrentScene()
 
         # self.fadeOutCurrentScene()
         
@@ -456,6 +457,12 @@ class TrianglesAnim(AbstractAnim):
         p10.cvolist.append(p11)
         p10.cvolist.append(p12)
         self.construct1(p13,p13)
+
+    def SetDeveloperList(self): 
+       self.DeveloperList="T Sai Rohith Reddy" 
+
+    def SetSourceCodeFileName(self):
+       self.SourceCodeFileName="Class9Chap7Triangles.py"
 
 if __name__ == "__main__":
     scene=TrianglesAnim()
