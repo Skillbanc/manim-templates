@@ -413,7 +413,7 @@ class CoordinateGeoAnim(AbstractAnim):
        self.DeveloperList="T Sai Rohith Reddy" 
 
     def SetSourceCodeFileName(self):
-       self.SourceCodeFileName="Class10Chap7CoordinateGeometry.py"
+       self.SourceCodeFileName="Grade10Chapter7CoordinateGeometry.py"
         
     
 
