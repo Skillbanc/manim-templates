@@ -24,10 +24,19 @@ class TrigAppAnim(AbstractAnim):
         self.AoEAnim()
         self.AoD()
         self.AoDAnim()
+        self.GithubSourceCodeReference()
+
+        
         # self.fadeOut()
         # self.constructDataByJSON()
         # self.fadeOut()
         
+    def SetDeveloperList(self):  
+        self.DeveloperList="Hriday Bhushan"
+
+    def SetSourceCodeFileName(self):
+        self.SourceCodeFileName="Chap12Class10TrigApplicationsAnim.py"
+    
     # render using CVO data object
     def LoS(self):
         self.isRandom = False
