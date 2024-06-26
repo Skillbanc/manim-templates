@@ -260,7 +260,7 @@ class AbstractAnim(Scene):
         self.logoGroup = VGroup().add(self.circles).add(lines).add(text)
         self.play(self.logoGroup.animate.scale(0),run_time=1)
         # self.play(self.circles.animate.scale(0),lines.animate.scale(0),text.animate.scale(0),run_time=3)
-     
+
         
     def GithubSourceCodeReference(self): 
         self.SetDeveloperList()
@@ -268,10 +268,10 @@ class AbstractAnim(Scene):
         self.colorChoice=[BLUE,ORANGE,PINK,ORANGE,PURPLE]
         p2 = cvo.CVO().CreateCVO("SOURCE CODE REFERENCE", "").setPosition([0,2.5,0])
         p4 = cvo.CVO().CreateCVO("Github URL", "https://github.com/Skillbanc/manim-templates").setPosition([-4,1,0]).setangle(TAU / 3)
-        p5 = cvo.CVO().CreateCVO("File Name", "comparingquantities.py").setPosition([4,1,0]).setangle(TAU / 3)
-        p6= cvo.CVO().CreateCVO("Architected By","").setPosition([5,-2,0]).setangle(-TAU / 4)
-        p6onnamelist=["Sudhakar Moparthy","Vailla Rohit"]
-        p6.extendOname(p6onnamelist)
+        p5 = cvo.CVO().CreateCVO("File Name", self.GetSourceCodeFileName()).setPosition([4,1,0]).setangle(TAU / 3)
+
+        p6=cvo.CVO().CreateCVO("Architected By","Sudhakar Moparthy").setPosition([5,-2,0]).setangle(-TAU / 4)
+
 
         p7=cvo.CVO().CreateCVO("Developed By",self.GetDeveloperList()).setPosition([0,-2,0]).setangle(-TAU / 4)
         
