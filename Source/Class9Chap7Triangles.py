@@ -462,7 +462,7 @@ class TrianglesAnim(AbstractAnim):
        self.DeveloperList="T Sai Rohith Reddy" 
 
     def SetSourceCodeFileName(self):
-       self.SourceCodeFileName="Triangles.py"
+       self.SourceCodeFileName="Class9Chap7Triangles.py"
 
 if __name__ == "__main__":
     scene=TrianglesAnim()
