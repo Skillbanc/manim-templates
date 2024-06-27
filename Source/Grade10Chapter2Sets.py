@@ -97,12 +97,12 @@ class sets(AbstractAnim):
 
     def Typesofsets(self):
         self.angleChoice=[TAU/4,TAU/4,TAU/4,TAU/4,TAU/4]
-        p10=cvo.CVO().CreateCVO("Types of Sets","").setPosition([-4,0,0])
+        p10=cvo.CVO().CreateCVO("Types of Sets","").setPosition([-4,-1,0])
         p11=cvo.CVO().CreateCVO("Empty Set","").setPosition([-1.5,2,0])
-        p12=cvo.CVO().CreateCVO("Universal Set","").setPosition([1.5,2,0])
-        p13=cvo.CVO().CreateCVO("Subset","").setPosition([3,0,0])
-        p14=cvo.CVO().CreateCVO("Finite Set","").setPosition([1.5,-2,0])
-        p15=cvo.CVO().CreateCVO("Infinite Set","").setPosition([-1.5,-2,0])
+        p12=cvo.CVO().CreateCVO("Universal Set","").setPosition([1,2,0])
+        p13=cvo.CVO().CreateCVO("Subset","").setPosition([3,2,0])
+        p14=cvo.CVO().CreateCVO("Finite Set","").setPosition([4,0,0])
+        p15=cvo.CVO().CreateCVO("Infinite Set","").setPosition([3.5,-2.5,0])
         p10.cvolist.append(p11)
         p10.cvolist.append(p12)
         p10.cvolist.append(p13)
@@ -163,11 +163,13 @@ class sets(AbstractAnim):
 
         # Add everything to the scene
         self.play(Create(set_A), Write(label_A))
-        self.play(Create(set_B), Write(label_B))
+
         for elem in elements_A:
             self.play(Write(elem))
         for elem in elements_B:
             self.play(Write(elem))
+        
+        self.play(Create(set_B), Write(label_B))
 
         proper_subset_text = MathTex("\\text{Proper Subset - }","\\text{A set that contains only}","\\text{few elements of original set}").scale(0.8).arrange(DOWN,aligned_edge=LEFT).to_edge(RIGHT).shift(UP*1).set_color(GREEN)
         notation1 = Tex("Notation - $ \subset $").scale(0.75).next_to(proper_subset_text,DOWN,buff=0.3)
@@ -341,8 +343,8 @@ class sets(AbstractAnim):
         for elem in elements_B:
             self.play(Write(elem))
 
-    def SetSourceCodeFilename(self):
-        self.SourceCodeFilename="Grade10Chapter2Sets.py"
+    def SetSourceCodeFileName(self):
+        self.SourceCodeFileName="Grade10Chapter2Sets.py"
 
     def SetDeveloperList(self):
         self.DeveloperList="Sindhu"

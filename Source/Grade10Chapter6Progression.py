@@ -9,12 +9,10 @@ class Progression(AbstractAnim):
         self.RenderSkillbancLogo()
         self.Introduction()
         self.fadeOutCurrentScene()
-        #self.definition()
+        self.definition()
         self.fadeOutCurrentScene()
         self.AP()
-        self.fadeOutCurrentScene()
-        self.generalform()
-        self.fadeOutCurrentScene()
+        self.fadeOutCurrentScene() 
         self.nthterm()
         self.fadeOutCurrentScene()
         self.formula()
@@ -25,11 +23,9 @@ class Progression(AbstractAnim):
         self.fadeOutCurrentScene()
         self.example2()
         self.fadeOutCurrentScene()
-        #self.definition1()
+        self.definition1()
         self.fadeOutCurrentScene()
         self.GP()
-        self.fadeOutCurrentScene()
-        self.generalform1()
         self.fadeOutCurrentScene()
         self.nthterm1()
         self.fadeOutCurrentScene()
@@ -55,52 +51,45 @@ class Progression(AbstractAnim):
         p10.cvolist.append(p12)
         self.construct1(p10,p10)
 
-    # def definition(self):
+    def definition(self):
 
 
-    #     title = Text("Arithmetic Progression", font_size=48).set_color(BLUE)
-    #     self.play(Write(title))
-    #     self.wait(1)
-    #     self.play(title.animate.to_edge(UP))
+        title = Text("Arithmetic Progression", font_size=48).set_color(BLUE)
+        self.play(Write(title))
+        self.wait(1)
+        self.play(title.animate.to_edge(UP))
 
-    #     # Define the text
-    #     text = Text(
-    #         "Arithmetic progression is a sequence of numbers in which each\n"
-    #         "term, except the first term, is obtained by adding a fixed\n"
-    #         "number to the preceding term.",
-    #         font_size=30,
-    #         line_spacing=1.5
-    #     ).set_color(WHITE).move_to(ORIGIN)
+        # Define the text
+        text = Text(
+            "Arithmetic progression is a sequence of numbers in which each\n"
+            "term, except the first term, is obtained by adding a fixed\n"
+            "number to the preceding term.",
+            font_size=30,
+            line_spacing=1.5
+        ).set_color(WHITE).move_to(ORIGIN)
 
-    #     # Display the text
-    #     self.play(Write(text))
-    #     self.wait(2)
+        # Display the text
+        self.play(Write(text))
+        self.wait(2)
     
     
 
     def AP(self):
-        self.setNumberOfCirclePositions(2)
-        self.angleChoice = [TAU/4]
+        self.setNumberOfCirclePositions(4)
+        self.angleChoice = [TAU/4,TAU/4,TAU/4]
         self.isRandom = False
-        p10=cvo.CVO().CreateCVO("Arithemetic Progression","")
-        p11=cvo.CVO().CreateCVO("General form","a,a+d,a+2d,a+3d.....")
+        p10=cvo.CVO().CreateCVO("Arithemetic Progression","").setPosition([-4,0,0])
+        p11=cvo.CVO().CreateCVO("General form","a,a+d,a+2d,a+3d.....").setPosition([-1,0,0])
+        p12=cvo.CVO().CreateCVO("First term","a").setPosition([3,2,0])
+        p13=cvo.CVO().CreateCVO("Common difference","d").setPosition([3,-2,0])
         p11.setcircleradius(1.5)
         p10.cvolist.append(p11)
+        p11.cvolist.append(p12)
+        p11.cvolist.append(p13)
         self.construct1(p10,p10)
 
 
-    def generalform(self):
-        self.setNumberOfCirclePositions(3)
-        self.isRandom = False
-
-        p10=cvo.CVO().CreateCVO("General Form","a,a+d,a+2d,a+3d.....")
-        p11=cvo.CVO().CreateCVO("First term","a")
-        p12=cvo.CVO().CreateCVO("Common difference","d")
-        p10.setcircleradius(1.5)
-        p10.cvolist.append(p11)
-        p10.cvolist.append(p12)
-        
-        self.construct1(p10,p10)
+   
 
 
     def nthterm(self):
@@ -238,26 +227,26 @@ class Progression(AbstractAnim):
         
         self.play(FadeOut(a_text), FadeOut(title))
 
-    # def definition1(self):
+    def definition1(self):
 
 
-    #     title = Text("Geometric Progression", font_size=48).set_color(BLUE)
-    #     self.play(Write(title))
-    #     self.wait(1)
-    #     self.play(title.animate.to_edge(UP))
+        title = Text("Geometric Progression", font_size=48).set_color(BLUE)
+        self.play(Write(title))
+        self.wait(1)
+        self.play(title.animate.to_edge(UP))
 
-    #     # Define the text
-    #     text = Text(
-    #         "Geometric progression is a sequence of numbers in which we get \n"
-    #         "each term except by multiplying or divinding a particular number \n"
-    #         "to the previous term except the first term.",
-    #         font_size=30,
-    #         line_spacing=1.5
-    #     ).set_color(WHITE).move_to(ORIGIN)
+        # Define the text
+        text = Text(
+            "Geometric progression is a sequence of numbers in which we get \n"
+            "each term except by multiplying or divinding a particular number \n"
+            "to the previous term except the first term.",
+            font_size=30,
+            line_spacing=1.5
+        ).set_color(WHITE).move_to(ORIGIN)
 
-    #     # Display the text
-    #     self.play(Write(text))
-    #     self.wait(2)
+        # Display the text
+        self.play(Write(text))
+        self.wait(2)
 
 
 
@@ -267,30 +256,22 @@ class Progression(AbstractAnim):
 
 
     def GP(self):
-        self.setNumberOfCirclePositions(2)
-        self.angleChoice = [TAU/4]
+        self.setNumberOfCirclePositions(4)
+        self.angleChoice = [TAU/4,TAU/4,TAU/4]
         self.isRandom = False
-        p10=cvo.CVO().CreateCVO("Geometric Progression","")
+        p10=cvo.CVO().CreateCVO("Geometric Progression","").setPosition([-4,0,0])
 
-        p11=cvo.CVO().CreateCVO("General form","a,ar,ar^2,ar^3....")
+        p11=cvo.CVO().CreateCVO("General form","a,ar,ar^2,ar^3....").setPosition([-1,0,0])
+        p12=cvo.CVO().CreateCVO("First term","a").setPosition([3,2,0])
+        p13=cvo.CVO().CreateCVO("Common ratio","r").setPosition([3,-2,0])
         p11.setcircleradius(1.5)
         p11.SetIsMathText(True)
         p10.cvolist.append(p11)
+        p11.cvolist.append(p12)
+        p11.cvolist.append(p13)
         self.construct1(p10,p10)
 
-    def generalform1(self):
-        self.setNumberOfCirclePositions(3)
-        self.isRandom = False
-
-        p10=cvo.CVO().CreateCVO("General Form","a,ar,ar^2,ar^3....")
-        p11=cvo.CVO().CreateCVO("First term","a")
-        p12=cvo.CVO().CreateCVO("Common ratio","r")
-        p10.SetIsMathText(True)
-        p10.setcircleradius(1.5)
-        p10.cvolist.append(p11)
-        p10.cvolist.append(p12)
-        
-        self.construct1(p10,p10)
+   
 
     def nthterm1(self):
         self.setNumberOfCirclePositions(2)
