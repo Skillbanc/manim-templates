@@ -25,12 +25,10 @@ class TrigAppAnim(AbstractAnim):
         self.AoD()
         self.AoDAnim()
         self.GithubSourceCodeReference()
-
-        
         # self.fadeOut()
         # self.constructDataByJSON()
         # self.fadeOut()
-        
+
     def SetDeveloperList(self):  
         self.DeveloperList="Hriday Bhushan"
 

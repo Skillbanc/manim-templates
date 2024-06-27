@@ -267,6 +267,7 @@ class AbstractAnim(Scene):
         self.fadeOutCurrentScene()
         self.SetDeveloperList()
         self.SetSourceCodeFileName()
+        
         self.colorChoice=[BLUE,ORANGE,PINK,ORANGE,PURPLE]
         p2 = cvo.CVO().CreateCVO("SOURCE CODE FOR THIS VIDEO", "").setPosition([0,2.5,0])
         p4 = cvo.CVO().CreateCVO("Github URL", "https://github.com/Skillbanc/manim-templates").setPosition([-4,1,0]).setangle(TAU / 3)
@@ -286,12 +287,32 @@ class AbstractAnim(Scene):
         p2.cvolist.append(p6)
         p2.cvolist.append(p7)
         self.construct1(p2,p2)
+        self.SubscribeYoutube()
+        
+    def SubscribeYoutube(self):
+        button = RoundedRectangle(corner_radius=0.2, height=1, width=3)
+        button.set_fill(PURE_RED, opacity=1)
+        button.set_stroke(WHITE, width=2)
+    
+        subscribe_text = Text("Subscribe", font_size=36, color=WHITE, font="calibri")
+        subscribe_text.move_to(button.get_center())
+
+        subscribe_button = VGroup(button, subscribe_text).move_to(LEFT*4 + DOWN * 2.5)
+
+        self.play(GrowFromCenter(subscribe_button))
+
+        
+        for _ in range(3):  
+            self.play(subscribe_button.animate.scale(1.1), run_time=1)
+            self.play(subscribe_button.animate.scale(1/1.1), run_time=1)
+
+        self.wait(2)
 
     def PurchaseSkillbancSubscription(self): 
         
         self.colorChoice=[BLUE,ORANGE,PINK,ORANGE,PURPLE]
         p1 = cvo.CVO().CreateCVO("Need Help?", "We are here to support").setPosition([0,2.5,0])
-        p2 = cvo.CVO().CreateCVO("Get Skillbanc Subscription", "https://skillbanc.com/store").setPosition([-4,1,0]).setangle(TAU / 3)
+        p2 = cvo.CVO().CreateCVO("Get Skillbanc Subscription", "https://skillbanc.com/SBstore").setPosition([-4,1,0]).setangle(TAU / 3)
         
         p1.cvolist.append(p2)
 
