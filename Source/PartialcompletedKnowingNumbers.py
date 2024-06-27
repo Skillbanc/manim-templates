@@ -1,102 +1,133 @@
 from AbstractAnim import AbstractAnim
 from manim import *
 
-class MoveImageeee(AbstractAnim):
+class KnowingNumbers(AbstractAnim):
     def construct(self):
-        # self.finding_largest_smallestNumbers()
-        # self.fadeOutCurrentScene()
-        # self.difference_scene()
-        # self.fadeOutCurrentScene()
-        # self.ascendinganddescendingorder()
-        # self.fadeOutCurrentScene()
+        self.RenderSkillbancLogo()
+        self.fadeOutCurrentScene()
+        self.finding_largest_smallestNumbers()
+        self.fadeOutCurrentScene()
+        self.ascendinganddescendingorder()
+        self.fadeOutCurrentScene()
         self.RoundoffNumbers()
-        #self.fadeOutCurrentScene()
-        #self.comparisionofindianinternationalsystems()
-        #self.fadeOutCurrentScene()
-        #sel.REVISIONOFPLACEVALUE()
-        #self.fadeOutCurrentScene()
-        #self.Placevalueoflargernumbers()
-        #self.fadeOutCurrentScene()
-        #self.largeNumbersUsedInDailyLifeSituations()
+        self.fadeOutCurrentScene()
+        self.REVISIONOFPLACEVALUE()
+        self.fadeOutCurrentScene()
+        self.Placevalueoflargernumbers()
+        self.fadeOutCurrentScene()
+        self.comparisionofindianinternationalsystems()
+        self.fadeOutCurrentScene()
+        self.largeNumbersUsedInDailyLifeSituations()
 
 
 
 
     def finding_largest_smallestNumbers(self):
 
-        union = Text("Estimating And Comaring Numbers",color=DARK_BROWN,font_size=37).to_edge(UP*1)
-        sub_title1 = Text("We can find  the largest and smallest numbers by following steps:",font_size=29).to_edge(UP*3)
-        sub_title2 = Text("Step 1: start counting number of digits of a given numbers,",font_size=29).to_edge(UP*4.75+LEFT *1)
-        sub_title3 = Text(" if number of digits are more, then that number is larger number",font_size=29).to_edge(UP*6.25)
-        sub_title4 = Text("Step 2: if the numbers of digits of a given numbers are same,",font_size=29).to_edge(UP*8+ LEFT * 1)
-        sub_title5 = Text("then start comparing first digit from left side of a given numbers",font_size=29).to_edge(UP*9.5)
-        sub_title6 = Text("Step 3: if the first digit from left side of a number is larger ",font_size=29).to_edge(UP*11.25+LEFT * 1)
-        sub_title7 = Text("then that number is largest number of given all the numbers ",font_size=29).to_edge(UP*12.75)
-        sub_title8 = Text("Step 4: if the first digit from left side are same then comare with next digit",font_size=29).to_edge(UP*14.5+LEFT * 1)
+        union = Text("Estimating And Comaring Numbers",color=PURPLE_B,font_size=37).to_edge(UP*1)
+        sub_title1 = Text("Identify the greatest and smallest among the following numbers .",font_size=28).to_edge(UP*3+LEFT*1)
+        sub_title2 = Text("We can identify them easily by simply counting the digits in the numbers.",font_size=28).to_edge(UP*11+LEFT *1)
+        sub_title3 = Text("For example,",font_size=28,color=YELLOW).to_edge(UP*12.5+LEFT*1)
+        sub_title4 = Text("The numbers having five digits are greater than numbers having two digit.",font_size=28).to_edge(UP*14+LEFT*1)
         
+
+        
+        #We can identify them easily by simply counting the digits in the numbers.
+
+
+
+        # Table data
+        headers = ["S.No.", "Numbers", "Greatest Number", "Smallest Number"]
+        row1 = ["1", " 3845, 485, 34, 13845", " 13845", "34"]
+        row2 = ["2", " 856, 1459, 35851, 23", "35851", "23"]
+        row3 = ["3", " 39, 748, 19651, 7850", "19651", "39"]
+
+        # Combine headers and rows
+        table_data = [headers, row1, row2, row2]
+
+        # Create the table
+        table = Table(
+            table_data,
+            include_outer_lines=True,
+            h_buff=1,
+            v_buff=1.5,
+            line_config={"stroke_width": 2}
+        )
+
+        # Scale the table and adjust position if needed
+        table.scale(0.35).to_edge(UP* 4.5)
 
 
         self.play(Write(union))
+        self.wait(2)
         self.play(Write(sub_title1))
-        self.wait(1)
+        self.wait(2)
         self.play(Write(sub_title2))
-        self.wait(1)
+        self.wait(2)
         self.play(Write(sub_title3))
-        self.wait(1)
+        self.wait(2)
         self.play(Write(sub_title4))
-        self.wait(1)
-        self.play(Write(sub_title5))
-        self.wait(1)
-        self.play(Write(sub_title6))
-        self.wait(1)
-        self.play(Write(sub_title7))
-        self.wait(1)
-        self.play(Write(sub_title8))
-        self.wait(1)
-        self.play(FadeOut(sub_title8), FadeOut(sub_title7), FadeOut(sub_title6), FadeOut(sub_title5), FadeOut(sub_title4), FadeOut(sub_title3), FadeOut(sub_title2), FadeOut(sub_title1),FadeOut(union))
+        self.wait(2)
+        self.play(Create(table))
+        self.wait(4)
+
+        self.play(FadeOut(sub_title2),FadeOut(sub_title1), FadeOut(sub_title4), FadeOut(sub_title3),FadeOut(table), FadeOut(union))
+
+
+
+        heading = MarkupText(
+            "<span foreground='PURPLE'>Example :</span>         585 , 9535 , 9678 , 44",
+            font_size=34
+        ).to_edge(UP*1+LEFT * 1)
+        sub_title1 = Text("For finding largest number with equal number of digits  there are two cases :",font_size=29).to_edge(UP*2.75+LEFT *1)
+        sub_title2 = MarkupText(
+            "<span foreground='yellow'>Case 1 :</span>  if the numbers of digits of a given numbers are same (9535 , 9678)",
+            font_size=29
+        ).to_edge(UP*4.75+LEFT*1)
+        sub_title3 = Text("then start comparing first digit from left side of a given numbers .",font_size=29).to_edge(UP*6.25+LEFT *2)
+        sub_title4 = Text("from numbers 9535 and 9635 comparing first digit from left 9 = 9",font_size=29).to_edge(UP*7.75+LEFT *2)
+        sub_title5 = MarkupText(
+            "<span foreground='yellow'>Case 2 :</span>  if the first digit from left side are same then compare the next place",
+            font_size=29
+        ).to_edge(UP*9.25+LEFT * 1)
+        sub_title6 = Text("from numbers 9535 and 9635 comparing second digit from left 5 < 6",font_size=29).to_edge(UP*10.75+LEFT *2)
+        sub_title7 = Text("so the number 9535 < 9635. so the greatest nuber is 9635.",font_size=29).to_edge(UP*12.25+LEFT * 2)
+        sub_title8 = Text("next step we can arrange these numbers in a Assending and Descending order.",font_size=29,color=GRAY).to_edge(UP*14+LEFT * 1)
         
-    
-    def difference_scene(self):    
-        heading = Text("Example: 585, 9535, 9678, 44",color=DARK_BROWN,font_size=37).to_edge(UP*1.25+LEFT * 2)
-        sub_title1 = Text("Step 1: number of digits of given numbers are : 3 , 4, 4, 2",font_size=29).to_edge(UP*3+LEFT *1)
-        sub_title2 = Text("so the number 44 is smallest number because it has less nnumber of digits ",font_size=29).to_edge(UP*4.75)
-        sub_title3 = Text("Step 2: if the numbers of digits of a given numbers are same,",font_size=29).to_edge(UP*6.25+LEFT *1)
-        sub_title4 = Text("then start comparing first digit from left side of a given numbers",font_size=29).to_edge(UP*8)
-        sub_title5 = Text("from numbers 9535 and 9635 comparing first digits from left 9 > 9",font_size=29).to_edge(UP*9.5)
-        sub_title6 = Text("Step 4: if the first digit from left side are same then comare with next digit",font_size=29).to_edge(UP*11.25+LEFT * 1)
-        sub_title7 = Text("from numbers 9535 and 9635 comparing second digit from left 5 < 6 ",font_size=29).to_edge(UP*12.75)
-        sub_title8 = Text("so the number 9535 < 9635. so the greatest nuber is 9635.",font_size=29).to_edge(UP*14.5+LEFT * 1)
-       
+
 
         self.play(Write(heading))
+        self.wait(1)
         self.play(Write(sub_title1))
-        self.wait(1)
+        self.wait(2)
         self.play(Write(sub_title2))
-        self.wait(1)
+        self.wait(3)
         self.play(Write(sub_title3))
-        self.wait(1)
+        self.wait(3)
         self.play(Write(sub_title4))
-        self.wait(1)
+        self.wait(3)
         self.play(Write(sub_title5))
-        self.wait(1)
+        self.wait(3)
         self.play(Write(sub_title6))
-        self.wait(1)
+        self.wait(3)
         self.play(Write(sub_title7))
-        self.wait(1)
+        self.wait(3)
         self.play(Write(sub_title8))
-        self.wait(1)
+        self.wait(3)
+
         self.play(FadeOut(sub_title8), FadeOut(sub_title7), FadeOut(sub_title6), FadeOut(sub_title5), FadeOut(sub_title4), FadeOut(sub_title3), FadeOut(sub_title2), FadeOut(sub_title1),FadeOut(heading))
+
 
     def ascendinganddescendingorder(self):  
 
-        heading = Text("Assending order:",color=DARK_BROWN,font_size=37).to_edge(UP*1.25+LEFT * 1)
+        heading = Text("Assending order :",color=DARK_BROWN,font_size=37).to_edge(UP*1.25+LEFT * 1)
         sub_title1 = Text("Ascending order is the arrangement of elements from smallest to largest.",font_size=29).to_edge(UP*3)
-        sub_title2 = Text("for the above Example: 585, 9535, 9678, 44 ",font_size=29).to_edge(UP*4.75)
-        sub_title3 = Text("Assending order is  44 , 585 , 9535 , 9678",font_size=29).to_edge(UP*6.6)
-        heading2 = Text("Descending order:",color=DARK_BROWN,font_size=37).to_edge(UP*9+LEFT * 1)
+        sub_title2 = Text("for the previous example:  585 , 9535 , 9678 , 44 ",font_size=29).to_edge(UP*4.75)
+        sub_title3 = Text("Assending order is     44 , 585 , 9535 , 9678",font_size=29).to_edge(UP*6.6)
+        heading2 = Text("Descending order :",color=PINK,font_size=37).to_edge(UP*9+LEFT * 1)
         sub_title5 = Text("Descending order is the arrangement of elements from largest to smallest.",font_size=29).to_edge(UP*10.5)
-        sub_title6 = Text("for the above Example: 585, 9535, 9678, 44 ",font_size=29).to_edge(UP*12)
-        sub_title7 = Text("Descending order is  44 , 585 , 9535 , 9678",font_size=29).to_edge(UP*13.5)
+        sub_title6 = Text("for the above example:   585 , 9535 , 9678 , 44 ",font_size=29).to_edge(UP*12)
+        sub_title7 = Text("Descending order is     9678 , 9535 , 585 , 44",font_size=29).to_edge(UP*13.5)
         
         self.play(Write(heading))
         self.play(Write(sub_title1))
@@ -114,15 +145,15 @@ class MoveImageeee(AbstractAnim):
         self.play(Write(sub_title7))
 
 
-
-
     def RoundoffNumbers(self):
 
-        union = Text("Estimating And Rounding Off Numbers ",color=DARK_BROWN,font_size=37).to_edge(UP*1)
-        sub_title1 = Text("We usually round off the numbers to the nearest 10's(Tens),",font_size=29).to_edge(UP*3)
-        sub_title2 = Text("100's(Hundreds),1000's (Thousands), 10000's (Ten Thousands)... etc.",font_size=29).to_edge(UP*4.75)
-        sub_title3 = Text("Rounding off the numbers to the nearest tens:",font_size=29,color=LIGHT_GRAY).to_edge(UP*8+LEFT *1)
-       
+        union = Text("Estimating And Rounding Off Numbers ", color=DARK_BROWN, font_size=37).to_edge(UP*1)
+        sub_title1 = Text("We usually round off the numbers to the nearest 10's(Tens),", font_size=29).to_edge(UP*3)
+        sub_title2 = Text("100's(Hundreds), 1000's (Thousands), 10000's (Ten Thousands)... etc.", font_size=29).to_edge(UP*4.75)
+        sub_title3 = Text("Rounding off the numbers to the nearest tens:", font_size=30, color=GREY).to_edge(UP*6.5+LEFT *1)
+        sub_title4 = Text("82 is near to 80 than 90, and 87 is near to 90 than 80.", font_size=29).to_edge(UP*8)
+        sub_title5 = Text("85 is at equal distance from 80 and 90.", font_size=29).to_edge(UP*9.5)
+        
         self.play(Write(union))
         self.play(Write(sub_title1))
         self.wait(1)
@@ -130,7 +161,10 @@ class MoveImageeee(AbstractAnim):
         self.wait(1)
         self.play(Write(sub_title3))
         self.wait(1)
-
+        self.play(Write(sub_title4))
+        self.wait(1)
+        self.play(Write(sub_title5))
+        self.wait(1)
 
         # Create number line from 80 to 90 with slower playback speed
         number_line = NumberLine(
@@ -138,16 +172,16 @@ class MoveImageeee(AbstractAnim):
             length=10,
             include_numbers=True,
             label_direction=UP
-        ).to_edge(UP*11)
+        ).to_edge(UP*12)
 
         # Create circles for the numbers to be rounded
-        circle_83 = Circle(radius=0.5, color=BLUE).move_to(number_line.n2p(83) + UP * 0.3)
+        circle_82 = Circle(radius=0.5, color=BLUE).move_to(number_line.n2p(82) + UP * 0.3)
         circle_85 = Circle(radius=0.5, color=BLUE).move_to(number_line.n2p(85) + UP * 0.2)
         circle_87 = Circle(radius=0.5, color=BLUE).move_to(number_line.n2p(87) + UP * 0.3)
 
-        # Create curved arrows for rounding off 83 to 80
-        arrow_83_to_80 = ArcBetweenPoints(
-            start=circle_83.get_center() + UP * 0.5,
+        # Create curved arrows for rounding off 82 to 80
+        arrow_82_to_80 = ArcBetweenPoints(
+            start=circle_82.get_center() + UP * 0.5,
             end=number_line.n2p(80),
             angle=TAU / 4,
             color=PINK
@@ -179,11 +213,11 @@ class MoveImageeee(AbstractAnim):
         # Add all elements to the scene with adjusted run_time
         self.play(Create(number_line), run_time=3)  # Adjust run_time as needed
         self.wait(1)
-        self.play(Create(circle_83))
+        self.play(Create(circle_82))
         self.play(Create(circle_85))
         self.play(Create(circle_87))
         self.wait(1)
-        self.play(Create(arrow_83_to_80))
+        self.play(Create(arrow_82_to_80))
         self.wait(1)
         self.play(Create(arrow_87_to_90))
         self.wait(1)
@@ -193,108 +227,89 @@ class MoveImageeee(AbstractAnim):
         # Wait before ending the scene
         self.wait(2)
 
-        # To render the scene, you would typically run the following command in your terminal:
-        # manim -pql your_script_name.py RoundingOff
+        # Fade out everything before ending the scene
+        self.play(FadeOut(VGroup(union, sub_title1, sub_title2, sub_title3, sub_title4, sub_title5, 
+                                 number_line, circle_82, circle_85, circle_87, 
+                                 arrow_82_to_80, arrow_87_to_90, arrow_85_to_80, arrow_85_to_90)))
+
+        self.wait(2)
+
+    
+     
+
+        union = Text("Rounding off the numbers to nearest hundreds : ", color=ORANGE, font_size=31).to_edge(UP*1+LEFT*1)
+        sub_title1 = Text("220 is nearer to 200 than 300, so 220 is rounded off to 200.", font_size=29).to_edge(UP*6)
+        sub_title2 = Text("280 is nearer to 300 than 200, so it is rounded off to 300.", font_size=29).to_edge(UP*7.5)
+        sub_title3 = MarkupText(
+            "<span foreground='grey'>Compare the last digit:</span>   If the last digit is 5 or greater, we round up.",
+            font_size=29
+        ).to_edge(UP*9+LEFT *1)
+        sub_title4 = Text("If it's less than 5, we round down.", font_size=29).to_edge(UP*10.5+LEFT*10)
+        sub_title5 = Text("Since the tens digit(250) is exactly 5, we round up to the next hundred.", font_size=29).to_edge(UP*12)
+        sub_title6 = Text("Therefore, 250 is rounded off to 300 ", font_size=29).to_edge(UP*13.5)
 
 
-    def comparisionofindianinternationalsystems(self):
-        # Title
-        title = Text("Comparison of Indian and International Numeration Systems", font_size=30,color=BLUE).to_edge(UP * 1)
-        sub_title1 = Text("Let us compare the places in both the systems :",font_size=29).to_edge(UP*2.75+LEFT*1)
+        # Create number line from 200 to 300
+        number_line = NumberLine(
+            x_range=[200, 300, 10],
+            length=10,
+            include_numbers=True,
+            label_direction=UP
+        ).to_edge(UP*3.5)  # Adjusted to fit well within the scene
 
-        sub_title2 = Text("From the above table, the relation between these systems understood as follows:",font_size=27).to_edge(UP* 9+LEFT*1)
-        sub_title3 = Text("10 lakhs = 1 million",font_size=29).to_edge(UP*10.5)
-        sub_title4 = Text("1 crore = 10 million",font_size=29).to_edge(UP*12)
-        sub_title5 = Text("10 crore = 100 million",font_size=29).to_edge(UP*13.5)
-        sub_title6 = Text("100 crore = 1 billion",font_size=29).to_edge(UP*15)
-        
-        self.play(Write(title))
+        # Create circles for the numbers to be rounded
+        circle_220 = Circle(radius=0.5, color=BLUE).move_to(number_line.n2p(220) + UP * 0.3)
+        circle_280 = Circle(radius=0.5, color=BLUE).move_to(number_line.n2p(280) + UP * 0.3)
+
+        # Create curved arrows for rounding off 220 to 200
+        arrow_220_to_200 = ArcBetweenPoints(
+            start=circle_220.get_center() + UP * 0.5,
+            end=number_line.n2p(200),
+            angle=TAU / 4,
+            color=PINK
+        ).add_tip(tip_length=0.2)
+
+        # Create curved arrows for rounding off 280 to 300
+        arrow_280_to_300 = ArcBetweenPoints(
+            start=circle_280.get_center() + UP * 0.5,
+            end=number_line.n2p(300),
+            angle=-TAU / 4,
+            color=PINK
+        ).add_tip(tip_length=0.2)
+
+
+        self.play(Write(union))
+
+        # Add all elements to the scene with adjusted run_time
+        self.play(Create(number_line), run_time=3)  # Adjust run_time as needed
+        self.wait(1)
+        self.play(Create(circle_220))
+        self.play(Create(circle_280))
+        self.wait(1)
+        self.play(Create(arrow_220_to_200))
+        self.wait(1)
+        self.play(Create(arrow_280_to_300))
+
+        # Wait before ending the scene
         self.wait(2)
         self.play(Write(sub_title1))
         self.wait(1)
-        
-        # Table data
-        data = [
-            ["Indian System", "H.Cr.", "Ten.Cr.", "Crore", "Ten.La.", "Lakh", "Ten Th.", "Thousand", "Hundred", "Tens", "Ones"],
-            ["International System", "Billion", "Hund. Million", "Ten Million", "Million", "Hund. Th.", "Ten Th.", "Thousand", "Hundred", "Tens", "Ones"]
-        ]
-
-        # Create the table
-        table = Table(
-            data,
-            include_outer_lines=True,
-            h_buff=0.7,
-            v_buff=2,
-        )
-
-        # Scale the table and adjust position if needed
-        table.scale(0.35).to_edge(UP * 4.5)
-
-        # Draw the table
-        self.play(Create(table))
-        self.wait(4)
-
         self.play(Write(sub_title2))
-        self.wait(2)
+        self.wait(1)
         self.play(Write(sub_title3))
-        self.wait(2)
+        self.wait(1)
         self.play(Write(sub_title4))
-        self.wait(2)
+        self.wait(1)
         self.play(Write(sub_title5))
-        self.wait(2)
+        self.wait(1)
         self.play(Write(sub_title6))
-
-        self.play(FadeOut(table), FadeOut(sub_title6), FadeOut(sub_title5), FadeOut(sub_title4), FadeOut(sub_title3), FadeOut(sub_title2), FadeOut(sub_title1),FadeOut(title))
-
-
-
-        # Heading with highlighted part
-        heading_part1 = Text("Indian System:", font_size=30, t2c={"Indian System": YELLOW}).to_edge(UP*1.25 + LEFT * 1)
-        heading_part2 = Text(" Commas are placed every two digits from the right.", font_size=30).next_to(heading_part1, RIGHT)
-        heading = VGroup(heading_part1, heading_part2)
-
-        # Subtitle with highlighted part
-        sub_title1_part1 = Text("International System:", font_size=29, t2c={"International System": YELLOW}).to_edge(UP*3+ LEFT * 1)
-        sub_title1_part2 = Text(" Commas are placed every three digits from the right.", font_size=29).next_to(sub_title1_part1, RIGHT)
-        sub_title1 = VGroup(sub_title1_part1, sub_title1_part2)
-
-        # Subtitle about the number
-        sub_title2 = Text("Suppose the number is  45690255 ", font_size=29).to_edge(UP*5.75 + LEFT * 1)
-
-        # Play animations to display the headings and subtitles
-        self.play(Write(heading))
-        self.wait(2)
-        self.play(Write(sub_title1))
-        self.wait(2)
-        self.play(Write(sub_title2))
         self.wait(1)
 
-        # Table data
-        data = [
-            ["4,56,90,255", "45,690,255"],
-            ["Four crore fifty six lakhs ninety thousand two hundred and fifty five.",
-             "Forty five million six hundred ninety thousand two hundred fifty five."]
-        ]
 
-        # Create the table with custom font sizes
-        table = Table(
-            data,
-            include_outer_lines=True,
-            h_buff=1.2,
-            v_buff=3.5,
-            col_labels=[Text("Indian system of numeration"), Text("International system of numeration")],
-        )
 
-        # Increase font size for rows 1 and 2
-        table.get_rows()[0].scale(1.2)  # Increase font size for the first row
-        table.get_rows()[1].scale(1.2)  # Increase font size for the second row
 
-        # Scale the table and adjust position if needed
-        table.scale(0.3).to_edge(UP*7)
-
-        # Draw the table
-        self.play(Create(table))
-        self.wait(2)
+        # Fade out everything before ending the scene
+        self.play(*[FadeOut(mob) for mob in self.mobjects])
 
 
 
@@ -566,6 +581,108 @@ class MoveImageeee(AbstractAnim):
 
 
 
+    def comparisionofindianinternationalsystems(self):
+        # Title
+        title = Text("Comparison of Indian and International Numeration Systems", font_size=30,color=BLUE).to_edge(UP * 1)
+        sub_title1 = Text("Let us compare the places in both the systems :",font_size=29).to_edge(UP*2.75+LEFT*1)
+
+        sub_title2 = Text("From the above table, the relation between these systems understood as follows:",font_size=27).to_edge(UP* 9+LEFT*1)
+        sub_title3 = Text("10 lakhs = 1 million",font_size=29).to_edge(UP*10.5)
+        sub_title4 = Text("1 crore = 10 million",font_size=29).to_edge(UP*12)
+        sub_title5 = Text("10 crore = 100 million",font_size=29).to_edge(UP*13.5)
+        sub_title6 = Text("100 crore = 1 billion",font_size=29).to_edge(UP*15)
+        
+        self.play(Write(title))
+        self.wait(2)
+        self.play(Write(sub_title1))
+        self.wait(1)
+        
+        # Table data
+        data = [
+            ["Indian System", "H.Cr.", "Ten.Cr.", "Crore", "Ten.La.", "Lakh", "Ten Th.", "Thousand", "Hundred", "Tens", "Ones"],
+            ["International System", "Billion", "Hund. Million", "Ten Million", "Million", "Hund. Th.", "Ten Th.", "Thousand", "Hundred", "Tens", "Ones"]
+        ]
+
+        # Create the table
+        table = Table(
+            data,
+            include_outer_lines=True,
+            h_buff=0.7,
+            v_buff=2,
+        )
+
+        # Scale the table and adjust position if needed
+        table.scale(0.35).to_edge(UP * 4.5)
+
+        # Draw the table
+        self.play(Create(table))
+        self.wait(4)
+
+        self.play(Write(sub_title2))
+        self.wait(2)
+        self.play(Write(sub_title3))
+        self.wait(2)
+        self.play(Write(sub_title4))
+        self.wait(2)
+        self.play(Write(sub_title5))
+        self.wait(2)
+        self.play(Write(sub_title6))
+
+        self.play(FadeOut(table), FadeOut(sub_title6), FadeOut(sub_title5), FadeOut(sub_title4), FadeOut(sub_title3), FadeOut(sub_title2), FadeOut(sub_title1),FadeOut(title))
+
+
+
+        # Heading with highlighted part
+        heading_part1 = Text("Indian System:", font_size=30, t2c={"Indian System": YELLOW}).to_edge(UP*1.25 + LEFT * 1)
+        heading_part2 = Text(" Commas are placed every two digits from the right.", font_size=30).next_to(heading_part1, RIGHT)
+        heading = VGroup(heading_part1, heading_part2)
+
+        # Subtitle with highlighted part
+        sub_title1_part1 = Text("International System:", font_size=29, t2c={"International System": YELLOW}).to_edge(UP*3+ LEFT * 1)
+        sub_title1_part2 = Text(" Commas are placed every three digits from the right.", font_size=29).next_to(sub_title1_part1, RIGHT)
+        sub_title1 = VGroup(sub_title1_part1, sub_title1_part2)
+
+        # Subtitle about the number
+        sub_title2 = Text("Suppose the number is  45690255 ", font_size=29).to_edge(UP*5.75 + LEFT * 1)
+
+        # Play animations to display the headings and subtitles
+        self.play(Write(heading))
+        self.wait(2)
+        self.play(Write(sub_title1))
+        self.wait(2)
+        self.play(Write(sub_title2))
+        self.wait(1)
+
+        # Table data
+        data = [
+            ["4,56,90,255", "45,690,255"],
+            ["Four crore fifty six lakhs ninety thousand two hundred and fifty five.",
+             "Forty five million six hundred ninety thousand two hundred fifty five."]
+        ]
+
+        # Create the table with custom font sizes
+        table = Table(
+            data,
+            include_outer_lines=True,
+            h_buff=1.2,
+            v_buff=3.5,
+            col_labels=[Text("Indian system of numeration"), Text("International system of numeration")],
+        )
+
+        # Increase font size for rows 1 and 2
+        table.get_rows()[0].scale(1.2)  # Increase font size for the first row
+        table.get_rows()[1].scale(1.2)  # Increase font size for the second row
+
+        # Scale the table and adjust position if needed
+        table.scale(0.3).to_edge(UP*7)
+
+        # Draw the table
+        self.play(Create(table))
+        self.wait(2)
+
+
+
+
     def largeNumbersUsedInDailyLifeSituations(self):
         # Title
         title = Text("LARGE NUMBERS USED IN DAILY LIFE SITUATIONS", font_size=30, color=BLUE).to_edge(UP * 1)
@@ -668,10 +785,19 @@ class MoveImageeee(AbstractAnim):
         self.play(FadeOut(sub_title8),FadeOut(sub_title7),FadeOut(sub_title6), FadeOut(sub_title5), FadeOut(sub_title4), FadeOut(sub_title3), FadeOut(sub_title2), FadeOut(sub_title1), FadeOut(title))
 
 
+    def SetDeveloperList(self):  
+        self.DeveloperList="Raghu"
+
+        
+    def SetSourceCodeFileName(self):
+        self.SourceCodeFileName="KnowingNumbers.py"
+
+
+
 
 
 
 
 if __name__ == "__main__":
-    scene = MoveImageeee()
+    scene = KnowingNumbers()
     scene.render()
