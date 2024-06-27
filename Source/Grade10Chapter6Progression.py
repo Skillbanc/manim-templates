@@ -12,9 +12,7 @@ class Progression(AbstractAnim):
         self.definition()
         self.fadeOutCurrentScene()
         self.AP()
-        self.fadeOutCurrentScene()
-        self.generalform()
-        self.fadeOutCurrentScene()
+        self.fadeOutCurrentScene() 
         self.nthterm()
         self.fadeOutCurrentScene()
         self.formula()
@@ -28,8 +26,6 @@ class Progression(AbstractAnim):
         self.definition1()
         self.fadeOutCurrentScene()
         self.GP()
-        self.fadeOutCurrentScene()
-        self.generalform1()
         self.fadeOutCurrentScene()
         self.nthterm1()
         self.fadeOutCurrentScene()
@@ -79,28 +75,21 @@ class Progression(AbstractAnim):
     
 
     def AP(self):
-        self.setNumberOfCirclePositions(2)
-        self.angleChoice = [TAU/4]
+        self.setNumberOfCirclePositions(4)
+        self.angleChoice = [TAU/4,TAU/4,TAU/4]
         self.isRandom = False
-        p10=cvo.CVO().CreateCVO("Arithemetic Progression","")
-        p11=cvo.CVO().CreateCVO("General form","a,a+d,a+2d,a+3d.....")
+        p10=cvo.CVO().CreateCVO("Arithemetic Progression","").setPosition([-4,0,0])
+        p11=cvo.CVO().CreateCVO("General form","a,a+d,a+2d,a+3d.....").setPosition([-1,0,0])
+        p12=cvo.CVO().CreateCVO("First term","a").setPosition([3,2,0])
+        p13=cvo.CVO().CreateCVO("Common difference","d").setPosition([3,-2,0])
         p11.setcircleradius(1.5)
         p10.cvolist.append(p11)
+        p11.cvolist.append(p12)
+        p11.cvolist.append(p13)
         self.construct1(p10,p10)
 
 
-    def generalform(self):
-        self.setNumberOfCirclePositions(3)
-        self.isRandom = False
-
-        p10=cvo.CVO().CreateCVO("General Form","a,a+d,a+2d,a+3d.....")
-        p11=cvo.CVO().CreateCVO("First term","a")
-        p12=cvo.CVO().CreateCVO("Common difference","d")
-        p10.setcircleradius(1.5)
-        p10.cvolist.append(p11)
-        p10.cvolist.append(p12)
-        
-        self.construct1(p10,p10)
+   
 
 
     def nthterm(self):
@@ -267,30 +256,22 @@ class Progression(AbstractAnim):
 
 
     def GP(self):
-        self.setNumberOfCirclePositions(2)
-        self.angleChoice = [TAU/4]
+        self.setNumberOfCirclePositions(4)
+        self.angleChoice = [TAU/4,TAU/4,TAU/4]
         self.isRandom = False
-        p10=cvo.CVO().CreateCVO("Geometric Progression","")
+        p10=cvo.CVO().CreateCVO("Geometric Progression","").setPosition([-4,0,0])
 
-        p11=cvo.CVO().CreateCVO("General form","a,ar,ar^2,ar^3....")
+        p11=cvo.CVO().CreateCVO("General form","a,ar,ar^2,ar^3....").setPosition([-1,0,0])
+        p12=cvo.CVO().CreateCVO("First term","a").setPosition([3,2,0])
+        p13=cvo.CVO().CreateCVO("Common ratio","r").setPosition([3,-2,0])
         p11.setcircleradius(1.5)
         p11.SetIsMathText(True)
         p10.cvolist.append(p11)
+        p11.cvolist.append(p12)
+        p11.cvolist.append(p13)
         self.construct1(p10,p10)
 
-    def generalform1(self):
-        self.setNumberOfCirclePositions(3)
-        self.isRandom = False
-
-        p10=cvo.CVO().CreateCVO("General Form","a,ar,ar^2,ar^3....")
-        p11=cvo.CVO().CreateCVO("First term","a")
-        p12=cvo.CVO().CreateCVO("Common ratio","r")
-        p10.SetIsMathText(True)
-        p10.setcircleradius(1.5)
-        p10.cvolist.append(p11)
-        p10.cvolist.append(p12)
-        
-        self.construct1(p10,p10)
+   
 
     def nthterm1(self):
         self.setNumberOfCirclePositions(2)
