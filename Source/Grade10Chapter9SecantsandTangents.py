@@ -18,6 +18,10 @@ class secantsandtangents(AbstractAnim):
         self.triangle() 
         self.GithubSourceCodeReference()
     def circles(self):
+        def __init__(self, **kwargs):
+            super().__init__(**kwargs)
+        self.RenderSkillbancLogo()
+        self.fadeOutCurrentScene()
         self.isRandom = False
         self.positionChoice = [[-5,0,0],[5,2,0],[5,-3,0]]
         p10=cvo.CVO().CreateCVO("Circles","")
@@ -301,6 +305,7 @@ class secantsandtangents(AbstractAnim):
 
         # Pause for a moment to display the result
         self.wait(2)
+        self.fadeOutCurrentScene()
     def SetDeveloperList(self): 
        self.DeveloperList="Abhiram" 
 
