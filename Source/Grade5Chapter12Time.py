@@ -34,7 +34,7 @@ class TimeAnim(AbstractAnim):
         self.DeveloperList="Hriday Bhushan"
 
     def SetSourceCodeFileName(self):
-        self.SourceCodeFileName="Grade5Chap12Time.py"
+        self.SourceCodeFileName="Grade5Chapter12Time.py"
     
     # render using CVO data object
     def Time(self):
