@@ -263,6 +263,8 @@ class AbstractAnim(Scene):
 
         
     def GithubSourceCodeReference(self): 
+        self.PurchaseSkillbancSubscription()
+        self.fadeOutCurrentScene()
         self.SetDeveloperList()
         self.SetSourceCodeFileName()
         self.colorChoice=[BLUE,ORANGE,PINK,ORANGE,PURPLE]
