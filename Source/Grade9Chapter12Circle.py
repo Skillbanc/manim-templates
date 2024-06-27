@@ -43,7 +43,7 @@ class CircleAnim(AbstractAnim):
         self.DeveloperList="Hriday Bhushan"
 
     def SetSourceCodeFileName(self):
-        self.SourceCodeFileName="Grade12Class9Circle.py"
+        self.SourceCodeFileName="Grade9Chapter12Circle.py"
 
     # render using CVO data object
     def Circle(self):
