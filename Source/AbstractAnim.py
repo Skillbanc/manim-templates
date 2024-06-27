@@ -289,7 +289,7 @@ class AbstractAnim(Scene):
         
         self.colorChoice=[BLUE,ORANGE,PINK,ORANGE,PURPLE]
         p2 = cvo.CVO().CreateCVO("For Practice Worksheets", "").setPosition([0,2.5,0])
-        p4 = cvo.CVO().CreateCVO("Purchase Skillbanc Subscription", "https://skillbanc.com/SkillbancStore").setPosition([-4,1,0]).setangle(TAU / 3)
+        p4 = cvo.CVO().CreateCVO("Purchase Skillbanc Subscription", "https://skillbanc.com/store").setPosition([-4,1,0]).setangle(TAU / 3)
         
         p2.cvolist.append(p4)
 
