@@ -145,6 +145,12 @@ class polynomials(AbstractAnim):
 
         self.wait(3)
 
+    def SetDeveloperList(self):
+        self.DeveloperList="Bhaskar"
+
+    def SetSourceCodeFileName(self):
+        self.SourceCodeFileName="Grade10Chapter3Polynomials.py"
+
 
 if __name__ == "__main__":
     scene = polynomials()
