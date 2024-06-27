@@ -288,13 +288,13 @@ class AbstractAnim(Scene):
     def PurchaseSkillbancSubscription(self): 
         
         self.colorChoice=[BLUE,ORANGE,PINK,ORANGE,PURPLE]
-        p2 = cvo.CVO().CreateCVO("For Practice Worksheets", "").setPosition([0,2.5,0])
-        p4 = cvo.CVO().CreateCVO("Purchase Skillbanc Subscription", "https://skillbanc.com/store").setPosition([-4,1,0]).setangle(TAU / 3)
+        p1 = cvo.CVO().CreateCVO("Need Help?", "We are here to support").setPosition([0,2.5,0])
+        p2 = cvo.CVO().CreateCVO("Get Skillbanc Subscription", "https://skillbanc.com/store").setPosition([-4,1,0]).setangle(TAU / 3)
         
-        p2.cvolist.append(p4)
+        p1.cvolist.append(p2)
 
         self.setNumberOfCirclePositions(2)
-        self.construct1(p2,p2)
+        self.construct1(p1,p1)
         
     def GetDeveloperList(self): 
         return self.DeveloperList
