@@ -11,6 +11,7 @@ class MultiplyandDivide(AbstractAnim):
         self.RenderSkillbancLogo()
         self.Multiplication()
         self.Mul_examples()
+        self.Pattern_in_Mul()
         self.Division()
         self.Components_of_div()
         self.Div_examples()
@@ -120,7 +121,8 @@ class MultiplyandDivide(AbstractAnim):
         self.play(Write(var8),Write(line2))
         self.wait(2)
         self.fadeOutCurrentScene()
-        
+    
+    def Pattern_in_Mul(self):
         text = Text("Q) If a box contains 200 chocolates , then").scale(0.75).to_edge(UP)
         text1 = Text("2 boxes contains = ").scale(0.75).shift(UP*2,LEFT*1)
         ans1 = MathTex("200 \\times 2 = 400").scale(0.75).next_to(text1,RIGHT)

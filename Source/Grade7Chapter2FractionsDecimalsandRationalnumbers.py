@@ -10,16 +10,31 @@ class fractionanim(AbstractAnim):
     def construct(self):
         self.RenderSkillbancLogo()
         self.Introduction()
+        self.fadeOutCurrentScene()
+        self.TypesofFraction()
+        self.fadeOutCurrentScene()
         self.Multiplication_of_frac()
-        self.reciprocal()
+        self.fadeOutCurrentScene()
+        self.Reciprocal()
+        self.fadeOutCurrentScene()
         self.Division_of_frac()
+        self.fadeOutCurrentScene()
+        self.Division_Examples()
+        self.fadeOutCurrentScene()
         self.Decimals()
+        self.fadeOutCurrentScene()
         self.Dec_addandsub()
+        self.fadeOutCurrentScene()
         self.Dec_mul()
+        self.fadeOutCurrentScene()
         self.Dec_div()
+        self.fadeOutCurrentScene()
         self.Rational()
+        self.fadeOutCurrentScene()
         self.Rat_add()
+        self.fadeOutCurrentScene()
         self.Rat_sub()
+        self.fadeOutCurrentScene()
         self.GithubSourceCodeReference()
 
     def Introduction(self):
@@ -35,7 +50,8 @@ class fractionanim(AbstractAnim):
         p13.extendOname(p13onamelist)
         p14.cvolist.append(p13)
         self.construct1(p14,p14)
-        self.fadeOutCurrentScene()
+
+    def TypesofFraction(self):
         self.angleChoice=[TAU/4,TAU/4,TAU/4]
         p14=cvo.CVO().CreateCVO("Fraction","").setPosition([-5.5,0,0])
         p15=cvo.CVO().CreateCVO("Types","").setPosition([-3,0,0])
@@ -45,7 +61,6 @@ class fractionanim(AbstractAnim):
         p15.cvolist.append(p11)
         p15.cvolist.append(p12)
         self.construct1(p14,p14)
-        self.fadeOutCurrentScene()
     
     def Multiplication_of_frac(self):
         self.angleChoice=[TAU/4]
@@ -66,9 +81,8 @@ class fractionanim(AbstractAnim):
         final_result = MathTex(r"= \frac{3}{8}").next_to(frac,RIGHT)
         self.play(Transform(result, final_result))
         self.wait(2)
-        self.fadeOutCurrentScene()
 
-    def reciprocal(self):
+    def Reciprocal(self):
         title = Text("Fraction to Reciprocal Conversion").scale(0.8).to_edge(UP)
         self.play(Write(title))
         
@@ -111,7 +125,6 @@ class fractionanim(AbstractAnim):
         p10.cvolist.append(p12)
         p10.cvolist.append(p13)
         self.construct1(p10,p10)
-        self.fadeOutCurrentScene()
 
     def Division_Examples(self):
         # Title
@@ -192,7 +205,6 @@ class fractionanim(AbstractAnim):
         p10.cvolist.append(p14)
         p10.cvolist.append(p15)
         self.construct1(p16,p16)
-        self.fadeOutCurrentScene()
 
     def Dec_addandsub(self):
         intro_text = Text("Addtion and Subratction of Decimals").to_edge(UP)
@@ -213,7 +225,6 @@ class fractionanim(AbstractAnim):
         self.play(FadeOut(res1))
         self.play(Transform(sign,sign1))
         self.play(FadeIn(res2))
-        self.fadeOutCurrentScene()
     
     def Dec_mul(self):
         text2 = Text("Multiplcation",font_size=30).to_edge(UP)
@@ -238,7 +249,6 @@ class fractionanim(AbstractAnim):
         final_result = MathTex(r"=0.6")
         self.play(Write(final_result.next_to(result1,RIGHT)))
         self.wait(1)       
-        self.fadeOutCurrentScene()
 
     def Dec_div(self):
         text2 = Text("Division",font_size=30).to_edge(UP)
@@ -264,10 +274,9 @@ class fractionanim(AbstractAnim):
         final_result = MathTex(r"=1.25")
         self.play(Write(final_result.next_to(result2,RIGHT)))
         self.wait(1)       
-        self.fadeOutCurrentScene()
     
     def Rational(self):
-        self.angleChoice=[-TAU/4,TAU/4,TAU/4]
+        self.angleChoice=[TAU/4,TAU/4,TAU/4]
         p10=cvo.CVO().CreateCVO("Rational number","").setPosition([-2,0,0])
         p12=cvo.CVO().CreateCVO("Representation","p/q").setPosition([-5.5,0,0])
         p13=cvo.CVO().CreateCVO("conditions","").setPosition([2.75,2,0])
@@ -280,7 +289,6 @@ class fractionanim(AbstractAnim):
         p10.cvolist.append(p13)
         p10.cvolist.append(p11)
         self.construct1(p10,p10)
-        self.fadeOutCurrentScene()
 
     def Rat_add(self):
         intro_text = Text("Addition of Rational Numbers", font_size=36).to_edge(UP)
@@ -310,7 +318,6 @@ class fractionanim(AbstractAnim):
         result = MathTex(r"= \frac{11}{15}").shift(UP*0.5)
         self.play(Transform(fraction1, result))
         self.wait(2)
-        self.fadeOutCurrentScene()
 
     def Rat_sub(self):
         intro_text = Text("Subtraction of Rational Numbers", font_size=36).to_edge(UP)
@@ -340,13 +347,12 @@ class fractionanim(AbstractAnim):
         result = MathTex(r"= \frac{-6}{21}").shift(UP*0.5)
         self.play(Transform(fraction1, result))
         self.wait(2)
-        self.fadeOutCurrentScene()
 
     def SetDeveloperList(self):
         self.DeveloperList="Sindhu"
     
     def SetSourceCodeFilename(self):
-        self.SourceCodeFilename="fractionanim.py"
+        self.SourceCodeFilename="Grade7FractionsDecimalsandRationalnumbers.py"
 
               
 if __name__ == "__main__":
