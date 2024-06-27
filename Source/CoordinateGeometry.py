@@ -6,32 +6,40 @@ import cvo
 
 class CoordinateGeoAnim(AbstractAnim):
     def construct(self):
-        self.distance()
+        # self.distance()
+        # self.fadeOutCurrentScene()
+        # self.distani()
+        # self.fadeOutCurrentScene()
+        # self.section()
+        # self.fadeOutCurrentScene()
+        # self.secani()
+        # self.fadeOutCurrentScene()
+        # self.midpoint()
+        # self.fadeOutCurrentScene()
+        # self.midanim()
+        # self.fadeOutCurrentScene()
+        # self.centroid()
+        # self.fadeOutCurrentScene()
+        # self.centani()
+        # self.fadeOutCurrentScene()
+        # self.triarea()
+        # self.fadeOutCurrentScene()
+        # self.slope()
+        # self.fadeOutCurrentScene()
+        # self.slopeani()
+        # self.fadeOutCurrentScene()
+        # self.herons()
+        # self.fadeOutCurrentScene()
+       # self.herani()
         self.fadeOutCurrentScene()
-        self.distani()
-        self.fadeOutCurrentScene()
-        self.section()
-        self.fadeOutCurrentScene()
-        self.secani()
-        self.fadeOutCurrentScene()
-        self.midpoint()
-        self.fadeOutCurrentScene()
-        self.midanim()
-        self.fadeOutCurrentScene()
-        self.centroid()
-        self.fadeOutCurrentScene()
-        self.centani()
-        self.fadeOutCurrentScene()
-        self.triarea()
-        self.fadeOutCurrentScene()
-        self.slope()
-        self.fadeOutCurrentScene()
-        self.slopeani()
-        self.fadeOutCurrentScene()
-        self.herons()
-        self.fadeOutCurrentScene()
-        self.herani()
-        self.fadeOutCurrentScene()
+        self.GithubSourceCodeReference()
+
+    def SetDeveloperList(self):
+        self.DeveloperList = "habeeb unissa" 
+        
+    def SetSourceCodeFileName(self):
+        self.SourceCodeFileName = "CoordinateGeometry.py"      
+
 
     def distance(self):
         self.isRandom=False
