@@ -249,7 +249,7 @@ class Numbers(AbstractAnim):
         self.wait(2)
         self.play(Write(text))
         self.wait(2)
-        self.play(FadeOut(breakdown),FadeOut(number),FadeOut(title))
+        self.play(FadeOut(breakdown),FadeOut(number),FadeOut(title),FadeOut(text))
 
     def names(self):
         self.positionChoice=[[-4,0,0],[2,2,0],[4,-2,0]]
@@ -329,7 +329,7 @@ class Numbers(AbstractAnim):
         self.DeveloperList="Gayathri Veeramreddy"
 
     def SetSourceCodeFileName(self):
-        self.SourceCodeFileName="Numbers.py"
+        self.SourceCodeFileName="Grade4Chapter4KnowingNumbers.py"
 
  
 
