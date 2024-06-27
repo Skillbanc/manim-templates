@@ -8,32 +8,32 @@ import cvo
 class Polynomial(AbstractAnim):
 
     def construct(self):
-        # self.RenderSkillbancLogo()
-        # self.Introduction()
-        # self.fadeOutCurrentScene()
-        # self.Poly_example()
-        # self.fadeOutCurrentScene()
-        # self.Degree()
-        # self.fadeOutCurrentScene()
-        # self.Typesofpoly()
-        # self.fadeOutCurrentScene()
-        # self.Poly_BasedonDegree()
-        # self.fadeOutCurrentScene()
-        # self.Poly_BasedonNoofTerms()
-        # self.fadeOutCurrentScene()
-        # self.Zeroofpoly()
-        # self.fadeOutCurrentScene()
-        # self.Dividingthepoly()
-        # self.fadeOutCurrentScene()
-        # self.PolyDivExample()
-        # self.fadeOutCurrentScene()
-        # self.Remainder_theory()
-        # self.fadeOutCurrentScene()
+        self.RenderSkillbancLogo()
+        self.Introduction()
+        self.fadeOutCurrentScene()
+        self.Poly_example()
+        self.fadeOutCurrentScene()
+        self.Degree()
+        self.fadeOutCurrentScene()
+        self.Typesofpoly()
+        self.fadeOutCurrentScene()
+        self.Poly_BasedonDegree()
+        self.fadeOutCurrentScene()
+        self.Poly_BasedonNoofTerms()
+        self.fadeOutCurrentScene()
+        self.Zeroofpoly()
+        self.fadeOutCurrentScene()
+        self.Dividingthepoly()
+        self.fadeOutCurrentScene()
+        self.PolyDivExample()
+        self.fadeOutCurrentScene()
+        self.Remainder_theory()
+        self.fadeOutCurrentScene()
         self.Factorising()
-        # self.fadeOutCurrentScene()
-        # self.Algebraic_Identities()
-        # self.fadeOutCurrentScene()
-        # self.GithubSourceCodeReference()
+        self.fadeOutCurrentScene()
+        self.Algebraic_Identities()
+        self.fadeOutCurrentScene()
+        self.GithubSourceCodeReference()
 
     def Introduction(self):
         self.angleChoice=[TAU/4,TAU/4,TAU/4,TAU/4,TAU/4]
@@ -260,85 +260,29 @@ class Polynomial(AbstractAnim):
         self.construct1(p15,p15)
 
     def Factorising(self):
-        # title = Text("Factorizing Using Sum and Product Method").scale(0.8).to_edge(UP)
-        # self.play(Write(title))
-        # text = MathTex("Expression:ax^2+bx+c").scale(0.65).next_to(title,DOWN)
-        # self.play(Write(text))
-        # text1 = MathTex("\\text{Find p and q such that } p+q=b , p \\times q= a \\times c").scale(0.65).next_to(text,DOWN)
-        # self.play(Write(text1))
-        # self.wait(2)
-        # text2 = MathTex("Example:3x^2+11x+6").scale(0.65).next_to(text1,DOWN).shift(LEFT*4,DOWN*1)
-        # self.play(Write(text2))
-        # text3 = MathTex("\\text{Let } p=2,q=9",
-        #                 "\\text{as } p+q=b \\Rightarrow 2+9=11",
-        #                 "\\text{as } p \\times q= a \\times c \\Rightarrow 2 \\times 9= 18").arrange(DOWN).scale(0.65).next_to(text2,RIGHT).shift(RIGHT*2,DOWN*1)
-        # self.play(Write(text3))
-        # self.wait(3)
-        # text4 = MathTex("=3x^2+2x+9x+6").scale(0.65).next_to(text2,DOWN).shift(RIGHT*1)
-        # self.play(Write(text4))
-        # self.wait(2)
-        # text5 = MathTex("=x(3x+2)+3(3x+2)").scale(0.65).next_to(text4,DOWN)
-        # self.play(Write(text5))
-        # self.wait(3)
-        # text6 = MathTex("Factors=(3x+2)(x+3)").scale(0.65).next_to(text5,DOWN).shift(LEFT*1,DOWN*0.5)
-        # self.play(Write(text6))
-        # self.wait(2)
-
-        # Title
-        title = Text("Factorizing Using Sum and Product Method")
-        self.play(Write(title.to_edge(UP)))
-        # self.play(title.to_edge, UP)
-        
-        # Write the general form of the quadratic equation
-        equation = MathTex("ax^2 + bx + c").next_to(title,DOWN,buff=0.3)
-        self.play(Write(equation))
-        self.wait(1)
-        
-        # Show p + q = b and p * q = a * c
-        pq_equations = VGroup(
-            MathTex("p + q = b"),
-            MathTex("p \\cdot q = a \\cdot c")
-        ).arrange(DOWN, center=False, aligned_edge=LEFT).next_to(equation,DOWN,buff=0.3)
-        
-        self.play(Write(pq_equations))
+        title = Text("Factorizing Using Sum and Product Method").scale(0.8).to_edge(UP)
+        self.play(Write(title))
+        text = MathTex("Expression:ax^2+bx+c").scale(0.65).next_to(title,DOWN)
+        self.play(Write(text))
+        text1 = MathTex("\\text{Find p and q such that } p+q=b , p \\times q= a \\times c").scale(0.65).next_to(text,DOWN)
+        self.play(Write(text1))
         self.wait(2)
-        
-        # Explain the steps
-        steps = VGroup(
-            Text("step 1 : Find two numbers p and q such that:"),
-            Text("   p + q = b"),
-            Text("   p * q = a * c"),
-            Text("2. Rewrite the middle term bx using p and q:"),
-            MathTex("ax^2 + px + qx + c"),
-            Text("3. Factor by grouping:")
-        ).arrange(DOWN, center=False, aligned_edge=LEFT).scale(0.5).next_to(pq_equations, DOWN, buff=1)
-        
-        self.play(Write(steps[0]))
-        self.play(Write(steps[1:3]))
+        text2 = MathTex("Example:3x^2+11x+6").scale(0.65).next_to(text1,DOWN).shift(LEFT*4,DOWN*1)
+        self.play(Write(text2))
+        text3 = MathTex("\\text{Let } p=2,q=9",
+                        "\\text{as } p+q=b \\Rightarrow 2+9=11",
+                        "\\text{as } p \\times q= a \\times c \\Rightarrow 2 \\times 9= 18").arrange(DOWN).scale(0.65).next_to(text2,RIGHT).shift(RIGHT*2,DOWN*1)
+        self.play(Write(text3))
+        self.wait(3)
+        text4 = MathTex("=3x^2+2x+9x+6").scale(0.65).next_to(text2,DOWN).shift(RIGHT*1)
+        self.play(Write(text4))
         self.wait(2)
-        
-        # Show the rewritten form
-        rewritten = MathTex("ax^2 + px + qx + c").next_to(steps[3], DOWN, buff=0.5)
-        self.play(Write(rewritten))
+        text5 = MathTex("=x(3x+2)+3(3x+2)").scale(0.65).next_to(text4,DOWN)
+        self.play(Write(text5))
+        self.wait(3)
+        text6 = MathTex("Factors=(3x+2)(x+3)").scale(0.65).next_to(text5,DOWN).shift(LEFT*1,DOWN*0.5)
+        self.play(Write(text6))
         self.wait(2)
-        
-        # Show the factor by grouping
-        grouping = MathTex("= x(ax + p) + c(ax + p)").next_to(rewritten, DOWN, buff=0.5)
-        self.play(Write(steps[5]))
-        self.play(Transform(rewritten, grouping))
-        self.wait(2)
-        
-        # Show the final factorized form
-        final_result = MathTex("= (ax + p)(x + c)").next_to(grouping, DOWN, buff=0.5)
-        self.play(Write(final_result))
-        self.wait(2)
-        
-        # Highlight the final factorized form
-        box = SurroundingRectangle(final_result, color=YELLOW, buff=0.2)
-        self.play(Create(box))
-        self.wait(2)
-
-
 
     def Algebraic_Identities(self):
         title = Text("ALGEBRAIC IDENTITIES").scale(0.8).to_edge(UP)
