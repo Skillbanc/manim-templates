@@ -36,7 +36,8 @@ class StatisticsAnim(AbstractAnim):
     
 
     def Statistics(self):
-        
+
+        self.isRandom = False
         p10=cvo.CVO().CreateCVO("Statistics", "").setPosition([-4,0,0])
         p11=cvo.CVO().CreateCVO("Mean", "").setPosition([1,2.5,0]).setangle(-TAU/4)
         p12=cvo.CVO().CreateCVO("Median", "").setPosition([2,0,0]).setangle(-TAU/4)
@@ -51,6 +52,8 @@ class StatisticsAnim(AbstractAnim):
         self.fadeOutCurrentScene()
 
     def Mean(self):
+
+        self.isRandom = False
         p10=cvo.CVO().CreateCVO("Mean", "").setPosition([-4,0,0])
         p11=cvo.CVO().CreateCVO("Direct Method", "").setPosition([1,2.5,0]).setangle(-TAU/4)
         
@@ -282,6 +285,7 @@ class StatisticsAnim(AbstractAnim):
 
     def Mode(self):
         
+        self.isRandom = False
         p10=cvo.CVO().CreateCVO("Mode", "").setPosition([-3,0,0])
         p11=cvo.CVO().CreateCVO("Formula", "l + ((f1 - f0) / ((2 * f1) - f0 - f2)) * h\n").setPosition([3,2,0]).setangle(-TAU/4)
         
@@ -371,7 +375,7 @@ class StatisticsAnim(AbstractAnim):
         self.fadeOutCurrentScene()
 
     def Median(self):
-
+        self.isRandom = False
         p10=cvo.CVO().CreateCVO("Median", "").setPosition([-4,0,0])
         p11=cvo.CVO().CreateCVO("Formula", "").setPosition([-1.5,0,0]).setangle(-TAU/6)
         p12=cvo.CVO().CreateCVO("n=odd", "M = (n + 1) / 2 th term\n").setPosition([3,2,0]).setangle(-TAU/6)
@@ -479,7 +483,7 @@ class StatisticsAnim(AbstractAnim):
 
     def Median4(self):
 
-        
+        self.isRandom = False
 
         p10=cvo.CVO().CreateCVO("Cumulative Frequency Distribution","").setPosition([-4,2,0])
         p11=cvo.CVO().CreateCVO("Graphical Representation", "").setPosition([-1,0,0]).setangle(-TAU/4)

@@ -20,7 +20,11 @@ class Trigonometry(AbstractAnim):
         self.fadeOutCurrentScene()
         self.Ratio4()
         self.fadeOutCurrentScene()
+        self.Proof()
+        self.fadeOutCurrentScene()
         self.Identities()
+        self.fadeOutCurrentScene()
+        self.Proof2()
         self.fadeOutCurrentScene()
         self.GithubSourceCodeReference()
                
@@ -171,7 +175,6 @@ class Trigonometry(AbstractAnim):
         self.play(Write(t3))
         self.wait(3)
 
-
     def Ratio3(self):
         text = Text("Trigonometric Ratios for specific angles").scale(0.8)
         text.center()
@@ -251,6 +254,56 @@ class Trigonometry(AbstractAnim):
         self.setNumberOfCirclePositions(7)
         self.construct1(p10,p10)
 
+    def Proof(self):
+        self.isRandom = False
+        
+        triangle1_vert = [[-2, 0, 0], [2, 0, 0], [-2, 2, 0]] 
+        triangle1 = Polygon(*triangle1_vert, color=BLUE)
+        
+        label1_A = Text("C", color=BLUE).next_to(triangle1.get_vertices()[0], LEFT).scale(0.75)
+        label1_B = Text("A", color=BLUE).next_to(triangle1.get_vertices()[1], RIGHT).scale(0.75)
+        label1_C = Text("B", color=BLUE).next_to(triangle1.get_vertices()[2], UP).scale(0.75)
+        
+        right_angle1 = Square(side_length=0.5).move_to(triangle1.get_vertices()[0] + np.array([0.25, 0.25, 0]))
+        hypotenuse = Text("Hypotenuse",color=YELLOW).next_to(Line(triangle1.get_vertices()[1], triangle1.get_vertices()[2]).get_center(), RIGHT).scale(0.4)
+        side1 = Text("Opposite",color=YELLOW).next_to(Line(triangle1.get_vertices()[0], triangle1.get_vertices()[2]), LEFT).scale(0.4)
+        side2 = Text("Adjacent",color=YELLOW).next_to(Line(triangle1.get_vertices()[0], triangle1.get_vertices()[1]).shift(4 * RIGHT), LEFT).scale(0.4)
+        side2.shift(0.5 * DOWN)
+        side1.shift(RIGHT)
+        hypotenuse.shift(0.5 * UP)
+        hypotenuse.shift(2 * LEFT)
+     
+        triangle1.shift(4 * RIGHT)
+        label1_A.shift(4 * RIGHT)
+        label1_B.shift(4 * RIGHT)
+        label1_C.shift(4 * RIGHT)
+        right_angle1.shift(4 * RIGHT)
+        hypotenuse.shift(4 * RIGHT)
+        side1.shift(4 * RIGHT)
+        side2.shift(4 * RIGHT)
+        self.wait(2)
+
+        title = Text("Proof for Complementary Angles",color= GREEN).to_edge(UP).scale(0.9)
+        underline = Underline(title)
+
+        t1 = Text("Since angle C is 90,\nThen sum of other two angles must be 90").scale(0.6)
+        t2 = Text("angleA + angleB = 90\nor angleB = 90 - angleA").scale(0.6)
+        t3 = MathTex(r"\text{Thus sin(90 - angleB) = } \frac{\text{BC}}{\text{AB}}").scale(0.8)
+
+        t1.next_to(UP).to_edge(LEFT)
+        t2.next_to(t1,DOWN, buff=0.5).to_edge(LEFT)
+        t3.next_to(t2, DOWN , buff=0.5).to_edge(LEFT)
+
+        self.play(Write(title))
+        self.play(Create(underline))
+        self.play(Create(triangle1))
+        self.play(Write(label1_A), Write(label1_B), Write(label1_C))
+        self.play(Create(right_angle1))
+        self.play(Write(hypotenuse), Write(side1),Write(side2))
+        self.play(Write(t1))
+        self.play(Write(t2))
+        self.play(Write(t3))
+        self.wait(3)
 
     def Identities(self):
         self.isRandom = False
@@ -266,6 +319,59 @@ class Trigonometry(AbstractAnim):
         self.setNumberOfCirclePositions(4)
         self.construct1(p10,p10)    
         
+    def Proof2(self):
+        self.isRandom = False
+        
+        triangle1_vert = [[-2, 0, 0], [2, 0, 0], [-2, 2, 0]] 
+        triangle1 = Polygon(*triangle1_vert, color=BLUE)
+        
+        label1_A = Text("B", color=BLUE).next_to(triangle1.get_vertices()[0], LEFT).scale(0.75)
+        label1_B = Text("C", color=BLUE).next_to(triangle1.get_vertices()[1], RIGHT).scale(0.75)
+        label1_C = Text("A", color=BLUE).next_to(triangle1.get_vertices()[2], UP).scale(0.75)
+        
+        right_angle1 = Square(side_length=0.5).move_to(triangle1.get_vertices()[0] + np.array([0.25, 0.25, 0]))
+        hypotenuse = Text("Hypotenuse",color=YELLOW).next_to(Line(triangle1.get_vertices()[1], triangle1.get_vertices()[2]).get_center(), RIGHT).scale(0.4)
+        side1 = Text("Opposite",color=YELLOW).next_to(Line(triangle1.get_vertices()[0], triangle1.get_vertices()[2]), LEFT).scale(0.4)
+        side2 = Text("Adjacent",color=YELLOW).next_to(Line(triangle1.get_vertices()[0], triangle1.get_vertices()[1]).shift(4 * RIGHT), LEFT).scale(0.4)
+        side2.shift(0.5 * DOWN)
+        side1.shift(RIGHT)
+        hypotenuse.shift(0.5 * UP)
+        hypotenuse.shift(2 * LEFT)
+     
+        triangle1.shift(4 * RIGHT)
+        label1_A.shift(4 * RIGHT)
+        label1_B.shift(4 * RIGHT)
+        label1_C.shift(4 * RIGHT)
+        right_angle1.shift(4 * RIGHT)
+        hypotenuse.shift(4 * RIGHT)
+        side1.shift(4 * RIGHT)
+        side2.shift(4 * RIGHT)
+        self.wait(2)
+
+        title = Text("Proof for Identities",color= GREEN).to_edge(UP).scale(0.9)
+        underline = Underline(title)
+
+        t1 = MathTex(r"\text{From Pythagoras theorem, } \\ AB^2 + BC^2 = AC^2").scale(0.8)
+        t2 = MathTex(r"\text{Dividing each term by } AC^2").scale(0.8)
+        t3 = MathTex(r"\frac{\text{AB}^2}{\text{AC}^2} + \frac{\text{BC}^2}{\text{AC}^2} = \frac{\text{AC}^2}{\text{AC}^2}").scale(0.8)
+        t4 = MathTex(r"cosA^2 + sinA^2 = 1")
+        t1.next_to(UP * 2).to_edge(LEFT)
+        t2.next_to(t1,DOWN, buff=0.5).to_edge(LEFT)
+        t3.next_to(t2, DOWN , buff=0.5).to_edge(LEFT)
+        t4.next_to(t3, DOWN , buff=0.5).to_edge(LEFT)
+
+        self.play(Write(title))
+        self.play(Create(underline))
+        self.play(Create(triangle1))
+        self.play(Write(label1_A), Write(label1_B), Write(label1_C))
+        self.play(Create(right_angle1))
+        self.play(Write(hypotenuse), Write(side1),Write(side2))
+        self.play(Write(t1))
+        self.play(Write(t2))
+        self.play(Write(t3))
+        self.play(Write(t4))
+        self.wait(3)
+
     def SetDeveloperList(self): 
        self.DeveloperList="Khanak Gupta" 
 
