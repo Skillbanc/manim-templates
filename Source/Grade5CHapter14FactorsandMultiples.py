@@ -20,10 +20,11 @@ class FactorsAnim(AbstractAnim):
         self.GithubSourceCodeReference() 
 
     def Factors(self):
-
+        
+        self.isRandom = False
         p10=cvo.CVO().CreateCVO("Factors and Multiples", "").setPosition([0,2,0])
-        p11=cvo.CVO().CreateCVO("Multiples", "Numbers you get when you multiply a certain number by an integer.").setPosition([-3,0,0])
-        p12=cvo.CVO().CreateCVO("Factors", "Number that divide a certain number").setPosition([3,0,0])
+        p11=cvo.CVO().CreateCVO("Multiples", "Numbers you get when you multiply a certain number by an integer.").setPosition([-3,0,0]).setangle(-TAU/4)
+        p12=cvo.CVO().CreateCVO("Factors", "Number that divide a certain number").setPosition([3,0,0]).setangle(-TAU/4)
         
        
         
@@ -38,10 +39,11 @@ class FactorsAnim(AbstractAnim):
         self.fadeOutCurrentScene()
     
     def Important(self):
-
+        
+        self.isRandom = False
         p10=cvo.CVO().CreateCVO("Multiples", "").setPosition([-3,0,0])
-        p11=cvo.CVO().CreateCVO("Multiples of 2", "Numbers that are divisible by 2").setPosition([1,2,0])
-        p12=cvo.CVO().CreateCVO("Multiples of 5", "Numbers that are divisible by 5").setPosition([1,-2,0])
+        p11=cvo.CVO().CreateCVO("Multiples of 2", "Numbers that are divisible by 2").setPosition([1,2,0]).setangle(-TAU/4)
+        p12=cvo.CVO().CreateCVO("Multiples of 5", "Numbers that are divisible by 5").setPosition([1,-2,0]).setangle(-TAU/4)
         
        
         
@@ -162,10 +164,11 @@ class FactorsAnim(AbstractAnim):
         self.fadeOutCurrentScene()
 
     def Important1(self):
-
+        
+        self.isRandom = False
         p10=cvo.CVO().CreateCVO("Factors", "").setPosition([-3,0,0])
-        p11=cvo.CVO().CreateCVO("Factors of 12", "Numbers that divide 12 without leaving a remainder").setPosition([1,2,0])
-        p12=cvo.CVO().CreateCVO("Factors of 30", "Numbers that divide 30 without leaving a remainder").setPosition([1,-2,0])
+        p11=cvo.CVO().CreateCVO("Factors of 12", "Numbers that divide 12 without leaving a remainder").setPosition([1,2,0]).setangle(-TAU/4)
+        p12=cvo.CVO().CreateCVO("Factors of 30", "Numbers that divide 30 without leaving a remainder").setPosition([1,-2,0]).setangle(-TAU/4)
         
        
         
