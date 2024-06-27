@@ -7,11 +7,13 @@ import cvo
 class polynomials(AbstractAnim):
 
     def construct(self):
+        self.RenderSkillbancLogo()
         self.ptypes()
         self.Exp()
         self.div()
         self.poly()
         self.graph()
+        self.GithubSourceCodeReference()
 
     def ptypes(self):
 
@@ -144,6 +146,7 @@ class polynomials(AbstractAnim):
         self.play(FadeIn(dots))
 
         self.wait(3)
+        self.fadeOutCurrentScene()
 
     def SetDeveloperList(self):
         self.DeveloperList="Bhaskar"
@@ -153,5 +156,5 @@ class polynomials(AbstractAnim):
 
 
 if __name__ == "__main__":
-    scene = polynomials()
+    scene=polynomials()
     scene.render()
