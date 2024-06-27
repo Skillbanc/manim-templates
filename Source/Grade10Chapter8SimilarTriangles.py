@@ -58,6 +58,14 @@ class Chap8G10_SimilarTriangles(AbstractAnim):
         self.fadeOutCurrentScene()
         self.Anim8()
         self.fadeOutCurrentScene()
+        self.GithubSourceCodeReference()
+        self.fadeOutCurrentScene()
+
+    def SetDeveloperList(self): 
+       self.DeveloperList="Prithiv Shiv M V" 
+
+    def SetSourceCodeFileName(self):
+       self.SourceCodeFileName="Grade10Chapter8SimilarTriangles.py"
 
 
         
