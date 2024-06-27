@@ -58,10 +58,12 @@ class Chap8G10_SimilarTriangles(AbstractAnim):
         self.fadeOutCurrentScene()
         self.Anim8()
         self.fadeOutCurrentScene()
+        self.GithubSourceCodeReference()
 
-
-        
-    # render using CVO data object 
+    def SetDeveloperList(self):
+        self.DeveloperList="Prithiv Shiv"
+    def SetSourceCodeFileName(self):
+        self.SourceCodeFileName="Grade10Chapter8SimilarTriangles.py"
     
     def SimTria(self):
         self.isRandom=False
