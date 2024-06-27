@@ -9,10 +9,37 @@ class sets(AbstractAnim):
     def construct(self):
         self.RenderSkillbancLogo()
         self.Introduction()
+        self.fadeOutCurrentScene()
+        self.Cardinalityofset()
+        self.fadeOutCurrentScene()
         self.Formsofset()
-        self.belongingness()
-        self.typesofsets()
-        self.operationsonset()
+        self.fadeOutCurrentScene()
+        self.Belongingness()
+        self.fadeOutCurrentScene()
+        self.Typesofsets()
+        self.fadeOutCurrentScene()
+        self.EmptySet()
+        self.fadeOutCurrentScene()
+        self.UniversalSet()
+        self.fadeOutCurrentScene()
+        self.Subset()
+        self.fadeOutCurrentScene()
+        self.FiniteSets()
+        self.fadeOutCurrentScene()
+        self.InifniteSets()
+        self.fadeOutCurrentScene()
+        self.EqualSets()
+        self.fadeOutCurrentScene()
+        self.Operationsonset()
+        self.fadeOutCurrentScene()
+        self.Union()
+        self.fadeOutCurrentScene()
+        self.Intersection()
+        self.fadeOutCurrentScene()
+        self.Difference()
+        self.fadeOutCurrentScene()
+        self.DisjointSets()
+        self.fadeOutCurrentScene()
         self.GithubSourceCodeReference()
 
     def Introduction(self):
@@ -27,7 +54,16 @@ class sets(AbstractAnim):
         p12.cvolist.append(p13)
         p12.cvolist.append(p14)
         self.construct1(p10,p10)
-        self.fadeOutCurrentScene()
+
+    def Cardinalityofset(self):
+        self.angleChoice=[TAU/4,TAU/4]
+        p10=cvo.CVO().CreateCVO("Cardinality of Set","").setPosition([-3,-1,0])
+        p11=cvo.CVO().CreateCVO("Definition","no. of elements in a set").setPosition([3,2,0])
+        p11.setcircleradius(2)
+        p12=cvo.CVO().CreateCVO("Representation","n(A)").setPosition([3,-2,0])
+        p10.cvolist.append(p11)
+        p10.cvolist.append(p12)
+        self.construct1(p10,p10)
     
     def Formsofset(self):
         self.angleChoice=[TAU/4,TAU/4,TAU/4,TAU/4]
@@ -45,9 +81,8 @@ class sets(AbstractAnim):
         p11.cvolist.append(p13)
         self.construct1(p14,p14)
         self.construct1(p11,p11)
-        self.fadeOutCurrentScene()
 
-    def belongingness(self):
+    def Belongingness(self):
         self.angleChoice=[TAU/4,TAU/4,TAU/4,TAU/4]
         p10=cvo.CVO().CreateCVO("Belongs Symbol","$\in$").setPosition([-4,2.5,0])
         p11=cvo.CVO().CreateCVO("Doesnot Belong Symbol","$ \\notin $").setPosition([3,2.5,0])
@@ -59,10 +94,24 @@ class sets(AbstractAnim):
         self.construct1(p10,p10)
         self.construct1(p11,p11)
         self.construct1(p12,p12)
-        self.fadeOutCurrentScene()
 
-    def typesofsets(self):
-        self.angleChoice=[TAU/4,TAU/4,TAU/4,TAU/4]
+    def Typesofsets(self):
+        self.angleChoice=[TAU/4,TAU/4,TAU/4,TAU/4,TAU/4]
+        p10=cvo.CVO().CreateCVO("Types of Sets","").setPosition([-4,0,0])
+        p11=cvo.CVO().CreateCVO("Empty Set","").setPosition([-1.5,2,0])
+        p12=cvo.CVO().CreateCVO("Universal Set","").setPosition([1.5,2,0])
+        p13=cvo.CVO().CreateCVO("Subset","").setPosition([3,0,0])
+        p14=cvo.CVO().CreateCVO("Finite Set","").setPosition([1.5,-2,0])
+        p15=cvo.CVO().CreateCVO("Infinite Set","").setPosition([-1.5,-2,0])
+        p10.cvolist.append(p11)
+        p10.cvolist.append(p12)
+        p10.cvolist.append(p13)
+        p10.cvolist.append(p14)
+        p10.cvolist.append(p15)
+        self.construct1(p10,p10)
+
+    def EmptySet(self):
+        self.angleChoice=[TAU/4,TAU/4,TAU/4]
         p10=cvo.CVO().CreateCVO("Empty Set","").setPosition([-3,0,0])
         p11=cvo.CVO().CreateCVO("Definition","Set with no elements").setPosition([-4,2.5,0])
         p11=cvo.CVO().CreateCVO("Notation","$\phi$").setPosition([3,2.5,0])
@@ -75,6 +124,7 @@ class sets(AbstractAnim):
         self.wait(2)
         self.fadeOutCurrentScene()
 
+    def UniversalSet(self):
         text1 = Text("Universal set - Set that has all elements considered in the problem").scale(0.5).to_edge(UP)
         text2 = Text("Notation - U").scale(0.6).next_to(text1,DOWN)
         text = Text("Venn Diagram").scale(0.5).next_to(text2,DOWN).shift(DOWN*0.5)
@@ -89,24 +139,15 @@ class sets(AbstractAnim):
         self.play(Write(label_U))
         self.wait(2)
         self.fadeOutCurrentScene()
-        self.angleChoice=[TAU/4,TAU/4,TAU/4,TAU/4]
-        p10=cvo.CVO().CreateCVO("Subset","").setPosition([-4,0,0])
-        p11=cvo.CVO().CreateCVO("Proper subset","").setPosition([-3,2.5,0])
-        p12=cvo.CVO().CreateCVO("Notation","$A \subset B$").setPosition([3,2.5,0])
-        p13=cvo.CVO().CreateCVO("Improper subset","").setPosition([0,-2.5,0])
-        p14=cvo.CVO().CreateCVO("Notation","$A \subseteq B$").setPosition([3,0,0])
-        p10.cvolist.append(p11)
-        p10.cvolist.append(p13)
-        p11.cvolist.append(p12)
-        p13.cvolist.append(p14)
-        self.construct1(p10,p10)
-        self.fadeOutCurrentScene()
-        text1 = Text("Subsets").scale(0.8).to_edge(UP)
+
+    def Subset(self):
+        title = Text("Subsets").scale(0.8).to_edge(UP)
+        self.play(Write(title))
+        text1 = Text("A={1,2,3,4,5,6}\nB={3,4,5}",font_size=24).next_to(title,DOWN,buff=0.5)
         self.play(Write(text1))
-        text2 = Text("A={1,2,3,4,5,6}\nB={3,4,5}").scale(0.5).shift(LEFT*4)
-        self.play(Write(text2))
-        set_A = Circle(radius=2, color=BLUE)
-        set_B = Circle(radius=1, color=GREEN)
+
+        set_A = Circle(radius=2, color=BLUE,fill_opacity=0.5).shift(LEFT*3)
+        set_B = Circle(radius=1, color=GREEN,fill_opacity=0.5).shift(LEFT*3)
 
         # Add elements to set A
         elements_A = [Text(str(i), font_size=24).move_to(set_A.get_center() + pos)
@@ -128,14 +169,56 @@ class sets(AbstractAnim):
         for elem in elements_B:
             self.play(Write(elem))
 
-        text = Tex("$B \subset A$", "$A \subseteq A$").arrange(DOWN).scale(0.75).to_edge(RIGHT).shift(LEFT*1.5)
-        self.play(Write(text))
-        text1 = Text("NOTE\n1.Null set is a subset of Every set\n2.Every set is a subset of itself").scale(0.5).to_edge(DOWN).shift(UP*0.5)
+        proper_subset_text = MathTex("\\text{Proper Subset - }","\\text{A set that contains only}","\\text{few elements of original set}").scale(0.8).arrange(DOWN,aligned_edge=LEFT).to_edge(RIGHT).shift(UP*1).set_color(GREEN)
+        notation1 = Tex("Notation - $ \subset $").scale(0.75).next_to(proper_subset_text,DOWN,buff=0.3)
+        proper_subset = Tex("$B \subset A$").scale(0.75).next_to(notation1,DOWN,buff=0.3).set_color(GREEN)
+        self.play(FadeIn(proper_subset_text),FadeIn(notation1))
+        self.wait(2)
+        self.play(Write(proper_subset))
+        self.wait(2)
+        self.play(FadeOut(proper_subset_text,notation1,proper_subset))
+
+        improper_subset_text =  MathTex("\\text{Improper Subset - }","\\text{A set that contains every }","\\text{element of the original set}").scale(0.8).arrange(DOWN,aligned_edge=LEFT).to_edge(RIGHT).shift(UP*1).set_color(BLUE)
+        notation2 = Tex("Notation - $ \subseteq $").scale(0.75).next_to(improper_subset_text,DOWN,buff=0.3)
+        improper_subset = Tex("$A \subseteq A$").scale(0.75).next_to(notation2,DOWN,buff=0.3).set_color(BLUE)
+        self.play(FadeIn(improper_subset_text),FadeIn(notation2))
+        self.wait(2)
+        self.play(Write(improper_subset))
+        self.wait(2)
+        
+        text1 = Text("NOTE-\n1. Null set is a subset of Every set\n2. Every set is a subset of itself").scale(0.5).to_edge(DOWN).shift(UP*0.5,RIGHT*3).set_color(YELLOW)
         self.play(Write(text1))
         self.wait(2)
-        self.fadeOutCurrentScene()        
+
+    def FiniteSets(self):
+        self.angleChoice=[TAU/4,TAU/4]
+        p10=cvo.CVO().CreateCVO("Finite sets","").setPosition([-3,0,0])
+        p11=cvo.CVO().CreateCVO("Definiton","Sets that have finite no. of elements").setPosition([2,2,0])
+        p12=cvo.CVO().CreateCVO("Example","A=\{x $\in$ N:$0<x<10$\}").setPosition([2,-2,0])
+        p12.setcircleradius(2.1)
+        p10.cvolist.append(p11)
+        p10.cvolist.append(p12)
+        self.construct1(p10,p10)
+        p11.setcircleradius(2)
+        
+    def InifniteSets(self):
+        self.angleChoice=[TAU/4,TAU/4]
+        p10=cvo.CVO().CreateCVO("Infinite sets","").setPosition([-3,0,0])
+        p11=cvo.CVO().CreateCVO("Definiton","Sets that have infinite no. of elements").setPosition([2,2,0])
+        p12=cvo.CVO().CreateCVO("Example","A=\{x:x is a Natural number\}").setPosition([2,-2,0])
+        p12.setcircleradius(2.1)
+        p10.cvolist.append(p11)
+        p10.cvolist.append(p12)
+        self.construct1(p10,p10)       
+
+    def EqualSets(self):
+        self.angleChoice=[TAU/4]
+        p10=cvo.CVO().CreateCVO("Equal Sets","").setPosition([-3,0,0])
+        p11=cvo.CVO().CreateCVO("Defintion","Sets that have exactly same elements").setPosition([3,0,0])
+        p10.cvolist.append(p11)
+        self.construct1(p10,p10)
     
-    def operationsonset(self):
+    def Operationsonset(self):
         p10=cvo.CVO().CreateCVO("Opeartions on sets","").setPosition([0,2.5,0])
         p11=cvo.CVO().CreateCVO("Union","").setPosition([-3,0,0])
         p12=cvo.CVO().CreateCVO("Intersection","").setPosition([0,-2.5,0])
@@ -144,7 +227,8 @@ class sets(AbstractAnim):
         p10.cvolist.append(p12)
         p10.cvolist.append(p13)
         self.construct1(p10,p10)
-        self.fadeOutCurrentScene()
+
+    def Union(self):
         text1 = Text("UNION - Set of distinct elements present in both the sets\n").scale(0.5).to_edge(UP)
         text2 = Tex("Notation-$\cup$").scale(0.6).next_to(text1,DOWN)
         text3 = Tex("A=\{1,2,3\} , B=\{3,4,5\}, $A \cup B$=\{1,2,3,4,5\}").scale(0.75).to_edge(DOWN).shift(UP*0.65)
@@ -154,69 +238,44 @@ class sets(AbstractAnim):
         self.play(FadeIn(text3))
         self.twointersectingsets()
         self.wait(2)
-        self.play(FadeOut(text1))
-        self.play(FadeOut(text2))
-        self.play(FadeOut(text3))
-        text4 = Text("INTERSECTION - Set of common elements of two sets\n").scale(0.5).to_edge(UP)
-        text5 = Tex("Notation-$\cap$").scale(0.6).next_to(text1,DOWN)
-        text6 = Tex("A=\{1,2,3\} , B=\{3,4,5\}, $A \cap B$=\{3\}").scale(0.75).to_edge(DOWN).shift(UP*0.65)
+        self.play(FadeOut(text1,text2,text3))
+
+    def Intersection(self):
+        text1 = Text("INTERSECTION - Set of common elements of two sets\n").scale(0.5).to_edge(UP)
+        text2 = Tex("Notation-$\cap$").scale(0.6).next_to(text1,DOWN)
+        text3 = Tex("A=\{1,2,3\} , B=\{3,4,5\}, $A \cap B$=\{3\}").scale(0.75).to_edge(DOWN).shift(UP*0.65)
+        self.play(FadeIn(text1))
+        self.play(FadeIn(text2))
+        self.wait(1)
+        self.twointersectingsets()
+        self.play(FadeIn(text3))
+        self.wait(2)
+        self.play(FadeOut(text1,text2,text3))
+
+    def Difference(self):
+        text1 = Text("DIFFERENCE- Set of elements which belong to A but not to B\n").scale(0.5).to_edge(UP)
+        text2 = Tex("$A$=\{1,2,3\} $B$=\{3,4,5\}").scale(0.6).next_to(text1,DOWN)
+        text3 = Tex("$A-B$=\{1,2\}").scale(0.6).to_edge(LEFT).shift(RIGHT*1)
+        text4 = Tex("$B-A$=\{4,5\}").scale(0.6).to_edge(RIGHT).shift(LEFT*1)
+        text5 = Tex("Note - $A-B$ $\\neq$ $B-A$").scale(0.75).to_edge(DOWN).shift(UP*1)
+        self.play(FadeIn(text1))
+        self.play(FadeIn(text2))
+        self.wait(1)
+        self.twointersectingsets()
+        self.play(FadeIn(text3))
+        self.wait(1)
         self.play(FadeIn(text4))
+        self.wait(1)
         self.play(FadeIn(text5))
-        self.wait(1)
-        self.play(FadeIn(text6))
         self.wait(2)
-        self.play(FadeOut(text4))
-        self.play(FadeOut(text5))
-        self.play(FadeOut(text6))
-        text7 = Text("DIFFERENCE- Set of elements which belong to A but not to B\n").scale(0.5).to_edge(UP)
-        text8 = Tex("$A$=\{1,2,3\} $B$=\{3,4,5\}").scale(0.6).next_to(text7,DOWN)
-        text10 = Tex("$A-B$=\{1,2\}").scale(0.6).to_edge(LEFT).shift(RIGHT*1)
-        text11 = Tex("$B-A$=\{4,5\}").scale(0.6).to_edge(RIGHT).shift(LEFT*1)
-        text9 = Tex("Note - $A-B$ $\\neq$ $B-A$").scale(0.75).to_edge(DOWN).shift(UP*1)
-        self.play(FadeIn(text7))
-        self.play(FadeIn(text8))
-        self.wait(1)
-        self.play(FadeIn(text10))
-        self.wait(1)
-        self.play(FadeIn(text11))
-        self.wait(1)
-        self.play(FadeIn(text9))
-        self.wait(2)
-        self.fadeOutCurrentScene()
+
+    def DisjointSets(self):
         text1 = Text("Disjoint Sets - Sets with no common elements").scale(0.5).to_edge(UP)
         self.play(Write(text1))
         text2 = Tex("A=\{1,3,5\}, B=\{2,4,6\}, $A \cap B$=$\phi$").scale(0.75).next_to(text1,DOWN)
         self.play(Write(text2))
         self.twodisjointsets()
-        self.wait(1)
-        self.fadeOutCurrentScene()
-        self.angleChoice=[TAU/4,TAU/4]
-        p10=cvo.CVO().CreateCVO("Equal Sets","Sets that have exactly same elements").setPosition([-3,0,0])
-        p11=cvo.CVO().CreateCVO("Notation","$=$").setPosition([3,0,0])
-        p10.cvolist.append(p11)
-        self.construct1(p10,p10)
-        self.fadeOutCurrentScene()
-        self.angleChoice=[TAU/4,TAU/4]
-        p10=cvo.CVO().CreateCVO("Finite sets","Sets that have finite no. of elements").setPosition([-3,2,0])
-        p11=cvo.CVO().CreateCVO("Example","A=\{x $\in$ N:$0<x<10$\}").setPosition([3,2,0])
-        p11.setcircleradius(2)
-        p12=cvo.CVO().CreateCVO("Infinite sets","Sets that have infinite no. of elements").setPosition([-3,-2,0])
-        p13=cvo.CVO().CreateCVO("Example","A=\{x:x is a Natural number\}").setPosition([3,-2,0])
-        p13.setcircleradius(2.1)
-        p10.cvolist.append(p11)
-        self.construct1(p10,p10)
-        p12.cvolist.append(p13)
-        self.construct1(p12,p12)
-        self.fadeOutCurrentScene()
-        self.angleChoice=[TAU/4,TAU/4]
-        p10=cvo.CVO().CreateCVO("Cardinality","").setPosition([-3,-1,0])
-        p11=cvo.CVO().CreateCVO("Definition","no. of elements in a set").setPosition([3,2,0])
-        p11.setcircleradius(2)
-        p12=cvo.CVO().CreateCVO("Representation","n(A)").setPosition([3,-2,0])
-        p10.cvolist.append(p11)
-        p10.cvolist.append(p12)
-        self.construct1(p10,p10)
-        self.fadeOutCurrentScene()
+        self.wait(2)
 
     def twointersectingsets(self):
         set_A = Circle(radius=1.5, color=BLUE, fill_opacity=0.5).shift(LEFT)
@@ -244,8 +303,8 @@ class sets(AbstractAnim):
         common_element = Text("3", font_size=24).move_to(ORIGIN)
 
         # Animate the creation of sets and elements
-        self.play(Create(set_A), Write(label_A))
-        self.play(Create(set_B), Write(label_B))
+        self.play(FadeIn(set_A), FadeIn(label_A))
+        self.play(FadeIn(set_B), FadeIn(label_B))
 
         for elem in elements_text_A:
             if elem.text != "3":
@@ -258,8 +317,8 @@ class sets(AbstractAnim):
         self.play(Write(common_element))
 
     def twodisjointsets(self):
-        set_A = Circle(radius=1.5, color=BLUE).shift(LEFT*2,DOWN*1)
-        set_B = Circle(radius=1.5, color=GREEN).shift(RIGHT*2,DOWN*1)
+        set_A = Circle(radius=1.5, color=BLUE,fill_opacity=0.5).shift(LEFT*2,DOWN*1)
+        set_B = Circle(radius=1.5, color=GREEN,fill_opacity=0.5).shift(RIGHT*2,DOWN*1)
 
         # Add elements to set A
         elements_A = [Text(str(i), font_size=24).move_to(set_A.get_center() + pos)
@@ -274,8 +333,8 @@ class sets(AbstractAnim):
         label_B = Text("B", font_size=24).next_to(set_B, UP)
 
         # Add everything to the scene
-        self.play(Create(set_A), Write(label_A))
-        self.play(Create(set_B), Write(label_B))
+        self.play(FadeIn(set_A), FadeIn(label_A))
+        self.play(FadeIn(set_B), FadeIn(label_B))
         for elem in elements_A:
             self.play(Write(elem))
 
@@ -287,9 +346,7 @@ class sets(AbstractAnim):
 
     def SetDeveloperList(self):
         self.DeveloperList="Sindhu"
-        
-        
-        
+               
 
 if __name__ == "__main__":
     import os
