@@ -10,14 +10,29 @@ class Polynomial(AbstractAnim):
     def construct(self):
         self.RenderSkillbancLogo()
         self.Introduction()
+        self.fadeOutCurrentScene()
+        self.Poly_example()
+        self.fadeOutCurrentScene()
         self.Degree()
+        self.fadeOutCurrentScene()
         self.Typesofpoly()
+        self.fadeOutCurrentScene()
+        self.Poly_BasedonDegree()
+        self.fadeOutCurrentScene()
+        self.Poly_BasedonNoofTerms()
+        self.fadeOutCurrentScene()
         self.Zeroofpoly()
+        self.fadeOutCurrentScene()
         self.Dividingthepoly()
+        self.fadeOutCurrentScene()
         self.PolyDivExample()
+        self.fadeOutCurrentScene()
         self.Remainder_theory()
+        self.fadeOutCurrentScene()
         self.Factorising()
+        self.fadeOutCurrentScene()
         self.Algebraic_Identities()
+        self.fadeOutCurrentScene()
         self.GithubSourceCodeReference()
 
     def Introduction(self):
@@ -38,7 +53,6 @@ class Polynomial(AbstractAnim):
         p10.cvolist.append(p13)
         p13.cvolist.append(p14)
         self.construct1(p16,p16)
-        self.fadeOutCurrentScene()
 
     def Poly_example(self):
         self.angleChoice=[TAU/4,TAU/4,TAU/4,TAU/4]
@@ -46,12 +60,11 @@ class Polynomial(AbstractAnim):
         p11=cvo.CVO().CreateCVO("Example","3x^2+7x+5").setPosition([-2,0,0])
         p11.SetIsMathText(True)
         p12=cvo.CVO().CreateCVO("Coefficients","3 , 7").setPosition([3,2,0])
-        p13=cvo.CVO().CreateCVO("Terms","$3x^2 , 7x , 5").setPosition([3,-2,0])
+        p13=cvo.CVO().CreateCVO("Terms","$3x^2$ , 7x , 5").setPosition([3,-2,0])
         p10.cvolist.append(p11)
         p11.cvolist.append(p13)
         p11.cvolist.append(p12)
         self.construct1(p10,p10)
-        self.fadeOutCurrentScene()
 
     def Degree(self):
         self.angleChoice=[TAU/4,TAU/4,TAU/4]
@@ -62,7 +75,6 @@ class Polynomial(AbstractAnim):
         p12.SetIsMathText(True)
         p12.setcircleradius(1.5)
         p13=cvo.CVO().CreateCVO("Degree","5").setPosition([2,-1,0])
-        # p10.cvolist.append(p11)
         p10.cvolist.append(p12)
         p12.cvolist.append(p13)
         self.construct1(p11,p11)
@@ -107,7 +119,6 @@ class Polynomial(AbstractAnim):
                         "Example:p(x)=x^3 - x^2 + 2").arrange(DOWN, aligned_edge=LEFT).scale(0.65).next_to(text3,DOWN).shift(DOWN*0.25)
         self.play(Write(text4))
         self.wait(2)
-        self.fadeOutCurrentScene()
 
     def Poly_BasedonNoofTerms(self):
         self.angleChoice=[TAU/4]
@@ -152,7 +163,6 @@ class Polynomial(AbstractAnim):
         text13 = MathTex("Example:p(x)=3x^3 + x^2 + 2x - 7").scale(0.75).next_to(text2,DOWN).shift(LEFT*0.5)
         self.play(Transform(text4,text13))
         self.wait(3)
-        self.fadeOutCurrentScene()
 
     def Zeroofpoly(self):
         self.colorChoice=[BLUE,ORANGE,YELLOW,PURPLE]
@@ -188,51 +198,55 @@ class Polynomial(AbstractAnim):
         self.play(Write(text))
         multiline1 = MathTex("Dividend:3x^2 + x - 1", "Divisor:x + 1").arrange(DOWN, aligned_edge=LEFT).to_edge(RIGHT).scale(0.65).shift(DOWN*1)
 
-        Step1 = MathTex("\\text{Step 1: Divide } \\frac{3x^2}{x}=3x\\text{,it becomes first term in quotient}").scale(0.5).shift(UP*2,RIGHT*2)
-        Step2 = MathTex("\\text{Step 2: Multiply } (x + 1)3x = 3x^2 + 3x").scale(0.5).shift(UP*2,RIGHT*2)
-        Step3 = MathTex("Divide \\frac{-2x}{x}=-2\\text{,it becomes second term in quotient}").arrange(DOWN).scale(0.5).shift(UP*2,RIGHT*2)
-        Step4 = MathTex("\\text{Step 4: Multiply } (x + 1)-2 = -2x - 2").scale(0.5).next_to(title,DOWN)
-        Step5 = MathTex("\\text{Step 5: We stop here as the remainder is 1, a constant}").scale(0.5).next_to(title,DOWN)
-        Note = Text("The division process is said to be complete \n if we get the remainder 0 or the \n degree of the remainder is less than\n the degree of the divisor",font_size=30).shift(RIGHT*2,UP*3)
+        Step1 = MathTex("\\text{Step 1: Divide } \\frac{3x^2}{x}=3x,","\\text{it becomes first term in quotient}").arrange(DOWN).scale(0.65).shift(UP*1,RIGHT*2).set_color(YELLOW)
+        Step2 = MathTex("\\text{Step 2: Multiply } (x + 1)3x = 3x^2 + 3x").scale(0.65).shift(UP*1,RIGHT*2).set_color(YELLOW)
+        Step3 = MathTex("\\text{Step 3: Divide }\\frac{-2x}{x}=-2,","\\text{it becomes second term in quotient}").arrange(DOWN).scale(0.65).shift(UP*1,RIGHT*2).set_color(YELLOW)
+        Step4 = MathTex("\\text{Step 4: Multiply } (x + 1)-2 = -2x - 2").scale(0.65).shift(UP*1,RIGHT*2).set_color(YELLOW)
+        Step5 = MathTex("\\text{Step 5: We stop here as the }","\\text{remainder is 1, a constant}").arrange(DOWN).scale(0.65).shift(UP*1,RIGHT*2).set_color(YELLOW)
+        Note = Text("The division process is said to be complete \n if we get the remainder 0 or the \n degree of the remainder is less than\n the degree of the divisor",font_size=25).shift(RIGHT*2,UP*1).set_color(YELLOW)
         divisor = MathTex("x + 1").to_edge(LEFT).shift(UP*1.5)
         dividend = MathTex("3x^2 + x - 1").next_to(divisor, RIGHT)
-        division_line = Line(divisor.get_right(), divisor.get_right() + RIGHT * 4).shift(UP*0.3,RIGHT*0.2)
+        division_line = Line(divisor.get_right(), divisor.get_right() + RIGHT * 3.5).shift(UP*0.3,RIGHT*0.2)
         division_linev = Line(divisor.get_right(), divisor.get_right() + DOWN * 1).shift(UP*0.3,RIGHT*0.2)
         self.play(Write(multiline1))
         self.play(Write(divisor), Write(division_line), Write(dividend.shift(RIGHT*0.25)),Write(division_linev))
         self.wait(1)
         self.play(FadeIn(Step1))
-        self.wait(2)
+        self.wait(3)
 
         quotient1 = MathTex("3x").next_to(division_line, UP, aligned_edge=LEFT)
-        multiply1 = MathTex("3x^2 + 3x").next_to(dividend, DOWN)
-        division_line1 = Line(divisor.get_right(), divisor.get_right() + RIGHT * 4).next_to(division_line,DOWN*5.5)
+        multiply1 = MathTex("-3x^2 + 3x").next_to(dividend, DOWN).shift(LEFT*0.15)
+        division_line1 = Line(divisor.get_right(), divisor.get_right() + RIGHT * 3.5).next_to(division_line,DOWN*5.5)
         result1 = MathTex("-2x - 1").next_to(multiply1, DOWN).shift(RIGHT*1)
         self.play(Write(quotient1))
         self.wait(1)
         self.play(Transform(Step1,Step2))
-        self.wait(2)
+        self.wait(3)
         self.play(Write(multiply1))
+        self.wait(1)
         self.play(Write(division_line1),Write(result1))
         self.wait(1)
 
         quotient2 = MathTex("-2").next_to(quotient1,RIGHT)
         multiply2 = MathTex("-2x - 2").next_to(result1, DOWN)
-        division_line2 = Line(divisor.get_right(), divisor.get_right() + RIGHT * 4).next_to(division_line1,DOWN*5)
+        division_line2 = Line(divisor.get_right(), divisor.get_right() + RIGHT * 3.5).next_to(division_line1,DOWN*5)
         result2 = MathTex("+1").next_to(multiply2, DOWN).shift(RIGHT*0.5)
         self.play(Transform(Step1,Step3))
         self.wait(2)
         self.play(Write(quotient2))
         self.wait(1)
         self.play(Transform(Step1,Step4))
+        self.wait(2)
         self.play(Write(multiply2))
         self.play(Write(division_line2),Write(result2))
+        self.wait(1)
         self.play(Transform(Step1,Step5))
+        self.wait(1)
         multiline2 = MathTex("Quotient:3x-2","Remainder:1").arrange(DOWN, aligned_edge=LEFT).next_to(multiline1,DOWN).scale(0.65).shift(LEFT*0.5)
         self.play(Write(multiline2))
         self.wait(2)
         self.play(Transform(Step1,Note))
-        self.fadeOutCurrentScene()
+        self.wait(3)
 
     def Remainder_theory(self):
         self.angleChoice=[TAU/4,TAU/4,TAU/4]
@@ -244,7 +258,6 @@ class Polynomial(AbstractAnim):
         p15.cvolist.append(p16)
         p16.cvolist.append(p17)
         self.construct1(p15,p15)
-        self.fadeOutCurrentScene()
 
     def Factorising(self):
         title = Text("Factorising").scale(0.8).to_edge(UP)
@@ -253,23 +266,24 @@ class Polynomial(AbstractAnim):
         self.play(Write(text))
         text1 = MathTex("\\text{Find p and q such that } p+q=b , p \\times q= a \\times c").scale(0.65).next_to(text,DOWN)
         self.play(Write(text1))
+        self.wait(2)
         text2 = MathTex("Example:3x^2+11x+6").scale(0.65).next_to(text1,DOWN).shift(LEFT*4,DOWN*1)
         self.play(Write(text2))
         text3 = MathTex("\\text{Let } p=2,q=9",
                         "\\text{as } p+q=b \\Rightarrow 2+9=11",
                         "\\text{as } p \\times q= a \\times c \\Rightarrow 2 \\times 9= 18").arrange(DOWN).scale(0.65).next_to(text2,RIGHT).shift(RIGHT*2,DOWN*1)
         self.play(Write(text3))
-        self.wait(2)
+        self.wait(3)
         text4 = MathTex("=3x^2+2x+9x+6").scale(0.65).next_to(text2,DOWN).shift(RIGHT*1)
         self.play(Write(text4))
         self.wait(2)
         text5 = MathTex("=x(3x+2)+3(3x+2)").scale(0.65).next_to(text4,DOWN)
         self.play(Write(text5))
-        self.wait(2)
+        self.wait(3)
         text6 = MathTex("Factors=(3x+2)(x+3)").scale(0.65).next_to(text5,DOWN).shift(LEFT*1,DOWN*0.5)
         self.play(Write(text6))
         self.wait(2)
-        self.fadeOutCurrentScene()
+
 
     def Algebraic_Identities(self):
         title = Text("ALGEBRAIC IDENTITIES").scale(0.8).to_edge(UP)
@@ -299,7 +313,6 @@ class Polynomial(AbstractAnim):
         text7 = MathTex("\\text{Identitiy 8}:(x+y+z)(x^2+y^2+z^2-xy-yz-xz) \equiv x^3+y^3+z^3-3xyz").scale(0.65).next_to(text6,DOWN)
         self.play(Write(text7))
         self.wait(3)
-        self.fadeOutCurrentScene()
 
     def SetDeveloperList(self):
         self.DeveloperList="Sindhu"
