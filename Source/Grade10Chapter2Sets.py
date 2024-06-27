@@ -259,7 +259,7 @@ class sets(AbstractAnim):
         text2 = Tex("$A$=\{1,2,3\} $B$=\{3,4,5\}").scale(0.6).next_to(text1,DOWN)
         text3 = Tex("$A-B$=\{1,2\}").scale(0.6).to_edge(LEFT).shift(RIGHT*1)
         text4 = Tex("$B-A$=\{4,5\}").scale(0.6).to_edge(RIGHT).shift(LEFT*1)
-        text5 = Tex("Note - $A-B$ $\\neq$ $B-A$").scale(0.75).to_edge(DOWN).shift(UP*1)
+        text5 = Tex("Note : $A-B$ $\\neq$ $B-A$").scale(0.75).to_edge(DOWN).shift(UP*1)
         self.play(FadeIn(text1))
         self.play(FadeIn(text2))
         self.wait(1)
