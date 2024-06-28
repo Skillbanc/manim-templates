@@ -5,7 +5,7 @@ from AbstractAnim import AbstractAnim
 
 import cvo
 
-class FactorsAnim(AbstractAnim):
+class BordersAnim(AbstractAnim):
 
     
     def construct(self):
@@ -86,5 +86,5 @@ class FactorsAnim(AbstractAnim):
         self.DeveloperList="Lagichetty Kushal"
     
 if __name__ == "__main__":
-    scene = FactorsAnim()
+    scene = BordersAnim()
     scene.render()
