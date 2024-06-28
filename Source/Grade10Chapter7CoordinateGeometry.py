@@ -6,6 +6,8 @@ import cvo
 
 class CoordinateGeoAnim(AbstractAnim):
     def construct(self):
+        self.RenderSkillbancLogo()
+        self.fadeOutCurrentScene()
         self.distance()
         self.fadeOutCurrentScene()
         self.distani()
