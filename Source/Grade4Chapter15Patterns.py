@@ -102,7 +102,7 @@ class Chapter15Grade4(AbstractAnim):
         
         self.wait(2)
     def PatternsWithCalendars(self):
-         # Title
+        # Title
         title = Text("Patterns with Calendars")
         title.to_edge(UP)
         self.play(Write(title))
