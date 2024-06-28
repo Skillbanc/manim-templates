@@ -7,16 +7,39 @@
 
 from manim import *
 from AbstractAnim import AbstractAnim
+import cvo 
 
 class Chap8G2_Subtraction(AbstractAnim):
-
     # use the appropriate method based on how the data is stored
     def construct(self):
         self.RenderSkillbancLogo()
+        self.Introduction()
+        self.fadeOutCurrentScene()
         self.Heading()
+        self.fadeOutCurrentScene()
+        self.GithubSourceCodeReference()
+
+    def SetDeveloperList(self):
+        self.DeveloperList="Prithiv Shiv"
+    def SetSourceCodeFileName(self):
+        self.SourceCodeFileName="Grade2Chapter8SubtractionOfNumbers.py"
+
+
+    def Introduction(self):
+        self.isRandom=False
+        self.setNumberOfCirclePositions(4)
+        title=Text("Subraction of Numbers").to_edge(UP)
+        self.play(Write(title))
+        self.wait(1)
+
+        p11=cvo.CVO().CreateCVO("Subtraction","Process of taking\\\\1 number from another")
+        p13=cvo.CVO().CreateCVO("Notation","x-y")
+        p11.cvolist.append(p13)
+        self.construct1(p11,p11)
+
     
     def Heading(self):
-        title = Text("Subtraction Example", font_size=72)
+        title = Text("Subtraction Examples", font_size=72)
         self.play(Write(title))
         self.wait(2)
         self.play(FadeOut(title))
