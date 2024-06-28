@@ -33,7 +33,7 @@ class Ratiosanim(AbstractAnim):
         self.fadeOutCurrentScene()
         self.Simpleinterest()
         self.fadeOutCurrentScene()
-        self.Simpleinterest1()
+        #self.Simpleinterest1()
         self.fadeOutCurrentScene()
         self.example5()
         self.fadeOutCurrentScene()
@@ -71,6 +71,8 @@ class Ratiosanim(AbstractAnim):
         self.play(Create(CurvedArrow(p12.pos,p14.pos)),Create(CurvedArrow(p13.pos,p14.pos)))
 
 
+        
+
     def proportion(self):
         self.setNumberOfCirclePositions(2)
         self.angleChoice = [TAU/4]
@@ -81,6 +83,7 @@ class Ratiosanim(AbstractAnim):
         # p12.extendOname(["Product of means","product of extremes"])
         #p12.setcircleradius(1.5)
         p10.cvolist.append(p11)
+        p11.setcircleradius(1.5)
         
         self.construct1(p10,p10)
 
@@ -156,7 +159,7 @@ class Ratiosanim(AbstractAnim):
         self.wait(1)
    
 
-       
+        
         
    
     def percentage(self):
@@ -166,6 +169,7 @@ class Ratiosanim(AbstractAnim):
 
         p10=cvo.CVO().CreateCVO("PERCENTAGE","")
         p11=cvo.CVO().CreateCVO("FORMULA","(Part/Whole)*100")
+        p11.setcircleradius(1.5)
         #p12=cvo.CVO().CreateCVO("EXAMPLE"," 73 Marks in math = 73\%")
         #p12.SetIsMathText(True)
     
@@ -178,10 +182,6 @@ class Ratiosanim(AbstractAnim):
         #self.play(Create(CurvedArrow(p11.pos,p13.pos)),Create(CurvedArrow(p12.pos,p13.pos)))
 
     def example1(self):
-         # # Title
-        # title = Text("Finding Percentage", font_size=48)
-        # title.to_edge(UP)
-        # self.play(Write(title))
         
         # Example text
         example_text = Text("What percentage is 30 of 150?", font_size=36)
@@ -221,12 +221,14 @@ class Ratiosanim(AbstractAnim):
         #self.angleChoice = [0,0,0]
         self.isRandom = False
 
-        p10=cvo.CVO().CreateCVO("PROFIT","")
-        p11=cvo.CVO().CreateCVO("FORMULA","S.P-C.P")
+        p10=cvo.CVO().CreateCVO("PROFIT","").setPosition([-4,0,0])
+        p11=cvo.CVO().CreateCVO("FORMULA","S.P-C.P").setPosition([-1,0,0])
     
         #p12=cvo.CVO().CreateCVO("EXAMPLE ","50-40=10")
-        p13=cvo.CVO().CreateCVO("Profit\%","(P/C.P)*100")
+        p13=cvo.CVO().CreateCVO("Profit\%","(P/C.P)*100").setPosition([4,0,0])
         p13.SetIsMathText(True)
+        p11.setcircleradius(1.5)
+        p13.setcircleradius(1.5)
         p10.cvolist.append(p11)
         #p10.cvolist.append(p12)
         p11.cvolist.append(p13)
@@ -281,13 +283,15 @@ class Ratiosanim(AbstractAnim):
         self.angleChoice = [TAU/4,TAU/4]
         self.isRandom = False
 
-        p10=cvo.CVO().CreateCVO("Loss","")
-        p11=cvo.CVO().CreateCVO("FORMULA","C.P-S.P")
+        p10=cvo.CVO().CreateCVO("Loss","").setPosition([-4,0,0])
+        p11=cvo.CVO().CreateCVO("FORMULA","C.P-S.P").setPosition([-1,0,0])
         #p12=cvo.CVO().CreateCVO("example ","60-50=10")
-        p13=cvo.CVO().CreateCVO("Loss\%","(L/C.P)*100")
+        p13=cvo.CVO().CreateCVO("Loss\%","(L/C.P)*100").setPosition([4,0,0])
         
     
         p13.SetIsMathText(True)
+        p11.setcircleradius(1.5)
+        p13.setcircleradius(1.5)
        
         p10.cvolist.append(p11)
         #p10.cvolist.append(p12)
@@ -346,11 +350,13 @@ class Ratiosanim(AbstractAnim):
         self.angleChoice = [TAU/4,TAU/4]
         self.isRandom = False
 
-        p10=cvo.CVO().CreateCVO("Discount","")
-        p11=cvo.CVO().CreateCVO("Formula","M.P-S.P")
+        p10=cvo.CVO().CreateCVO("Discount","").setPosition([-4,0,0])
+        p11=cvo.CVO().CreateCVO("Formula","M.P-S.P").setPosition([-1,0,0])
         #p12=cvo.CVO().CreateCVO(" Example ","100-60")
-        p13=cvo.CVO().CreateCVO("Discount\%","(D/MP)*100")
+        p13=cvo.CVO().CreateCVO("Discount\%","(D/MP)*100").setPosition([4,0,0])
         p13.SetIsMathText(True)
+        p11.setcircleradius(1.5)
+        p13.setcircleradius(1.5)
         p10.cvolist.append(p11)
         #p10.cvolist.append(p12)
         p11.cvolist.append(p13)
@@ -402,34 +408,41 @@ class Ratiosanim(AbstractAnim):
         
        
     def Simpleinterest(self):
-        self.setNumberOfCirclePositions(2)
-        self.angleChoice = [TAU/4]
+        self.setNumberOfCirclePositions(5)
+        self.angleChoice = [TAU/4,TAU/4,TAU/4,TAU/4]
         self.isRandom = False
 
-        p10=cvo.CVO().CreateCVO("Simple Interest","")
-        p11=cvo.CVO().CreateCVO("FORMULA ","P*T*R")
+        p10=cvo.CVO().CreateCVO("Simple Interest","").setPosition([-4,0,0])
+        p11=cvo.CVO().CreateCVO("FORMULA ","P*T*R").setPosition([-1,0,0])
+        p12=cvo.CVO().CreateCVO(" Principle ","P").setPosition([3,2,0])
+        p13=cvo.CVO().CreateCVO("Interest","R\%").setPosition([4,0,0])
+        p14=cvo.CVO().CreateCVO("Time", "T").setPosition([3,-2,0])
         p11.setcircleradius(1.5)
+        p13.SetIsMathText(True)
         p10.cvolist.append(p11)
+        p11.cvolist.append(p12)
+        p11.cvolist.append(p13)
+        p11.cvolist.append(p14)
         
         self.construct1(p10,p10)
 
-    def Simpleinterest1(self):
-        self.setNumberOfCirclePositions(4)
-        self.angleChoice = [TAU/4,TAU/4,TAU/4]
-        self.isRandom = False
+    # def Simpleinterest1(self):
+    #     self.setNumberOfCirclePositions(4)
+    #     self.angleChoice = [TAU/4,TAU/4,TAU/4]
+    #     self.isRandom = False
 
        
-        p10=cvo.CVO().CreateCVO("FORMULA ","P*T*R")
-        p11=cvo.CVO().CreateCVO(" Principle ","P")
-        p12=cvo.CVO().CreateCVO("Interest","R\%")
-        p13=cvo.CVO().CreateCVO("Time", "T")
-        p12.SetIsMathText(True)
-        p10.setcircleradius(1.5)
-        p10.cvolist.append(p11)
-        p10.cvolist.append(p12)
-        p10.cvolist.append(p13)
+    #     p10=cvo.CVO().CreateCVO("FORMULA ","P*T*R")
+    #     p11=cvo.CVO().CreateCVO(" Principle ","P")
+    #     p12=cvo.CVO().CreateCVO("Interest","R\%")
+    #     p13=cvo.CVO().CreateCVO("Time", "T")
+    #     p12.SetIsMathText(True)
+    #     p10.setcircleradius(1.5)
+    #     p10.cvolist.append(p11)
+    #     p10.cvolist.append(p12)
+    #     p10.cvolist.append(p13)
         
-        self.construct1(p10,p10)
+    #     self.construct1(p10,p10)
 
     def example5(self):
         title = Text("Example: Principle = $1000, Time = 2 years, Rate = 5%", font_size=36)
