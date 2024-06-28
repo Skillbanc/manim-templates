@@ -11,6 +11,7 @@ class geometry(AbstractAnim):
         self.geo()
         self.Axiom()
         self.postulate()
+        self.GithubSourceCodeReference()
         
 
     def geo(self):
@@ -95,6 +96,13 @@ class geometry(AbstractAnim):
         p11.cvolist.append(p16)
 
         self.construct1(p11,p11)
+        self.fadeOutCurrentScene()
+
+    def SetDeveloperList(self):
+        self.DeveloperList="Bhaskar"
+
+    def SetSourceCodeFileName(self):
+        self.SourceCodeFileName="Grade9Chapter3Geometry.py"
       
 if __name__ == "__main__":
     scene = geometry()
