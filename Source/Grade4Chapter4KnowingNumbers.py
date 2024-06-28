@@ -236,11 +236,12 @@ class Numbers(AbstractAnim):
     
         number = Text("3482", font_size=64).next_to(title,DOWN*2)
         breakdown = VGroup(
-            MathTex("3000 \quad \\implies Thousands", font_size=48),
-            MathTex("400 \quad \\implies Hundreds", font_size=48),
-            MathTex("80 \quad \\implies Tens", font_size=48),
-            MathTex("2 \quad \\implies Ones", font_size=48),
-        ).arrange(DOWN).next_to(number,DOWN*2)
+            MathTex("3 \\implies Thousands Place", font_size=48),
+            MathTex("4 \\implies Hundreds Place", font_size=48),
+            MathTex("8 \\implies Tens Place", font_size=48),
+            MathTex("2 \\implies Ones Place", font_size=48),
+        ).arrange(DOWN, aligned_edge=LEFT, buff=0.5).next_to(number, DOWN, aligned_edge=LEFT)
+        
         text=Text("Three thousand four hundred and eighty two").to_edge(DOWN*2)
 
         self.play(Write(number))
@@ -255,7 +256,7 @@ class Numbers(AbstractAnim):
         self.positionChoice=[[-4,0,0],[2,2,0],[4,-2,0]]
         self.isRandom = False
         p10=cvo.CVO().CreateCVO("Number","127")
-        p11=cvo.CVO().CreateCVO("Number Name","one hundred and twenty seven")
+        p11=cvo.CVO().CreateCVO("Number in Words","one hundred and twenty seven")
         p12=cvo.CVO().CreateCVO("Representation","1 hundred + 2 tens + 7 ones")
         p11.setcircleradius(2)
         p12.setcircleradius(2)
