@@ -53,8 +53,8 @@ class CoordinateGeoAnim(AbstractAnim):
         p13.setPosition([3,0,0])
 
         self.construct1(p10,p10)
-        self.play(Create(CurvedArrow(p11.pos,p13.pos)),Create(CurvedArrow(p12.pos,p13.pos)))
         self.construct1(p13, p13)
+        self.play(Create(CurvedArrow(p11.pos,p13.pos)),Create(CurvedArrow(p12.pos,p13.pos)))
         self.wait(2)
         
     
@@ -113,8 +113,8 @@ class CoordinateGeoAnim(AbstractAnim):
         p13.setPosition([3,2,0])
 
         self.construct1(p10,p10)
-        self.play(Create(CurvedArrow(p11.pos,p13.pos)),Create(CurvedArrow(p12.pos,p13.pos)))
         self.construct1(p13, p13)
+        self.play(Create(CurvedArrow(p11.pos,p13.pos)),Create(CurvedArrow(p12.pos,p13.pos)))
         self.wait(2)
     
     def secani(self):
@@ -170,8 +170,7 @@ class CoordinateGeoAnim(AbstractAnim):
         self.play(Create(line_AB))
         self.play(FadeIn(dot_A, label_A), FadeIn(dot_B, label_B))
         self.wait(1)
-        self.play(FadeIn(dot_P, label_P))
-        self.wait(1)
+        
 
         # Show the section formula label
         self.play(Write(section_label))
@@ -180,6 +179,8 @@ class CoordinateGeoAnim(AbstractAnim):
         self.play(Write(section_formula_x, run_time=4))
         self.wait(2)
         self.play(Write(section_formula_y, run_time=4))
+        self.play(FadeIn(dot_P, label_P))
+        self.wait(1)
         self.wait(3)
         
     def midpoint(self):
