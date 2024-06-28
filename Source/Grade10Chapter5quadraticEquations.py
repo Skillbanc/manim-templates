@@ -12,26 +12,26 @@ import cvo
 class quadraticAnim(AbstractAnim):
      # use the appropriate method based on how the data is stored
     def construct(self):
-         self.RenderSkillbancLogo()
-         self.constructDataByCVO()
-         self.fadeOutCurrentScene()
-         self.quad111()
-         self.fadeOutCurrentScene()
-         self.quad1122()
-         self.fadeOutCurrentScene() 
-         self.quad1133()
-         self.fadeOutCurrentScene()
-        # self.quad1144()
-        # self.fadeOutCurrentScene()
-         self.quad1155()
-         self.fadeOutCurrentScene() 
-         self.quad1166()
-         self.fadeOutCurrentScene()
-         self.RenderEquality1()
-         self.fadeOutCurrentScene()
-         self.tryfile()
-         self.fadeOutCurrentScene()
-         self.GithubSourceCodeReference()
+           self.RenderSkillbancLogo()
+           self.constructDataByCVO()
+           self.fadeOutCurrentScene()
+           self.quad111()
+           self.fadeOutCurrentScene()
+           self.quad1122()
+           self.fadeOutCurrentScene() 
+           self.quad1133()
+           self.fadeOutCurrentScene()
+         #self.quad1144()
+         # self.fadeOutCurrentScene()
+           self.quad1155()
+           self.fadeOutCurrentScene() 
+           self.quad1166()
+           self.fadeOutCurrentScene()
+           self.RenderEquality1()
+           self.fadeOutCurrentScene()
+           self.tryfile()
+           self.fadeOutCurrentScene()
+           self.GithubSourceCodeReference()
 
 
 # render using CVO data object
@@ -41,10 +41,10 @@ class quadraticAnim(AbstractAnim):
          self.setNumberOfCirclePositions(4)
     
     # Create content objects with positions and set circle size
-         p10 = cvo.CVO().CreateCVO("quadratic equations", "").setPosition([-2, -2, 0])
-         p11 = cvo.CVO().CreateCVO("Standard form", r"$ax^2 + bx + c = 0$").setPosition([2, -2, 0])
-         p12 = cvo.CVO().CreateCVO("real numbers", "a, b, c are real numbers").setPosition([-2, 2, 0])
-         p13 = cvo.CVO().CreateCVO("here", r"$a \neq 0$").setPosition([2, 2, 0])  
+         p10 = cvo.CVO().CreateCVO("quadratic equations", "").setPosition([-4, 2, 0])
+         p11 = cvo.CVO().CreateCVO("Standard form", "$ax^2 + bx + c = 0$").setPosition([0, 2, 0]).setangle(-TAU/4)
+         p12 = cvo.CVO().CreateCVO("real numbers", "a, b, c are real numbers").setPosition([-2, -2, 0]).setangle(-TAU/4)
+         p13 = cvo.CVO().CreateCVO("here", "$a \\neq 0$").setPosition([2, -2, 0]).setangle(-TAU/4)
 
 
          p11.setcircleradius(1.5)
@@ -59,17 +59,22 @@ class quadraticAnim(AbstractAnim):
     # Assuming this method exists to handle further construction or processing
          self.construct1(p10, p10)  # Passing p10 twice as arguments, adjust if needed
 
-    def quad111(self):
+    
 
+     
+    def quad111(self):
+        
+
+   
         self.setNumberOfCirclePositions(6)
         self.isRandom=False
      
-        p20=cvo.CVO().CreateCVO("equation","$3x^2-5x+7 = 0$").setPosition([-4,-2,0])
-        p21=cvo.CVO().CreateCVO("variable a","3").setPosition([4,-2,0])
-        p22=cvo.CVO().CreateCVO("variable b","-5").setPosition([0,2,0])
-        p23=cvo.CVO().CreateCVO("variable c","7").setPosition([-4,2,0])
-        p24=cvo.CVO().CreateCVO("nature of roots","imaginary roots").setPosition([4,2,0])
-        p25=cvo.CVO().CreateCVO("formula to find the roots","$b^2-4ac$").setPosition([0,-2,0])
+        p20=cvo.CVO().CreateCVO("equation","$3x^2-5x+7 = 0$").setPosition([-4,2,0])
+        p21=cvo.CVO().CreateCVO("variable a","3").setPosition([0,-2.5,0]).setangle(-TAU/4)
+        p22=cvo.CVO().CreateCVO("variable b","-5").setPosition([0,2,0]).setangle(-TAU/4)
+        p23=cvo.CVO().CreateCVO("variable c","7").setPosition([-4,-2,0]).setangle(-TAU/4)
+        p24=cvo.CVO().CreateCVO("nature of roots","imaginary roots").setPosition([4,2,0]).setangle(-TAU/4)
+        p25=cvo.CVO().CreateCVO("formula to find the roots","$b^2-4ac$").setPosition([4,-2,0]).setangle(-TAU/4)
 
 
         p20.cvolist.append(p21)
@@ -81,17 +86,21 @@ class quadraticAnim(AbstractAnim):
         
        
        
-        self.construct1(p20,p20)
+        self.construct1(p20,p20)   
+
+# To render the scene, use the following command in your terminal:
+# manim -pql circle_diagram.py CircleDiagram
 
     def quad1122(self):
          self.setNumberOfCirclePositions(5)
          self.isRandom=False
 
          p30=cvo.CVO().CreateCVO("$ax^2+bx+c = 0$","$2x^2+5x+47 = 0$")
-         p31=cvo.CVO().CreateCVO("degree","2")
-         p32=cvo.CVO().CreateCVO("constant","47")
-         p33=cvo.CVO().CreateCVO("roots","$1,47/2$")
-         p34=cvo.CVO().CreateCVO("nature of roots","imaginary roots")
+         p31=cvo.CVO().CreateCVO("degree","2").setPosition([3,-2,0]).setangle(-TAU/4)
+         p32=cvo.CVO().CreateCVO("constant","47").setPosition([0,2,0]).setangle(-TAU/4)
+         p33=cvo.CVO().CreateCVO("roots","$1,47/2$").setPosition([3,2,0]).setangle(-TAU/4)
+         p34=cvo.CVO().CreateCVO("nature of roots","imaginary roots").setPosition([-2,2,0]).setangle(-TAU/4)
+
         
 
          p30.cvolist.append(p31)
@@ -189,29 +198,30 @@ class quadraticAnim(AbstractAnim):
 
     def quad1166(self):
 
-       self.setNumberOfCirclePositions(7)
-       self.isRandom=False
+      self.setNumberOfCirclePositions(7)
+      self.isRandom = False
 
-       p70=cvo.CVO().CreateCVO("example","solution of equation by completing the square")
-       p71=cvo.CVO().CreateCVO("equation","$ax^2+bx=c=0$")
-       p72=cvo.CVO().CreateCVO("step 1" ,"divide each side by a")
-       p73=cvo.CVO().CreateCVO("step 2","take c/a on RHS").setPosition([2,2,0])
-       p74=cvo.CVO().CreateCVO("step 3","$add [1/2(b/a)]^2$").setPosition([4,2,0])
-       p75=cvo.CVO().CreateCVO("step 4","square LHS and simplify RHS").setPosition([2,-3,0])
-       p76=cvo.CVO().CreateCVO("step 5","solve").setPosition([-3,2,0])
+# Create circles and set their positions and angles
+      p70 = cvo.CVO().CreateCVO("example", "solution of equation by completing the square").setPosition([-5, 1, 0])   
+      p71 = cvo.CVO().CreateCVO("equation", "$ax^2 + bx + c = 0$").setPosition([-2, 0, 0]).setangle(-TAU / 4)
+      p72 = cvo.CVO().CreateCVO("step 1", "divide each side by a").setPosition([1, 2.5, 0]).setangle(-TAU / 4)
+      p73 = cvo.CVO().CreateCVO("step 2", "take c/a on RHS").setPosition([2.5, 1.5, 0]).setangle(-TAU / 4)
+      p74 = cvo.CVO().CreateCVO("step 3", "$add [1/2(b/a)]^2$").setPosition([4, 0, 0]).setangle(-TAU / 6)
+      p75 = cvo.CVO().CreateCVO("step 4", "square LHS and simplify RHS").setPosition([5, -1.5, 0]).setangle(-TAU / 4)
+      p76 = cvo.CVO().CreateCVO("step 5", "solve").setPosition([4, -3, 0]).setangle(-TAU / 4)
 
+# Append circles to create the hierarchy 
 
-       p70.cvolist.append(p71)
-       p70.cvolist.append(p72)
-       p70.cvolist.append(p73)
-       p70.cvolist.append(p74)
-       p70.cvolist.append(p75)
-       p70.cvolist.append(p76)
+      p70.cvolist.append(p71)
+      p71.cvolist.append(p72)
+      p71.cvolist.append(p73)
+      p71.cvolist.append(p74)
+      p71.cvolist.append(p75)
+      p71.cvolist.append(p76)
 
-   
-       
-       self.construct1(p70,p70)
-       
+# Construct the diagram with the given layout
+      self.construct1(p70, p70)
+
     def RenderEquality1(self):
   
         # Title
@@ -315,8 +325,8 @@ class quadraticAnim(AbstractAnim):
 
         # Create side labels
         side_label_x = MathTex("x", color=WHITE).next_to(A, DOWN)
-        side_label_x_plus_5 = MathTex("x + 5 \, \text{cm}", color=WHITE).next_to(C, LEFT)
-        hyp_label = MathTex("25 \, \text{cm}", color=WHITE).next_to(triangle.get_center(), RIGHT, buff=0.25)
+        side_label_x_plus_5 = MathTex("x + 5 \, {cm}", color=WHITE).next_to(C, LEFT)
+        hyp_label = MathTex("25 \, {cm}", color=WHITE).next_to(triangle.get_center(), RIGHT, buff=0.25)
         
         # Display triangle and labels
         triangle_group = VGroup(triangle, hyp_line, side_label_x, side_label_x_plus_5, hyp_label)
