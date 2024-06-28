@@ -4,17 +4,17 @@ import cvo
 class PatternAnimation(AbstractAnim):
     def construct(self):
 
-        #self.RenderSkillbancLogo()
-        #self.fadeOutCurrentScene()
-        #self.introduction()
-        #self.fadeOutCurrentScene()
-        #self.Patternsinnumbers()
-        #self.fadeOutCurrentScene()
+        self.RenderSkillbancLogo()
+        self.fadeOutCurrentScene()
+        self.introduction()
+        self.fadeOutCurrentScene()
+        self.Patternsinnumbers()
+        self.fadeOutCurrentScene()
         self.Patternswithturns()
-        #self.fadeOutCurrentScene()
-        #self.fadeOutCurrentScene()
-        #self.Patternsinthecalender()   
-        #self.GithubSourceCodeReference()
+        self.fadeOutCurrentScene()
+        self.fadeOutCurrentScene()
+        self.Patternsinthecalender()   
+        self.GithubSourceCodeReference()
 
 
         
@@ -147,12 +147,6 @@ class PatternAnimation(AbstractAnim):
         self.wait(1)
         self.play(Write(sub_title3))
         self.wait(1)
-
-
-
-        sub_title1 = Text("(a)", font_size=29).to_edge(UP*10+LEFT*1)
-        self.play(Write(sub_title1))
-        self.wait(1)
         
  
         # Create four triangles with increased gap
@@ -176,7 +170,7 @@ class PatternAnimation(AbstractAnim):
         self.wait(1)
         self.play(FadeIn(triangle4), FadeIn(dot4))
         self.wait(1)
-        self.play(FadeOut(triangle1, dot1, triangle2, dot2, triangle3, dot3, triangle4, dot4,sub_title1, heading2,sub_title3,sub_title2,sub_title1,heading))
+        self.play(FadeOut(triangle1, dot1, triangle2, dot2, triangle3, dot3, triangle4, dot4,sub_title1, heading2,sub_title3,sub_title2,heading))
 
 
        
@@ -246,17 +240,67 @@ class PatternAnimation(AbstractAnim):
         self.wait(1)
 
     
-
     def Patternsinthecalender(self):
-    
-    
-    def SetDeveloperList(self):  
-        self.DeveloperList="Raghu"
+        # Title
+        title = Text("Patterns with Calendars")
+        title.to_edge(UP)
+        self.play(Write(title))
+        self.wait(1)
 
-        
+        # Calendar Dates and Days
+        dates = ["1", "8", "15", "22", "29"]
+        days = ["Monday", "Monday", "Monday", "Monday", "Monday"]
+
+        # Create Text objects for dates and days
+        date_texts = VGroup(*[Text(date) for date in dates])
+        day_texts = VGroup(*[Text(day) for day in days])
+
+        # Arrange dates horizontally
+        date_texts.arrange(RIGHT, buff=1.5).shift(UP * 1)
+
+        # Arrange days below the dates, with staggered vertical positions to prevent overlap
+        for i, (day, date) in enumerate(zip(day_texts, date_texts)):
+            day.next_to(date, DOWN, buff=0.3).shift(DOWN * i * 0.4)
+
+        # Animate the appearance of each date and day
+        for date, day in zip(date_texts, day_texts):
+            self.play(FadeIn(date), FadeIn(day))
+            self.wait(1)
+
+        self.wait(2)
+
+        # Create curved arrows and texts for patterns
+        arrows = VGroup()
+        pattern_texts = VGroup()
+        for i in range(len(date_texts) - 1):
+            start_point = date_texts[i].get_right()
+            end_point = date_texts[i + 1].get_left()
+            arrow = CurvedArrow(start_point, end_point, angle=-PI / 2)  # Adjust the angle to get the desired curve
+            arrows.add(arrow)
+
+        # Calculate the position for the text above the arrow
+            midpoint = (start_point + end_point) / 2
+            text = Text("+7").move_to(midpoint + UP * 0.5)  # Adjust the UP value to position text as needed
+            pattern_texts.add(text)
+
+       # Animate the appearance of each arrow and text
+        for arrow, text in zip(arrows, pattern_texts):
+            self.play(Create(arrow), FadeIn(text))
+            self.wait(1)
+
+        self.(FaidOut(arrow),FaidOut(text),)
+
+    
+    
+        self.wait(2)
+    def SetDeveloperList(self): 
+       self.DeveloperList="Raghu" 
+
     def SetSourceCodeFileName(self):
-        self.SourceCodeFileName="test.py"
-        
+       self.SourceCodeFileName="Grade4Chapter16Patterns.py" 
+    
+    
+    
 
 if __name__ == "__main__":
     scene = PatternAnimation()
