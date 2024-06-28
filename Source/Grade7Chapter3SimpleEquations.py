@@ -14,6 +14,7 @@ class simpleEquation(AbstractAnim):
         self.SUB()
         self.MUL()
         self.DIV()
+        self.GithubSourceCodeReference()
 
     def gen(self):
         self.isRandom=False
@@ -149,6 +150,12 @@ class simpleEquation(AbstractAnim):
         self.play(Create(CurvedArrow(p3.pos,p4.pos)))
        
         self.fadeOutCurrentScene()
+
+    def SetDeveloperList(self):
+        self.DeveloperList="Bhaskar"
+
+    def SetSourceCodeFileName(self):
+        self.SourceCodeFileName="Grade7Chapter3SimpleEquations.py"
 
 if __name__ == "__main__":
     scene = simpleEquation()
