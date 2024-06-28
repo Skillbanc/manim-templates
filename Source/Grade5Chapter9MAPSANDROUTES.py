@@ -5,6 +5,8 @@ from AbstractAnim import AbstractAnim
 import cvo
 class Class5(AbstractAnim):
     def construct(self):
+        self.RenderSkillbancLogo()
+        self.fadeOutCurrentScene()
         self.maps()
         self.floor()
         self.animfloor()
