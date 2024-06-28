@@ -5,97 +5,145 @@ from manim import *
 class MoveImageeee(AbstractAnim):
     def construct(self):
         # Title
-        title = Text("Right Pyramid", color=RED, weight=BOLD)
-        title.move_to(UP * 3)  # Center the title at the top
+        title = Text("Cone", color=RED, weight=BOLD)
+        title.move_to([0, 3, 0])
         underline = Underline(title)
-        
-        # Define the reduced base of the pyramid (square)
-        base_points = [(-1, -1, 0), (1, -1, 0), (0.5, -2, 0), (-1.5, -2, 0)]
-        base = Polygon(*base_points, stroke_width=5, color=WHITE)
-
-        # Apex of the pyramid
-        apex = [0, 1, 0]
-
-        # Faces of the pyramid
-        face1 = Polygon(apex, base_points[0], base_points[1], stroke_width=5, color=WHITE)
-        face2 = Polygon(apex, base_points[1], base_points[2], stroke_width=5, color=WHITE)
-        face3 = Polygon(apex, base_points[2], base_points[3], stroke_width=5, color=WHITE)
-        face4 = Polygon(apex, base_points[3], base_points[0], stroke_width=5, color=WHITE)
-
-        # Dotted line for the height
-        height_line = DashedLine(start=apex, end=[0, -1.5, 0], color=RED)
-
-        # Dot at the end of the height line
-        center_dot = Dot(point=[0, -1.5, 0], color=WHITE)
-
-        # Normal line for slant height
-        slant_height_line = Line(start=apex, end=base_points[1], color=RED)
-
-        # Labels
-        height_label = Text("height", color=WHITE).scale(0.5)
-        slant_height_label = Text("slant height", color=WHITE).scale(0.5)
-
-        # Adjust labels' positions
-        height_label.next_to(height_line, LEFT)
-        slant_height_label.next_to(slant_height_line, RIGHT)
-
-        # Group all objects to move them together
-        group = VGroup(base, face1, face2, face3, face4, height_line, center_dot, height_label, slant_height_line, slant_height_label)
-        
-        # Shift the group further to the left and a little down
-        group.move_to(LEFT * 4 + DOWN * 1) 
-
-        # Animation to display the title and underline
         self.play(Write(title))
-        self.play(Write(underline))
+        self.play(Create(underline))
+        self.wait()
 
-        # Animation to display the pyramid
-        self.play(Write(group))
+        # Create the cone
+        # self.play(Write(NumberPlane()))
+        cone = Polygon(
+            [0, 2, 0],  # Top point of the cone
+            [-2, -1, 0],  # Bottom left point
+            [2, -1, 0],  # Bottom right point
+            color=WHITE,
+            
+        )
+        cone.shift([-4, 0, 0])  # Shifted towards the left
+        self.play(Create(cone))
 
-        # Formulas
-        lsa_formula = MathTex(r"\textbf{LSA} = \frac{1}{2} \times \text{Perimeter of base} \times \text{Slant height}", color="#ffb3b3").move_to(RIGHT * 2 + UP*0.2)
-        # lsa_formula.next_to(title, DOWN)
-        tsa_formula = MathTex(r"\textbf{TSA} = \text{LSA} + \text{Area of base}", color="#80FF80").move_to(RIGHT * 2)
-        volume_formula = MathTex(r"\textbf{Volume} = \frac{1}{3} \times \text{Area of base} \times \text{Height}", color="#99FFFF").move_to(RIGHT * 2 + DOWN * 1)
+        # Create the horizontal ellipse (base)
+        base = Ellipse(width=4, height=0.4, color=WHITE)
+        base.move_to(cone.get_center() + DOWN * 1.5)  # Positioned below the cone
+        self.play(Create(base))
 
-        # Highlight LSA Formula
-        lsa_highlight = MathTex(r"\textbf{LSA} = \frac{1}{2} \times \text{Perimeter of base} \times \text{Slant height}", color="#ffb3b3")
-        lsa_highlight.next_to(volume_formula, UP * 3)
-        self.play(Write(lsa_highlight))
-        face1.set_fill("#ffb3b3", opacity=0.5)
+        # Create the vertical line representing the height
+        height_line = Line(start=[-4, 2, 0], end=[-4, -1, 0], color=WHITE)  # Shifted towards the left
+        self.play(Create(height_line))
+
+        
+        # Create the small filled circle at the center of the base
+        center_dot = Dot(point=[-4, -1, 0], color=WHITE)  # Shifted towards the left
+        self.play(Create(center_dot))
+
+        # Create the labels "h", "l", and "r"
+        height_label = Text("h", font="Comic Sans MS", color=WHITE, weight=BOLD).scale(0.5)
+        height_label.move_to([-4.2, 0.5, 0])  # Adjusted position
+        self.play(Write(height_label))
+
+        slant_label = Text("l", font="Comic Sans MS", color=WHITE, weight=BOLD).scale(0.5)
+        slant_label.move_to([-3, 1, 0])  # Shifted towards the left
+        self.play(Write(slant_label))
+
+        radius_label = Text("r", font="Comic Sans MS", color=WHITE, weight=BOLD).scale(0.5)
+        radius_label.move_to([-3, -1.7, 0])  # Shifted towards the left
+        self.play(Write(radius_label))
+
+        # Slant height formula
+        slantheight = MathTex ("\\textbf{Slant height } = h^2 + r^2 \\\\ =\\sqrt{h^2 + r^2}", color=WHITE).next_to(cone,RIGHT*2)
+        self.play(Write(slantheight))
+
+        cone1 = Polygon(
+            [-4, 2, 0],  # Top point of the cone
+            [-2, -1, 0],  # Bottom left point
+            [-4, -1, 0],  # Bottom right point
+            color=WHITE,
+            
+        )
+        
+        self.play(Create(cone1))
+        cone1.set_fill("#a3a3c2", opacity=0.5)
+        base1 = Ellipse(width=4, height=0.4, color=WHITE,fill_opacity=1, fill_color=BLACK)
+        base1.move_to(cone.get_center() + DOWN * 1.5)  # Positioned below the cone
+        self.play(Create(base1))
+
+        # Create the vertical line representing the height
+        height_line1 = Line(start=[-4, 2, 0], end=[-4, -1, 0], color=WHITE)  # Shifted towards the left
+        self.play(Create(height_line1))
+
+        # Create the small filled circle at the center of the base
+        center_dot1 = Dot(point=[-4, -1, 0], color=WHITE)  # Shifted towards the left
+        self.play(Create(center_dot1))
+        self.wait()
+        L1=Line(start=[-6,-1,0],end=[-2,-1,0])
+        self.play(Write(L1))
+        self.wait()
+        
+        slant_height_formula = MathTex("\\textbf{Slant height (l)} = \\sqrt{h^2 + r^2}", color="#a3a3c2")
+        slant_height_formula.next_to(slantheight, DOWN,buff=1)
+        self.play(Write(slant_height_formula))
+        self.play(Uncreate(cone1))
+        self.play(FadeOut(slantheight), FadeOut(slant_height_formula))
+
+        # Highlight LSA
+        lsaformula = MathTex("\\textbf{LSA} = \\text{Sum of the areas of triangles}\\\\ =\\frac{1}{2}l\\text{(circumference of base of cone)}\\\\ =\\frac{1}{2}l(2\\pi r) \\\\ = \\pi r l", color=WHITE).next_to(cone,RIGHT*2)
+        self.play(Create(lsaformula))
+        cone.set_fill("#ffb3b3", opacity=0.5)
+        
+        base1 = Ellipse(width=4, height=0.4, color=WHITE,fill_opacity=1, fill_color=BLACK)
+        base1.move_to(cone.get_center() + DOWN * 1.5)  # Positioned below the cone
+        self.play(Create(base1))
+
+        # Create the vertical line representing the height
+        height_line1 = Line(start=[-4, 2, 0], end=[-4, -1, 0], color=WHITE)  # Shifted towards the left
+        self.play(Create(height_line1))
+
+        # Create the small filled circle at the center of the base
+        center_dot1 = Dot(point=[-4, -1, 0], color=WHITE)  # Shifted towards the left
+        self.play(Create(center_dot1))
+        self.wait()
+        L1=Line(start=[-6,-1,0],end=[-2,-1,0])
+        self.play(Write(L1))
+        self.wait()
+
+        lsa_formula = MathTex("\\textbf{LSA} = \\pi r l", color="#ffb3b3")
+        lsa_formula.next_to(lsaformula, DOWN)
+        self.play(Write(lsa_formula))
+        self.play(FadeOut(lsaformula), FadeOut(lsa_formula))
+
+        # Highlight TSA
+        tsaformula  = MathTex("\\textbf{TSA} =\\text{LSA + area of its base} \\\\ = \\pi r l + \\pi r^2\\\\= \\pi r (l + r)", color=WHITE).next_to(cone,RIGHT*2)
+        self.play(Write(tsaformula))
+        cone.set_fill("#80ff80", opacity=1)
         self.wait(1)
-        face2.set_fill("#ffb3b3", opacity=0.5)
+        base1.set_fill("#80ff80", opacity=1)
         self.wait(1)
-        face3.set_fill("#ffb3b3", opacity=0.5)
+        tsa_formula = MathTex("\\textbf{TSA} = \\pi r (l + r)", color="#80ff80")
+        tsa_formula.next_to(tsaformula, DOWN)
+        self.play(Write(tsa_formula))
         self.wait(1)
-        face4.set_fill("#ffb3b3", opacity=0.5)
+        self.play(FadeOut(tsaformula), FadeOut(tsa_formula))
+        
+        # Highlight Volume
+        volumeformula = MathTex("\\textbf{Volume} = \\frac{1}{3}\\text{volume of cylinder} \\\\ =\\frac{1}{3} \\pi r^2 h", color=WHITE).next_to(cone,RIGHT*2)
+        self.play(Write(volumeformula)) 
+        cone.set_fill("#99ffff", opacity=1)
+        base1.set_fill("#99ffff", opacity=1)
+        self.wait(1)                      
+        volume_formula = MathTex("\\textbf{Volume} = \\frac{1}{3} \\pi r^2 h", color="#99ffff")
+        volume_formula.next_to(volumeformula, DOWN)
+        self.play(Write(volume_formula))
+        cone.set_fill("#99ffff", opacity=1)
+        base1.set_fill("#99ffff", opacity=1)
         self.wait(1)
         
-        # Highlight TSA Formula
-        tsa_highlight = MathTex(r"\textbf{TSA} = \text{LSA} + \text{Area of base}", color="#80FF80")
-        tsa_highlight.next_to(lsa_highlight, DOWN)
-        self.play(Write(tsa_highlight))
-        face1.set_fill("#80FF80", opacity=0.5)
-        self.wait(1)
-        face2.set_fill("#80FF80", opacity=0.5)
-        self.wait(1)
-        face3.set_fill("#80FF80", opacity=0.5)
-        self.wait(1)
-        face4.set_fill("#80FF80", opacity=0.5)
-        self.wait(1)
-        base.set_fill("#80FF80", opacity=0.5)
-        self.wait(1)
+
         
-        # Highlight Volume Formula
-        volume_highlight = MathTex(r"\textbf{Volume} = \frac{1}{3} \times \text{Area of base} \times \text{Height}", color="#99FFFF")
-        volume_highlight.next_to(tsa_highlight, DOWN)
-        self.play(Write(volume_highlight))
-        face1.set_fill("#99FFFF", opacity=0.5)
-        face2.set_fill("#99FFFF", opacity=0.5)
-        face3.set_fill("#99FFFF", opacity=0.5)
-        face4.set_fill("#99FFFF", opacity=0.5)
-        base.set_fill("#99FFFF", opacity=0.5)
-        self.wait(3)  
+        
+        
+        
 
 # To render the scene
 if __name__ == "__main__":

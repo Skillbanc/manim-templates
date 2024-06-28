@@ -88,100 +88,139 @@ class Surfaceareasandvolumes(AbstractAnim,ThreeDScene):
 
     def Cuboidanim(self):
         # Title
-        title = Text("Cuboid", color=RED, weight=BOLD)
-        title.move_to([0, 3, 0])
-        underline = Underline(title)
+         title = Text("Cuboid", color=RED, weight=BOLD)
+         title.move_to([0, 3, 0])
+         underline = Underline(title)
+         
+         self.play(Write(title))
+         self.play(Create(underline))
+         self.wait()
+         
+         # Cuboid Animation (Scaled down and positioned to the left)
+         scale_factor = 0.7  # Adjust as needed
+         a = ((-1*scale_factor, -2.25*scale_factor, 0), (-7*scale_factor, -2.25*scale_factor, 0),
+              (-8*scale_factor, -2.75*scale_factor, 0), (-2*scale_factor, -2.75*scale_factor, 0), (-1*scale_factor, -2.25*scale_factor, 0))
+         base = Polygon(*a, stroke_width=3, color=WHITE)
+         
+         b = ((-1*scale_factor, 0.75*scale_factor, 0), (-7*scale_factor, 0.75*scale_factor, 0),
+              (-8*scale_factor, 0.25*scale_factor, 0), (-2*scale_factor, 0.25*scale_factor, 0), (-1*scale_factor, 0.75*scale_factor, 0))
+         top = Polygon(*b, stroke_width=3, color=WHITE)
+         
+         c = ((-0.9*scale_factor, 0.75*scale_factor, 0), (-0.9*scale_factor, -2.25*scale_factor, 0),
+              (-2*scale_factor, -2.75*scale_factor, 0), (-2*scale_factor, 0.25*scale_factor, 0), (-1*scale_factor, 0.75*scale_factor, 0))
+         face1 = Polygon(*c, stroke_width=3, color=WHITE)
+         
+         d = ((-1*scale_factor, 0.75*scale_factor, 0), (-7*scale_factor, 0.75*scale_factor, 0),
+              (-7*scale_factor, -2.25*scale_factor, 0), (-0.9*scale_factor, -2.25*scale_factor, 0), (-0.9*scale_factor, 0.75*scale_factor, 0))
+         face2 = Polygon(*d, stroke_width=3, color=WHITE)
+         
+         e = ((-7*scale_factor, 0.75*scale_factor, 0), (-7*scale_factor, -2.25*scale_factor, 0),
+              (-8*scale_factor, -2.75*scale_factor, 0), (-8*scale_factor, 0.25*scale_factor, 0), (-7*scale_factor, 0.75*scale_factor, 0))
+         face3 = Polygon(*e, stroke_width=3, color=WHITE)
+         
+         f = ((-2*scale_factor, 0.25*scale_factor, 0), (-2*scale_factor, -2.75*scale_factor, 0),
+              (-8*scale_factor, -2.75*scale_factor, 0), (-8*scale_factor, 0.25*scale_factor, 0), (-2*scale_factor, 0.25*scale_factor, 0))
+         face4 = Polygon(*f, stroke_width=3, color=WHITE)
+         
+         # Labels for dimensions
+         l_label = Text("l", font="Comic Sans MS", color=WHITE, weight=BOLD).scale(0.5)
+         l_label.next_to(base.get_edge_center(DOWN), DOWN)
+         b_label = Text("b", font="Comic Sans MS", color=WHITE, weight=BOLD).scale(0.5)
+         b_label.next_to(base.get_edge_center(RIGHT), DOWN)
+         h_label = Text("h", font="Comic Sans MS", color=WHITE, weight=BOLD).scale(0.5)
+         h_label.next_to(top.get_edge_center(RIGHT), RIGHT)
+         
+         cuboid_group = VGroup(base, top, face1, face2, face3, face4, l_label, b_label, h_label)
+         cuboid_group.move_to([-2, 0, 0])
+         
+         self.play(Create(cuboid_group))
+         self.wait()
+         
+         # Lateral Surface Area explanation
+         lsa_explanation = MarkupText(
+            "LSA = Area of(1)+(3)+(4)+(6)\n"
+            "= lh + bh + bh + lh\n"
+            "= 2lh + 2bh\n"
+            "= 2h (l + b)",
+            font_size=24,
+            line_spacing=1.5  # Adjust this value to control line spacing
+        )
+         lsa_explanation.next_to(cuboid_group, RIGHT, buff=1)
+         self.play(Write(lsa_explanation))
+         self.wait(1)
+         face1.set_fill("#ffb3b3", opacity=0.5)
+         self.wait(1)
+         face2.set_fill("#ffb3b3", opacity=0.5)
+         self.wait(1)
+         face3.set_fill("#ffb3b3", opacity=0.5)
+         self.wait(1)
+         face4.set_fill("#ffb3b3", opacity=0.5)
+         self.wait(1)
+         
+         # LSA of Cuboid (Blue color)
+         lsa_text = Text("LSA = 2h(l+b)", color="#ffb3b3", weight=BOLD, font_size=30)
+         lsa_text.next_to(cuboid_group, DOWN+ORIGIN,buff=1)
+         self.play(Write(lsa_text))
+         self.wait(1)
+         self.play(FadeOut(lsa_explanation),FadeOut(lsa_text))
+         
+         # Surface Area explanation
+         tsa_explanation = MarkupText(
+            "Surface Area = Area of(1)+(2)+(3)+(4)\n"
+            "+(5)+(6)\n"
+            "= lh + lb + bh + bh + lb + lh\n"
+            "= 2 lb + 2lh + 2bh\n"
+            "= 2(lb + bh + lh)",
+            font_size=24,
+            line_spacing=1.5  # Adjust this value to control line spacing
+        )
+         tsa_explanation.next_to(cuboid_group, RIGHT)
+         self.play(Write(tsa_explanation))
+         face1.set_fill("#80ff80", opacity=0.5)
+         self.wait(1)
+         face2.set_fill("#80ff80", opacity=0.5)
+         self.wait(1)
+         face3.set_fill("#80ff80", opacity=0.5)
+         self.wait(1)
+         face4.set_fill("#80ff80", opacity=0.5)
+         self.wait(1)
+         top.set_fill("#80ff80", opacity=0.5)
+         self.wait(1)
+         base.set_fill("#80ff80", opacity=0.5)
+         self.wait(1)
+         
+         # TSA of Cuboid (Yellow color)
+         tsa_text = Text("Surface Area = 2(lb+bh+hl)", color="#80ff80", weight=BOLD, font_size=30)
+         tsa_text.next_to(cuboid_group, DOWN+ORIGIN ,buff=1) 
+         self.play(Write(tsa_text))
+         self.wait(1)
+         self.play(FadeOut(tsa_explanation),FadeOut(tsa_text))
+         
+         
 
-        self.play(Write(title))
-        self.play(Create(underline))
-        self.wait()
-
-        # Cuboid Animation (Scaled down and positioned to the left)
-        scale_factor = 0.7  # Adjust as needed
-        a = ((-1*scale_factor, -2.25*scale_factor, 0), (-7*scale_factor, -2.25*scale_factor, 0),
-             (-8*scale_factor, -2.75*scale_factor, 0), (-2*scale_factor, -2.75*scale_factor, 0), (-1*scale_factor, -2.25*scale_factor, 0))
-        base = Polygon(*a, stroke_width=3, color=WHITE)
-
-        b = ((-1*scale_factor, 0.75*scale_factor, 0), (-7*scale_factor, 0.75*scale_factor, 0),
-             (-8*scale_factor, 0.25*scale_factor, 0), (-2*scale_factor, 0.25*scale_factor, 0), (-1*scale_factor, 0.75*scale_factor, 0))
-        top = Polygon(*b, stroke_width=3, color=WHITE)
-
-        c = ((-0.9*scale_factor, 0.75*scale_factor, 0), (-0.9*scale_factor, -2.25*scale_factor, 0),
-             (-2*scale_factor, -2.75*scale_factor, 0), (-2*scale_factor, 0.25*scale_factor, 0), (-1*scale_factor, 0.75*scale_factor, 0))
-        face1 = Polygon(*c, stroke_width=3, color=WHITE)
-
-        d = ((-1*scale_factor, 0.75*scale_factor, 0), (-7*scale_factor, 0.75*scale_factor, 0),
-             (-7*scale_factor, -2.25*scale_factor, 0), (-0.9*scale_factor, -2.25*scale_factor, 0), (-0.9*scale_factor, 0.75*scale_factor, 0))
-        face2 = Polygon(*d, stroke_width=3, color=WHITE)
-
-        e = ((-7*scale_factor, 0.75*scale_factor, 0), (-7*scale_factor, -2.25*scale_factor, 0),
-             (-8*scale_factor, -2.75*scale_factor, 0), (-8*scale_factor, 0.25*scale_factor, 0), (-7*scale_factor, 0.75*scale_factor, 0))
-        face3 = Polygon(*e, stroke_width=3, color=WHITE)
-
-        f = ((-2*scale_factor, 0.25*scale_factor, 0), (-2*scale_factor, -2.75*scale_factor, 0),
-             (-8*scale_factor, -2.75*scale_factor, 0), (-8*scale_factor, 0.25*scale_factor, 0), (-2*scale_factor, 0.25*scale_factor, 0))
-        face4 = Polygon(*f, stroke_width=3, color=WHITE)
-
-        # Labels for dimensions
-        l_label = Text("l", font="Comic Sans MS", color=WHITE, weight=BOLD).scale(0.5)
-        l_label.next_to(base.get_edge_center(DOWN), DOWN)
-        b_label = Text("b", font="Comic Sans MS", color=WHITE, weight=BOLD).scale(0.5)
-        b_label.next_to(base.get_edge_center(RIGHT), DOWN)
-        h_label = Text("h", font="Comic Sans MS", color=WHITE, weight=BOLD).scale(0.5)
-        h_label.next_to(top.get_edge_center(RIGHT), RIGHT)
-
-        cuboid_group = VGroup(base, top, face1, face2, face3, face4, l_label, b_label, h_label)
-        cuboid_group.move_to([-2, 0, 0])
-
-        self.play(Create(cuboid_group))
-        self.wait()
-
-
-        # LSA of Cuboid (Blue color)
-        lsa_text = Text("LSA = 2h(l+b)", color="#ffb3b3", weight=BOLD,font_size=30)
-        lsa_text.next_to(cuboid_group, RIGHT*2, buff=1)
-        self.play(Write(lsa_text))
-        face1.set_fill("#ffb3b3", opacity=0.5)
-        self.wait(1)
-        face2.set_fill("#ffb3b3", opacity=0.5)
-        self.wait(1)
-        face3.set_fill("#ffb3b3", opacity=0.5)
-        self.wait(1)
-        face4.set_fill("#ffb3b3", opacity=0.5)
-        self.wait(1)
-        
-
-
-        # Formulas beside the cuboid
-        # TSA of Cuboid (Yellow color)
-        tsa_text = Text("Surface area = 2(lb+bh+hl)", color="#80ff80", weight=BOLD,font_size=30)
-        tsa_text.next_to(lsa_text, DOWN)
-        self.play(Write(tsa_text))
-        face1.set_fill("#80ff80", opacity=0.5)
-        self.wait(1)
-        face2.set_fill("#80ff80", opacity=0.5)
-        self.wait(1)
-        face3.set_fill("#80ff80", opacity=0.5)
-        self.wait(1)
-        face4.set_fill("#80ff80", opacity=0.5)
-        self.wait(1)
-        top.set_fill("#80ff80", opacity=0.5)
-        self.wait(1)
-        base.set_fill("#80ff80", opacity=0.5)
-        self.wait(1)
-        
-
-        # Volume of Cuboid (Red color)
-        volume_text = Text("Volume = lbh", color="#99ffff", weight=BOLD,font_size=30)
-        volume_text.next_to(tsa_text, DOWN)
-        self.play(Write(volume_text))
-        face1.set_fill("#99ffff", opacity=0.5)
-        face2.set_fill("#99ffff", opacity=0.5)
-        face3.set_fill("#99ffff", opacity=0.5)
-        face4.set_fill("#99ffff", opacity=0.5)
-        base.set_fill("#99ffff", opacity=0.5)
-        top.set_fill("#99ffff", opacity=0.5)
-        self.wait(3)
+         # Volume explanation
+         volume_explanation = MarkupText(
+            "Volume = Area of occupied region × h\n"
+            "= l b × h\n"
+            "= l × b × h",
+            font_size=24,
+            line_spacing=1.5  # Adjust this value to control line spacing
+        )
+         volume_explanation.next_to(cuboid_group, RIGHT)
+         self.play(Write(volume_explanation))
+         face1.set_fill("#99ffff", opacity=0.5)
+         face2.set_fill("#99ffff", opacity=0.5)
+         face3.set_fill("#99ffff", opacity=0.5)
+         face4.set_fill("#99ffff", opacity=0.5)
+         base.set_fill("#99ffff", opacity=0.5)
+         top.set_fill("#99ffff", opacity=0.5)
+         self.wait(1) 
+         
+         # Volume of Cuboid (Red color)
+         volume_text = Text("Volume = l × b × h", color="#99ffff", weight=BOLD, font_size=30)
+         volume_text.next_to(cuboid_group, DOWN + ORIGIN,buff=1)
+         self.play(Write(volume_text))
+         self.wait(1)
 
 
     def Example1(self):
@@ -265,7 +304,7 @@ class Surfaceareasandvolumes(AbstractAnim,ThreeDScene):
         self.positionChoice = [[-4,0,0],[0,2,0],[2,-2,0]]
         self.isRandom = False
         p10=cvo.CVO().CreateCVO("Cylinder","")
-        p11=cvo.CVO().CreateCVO("Lateral surface Area","$2\pi rh$")
+        p11=cvo.CVO().CreateCVO("Curved Surface Area","$2\pi rh$")
         p12=cvo.CVO().CreateCVO("Total Surface Area","$2\pi r(r+h)$")
         p13=cvo.CVO().CreateCVO("Volume","$\pi r^2h$").setPosition([0,2,0])
         p10.cvolist.append(p11)
@@ -280,32 +319,32 @@ class Surfaceareasandvolumes(AbstractAnim,ThreeDScene):
 
     def Cylinderanim(self):
         t1 = Text("Cylinder", color=RED, weight=BOLD)
-        t1.move_to([0, 2.7, 0])
+        t1.move_to([0, 3, 0])
         underline = Underline(t1)
-
+        
         # Create base and top ellipses
         base = Ellipse(width=2, height=0.5, color=WHITE, fill_opacity=1, fill_color=BLACK)
         top = Ellipse(width=2, height=0.5, color=WHITE, fill_opacity=1, fill_color=BLACK)
-
+        
         # Set the angle for the ellipses
         angle = PI / 4  # 45 degrees in radians
         base.rotate(angle, axis=RIGHT)
         top.rotate(angle, axis=RIGHT)
-
+        
         # Create the lines
         line1 = Line(start=[-1, -1.5, 0], end=[-1, 1.5, 0], color=WHITE)
         line2 = Line(start=[1, -1.5, 0], end=[1, 1.5, 0], color=WHITE)
-
+        
         # Position the base and top
         base.move_to([0, -1.5, 0])
         top.move_to([0, 1.5, 0])
-
+        
         # Create labels
         r_label = Text("r", font="Comic Sans MS", color=WHITE, weight=BOLD).scale(0.5)
         r_label.next_to(base.get_edge_center(DOWN), DOWN)
         h_label = Text("h", font="Comic Sans MS", color=WHITE, weight=BOLD).scale(0.5)
-        h_label.next_to(base.get_edge_center(RIGHT) + RIGHT * 0.5, UP * 4.5)
-
+        h_label.next_to(base.get_edge_center(RIGHT) + RIGHT * 0.2, UP * 4.5)
+        
         # Play animations
         self.play(Write(t1))
         self.play(Create(underline))
@@ -314,14 +353,12 @@ class Surfaceareasandvolumes(AbstractAnim,ThreeDScene):
         self.play(Write(line1), Write(line2))
         self.play(Write(r_label), Write(h_label))
         self.wait(1)
-
+        
         # Surface Area annotations
         # Lateral Surface Area (LSA)
-        lsa_text = Text("LSA = 2πrh", color="#ffb3b3", weight=BOLD, font_size=30)
-        lsa_text.next_to(h_label, RIGHT, buff=1)
-        self.play(Write(lsa_text))
-
-        # Create polygon to fill LSA area between line1 and line2
+        lsa_description = Text("CSA = Area of the rectangle\n= length × breadth\n= 2 πr × h\n= 2πrh", color=WHITE, font_size=24,line_spacing=1)
+        lsa_description.next_to(h_label, RIGHT*2)
+        self.play(Write(lsa_description))
         lsa_area = Polygon(line1.get_start(), line1.get_end(), line2.get_end(), line2.get_start())
         lsa_area.set_fill(color="#ffb3b3", opacity=0.5)
         lsa_area.set_stroke(color=WHITE, width=0)  # Ensure no border around the polygon
@@ -332,42 +369,57 @@ class Surfaceareasandvolumes(AbstractAnim,ThreeDScene):
         self.play(Create(lsa_area))
         self.play(Write(b11), Write(t11))
         self.wait(1)
-
+        
+        lsa_text = Text("CSA = 2πrh", color="#ffb3b3", weight=BOLD, font_size=30)
+        lsa_text.next_to(lsa_description, DOWN,buff=0.5)
+        self.play(Write(lsa_text))
+        self.wait(1)
+        self.play(FadeOut(lsa_description),FadeOut(lsa_text))
+        
         # Total Surface Area (TSA)
-        tsa_text = Text("TSA = 2πr(r + h)", color="#80ff80", weight=BOLD, font_size=30)
-        tsa_text.next_to(lsa_text, DOWN)
-        self.play(Write(tsa_text))
-
-        # Fade out previous fills and set new color for TSA
-        # Fade out previous fills and set new color for TSA
+        tsa_description = Text("TSA= CSA + Area of top + Area of \nbase\n= 2πrh + πr² + πr²\n= 2πrh + 2πr²\n= 2πr (h + r)\n= 2πr (r + h)", color=WHITE, font_size=24,line_spacing=1)
+        tsa_description.next_to(h_label, RIGHT*2)
+        self.play(Write(tsa_description))
         self.play(lsa_area.animate.set_fill(color="#80ff80", opacity=1))
         self.wait(1)
         self.play(b11.animate.set_fill(color="#80ff80", opacity=1))
         self.wait(1)
         self.play(t11.animate.set_fill(color="#80ff80", opacity=1))
         self.wait(1)
-
+        
+        tsa_text = Text("TSA = 2πr(r + h)", color="#80ff80", weight=BOLD, font_size=30)
+        tsa_text.next_to(tsa_description, DOWN,buff=0.5)
+        self.play(Write(tsa_text))
+        self.wait(1)
+        self.play(FadeOut(tsa_description),FadeOut(tsa_text))
+       
+        
+        
         # Volume annotation
-        volume_text = Text("Volume = πr²h", color="#99ffff", weight=BOLD, font_size=30)
-        volume_text.next_to(tsa_text, DOWN)
-        self.play(Write(volume_text))
-
-        # Fade out previous fills and set new color for volume
+        volume_description = Text("Volume = πr² × height\n= πr² × h\n= πr²h", color=WHITE, font_size=24)
+        volume_description.next_to(h_label, RIGHT*2)
+        self.play(Write(volume_description))
+         # Fade out previous fills and set new color for volume
         self.play(
             AnimationGroup(
                 lsa_area.animate.set_fill(color="#99ffff", opacity=1),
-                b11.animate.set_fill(color="#99ffff", opacity=1),
-                t11.animate.set_fill(color="#99ffff", opacity=1),
-                lag_ratio=0
-            )
-        )
+        b11.animate.set_fill(color="#99ffff", opacity=1),
+        t11.animate.set_fill(color="#99ffff", opacity=1),
+        lag_ratio=0
+    )
+)
         self.wait()
+        
+        volume_text = Text("Volume = πr²h", color="#99ffff", weight=BOLD, font_size=30,line_spacing=1.5)
+        volume_text.next_to(volume_description, DOWN, buff=0.5)
+        self.play(Write(volume_text))
+        self.wait(1)
     
     def Example2(self):
         self.positionChoice = [[-4,0,0],[0,2,0],[2,-2,0]]
         self.isRandom = False
         p10=cvo.CVO().CreateCVO("Cylinder","r=5cm,h=8cm")
-        p11=cvo.CVO().CreateCVO("Lateral surface Area","$2*3.14*5*8=251.2cm^2$")
+        p11=cvo.CVO().CreateCVO("Curved surface Area","$2*3.14*5*8=251.2cm^2$")
         p12=cvo.CVO().CreateCVO("Total Surface Area","$2*3.14*5(5+8)=408.2cm^2$")
         p13=cvo.CVO().CreateCVO("Volume","$3.14*5*5*8=628cm^3$").setPosition([0,2,0])
         p10.cvolist.append(p11)
@@ -388,8 +440,6 @@ class Surfaceareasandvolumes(AbstractAnim,ThreeDScene):
         self.play(Write(title))
         self.play(Create(underline))
 
-        
-
         # Dimensions of the cylinder
         radius = 5  # cm
         height = 8  # cm
@@ -408,7 +458,7 @@ class Surfaceareasandvolumes(AbstractAnim,ThreeDScene):
 
         # Create LaTeX texts for lateral surface area, total surface area, and volume
         lateral_surface_area_formula = MathTex(
-            "\\text{Lateral Surface Area} = 2\\pi rh"
+            "\\text{Curved Surface Area} = 2\\pi rh"
         ).next_to(dimensions_text, DOWN)
 
         lateral_surface_area_calc = MathTex(
@@ -451,7 +501,7 @@ class Surfaceareasandvolumes(AbstractAnim,ThreeDScene):
         self.isRandom = False
         p10=cvo.CVO().CreateCVO("Cone","")
         p11=cvo.CVO().CreateCVO("Slant Height","$l=\sqrt (h^2 + r^2)$")
-        p12=cvo.CVO().CreateCVO("Lateral Surface Area","$\pi rl$").setPosition([-4,2,0])
+        p12=cvo.CVO().CreateCVO("Curved Surface Area","$\pi rl$").setPosition([-4,2,0])
         p13=cvo.CVO().CreateCVO("Total Surface Area","$\pi r(r+l)$").setPosition([-0.5,2,0])
         p14=cvo.CVO().CreateCVO("Volume","$1/3 \pi r^2h$").setPosition([2,2,0])
         p10.cvolist.append(p11)
@@ -516,9 +566,9 @@ class Surfaceareasandvolumes(AbstractAnim,ThreeDScene):
         self.play(Write(radius_label))
 
         # Slant height formula
-        slant_height_formula = MathTex("\\textbf{Slant height (l)} = \\sqrt{r^2 + h^2}", color="#a3a3c2")
-        slant_height_formula.next_to(slant_label, RIGHT * 8)
-        self.play(Write(slant_height_formula))
+        slantheight = MathTex ("\\textbf{Slant height } = h^2 + r^2 \\\\ =\\sqrt{h^2 + r^2}", color=WHITE).next_to(cone,RIGHT*2)
+        self.play(Write(slantheight))
+
         cone1 = Polygon(
             [-4, 2, 0],  # Top point of the cone
             [-2, -1, 0],  # Bottom left point
@@ -544,12 +594,16 @@ class Surfaceareasandvolumes(AbstractAnim,ThreeDScene):
         L1=Line(start=[-6,-1,0],end=[-2,-1,0])
         self.play(Write(L1))
         self.wait()
+        
+        slant_height_formula = MathTex("\\textbf{Slant height (l)} = \\sqrt{h^2 + r^2}", color="#a3a3c2")
+        slant_height_formula.next_to(slantheight, DOWN,buff=1)
+        self.play(Write(slant_height_formula))
         self.play(Uncreate(cone1))
+        self.play(FadeOut(slantheight), FadeOut(slant_height_formula))
 
         # Highlight LSA
-        lsa_formula = MathTex("\\textbf{LSA} = \\pi r l", color="#ffb3b3")
-        lsa_formula.next_to(slant_height_formula, DOWN)
-        self.play(Write(lsa_formula))
+        csaformula = MathTex("\\textbf{CSA} = \\text{Sum of the areas of triangles}\\\\ =\\frac{1}{2}l\\text{(circumference of base of cone)}\\\\ =\\frac{1}{2}l(2\\pi r) \\\\ = \\pi r l", color=WHITE).next_to(cone,RIGHT*2)
+        self.play(Create(csaformula))
         cone.set_fill("#ffb3b3", opacity=0.5)
         
         base1 = Ellipse(width=4, height=0.4, color=WHITE,fill_opacity=1, fill_color=BLACK)
@@ -568,29 +622,43 @@ class Surfaceareasandvolumes(AbstractAnim,ThreeDScene):
         self.play(Write(L1))
         self.wait()
 
+        csa_formula = MathTex("\\textbf{CSA} = \\pi r l", color="#ffb3b3")
+        csa_formula.next_to(csaformula, DOWN)
+        self.play(Write(csa_formula))
+        self.play(FadeOut(csaformula), FadeOut(csa_formula))
+
         # Highlight TSA
-        tsa_formula = MathTex("\\textbf{TSA} = \\pi r (l + r)", color="#80ff80")
-        tsa_formula.next_to(lsa_formula, DOWN)
-        self.play(Write(tsa_formula))
+        tsaformula  = MathTex("\\textbf{TSA} =\\text{CSA + area of its base} \\\\ = \\pi r l + \\pi r^2\\\\= \\pi r (l + r)", color=WHITE).next_to(cone,RIGHT*2)
+        self.play(Write(tsaformula))
         cone.set_fill("#80ff80", opacity=1)
         self.wait(1)
         base1.set_fill("#80ff80", opacity=1)
         self.wait(1)
+        tsa_formula = MathTex("\\textbf{TSA} = \\pi r (l + r)", color="#80ff80")
+        tsa_formula.next_to(tsaformula, DOWN)
+        self.play(Write(tsa_formula))
+        self.wait(1)
+        self.play(FadeOut(tsaformula), FadeOut(tsa_formula))
         
         # Highlight Volume
+        volumeformula = MathTex("\\textbf{Volume} = \\frac{1}{3}\\text{volume of cylinder} \\\\ =\\frac{1}{3} \\pi r^2 h", color=WHITE).next_to(cone,RIGHT*2)
+        self.play(Write(volumeformula)) 
+        cone.set_fill("#99ffff", opacity=1)
+        base1.set_fill("#99ffff", opacity=1)
+        self.wait(1)                      
         volume_formula = MathTex("\\textbf{Volume} = \\frac{1}{3} \\pi r^2 h", color="#99ffff")
-        volume_formula.next_to(tsa_formula, DOWN)
+        volume_formula.next_to(volumeformula, DOWN)
         self.play(Write(volume_formula))
         cone.set_fill("#99ffff", opacity=1)
         base1.set_fill("#99ffff", opacity=1)
-        self.wait(3)
+        self.wait(1)
 
     def Example3(self):
         self.positionChoice = [[-4,0,0],[-2,2,0],[2,-2,0]]
         self.isRandom = False
         p10=cvo.CVO().CreateCVO("Cone","r=6cm,h=10cm")
         p11=cvo.CVO().CreateCVO("Slant Height","$l=\sqrt (10^2+16^2)=11.66cm$")
-        p12=cvo.CVO().CreateCVO("Lateral Surface Area","$3.14*6*11.66=219.71cm^2$").setPosition([-4,2,0])
+        p12=cvo.CVO().CreateCVO("Curved Surface Area","$3.14*6*11.66=219.71cm^2$").setPosition([-4,2,0])
         p13=cvo.CVO().CreateCVO("Total Surface Area","$3.14*6*(6+11.66)=332.75cm^2$").setPosition([-0.7,2,0])
         p14=cvo.CVO().CreateCVO("Volume","$1/3*3.14*6*6*10=376.80cm^3$").setPosition([2.2,2.3,0])
         p10.cvolist.append(p11)
@@ -634,13 +702,13 @@ class Surfaceareasandvolumes(AbstractAnim,ThreeDScene):
             f"&= \\sqrt{{{height}^2 + {base_radius}^2}}",f"&= {slant_height:.2f}\\ \\text{{cm}}").next_to(dimensions_text, DOWN)
 
         lateral_surface_area_text = MathTex(
-            f"\\text{{Lateral Surface Area}} = \\pi r l \\",
+            f"\\text{{Curved Surface Area}} = \\pi r l \\",
             f"& = {pi_value} \\times {base_radius} \\times {slant_height:.2f}\\, = {lateral_surface_area:.2f}\\ \\text{{cm}}^2"
         ).next_to(slant_height_formula, DOWN)
 
         total_surface_area_text = MathTex(
-            f"\\text{{Total Surface Area}} = \\pi r l + \\pi r^2 \\,",
-            f"& = {lateral_surface_area:.2f} + {pi_value} \\times {base_radius}^2 \\, = {total_surface_area:.2f}\\ \\text{{cm}}^2"
+            f"\\text{{TSA}} = \\pi r (l + r)",
+            f"\\ = {pi_value} \\times {base_radius} ({slant_height:.2f} + {base_radius})={total_surface_area:.2f}\\ \\text{{cm}}^2"
         ).next_to(lateral_surface_area_text, DOWN)
 
         volume_text = MathTex(
@@ -674,62 +742,60 @@ class Surfaceareasandvolumes(AbstractAnim,ThreeDScene):
         self.construct1(p10,p10)
 
     def Sphereanim(self):
-        # Title and underline
-        title = Text("Sphere", color=RED, weight=BOLD)
-        title.move_to([0, 3, 0])
-        underline = Underline(title)
-        
+        # Title for Sphere
+        title_sphere = Text("Sphere", color=RED, weight=BOLD)
+        title_sphere.move_to([0, 3, 0])
+        underline_sphere = Underline(title_sphere)
+        self.play(Write(title_sphere))
+        self.play(Create(underline_sphere))
+        self.wait()
+
         # Create the circle representing the sphere
         sphere = Circle(radius=2, color=WHITE)
-        
+        sphere.shift(LEFT*3)
+        self.play(Create(sphere))
+
         # Create the horizontal ellipse (equator)
         equator = Ellipse(width=4, height=0.4, color=WHITE)
-        
+        equator.shift(LEFT*3)
+        self.play(Create(equator))
+
         # Create the dashed line representing the radius
         radius_line_horizontal = DashedLine(start=[0, 0, 0], end=[2, 0, 0], color=WHITE)
-        
+        radius_line_horizontal.shift(LEFT*3)
+        self.play(Create(radius_line_horizontal))
+
         # Create the small filled circle at the center of the horizontal ellipse
         center_dot = Dot(point=[0, 0, 0], color=WHITE)
-        
-        # Create the label "r"
-        radius_label_horizontal = Text("r", font="Comic Sans MS", color=WHITE,weight=BOLD).scale(0.5)
-        radius_label_horizontal.next_to(radius_line_horizontal, DOWN*0.9)
-        
-        # Position elements
-        sphere.shift(LEFT*3)  
-        equator.shift(LEFT*3)  
-        radius_line_horizontal.shift(LEFT*3)  
-        center_dot.shift(LEFT*3)  
-        radius_label_horizontal.shift(LEFT*3)  
-        
-        # Surface area formula
-        surface_area_formula = MathTex(r"4\pi r^2", color="#80FF80").move_to(RIGHT*3 + UP*1)
-        
-        # Volume formula
-        volume_formula = MathTex(r"\frac{4}{3}\pi r^3", color="#99FFFF").move_to(RIGHT*3 + DOWN*1)
-        
-        # Play animations for sphere
-        self.play(Create(title))
-        self.play(Create(underline))
-        self.play(Create(sphere))
-        self.play(Create(equator))
-        self.play(Create(radius_line_horizontal))
+        center_dot.shift(LEFT*3)
         self.play(Create(center_dot))
+
+        # Create the label "r"
+        radius_label_horizontal = Text("r", font="Comic Sans MS", color=WHITE, weight=BOLD).scale(0.5)
+        radius_label_horizontal.next_to(radius_line_horizontal, DOWN*0.9)
+        radius_label_horizontal.shift(LEFT*0)
         self.play(Write(radius_label_horizontal))
-        
-        # Highlight Surface Area Formula
-        surface_area_highlight = MathTex(r"\textbf{Surface Area} = 4\pi r^2", color="#80FF80")
-        surface_area_highlight.next_to(volume_formula, UP*3)
-        self.play(Write(surface_area_highlight))
+
+        # Surface area formula
+        surface_area_label = MathTex("\\text{Surface area} = 4 \\times \\text{the area of circle} \\\\ = 4\\pi r^2", color=WHITE, font_size=44).move_to(RIGHT*3)
+        self.play(Write(surface_area_label))
         sphere.set_fill("#80FF80", opacity=0.5)
         self.wait(1)
-        
-        # Highlight Volume Formula
-        volume_highlight = MathTex(r"\textbf{Volume} = \frac{4}{3}\pi r^3", color="#99FFFF")
-        volume_highlight.next_to(surface_area_highlight, DOWN)
-        self.play(Write(volume_highlight))
+        surface_area_formula = MathTex(r"\textbf{Surface Area} = 4\pi r^2",tex_to_color_map={"\\textbf{Surface Area} = 4\pi r^2": "#80FF80"}).next_to(surface_area_label, DOWN,buff=0.5)
+        self.play(Write(surface_area_formula))
+        self.wait(1)
+        self.play(FadeOut(surface_area_label), FadeOut(surface_area_formula))
+
+         # Volume formula
+        volume_label = MathTex("\\text{Volume} = \\frac{1}{3}(4\\pi r^2)r \\\\ = \\frac{4}{3}\\pi r^3",color=WHITE,font_size=44).move_to(RIGHT * 3)
+        self.play(Write(volume_label))
+       
         sphere.set_fill("#99FFFF", opacity=0.5)
-        self.wait(3)
+        self.wait(1)
+       
+        volume_formula = MathTex(r"\textbf{Volume} = \frac{4}{3}\pi r^3",tex_to_color_map={"\\textbf{Volume}": "#99FFFF"},color="#99FFFF").next_to(volume_label, DOWN,buff=0.5)
+        self.play(Write(volume_formula))
+        self.wait(1)
         
     def Example4(self):
         self.positionChoice = [[-4,0,0],[2,2,0],[2,-2,0]]
@@ -792,7 +858,7 @@ class Surfaceareasandvolumes(AbstractAnim,ThreeDScene):
         self.positionChoice = [[-4,-2,0],[0,2,0],[2,-2,0]]
         self.isRandom = False
         p10=cvo.CVO().CreateCVO("Hemisphere","")
-        p11=cvo.CVO().CreateCVO("Surface Area","$2\pi r^2$")
+        p11=cvo.CVO().CreateCVO("Curved Surface Area","$2\pi r^2$")
         p12=cvo.CVO().CreateCVO("Total Surface Area","$3\pi r^2$")
         p13=cvo.CVO().CreateCVO("Volume","$2/3\pi r^3$").setPosition([-4,2,0])
         p10.cvolist.append(p11)
@@ -814,7 +880,7 @@ class Surfaceareasandvolumes(AbstractAnim,ThreeDScene):
         hemisphere = Arc(radius=2, start_angle=PI, angle=PI, color=WHITE)
         
         # Create the horizontal ellipse (equator)
-        equator = Ellipse(width=4, height=0.75, color=WHITE).shift(DOWN*1)
+        equator = Ellipse(width=4, height=0.75, color=WHITE).shift(DOWN * 1)
         
         # Create the dashed lines representing the radius
         radius_line_horizontal = DashedLine(start=[0, 0, 0], end=[2, 0, 0], color=WHITE)
@@ -830,13 +896,13 @@ class Surfaceareasandvolumes(AbstractAnim,ThreeDScene):
         radius_label_vertical.next_to(radius_line_vertical, LEFT)
         
         # Position elements
-        hemisphere.shift(LEFT*3 + DOWN*1)
-        equator.shift(LEFT*3)
-        radius_line_horizontal.shift(LEFT*3 + DOWN*1)
-        radius_line_vertical.shift(LEFT*3 + DOWN*1)
-        center_dot.shift(LEFT*3 + DOWN*1)
-        radius_label_horizontal.shift(LEFT*3 + DOWN*0.7)
-        radius_label_vertical.shift(LEFT*3 + DOWN*1)
+        hemisphere.shift(LEFT * 3 + DOWN * 1)
+        equator.shift(LEFT * 3)
+        radius_line_horizontal.shift(LEFT * 3 + DOWN * 1)
+        radius_line_vertical.shift(LEFT * 3 + DOWN * 1)
+        center_dot.shift(LEFT * 3 + DOWN * 1)
+        radius_label_horizontal.shift(LEFT * 3 + DOWN * 0.7)
+        radius_label_vertical.shift(LEFT * 3 + DOWN * 1)
         
         # Play animations
         self.play(Create(title))
@@ -850,47 +916,84 @@ class Surfaceareasandvolumes(AbstractAnim,ThreeDScene):
         self.play(Write(radius_label_vertical))
         
         # Highlight LSA
-        lsa_formula = MathTex("\\textbf{LSA} = 2\\pi r^2", color="#ffb3b3")
-        lsa_formula.next_to(title, DOWN*7 + RIGHT*1)
-        self.play(Write(lsa_formula))
+        surface_formula = MathTex(
+            "\\textbf{Surface Area} = \\frac{1}{2} \\text{ Surface Area of sphere} \\\\ = \\frac{1}{2}\\times 4\\pi r^2 \\\\ = 2\\pi r^2",
+            color=WHITE, font_size=40
+        )
+        surface_formula.next_to(hemisphere, RIGHT *1.2+ UP*1)
+        self.play(Write(surface_formula))
         hemisphere.set_fill("#ffb3b3", opacity=0.5)
         self.wait(1)
-        equator1 = Ellipse(width=4, height=0.75, color=WHITE,fill_opacity=1, fill_color=BLACK).shift(DOWN*1)
-        equator1.shift(LEFT*3)
+        
+        equator1 = Ellipse(width=4, height=0.75, color=WHITE, fill_opacity=1, fill_color=BLACK).shift(DOWN * 1)
+        equator1.shift(LEFT * 3)
+        
         radius_line_horizontal1 = DashedLine(start=[0, 0, 0], end=[2, 0, 0], color=WHITE)
         radius_line_vertical1 = DashedLine(start=[0, 0, 0], end=[0, -2, 0], color=WHITE)
-        radius_line_horizontal1.shift(LEFT*3 + DOWN*1)
-        radius_line_vertical1.shift(LEFT*3 + DOWN*1)
-        center_dot1 = Dot(point=[0, 0, 0], color=WHITE)
-        center_dot1.shift(LEFT*3 + DOWN*1)
+        radius_line_horizontal1.shift(LEFT * 3 + DOWN * 1)
+        radius_line_vertical1.shift(LEFT * 3 + DOWN * 1)
         
-        self.play(Create(equator1),Create(radius_line_horizontal1),Create(radius_line_vertical1),Create(center_dot1))
+        center_dot1 = Dot(point=[0, 0, 0], color=WHITE)
+        center_dot1.shift(LEFT * 3 + DOWN * 1)
+        
+        self.play(Create(equator1), Create(radius_line_horizontal1), Create(radius_line_vertical1), Create(center_dot1))
         self.wait(2)
+        
+        lsa_formula = MathTex("\\textbf{Surface Area} = 2\\pi r^2", color="#ffb3b3")
+        lsa_formula.next_to(surface_formula, DOWN)
+        self.play(Write(lsa_formula))
+        self.play(FadeOut(surface_formula), FadeOut(lsa_formula))
+        
         # Highlight TSA
-        tsa_formula = MathTex("\\textbf{TSA} = 3\\pi r^2", color="#80ff80")
-        tsa_formula.next_to(lsa_formula, DOWN)
-        self.play(Write(tsa_formula))
+        tsa_formula1 = MathTex(
+            "\\textbf{TSA} = \\text{CSA + area of its base} \\\\ = 2\\pi r^2 + \\pi r^2 \\\\ = 3\\pi r^2",
+            color=WHITE, font_size=40
+        )
+        tsa_formula1.next_to(hemisphere, RIGHT *1.2+ UP*1)
+        self.play(Write(tsa_formula1))
+        
         hemisphere.set_fill("#80ff80", opacity=1)
         self.wait(1)
+        
         equator1.set_fill("#80ff80", opacity=1)
         self.wait(1)
         
+        tsa_formula = MathTex("\\textbf{TSA} = 3\\pi r^2", color="#80ff80")
+        tsa_formula.next_to(lsa_formula, DOWN)
+        self.play(Write(tsa_formula))
+        self.wait(1)
+        
+        self.play(FadeOut(tsa_formula1), FadeOut(tsa_formula))
+        
         # Highlight Volume
-        volume_formula = MathTex("\\textbf{Volume} = \\frac{2}{3} \\pi r^3", color="#99ffff")
-        volume_formula.next_to(tsa_formula, DOWN)
+        volume_formula = MathTex(
+            "\\textbf{Volume} = \\frac{1}{2} \\times \\text{Volume of Sphere}", 
+            color=WHITE, font_size=40
+        )
+        volume_formula.next_to(hemisphere, RIGHT *1.2+ UP*2.9)
         self.play(Write(volume_formula))
+        
+        volume_formula_2 = MathTex(
+            "=\\frac{1}{2} \\times \\frac{4}{3} \\pi r^3 \\\\ = \\frac{2}{3} \\pi r^3", 
+            color=WHITE, font_size=40
+        )
+        volume_formula_2.next_to(volume_formula, DOWN )
+        self.play(Write(volume_formula_2))
+        
         hemisphere.set_fill("#99ffff", opacity=1)
         equator1.set_fill("#99ffff", opacity=1)
-        self.wait(3)
-
-        # Final animation
-        self.wait(2)
+        self.wait(1)
+        
+        final_volume_formula = MathTex("\\textbf{Volume} = \\frac{2}{3} \\pi r^3", color="#99ffff")
+        final_volume_formula.next_to(tsa_formula, DOWN)
+        self.play(Write(final_volume_formula))
+        self.wait(1)
         
     def Example5(self):
         self.positionChoice = [[-4,-2,0],[0,2,0],[2,-2,0]]
         self.isRandom = False
         p10=cvo.CVO().CreateCVO("Hemisphere","r=4")
-        p11=cvo.CVO().CreateCVO("Surface Area","$2*3.14*4*4=100.48cm^2$")
+        p11=cvo.CVO().CreateCVO("Curved Surface Area","$2*3.14*4*4=100.48cm^2$")
         p12=cvo.CVO().CreateCVO("Total Surface Area","$3*3.14*4*4*4=150.72cm^2$")
         p13=cvo.CVO().CreateCVO("Volume","$2/3*3.14*4*4*4=133.97cm^3$").setPosition([-4,2,0])
         p10.cvolist.append(p11)
@@ -927,7 +1030,7 @@ class Surfaceareasandvolumes(AbstractAnim,ThreeDScene):
         volume = (2/3) * PI * radius ** 3
 
         # Create LaTeX texts for properties
-        surface_area_text1 = MathTex(f"\\text{{Surface Area}} = 2 \pi r^2").next_to(dimensions_text, DOWN)
+        surface_area_text1 = MathTex(f"\\text{{Curved Surface Area}} = 2 \pi r^2").next_to(dimensions_text, DOWN)
         surface_area_text2 = MathTex(
             f"2 \\times {PI} \\times {radius}^2 = {surface_area}\\ \\text{{cm}}^2"
         ).next_to(surface_area_text1, DOWN)
@@ -956,9 +1059,6 @@ class Surfaceareasandvolumes(AbstractAnim,ThreeDScene):
 
     def SetSourceCodeFileName(self):
        self.SourceCodeFileName="Grade9Chapter10SurfaceAreasAndVolumes.py"
-
-
-
     
 if __name__ == "__main__":
     scene = Surfaceareasandvolumes()
