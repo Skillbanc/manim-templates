@@ -18,6 +18,8 @@ class Realanim(AbstractAnim):
           self.fadeOutCurrentScene()
           self.LawsOfExponents()
           self.fadeOutCurrentScene()
+          self.PropertiesOfLogarithms()
+          self.fadeOutCurrentScene()
           self.GithubSourceCodeReference()
 
 
@@ -212,8 +214,58 @@ class Realanim(AbstractAnim):
         example5 = MathTex(examples[4]).scale(0.8).next_to(example4, DOWN, aligned_edge=LEFT, buff=0.5)
 
 
-        self.play(Write(example1),Write(example2),Write(example3),Write(example4),Write(example5))
+        self.play(Write(example1))
+        self.wait(1)
+        self.play(Write(example2))
+        self.wait(1)
+        self.play(Write(example3))
+        self.wait(1)
+        self.play(Write(example4))
+        self.wait(1)
+        self.play(Write(example5))     
+        self.wait(5)
+
+    def PropertiesOfLogarithms(self):
+        self.positionChoice=[[-4,0,0],[2,2,0],[2,-2,0],[4,0,0]]        
+        self.isRandom = False
+        self.angleChoice = [TAU/4,TAU/4,TAU/4,TAU/4,TAU/4]
+
+
+        p10 = cvo.CVO().CreateCVO("LOGARITHMS", "Properties")
+        p11 = cvo.CVO().CreateCVO("Product Property", "$\\log_b(xy) = \\log_b(x) + \\log_b(y)$")
+        p12 = cvo.CVO().CreateCVO("Quotient Property", "$\\log_b(\\left(\\frac{x}{y}) \\right) = \\log_b(x) - \\log_b(y)$")
+        p13 = cvo.CVO().CreateCVO(" Power Property", "$\\log_b(x^n) = n \\cdot \\log_b(x)$")
+        p10.cvolist.append(p11)
+        p10.cvolist.append(p12)
+        p10.cvolist.append(p13)
         
+        self.construct1(p10, p10)
+        self.fadeOutCurrentScene()
+
+
+        # Title
+        title = Text("Properties of Logarithms", font_size=36).to_edge(UP)
+        self.play(Write(title))
+        self.wait(1)
+
+        # Define properties of logarithms with examples
+        properties = [
+            r"\log_b(xy) = \log_b(x) + \log_b(y) \quad \text{example:} \log_2(8 \cdot 4) = \log_2(8) + \log_2(4) \\ =  3\log_2 + 2\log_2 = 3 + 2 = 5",
+            r"\log_b\left(\frac{x}{y}\right) = \log_b(x) - \log_b(y) \quad \text{example:} \log_2\left(\frac{8}{4}\right) \\ = (\frac{3\log_2 }{2\log_2}) = \log_2(8) - \log_2(4) = 3 - 2 = 1",
+            r"\log_b(x^n) = n \cdot \log_b(x) \quad \text{example:} \log_2(8^2) = 2 \cdot \log_2(8) = 2 \cdot 3 = 6",
+        ]
+
+        # Create and position each property individually
+        property1 = MathTex(properties[0]).scale(0.8).next_to(title, DOWN, buff=1)
+        property2 = MathTex(properties[1]).scale(0.8).next_to(property1, DOWN, aligned_edge=LEFT, buff=0.5)
+        property3 = MathTex(properties[2]).scale(0.8).next_to(property2, DOWN, aligned_edge=LEFT, buff=0.5)
+        
+        self.play(Write(property1))
+        self.wait(1)
+        self.play(Write(property2))
+        self.wait(1)
+        self.play(Write(property3))
+        self.wait(1)
         self.wait(5)
      
     def SetDeveloperList(self):  
