@@ -158,8 +158,10 @@ class AbstractAnim(Scene):
                 # starLocal = Star(outer_radius=0.15, inner_radius=0.1,color=self.colorChoice[colorChoiceIndex]).move_to(cir1.get_center())
                 starLocal = Star(outer_radius=0.1, inner_radius=0.05,color=self.colorChoice[colorChoiceIndex]).move_to(cir1.get_top()).shift(LEFT * .35, DOWN * .25*(index+1)).scale(0.5)
                 onameLocalText = Tex(cvo.onameList[index],color=self.colorChoice[colorChoiceIndex]).scale(0.35).next_to(starLocal).shift(LEFT * .20)
-                arrow2 = CurvedArrow(cvoParent.pos,starLocal.get_center(),angle=cvo.angle)
+                arrow2 = CurvedArrow(cvoParent.pos,starLocal.get_center(),angle=cvo.angle,stroke_width=0.5, tip_length=0.1)
                 self.play(Create(starLocal),Create(onameLocalText))#grpLocal.animate.move_to(cir1.get_center()).scale(0.5).shift(DOWN * 2))#scale(0.25))
+                self.play(onameLocalText.animate.scale(2.0),run_time=1)
+                self.play(onameLocalText.animate.scale(0.5),run_time=1)
                 self.play(Create(arrow2))
         else:
             self.play(grp1.animate.scale(1+0.1*len(cvo.onameList)))
@@ -167,8 +169,10 @@ class AbstractAnim(Scene):
                 # starLocal = Star(outer_radius=0.15, inner_radius=0.1,color=self.colorChoice[colorChoiceIndex]).move_to(cir1.get_center())
                 starLocal = Star(outer_radius=0.1, inner_radius=0.05,color=self.colorChoice[colorChoiceIndex]).move_to(cir1.get_top()).shift(LEFT * .35, DOWN * .25*(index+1)).scale(0.6)
                 onameLocalText = Tex(cvo.onameList[index],color=self.colorChoice[colorChoiceIndex]).scale(0.45).next_to(starLocal).shift(LEFT * .20)
-                arrow2 = CurvedArrow(cvoParent.pos,starLocal.get_center(),angle=cvo.angle)
+                arrow2 = CurvedArrow(cvoParent.pos,starLocal.get_center(),angle=cvo.angle,stroke_width=0.5, tip_length=0.1)
                 self.play(Create(starLocal),Create(onameLocalText))#grpLocal.animate.move_to(cir1.get_center()).scale(0.5).shift(DOWN * 2))#scale(0.25))
+                self.play(onameLocalText.animate.scale(2.0),run_time=1)
+                self.play(onameLocalText.animate.scale(0.5),run_time=1)
                 self.play(Create(arrow2))
                           
         cvo.cnameMObject = cname
