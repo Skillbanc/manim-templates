@@ -30,6 +30,8 @@ class TrianglesAnim(AbstractAnim):
         self.fadeOutCurrentScene()
         self.inequalities()
         self.fadeOutCurrentScene()
+        self.t1()
+        self.fadeOutCurrentScene()
         self.GithubSourceCodeReference()
         self.fadeOutCurrentScene()
 
@@ -458,6 +460,137 @@ class TrianglesAnim(AbstractAnim):
         p10.cvolist.append(p12)
         self.construct1(p13,p13)
 
+    def t1(self):
+        A = [-3, -1, 0]
+        B = [3, -1, 0]
+        C = [1, 2, 0]
+
+        # Create triangle
+        triangle = Polygon(A, B, C, color=BLUE, fill_opacity=0.3)
+
+        # Center the triangle
+        triangle.move_to(ORIGIN)
+
+        theorem_text = Text("In any triangle, the angle opposite to the longer side is greater.").scale(0.7)
+        theorem_text.to_edge(UP)
+        self.play(Write(theorem_text,run_time=3))
+        self.play(Create(triangle))
+
+        # Label vertices
+        labels = [MathTex(tex).next_to(point, direction)
+                  for tex, point, direction in zip(["A", "B", "C"], [A, B, C], [LEFT*0.2+DOWN, RIGHT*0.2+DOWN, DOWN*0.5])]
+        for label in labels:
+            self.add(label)
+
+        # Highlight the longest side
+        longest_side = Line(A, B, color=RED, stroke_width=6)
+        longest_side.shift(DOWN*0.5)
+        self.play(Create(longest_side))
+        # Create angle opposite the longest side
+        opposite_angle = Angle(Line(C, A), Line(C, B), radius=0.5, other_angle=False).shift(DOWN*0.5)
+        t1=MathTex(r"\angle C ",font_size=32).to_edge(DOWN).shift(LEFT*3+UP*0.5)
+        therefore = MathTex(r"\therefore").next_to(t1,LEFT*0.5)
+        t2=Text("is greater than ",font_size=32).next_to(t1,RIGHT*0.5)
+        t3=MathTex(r"\angle B ,",font_size=32).next_to(t2,RIGHT*0.5)
+        t4=MathTex(r"\angle A ",font_size=32).next_to(t3,RIGHT*0.2)
+        # Add and highlight the angle
+        self.play(Create(opposite_angle))
+        # Add theorem statement
+        self.play(Indicate(opposite_angle,run_time=2))
+        self.play(Indicate(longest_side,run_time=2))
+        self.play(Write(therefore),Write(t1),Write(t2),Write(t3),Write(t4))
+        self.wait(3)
+    
+    def t2(self):
+        A = [-3, -1, 0]
+        B = [3, -1, 0]
+        C = [1, 2, 0]
+
+        # Create triangle
+        triangle = Polygon(A, B, C, color=BLUE, fill_opacity=0.3)
+
+        # Center the triangle
+        triangle.move_to(ORIGIN)
+
+        # Theorem text
+        theorem_text1 = Text("In any triangle, the angle opposite to the longer side is greater.").scale(0.7)
+        theorem_text1.to_edge(UP)
+
+        # Label vertices
+        labels = [MathTex(tex).next_to(point, direction)
+                  for tex, point, direction in zip(["A", "B", "C"], [A, B, C], [LEFT*0.2+DOWN, RIGHT*0.2+DOWN, DOWN*0.5])]
+
+        # Highlight the longest side
+        longest_side = Line(A, B, color=RED, stroke_width=6)
+        longest_side.shift(DOWN*0.5)
+
+        # Create angle opposite the longest side
+        opposite_angle = Angle(Line(C, A), Line(C, B), radius=0.5, other_angle=False).shift(DOWN*0.5)
+
+        # Text and symbols for theorem 1
+        t1 = MathTex(r"\angle C", font_size=32).to_edge(DOWN).shift(LEFT*3+UP*0.5)
+        therefore = MathTex(r"\therefore").next_to(t1, LEFT*0.5)
+        t1=Text("Side AB is greater than sides AC & AB")
+
+        # Animation for theorem 1
+        self.play(Write(theorem_text1, run_time=3))
+        self.play(Create(triangle))
+        for label in labels:
+            self.add(label)
+        self.play(Create(longest_side))
+        self.play(Create(opposite_angle))
+        self.play(Indicate(opposite_angle, run_time=2))
+        self.play(Indicate(longest_side, run_time=2))
+        self.play(Write(therefore))
+        self.wait(3)
+
+        # Clear scene for theorem 2
+        self.clear()
+
+        # Define points of another triangle for theorem 2
+        A = [-3, -1, 0]
+        B = [3, -1, 0]
+        C = [1, 2, 0]
+
+        # Create triangle
+        triangle = Polygon(A, B, C, color=BLUE, fill_opacity=0.3)
+
+        # Center the triangle
+        triangle.move_to(ORIGIN)
+
+        # Theorem text
+        theorem_text2 = Text("In any triangle, the side opposite to the larger angle is longer.").scale(0.7)
+        theorem_text2.to_edge(UP)
+
+        # Label vertices
+        labels = [MathTex(tex).next_to(point, direction)
+                  for tex, point, direction in zip(["A", "B", "C"], [A, B, C], [LEFT*0.2+DOWN, RIGHT*0.2+DOWN, DOWN*0.5])]
+
+        # Create angle opposite the largest angle
+        angle_A = Angle(Line(B, A), Line(B, C), radius=0.5, other_angle=False).shift(DOWN*0.5)
+
+        # Highlight the side opposite the largest angle
+        opposite_side = Line(B, C, color=RED, stroke_width=6)
+
+        # Text and symbols for theorem 2
+        t5 = MathTex(r"\overline{BC}", font_size=32).to_edge(DOWN).shift(LEFT*3+UP*0.5)
+        therefore2 = MathTex(r"\therefore").next_to(t5, LEFT*0.5)
+        t6 = Text("is longer than", font_size=32).next_to(t5, RIGHT*0.5)
+        t7 = MathTex(r"\overline{AB}", font_size=32).next_to(t6, RIGHT*0.5)
+        t8 = Text("and", font_size=32).next_to(t7, RIGHT*0.5)
+        t9 = MathTex(r"\overline{AC}", font_size=32).next_to(t8, RIGHT*0.5)
+
+        # Animation for theorem 2
+        self.play(Write(theorem_text2, run_time=3))
+        self.play(Create(triangle))
+        for label in labels:
+            self.add(label)
+        self.play(Create(angle_A))
+        self.play(Create(opposite_side))
+        self.play(Indicate(angle_A, run_time=2))
+        self.play(Indicate(opposite_side, run_time=2))
+        self.play(Write(therefore2), Write(t5), Write(t6), Write(t7), Write(t8), Write(t9))
+        self.wait(3)
     def SetDeveloperList(self): 
        self.DeveloperList="T Sai Rohith Reddy" 
 
