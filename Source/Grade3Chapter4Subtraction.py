@@ -22,7 +22,7 @@ class Subtraction(AbstractAnim):
   
 
     def sub(self):
-        self.positionChoice=[[-4,0,0],[0,-2,0],[-2,0,0],[1,0,0],[3,0,0]]
+        self.positionChoice=[[-4,1,0],[0,-2,0],[-2,1,0],[1,1,0],[4,1,0]]
         self.isRandom = False
 
         p10 = cvo.CVO().CreateCVO("Subtraction", "")
@@ -158,7 +158,7 @@ class Subtraction(AbstractAnim):
 
 
     def Borrow(self):
-        self.positionChoice=[[-4,-2,0],[0,-2,0],[-3,2,0],[1,2,0],[3,0,0]]
+        self.positionChoice=[[-5,-2,0],[0,-2,0],[-3,2,0],[1,2,0],[2,0,0]]
         self.isRandom = False
 
         p10 = cvo.CVO().CreateCVO("Subtraction", "Borrowing")
@@ -238,7 +238,7 @@ class Subtraction(AbstractAnim):
         result_digit1 = MathTex("2", font_size=54)
 
         # Place the digits manually starting from the right side
-        result_digit2.move_to(fifty_three[1].get_center() + DOWN * 1.5)
+        result_digit2.move_to(fifty_three[1].get_center() + DOWN * 1.8)
         result_digit1.next_to(result_digit2, LEFT, buff=0.75)
 
         # Display result digits from right to left
