@@ -37,6 +37,13 @@ class Chap8G7_CongruencyOfTriangles(AbstractAnim):
         self.fadeOutCurrentScene()
         self.Anim5()
         self.fadeOutCurrentScene()
+        self.GithubSourceCodeReference()
+        
+    def SetDeveloperList(self):  
+        self.DeveloperList="Prithiv Shiv M V"
+
+    def SetSourceCodeFileName(self):
+        self.SourceCodeFileName="Grade7Chapter8CongruencyOfTriangles.py"
         
     # render using CVO data object 
     
