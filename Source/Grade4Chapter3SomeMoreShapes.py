@@ -10,6 +10,7 @@ class Shapes(AbstractAnim):
         self.RenderSkillbancLogo()
         self.first()
         self.shape()
+        self.GithubSourceCodeReference()
 
     def first(self):
         self.isRandom=False
@@ -58,6 +59,12 @@ class Shapes(AbstractAnim):
         self.play(Create(s),Write(sub_Title))
         self.wait(2)
         self.fadeOutCurrentScene()
+
+    def SetDeveloperList(self):
+        self.DeveloperList="Bhaskar"
+
+    def SetSourceCodeFileName(self):
+        self.SourceCodeFileName="Grade4Chapter3SomeMoreShapes.py"
 
 if __name__ == "__main__":
     scene = Shapes()
