@@ -54,15 +54,18 @@ class Ratiosanim(AbstractAnim):
         self.setNumberOfCirclePositions(5)
         self.isRandom = False
 
-        p10=cvo.CVO().CreateCVO("RATIO","")
-        p11=cvo.CVO().CreateCVO("Notation","a:b")
-        p12=cvo.CVO().CreateCVO("Antecedent (a)","2")
-        p13=cvo.CVO().CreateCVO("Consequent (b)","3")
-        p14=cvo.CVO().CreateCVO("Representation","2:3")
+        p10=cvo.CVO().CreateCVO("RATIO","").setPosition([-5,0,0])
+        p11=cvo.CVO().CreateCVO("Notation","a:b").setPosition([-2,0,0])
+        p12=cvo.CVO().CreateCVO("Antecedent (a)","2").setPosition([2,2,0])
+        p13=cvo.CVO().CreateCVO("Consequent (b)","3").setPosition([2,-2,0])
+        p14=cvo.CVO().CreateCVO("Representation","2:3").setPosition([5,0,0])
        
         p10.cvolist.append(p11)
         p11.cvolist.append(p12)
         p11.cvolist.append(p13)
+        p11.setcircleradius(1.5)
+        p14.setcircleradius(1.5)
+       
         self.construct1(p10,p10)
         self.construct1(p14,p14)
         self.play(Create(CurvedArrow(p12.pos,p14.pos)),Create(CurvedArrow(p13.pos,p14.pos)))
@@ -153,25 +156,7 @@ class Ratiosanim(AbstractAnim):
         self.wait(1)
    
 
-        # self.setNumberOfCirclePositions(4)
-        # #self.angleChoice = [0,0,0]
-        # self.isRandom = False
-
-        # p10=cvo.CVO().CreateCVO("NOTATION","a:b::c:d")
-        # p11=cvo.CVO().CreateCVO("PRODUCT OF MEANS ","bc")
-        # p12=cvo.CVO().CreateCVO("PRODUCT OF EXTREMES","ad")
-        # p13=cvo.CVO().CreateCVO("Law Of Proportion", "bc=ad")
-        # p10.cvolist.append(p11)
-        # p10.cvolist.append(p12)
-        # #p11.cvolist.append(p13)
-        # #p12.cvolist.append(p13)
-        
-        # self.construct1(p10,p10)
-        # self.construct1(p13,p13)
-        # self.play(Create(CurvedArrow(p11.pos,p13.pos)),Create(CurvedArrow(p12.pos,p13.pos)))
-        
-        
-        
+       
         
    
     def percentage(self):
