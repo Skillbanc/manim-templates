@@ -55,6 +55,7 @@ class LinesAndAngles(AbstractAnim):
 
     def Lines(self):
         self.positionChoice=[[0,2,0],[-3,-2,0],[3,-2,0]]
+        self.angleChoice=[TAU/4,TAU/4]
         self.isRandom = False
         p10=cvo.CVO().CreateCVO("Lines","")
         p11=cvo.CVO().CreateCVO("Parallel lines","do not intersect at any point")
@@ -105,7 +106,7 @@ class LinesAndAngles(AbstractAnim):
 
 
     def Angle(self):
-        self.positionChoice=[[-5,-2,0],[-1,-2,0],[-4,2,0],[-1,2,0],[3,2,0],[3,-2,0]]
+        self.positionChoice=[[-5,-2,0],[-1,-2,0],[-4,2,0],[-1,2,0],[3,2,0],[2,-2,0]]
         self.isRandom = False
         p10=cvo.CVO().CreateCVO("Angles","")
         p11=cvo.CVO().CreateCVO("Acute",r"$Angle<90^\circ$")
@@ -171,7 +172,7 @@ class LinesAndAngles(AbstractAnim):
 
         # Explanation of complementary angles
         explanation = [
-            r"\text{If the sum of two angles is } 90^\circ, \text{ they are called complementary angles.}",
+            r"\text{If the sum of two angles is } 90^\circ, \text{ are called complementary angles.}",
             r"\text{These angles are complementary, as} 30^\circ + 60^\circ = 90^\circ.",
             r"\text{We can also say that the complement of } 30^\circ \text{ is } 60^\circ \text{ and}",
             r"\text{the complement of } 60^\circ \text{ is } 30^\circ."
@@ -180,7 +181,7 @@ class LinesAndAngles(AbstractAnim):
         # Create the explanation text
         explanation_text = VGroup(
             *[MathTex(text, font_size=40) for text in explanation]
-        ).arrange(DOWN, aligned_edge=LEFT).scale(0.8).to_edge(RIGHT*1.5)
+        ).arrange(DOWN, aligned_edge=LEFT).scale(0.8).to_edge(RIGHT*1.7)
 
         # Display the explanation text on the right side of the screen
         self.play(Write(explanation_text))
@@ -443,7 +444,7 @@ class LinesAndAngles(AbstractAnim):
         self.construct1(p10,p10)
 
     def AltInt(self):
-        self.positionChoice=[[-4,-2,0],[1,-2,0],[-4,2,0],[-1,2,0],[3,2,0]]
+        self.positionChoice=[[-4,-2,0],[1,-2,0],[-4,2,0],[0,2,0]]
         self.isRandom = False
         p10=cvo.CVO().CreateCVO("Alternate Interior \& Exterior Angle","")
         p11=cvo.CVO().CreateCVO("Property","have different vertices")
@@ -455,7 +456,7 @@ class LinesAndAngles(AbstractAnim):
         self.construct1(p10,p10)
 
     def AltExt(self):
-        self.positionChoice=[[-4,-2,0],[1,-2,0],[-4,2,0],[-1,2,0],[3,2,0]]
+        self.positionChoice=[[-4,-2,0],[1,-2,0],[-4,2,0],[0,2,0]]
         self.isRandom = False
         p10=cvo.CVO().CreateCVO("Alternate Interior \& Exterior Angle","")
         p11=cvo.CVO().CreateCVO("Property","have different vertices")
@@ -472,6 +473,8 @@ class LinesAndAngles(AbstractAnim):
         self.isRandom = False
         p10=cvo.CVO().CreateCVO("Consecutive Interior \& Exterior Angle","")
         p11=cvo.CVO().CreateCVO("Property","Angles on same side of transversal")
+        p10.setcircleradius(1.5)
+        p11.setcircleradius(2)
         p10.cvolist.append(p11)
         self.construct1(p10,p10)
         
@@ -531,7 +534,7 @@ class LinesAndAngles(AbstractAnim):
             MathTex(r"\text{6. Alternate Exterior Angles: } \angle 1, \angle 8 \text{ and } \angle 2, \angle 7"),
             MathTex(r"\text{7. Consecutive Interior Angles: } \angle 5, \angle 3 \text{ and } \angle 6, \angle 4"),
             MathTex(r"\text{8. Consecutive Exterior Angles: } \angle 1, \angle 7 \text{ and } \angle 2, \angle 8")
-        ).arrange(DOWN, aligned_edge=LEFT).scale(0.8).to_edge(RIGHT)
+        ).arrange(DOWN, aligned_edge=LEFT).scale(0.6).to_edge(RIGHT)
 
         self.play(Write(explanation_text))
 
