@@ -5,6 +5,8 @@ from AbstractAnim import AbstractAnim
 
 class AdditionOfNumbersTotalNotExceeding9(AbstractAnim):
     def construct(self):
+        self.RenderSkillbancLogo()
+        self.fadeOutCurrentScene()
         self.addition()
         self.fadeOutCurrentScene()
         self.example()
