@@ -24,14 +24,14 @@ class Lengths(AbstractAnim):
 
     def length(self):
         self.isRandom = False
-        self.positionChoice = [[-4,-2,0],[2,1,0],[4.5,-2,0]]
+        self.positionChoice = [[-4,0,0],[2,2,0],[2,-2,0]]
         p10=cvo.CVO().CreateCVO("Length","")
         p11=cvo.CVO().CreateCVO("Metric Units", "")
         p11.extendOname(["Millimetre(mm)","Centimetre(cm)","Decimetre(dm)","Metre(m)","Decametre(dam)","Hectometre(hm)","Kilometre(km)"])
-        p11.setcircleradius(1.5)
+        p11.setcircleradius(1)
         p12=cvo.CVO().CreateCVO("Non-Metric Units", "")
         p12.extendOname(["Inches(in)","Foot(ft)"])
-        p12.setcircleradius(1.5)
+        p12.setcircleradius(1)
         p10.cvolist.append(p11)
         p10.cvolist.append(p12)
         self.construct1(p10,p10)
@@ -40,6 +40,7 @@ class Lengths(AbstractAnim):
     def metre(self):
         self.isRandom = False
         self.positionChoice = [[-4,-2,0],[0,1,0],[4.5,-2,0],[0,-2,0]]
+        self.angleChoice=[TAU/4,TAU/4,-TAU/4]
         title=Title("Metric Conversions").to_edge(UP)
         self.play(Write(title))
         p10=cvo.CVO().CreateCVO("Kilometre","")
@@ -156,6 +157,8 @@ class Lengths(AbstractAnim):
         self.isRandom = False
         p10=cvo.CVO().CreateCVO("Length in inches","1 inch = 1/12 feet")
         p11=cvo.CVO().CreateCVO("Length in foot","1 foot = 12 inches")    
+        p10.setcircleradius(2)
+        p11.setcircleradius(2)
         p10.cvolist.append(p11) 
         self.construct1(p10, p10)
 
