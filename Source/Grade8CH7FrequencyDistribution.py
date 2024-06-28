@@ -44,9 +44,9 @@ class FrequencyDistribution(AbstractAnim):
     def mean(self):
         self.isRandom=False
          
-        p1=cvo.CVO().CreateCVO("Arithmetic Mean","sum of observations divided by no.of observations").setPosition([-3,0,0])
-        p2=cvo.CVO().CreateCVO("sum of observations","x_1+x_2+x_3+x_4........+x_n").setPosition([0,2,0])
-        p3=cvo.CVO().CreateCVO("no.of observations","N(1 to n)").setPosition([0,-2,0])
+        p1=cvo.CVO().CreateCVO("Arithmetic Mean","Sum of observations divided by no.of observations").setPosition([-3,0,0])
+        p2=cvo.CVO().CreateCVO("Sum  of  Observations","x_1+x_2+x_3+x_4........+x_n").setPosition([0,2,0])
+        p3=cvo.CVO().CreateCVO("No.of observations","N(1 to n)").setPosition([0,-2,0])
         p4=cvo.CVO().CreateCVO("Mean","(x_1+x_2+x_3+x_4+........+x_n)/N").setPosition([5,0,0])
           
         p1.cvolist.append(p2)
@@ -62,25 +62,35 @@ class FrequencyDistribution(AbstractAnim):
 
     def median(self):
         self.isRandom=False
-         
-        p1=cvo.CVO().CreateCVO("Median","").setPosition([0,2,0])
-        p2=cvo.CVO().CreateCVO("case 1: odd no.of observations(n)","median=((n+1)/2)th ").setPosition([-3,0,0])
-        p3=cvo.CVO().CreateCVO("case 2: even no.of observations(n)","((n/2)th +((n+1)/2)th )/2 value").setPosition([3,0,0])
+        text=Text("Median",font_size=60)
+        text.to_edge(UP)
+        self.play(Write(text))
+ 
+        text = Tex(
+            r"When $n$ is odd, $\left( \frac{n+1}{2} \right)^{\text{th}}$ observation is the median."
+        )
+        text.scale(0.75)
+        self.play(Write(text))
+        self.play(text.animate.shift(UP * 1))
+        text = Tex(
+            r"""
+            \begin{itemize}
+            \item When $n$ is even, arithmetic mean of $\left( \frac{n}{2} \right)^{\text{th}}$ and $\left( \frac{n}{2} + 1 \right)^{\text{th}}$ is the median.
+            \end{itemize}
+            """
+        )
+        text.scale(0.7)
+        self.play(Write(text))
+        self.play(text.animate.shift(DOWN *1))
+        self.wait(2)
           
-        p1.cvolist.append(p2)
-        p1.cvolist.append(p3)
-         
-        p2.SetIsMathText(True)
-        p3.SetIsMathText(True)
-         
-        self.construct1(p1,p1)
 
     def mode(self):
         self.isRandom=False
          
         p1=cvo.CVO().CreateCVO("Mode","").setPosition([0,2,0])
         p2=cvo.CVO().CreateCVO("Definition","The most frequently occurring value").setPosition([-3,0,0])  
-        p3=cvo.CVO().CreateCVO("note:","There may be 2 or 3 or many modes for the same data.").setPosition([3,-1.5,0])
+        p3=cvo.CVO().CreateCVO("Note:","There may be 2 or 3 or many modes for the same data.").setPosition([3,-1.5,0])
     
         p1.cvolist.append(p2)
         p1.cvolist.append(p3)
@@ -102,14 +112,32 @@ class FrequencyDistribution(AbstractAnim):
 
     def GroupedFD(self):
         self.isRandom=False
-        p1=cvo.CVO().CreateCVO("Grouped Frequency Distribution","").setPosition([0,2,0])
-        p2=cvo.CVO().CreateCVO("Class Intervals","").setPosition([0,0,0])
-        p3=cvo.CVO().CreateCVO("Upper Limit","Highest value included in a class interval").setPosition([-3,-1,0])
-        p4=cvo.CVO().CreateCVO("Lower Limit","Lowest value included in a class interval").setPosition([3,-1,0])
+        p1=cvo.CVO().CreateCVO("Grouped Frequency Distribution","").setPosition([-2,2,0])
+        p2=cvo.CVO().CreateCVO("Class Intervals","").setPosition([-2,0,0])
+        p3=cvo.CVO().CreateCVO("Upper Limit","Highest value included in a class interval").setPosition([-5,-1,0])
+        p4=cvo.CVO().CreateCVO("Lower Limit","Lowest value included in a class interval").setPosition([-3,-3,0])
         p1.cvolist.append(p2)
         p2.cvolist.append(p3)
         p2.cvolist.append(p4)
         self.construct1(p1,p1)
+        data = [
+            ["Sl. No", "Marks", "No of Students"],
+            ["1", "0 - 5", "5"],
+            ["2", "5 - 10", "7"],
+            ["3", "10 - 15", "10"],
+            ["4", "15 - 20", "6"],
+            ["5", "20 - 25", "2"],
+        ]
+        table = Table(
+            data,
+            include_outer_lines=True,
+            line_config={"stroke_color": PINK, "stroke_width": 2},
+        )
+        table.scale(0.6)
+        
+        self.play(Create(table))
+        self.play(table.animate.shift(RIGHT * 3))
+        self.wait(2)
         self.fadeOutCurrentScene()
 
     def LAB(self):
@@ -128,6 +156,20 @@ class FrequencyDistribution(AbstractAnim):
         p3.cvolist.append(p6)
         p3.cvolist.append(p7)
         self.construct1(p1,p1)
+        self.fadeOutCurrentScene()
+        table_data = [
+            ["Inclusive classes", "Lower limit", "Upper limit", "Lower boundary", "Upper boundary"],
+            ["1-10", "1", "10", "0.5", "10.5"],
+            ["11-20", "11", "20", "10.5", "20.5"],
+            ["21-30", "21", "30", "20.5", "30.5"]
+        ]
+        table = Table(
+            table_data,
+            include_outer_lines=True
+        )
+        table.scale(0.5)
+        self.play(Create(table))
+        self.wait(2)
         self.fadeOutCurrentScene()
 
     def con_GFD(self):
@@ -164,7 +206,7 @@ class FrequencyDistribution(AbstractAnim):
         p10.onameList.append("2.Class interval has upper and lower limits")
         p10.onameList.append("3.Inclusive C.I : Both the upper and lower limits are included")
         p10.onameList.append("4.Exclusive C.I : The upper limit is excluded")
-        p10.onameList.append("5.U.boundary of a C.I is the avg of its \\\\ U.limit and L.limit of next C.I.")
+        p10.onameList.append("5.U.boundary of a C.I is the avg of its \\\\  U.limit and L.limit of next C.I.")
         p10.onameList.append("6.In exclusive C.I, limits and boundaries are equal;\\\\ in inclusive C.I, they differ.")
         p10.onameList.append("7.Length of class : upper - lower boundary")
         p10.onameList.append("8.Class mark = Avg of upper and lower boundaries of a C.I")
@@ -177,13 +219,65 @@ class FrequencyDistribution(AbstractAnim):
     def cf(self):
         self.isRandom=False
         p1=cvo.CVO().CreateCVO("Cumulative Frequency","").setPosition([0,2.5,0])
-        p2=cvo.CVO().CreateCVO("Lesser than C.F","Adding the frequencies from bottom").setPosition([-5,0,0])
-        p3=cvo.CVO().CreateCVO("Greater than C.F","Adding the frequencies from the top").setPosition([5,0,0])
+        p2=cvo.CVO().CreateCVO("Less than C.F","Adding the frequencies from top").setPosition([-3,0,0])
+        p3=cvo.CVO().CreateCVO("Greater than C.F","Adding the frequencies from the bottom").setPosition([3,0,0])
         p1.cvolist.append(p2)
         p1.cvolist.append(p3)
-       
-
         self.construct1(p1,p1)
+        self.fadeOutCurrentScene()
+        original_table_data = [
+            ["Class Interval\n(Marks)", "UB", "No of\nCandidates\nfrequency"],
+            ["0 - 5", "5", "7"],
+            ["5 - 10", "10", "10"],
+            ["10 - 15", "15", "15"],
+            ["15 - 20", "20", "8"],
+            ["20 - 25", "25", "3"]
+        ]
+        original_table = Table(
+            original_table_data,
+            include_outer_lines=True,
+            line_config={"color": WHITE, "stroke_width": 1},
+            element_to_mobject_config={"font_size": 36}
+        ).scale(0.5)
+        self.play(Create(original_table))
+        self.play(original_table.animate.shift(LEFT * 4.5))
+        self.wait(1)
+        less_than_cumulative_data = [
+            ["Class Interval\n(Marks)", "Less than\ncumulative\nfrequency"],
+            ["0 - 5", "7"],
+            ["5 - 10", "17"],
+            ["10 - 15", "32"],
+            ["15 - 20", "40"],
+            ["20 - 25", "43"]
+        ]
+        less_than_cumulative_table = Table(
+            less_than_cumulative_data,
+            include_outer_lines=True,
+            line_config={"color": WHITE, "stroke_width": 1},
+            element_to_mobject_config={"font_size": 36}
+        ).scale(0.5)
+        less_than_cumulative_table.next_to(original_table, RIGHT, buff=0.6)
+
+        self.play(Create(less_than_cumulative_table))
+        self.wait(1)
+
+        greater_than_cumulative_data = [
+            ["Class Interval\n(Marks)", "Greater than\ncumulative\nfrequency"],
+            ["0 - 5", "43"],
+            ["5 - 10", "36"],
+            ["10 - 15", "26"],
+            ["15 - 20", "11"],
+            ["20 - 25", "3"]
+        ]
+        greater_than_cumulative_table = Table(
+            greater_than_cumulative_data,
+            include_outer_lines=True,
+            line_config={"color": WHITE, "stroke_width": 1},
+            element_to_mobject_config={"font_size": 36}
+        ).scale(0.5)
+        greater_than_cumulative_table.next_to(less_than_cumulative_table, RIGHT, buff=0.6)
+        self.play(Create(greater_than_cumulative_table))
+        self.wait(2)
         self.fadeOutCurrentScene()
 
     def graph_rep_data(self):
@@ -200,27 +294,19 @@ class FrequencyDistribution(AbstractAnim):
 
         values = [4, 7, 1, 8, 5]
         bar_labels = ["A", "B", "C", "D", "E"]
-
-        # Create the bar chart
         bar_chart = BarChart(
             values=values,
             bar_names=bar_labels,
             bar_width=0.5,
             bar_colors=[BLUE, GREEN, RED, YELLOW, ORANGE],
-            y_range=[0, 10, 2],  # Range and tick spacing for y-axis
-            x_axis_config={"font_size": 24},  # Configuration for x-axis
-            y_axis_config={"font_size": 24},  # Configuration for y-axis
+            y_range=[0, 10, 2],  
+            x_axis_config={"font_size": 24},  
+            y_axis_config={"font_size": 24}, 
             
         )
-
-        # Add title to the bar chart
         title = Text("Vertical Bar Graph", font_size=48)
         title.to_edge(UP)
-
-        # Add the bar chart and title to the scene
         self.add(bar_chart, title)
-
-        # Optionally, you can animate the creation of the bar chart
         self.play(Create(bar_chart))
         self.wait(3)
 
@@ -228,40 +314,24 @@ class FrequencyDistribution(AbstractAnim):
 
         values = [4, 7, 1, 8, 5]
         bar_labels = ["A", "B", "C", "D", "E"]
-
-        # Create the bar chart
         bar_chart = BarChart(
             values=values,
             bar_names=bar_labels,
             bar_width=0.5,
             bar_colors=[BLUE, GREEN, RED, YELLOW, ORANGE],
-            y_range=[0, 10, 2],  # Range and tick spacing for y-axis
-            x_axis_config={"font_size": 24},  # Configuration for x-axis
-            y_axis_config={"font_size": 24},  # Configuration for y-axis
+            y_range=[0, 10, 2], 
+            x_axis_config={"font_size": 24},  
+            y_axis_config={"font_size": 24},  
             
         )
-
-        # Rotate the bar chart to make it horizontal
         bar_chart.rotate(PI / 2)
-
-        # Add title to the bar chart
         title = Text("Horizontal Bar Graph", font_size=48)
         title.to_edge(UP)
-
-        # Adjust the title position
         title.shift(DOWN)
-
-        # Add the bar chart and title to the scene
         self.add(bar_chart, title)
-
-        # Optionally, you can animate the creation of the bar chart
         self.play(Create(bar_chart))
         self.wait(3)
         self.fadeOutCurrentScene()
-
-       
-
-        
          
     def graph_rep_gfd(self):
         self.isRandom=False
