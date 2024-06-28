@@ -82,6 +82,32 @@ class PlayingWithNumbers(AbstractAnim):
             self.wait(0.5)
 
     def show_number_concepts(self):
+        self.isRandom=False
+        self.positionChoice = [[-4,-2,0],[4,-2,0],[3,2,0],[-4,2,0],[-3,2,0],[3,-2,0]]
+        p10=cvo.CVO().CreateCVO("Number Concepts","Types").setangle(-TAU/5)
+        p11=cvo.CVO().CreateCVO("","Factors")
+        p12=cvo.CVO().CreateCVO("","Prime")
+        p13=cvo.CVO().CreateCVO("","Composite")
+        p14=cvo.CVO().CreateCVO("","Co-Prime")
+        p15=cvo.CVO().CreateCVO("","Twin Prime")
+
+        p10.setcircleradius(1.25)
+        p11.setcircleradius(1.25)
+        p12.setcircleradius(1.25)
+        p13.setcircleradius(1.25)
+        p14.setcircleradius(1.25)
+        p15.setcircleradius(1.25)
+    
+        p10.cvolist.append(p11)
+        p10.cvolist.append(p12)
+        p10.cvolist.append(p13)
+        p10.cvolist.append(p14)
+        p10.cvolist.append(p15)
+
+        self.construct1(p10,p10)
+        self.wait(1)
+        self.clear_screen()
+
         self.display_title("Number Concepts")
         self.show_factors()
         self.wait(1)
@@ -156,14 +182,6 @@ class PlayingWithNumbers(AbstractAnim):
         self.show_concept(title, lines)
 
     def PrimeFactorization(self):
-        self.show_factor_tree()
-        self.wait(1)
-        self.clear_screen()
-
-        self.show_division_method()
-        self.wait(1)
-        self.clear_screen()
-        
         self.isRandom=False
         self.positionChoice = [[-4,-2,0],[4,-2,0],[3,2,0],[-4,2,0]]
         p10=cvo.CVO().CreateCVO("Prime Factorisation","Methods of Prime Factorisation").setangle(-TAU/5)
@@ -178,36 +196,52 @@ class PlayingWithNumbers(AbstractAnim):
         p10.cvolist.append(p12)
 
         self.construct1(p10,p10)
+        self.wait(1)
+        self.clear_screen()
 
-        def show_factor_tree(self):
-            title = Text("Factor Tree").scale(0.6).to_edge(UP)
+        self.show_factor_tree()
+        self.wait(1)
+        self.clear_screen()
+
+        self.show_division_method()
+        self.wait(1)
+        self.clear_screen()
+
+    def show_factor_tree(self):
+        title = Text("Factor Tree Method").scale(0.8).to_edge(UP)
         
-        lines = [
+        lines1 = [
             "A factor tree breaks down a number into its prime factors.",
             "For example, the factor tree of 18:",]
-        scene.clear_screen()
-        lines = [
-            "18",
-            "/  \\",
-            "2    9",
-            "    / \\",
-            "   3   3"
+        self.wait(1)
+        self.clear_screen()
+        lines2 = [     "18",
+                     "/  \\",
+                     "2    9",
+                     "    / \\",
+                     "   3   3"
         ]
-        self.show_concept(title, lines)
+        self.show_concept(title, lines1)
+        self.clear_screen()
+        self.show_concept(title, lines2)
 
     def show_division_method(self):
-        title = Text("Division Method").scale(0.6).to_edge(UP)
-        lines = [
+        title = Text("Division Method").to_edge(UP)
+        lines1 = [
             "The division method finds the prime factors of a number by dividing it.",
-            "For example, the division method for 18:",
+            "For example, the division method for 18:",]
+        self.wait(1)
+        self.clear_screen()
+
+        lines2 = [
             "18 ÷ 2 = 9",
             "9 ÷ 3 = 3",
             "3 ÷ 3 = 1",
             "So, the prime factors of 18 are 2 and 3."
         ]
-        self.show_concept(title, lines)
-
-
+        self.show_concept(title, lines1)
+        self.clear_screen()
+        self.show_concept(title, lines2)
 
     def show_concept(self, title, lines):
         self.play(Write(title))

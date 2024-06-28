@@ -1,6 +1,5 @@
 from manim import *
 from AbstractAnim import AbstractAnim
-import cvo 
 
 class AbstractAnim(Scene):
     def construct(self):
@@ -30,6 +29,12 @@ def find_hcf(a, b):
         hcf *= min(factors_a.count(factor), factors_b.count(factor)) * factor
     return hcf
 
+def continued_division_hcf(a, b):
+    """Return the HCF of a and b using the continued division method"""
+    while b:
+        a, b = b, a % b
+    return a
+
 def find_lcm(a, b):
     """Return the LCM of a and b using the prime factorization method"""
     factors_a = prime_factors(a)
@@ -40,22 +45,36 @@ def find_lcm(a, b):
         lcm *= max(factors_a.count(factor), factors_b.count(factor)) * factor
     return lcm
 
+def division_method_lcm(a, b):
+    """Return the LCM of a and b using the division method"""
+    original_a, original_b = a, b
+    gcd = continued_division_hcf(a, b)
+    lcm = (original_a * original_b) // gcd
+    return lcm
+
 class HCFAndLCM(AbstractAnim):
     def construct(self):
         self.display_title()
-        self.hcf_method(60, 48)
+        self.hcf_prime_method(60, 48)
+        self.wait(0.1)
+        self.clear()
+        self.hcf_continued_division_method(60, 48)
         self.wait(2)
         self.clear()
-        self.lcm_method(60, 48)
+        self.lcm_prime_method(60, 48)
+        self.wait(2)
+        self.clear()
+        self.lcm_division_method(36, 60)
+        self.wait(2)
 
     def display_title(self):
         title = Text("HCF and LCM", font_size=48)
         title.to_edge(UP)
         self.play(Write(title))
-        self.wait(1)
+        self.wait(0.1)
 
-    def hcf_method(self, a, b):
-        definition = Text("HCF (Highest Common Factor)", font_size=36)
+    def hcf_prime_method(self, a, b):
+        definition = Text("HCF (Highest Common Factor) using Prime Factorization", font_size=36)
         definition.to_edge(UP)
         self.play(Write(definition))
         self.wait(1)
@@ -73,8 +92,6 @@ class HCFAndLCM(AbstractAnim):
         self.play(Write(explanation))
         self.wait(3)
 
-        self.play(FadeOut(explanation))
-
         prime_factors_a = prime_factors(a)
         prime_factors_b = prime_factors(b)
         hcf = find_hcf(a, b)
@@ -83,7 +100,7 @@ class HCFAndLCM(AbstractAnim):
         common_factors_text = f"HCF: {hcf}"
 
         factors = Text(factors_text, font_size=24)
-        factors.next_to(definition, DOWN, buff=0.5)
+        factors.next_to(explanation, DOWN, buff=0.5)
         self.play(Write(factors))
         self.wait(1)
 
@@ -92,8 +109,36 @@ class HCFAndLCM(AbstractAnim):
         self.play(Write(common_factors))
         self.wait(2)
 
-    def lcm_method(self, a, b):
-        definition = Text("LCM (Least Common Multiple)", font_size=36)
+    def hcf_continued_division_method(self, a, b):
+        definition = Text("HCF (Highest Common Factor) using Continued Division", font_size=36)
+        definition.to_edge(UP)
+        self.play(Write(definition))
+        self.wait(1)
+
+        steps = [
+            "1. Divide the larger number by the smaller number.",
+            "2. Replace the larger number with the smaller number and the smaller number with the remainder.",
+            "3. Repeat the process until the remainder is 0.",
+            "4. The last non-zero remainder is the HCF."
+        ]
+
+        explanation = VGroup(*[Text(step, font_size=24) for step in steps])
+        explanation.arrange(DOWN, aligned_edge=LEFT)
+        explanation.next_to(definition, DOWN, buff=0.5)
+
+        self.play(Write(explanation))
+        self.wait(3)
+
+        hcf = continued_division_hcf(a, b)
+        hcf_text = f"HCF: {hcf}"
+
+        result = Text(hcf_text, font_size=24)
+        result.next_to(explanation, DOWN, buff=0.5)
+        self.play(Write(result))
+        self.wait(2)
+
+    def lcm_prime_method(self, a, b):
+        definition = Text("LCM (Least Common Multiple) using Prime Factorization", font_size=36)
         definition.to_edge(UP)
         self.play(Write(definition))
         self.wait(1)
@@ -111,8 +156,6 @@ class HCFAndLCM(AbstractAnim):
         self.play(Write(explanation))
         self.wait(3)
 
-        self.play(FadeOut(explanation))
-
         prime_factors_a = prime_factors(a)
         prime_factors_b = prime_factors(b)
         lcm = find_lcm(a, b)
@@ -121,7 +164,7 @@ class HCFAndLCM(AbstractAnim):
         lcm_text = f"LCM: {lcm}"
 
         factors = Text(factors_text, font_size=24)
-        factors.next_to(definition, DOWN, buff=0.5)
+        factors.next_to(explanation, DOWN, buff=0.5)
         self.play(Write(factors))
         self.wait(1)
 
@@ -129,6 +172,45 @@ class HCFAndLCM(AbstractAnim):
         lcm_result.next_to(factors, DOWN, buff=0.5)
         self.play(Write(lcm_result))
         self.wait(2)
+
+    def lcm_division_method(self, a, b):
+        definition = Text("LCM (Least Common Multiple) using Division Method", font_size=36)
+        definition.to_edge(UP)
+        self.play(Write(definition))
+        self.wait(1)
+
+        steps = [
+            "1. Write the numbers in a horizontal line.",
+            "2. Divide the numbers by their common prime factors, starting with the smallest prime.",
+            "3. Write the quotient below each number.",
+            "4. Repeat until all quotients are 1.",
+            "5. Multiply all the prime factors to get the LCM."
+        ]
+
+        explanation = VGroup(*[Text(step, font_size=24) for step in steps])
+        explanation.arrange(DOWN, aligned_edge=LEFT)
+        explanation.next_to(definition, DOWN, buff=0.5)
+
+        self.play(Write(explanation))
+        self.wait(3)
+
+        example_text = [
+            "Example: Find the LCM of 36 and 60",
+            "Step 1: Write the numbers in a horizontal line: 36, 60",
+            "Step 2: Divide by the smallest prime (2): 18, 30",
+            "Step 3: Continue dividing by common primes:",
+            "2: 9, 15",
+            "3: 3, 5",
+            "Step 4: Multiply all prime factors: 2 * 2 * 3 * 3 * 5",
+            "LCM: 180"
+        ]
+
+        explanation_example = VGroup(*[Text(line, font_size=24) for line in example_text])
+        explanation_example.arrange(DOWN, aligned_edge=LEFT)
+        explanation_example.next_to(explanation, DOWN, buff=0.5)
+
+        self.play(Write(explanation_example))
+        self.wait(5)
 
 if __name__ == "__main__":
     scene = HCFAndLCM()
