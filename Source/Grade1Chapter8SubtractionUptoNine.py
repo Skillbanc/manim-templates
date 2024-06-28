@@ -16,10 +16,34 @@ class Chap8G1_SubUptoNine(AbstractAnim):
     # use the appropriate method based on how the data is stored
     def construct(self):
         self.RenderSkillbancLogo()
+        self.Introduction()
+        self.fadeOutCurrentScene()
         self.Anim()
+        self.fadeOutCurrentScene()
+        self.GithubSourceCodeReference()
+        
+    def SetDeveloperList(self):  
+        self.DeveloperList="Prithiv Shiv M V"
+
+    def SetSourceCodeFileName(self):
+        self.SourceCodeFileName="Grade1Chapter8SubtractionUptoNine.py"
+
+    def Introduction(self):
+        self.isRandom=False
+        self.setNumberOfCirclePositions(4)
+        title=Text("Subraction of Numbers upto 9").to_edge(UP)
+        Numbers=Text("Numbers: 1 2 3 4 5 6 7 8 9").next_to(title,DOWN)
+        self.play(Write(title))
+        self.play(Write(Numbers))
+        self.wait(1)
+
+        p11=cvo.CVO().CreateCVO("Subtraction","Process of taking\\\\1 number from another")
+        p13=cvo.CVO().CreateCVO("Notation","x-y")
+        p11.cvolist.append(p13)
+        self.construct1(p11,p11)
 
     def Anim(self):
-        title = Text("Subtraction up to 9", font_size=72)
+        title = Text("Subtraction Examples", font_size=72)
         self.play(Write(title))
         self.wait(2)
         self.play(FadeOut(title))
