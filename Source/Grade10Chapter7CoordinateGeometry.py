@@ -39,7 +39,7 @@ class CoordinateGeoAnim(AbstractAnim):
 
     def distance(self):
         self.isRandom=False
-        p10=cvo.CVO().CreateCVO("Two points","")
+        p10=cvo.CVO().CreateCVO("Two Points","")
         p11=cvo.CVO().CreateCVO("Point A","(x1,y1)")
         p12=cvo.CVO().CreateCVO("Point B","(x2,y2)")
         p10.cvolist.append(p11)
@@ -148,11 +148,15 @@ class CoordinateGeoAnim(AbstractAnim):
         dot_P = Dot(point_P, color=YELLOW)
         label_A = MathTex("A(1, 1)", font_size=24).next_to(dot_A, DOWN)
         label_B = MathTex("B(4, 3)", font_size=24).next_to(dot_B, RIGHT)
-        label_P = MathTex(f"P({x:.1f}, {y:.1f})", font_size=24).next_to(dot_P, UP)
-
+        label_P = MathTex(f"P({x:.1f}, {y:.1f})", font_size=24).next_to(dot_P, UP).shift(LEFT*0.7)
+        label_P.shift(DOWN*0.3)
         # Line segment AB
         line_AB = Line(point_A, point_B, color=GREEN)
-
+        
+        brace_m = BraceBetweenPoints(point_A, point_P, direction=line_AB.copy().rotate(-PI / 2).get_unit_vector())
+        brace_m_tex = brace_m.get_tex(f"m = {m}", buff=0.1)
+        brace_n = BraceBetweenPoints(point_P, point_B, direction=line_AB.copy().rotate(PI / 2).get_unit_vector())
+        brace_n_tex = brace_n.get_tex(f"n = {n}", buff=0.1)
         # Section formula label
         section_label = Text("Section Formula", font_size=32).to_corner(UL)
 
@@ -170,7 +174,10 @@ class CoordinateGeoAnim(AbstractAnim):
         self.play(Create(line_AB))
         self.play(FadeIn(dot_A, label_A), FadeIn(dot_B, label_B))
         self.wait(1)
-        
+        self.play(FadeIn(dot_P))
+        self.play(Create(brace_m), Write(brace_m_tex))
+        self.play(Create(brace_n), Write(brace_n_tex))
+        self.wait(3)
 
         # Show the section formula label
         self.play(Write(section_label))
@@ -179,7 +186,7 @@ class CoordinateGeoAnim(AbstractAnim):
         self.play(Write(section_formula_x, run_time=4))
         self.wait(2)
         self.play(Write(section_formula_y, run_time=4))
-        self.play(FadeIn(dot_P, label_P))
+        self.play(FadeIn(label_P))
         self.wait(1)
         self.wait(3)
         
@@ -228,10 +235,10 @@ class CoordinateGeoAnim(AbstractAnim):
         self.play(Create(axes),Write(x_axis_label),Write(y_axis_label))
         self.play(Create(line_AB))
         self.play(FadeIn(dot_A, label_A), FadeIn(dot_B, label_B))
-        self.play(FadeIn(dot_M, label_M))
-        self.wait(1)
         self.play(Write(x_axis_label),Write(y_axis_label))
         self.play(Write(midpoint_formula,run_time=4))
+        self.play(FadeIn(dot_M, label_M))
+        self.wait(1)
         self.wait(4)
 
 
