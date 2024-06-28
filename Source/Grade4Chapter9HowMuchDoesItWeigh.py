@@ -4,6 +4,8 @@ from AbstractAnim import AbstractAnim
 import cvo
 class weights(AbstractAnim):
     def construct(self):
+        self.RenderSkillbancLogo()
+        self.fadeOutCurrentScene()
         self.weight()
         self.measurements()
         self.example()
