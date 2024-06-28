@@ -126,14 +126,14 @@ class secantsandtangents(AbstractAnim):
         # external_point_label = MathTex("External Point").next_to(external_dot, UP, buff=0.5)
         tangent_label_1 = MathTex(f"Tangent = {tangent_length:.2f}\\,cm").next_to(tangent_line_1, RIGHT, buff=0.1)
         # tangent_label_2 = MathTex(f"Tangent = {tangent_length:.2f}\\,cm").next_to(tangent_line_2, RIGHT, buff=0.1)
-
+        radius_6cm_label = MathTex("Radius = 6\\,cm").next_to(tangent_line_1.get_center() + DOWN, buff=0.5)
         # Add all elements to the scene
         self.play(Create(circle))  # Animate the drawing of the circle
         self.play(FadeIn(external_dot))  # Animate the appearance of the external point
         self.play(Create(tangent_line_1), Create(tangent_line_2))  # Animate the drawing of the tangent lines
         self.play(Write(tangent_label_1))  # Write the tangent lengths
         self.play(Write(radius_label))  # Write the radius label
-
+        self.play(Write(radius_6cm_label))
         # Use Pythagorean theorem
         theorem = MathTex("a^2 + b^2 = c^2")
         theorem.shift(LEFT * 4)
