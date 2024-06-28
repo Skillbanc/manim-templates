@@ -1084,7 +1084,7 @@ class Mensuration(AbstractAnim,ThreeDScene):
         volume_eq_text1 = MathTex("15 \\times 7 \\times 8 + \\frac{1}{2} \\times \\pi \\times \\left(\\frac{7}{2}\\right)^2 \\times 15", font_size=50).next_to(required_volume_text, DOWN)
         volume_result_text = Text("= 1128.75 m³", font_size=30).next_to(volume_eq_text1, DOWN)
         machinery_text = Text("Total space occupied by machinery = 300 m³", font_size=30).next_to(volume_result_text, DOWN)
-        workers_text = MathTex(" Total space occupied by workers= 20 \\times 0.08 m^3", font_size=40).next_to(machinery_text, DOWN)
+        workers_text = MathTex("\\text{Total space occupied by workers}= 20 \\times 0.08\\ \\text{m}^3", font_size=40).next_to(machinery_text, DOWN)
         workers_calc_text = Text("= 1.6 m³", font_size=30).next_to(workers_text, DOWN)
         total_space_text = Text("The volume of the air, inside the shed when there are machinery and workers", font_size=30).next_to(workers_calc_text, DOWN)
         calc_text1 = Text("= 1128.75 - (300.00 + 1.60)", font_size=30).next_to(total_space_text, DOWN)
