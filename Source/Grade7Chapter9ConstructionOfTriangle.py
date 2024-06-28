@@ -4,6 +4,8 @@ from AbstractAnim import AbstractAnim
 import cvo
 class ConstructionofTriangle(AbstractAnim):
     def construct(self):
+        self.RenderSkillbancLogo()
+        self.fadeOutCurrentScene()
         self.constructoftri()
         self.threes()
         self.twosonea()
