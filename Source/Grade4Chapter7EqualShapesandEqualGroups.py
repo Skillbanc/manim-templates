@@ -5,6 +5,8 @@ import cvo
 
 class EqualShapesandEqualGroups(AbstractAnim):
     def construct(self):
+        self.RenderSkillbancLogo()
+        self.fadeOutCurrentScene()
         self.group()
         self.fadeOutCurrentScene()
         self.division()
