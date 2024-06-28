@@ -18,13 +18,15 @@ class KnowingNumbers(AbstractAnim):
         self.comparisionofindianinternationalsystems()
         self.fadeOutCurrentScene()
         self.largeNumbersUsedInDailyLifeSituations()
+        self.fadeOutCurrentScene()  
+        self.GithubSourceCodeReference()
 
 
 
 
     def finding_largest_smallestNumbers(self):
 
-        union = Text("Estimating And Comaring Numbers",color=PURPLE_B,font_size=37).to_edge(UP*1)
+        union = Text("1.1  Estimating And Comaring Numbers",color=PURPLE_B,font_size=37).to_edge(UP*1)
         sub_title1 = Text("Identify the greatest and smallest among the following numbers .",font_size=28).to_edge(UP*3+LEFT*1)
         sub_title2 = Text("We can identify them easily by simply counting the digits in the numbers.",font_size=28).to_edge(UP*11+LEFT *1)
         sub_title3 = Text("For example,",font_size=28,color=YELLOW).to_edge(UP*12.5+LEFT*1)
@@ -92,7 +94,7 @@ class KnowingNumbers(AbstractAnim):
         ).to_edge(UP*9.25+LEFT * 1)
         sub_title6 = Text("from numbers 9535 and 9635 comparing second digit from left 5 < 6",font_size=29).to_edge(UP*10.75+LEFT *2)
         sub_title7 = Text("so the number 9535 < 9635. so the greatest nuber is 9635.",font_size=29).to_edge(UP*12.25+LEFT * 2)
-        sub_title8 = Text("next step we can arrange these numbers in a Assending and Descending order.",font_size=29,color=GRAY).to_edge(UP*14+LEFT * 1)
+        sub_title8 = Text("next step we can arrange these numbers in a Assending and Descending order.",font_size=29,color=GRAY).to_edge(UP*14+LEFT * 0.8)
         
 
 
@@ -147,7 +149,7 @@ class KnowingNumbers(AbstractAnim):
 
     def RoundoffNumbers(self):
 
-        union = Text("Estimating And Rounding Off Numbers ", color=DARK_BROWN, font_size=37).to_edge(UP*1)
+        union = Text("1.2  Estimating And Rounding Off Numbers ", color=DARK_BROWN, font_size=37).to_edge(UP*1)
         sub_title1 = Text("We usually round off the numbers to the nearest 10's(Tens),", font_size=29).to_edge(UP*3)
         sub_title2 = Text("100's(Hundreds), 1000's (Thousands), 10000's (Ten Thousands)... etc.", font_size=29).to_edge(UP*4.75)
         sub_title3 = Text("Rounding off the numbers to the nearest tens:", font_size=30, color=GREY).to_edge(UP*6.5+LEFT *1)
@@ -241,7 +243,7 @@ class KnowingNumbers(AbstractAnim):
         sub_title1 = Text("220 is nearer to 200 than 300, so 220 is rounded off to 200.", font_size=29).to_edge(UP*6)
         sub_title2 = Text("280 is nearer to 300 than 200, so it is rounded off to 300.", font_size=29).to_edge(UP*7.5)
         sub_title3 = MarkupText(
-            "<span foreground='grey'>Compare the last digit:</span>   If the last digit is 5 or greater, we round up.",
+            "<span foreground='grey'>Compare the last digit rule:</span>   If the last digit is 5 or greater, we round up.",
             font_size=29
         ).to_edge(UP*9+LEFT *1)
         sub_title4 = Text("If it's less than 5, we round down.", font_size=29).to_edge(UP*10.5+LEFT*10)
@@ -259,6 +261,7 @@ class KnowingNumbers(AbstractAnim):
 
         # Create circles for the numbers to be rounded
         circle_220 = Circle(radius=0.5, color=BLUE).move_to(number_line.n2p(220) + UP * 0.3)
+        circle_250 = Circle(radius=0.5, color=BLUE).move_to(number_line.n2p(250) + UP * 0.3)
         circle_280 = Circle(radius=0.5, color=BLUE).move_to(number_line.n2p(280) + UP * 0.3)
 
         # Create curved arrows for rounding off 220 to 200
@@ -277,6 +280,14 @@ class KnowingNumbers(AbstractAnim):
             color=PINK
         ).add_tip(tip_length=0.2)
 
+        # Create curved arrows for rounding off 280 to 300
+        arrow_250_to_300 = ArcBetweenPoints(
+            start=circle_250.get_center() + UP * 0.5,
+            end=number_line.n2p(300),
+            angle=-TAU / 4,
+            color=PINK
+        ).add_tip(tip_length=0.2)
+
 
         self.play(Write(union))
 
@@ -284,6 +295,7 @@ class KnowingNumbers(AbstractAnim):
         self.play(Create(number_line), run_time=3)  # Adjust run_time as needed
         self.wait(1)
         self.play(Create(circle_220))
+        self.play(Create(circle_250))
         self.play(Create(circle_280))
         self.wait(1)
         self.play(Create(arrow_220_to_200))
@@ -304,6 +316,8 @@ class KnowingNumbers(AbstractAnim):
         self.wait(1)
         self.play(Write(sub_title6))
         self.wait(1)
+        self.play(Create(arrow_250_to_300))
+        self.wait(1)
 
 
 
@@ -315,7 +329,7 @@ class KnowingNumbers(AbstractAnim):
 
     def REVISIONOFPLACEVALUE(self):
         # Title
-        title = Text("REVISION OF PLACE VALUE", font_size=30,color=BLUE).to_edge(UP * 1)
+        title = Text("1.3  REVISION OF PLACE VALUE", font_size=30,color=BLUE).to_edge(UP * 1)
         sub_title1 = Text("expanding a two digit, three digit, four digit and five digit number :",font_size=29).to_edge(UP*2.75+LEFT*1)
 
         sub_title2 = Text("1. Expand  64                =",font_size=27).to_edge(UP* 4.5+LEFT*1)
@@ -426,7 +440,7 @@ class KnowingNumbers(AbstractAnim):
         self.play(Write(sub_title))
         self.wait(2)
 
-        sub_title5 = Text("2. Expand  29500             =",font_size=27).to_edge(UP* 9.25+LEFT *1)
+        sub_title5 = Text("4. Expand  29500             =",font_size=27).to_edge(UP* 9.25+LEFT *1)
         sub_title6 = Text("=    (2 × 10000) + (9 × 1000) + (5 × 100) + (0 × 10) + (0 × 1)",font_size=23).to_edge(UP* 12 +RIGHT * 1.25)
         sub_title7 = Text("=                20000 + 9000 + 500 + 0 + 0",font_size=29).to_edge(UP*13.5+RIGHT* 4.79)
         sub_title8 = Text("=                20000 + 9000 + 500",font_size=29).to_edge(UP*15+RIGHT* 7.6)
@@ -478,7 +492,7 @@ class KnowingNumbers(AbstractAnim):
 
     def Placevalueoflargernumbers(self):
         # Title
-        title = Text(" Place value of larger numbers", font_size=30,color=BLUE).to_edge(UP * 1)
+        title = Text("1.4  Place value of larger numbers", font_size=30,color=BLUE).to_edge(UP * 1)
         sub_title1 = Text("we can extend numbers upto lakhs and crores as seen in the following table:",font_size=29).to_edge(UP*2.75+LEFT*0.8)
         sub_title2 = Text("From the above table, the relation between numbers understood as follows:",font_size=27).to_edge(UP*11.25+LEFT*0.7)
         sub_title3 = Text("1 crore = 100 lakhs                           1 lakh = 100 thousands",font_size=27).to_edge(UP*13+LEFT*1.15)
@@ -531,7 +545,7 @@ class KnowingNumbers(AbstractAnim):
         title = Text("Example :", font_size=30,color=BLUE).to_edge(UP * 1+LEFT*1)
         sub_title1 = Text("Expansion of 41430495   = ",font_size=29).to_edge(UP*3+LEFT*1)
         sub_title2 = Text("So it has 8 digits expansion start from crore :",font_size=27).to_edge(UP*8.75+LEFT*0.7)
-        sub_title3 = Text("4,14,30,495  =  (4 × 10000000) + (1 × 1000000) + (4 × 100000) + (3 × 10000) + ",font_size=27).to_edge(UP*10.25+LEFT*1)
+        sub_title3 = Text("4,14,30,495  =  (4 × 10000000) + (1 × 1000000) + (4 × 100000) + (3 × 10000) + ",font_size=27).to_edge(UP*10.25+LEFT*0.8)
         sub_title4 = Text("    (0 × 1000) + (4 × 100) + (9 × 10) + (5 × 1)",font_size=29).to_edge(UP* 11.75+  LEFT *6.75)
         sub_title5 = MarkupText(
             "<span foreground='yellow'>Read as:</span> Four crore fourteen lakh thirty thousand four hundred ninety five",
@@ -583,14 +597,22 @@ class KnowingNumbers(AbstractAnim):
 
     def comparisionofindianinternationalsystems(self):
         # Title
-        title = Text("Comparison of Indian and International Numeration Systems", font_size=30,color=BLUE).to_edge(UP * 1)
+        title = Text("1.5  Comparison of Indian and International Numeration Systems", font_size=30,color=BLUE).to_edge(UP * 1)
         sub_title1 = Text("Let us compare the places in both the systems :",font_size=29).to_edge(UP*2.75+LEFT*1)
 
         sub_title2 = Text("From the above table, the relation between these systems understood as follows:",font_size=27).to_edge(UP* 9+LEFT*1)
-        sub_title3 = Text("10 lakhs = 1 million",font_size=29).to_edge(UP*10.5)
-        sub_title4 = Text("1 crore = 10 million",font_size=29).to_edge(UP*12)
-        sub_title5 = Text("10 crore = 100 million",font_size=29).to_edge(UP*13.5)
-        sub_title6 = Text("100 crore = 1 billion",font_size=29).to_edge(UP*15)
+        sub_title3 = Text("10 lakhs   =   1 million",font_size=29).to_edge(UP*10.5+LEFT*8)
+        sub_title4 = Text("1 crore     =   10 million",font_size=29).to_edge(UP*12+LEFT*8)
+        sub_title5 = Text("10 crore   =   100 million",font_size=29).to_edge(UP*13.5+LEFT*8)
+        sub_title6 = Text("100 crore =   1 billion",font_size=29).to_edge(UP*14.75+LEFT*8)
+
+
+        # Group subtitles 4, 5, and 6
+        group_subtitles = VGroup(sub_title3, sub_title4, sub_title5, sub_title6)
+        
+        # Create one surrounding rectangle for the grouped subtitles with increased padding
+        rect = SurroundingRectangle(group_subtitles, color=GREEN_B, buff=0.25)
+        
         
         self.play(Write(title))
         self.wait(2)
@@ -627,8 +649,11 @@ class KnowingNumbers(AbstractAnim):
         self.play(Write(sub_title5))
         self.wait(2)
         self.play(Write(sub_title6))
+        
+        self.play(Create(rect))
+        self.wait(1.5)
 
-        self.play(FadeOut(table), FadeOut(sub_title6), FadeOut(sub_title5), FadeOut(sub_title4), FadeOut(sub_title3), FadeOut(sub_title2), FadeOut(sub_title1),FadeOut(title))
+        self.play(FadeOut(rect),FadeOut(table), FadeOut(sub_title6), FadeOut(sub_title5), FadeOut(sub_title4), FadeOut(sub_title3), FadeOut(sub_title2), FadeOut(sub_title1),FadeOut(title))
 
 
 
@@ -685,7 +710,7 @@ class KnowingNumbers(AbstractAnim):
 
     def largeNumbersUsedInDailyLifeSituations(self):
         # Title
-        title = Text("LARGE NUMBERS USED IN DAILY LIFE SITUATIONS", font_size=30, color=BLUE).to_edge(UP * 1)
+        title = Text("1.7  LARGE NUMBERS USED IN DAILY LIFE SITUATIONS", font_size=30, color=BLUE).to_edge(UP * 1)
         sub_title1 = Text("We use meter (m) as a unit of length, kilogram (kg) as a unit of weight", font_size=29).to_edge(UP * 3)
         sub_title2 = Text("Litre (l) as a unit of volume and second (s) as a unit of time.", font_size=27).to_edge(UP * 5)
         sub_title3 = Text("Since there is a relationship between all of them:", font_size=29).to_edge(UP * 7.25 + LEFT * 1)
