@@ -8,17 +8,17 @@ class Chapter15Grade4(AbstractAnim):
 
     # use the appropriate method based on how the data is stored
     def construct(self):
-        """self.RenderSkillbancLogo()
+        self.RenderSkillbancLogo()
         self.fadeOutCurrentScene()
         self.constructDataByCVO()
         self.fadeOutCurrentScene()
         self.fadeOutCurrentScene()
         self.PatternWithTurns()
-        self.fadeOutCurrentScene()"""
-        #self.PatternsWithNumbers()
+        self.fadeOutCurrentScene()
+        self.PatternsWithNumbers()
         self.fadeOutCurrentScene()
         self.PatternsWithCalendars()
-        #self.fadeOutCurrentScene()
+        self.fadeOutCurrentScene()
         #self.constructDataByJSON()
         #self.fadeOut()
         

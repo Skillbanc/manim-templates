@@ -15,10 +15,11 @@ class FactorsAnim(AbstractAnim):
         self.GithubSourceCodeReference()
     
     def Borders(self):
-
-        p10=cvo.CVO().CreateCVO("Borders and Boundaries", "").setPosition([-3,0,0]).setangle(-TAU/6)
-        p11=cvo.CVO().CreateCVO("Perimeter", "").setPosition([-1,0,0]).setangle(-TAU/6)
-        p12=cvo.CVO().CreateCVO("Definition", "Total length of the shape or and area").setPosition([2,2,0]).setangle(-TAU/6)
+        
+        self.isRandom = False
+        p10=cvo.CVO().CreateCVO("Borders and Boundaries", "").setPosition([-3,0,0])
+        p11=cvo.CVO().CreateCVO("Perimeter", "").setPosition([-1,0,0]).setangle(-TAU/4)
+        p12=cvo.CVO().CreateCVO("Definition", "Total length of the shape or and area").setPosition([2,2,0]).setangle(-TAU/4)
         
        
         
