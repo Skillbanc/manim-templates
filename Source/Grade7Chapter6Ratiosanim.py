@@ -33,8 +33,6 @@ class Ratiosanim(AbstractAnim):
         self.fadeOutCurrentScene()
         self.Simpleinterest()
         self.fadeOutCurrentScene()
-        #self.Simpleinterest1()
-        self.fadeOutCurrentScene()
         self.example5()
         self.fadeOutCurrentScene()
         self.GithubSourceCodeReference()
@@ -426,23 +424,7 @@ class Ratiosanim(AbstractAnim):
         
         self.construct1(p10,p10)
 
-    # def Simpleinterest1(self):
-    #     self.setNumberOfCirclePositions(4)
-    #     self.angleChoice = [TAU/4,TAU/4,TAU/4]
-    #     self.isRandom = False
-
-       
-    #     p10=cvo.CVO().CreateCVO("FORMULA ","P*T*R")
-    #     p11=cvo.CVO().CreateCVO(" Principle ","P")
-    #     p12=cvo.CVO().CreateCVO("Interest","R\%")
-    #     p13=cvo.CVO().CreateCVO("Time", "T")
-    #     p12.SetIsMathText(True)
-    #     p10.setcircleradius(1.5)
-    #     p10.cvolist.append(p11)
-    #     p10.cvolist.append(p12)
-    #     p10.cvolist.append(p13)
-        
-    #     self.construct1(p10,p10)
+    
 
     def example5(self):
         title = Text("Example: Principle = $1000, Time = 2 years, Rate = 5%", font_size=36)
