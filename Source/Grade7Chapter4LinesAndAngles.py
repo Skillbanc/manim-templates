@@ -54,15 +54,15 @@ class LinesAndAngles(AbstractAnim):
 
 
     def Lines(self):
-        self.positionChoice=[[0,2,0],[-3,-2,0],[3,-2,0]]
-        self.angleChoice=[TAU/4,TAU/4]
+        self.positionChoice=[[-3,0,0],[3,2,0],[3,-2,0]]
+        # self.angleChoice=[TAU/4,-TAU/4]
         self.isRandom = False
         p10=cvo.CVO().CreateCVO("Lines","")
-        p11=cvo.CVO().CreateCVO("Parallel lines","do not intersect at any point")
-        p12=cvo.CVO().CreateCVO("Intersecting lines","lines meet at a point")
-        p10.setcircleradius(1.75)
-        p11.setcircleradius(1.75)
-        p12.setcircleradius(1.75)
+        p11=cvo.CVO().CreateCVO("Parallel Lines","")
+        p12=cvo.CVO().CreateCVO("Intersecting Lines","")
+        # p10.setcircleradius(1.5)
+        # p11.setcircleradius(1.5)
+        # p12.setcircleradius(1.5)
         p10.cvolist.append(p11)
         p10.cvolist.append(p12)
         self.construct1(p10,p10)
@@ -134,7 +134,7 @@ class LinesAndAngles(AbstractAnim):
         p10=cvo.CVO().CreateCVO("Complementary Angle","")
         p11=cvo.CVO().CreateCVO("Property",r"$Adjacent \quad angles \quad summing \quad to \quad 90^\circ$")
         p12=cvo.CVO().CreateCVO("Example",r"$50^\circ,40^\circ$")
-        p11.setcircleradius(2)
+        p11.setcircleradius(1.5)
         p10.cvolist.append(p11)
         p11.cvolist.append(p12)
         self.construct1(p10,p10)
@@ -201,7 +201,7 @@ class LinesAndAngles(AbstractAnim):
         p10=cvo.CVO().CreateCVO("Supplementary Angle","")
         p11=cvo.CVO().CreateCVO("Property",r"$Adjacent \quad angles \quad summing \quad to \quad 180^\circ$")
         p12=cvo.CVO().CreateCVO("Example",r"$80^\circ,100^\circ$")
-        p11.setcircleradius(2)
+        p11.setcircleradius(1.5)
         p10.cvolist.append(p11)
         p11.cvolist.append(p12)
         self.construct1(p10,p10)
@@ -401,13 +401,13 @@ class LinesAndAngles(AbstractAnim):
         p11.setcircleradius(1)
         p12=cvo.CVO().CreateCVO("Angles on Transversal", "")
         p12.extendOname(["Corresponding","Interior","Exterior","Vertically Opposite","Consecutive Interior","Alternate Interior","Consecutive Exterior","Alternate Exterior"])
-        p12.setcircleradius(1.5)
+        # p12.setcircleradius(1.5)
         p10.cvolist.append(p11)
         p10.cvolist.append(p12)
         self.construct1(p10,p10)
 
     def Corresponding(self):
-        self.setNumberOfCirclePositions(3)
+        self.positionChoice=[[3,-2,0],[0,2,0],[-3,-2,0]]
         self.isRandom = False
         p10=cvo.CVO().CreateCVO("Corresponding Angle","")
         p11=cvo.CVO().CreateCVO("Property","Angles on same side of transversal")
@@ -421,6 +421,8 @@ class LinesAndAngles(AbstractAnim):
         self.isRandom = False
         p10=cvo.CVO().CreateCVO("Interior Angle","")
         p11=cvo.CVO().CreateCVO("Property","within the shape")
+        # p10.setcircleradius(1.5)
+        p11.setcircleradius(1.5)
         p10.cvolist.append(p11)
         self.construct1(p10,p10)
 
@@ -429,11 +431,13 @@ class LinesAndAngles(AbstractAnim):
         self.isRandom = False
         p10=cvo.CVO().CreateCVO("Exterior Angle","")
         p11=cvo.CVO().CreateCVO("Property","outside the shape")
+        # p10.setcircleradius(1.5)
+        p11.setcircleradius(1.5)
         p10.cvolist.append(p11)
         self.construct1(p10,p10)
 
     def VertOpp(self):
-        self.setNumberOfCirclePositions(3)
+        self.positionChoice=[[3,-2,0],[0,2,0],[-3,-2,0]]
         self.isRandom = False
         p10=cvo.CVO().CreateCVO("Vertically Opposite Angle","")
         p11=cvo.CVO().CreateCVO("Property","opposite eachother at intersection point")
@@ -506,14 +510,14 @@ class LinesAndAngles(AbstractAnim):
 
         # Label angles
         labels = [
-            MathTex(r"\angle 1").next_to(angles[0].point_from_proportion(0.5), UR, buff=0.2),
-            MathTex(r"\angle 2").next_to(angles[1].point_from_proportion(0.5), UP*4+ LEFT*2, buff=0.2),
-            MathTex(r"\angle 3").next_to(angles[2].point_from_proportion(0.5), UR, buff=0.2),
-            MathTex(r"\angle 4").next_to(angles[3].point_from_proportion(0.5), UP*4 + LEFT*2, buff=0.2),
-            MathTex(r"\angle 5").next_to(angles[4].point_from_proportion(0.5), RIGHT*3, buff=0.2),
-            MathTex(r"\angle 6").next_to(angles[5].point_from_proportion(0.5), DOWN*2, buff=0.2),
-            MathTex(r"\angle 7").next_to(angles[6].point_from_proportion(0.5), RIGHT*3, buff=0.2),
-            MathTex(r"\angle 8").next_to(angles[7].point_from_proportion(0.5), DOWN*2, buff=0.2)
+            MathTex(r"\angle 1").scale(0.7).next_to(angles[0].point_from_proportion(0.5), UR, buff=0.2),
+            MathTex(r"\angle 2").scale(0.7).next_to(angles[1].point_from_proportion(0.5), UP*4+ LEFT*2, buff=0.2),
+            MathTex(r"\angle 3").scale(0.7).next_to(angles[2].point_from_proportion(0.5), UR, buff=0.2),
+            MathTex(r"\angle 4").scale(0.7).next_to(angles[3].point_from_proportion(0.5), UP*4 + LEFT*2, buff=0.2),
+            MathTex(r"\angle 5").scale(0.7).next_to(angles[4].point_from_proportion(0.5), RIGHT*3+UP*0.5, buff=0.2),
+            MathTex(r"\angle 6").scale(0.7).next_to(angles[5].point_from_proportion(0.5), DOWN*2, buff=0.2),
+            MathTex(r"\angle 7").scale(0.7).next_to(angles[6].point_from_proportion(0.5), RIGHT*3+UP*0.5, buff=0.2),
+            MathTex(r"\angle 8").scale(0.7).next_to(angles[7].point_from_proportion(0.5), DOWN*2, buff=0.2)
         ]
 
         # Group angles and labels
@@ -534,7 +538,7 @@ class LinesAndAngles(AbstractAnim):
             MathTex(r"\text{6. Alternate Exterior Angles: } \angle 1, \angle 8 \text{ and } \angle 2, \angle 7"),
             MathTex(r"\text{7. Consecutive Interior Angles: } \angle 5, \angle 3 \text{ and } \angle 6, \angle 4"),
             MathTex(r"\text{8. Consecutive Exterior Angles: } \angle 1, \angle 7 \text{ and } \angle 2, \angle 8")
-        ).arrange(DOWN, aligned_edge=LEFT).scale(0.6).to_edge(RIGHT)
+        ).arrange(DOWN, aligned_edge=LEFT).scale(0.7).to_edge(RIGHT)
 
         self.play(Write(explanation_text))
 
