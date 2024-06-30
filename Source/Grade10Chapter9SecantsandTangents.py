@@ -12,12 +12,18 @@ class secantsandtangents(AbstractAnim):
         self.fadeOutCurrentScene()
         self.tangentexternal()
         self.fadeOutCurrentScene()
+        self.secant()
+        self.constructionofsecant()
         self.area()
         self.rectangle()
         self.square()
         self.triangle() 
         self.GithubSourceCodeReference()
     def circles(self):
+        def __init__(self, **kwargs):
+            super().__init__(**kwargs)
+        self.RenderSkillbancLogo()
+        self.fadeOutCurrentScene()
         self.isRandom = False
         self.positionChoice = [[-5,0,0],[5,2,0],[5,-3,0]]
         p10=cvo.CVO().CreateCVO("Circles","")
@@ -120,14 +126,14 @@ class secantsandtangents(AbstractAnim):
         # external_point_label = MathTex("External Point").next_to(external_dot, UP, buff=0.5)
         tangent_label_1 = MathTex(f"Tangent = {tangent_length:.2f}\\,cm").next_to(tangent_line_1, RIGHT, buff=0.1)
         # tangent_label_2 = MathTex(f"Tangent = {tangent_length:.2f}\\,cm").next_to(tangent_line_2, RIGHT, buff=0.1)
-
+        radius_6cm_label = MathTex("Radius = 6\\,cm").next_to(tangent_line_1.get_center() + DOWN, buff=0.5)
         # Add all elements to the scene
         self.play(Create(circle))  # Animate the drawing of the circle
         self.play(FadeIn(external_dot))  # Animate the appearance of the external point
         self.play(Create(tangent_line_1), Create(tangent_line_2))  # Animate the drawing of the tangent lines
         self.play(Write(tangent_label_1))  # Write the tangent lengths
         self.play(Write(radius_label))  # Write the radius label
-
+        self.play(Write(radius_6cm_label))
         # Use Pythagorean theorem
         theorem = MathTex("a^2 + b^2 = c^2")
         theorem.shift(LEFT * 4)
@@ -143,6 +149,63 @@ class secantsandtangents(AbstractAnim):
 
         # Wait for a moment before ending the scene
         self.wait(2)
+    def secant(self):
+        self.isRandom = False
+        self.positionChoice = [[-5,0,0],[3,0,0]]
+        s10=cvo.CVO().CreateCVO("Secant","")
+        s11=cvo.CVO().CreateCVO("Definition","A straight line that cuts a Circle in two or more parts")
+        s10.cvolist.append(s11)
+        self.construct1(s10,s10)
+        self.fadeOutCurrentScene()
+    def constructionofsecant(self):
+        text = Text("Construction of Secant", font_size=22)
+        text.add(Underline(text, buff=0.1))
+        text.to_corner(UP)
+        self.play(Write(text))
+
+        text2=Text("1)Draw a circle", font_size=22).to_edge(RIGHT)
+        text3=Text("2)Take any two points ", font_size=22).next_to(text2,DOWN)
+        text4=Text("3)Draw a perpendicular line from it", font_size=22).next_to(text3,DOWN)
+        text5=Text("4)Secant is formed", font_size=22).next_to(text4,DOWN)
+
+        text2.shift(LEFT)
+        text3.shift(LEFT)
+        text4.shift(LEFT)
+        text5.shift(LEFT)
+        
+        circle = Circle(radius=2, color=BLUE)
+        circle.move_to(ORIGIN)
+        
+        # Create points A and B on the circle
+        point_a = Dot(circle.point_at_angle(PI/3), color=RED)
+        point_b = Dot(circle.point_at_angle(-PI/4), color=RED)
+        
+        # Create labels for points A and B
+        label_a = Text("A").next_to(point_a, RIGHT)
+        label_b = Text("B").next_to(point_b, RIGHT)
+        
+        # Create secant line AB
+        secant_line = Line(point_a.get_center(), point_b.get_center(), color=GREEN)
+        
+        # Draw the circle
+        self.play(Write(text2))
+        self.play(Create(circle))
+        
+        # Draw points A and B
+        self.play(Write(text3))
+        self.play(FadeIn(point_a), FadeIn(point_b))
+        
+        # Add labels for points A and B
+        self.play(Write(label_a), Write(label_b))
+        
+        # Draw the secant line
+        self.play(Write(text4))
+        self.play(Create(secant_line))
+        self.play(Write(text5))
+        
+        # Pause to display the final construction
+        self.wait(2)
+        self.fadeOutCurrentScene()
     def area(self):
         self.isRandom = False
         self.positionChoice = [[-5,0,0],[5,2,0],[5,0,0],[-5,-3,0]]
@@ -301,6 +364,7 @@ class secantsandtangents(AbstractAnim):
 
         # Pause for a moment to display the result
         self.wait(2)
+        self.fadeOutCurrentScene()
     def SetDeveloperList(self): 
        self.DeveloperList="Abhiram" 
 
