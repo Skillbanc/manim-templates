@@ -86,19 +86,24 @@ class BigNumbers(AbstractAnim):
         self.wait(3)
 
     def addingBiggerNumbers(self):
-        self.positionChoice=[[-4,0,0],[0,0,0],[4,0,0]]        
+        self.positionChoice=[[-4,2,0],[-4,-2,0],[0,2,0],[0,-2,0],[3,0,0]]
         self.isRandom = False
-
-        p10 = cvo.CVO().CreateCVO("Bigger Numbers", "")
-        p11 = cvo.CVO().CreateCVO("Addition", "12345+67890")
-        p12 = cvo.CVO().CreateCVO("Sum", "80235")
-        
-
+        self.angleChoice=[TAU/4,TAU/4,TAU/4,TAU/4,TAU/4]
+        p10=cvo.CVO().CreateCVO("Bigger Numbers","")
+        p11=cvo.CVO().CreateCVO("Number 1","12345")
+        p12=cvo.CVO().CreateCVO("Number 2","67890")
+        p13=cvo.CVO().CreateCVO("Addition","12345+67890")
+        p14 = cvo.CVO().CreateCVO("Sum", "80235")
         p10.cvolist.append(p11)
-        p11.cvolist.append(p12)
-        self.construct1(p10, p10)
+        p10.cvolist.append(p12)
+        self.construct1(p10,p10)
+        self.construct1(p13, p13)
+        self.play(Create(CurvedArrow(p11.pos,p13.pos)))
+        self.play(Create(CurvedArrow(p12.pos,p13.pos)))
+        self.construct1(p14,p14)
+        self.play(Create(CurvedArrow(p13.pos,p14.pos)))
         self.fadeOutCurrentScene()
-
+        
         title = Text("Adding Bigger Numbers", font_size=30).to_edge(UP)
         explanation = Text("Adding numbers with multiple digits.", font_size=24).next_to(title, DOWN, buff=0.5)
         example = MathTex("2987 + 3451 = 6438", font_size=35).next_to(explanation, DOWN, buff=1)
@@ -128,17 +133,22 @@ class BigNumbers(AbstractAnim):
         self.wait(3)
 
     def subtractingBiggerNumbers(self):
-        self.positionChoice=[[-4,0,0],[0,0,0],[4,0,0]]        
+        self.positionChoice=[[-4,2,0],[-4,-2,0],[0,2,0],[0,-2,0],[3,0,0]]
         self.isRandom = False
-
-        p10 = cvo.CVO().CreateCVO("Bigger Numbers", "")
-        p11 = cvo.CVO().CreateCVO("Subtraction", "67890-12345")
-        p12 = cvo.CVO().CreateCVO("Difference", "55545")
-        
-
+        self.angleChoice=[TAU/3,TAU/4,TAU/4,-TAU/4,TAU/4]
+        p10=cvo.CVO().CreateCVO("Bigger Numbers","")
+        p11=cvo.CVO().CreateCVO("Number 1","12345")
+        p12=cvo.CVO().CreateCVO("Number 2","67890")
+        p13=cvo.CVO().CreateCVO("Addition","12345+67890")
+        p14 = cvo.CVO().CreateCVO("Sum", "80235")
         p10.cvolist.append(p11)
-        p11.cvolist.append(p12)
-        self.construct1(p10, p10)
+        p10.cvolist.append(p12)
+        self.construct1(p10,p10)
+        self.construct1(p13, p13)
+        self.play(Create(CurvedArrow(p11.pos,p13.pos)))
+        self.play(Create(CurvedArrow(p12.pos,p13.pos)))
+        self.construct1(p14,p14)
+        self.play(Create(CurvedArrow(p13.pos,p14.pos)))
         self.fadeOutCurrentScene()
 
         title = Text("Subtracting Bigger Numbers", font_size=30).to_edge(UP)
