@@ -286,9 +286,10 @@ class Trigonometry(AbstractAnim):
         title = Text("Proof for Complementary Angles",color= GREEN).to_edge(UP).scale(0.9)
         underline = Underline(title)
 
-        t1 = Text("Since angle C is 90,\nThen sum of other two angles must be 90").scale(0.6)
-        t2 = Text("angleA + angleB = 90\nor angleB = 90 - angleA").scale(0.6)
-        t3 = MathTex(r"\text{Thus sin(90 - angleB) = } \frac{\text{BC}}{\text{AB}}").scale(0.8)
+        t1 = MathTex(r"\text{Since } \angle C = 90^\circ,  \text{the sum of } \\ \text{the other two angles must be } 90^\circ.").scale(0.8)
+        t2 = MathTex(r"\angle A + \angle B = 90^\circ \\ \text{ or } \angle B = 90^\circ - \angle A").scale(0.8)
+        t3 = MathTex(r"\text{Thus, } \sin(90^\circ - \angle A) = \frac{\text{AC}}{\text{AB}} =\text{cosA}").scale(0.8)
+
 
         t1.next_to(UP).to_edge(LEFT)
         t2.next_to(t1,DOWN, buff=0.5).to_edge(LEFT)
