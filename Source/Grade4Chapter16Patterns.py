@@ -13,7 +13,8 @@ class PatternAnimation(AbstractAnim):
         self.Patternswithturns()
         self.fadeOutCurrentScene()
         self.fadeOutCurrentScene()
-        self.Patternsinthecalender()   
+        self.Patternsinthecalender()  
+        self.fadeOutCurrentScene() 
         self.GithubSourceCodeReference()
 
 
@@ -288,7 +289,7 @@ class PatternAnimation(AbstractAnim):
             self.play(Create(arrow), FadeIn(text))
             self.wait(1)
 
-        self.(FaidOut(arrow),FaidOut(text),)
+        
 
     
     

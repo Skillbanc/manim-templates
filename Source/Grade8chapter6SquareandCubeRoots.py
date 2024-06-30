@@ -31,8 +31,8 @@ class SquarecubeOperations(AbstractAnim):
         self.fadeOutCurrentScene()
         self.intro_text()
         self.fadeOutCurrentScene()
-        self.division_steps()
-        self.fadeOutCurrentScene()
+        #self.division_steps()
+        #self.fadeOutCurrentScene()
         self.squarerootsofnonperfectsquarenumbers()
         self.fadeOutCurrentScene()
         self.CubeRoot()
@@ -56,8 +56,8 @@ class SquarecubeOperations(AbstractAnim):
 
         p10=cvo.CVO().CreateCVO("Numbers","").setPosition([-5,0,0])
         p11=cvo.CVO().CreateCVO("Operations on Numbers","Squaring,Cubing").setPosition([-1,0,0])
-        p12=cvo.CVO().CreateCVO("Squareing","$x^2$").setPosition([3.5,1,0])
-        p13=cvo.CVO().CreateCVO("Cubeing","$x^3$").setPosition([3.5,-2,0])
+        p12=cvo.CVO().CreateCVO("Squaring","$x^2$=x*x").setPosition([3.5,1,0])
+        p13=cvo.CVO().CreateCVO("Cubing","$x^3$=x*x*x").setPosition([3.5,-2,0])
         p10.cvolist.append(p11)
         p11.cvolist.append(p12)
         p11.cvolist.append(p13)
@@ -70,8 +70,8 @@ class SquarecubeOperations(AbstractAnim):
         #self.angleChoice = [0,0,0]
         self.isRandom = False
 
-        p10=cvo.CVO().CreateCVO("Squring of Numbers","$x^2$").setPosition([0,2.5,0])
-        p11=cvo.CVO().CreateCVO("X variable","3").setPosition([-2.5,0,0])
+        p10=cvo.CVO().CreateCVO("Squring of Numbers","$x^2$=").setPosition([0,2.5,0])
+        p11=cvo.CVO().CreateCVO("X variable","3").setPosition([-3.5,0,0])
         p12=cvo.CVO().CreateCVO("Squaring of x","$3^2$=3*3").setPosition([0,-2.5,0])
         p13=cvo.CVO().CreateCVO("Total","9").setPosition([2.5,0,0])
         p10.cvolist.append(p11)
@@ -87,10 +87,10 @@ class SquarecubeOperations(AbstractAnim):
         #self.angleChoice = [0,0,0]
         self.isRandom = False
 
-        p10=cvo.CVO().CreateCVO("Cubing of Numbers","$x^3$").setPosition([-2.5,2.5,0])
-        p11=cvo.CVO().CreateCVO("X variable","2").setPosition([-2,-2,0])
-        p12=cvo.CVO().CreateCVO("Cubeing of x","$2^3$=2*2*2").setPosition([2,-2,0])
-        p13=cvo.CVO().CreateCVO("Total", "8").setPosition([2.5,2.5,0])
+        p10=cvo.CVO().CreateCVO("Cubing of Numbers","$x^3$").setPosition([-5,1,0])
+        p11=cvo.CVO().CreateCVO("X variable","2").setPosition([-3,-2,0])
+        p12=cvo.CVO().CreateCVO("Cubeing of x","$2^3$=2*2*2").setPosition([0,-2,0])
+        p13=cvo.CVO().CreateCVO("Total", "8").setPosition([4,1,0])
         p10.cvolist.append(p11)
         p11.cvolist.append(p12)
         self.construct1(p10,p10)
@@ -175,7 +175,7 @@ class SquarecubeOperations(AbstractAnim):
 
         p10=cvo.CVO().CreateCVO("Square Root of Number",r"$\sqrt{x}$")
         p11=cvo.CVO().CreateCVO("X variable","9")
-        p12=cvo.CVO().CreateCVO("Square root of 9",r"$\sqrt{9}$=3")
+        p12=cvo.CVO().CreateCVO("Square root of 9",r"$\sqrt{9}$=3*3*3=3")
         p10.cvolist.append(p11)
         p10.cvolist.append(p12)
         self.construct1(p10,p10)
@@ -336,7 +336,7 @@ class SquarecubeOperations(AbstractAnim):
 
         p10=cvo.CVO().CreateCVO("Cube root of Numbers",r"$\sqrt[3]{x}$")
         p11=cvo.CVO().CreateCVO("X variable","64")
-        p12=cvo.CVO().CreateCVO("Cuberoot of 64",r"$\sqrt[3]{64}$=4")
+        p12=cvo.CVO().CreateCVO("Cuberoot of 64",r"$\sqrt[3]{64}$=$\sqrt[3]{4*4*4}$=4")
         p10.cvolist.append(p11)
         p10.cvolist.append(p12)
         self.construct1(p10,p10)
@@ -392,6 +392,6 @@ class SquarecubeOperations(AbstractAnim):
         self.SourceCodeFileName="SquareandCubeRoots.py"
 
 
-if _name_ == "_main_":
+if __name__ == "__main__":
     scene = SquarecubeOperations()
     scene.render()
