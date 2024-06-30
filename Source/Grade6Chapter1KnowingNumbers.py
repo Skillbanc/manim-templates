@@ -26,7 +26,7 @@ class KnowingNumbers(AbstractAnim):
 
     def finding_largest_smallestNumbers(self):
 
-        union = Text("1.1  Estimating And Comaring Numbers",color=PURPLE_B,font_size=37).to_edge(UP*1)
+        union = Text("1.1  Estimating and Comparing Numbers",color=PURPLE_B,font_size=37).to_edge(UP*1)
         sub_title1 = Text("Identify the greatest and smallest among the following numbers .",font_size=28).to_edge(UP*3+LEFT*1)
         sub_title2 = Text("We can identify them easily by simply counting the digits in the numbers.",font_size=28).to_edge(UP*11+LEFT *1)
         sub_title3 = Text("For example,",font_size=28,color=YELLOW).to_edge(UP*12.5+LEFT*1)
@@ -64,14 +64,15 @@ class KnowingNumbers(AbstractAnim):
         self.wait(2)
         self.play(Write(sub_title1))
         self.wait(2)
+        self.play(Create(table))
+        self.wait(3)
         self.play(Write(sub_title2))
         self.wait(2)
         self.play(Write(sub_title3))
         self.wait(2)
         self.play(Write(sub_title4))
         self.wait(2)
-        self.play(Create(table))
-        self.wait(4)
+        
 
         self.play(FadeOut(sub_title2),FadeOut(sub_title1), FadeOut(sub_title4), FadeOut(sub_title3),FadeOut(table), FadeOut(union))
 
@@ -122,10 +123,10 @@ class KnowingNumbers(AbstractAnim):
 
     def ascendinganddescendingorder(self):  
 
-        heading = Text("Assending order :",color=DARK_BROWN,font_size=37).to_edge(UP*1.25+LEFT * 1)
+        heading = Text("Ascending  order :",color=DARK_BROWN,font_size=37).to_edge(UP*1.25+LEFT * 1)
         sub_title1 = Text("Ascending order is the arrangement of elements from smallest to largest.",font_size=29).to_edge(UP*3)
         sub_title2 = Text("for the previous example:  585 , 9535 , 9678 , 44 ",font_size=29).to_edge(UP*4.75)
-        sub_title3 = Text("Assending order is     44 , 585 , 9535 , 9678",font_size=29).to_edge(UP*6.6)
+        sub_title3 = Text("Ascending  order is     44 , 585 , 9535 , 9678",font_size=29).to_edge(UP*6.6)
         heading2 = Text("Descending order :",color=PINK,font_size=37).to_edge(UP*9+LEFT * 1)
         sub_title5 = Text("Descending order is the arrangement of elements from largest to smallest.",font_size=29).to_edge(UP*10.5)
         sub_title6 = Text("for the above example:   585 , 9535 , 9678 , 44 ",font_size=29).to_edge(UP*12)
@@ -153,8 +154,8 @@ class KnowingNumbers(AbstractAnim):
         sub_title1 = Text("We usually round off the numbers to the nearest 10's(Tens),", font_size=29).to_edge(UP*3)
         sub_title2 = Text("100's(Hundreds), 1000's (Thousands), 10000's (Ten Thousands)... etc.", font_size=29).to_edge(UP*4.75)
         sub_title3 = Text("Rounding off the numbers to the nearest tens:", font_size=30, color=GREY).to_edge(UP*6.5+LEFT *1)
-        sub_title4 = Text("82 is near to 80 than 90, and 87 is near to 90 than 80.", font_size=29).to_edge(UP*8)
-        sub_title5 = Text("85 is at equal distance from 80 and 90.", font_size=29).to_edge(UP*9.5)
+        sub_title4 = Text("82 is near to 80 than 90, and 87 is near to 90 than 80.", font_size=29).to_edge(UP*12)
+        sub_title5 = Text("85 is at equal distance from 80 and 90.", font_size=29).to_edge(UP*13.6)
         
         self.play(Write(union))
         self.play(Write(sub_title1))
@@ -163,10 +164,25 @@ class KnowingNumbers(AbstractAnim):
         self.wait(1)
         self.play(Write(sub_title3))
         self.wait(1)
+        self.play(Create(number_line), run_time=3)  # Adjust run_time as needed
+        self.wait(1)
+        self.play(Create(circle_82))
+        self.play(Create(circle_85))
+        self.play(Create(circle_87))
+        self.wait(1)
         self.play(Write(sub_title4))
+        self.wait(1)
+        self.play(Create(arrow_82_to_80))
+        self.wait(1)
+        self.play(Create(arrow_87_to_90))
         self.wait(1)
         self.play(Write(sub_title5))
         self.wait(1)
+        self.play(Create(arrow_85_to_80))
+        self.play(Create(arrow_85_to_90))
+
+        # Wait before ending the scene
+        self.wait(2)
 
         # Create number line from 80 to 90 with slower playback speed
         number_line = NumberLine(
@@ -174,7 +190,7 @@ class KnowingNumbers(AbstractAnim):
             length=10,
             include_numbers=True,
             label_direction=UP
-        ).to_edge(UP*12)
+        ).to_edge(UP*9)
 
         # Create circles for the numbers to be rounded
         circle_82 = Circle(radius=0.5, color=BLUE).move_to(number_line.n2p(82) + UP * 0.3)
@@ -212,22 +228,7 @@ class KnowingNumbers(AbstractAnim):
             color=PINK
         ).add_tip(tip_length=0.2)
 
-        # Add all elements to the scene with adjusted run_time
-        self.play(Create(number_line), run_time=3)  # Adjust run_time as needed
-        self.wait(1)
-        self.play(Create(circle_82))
-        self.play(Create(circle_85))
-        self.play(Create(circle_87))
-        self.wait(1)
-        self.play(Create(arrow_82_to_80))
-        self.wait(1)
-        self.play(Create(arrow_87_to_90))
-        self.wait(1)
-        self.play(Create(arrow_85_to_80))
-        self.play(Create(arrow_85_to_90))
-
-        # Wait before ending the scene
-        self.wait(2)
+        
 
         # Fade out everything before ending the scene
         self.play(FadeOut(VGroup(union, sub_title1, sub_title2, sub_title3, sub_title4, sub_title5, 
@@ -298,15 +299,13 @@ class KnowingNumbers(AbstractAnim):
         self.play(Create(circle_250))
         self.play(Create(circle_280))
         self.wait(1)
-        self.play(Create(arrow_220_to_200))
-        self.wait(1)
-        self.play(Create(arrow_280_to_300))
-
-        # Wait before ending the scene
-        self.wait(2)
         self.play(Write(sub_title1))
         self.wait(1)
+        self.play(Create(arrow_220_to_200))
+        self.wait(1)
         self.play(Write(sub_title2))
+        self.wait(1)
+        self.play(Create(arrow_280_to_300))
         self.wait(1)
         self.play(Write(sub_title3))
         self.wait(1)
@@ -584,10 +583,11 @@ class KnowingNumbers(AbstractAnim):
         self.play(Write(sub_title2))
         self.wait(2)
         self.play(Write(sub_title3))
-        self.wait(3)
+        self.wait(2)
         self.play(Write(sub_title4))
         self.wait(3)
         self.play(Write(sub_title5))
+        self.wait(1)
 
         self.play(FadeOut(sub_title5),FadeOut(sub_title4), FadeOut(sub_title3), FadeOut(sub_title2), FadeOut(sub_title1),FadeOut(table), FadeOut(title))    
        
@@ -678,9 +678,9 @@ class KnowingNumbers(AbstractAnim):
         self.play(Write(sub_title2))
         self.wait(1)
 
-        # Table data
+        # Table data          
         data = [
-            ["4,56,90,255", "45,690,255"],
+            ["4,56,90,255"  , "45,690,255"],
             ["Four crore fifty six lakhs ninety thousand two hundred and fifty five.",
              "Forty five million six hundred ninety thousand two hundred fifty five."]
         ]
