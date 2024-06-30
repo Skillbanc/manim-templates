@@ -2,8 +2,9 @@ from AbstractAnim import AbstractAnim
 from manim import *
 
 
-class duplicate(Scene):
+class duplicate(AbstractAnim):
     def construct(self):
+
         # Title
         title = Text("Places Table", font_size=24)
         title.to_edge(UP)
@@ -17,24 +18,7 @@ class duplicate(Scene):
         # Combine headers and rows
         table_data = [headers, row1, row2]
 
-        # Create the table
-        table = Table(
-            table_data,
-            include_outer_lines=True,
-            h_buff=0.8,
-            v_buff=2,
-            line_config={"stroke_width": 2}
-        )
-
-        # Scale the table and adjust position if needed
-        table.scale(0.35).shift(DOWN)
-
-        # Draw the table
-        self.play(Create(table))
-        self.wait(2)
-
-
-if _name_ == "_main_":
+if __name__ == "__main__":
     from manim import *
     scene = duplicate()
     scene.render()

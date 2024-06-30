@@ -657,26 +657,36 @@ class KnowingNumbers(AbstractAnim):
 
 
 
+        sub_title3 = Text("Usage of commas :",font_size=29,color=PINK).to_edge(UP*1+LEFT*0.73)
+        sub_title4 = Text("The first comma comes after hundred place(i.e. three digits from the right)",font_size=27).to_edge(UP*2.5+LEFT*0.73)
+
         # Heading with highlighted part
-        heading_part1 = Text("Indian System:", font_size=30, t2c={"Indian System": YELLOW}).to_edge(UP*1.25 + LEFT * 1)
-        heading_part2 = Text(" Commas are placed every two digits from the right.", font_size=30).next_to(heading_part1, RIGHT)
+        heading_part1 = Text("Indian System:", font_size=27, t2c={"Indian System": YELLOW}).to_edge(UP*4.25 + LEFT * 0.73)
+        heading_part2 = Text("Second Comma is placed every two digits from the right.", font_size=27).next_to(heading_part1, RIGHT)
         heading = VGroup(heading_part1, heading_part2)
 
         # Subtitle with highlighted part
-        sub_title1_part1 = Text("International System:", font_size=29, t2c={"International System": YELLOW}).to_edge(UP*3+ LEFT * 1)
-        sub_title1_part2 = Text(" Commas are placed every three digits from the right.", font_size=29).next_to(sub_title1_part1, RIGHT)
+        sub_title1_part1 = Text("International System:", font_size=27, t2c={"International System": YELLOW}).to_edge(UP*5.75+ LEFT * 0.73)
+        sub_title1_part2 = Text("Second Comma is placed every three digits from the right.", font_size=27).next_to(sub_title1_part1, RIGHT)
         sub_title1 = VGroup(sub_title1_part1, sub_title1_part2)
 
         # Subtitle about the number
-        sub_title2 = Text("Suppose the number is  45690255 ", font_size=29).to_edge(UP*5.75 + LEFT * 1)
+        sub_title2 = Text("Suppose the number is  45690255 ", font_size=27).to_edge(UP*7.5 + LEFT * 0.73)
 
         # Play animations to display the headings and subtitles
+        self.play(Write(sub_title3))
+        self.wait(2)
+        self.play(Write(sub_title4))
+        self.wait(2)
+        
         self.play(Write(heading))
         self.wait(2)
         self.play(Write(sub_title1))
         self.wait(2)
         self.play(Write(sub_title2))
         self.wait(1)
+       
+        
 
         # Table data          
         data = [
@@ -690,7 +700,7 @@ class KnowingNumbers(AbstractAnim):
             data,
             include_outer_lines=True,
             h_buff=1.2,
-            v_buff=3.5,
+            v_buff=2.8,
             col_labels=[Text("Indian system of numeration"), Text("International system of numeration")],
         )
 
@@ -699,11 +709,12 @@ class KnowingNumbers(AbstractAnim):
         table.get_rows()[1].scale(1.2)  # Increase font size for the second row
 
         # Scale the table and adjust position if needed
-        table.scale(0.3).to_edge(UP*7)
+        table.scale(0.3).to_edge(UP*9)
 
         # Draw the table
         self.play(Create(table))
         self.wait(2)
+
 
 
 
