@@ -208,7 +208,7 @@ class Realnumbersanim(AbstractAnim):
         # Animate each property sequentially
         for prop in props:
             self.play(Write(prop))
-            self.wait(4)
+            self.wait(2)
 
     def rationalising(self):
         title = Text("Rationalizing the Denominator", font_size=36).to_edge(UP)
@@ -262,6 +262,8 @@ class Realnumbersanim(AbstractAnim):
 
         self.wait(3) 
         self.fadeOutCurrentScene()
+
+
         title = MathTex("\\text {Locating} \\sqrt{2} \\text{ on the Number Line}").to_edge(UP)
         self.play(Write(title))
 
@@ -313,11 +315,7 @@ class Realnumbersanim(AbstractAnim):
         )
         self.play(Create(arc))
 
-        # Point on number line
-        #sqrt2_point = Dot(number_line.number_to_point(np.sqrt(2)), color=YELLOW)
-        #sqrt2_label = MathTex("\\sqrt{2}").next_to(sqrt2_point, DOWN)
-        #self.play(Create(sqrt2_point), Write(sqrt2_label))
-
+    
         # Explanation of Pythagorean Theorem
         explanation_text = VGroup(
             MathTex("Using\\ Pythagorean\\ Theorem:").set_color(YELLOW),
@@ -335,18 +333,19 @@ class Realnumbersanim(AbstractAnim):
         title = MathTex("\\text{Steps to locate} \\sqrt{2} \\text{ on the Number Line}").to_edge(UP)
         self.play(Write(title))
         Steps = [
-            r"\text{1. Draw a unit square } OABC \text{ with side length 1 starting from 0 on the number line.}",
-            r"\text{2. Draw the diagonal } OB \text{ of the square.}",
-            r"\text{3. By the Pythagorean theorem, the length of } OB \text{ is } \sqrt{2}.",
-            r"\text{4. Draw an arc with radius } OB \text{ centered at } O \text{.}",
-            r"\text{5. The intersection of the arc with the number line gives the point } \sqrt{2}."
+            r"1. Draw a unit square \(OABC\) with side length 1 starting from 0 on the number line.",
+            r"2. Draw the diagonal \(OB\) of the square.",
+            r"3. By the Pythagorean theorem, the length of \(OB\) is \(\sqrt{2}\).",
+            r"4. Draw an arc with radius \(OB\) centered at \(O\).",
+            r"5. The intersection of the arc with the number line gives the point \(\sqrt{2}\)."
         ]
-        Steps = VGroup(*[MathTex(text, font_size=30) for text in Steps]).arrange(DOWN, aligned_edge=LEFT).next_to(title, DOWN)
-        self.play(Write(Steps))
+        steps_group = VGroup(*[Tex(text, font_size=30) for text in Steps]).arrange(DOWN, aligned_edge=LEFT).next_to(title, DOWN, buff=0.5)
 
-        self.wait(3)
-        self.fadeOutCurrentScene()
-
+        # Display each step one by one
+        for step in steps_group:
+            self.play(Write(step))
+            self.wait(2)
+        
     def LawsOfExponents(self):
         self.positionChoice=[[-4,0,0],[4,2,0],[2,2,0],[2,-2,0],[4,-2,0],[4,0,0]]        
         self.isRandom = False
@@ -385,10 +384,17 @@ class Realnumbersanim(AbstractAnim):
         example4 = MathTex(examples[3]).scale(0.8).next_to(example3, DOWN, aligned_edge=LEFT, buff=0.5)
         example5 = MathTex(examples[4]).scale(0.8).next_to(example4, DOWN, aligned_edge=LEFT, buff=0.5)
 
-
-        self.play(Write(example1),Write(example2),Write(example3),Write(example4),Write(example5))
-        
-        self.wait(5)
+        self.play(Write(example1))
+        self.wait(1)
+        self.play(Write(example2))
+        self.wait(1)
+        self.play(Write(example3))
+        self.wait(1)
+        self.play(Write(example4))
+        self.wait(1)
+        self.play(Write(example5))
+        self.wait(1)        
+        self.wait(3)
 
     def SetDeveloperList(self):  
         self.DeveloperList="Shanmukha Priya"
