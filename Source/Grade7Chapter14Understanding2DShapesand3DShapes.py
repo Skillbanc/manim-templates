@@ -28,6 +28,7 @@ class Shapesanim(AbstractAnim):
     
 
     def Shapes(self):
+        self.isRandom = False
         p10=cvo.CVO().CreateCVO("Shapes", "").setPosition([0,2,0])
         p11=cvo.CVO().CreateCVO("3DShapes", "").setPosition([3,0,0]).setangle(-TAU/4)
         
@@ -42,11 +43,13 @@ class Shapesanim(AbstractAnim):
         self.fadeOutCurrentScene()
 
     def Components(self):
+
+        self.isRandom = False
         p10=cvo.CVO().CreateCVO("3DShapes", "").setPosition([-6,0,0])
-        p11=cvo.CVO().CreateCVO("Components", "").setPosition([-3,0,0]).setangle(-TAU/4)
-        p12=cvo.CVO().CreateCVO("Faces", "").setPosition([3,2.5,0]).setangle(-TAU/4)
-        p13=cvo.CVO().CreateCVO("Edges", "").setPosition([3,0,0]).setangle(-TAU/4)
-        p14=cvo.CVO().CreateCVO("Vertices", "").setPosition([3,-2.5,0]).setangle(-TAU/4)
+        p11=cvo.CVO().CreateCVO("Components", "").setPosition([-3,0,0]).setangle(-TAU/6)
+        p12=cvo.CVO().CreateCVO("Faces", "").setPosition([3,2.5,0]).setangle(-TAU/6)
+        p13=cvo.CVO().CreateCVO("Edges", "").setPosition([3,0,0]).setangle(-TAU/6)
+        p14=cvo.CVO().CreateCVO("Vertices", "").setPosition([3,-2.5,0]).setangle(-TAU/6)
 
         p10.cvolist.append(p11)
         p11.cvolist.append(p12)
@@ -199,6 +202,7 @@ class Shapesanim(AbstractAnim):
 
 
     def Sketches(self):
+       self.isRandom = False
        p10=cvo.CVO().CreateCVO("Sketches","").setPosition([0,2.5,0])
        p11=cvo.CVO().CreateCVO("Oblique Sketches", "").setPosition([-3,1,0]).setangle(-TAU/4)
        p12=cvo.CVO().CreateCVO("Isometric Sketches", "").setPosition([3,1,0]).setangle(-TAU/4)
@@ -354,6 +358,7 @@ class Shapesanim(AbstractAnim):
 
 
     def Shadows(self):
+        self.isRandom = False
         p10=cvo.CVO().CreateCVO("Shadow of Shape","").setPosition([0,-2,0])
         p11=cvo.CVO().CreateCVO("Property ","Depends on shape of object").setPosition([-3,1,0])
         p12=cvo.CVO().CreateCVO("Property ","Depends on source of light with respect to object").setPosition([3,1,0])
