@@ -99,10 +99,11 @@ class SAV(AbstractAnim):
         #self.angleChoice = [0,0,0]
         self.isRandom = False
 
-        p10=cvo.CVO().CreateCVO("total surface area of cube","6a*a").setPosition([-4,0,0])
+        p10=cvo.CVO().CreateCVO("total surface area of cube","6A^{2}").setPosition([-4,0,0])
         p11=cvo.CVO().CreateCVO("Constant sides","6").setPosition([0,2,0])
         p12=cvo.CVO().CreateCVO("a variable","2").setPosition([0,-2,0])
         p13=cvo.CVO().CreateCVO("TSA OF CUBE", "24").setPosition([4,0,0])
+        p10.SetIsMathText(True)
         p10.cvolist.append(p11)
         p10.cvolist.append(p12)
         self.construct1(p10,p10)
@@ -114,10 +115,11 @@ class SAV(AbstractAnim):
         #self.angleChoice = [0,0,0]
         self.isRandom = False
 
-        p10=cvo.CVO().CreateCVO("lateral surface area of cube","4a*a").setPosition([-4,0,0])
+        p10=cvo.CVO().CreateCVO("lateral surface area of cube","4A^{2}").setPosition([-4,0,0])
         p11=cvo.CVO().CreateCVO("Constant sides","4").setPosition([0,2,0])
         p12=cvo.CVO().CreateCVO("a variable","2").setPosition([0,-2,0])
         p13=cvo.CVO().CreateCVO("LSA OF CUBE", "16").setPosition([4,0,0])
+        p10.SetIsMathText(True)
         p10.cvolist.append(p11)
         p10.cvolist.append(p12)
         self.construct1(p10,p10)
@@ -129,11 +131,12 @@ class SAV(AbstractAnim):
         #self.angleChoice = [0,0,0]
         self.isRandom = False
 
-        p10=cvo.CVO().CreateCVO("volume of cuboid","l*b*h").setPosition([-4,0,0])
+        p10=cvo.CVO().CreateCVO("volume of cuboid","lxbxh").setPosition([-4,0,0])
         p11=cvo.CVO().CreateCVO("h variable ","6").setPosition([0,2.5,0])
         p12=cvo.CVO().CreateCVO("l variable","2").setPosition([0,0,0])
         p14=cvo.CVO().CreateCVO("b variable", "4").setPosition([0,-2.5,0])
         p13=cvo.CVO().CreateCVO("VOLUME OF CUBOID","48").setPosition([4,0,0])
+        p10.SetIsMathText(True)
         p10.cvolist.append(p11)
         p10.cvolist.append(p12)
         p10.cvolist.append(p14)
@@ -147,10 +150,11 @@ class SAV(AbstractAnim):
         #self.angleChoice = [0,0,0]
         self.isRandom = False
 
-        p10=cvo.CVO().CreateCVO("volume of cube","a*a*a").setPosition([-4,0,0])
+        p10=cvo.CVO().CreateCVO("volume of cube","A^{3}").setPosition([-4,0,0])
         p12=cvo.CVO().CreateCVO("a variable","2").setPosition([0,0,0])
         p13=cvo.CVO().CreateCVO("VOLUME OF CUBE", "8").setPosition([4,0,0])
         p10.cvolist.append(p12)
+        p10.SetIsMathText(True)
         self.construct1(p10,p10)
         self.construct1(p13,p13)
         self.play(Create(CurvedArrow(p12.pos,p13.pos)))
