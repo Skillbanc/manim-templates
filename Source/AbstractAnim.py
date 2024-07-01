@@ -1,9 +1,6 @@
 # Project: Manim-Templates
 # Copyright(c) 2024 Skillbanc.com, Inc.
 # License: MIT License
-# Contributor(s):   
-#   Sudhakar Moparthy
-#   Rohit Vailla
 
 
 from manim import *
@@ -161,8 +158,10 @@ class AbstractAnim(Scene):
                 # starLocal = Star(outer_radius=0.15, inner_radius=0.1,color=self.colorChoice[colorChoiceIndex]).move_to(cir1.get_center())
                 starLocal = Star(outer_radius=0.1, inner_radius=0.05,color=self.colorChoice[colorChoiceIndex]).move_to(cir1.get_top()).shift(LEFT * .35, DOWN * .25*(index+1)).scale(0.5)
                 onameLocalText = Tex(cvo.onameList[index],color=self.colorChoice[colorChoiceIndex]).scale(0.35).next_to(starLocal).shift(LEFT * .20)
-                arrow2 = CurvedArrow(cvoParent.pos,starLocal.get_center(),angle=cvo.angle)
+                arrow2 = CurvedArrow(cvoParent.pos,starLocal.get_center(),angle=cvo.angle,stroke_width=0.5, tip_length=0.1)
                 self.play(Create(starLocal),Create(onameLocalText))#grpLocal.animate.move_to(cir1.get_center()).scale(0.5).shift(DOWN * 2))#scale(0.25))
+                self.play(onameLocalText.animate.scale(2.0),run_time=1)
+                self.play(onameLocalText.animate.scale(0.5),run_time=1)
                 self.play(Create(arrow2))
         else:
             self.play(grp1.animate.scale(1+0.1*len(cvo.onameList)))
@@ -170,8 +169,10 @@ class AbstractAnim(Scene):
                 # starLocal = Star(outer_radius=0.15, inner_radius=0.1,color=self.colorChoice[colorChoiceIndex]).move_to(cir1.get_center())
                 starLocal = Star(outer_radius=0.1, inner_radius=0.05,color=self.colorChoice[colorChoiceIndex]).move_to(cir1.get_top()).shift(LEFT * .35, DOWN * .25*(index+1)).scale(0.6)
                 onameLocalText = Tex(cvo.onameList[index],color=self.colorChoice[colorChoiceIndex]).scale(0.45).next_to(starLocal).shift(LEFT * .20)
-                arrow2 = CurvedArrow(cvoParent.pos,starLocal.get_center(),angle=cvo.angle)
+                arrow2 = CurvedArrow(cvoParent.pos,starLocal.get_center(),angle=cvo.angle,stroke_width=0.5, tip_length=0.1)
                 self.play(Create(starLocal),Create(onameLocalText))#grpLocal.animate.move_to(cir1.get_center()).scale(0.5).shift(DOWN * 2))#scale(0.25))
+                self.play(onameLocalText.animate.scale(2.0),run_time=1)
+                self.play(onameLocalText.animate.scale(0.5),run_time=1)
                 self.play(Create(arrow2))
                           
         cvo.cnameMObject = cname
@@ -263,17 +264,22 @@ class AbstractAnim(Scene):
         self.logoGroup = VGroup().add(self.circles).add(lines).add(text)
         self.play(self.logoGroup.animate.scale(0),run_time=1)
         # self.play(self.circles.animate.scale(0),lines.animate.scale(0),text.animate.scale(0),run_time=3)
+
         
     def GithubSourceCodeReference(self): 
+        self.PurchaseSkillbancSubscription()
+        self.fadeOutCurrentScene()
         self.SetDeveloperList()
         self.SetSourceCodeFileName()
+        
         self.colorChoice=[BLUE,ORANGE,PINK,ORANGE,PURPLE]
-        p2 = cvo.CVO().CreateCVO("SOURCE CODE REFERENCE", "").setPosition([0,2.5,0])
+        p2 = cvo.CVO().CreateCVO("SOURCE CODE FOR THIS VIDEO", "").setPosition([0,2.5,0])
         p4 = cvo.CVO().CreateCVO("Github URL", "https://github.com/Skillbanc/manim-templates").setPosition([-4,1,0]).setangle(TAU / 3)
         p5 = cvo.CVO().CreateCVO("File Name", self.GetSourceCodeFileName()).setPosition([4,1,0]).setangle(TAU / 3)
-        p6=cvo.CVO().CreateCVO("Architected By","").setPosition([5,-2,0]).setangle(-TAU / 4)
-        p6onamelist=["Sudhakar Moparthy","Vailla Rohit"]
-        p6.extendOname(p6onamelist)
+
+        p6=cvo.CVO().CreateCVO("Architected By","Sudhakar Moparthy").setPosition([5,-2,0]).setangle(-TAU / 4)
+
+
         p7=cvo.CVO().CreateCVO("Developed By",self.GetDeveloperList()).setPosition([0,-2,0]).setangle(-TAU / 4)
         
         p2.cvolist.append(p4)
@@ -285,6 +291,37 @@ class AbstractAnim(Scene):
         p2.cvolist.append(p6)
         p2.cvolist.append(p7)
         self.construct1(p2,p2)
+        self.SubscribeYoutube()
+        
+    def SubscribeYoutube(self):
+        button = RoundedRectangle(corner_radius=0.2, height=1, width=3)
+        button.set_fill(PURE_RED, opacity=1)
+        button.set_stroke(WHITE, width=2)
+    
+        subscribe_text = Text("Subscribe", font_size=36, color=WHITE, font="calibri")
+        subscribe_text.move_to(button.get_center())
+
+        subscribe_button = VGroup(button, subscribe_text).move_to(LEFT*4 + DOWN * 2.5)
+
+        self.play(GrowFromCenter(subscribe_button))
+
+        
+        for _ in range(3):  
+            self.play(subscribe_button.animate.scale(1.1), run_time=1)
+            self.play(subscribe_button.animate.scale(1/1.1), run_time=1)
+
+        self.wait(2)
+
+    def PurchaseSkillbancSubscription(self): 
+        
+        self.colorChoice=[BLUE,ORANGE,PINK,ORANGE,PURPLE]
+        p1 = cvo.CVO().CreateCVO("Need Help?", "We are here to support").setPosition([0,2.5,0])
+        p2 = cvo.CVO().CreateCVO("Get Skillbanc Subscription", "https://skillbanc.com/SBstore").setPosition([-4,1,0]).setangle(TAU / 3)
+        
+        p1.cvolist.append(p2)
+
+        self.setNumberOfCirclePositions(2)
+        self.construct1(p1,p1)
         
     def GetDeveloperList(self): 
         return self.DeveloperList
