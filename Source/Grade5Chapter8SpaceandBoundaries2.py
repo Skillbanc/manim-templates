@@ -336,7 +336,7 @@ class Grade5Chapter8SpaceandBoundaries2(AbstractAnim):
         self.play(Write(multiplication_text))
         self.wait(1)
 
-        multiplication_example = Text("Area = 6 × 2 = 12 units", font_size=24, color=GREEN).next_to(multiplication_text, DOWN)
+        multiplication_example = Text("Area = 6 × 2 = 12 square units", font_size=24, color=GREEN).next_to(multiplication_text, DOWN)
         self.play(Write(multiplication_example))
         self.wait(2)
 

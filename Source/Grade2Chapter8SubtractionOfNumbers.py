@@ -15,9 +15,7 @@ class Chap8G2_Subtraction(AbstractAnim):
         self.RenderSkillbancLogo()
         self.Introduction()
         self.fadeOutCurrentScene()
-        self.Heading()
-        self.fadeOutCurrentScene()
-        self.GithubSourceCodeReference()
+        self.sub()
 
     def SetDeveloperList(self):
         self.DeveloperList="Prithiv Shiv"
@@ -32,11 +30,33 @@ class Chap8G2_Subtraction(AbstractAnim):
         self.play(Write(title))
         self.wait(1)
 
-        p11=cvo.CVO().CreateCVO("Subtraction","Process of taking\\\\1 number from another")
-        p13=cvo.CVO().CreateCVO("Notation","x-y")
+        p11=cvo.CVO().CreateCVO("Subtraction","")
+        p13=cvo.CVO().CreateCVO("Definition","Process of taking\\\\1 number from another")
         p11.cvolist.append(p13)
         self.construct1(p11,p11)
 
+    def sub(self):
+        self.isRandom=False
+        self.setNumberOfCirclePositions(5)
+        p10 = cvo.CVO().CreateCVO("Subtraction ", "15 - 7")
+
+        p11 = cvo.CVO().CreateCVO("Unit Digit Check", "$is\ 5 < 7$")
+
+        p12 = cvo.CVO().CreateCVO("Carry Over", "Borrow from next digit(1)").setangle(-TAU/4)
+
+        p13 = cvo.CVO().CreateCVO("Tenth Digit Adjustment", "1 becomes 0,\\\\5 becomes 15")
+
+        p14 = cvo.CVO().CreateCVO("Perform Subtraction", "15 - 7 = 8")
+
+        p13.setcircleradius(1.3)
+        p12.setcircleradius(1.5)
+        p10.cvolist.append(p11)
+        p11.cvolist.append(p12)
+        p12.cvolist.append(p13)
+        p13.cvolist.append(p14)
+
+        self.construct1(p10,p10)
+        
     
     def Heading(self):
         title = Text("Subtraction Examples", font_size=72)
@@ -45,7 +65,9 @@ class Chap8G2_Subtraction(AbstractAnim):
         self.play(FadeOut(title))
 
         # Subtraction problem
-        problems = [(31, 26), 
+        problems = [(20,18),
+                    (31,26), 
+                    (15,11),
                     (52, 18), 
                     (45, 29)
                     ]

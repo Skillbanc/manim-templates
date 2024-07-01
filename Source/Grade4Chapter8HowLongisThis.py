@@ -254,8 +254,8 @@ class Grade4Chapter8HowLongisThis(AbstractAnim):
         distance_150m = Tex("150 m", font_size=24).move_to(midpoint(building_middle[0].get_right(), building_right[0].get_left())).shift(UP * 0.5)
 
         # Create distance lines
-        distance_line_450m = Line(start=building_left[0].get_right(), end=building_middle[0].get_left())
-        distance_line_150m = Line(start=building_middle[0].get_right(), end=building_right[0].get_left())
+        distance_line_450m = DoubleArrow(start=building_left[0].get_right(), end=building_middle[0].get_left())
+        distance_line_150m = DoubleArrow(start=building_middle[0].get_right(), end=building_right[0].get_left())
 
         # Animate distance labels and lines
         self.play(Create(distance_line_450m), Write(distance_450m))
@@ -273,7 +273,7 @@ class Grade4Chapter8HowLongisThis(AbstractAnim):
         self.wait(2)
 
         # Create the total distance line
-        total_distance_line = Line(start=building_left.get_left(), end=building_right.get_right()).shift(DOWN)
+        total_distance_line = DoubleArrow(start=building_left.get_left(), end=building_right.get_right()).shift(DOWN)
         total_distance_label = Tex("600 m", font_size=24).next_to(total_distance_line, DOWN, buff=0.1)
 
         # Animate the total distance line

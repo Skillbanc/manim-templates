@@ -37,8 +37,8 @@ class Chap8G1_SubUptoNine(AbstractAnim):
         self.play(Write(Numbers))
         self.wait(1)
 
-        p11=cvo.CVO().CreateCVO("Subtraction","Process of taking\\\\1 number from another")
-        p13=cvo.CVO().CreateCVO("Notation","x-y")
+        p11=cvo.CVO().CreateCVO("Subtraction","")
+        p13=cvo.CVO().CreateCVO("Definition","Process of taking\\\\1 number from another")
         p11.cvolist.append(p13)
         self.construct1(p11,p11)
 
@@ -135,7 +135,10 @@ class Chap8G1_SubUptoNine(AbstractAnim):
             result_fruits.next_to(equal_text, RIGHT)
             
             result_label = Text(f"{result}", font_size=24)
-            result_label.next_to(result_fruits, DOWN)
+            if result_fruits:
+                result_label.next_to(result_fruits, DOWN)
+            else:
+                result_label.next_to(equal_text, RIGHT)
             
             self.play(
                 FadeIn(result_fruits),
