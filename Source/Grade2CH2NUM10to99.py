@@ -12,6 +12,8 @@ class NUM10to99(AbstractAnim):
         self.AscAndDescOrder()
         self.OneTo99()
         self.GithubSourceCodeReference()
+        self.SubscribeYoutube()
+        self.fadeOutCurrentScene()
         
     def TenAnd99(self):
         text = Text("Number 10", font_size=60,color=LOGO_BLUE)

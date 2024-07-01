@@ -10,6 +10,8 @@ class NUM10to20(AbstractAnim):
         self.ten()
         self.above10()
         self.GithubSourceCodeReference()
+        self.SubscribeYoutube()
+        self.fadeOutCurrentScene()
         
     def ten(self):
         text = Text("Number 10", font_size=60,color=LOGO_BLUE)

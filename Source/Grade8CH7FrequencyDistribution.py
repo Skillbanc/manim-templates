@@ -25,6 +25,8 @@ class FrequencyDistribution(AbstractAnim):
         self.graph_rep_data()
         self.graph_rep_gfd()
         self.GithubSourceCodeReference()
+        self.SubscribeYoutube()
+        self.fadeOutCurrentScene()
         
 
     def central_tendency_measure(self):
@@ -327,7 +329,6 @@ class FrequencyDistribution(AbstractAnim):
         bar_chart.rotate(PI / 2)
         title = Text("Horizontal Bar Graph", font_size=48)
         title.to_edge(UP)
-        title.shift(DOWN)
         self.add(bar_chart, title)
         self.play(Create(bar_chart))
         self.wait(3)

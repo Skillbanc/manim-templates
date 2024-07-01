@@ -13,6 +13,8 @@ class DATA_HANDLING(AbstractAnim):
         self.organising_data()
         self.representation_data()
         self.GithubSourceCodeReference()
+        self.SubscribeYoutube()
+        self.fadeOutCurrentScene()
 
 
     def Data_Handling(self):
