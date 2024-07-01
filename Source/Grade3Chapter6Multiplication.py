@@ -19,7 +19,8 @@ class Multiplication(AbstractAnim):
         self.fadeOutCurrentScene()
         self.multiplybignum()
         self.fadeOutCurrentScene()
-
+        self.multiplydaily()
+        self.fadeOutCurrentScene()
         self.GithubSourceCodeReference()
         
 
@@ -136,6 +137,8 @@ class Multiplication(AbstractAnim):
         self.play(Create(number_line))
         self.wait(1)
         self.add(frog)
+        self.play(Write(explanation))
+        self.wait(1)
         
 
         # Function to create a jumping path with a dashed line
@@ -154,16 +157,11 @@ class Multiplication(AbstractAnim):
             self.play(Create(dashed_jump_path), run_time=0.5)
             self.play(MoveAlongPath(frog, jump_path), run_time=0.5)
             self.wait(0.5)
-        
-        self.wait(1)
-
-        self.play(Write(explanation))
-        self.wait(1)
+       
         self.play(Write(explanation1))
         self.wait(1)
 
     def multiplybyzero(self):
-         # Title and Question
         title = Text("Multiplication with Zero", font_size=48).to_edge(UP)
         underline = Line(
             start=title.get_left() + DOWN * 0.3,
@@ -174,72 +172,39 @@ class Multiplication(AbstractAnim):
         self.play(Create(underline))
         self.wait(1)
 
-        # Concept Explanation
-        concept_text = Text(
-            "Any number multiplied by zero is zero.",
+        # Summary
+        summary1 = Text(
+            "Multiplying any number by zero always results in zero.",
             font_size=30
-        ).next_to(title, DOWN, buff=1)
-        self.play(Write(concept_text))
-        self.wait(2)
+        ).next_to(title, DOWN, buff=0.8)
+        self.play(Write(summary1))
+        self.wait(1)
 
-        # Example 1: 5 x 0
-        example1 = Text("Example 1: 5 x 0", font_size=36).next_to(concept_text, DOWN, buff=1)
+        # Examples title
+        example1 = Text("Examples:", font_size=36).next_to(summary1.get_left(), DOWN+RIGHT*0.1, buff=1)
         self.play(Write(example1))
         self.wait(1)
 
-        # Repeated Addition Visualization for Example 1
-        repeated_addition1 = Text("= 0 + 0 + 0 + 0 + 0", font_size=36).next_to(example1, DOWN, buff=1)
-        self.play(Write(repeated_addition1))
+        # Examples for multiplication with zero
+        multiply1 = Text("0 x 1 = 0", font_size=36).next_to(example1, RIGHT, buff=0.5)
+        multiply2 = Text("0 x 2 = 0", font_size=36).next_to(multiply1, DOWN, buff=0.3).align_to(multiply1, LEFT)
+        multiply3 = Text("0 x 3 = 0", font_size=36).next_to(multiply2, DOWN, buff=0.3).align_to(multiply1, LEFT)
+        multiply4 = Text("0 x 4 = 0", font_size=36).next_to(multiply3, DOWN, buff=0.3).align_to(multiply1, LEFT)
+        multiply5 = Text("0 x 5 = 0", font_size=36).next_to(multiply4, DOWN, buff=0.3).align_to(multiply1, LEFT)
+        multiply6 = Text("0 x 6 = 0", font_size=36).next_to(multiply5, DOWN, buff=0.3).align_to(multiply1, LEFT)
+
+        # Display examples
+        self.play(Write(multiply1))
+        self.play(Write(multiply2))
+        self.play(Write(multiply3))
+        self.play(Write(multiply4))
+        self.play(Write(multiply5))
+        self.play(Write(multiply6))
         self.wait(1)
 
-        # Result of Example 1
-        result1 = Text("= 0", font_size=48, color=YELLOW).next_to(repeated_addition1, DOWN, buff=1)
-        self.play(Write(result1))
-        self.wait(2)
+        # Fade out all elements
+        self.play(FadeOut(title, underline, summary1, example1, multiply1, multiply2, multiply3, multiply4, multiply5, multiply6))
 
-        self.play(FadeOut(concept_text), FadeOut(example1),
-                  FadeOut(repeated_addition1), FadeOut(result1))
-
-        # Example 2: 0 x 7
-        example2 = Text("Example 2: 0 x 7", font_size=36).next_to(title, DOWN, buff=1)
-        self.play(Write(example2))
-        self.wait(1)
-
-        # Repeated Addition Visualization for Example 2
-        repeated_addition2 = Text("= 0 + 0 + 0 + 0 + 0 + 0 + 0", font_size=36).next_to(example2, DOWN, buff=1)
-        self.play(Write(repeated_addition2))
-        self.wait(1)
-
-        # Result of Example 2
-        result2 = Text("= 0", font_size=48, color=YELLOW).next_to(repeated_addition2, DOWN, buff=1)
-        self.play(Write(result2))
-        self.wait(2)
-
-        # Generalization
-        # generalization = Text(
-        #     "Therefore, any number multiplied by zero equals zero.",
-        #     font_size=36
-        # ).next_to(result2, DOWN, buff=1)
-        # self.play(Write(generalization))
-        # self.wait(2)
-
-        # Summary
-        summary = Text( "5 x 0 = 0, 0 x 7 = 0, 1234 x 0 = 0",font_size=36).next_to(result2, DOWN, buff=1)
-        self.play(Write(summary))
-        self.wait(0.5)
-
-        summary1 = Text(
-            
-            "Multiplying any number by zero always results in zero.",
-            font_size=36
-        ).next_to(summary, DOWN, buff=0.25)
-        self.play(Write(summary1))
-        self.wait(3)
-
-        # Fade out
-        self.play(FadeOut(title), FadeOut(example2),
-                  FadeOut(repeated_addition2), FadeOut(result2),  
-                  FadeOut(summary),FadeOut(summary1))
         
 
     def multiplybyone(self):
@@ -289,6 +254,16 @@ class Multiplication(AbstractAnim):
          # Title and Underline
         title = Text("Multiplying Bigger Numbers").scale(0.8).to_edge(UP)
         self.play(Write(title))
+
+        
+        underline = Line(
+            start=title.get_left() + DOWN * 0.3,
+            end=title.get_right() + DOWN * 0.3,
+            color=YELLOW
+        )
+       
+        self.play(Create(underline))
+        self.wait(1)
 
         # Example description
         example_description = MathTex("\\text{Example 1 : } 21 \\times 3").scale(0.75).next_to(title, DOWN,buff=1).shift(LEFT*3.5)
@@ -401,6 +376,61 @@ class Multiplication(AbstractAnim):
         final_result = MathTex("36 \\times 4 = 144").scale(0.9).next_to(result_step1, DOWN, buff=1).set_color(BLUE)
         self.play(Write(final_result))
         self.wait(2)
+
+
+    def multiplydaily(self):
+       
+        title = Text("Multiplication in daily life", font_size=48).to_edge(UP)
+        self.play(Write(title))
+        
+        underline = Line(
+            start=title.get_left() + DOWN * 0.3,
+            end=title.get_right() + DOWN * 0.3,
+            color=YELLOW
+        )
+        
+        self.play(Create(underline))
+        self.wait(1)
+
+        example1 = Text("Example :", font_size=30).shift(UP*2).to_edge(LEFT)
+        self.play(Write(example1))
+        self.wait(1)
+
+        # Display the initial statement
+        statement1 = Text("Surya's age is twice that of Ramya.", font_size=32).shift(UP*2).next_to(example1,RIGHT)
+        self.play(Write(statement1))
+        self.wait(1)
+
+        statement2 = Text("Ramya is 9 years. What is Surya's age?", font_size=32).next_to(statement1,DOWN,buff=0.3)
+        self.play(Write(statement2))
+        self.wait(2) 
+
+        # Centering Calculation steps
+        step1 = Tex("Ramya's age = 9 years", font_size=36).shift(UP*0.3)  # Slightly above center
+        step2 = Tex("Surya's age = Twice Ramya's age", font_size=36).next_to(step1, DOWN, buff=0.3)
+        step3 = Tex("= 2 x Ramya's age", font_size=36).next_to(step2, DOWN, buff=0.3)
+        step4 = Tex("= 2 x 9", font_size=36).next_to(step3, DOWN, buff=0.3)
+        step5 = Tex("= 18", font_size=36).next_to(step4, DOWN, buff=0.3)
+
+        # Play steps one after another
+        self.play(Write(step1))
+        self.wait(1)
+        self.play(Write(step2))
+        self.wait(1)
+        self.play(Write(step3))
+        self.wait(1)
+        self.play(Write(step4))
+        self.wait(1)
+        self.play(Write(step5))
+        self.wait(1)
+
+        # Final answer centered below steps
+        answer = Tex("Surya's age is 18 years", font_size=36).next_to(step5, DOWN, buff=0.3)
+        self.play(Write(answer))
+        self.wait(2)
+
+        #self.play(FadeOut(title, statement1, statement2, step1, step2, step3, step4, step5, answer))
+
 
         
 
