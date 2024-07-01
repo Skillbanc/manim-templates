@@ -137,10 +137,10 @@ class BigNumbers(AbstractAnim):
         self.isRandom = False
         self.angleChoice=[TAU/3,TAU/4,TAU/4,-TAU/4,TAU/4]
         p10=cvo.CVO().CreateCVO("Bigger Numbers","")
-        p11=cvo.CVO().CreateCVO("Number 1","12345")
-        p12=cvo.CVO().CreateCVO("Number 2","67890")
-        p13=cvo.CVO().CreateCVO("Addition","12345+67890")
-        p14 = cvo.CVO().CreateCVO("Sum", "80235")
+        p11=cvo.CVO().CreateCVO("Number 1","67890")
+        p12=cvo.CVO().CreateCVO("Number 2","12345")
+        p13=cvo.CVO().CreateCVO("Addition","67890-12345")
+        p14 = cvo.CVO().CreateCVO("Sum", "55545")
         p10.cvolist.append(p11)
         p10.cvolist.append(p12)
         self.construct1(p10,p10)
