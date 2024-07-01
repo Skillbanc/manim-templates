@@ -367,23 +367,116 @@ class Shapesanim(AbstractAnim):
         self.fadeOutCurrentScene()
 
     def Shadow1(self):
-       p10=cvo.CVO().CreateCVO("Shape1","Cube").setPosition([-2,2,0])
-       p11=cvo.CVO().CreateCVO("Shadow of shape1", "Square").setPosition([2,2,0]).setangle(-TAU/4)
-       p10.cvolist.append(p11)
-       
-       
-       self.setNumberOfCirclePositions(2)
-       self.construct1(p10,p10)
+        
+        
+        title = Text("Shape - Cube", color=YELLOW, font_size=30)
+        title.move_to([-4,2,0])
+        
+
+        self.play(Write(title))
+        
+        self.wait()
+
+        # Coordinates for the cuboid centered around the origin with increased height
+        a = ((-1, -0.75, 0), (1, -0.75, 0), (2, -1.25, 0), (0, -1.25, 0), (-1, -0.75, 0))
+        base = Polygon(*a, stroke_width=5, color=WHITE)
+
+        # Adjusted y-coordinates for the top to increase height
+        b = ((-1, 1.0, 0), (1, 1.0, 0), (2, 0.5, 0), (0, 0.5, 0), (-1, 1.0, 0))
+        top = Polygon(*b, stroke_width=5, color=WHITE)
+
+        c = ((-1.1, 1.0, 0), (-1.1, -0.75, 0), (0, -1.25, 0), (0, 0.5, 0), (-1, 1.0, 0))
+        face1 = Polygon(*c, stroke_width=5, color=WHITE)
+
+        d = ((-1, 1.0, 0), (1, 1.0, 0), (1, -0.75, 0), (-1.1, -0.75, 0), (-1.1, 1.0, 0))
+        face2 = Polygon(*d, stroke_width=5, color=WHITE)
+
+        e = ((1, 1.0, 0), (1, -0.75, 0), (2.1, -1.25, 0), (2.1, 0.5, 0), (1, 1.0, 0))
+        face3 = Polygon(*e, stroke_width=5, color=WHITE)
+
+        f = ((0, 0.5, 0), (0, -1.25, 0), (2.1, -1.25, 0), (2.1, 0.5, 0), (0, 0.5, 0))
+        face4 = Polygon(*f, stroke_width=5, color=WHITE)
+
+        # Labels for dimensions
+        
+
+        cube_group = VGroup(base, top, face1, face2, face3, face4)
+        cube_group.move_to([-4, 0, 0])  # Move the cube towards the left
+
+        self.play(Create(cube_group))
+        
+        self.wait()
+
+        face1.set_fill(color=BLUE, opacity=0.5)
+        
+        face2.set_fill(color=BLUE, opacity=0.5)
+        
+        face3.set_fill(color=BLUE, opacity=0.5)
+        
+        face4.set_fill(color=BLUE, opacity=0.5)
+        
     
+        title = Text("Shadow - Square",color=YELLOW,font_size=30)
+        title.move_to([4,2,0])
+        
+
+        self.play(Write(title))
+        
+        self.wait()
+
+        g = ((-1, 1.0, 0), (1, 1.0, 0), (1, -0.75, 0), (-1.1, -0.75, 0), (-1.1, 1.0, 0))
+        Square1 = Polygon(*g, stroke_width=5, color=WHITE)
+        
+        Square1.move_to([4, 0, 0])
+        self.play(Write(Square1))
+
+        self.fadeOutCurrentScene()
+
     def Shadow2(self):
 
-       p10=cvo.CVO().CreateCVO("Shape2", "Pyramid").setPosition([-2,-2,0])
-       p11=cvo.CVO().CreateCVO("Shadow of shape2", "Triangle").setPosition([2,-2,0]).setangle(-TAU/4)
-       p10.cvolist.append(p11)
-      
-       self.setNumberOfCirclePositions(2)
-       self.construct1(p10,p10)
-       self.fadeOutCurrentScene()
+        title = Text("Shape - Pyramid", color=YELLOW, font_size=30)
+        title.move_to([-4,2,0])
+
+        self.play(Write(title))
+        
+        # Define the reduced base of the pyramid (square)
+        base_points = [(-1, -1, 0), (1, -1, 0), (0.5, -2, 0), (-1.5, -2, 0)]
+        base = Polygon(*base_points, stroke_width=5, color=WHITE)
+
+        # Apex of the pyramid
+        apex = [0, 1, 0]
+
+        # Faces of the pyramid
+        face1 = Polygon(apex, base_points[0], base_points[1], stroke_width=5, color=WHITE)
+        face2 = Polygon(apex, base_points[1], base_points[2], stroke_width=5, color=WHITE)
+        face3 = Polygon(apex, base_points[2], base_points[3], stroke_width=5, color=WHITE)
+        face4 = Polygon(apex, base_points[3], base_points[0], stroke_width=5, color=WHITE)
+
+       # Group all objects to move them together
+        group = VGroup(base, face1, face2, face3, face4)
+        
+        face1.set_fill(color=BLUE, opacity=0.5)
+        
+        face2.set_fill(color=BLUE, opacity=0.5)
+        
+        face3.set_fill(color=BLUE, opacity=0.5)
+        
+        face4.set_fill(color=BLUE, opacity=0.5)
+        
+        group.move_to([-4,0,0]) 
+        self.play(Create(group))
+        self.wait()
+
+        title = Text("Shadow - Triangle", color=YELLOW, font_size=30)
+        title.move_to([4,2,0])
+
+        self.play(Write(title))
+
+        face = Polygon(apex, base_points[0], base_points[1], stroke_width=5, color=WHITE)
+        face.move_to([4,0,0])
+        self.play(Write(face))
+        
+        self.fadeOutCurrentScene()
     
     def SetSourceCodeFileName(self):
         self.SourceCodeFileName="Grade7Chapter14Understanding2DShapesand3DShapes.py"
