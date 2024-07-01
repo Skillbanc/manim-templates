@@ -149,10 +149,13 @@ class ShapeProperties(AbstractAnim, ThreeDScene):
         self.wait(3)
 
     def cube(self):
+        title = Text("Cube", color=LIGHT_PINK, weight=BOLD)
+        title.move_to([0, 3, 0])
+        
+
         cube = Cube(side_length=2, color="#6DC9CD", fill_opacity=0.5, stroke_width=5)
         cube.move_to([-4, 0, 0])
 
-        cube_text = Text("Cube", font="Comic Sans MS", color=LIGHT_PINK, weight=BOLD).next_to(cube, DOWN)
 
         cube_properties = [
             {"name": "Vertices", "value": "8"},
@@ -161,8 +164,8 @@ class ShapeProperties(AbstractAnim, ThreeDScene):
         ]
         properties_text = self.create_properties_text(cube_properties, cube.get_center() + RIGHT * 4)
 
+        self.play(Create(title))
         self.play(Create(cube))
-        self.play(Write(cube_text))
         self.play(Write(properties_text))
         self.wait(3)
 
@@ -224,7 +227,6 @@ class ShapeProperties(AbstractAnim, ThreeDScene):
         self.play(Write(height_label))
         self.play(Write(slant_label))
         self.play(Write(radius_label))
-        self.play(Create(cone))
         self.play(Write(properties_text))
         self.wait(3)
         
