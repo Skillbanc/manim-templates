@@ -283,7 +283,7 @@ class FrequencyDistribution(AbstractAnim):
         self.DeveloperList="Srujan"
 
     def SetSourceCodeFileName(self):
-        self.SourceCodeFileName="FrequencyDistribution.py"
+        self.SourceCodeFileName="Grade8CH7FrequencyDistribution.py"
 
         
 
