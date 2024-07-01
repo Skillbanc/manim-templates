@@ -168,7 +168,7 @@ class ShapeProperties(AbstractAnim, ThreeDScene):
 
     def Coneanim(self):
         # Title
-        title = Text("Cone", color=BLUE, weight=BOLD)
+        title = Text("Cone", color=LIGHT_PINK, weight=BOLD)
         title.move_to([0, 3, 0])
         
         # Create the cone
@@ -206,7 +206,6 @@ class ShapeProperties(AbstractAnim, ThreeDScene):
         slant_label.shift(DOWN*0.5)
         radius_label.shift(DOWN*0.5)
 
-        cone_text = Text("Cone", font="Comic Sans MS", color=LIGHT_PINK, weight=BOLD).next_to(radius_label, DOWN)
 
         cone_properties = [
             {"name": "Vertices", "value": "1"},
@@ -226,7 +225,6 @@ class ShapeProperties(AbstractAnim, ThreeDScene):
         self.play(Write(slant_label))
         self.play(Write(radius_label))
         self.play(Create(cone))
-        self.play(Write(cone_text))
         self.play(Write(properties_text))
         self.wait(3)
         
@@ -236,7 +234,7 @@ class ShapeProperties(AbstractAnim, ThreeDScene):
    
     def Cylinderanim(self):
          # Create the text
-        t1 = Text("Cylinder", color=BLUE, weight=BOLD)
+        t1 = Text("Cylinder", color=LIGHT_PINK, weight=BOLD)
         t1.move_to([0, 2.7, 0])
 
         # Create base and top ellipses
@@ -269,7 +267,6 @@ class ShapeProperties(AbstractAnim, ThreeDScene):
         self.play(Write(line2))
         self.play(Write(l_label), Write(h_label))
 
-        cylinder_text = Text("Cylinder", font="Comic Sans MS", color=LIGHT_PINK, weight=BOLD).next_to(l_label, DOWN)
 
         cylinder_properties = [
             {"name": "Vertices", "value": "0"},
@@ -278,14 +275,13 @@ class ShapeProperties(AbstractAnim, ThreeDScene):
         ]
         properties_text = self.create_properties_text(cylinder_properties, RIGHT * 4)
 
-        self.play(Write(cylinder_text))
         self.play(Write(properties_text))
         self.wait(4)
 
 
     def Sphereanim(self):
         # Title
-        title = Text("Sphere", color=BLUE, weight=BOLD)
+        title = Text("Sphere", color=LIGHT_PINK, weight=BOLD)
         title.move_to([0, 3, 0])
         
          # Create the circle representing the sphere
@@ -319,7 +315,6 @@ class ShapeProperties(AbstractAnim, ThreeDScene):
         # Final animation
         self.wait(4)
 
-        sphere_text = Text("Sphere", font="Comic Sans MS", color=LIGHT_PINK, weight=BOLD).next_to(sphere, DOWN)
 
         sphere_properties = [
             {"name": "Vertices", "value": "0"},
@@ -329,7 +324,6 @@ class ShapeProperties(AbstractAnim, ThreeDScene):
         properties_text = self.create_properties_text(sphere_properties, sphere.get_center() + RIGHT * 4)
 
         self.play(Create(sphere))
-        self.play(Write(sphere_text))
         self.play(Write(properties_text))
         self.wait(3)    
     
