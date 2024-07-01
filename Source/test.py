@@ -1,52 +1,36 @@
+from AbstractAnim import AbstractAnim
+import cvo
 from manim import *
 
-class MultiplicationWithZero(Scene):
+class MoveImageeee(AbstractAnim):
     def construct(self):
-        # Title
-        title = Text("Multiplication with Zero", font_size=48).to_edge(UP)
-        underline = Line(
-            start=title.get_left() + DOWN * 0.3,
-            end=title.get_right() + DOWN * 0.3,
-            color=YELLOW
-        )
-        self.play(Write(title))
-        self.play(Create(underline))
-        self.wait(1)
-
-        # Summary
-        summary1 = Text(
-            "Multiplying any number by zero always results in zero.",
-            font_size=30
-        ).next_to(title, DOWN, buff=0.8)
-        self.play(Write(summary1))
-        self.wait(1)
-
-        # Examples title
-        example1 = Text("Examples:", font_size=36).next_to(summary1.get_left(), DOWN+RIGHT*0.1, buff=1)
-        self.play(Write(example1))
-        self.wait(1)
-
-        # Examples for multiplication with zero
-        multiply1 = Text("0 x 1 = 0", font_size=36).next_to(example1, RIGHT, buff=0.5)
-        multiply2 = Text("0 x 2 = 0", font_size=36).next_to(multiply1, DOWN, buff=0.3).align_to(multiply1, LEFT)
-        multiply3 = Text("0 x 3 = 0", font_size=36).next_to(multiply2, DOWN, buff=0.3).align_to(multiply1, LEFT)
-        multiply4 = Text("0 x 4 = 0", font_size=36).next_to(multiply3, DOWN, buff=0.3).align_to(multiply1, LEFT)
-        multiply5 = Text("0 x 5 = 0", font_size=36).next_to(multiply4, DOWN, buff=0.3).align_to(multiply1, LEFT)
-        multiply6 = Text("0 x 6 = 0", font_size=36).next_to(multiply5, DOWN, buff=0.3).align_to(multiply1, LEFT)
-
-        # Display examples
-        self.play(Write(multiply1))
-        self.play(Write(multiply2))
-        self.play(Write(multiply3))
-        self.play(Write(multiply4))
-        self.play(Write(multiply5))
-        self.play(Write(multiply6))
-        self.wait(1)
-
-        # Fade out all elements
-        self.play(FadeOut(title, underline, summary1, example1, multiply1, multiply2, multiply3, multiply4, multiply5, multiply6))
+        #self.construct2()
+        self.GithubSourceCodeReference()
+        
+    def construct2(self):
+        self.isRandom = False
+        self.angleChoice=[TAU/2]
+        p10=cvo.CVO().CreateCVO("Diagonals", "").setPosition([-3,2,0])
+        p11=cvo.CVO().CreateCVO("Definition", "Line segment joining opposite vertices").setPosition([-3,-2,0])
+        p10.cvolist.append(p11)
+        
+        diagonalline = Line(start=[-1,0.5,0], end=[2,1.5,0], color = RED )
+        diagonalline.shift(RIGHT * 2)
+        diaglabel=Tex("Diagonal").next_to(diagonalline, LEFT, buff=0.1).set_color(RED).scale(0.5).shift(RIGHT*1.8)
+        
+        Quadrilaterals = Polygon([-1, 0.5, 0], [1, 0.5, 0], [2, 1.5, 0], [-2,1.5,0], color=BLUE)
+        Quadrilaterals.shift(RIGHT * 2 )
+        quadlabel=Tex("Quadrilateral").next_to(Quadrilaterals, DOWN, buff = 0.1)
+        
+        self.setNumberOfCirclePositions(2)
+        self.construct1(p10,p10)
+        self.play(Create(Quadrilaterals),Create(quadlabel))
+        self.play(Create(diagonalline),Create(diaglabel))
+        self.wait(3)
+        self.fadeOutCurrentScene()
 
 # To render the scene
 if __name__ == "__main__":
-    scene = MultiplicationWithZero()
+    from manim import *
+    scene = MoveImageeee()
     scene.render()
