@@ -8,14 +8,14 @@ import cvo
 class Class2Chap19RecordAnim(AbstractAnim):
 
     def construct(self):
-        self.stars()
-        self.fadeOutCurrentScene()
+        # self.stars()
+        # self.fadeOutCurrentScene()
         self.graph()
+        self.pics()
 
 
 
     def stars(self):
-        # self.play(Write(NumberPlane()))
 
         tex = Text("Let us look at colour of stars and Count them:",font_size=30)
         tex.move_to([-2.5,3.5,0])
@@ -128,58 +128,109 @@ class Class2Chap19RecordAnim(AbstractAnim):
 
     def graph(self):
 
-        data = [0, 6, 3, 5]
-        labels = ["0", "A", "B", "C"]
-        colors = [RED, GREEN, BLUE, YELLOW]
-
-        # Create axes
-        axes = Axes(
-            x_range=[0, len(data), 1],
-            y_range=[0, max(data) + 2, 1],
-            axis_config={"color": WHITE},
-            tips=False,
-        ).add_coordinates()
-
-        # Manually add labels for axes
-        x_axis_label = Text("x-axis", font_size=16, color=WHITE).next_to(axes.x_axis.get_end(), DOWN)
-        y_axis_label = Text("y-axis", font_size=16, color=WHITE).next_to(axes.y_axis.get_end(), LEFT)
-        yaxislabel = Text("values", font_size=16, color=WHITE).next_to(axes.y_axis.get_center(), LEFT)
-        xaxislabel = Text("categories", font_size=16, color=WHITE).next_to(axes.x_axis.get_center(), DOWN)
-
-        y_axis_label.shift(LEFT*0.25)
-        xaxislabel.shift(DOWN*0.1)
-
-        # Create bars and labels
-        bars = VGroup()
-        bar_labels = VGroup()
-
-        for i, value in enumerate(data):
-            bar = Rectangle(
-                width=0.8,
-                height=value,
-                fill_color=colors[i],
-                fill_opacity=0.8,
-                stroke_width=0
-            ).move_to(axes.c2p(i, 0), aligned_edge=DOWN)
-            bars.add(bar)
-
-            # Label for each bar
-            bar_label = Text(labels[i], font_size=16, color=WHITE).next_to(bar, UP)
-            bar_labels.add(bar_label)
-
-        # Add a title
-        title = Text("Bar Graph Example", font_size=24).to_edge(UP)
-        self.play(Write(title))
-        self.wait(1)
-
-        # Display elements
-        self.play(Create(axes), Write(x_axis_label), Write(y_axis_label))
-        self.play(*[Create(bar) for bar in bars])
-        self.play(*[Write(label) for label in bar_labels])
-        self.play(Write(xaxislabel),Write(yaxislabel))
+        self.play(Write(NumberPlane()))
         
-        self.wait(2)
+        yl = Line(start=[-6,-2,0],end=[-6,3.5,0])
+        xl = Line(start=[-6,-2,0],end=[0,-2,0])
+        x1 = Line(start=[-6,-1,0],end=[0,-1,0])
+        y1 = Line(start=[-6,0,0],end=[0,0,0])
+        x2 = Line(start=[-6,1,0],end=[0,1,0])
+        y2 = Line(start=[-6,2,0],end=[0,2,0])
+        x3 = Line(start=[-6,3,0],end=[0,3,0])
+       
+        t1 = Text("5 ").move_to([-6.3,3,0])
+        t2 = Text("4 ").move_to([-6.3,2,0])
+        t3 = Text("3 ").move_to([-6.3,1,0])
+        t4 = Text("2 ").move_to([-6.3,0,0])
+        t5 = Text("1 ").move_to([-6.3,-1,0])
+        t6 = Text("0 ").move_to([-6.3,-2,0])
 
+        self.play(Write(xl))
+        self.play(Write(yl))
+        self.play(Write(t6))
+        self.play(Write(x1))
+        self.play(Write(t5))
+        self.play(Write(y1))
+        self.play(Write(t4))
+        self.play(Write(x2))
+        self.play(Write(t3))
+        self.play(Write(y2))
+        self.play(Write(t2))
+        self.play(Write(x3))
+        self.play(Write(t1))
+
+
+    def pics(self):
+
+        s1 = Star(fill_opacity=0.5,color=PINK).scale(0.3).move_to([-5,-1.5,0])
+        self.play(Write(s1))
+
+        s2 = Star(fill_opacity=0.5,color=PINK).scale(0.3).move_to([-5,-0.5,0])
+        self.play(Write(s2))
+
+        s3 = Star(fill_opacity=0.5,color=PINK).scale(0.3).move_to([-5,0.5,0])
+        self.play(Write(s3))
+
+        s4 = Star(fill_opacity=0.5,color=PINK).scale(0.3).move_to([-5,1.5,0])
+        self.play(Write(s4))
+
+        s5 = Star(fill_opacity=0.5,color=PINK).scale(0.3).move_to([-5,2.5,0])
+        self.play(Write(s5))
+
+        
+        c1 = Circle(fill_opacity=0.5,color=GREEN).scale(0.3).move_to([-4,-1.5,0])
+        self.play(Write(c1))
+
+        c2 = Circle(fill_opacity=0.5,color=GREEN).scale(0.3).move_to([-4,-0.5,0])
+        self.play(Write(c2))
+
+        c3 = Circle(fill_opacity=0.5,color=GREEN).scale(0.3).move_to([-4,0.5,0])
+        self.play(Write(c3))
+
+        
+        b1 = Square(fill_opacity=0.5,color=BLUE).scale(0.3).move_to([-3,-1.5,0])
+        self.play(Write(b1))
+
+        b2 = Square(fill_opacity=0.5,color=BLUE).scale(0.3).move_to([-3,-0.5,0])
+        self.play(Write(b2))
+
+        b3 = Square(fill_opacity=0.5,color=BLUE).scale(0.3).move_to([-3,0.5,0])
+        self.play(Write(b3))
+
+        b4 = Square(fill_opacity=0.5,color=BLUE).scale(0.3).move_to([-3,1.5,0])
+        self.play(Write(b4))
+
+
+        d1 = Prism(fill_opacity=0.5,fill_color=ORANGE).scale(0.3).move_to([-2,-1.5,0])
+        self.play(Write(d1))
+
+        d2 = Prism(fill_opacity=0.5,fill_color=ORANGE).scale(0.3).move_to([-2,-0.5,0])
+        self.play(Write(d2))
+
+
+        t1 = Star(fill_opacity=0.5,color=PINK).scale(0.3).move_to([-5,-1.5,0])
+        self.play(Write(t1))
+
+        t2 = Star(fill_opacity=0.5,color=PINK).scale(0.3).move_to([-5,-0.5,0])
+        self.play(Write(t2))
+
+        t3 = Star(fill_opacity=0.5,color=PINK).scale(0.3).move_to([-5,0.5,0])
+        self.play(Write(t3))
+
+        t4 = Star(fill_opacity=0.5,color=PINK).scale(0.3).move_to([-5,1.5,0])
+        self.play(Write(t4))
+
+        t5 = Star(fill_opacity=0.5,color=PINK).scale(0.3).move_to([-5,2.5,0])
+        self.play(Write(t5))
+
+
+
+
+
+        
+
+      
+      
         
 
 
