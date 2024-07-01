@@ -115,7 +115,7 @@ class grade6(AbstractAnim):
         right_box_texts = [
             Text("If ones are multiplied.").scale(0.8),
             Text("5 x 3 = 15 ones").scale(0.8),
-            Text("15 ones + 1 ten = 5 ones").scale(0.8),
+            Text("5 ones + 1 ten = 15 ones").scale(0.8),
         ]
         right_box = VGroup(*right_box_texts).arrange(DOWN, buff=0.2)
         right_box.move_to(RIGHT * 4)
