@@ -5,7 +5,7 @@ import cvo
 class probability(AbstractAnim):
 
     def construct(self):
-        self.RenderSkillbancLogo()
+        '''self.RenderSkillbancLogo()
         self.fadeOutCurrentScene()
         self.Introduction()
         self.fadeOutCurrentScene()
@@ -21,7 +21,8 @@ class probability(AbstractAnim):
         self.fadeOutCurrentScene()
         self.die()
         self.fadeOutCurrentScene()
-        #self.GithubSourceCodeReference()
+        self.DeckOfCards()'''
+        self.GithubSourceCodeReference()
 
 
     def Introduction(self):
@@ -168,6 +169,37 @@ class probability(AbstractAnim):
         text1.shift(RIGHT*4)
         self.play(Write(text))
         self.play(Write(text1))
+
+
+    def DeckOfCards(self):
+        # Define suits and ranks
+        suits = ["♠", "♥", "♦", "♣"]
+        ranks = ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"]
+        
+        # Create a list of all cards
+        cards = [f"{rank}{suit}" for suit in suits for rank in ranks]
+        
+        # Define the grid parameters
+        rows = 4
+        cols = 13
+        card_width = 1
+        card_height = 1.5
+        spacing = 0.2
+
+        # Create cards
+        for i, card in enumerate(cards):
+            row = i // cols
+            col = i % cols
+            pos = LEFT * (cols / 2) + RIGHT * (col * (card_width + spacing)) + UP * (rows / 2) + DOWN * (row * (card_height + spacing))
+            
+            card_rect = Rectangle(width=card_width, height=card_height, color=WHITE).move_to(pos)
+            card_text = Text(card, font_size=24).move_to(pos)
+            
+            self.add(card_rect)
+            self.add(card_text)
+        
+        # Hold the final frame
+        self.wait(2)
 
 
     def SetDeveloperList(self):
