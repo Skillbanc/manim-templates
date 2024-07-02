@@ -10,17 +10,17 @@ class Shapesanim(AbstractAnim):
     
     def construct(self):
         self.RenderSkillbancLogo()
-        self.Shapes()
-        self.Components()
-        self.ExampleCube()
+        #self.Shapes()
+        # self.Components()
+        # self.ExampleCube()
         self.Nets()
-        self.Sketches()
-        self.Oblique()
-        self.Isometric()
-        self.Shadows()
-        self.Shadow1()
-        self.Shadow2()
-        self.GithubSourceCodeReference()
+        # self.Sketches()
+        # self.Oblique()
+        # self.Isometric()
+        # self.Shadows()
+        # self.Shadow1()
+        # self.Shadow2()
+        # self.GithubSourceCodeReference()
     
         # self.fadeOut()
         # self.constructDataByJSON()
@@ -32,7 +32,7 @@ class Shapesanim(AbstractAnim):
         p10=cvo.CVO().CreateCVO("Shapes", "").setPosition([0,2,0])
         p11=cvo.CVO().CreateCVO("3DShapes", "").setPosition([3,0,0]).setangle(-TAU/4)
         
-        p12=cvo.CVO().CreateCVO("2DShapes", "").setPosition([-3,0,0]).setangle(-TAU/4)
+        p12=cvo.CVO().CreateCVO("2DShapes", "").setPosition([-3,0,0]).setangle(TAU/4)
         
         p10.cvolist.append(p11)
         p10.cvolist.append(p12)
@@ -161,12 +161,12 @@ class Shapesanim(AbstractAnim):
         self.wait(1)
         # Create the net of the cube
         net = VGroup(
-            Square(side_length=2, fill_opacity=0.5, fill_color=colors[0]).shift(UP*2),
-            Square(side_length=2, fill_opacity=0.5, fill_color=colors[1]).shift(LEFT*2),
-            Square(side_length=2, fill_opacity=0.5, fill_color=colors[2]),
-            Square(side_length=2, fill_opacity=0.5, fill_color=colors[3]).shift(RIGHT*2),
-            Square(side_length=2, fill_opacity=0.5, fill_color=colors[4]).shift(DOWN*2),
-            Square(side_length=2, fill_opacity=0.5, fill_color=colors[5]).shift(DOWN*4)
+            Square(side_length=1.5, fill_opacity=0.5, fill_color=colors[0]).shift(UP*2),
+            Square(side_length=1.5, fill_opacity=0.5, fill_color=colors[1]).shift(LEFT*1.5,UP*0.5),
+            Square(side_length=1.5, fill_opacity=0.5, fill_color=colors[2]).shift(UP*0.5),
+            Square(side_length=1.5, fill_opacity=0.5, fill_color=colors[3]).shift(RIGHT*1.5,UP*0.5),
+            Square(side_length=1.5, fill_opacity=0.5, fill_color=colors[4]).shift(DOWN*1.5,UP*0.5),
+            Square(side_length=1.5, fill_opacity=0.5, fill_color=colors[5]).shift(DOWN*3,UP*0.5)
         )
 
         self.play(FadeIn(net))
