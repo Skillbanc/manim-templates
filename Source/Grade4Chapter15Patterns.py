@@ -8,23 +8,23 @@ class Chapter15Grade4(AbstractAnim):
 
     # use the appropriate method based on how the data is stored
     def construct(self):
-        """self.RenderSkillbancLogo()
+        self.RenderSkillbancLogo()
         self.fadeOutCurrentScene()
         self.constructDataByCVO()
         self.fadeOutCurrentScene()
-        self.fadeOutCurrentScene()
         self.PatternWithTurns()
-        self.fadeOutCurrentScene()"""
-        #self.PatternsWithNumbers()
+        self.fadeOutCurrentScene()
+        self.PatternsWithNumbers()
         self.fadeOutCurrentScene()
         self.PatternsWithCalendars()
-        #self.fadeOutCurrentScene()
+        self.fadeOutCurrentScene()
+        self.GithubSourceCodeReference()
         #self.constructDataByJSON()
         #self.fadeOut()
         
     # render using CVO data object
     def constructDataByCVO(self):
-        p16=cvo.CVO().CreateCVO("patterns","").setPosition([-3.5,-2,0])
+        p16=cvo.CVO().CreateCVO("Patterns","").setPosition([-3.5,-2,0])
         p17=cvo.CVO().CreateCVO("Definition","The repeated design").setPosition([-3.5,2,0]).setangle([-TAU/4])
         p18=cvo.CVO().CreateCVO("Patterns with Turn","").setPosition([3.5,2,0]).setangle([-TAU/4])
         p19=cvo.CVO().CreateCVO("Patterns with Numbers","").setPosition([3.5,-2,0]).setangle([-TAU/4])
@@ -108,47 +108,53 @@ class Chapter15Grade4(AbstractAnim):
         self.play(Write(title))
         self.wait(1)
 
-        # Calendar Dates and Days
+    # Calendar Dates and Days
         dates = ["1", "8", "15", "22", "29"]
         days = ["Monday", "Monday", "Monday", "Monday", "Monday"]
 
-        # Create Text objects for dates and days
+    # Create Text objects for dates and days
         date_texts = VGroup(*[Text(date) for date in dates])
         day_texts = VGroup(*[Text(day) for day in days])
 
-        # Arrange dates horizontally
+    # Arrange dates horizontally
         date_texts.arrange(RIGHT, buff=1.5).shift(UP * 1)
-        # Arrange days below the dates
-        for day, date in zip(day_texts, date_texts):
-            day.next_to(date, DOWN, buff=0.3)
 
-        # Animate the appearance of each date and day
+    # Arrange days below the dates, with staggered vertical positions to prevent overlap
+        for i, (day, date) in enumerate(zip(day_texts, date_texts)):
+            day.next_to(date, DOWN, buff=0.3).shift(DOWN * i * 0.3)
+
+    # Animate the appearance of each date and day
         for date, day in zip(date_texts, day_texts):
             self.play(FadeIn(date), FadeIn(day))
             self.wait(1)
 
         self.wait(2)
 
-        # Create curved arrows and texts for patterns
+    # Create curved arrows and texts for patterns
         arrows = VGroup()
         pattern_texts = VGroup()
         for i in range(len(date_texts) - 1):
             start_point = date_texts[i].get_right()
-            end_point = date_texts[i+1].get_left()
-            arrow = CurvedArrow(start_point, end_point, angle=-PI/2)  # Adjust the angle to get the desired curve
+            end_point = date_texts[i + 1].get_left()
+            arrow = CurvedArrow(start_point, end_point, angle=-PI / 2)  # Adjust the angle to get the desired curve
             arrows.add(arrow)
 
-            # Calculate the position for the text above the arrow
+        # Calculate the position for the text above the arrow
             midpoint = (start_point + end_point) / 2
-            text = Text("+7 days").move_to(midpoint + UP * 0.5)  # Adjust the UP value to position text as needed
+            text = Text("+7").move_to(midpoint + UP * 0.5)  # Adjust the UP value to position text as needed
             pattern_texts.add(text)
 
-        # Animate the appearance of each arrow and text
+    # Animate the appearance of each arrow and text
         for arrow, text in zip(arrows, pattern_texts):
             self.play(Create(arrow), FadeIn(text))
             self.wait(1)
 
         self.wait(2)
+    def SetDeveloperList(self): 
+       self.DeveloperList="Preetham" 
+
+    def SetSourceCodeFileName(self):
+       self.SourceCodeFileName="Grade4Chapter15Patterns.py"    
 
     
 if __name__ == "__main__":
