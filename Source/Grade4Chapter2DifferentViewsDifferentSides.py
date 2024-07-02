@@ -65,6 +65,7 @@ class DifferentViews(AbstractAnim):
 
 
 
+
         # # Create a 3D cuboid (a box)
         # cuboid = Cube()
 
@@ -113,7 +114,7 @@ class DifferentViews(AbstractAnim):
         self.DeveloperList="Sindhu"
     
     def SetSourceCodeFileName(self):
-        self.SourceCodeFileName="DifferentViews.py"
+        self.SourceCodeFileName="Grade4Chapter2DifferentViewsDifferentSides.py"
 
 
 if __name__ == "__main__":
