@@ -25,6 +25,13 @@ class Chap8G5_SandB_2(AbstractAnim):
         self.fadeOutCurrentScene()
         self.Anim5()
         self.fadeOutCurrentScene()
+        self.GithubSourceCodeReference()
+        
+    def SetDeveloperList(self):  
+        self.DeveloperList="Prithiv Shiv M V"
+
+    def SetSourceCodeFileName(self):
+        self.SourceCodeFileName="Grade5Chapter8SpaceandBoundaries2.py"
 
     def Anim1(self):
         heading = Text("Area of Different Shapes-Triangle", font_size=36).to_edge(UP)
@@ -313,7 +320,7 @@ class Chap8G5_SandB_2(AbstractAnim):
         self.play(Write(multiplication_text))
         self.wait(1)
 
-        multiplication_example = Text("Area = 6 × 2 = 12 units", font_size=24, color=GREEN).next_to(multiplication_text, DOWN)
+        multiplication_example = Text("Area = 6 × 2 = 12 square units", font_size=24, color=GREEN).next_to(multiplication_text, DOWN)
         self.play(Write(multiplication_example))
         self.wait(2)
 
