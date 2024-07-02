@@ -102,11 +102,11 @@ class SymmetryGrade5(AbstractAnim):
         self.play(Create(symmetry_line))
         self.wait(2)
     def Clockwises(self):
-       p13=cvo.CVO().CreateCVO("Rotations","").setPosition([-3.5,2,0])
-       p14=cvo.CVO().CreateCVO("Clockwise rotation","").setPosition([-3.5,-2.5,0]).setangle([-TAU/4])
-       p15=cvo.CVO().CreateCVO("Anti-Clockwise","").setPosition([3,2,0]).setangle([-TAU/4])
-       p16=cvo.CVO().CreateCVO("Definition","moving in the direction of clock").setPosition([3.5,-2.5,0]).setangle([-TAU/4])
-       p17=cvo.CVO().CreateCVO("Definition","moving in the opposite\\\\ direction of clock").setPosition([0,0,0]).setangle([-TAU/4])
+       p13=cvo.CVO().CreateCVO("Rotations","").setPosition([-4.5,0,0])
+       p14=cvo.CVO().CreateCVO("Clockwise rotation","").setPosition([0,2.5,0]).setangle([-TAU/4])
+       p15=cvo.CVO().CreateCVO("Anti-Clockwise","").setPosition([0,-2.5,0]).setangle([-TAU/4])
+       p16=cvo.CVO().CreateCVO("Definition","moving in the direction of clock").setPosition([3.5,2.5,0]).setangle([-TAU/4])
+       p17=cvo.CVO().CreateCVO("Definition","moving in the opposite\\\\ direction of clock").setPosition([3.5,-2.5,0]).setangle([-TAU/4])
         
        p13.cvolist.append(p14)
        p13.cvolist.append(p15)
