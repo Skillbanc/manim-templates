@@ -176,7 +176,7 @@ class Trigonometry(AbstractAnim):
         self.wait(3)
 
     def Ratio3(self):
-        text = Text("Trigonometric Ratios for specific angles").scale(0.8)
+        text = Text("Trigonometric Ratios for specific angles", color= YELLOW).scale(0.8)
         text.center()
         text.shift(UP * 3)
         self.play(Write(text))
@@ -195,14 +195,6 @@ class Trigonometry(AbstractAnim):
         cell_width = 2
       
         start_position = ORIGIN + UP * (len(table_content) * cell_height / 2)
-
-        table = VGroup(*[
-            VGroup(*[
-                Tex(content).move_to(start_position + np.array([i * cell_width, -j * cell_height, 0]))
-                for i, content in enumerate(row)
-            ])
-            for j, row in enumerate(table_content)
-        ])
 
         h_lines = VGroup(*[
             Line(
@@ -225,14 +217,24 @@ class Trigonometry(AbstractAnim):
             for i in range(len(table_content[0]) + 1)
         ])
 
-        table_with_lines = VGroup(table, h_lines, v_lines, extra_h_line_top)
+        table_with_lines = VGroup( h_lines, v_lines, extra_h_line_top)
         table_with_lines.shift(LEFT * 5)
         table_with_lines.shift(DOWN)
-        self.play(Create(table_with_lines))
+        self.add(table_with_lines)
+
+        table = VGroup(*[
+            VGroup(*[
+                Tex(content, color=BLUE if j == 0 or i == 0 else GREEN).move_to(start_position + np.array([i * cell_width, -j * cell_height, 0]))
+                for i, content in enumerate(row)
+            ])
+            for j, row in enumerate(table_content)
+        ])
+        table.shift(LEFT * 5 + DOWN)
+        self.play(Create(table))
+        self.wait(1)
 
       
-        for row in table:
-            self.play(*[Create(cell) for cell in row])
+       
 
         self.wait(5)
 
