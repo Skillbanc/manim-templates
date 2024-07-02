@@ -63,8 +63,8 @@ class Trigonometry(AbstractAnim):
         p12=cvo.CVO().CreateCVO(" cosA", "").setPosition([-2,2,0])
         p13=cvo.CVO().CreateCVO("tanA", "").setPosition([0,2,0])
         p14=cvo.CVO().CreateCVO("cosecA", "").setPosition([2,2,0])
-        p15=cvo.CVO().CreateCVO("secA", "").setPosition([4,2,0])
-        p16=cvo.CVO().CreateCVO("cotA", "").setPosition([4,0,0])
+        p15=cvo.CVO().CreateCVO("secA", "").setPosition([4,2,0]).setangle(- TAU/6)
+        p16=cvo.CVO().CreateCVO("cotA", "").setPosition([-4,0,0])
         p10.cvolist.append(p11)
         p10.cvolist.append(p12)
         p10.cvolist.append(p13)
@@ -230,18 +230,22 @@ class Trigonometry(AbstractAnim):
         table_with_lines.shift(DOWN)
         self.play(Create(table_with_lines))
 
+      
+        for row in table:
+            self.play(*[Create(cell) for cell in row])
+
         self.wait(5)
 
     def Ratio4(self):
         self.isRandom = False
-        p10=cvo.CVO().CreateCVO("Trigonometric Ratios ","").setPosition([4,2,0])
-        p17=cvo.CVO().CreateCVO("Complementary Angles", "").setPosition([5,-2,0])
-        p11=cvo.CVO().CreateCVO("", "sin(90 - A)= cos A").setPosition([-4,3,0])
-        p12=cvo.CVO().CreateCVO("", "cos(90 - A)= sin A").setPosition([-4,1,0])
-        p13=cvo.CVO().CreateCVO("", "tan(90 - A)= cot A").setPosition([-4,-1,0])
-        p14=cvo.CVO().CreateCVO("", "cot(90 - A)= tan A").setPosition([-4,-3,0])
-        p15=cvo.CVO().CreateCVO("", "sec(90 - A)= cosec A").setPosition([-2,-3,0])
-        p16=cvo.CVO().CreateCVO("", "cosec(90 - A)= sec A").setPosition([-2,-1,0])
+        p10=cvo.CVO().CreateCVO("Trigonometric Ratios ","").setPosition([-4,2,0])
+        p17=cvo.CVO().CreateCVO("Complementary Angles", "").setPosition([0,2 ,0]).setangle(- TAU/6)
+        p11=cvo.CVO().CreateCVO("Formula 1", "sin(90 - A)= cos A").setPosition([4,2,0]).setangle(- TAU/10)
+        p12=cvo.CVO().CreateCVO("Formula 2", "cos(90 - A)= sin A").setPosition([4,0,0]).setangle(- TAU/10)
+        p13=cvo.CVO().CreateCVO("Formula 3", "tan(90 - A)= cot A").setPosition([4,-2,0]).setangle(- TAU/10)
+        p14=cvo.CVO().CreateCVO("Formula 4", "cot(90 - A)= tan A").setPosition([-2,-3,0]).setangle(- TAU/10)
+        p15=cvo.CVO().CreateCVO("Formula 5", "sec(90 - A)= cosec A").setPosition([-4,-2,0]).setangle(- TAU/10)
+        p16=cvo.CVO().CreateCVO("Formula 6", "cosec(90 - A)= sec A").setPosition([-4,0,0]).setangle(- TAU/10)
         
         p10.cvolist.append(p17)
         p17.cvolist.append(p11)
@@ -309,9 +313,9 @@ class Trigonometry(AbstractAnim):
     def Identities(self):
         self.isRandom = False
         p10=cvo.CVO().CreateCVO("Identities","")
-        p11=cvo.CVO().CreateCVO("", "$cos^2A+sin^2A=1$")
-        p12=cvo.CVO().CreateCVO("", "$sec^2A-tan^2A=1$")
-        p13=cvo.CVO().CreateCVO("", "$cosec^2A-cot^2A=1$")
+        p11=cvo.CVO().CreateCVO("Identity 1", "$cos^2A+sin^2A=1$")
+        p12=cvo.CVO().CreateCVO("Identity 2", "$sec^2A-tan^2A=1$")
+        p13=cvo.CVO().CreateCVO("Identity 3", "$cosec^2A-cot^2A=1$")
         
         p10.cvolist.append(p11)
         p10.cvolist.append(p12)
