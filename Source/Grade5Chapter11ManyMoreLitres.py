@@ -91,7 +91,7 @@ class Litres(AbstractAnim):
 
         table = VGroup(*[
             VGroup(*[
-                Tex(content, color=BLUE if j == 0 else LIGHT_PINK).move_to(start_position + np.array([i * cell_width, -j * cell_height, 0]))
+                Tex(content, color=BLUE if j == 0 or i==0 else LIGHT_PINK).move_to(start_position + np.array([i * cell_width, -j * cell_height, 0]))
                 for i, content in enumerate(row)
             ])
             for j, row in enumerate(table_content)
