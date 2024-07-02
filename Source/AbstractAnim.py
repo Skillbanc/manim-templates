@@ -188,8 +188,8 @@ class AbstractAnim(Scene):
             if (self.angleChoice.__contains__(cvo.angle)):
                 self.angleChoice.remove(cvo.angle)
                 
-        if (self.colorChoice.__contains__(cvo.color)):
-            self.colorChoice.remove(cvo.color)
+        #if (self.colorChoice.__contains__(cvo.color)):
+            #self.colorChoice.remove(cvo.color)
         
         if (len(cvo.cvolist) > 0):
             for idx in range(0,len(cvo.cvolist)):

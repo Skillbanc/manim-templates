@@ -6,13 +6,13 @@ from AbstractAnim import AbstractAnim
 import cvo
 
 # Read Excel data into a pandas DataFrame
-xlsx_path = "/Users/hridaybhushan/Downloads/Skillbanc TempImage/NRIVADonorListOriginalABCD.xlsx"
-df = pd.read_excel(xlsx_path, sheet_name='Worksheet')  # Adjust sheet_name as per your Excel file
+xlsx_path = "/Users/hridaybhushan/Downloads/NRIVAfinalList.xlsx"
+df = pd.read_excel(xlsx_path, sheet_name='Sheet2')  # Adjust sheet_name as per your Excel file
 
 class MyAnimation(AbstractAnim):
     def construct(self):
-        #self.setNameWithImage()
-        self.readAndWrite()
+        self.setNameWithImage()
+        #self.readAndWrite()
 
     def setNameWithImage(self):
         
@@ -21,29 +21,27 @@ class MyAnimation(AbstractAnim):
         
         # List of possible file extensions to check
         image_extensions = ['.png', '.jpg', '.jpeg']  # Add more extensions as needed
-        CircleColor=self.colorChoice.copy()
+        #CircleColor=self.colorChoice.copy()
         # Loop through each row in the Excel data
         for index, row in df.iterrows():
             self.setBackgroundImage()
-            if index==2:
-                break
 
             # Extract registration number
             registration_no = row['Registration ID']
             
 
             #c1o1 diagram
-            name = row['Name']
+            name = row['Display Name']
             sponsorship_category = row['Sponsorship Category']
             o1_name = f"{name} Garu"  # Assuming "Garu" suffix as per previous instructions
             c1_name = f"{sponsorship_category} Sponsor"
             p1=cvo.CVO().CreateCVO(c1_name,o1_name).setPosition([-4.5,0,0])
-
-            if len(self.colorChoice)==0:
-                self.colorChoice=CircleColor.copy()
+            #if len(self.colorChoice)==0:
+                #self.colorChoice=CircleColor()
                 
             p1.setcircleradius(1.4)
-            self.construct1(p1,p1)
+            
+            
             
             # Initialize variable to store found image path
             found_image_path = None
@@ -68,6 +66,7 @@ class MyAnimation(AbstractAnim):
                 center_image.scale_to_fit_width(4)
                 center_image.scale(0.1)
                 
+                self.construct1(p1,p1)
                 # Animation sequence
                 
                 self.play(center_image.animate.scale(10), run_time=2)
