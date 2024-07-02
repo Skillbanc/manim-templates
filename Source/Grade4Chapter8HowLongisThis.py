@@ -11,32 +11,30 @@ from AbstractAnim import AbstractAnim
 
 import cvo
 
-class Length4G(AbstractAnim):
+class Grade4Chapter8HowLongisThis(AbstractAnim):
     # use the appropriate method based on how the data is stored
     def construct(self):
         self.RenderSkillbancLogo()
-        self.LineSegment()
+        self.Length()
+        self.fadeOutCurrentScene()
+        self.Measurement()
         self.fadeOutCurrentScene()
         self.Anim1()        
         self.fadeOutCurrentScene()
-        self.Triangle()
-        self.fadeOutCurrentScene()
-        self.Type1()
-        self.fadeOutCurrentScene()
         self.Anim2()
-        self.fadeOutCurrentScene()
-        self.Type2()
         self.fadeOutCurrentScene()
         self.Anim3()
         self.fadeOutCurrentScene()
-        self.Type3()
+        self.conclusion()
         self.fadeOutCurrentScene()
-        self.Anim4()
-        self.fadeOutCurrentScene()
-        self.Type4()
-        self.fadeOutCurrentScene()
-        self.Anim5()
-        self.fadeOutCurrentScene()
+        self.GithubSourceCodeReference()
+        
+    def SetDeveloperList(self):  
+        self.DeveloperList="Prithiv Shiv M V"
+
+    def SetSourceCodeFileName(self):
+        self.SourceCodeFileName="Grade4Chapter8HowLongisThis.py"
+        
         
     # render using CVO data object 
     
@@ -44,16 +42,33 @@ class Length4G(AbstractAnim):
         self.isRandom=False
         self.positionChoice=[[-4,0,0],[4,0,0]]
         p10=cvo.CVO().CreateCVO("Length","Measurement")
-        p11=cvo.CVO().CreateCVO("Types","cm\\\\m\\\\inches")
+        p11=cvo.CVO().CreateCVO("Units","")
+        p11oname=["cm","m","inches"]
         p10.cvolist.append(p11)
+        p11.extendOname(p11oname)
         self.construct1(p10,p10)
 
+    def Measurement(self):
+        self.isRandom = False
+        self.setNumberOfCirclePositions(4)
+        p10=cvo.CVO().CreateCVO("Length","1 Meter")
+        p11=cvo.CVO().CreateCVO("Equals", "")
+        p11oname=["100 cm","39.3 inches"]
+        p12=cvo.CVO().CreateCVO("Length", "1 Centimeter")
+        p13=cvo.CVO().CreateCVO("Equals", "")
+        p13oname=["10mm","0.39 inches"]
+        p10.cvolist.append(p11)
+        p11.extendOname(p11oname)
+        p12.cvolist.append(p13)
+        p13.extendOname(p13oname)
+        self.construct1(p10,p10)
+        self.construct1(p12,p12)
+       
     def Anim1(self):
         # Title
-        title = Text("Measurement Rulers: cm and inches", font_size=48)
+        title = Text("Measurement Rulers: cm and inches", font_size=48).to_edge(UP)
         self.play(Write(title))
         self.wait(2)
-        self.play(FadeOut(title))
 
         # Ruler length in centimeters (1 meter = 100 cm)
         ruler_length_cm = 100
@@ -205,262 +220,97 @@ class Length4G(AbstractAnim):
         self.play(FadeOut(all_elements))
         self.wait(1)
 
-
-
-    def Type2(self):
-        self.isRandom=False
-        self.positionChoice=[[-4,0,0],[4,2,0],[4,-2,0]]
-        p10=cvo.CVO().CreateCVO("SAS","").setangle(-TAU/4)
-        p11=cvo.CVO().CreateCVO("Abbreviation","Side-Angle-Side")
-        p12=cvo.CVO().CreateCVO("Rule","")
-        p12onameList=["2 sides equal","angle b/w equal"]
-
-        p12.setcircleradius(1.5)
-        p11.setcircleradius(1.5)
-
-        p10.cvolist.append(p11)
-        p10.cvolist.append(p12)
-        p12.extendOname(p12onameList)
-        self.construct1(p10,p10)
-
     def Anim3(self):
-        triangle1_vert = [[-2, 0, 0], [2, 0, 0], [0, 3, 0]] 
-        triangle2_vert = [[-2, 0, 0], [2, 0, 0], [0, 3, 0]]
+        title = Text("Find the Distance Between Buildings A and C", font_size=48).to_edge(UP)
+        self.play(Write(title))
 
-        # Create triangles
-        triangle1 = Polygon(*triangle1_vert, color=BLUE)
-        triangle2 = Polygon(*triangle2_vert, color=GREEN)
+        # Define scale factor for visualization
+        scale_factor = 0.05  # Adjusted to keep all buildings on screen
 
-        # Shift triangles
-        triangle1.shift(3 * LEFT)
-        triangle2.shift(3 * RIGHT)
-        triangle1.shift(2 * DOWN)
-        triangle2.shift(2 * DOWN)
+        # Define building parameters
+        building_height_m = 20
+        building_width_m = 10
+        building_color = BLUE
 
-        # Labels for vertices
-        label1_A = Text("A").next_to(triangle1.get_vertices()[0], DOWN)
-        label1_B = Text("B").next_to(triangle1.get_vertices()[1], DOWN)
-        label1_C = Text("C").next_to(triangle1.get_vertices()[2], UP)
+        def create_building(height, width, color, label):
+            building = Rectangle(height=height * scale_factor, width=width * scale_factor, color=color, fill_opacity=1)
+            windows = VGroup()
+            for y in range(0, height, 2):  # Windows every 2 meters
+                for x in range(-width // 2 + 1, width // 2):
+                    window = Rectangle(height=1 * scale_factor, width=1 * scale_factor, color=WHITE, fill_opacity=0.7)
+                    window.move_to(building.get_bottom() + UP * (y * scale_factor + 1 * scale_factor) + RIGHT * (x * scale_factor))
+                    windows.add(window)
+            building_label = Text(label, font_size=24).next_to(building, DOWN)
+            return VGroup(building, windows, building_label)
 
-        label2_D = Text("D").next_to(triangle2.get_vertices()[0], DOWN)
-        label2_E = Text("E").next_to(triangle2.get_vertices()[1], DOWN)
-        label2_F = Text("F").next_to(triangle2.get_vertices()[2], UP)
+        # Create buildings with windows
+        building_left = create_building(building_height_m, building_width_m, building_color, "A")
+        building_middle = create_building(building_height_m, building_width_m, building_color, "B")
+        building_right = create_building(building_height_m, building_width_m, building_color, "C")
 
-        # Rule text
-        sas_rule = Text("Side-Angle-Side (SAS) Rule").to_edge(UP)
+        # Position buildings
+        building_middle.move_to(ORIGIN)
+        building_left.next_to(building_middle, LEFT*0.6, buff=9.0)  # Adjusted buffer to keep left building on screen
+        building_right.next_to(building_middle, RIGHT*0.5, buff=7.5)  # 150 m distance
 
-        # Angle labels
-        angle1_label = MathTex(r"\alpha").move_to(triangle1.get_vertices()[1] + 0.6 * LEFT + 0.4 * UP)
-        angle2_label = MathTex(r"\alpha").move_to(triangle2.get_vertices()[1] + 0.6 * LEFT + 0.4 * UP)
+        # Animate buildings appearing
+        self.play(FadeIn(building_left), FadeIn(building_middle), FadeIn(building_right))
+        self.wait(1)
 
-        # Angle arcs
-        angle1_arc = Arc(radius=0.5, start_angle=90, angle=np.pi/3).move_arc_center_to(triangle1.get_vertices()[1])
-        angle2_arc = Arc(radius=0.5, start_angle=90, angle=np.pi/3).move_arc_center_to(triangle2.get_vertices()[1])
+        # Create distance labels
+        distance_450m = Tex("450 m", font_size=24).move_to(midpoint(building_left[0].get_right(), building_middle[0].get_left())).shift(UP * 0.5)
+        distance_150m = Tex("150 m", font_size=24).move_to(midpoint(building_middle[0].get_right(), building_right[0].get_left())).shift(UP * 0.5)
 
-        # Side lengths
-        side1 = Text("a").next_to(Line(triangle1.get_vertices()[0], triangle1.get_vertices()[1]).get_center(), DOWN)
-        side2 = Text("b").next_to(Line(triangle1.get_vertices()[1], triangle1.get_vertices()[2]).get_center(), RIGHT)
-        
-        side4 = Text("a").next_to(Line(triangle2.get_vertices()[0], triangle2.get_vertices()[1]).get_center(), DOWN)
-        side5 = Text("b").next_to(Line(triangle2.get_vertices()[1], triangle2.get_vertices()[2]).get_center(), RIGHT)
+        # Create distance lines
+        distance_line_450m = DoubleArrow(start=building_left[0].get_right(), end=building_middle[0].get_left())
+        distance_line_150m = DoubleArrow(start=building_middle[0].get_right(), end=building_right[0].get_left())
 
-        # Animate the creation of elements
-        self.play(Write(sas_rule))
-        self.play(Create(triangle1), Write(label1_A), Write(label1_B), Write(label1_C))
-        self.play(Create(angle1_arc),Write(angle1_label), Write(side1), Write(side2),)
-        self.play(Create(triangle2), Write(label2_D), Write(label2_E), Write(label2_F))
-        self.play(Create(angle2_arc), Write(angle2_label), Write(side4), Write(side5))
+        # Animate distance labels and lines
+        self.play(Create(distance_line_450m), Write(distance_450m))
+        self.wait(1)
+        self.play(Create(distance_line_150m), Write(distance_150m))
+        self.wait(1)
 
-        self.wait(2)
-        
-        # Animate merging the triangles
-        self.play(
-            triangle2.animate.move_to(triangle1.get_center()),
-            FadeOut(label2_D),
-            FadeOut(label2_E),
-            FadeOut(label2_F),
-            FadeOut(angle2_arc),
-            FadeOut(angle2_label),
-            FadeOut(side4),
-            FadeOut(side5),
-            FadeOut(label1_A),
-            FadeOut(label1_B),
-            FadeOut(label1_C)
-        )
-
+        # Create and show the addition
+        addition_450 = Tex("450 m", font_size=36).to_edge(LEFT).shift(DOWN * 2)
+        plus_sign = Tex("+", font_size=36).next_to(addition_450, RIGHT, buff=0.5)
+        addition_150 = Tex("150 m", font_size=36).next_to(plus_sign, RIGHT, buff=0.5)
+        equals_sign = Tex("=", font_size=36).next_to(addition_150, RIGHT, buff=0.5)
+        result_600 = Tex("600 m", font_size=36).next_to(equals_sign, RIGHT, buff=0.5)
+        self.play(Write(addition_450), Write(plus_sign), Write(addition_150), Write(equals_sign), Write(result_600))
         self.wait(2)
 
-    def Type3(self):
-        self.isRandom=False
-        self.positionChoice=[[-4,0,0],[4,2,0],[4,-2,0]]
-        p10=cvo.CVO().CreateCVO("ASA","").setangle(-TAU/4)
-        p11=cvo.CVO().CreateCVO("Abbreviation","Angle-Side-Angle")
-        p12=cvo.CVO().CreateCVO("Rule","")
-        p12onameList=["2 angles equal","side b/w equal"]
+        # Create the total distance line
+        total_distance_line = DoubleArrow(start=building_left.get_left(), end=building_right.get_right()).shift(DOWN)
+        total_distance_label = Tex("600 m", font_size=24).next_to(total_distance_line, DOWN, buff=0.1)
 
-        p12.setcircleradius(1.5)
-        p11.setcircleradius(1.5)
+        # Animate the total distance line
+        self.play(Create(total_distance_line), Write(total_distance_label))
+        self.wait(2)
+
+        # Fade out all elements
+        all_elements = VGroup(addition_450, plus_sign, addition_150, equals_sign, result_600, total_distance_line, total_distance_label,total_distance_label, total_distance_line)
+        self.play(FadeOut(all_elements))
+        self.wait(1)
+
+    def conclusion(self):
+        self.isRandom = False
+        p10=cvo.CVO().CreateCVO("Length of Object","Big")
+        p11=cvo.CVO().CreateCVO("Use", "Bigger units(m, km)")
+        p12=cvo.CVO().CreateCVO("Length of Object", "small")
+        p13=cvo.CVO().CreateCVO("Use", "Smaller units(cm,inches)")
 
         p10.cvolist.append(p11)
-        p10.cvolist.append(p12)
-        p12.extendOname(p12onameList)
+        p12.cvolist.append(p13)
         self.construct1(p10,p10)
+        self.construct1(p12,p12)
 
-    def Anim4(self):
-        triangle1_vert = [[-2, 0, 0], [2, 0, 0], [0, 3, 0]] 
-        triangle2_vert = [[-2, 0, 0], [2, 0, 0], [0, 3, 0]]
+    def midpoint(p1, p2):
+        return (p1 + p2) / 2
 
-        # Create triangles
-        triangle1 = Polygon(*triangle1_vert, color=BLUE)
-        triangle2 = Polygon(*triangle2_vert, color=GREEN)
-
-        # Shift triangles
-        triangle1.shift(3 * LEFT)
-        triangle2.shift(3 * RIGHT)
-        triangle1.shift(2 * DOWN)
-        triangle2.shift(2 * DOWN)
-
-        # Labels for vertices
-        label1_A = Text("A").next_to(triangle1.get_vertices()[0], DOWN)
-        label1_B = Text("B").next_to(triangle1.get_vertices()[1], DOWN)
-        label1_C = Text("C").next_to(triangle1.get_vertices()[2], UP)
-
-        label2_D = Text("D").next_to(triangle2.get_vertices()[0], DOWN)
-        label2_E = Text("E").next_to(triangle2.get_vertices()[1], DOWN)
-        label2_F = Text("F").next_to(triangle2.get_vertices()[2], UP)
-
-        # Rule text
-        asa_rule = Text("Angle-Side-Angle (ASA) Rule").to_edge(UP)
-
-        # Angle labels
-        angle1_label = MathTex(r"\alpha").move_to(triangle1.get_vertices()[1] + 0.6 * LEFT + 0.4 * UP)
-        angle2_label = MathTex(r"\beta").move_to(triangle1.get_vertices()[0] + 0.6 * RIGHT + 0.4 * UP)
-
-        angle3_label = MathTex(r"\alpha").move_to(triangle2.get_vertices()[1] + 0.6 * LEFT + 0.4 * UP)
-        angle4_label = MathTex(r"\beta").move_to(triangle2.get_vertices()[0] + 0.6 * RIGHT + 0.4 * UP)
-
-        # Angle arcs
-        angle1_arc = Arc(radius=0.5, start_angle=90, angle=np.pi/3).move_arc_center_to(triangle1.get_vertices()[1])
-        angle2_arc = Arc(radius=0.5, start_angle=66*DEGREES, angle=-np.pi/3).move_arc_center_to(triangle1.get_vertices()[0])
-
-        angle3_arc = Arc(radius=0.5, start_angle=90, angle=np.pi/3).move_arc_center_to(triangle2.get_vertices()[1])
-        angle4_arc = Arc(radius=0.5, start_angle=66*DEGREES, angle=-np.pi/3).move_arc_center_to(triangle2.get_vertices()[0])
-
-        # Side lengths
-        side1 = Text("a").next_to(Line(triangle1.get_vertices()[0], triangle1.get_vertices()[1]).get_center(), DOWN)
-        side2 = Text("a").next_to(Line(triangle2.get_vertices()[0], triangle2.get_vertices()[1]).get_center(), DOWN)
-
-        # Animate the creation of elements
-        self.play(Write(asa_rule))
-        self.play(Create(triangle1), Write(label1_A), Write(label1_B), Write(label1_C))
-        self.play(Create(triangle2), Write(label2_D), Write(label2_E), Write(label2_F))
-        self.play(Create(angle1_arc), Create(angle2_arc),Write(angle1_label), Write(angle2_label) )
-        self.play(Create(angle3_arc), Create(angle4_arc), Write(angle3_label), Write(angle4_label))
-        self.play(Write(side1))
-        self.play(Write(side2))
-
-        self.wait(2)
-        
-        # Animate merging the triangles
-        self.play(
-            triangle2.animate.move_to(triangle1.get_center()),
-            FadeOut(label2_D),
-            FadeOut(label2_E),
-            FadeOut(label2_F),
-            FadeOut(angle3_arc),
-            FadeOut(angle4_arc),
-            FadeOut(angle3_label),
-            FadeOut(angle4_label),
-            FadeOut(side2),
-            FadeOut(label1_A),
-            FadeOut(label1_B),
-            FadeOut(label1_C)
-        )
-
-        self.wait(2)
-
-
-    def Type4(self):
-        self.isRandom=False
-        self.positionChoice=[[-4,0,0],[4,1.5,0],[4,-2,0]]
-        p10=cvo.CVO().CreateCVO("RAH","").setangle(-TAU/4)
-        p11=cvo.CVO().CreateCVO("Abbreviation","Right-Angle-Hypotenuse")
-        p12=cvo.CVO().CreateCVO("Rule","")
-        p12onameList=["Hypotenuse equal","another side equal"]
-
-        p12.setcircleradius(2)
-        p11.setcircleradius(1.8)
-
-        p10.cvolist.append(p11)
-        p10.cvolist.append(p12)
-        p12.extendOname(p12onameList)
-        self.construct1(p10,p10)
-
-    def Anim5(self):
-        triangle1_vert = [[-2, 0, 0], [2, 0, 0], [-2, 2, 0]] 
-        triangle2_vert = [[-2, 0, 0], [2, 0, 0], [-2, 2, 0]]
-
-        # Create triangles
-        triangle1 = Polygon(*triangle1_vert, color=BLUE)
-        triangle2 = Polygon(*triangle2_vert, color=GREEN)
-
-        # Shift triangles
-        triangle1.shift(3 * LEFT + 2 * DOWN)
-        triangle2.shift(3 * RIGHT + 2 * DOWN)
-
-        # Labels for vertices
-        label1_A = Text("A").next_to(triangle1.get_vertices()[0], LEFT)
-        label1_B = Text("B").next_to(triangle1.get_vertices()[1], RIGHT)
-        label1_C = Text("C").next_to(triangle1.get_vertices()[2], UP)
-
-        label2_D = Text("D").next_to(triangle2.get_vertices()[0], LEFT)
-        label2_E = Text("E").next_to(triangle2.get_vertices()[1], RIGHT)
-        label2_F = Text("F").next_to(triangle2.get_vertices()[2], UP)
-
-        # Rule text
-        rhs_rule = Text("Right-Angle-Hypotenuse-Side (RHS) Rule").to_edge(UP)
-
-        # Right angle squares
-        right_angle1 = Square(side_length=0.5).move_to(triangle1.get_vertices()[0] + np.array([0.25, 0.25, 0]))
-        right_angle2 = Square(side_length=0.5).move_to(triangle2.get_vertices()[0] + np.array([0.25, 0.25, 0]))
-
-        # Side lengths
-        hypotenuse1 = Text("c").next_to(Line(triangle1.get_vertices()[1], triangle1.get_vertices()[2]).get_center(), RIGHT)
-        side1 = Text("a").next_to(Line(triangle1.get_vertices()[0], triangle1.get_vertices()[2]).get_center(), LEFT)
-        
-        hypotenuse2 = Text("c").next_to(Line(triangle2.get_vertices()[1], triangle2.get_vertices()[2]).get_center(), RIGHT)
-        side2 = Text("a").next_to(Line(triangle2.get_vertices()[0], triangle2.get_vertices()[2]).get_center(), LEFT)
-
-        # Animate the creation of elements
-        self.play(Write(rhs_rule))
-        self.play(Create(triangle1), Write(label1_A), Write(label1_B), Write(label1_C) )
-        self.play(Create(triangle2), Write(label2_D), Write(label2_E), Write(label2_F))
-        self.play(Create(right_angle1), Write(hypotenuse1), Write(side1))
-        self.play(Create(right_angle2), Write(hypotenuse2), Write(side2))
-
-        self.wait(2)
-        
-        # Animate merging the triangles
-        self.play(
-            triangle2.animate.move_to(triangle1.get_center()),
-            FadeOut(label2_D),
-            FadeOut(label2_E),
-            FadeOut(label2_F),
-            FadeOut(right_angle2),
-            FadeOut(hypotenuse2),
-            FadeOut(side2),
-            FadeOut(side1),
-            FadeOut(label1_A),
-            FadeOut(label1_B),
-            FadeOut(label1_C)
-        )
-
-        self.wait(2)
-
-        
    
                
 if __name__ == "__main__":
-    scene = Length4G()
+    scene = Grade4Chapter8HowLongisThis()
     scene.render()
     
