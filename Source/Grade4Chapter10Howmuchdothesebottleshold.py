@@ -30,14 +30,12 @@ class Howmuchdothesebottleshold(AbstractAnim):
 
     def Litre(self):
         self.isRandom = False
-        p10=cvo.CVO().CreateCVO("Litre","")
-        p11=cvo.CVO().CreateCVO("1 litre", "1000 ml")
+        p10=cvo.CVO().CreateCVO("Litre","1")
+        p11=cvo.CVO().CreateCVO("Conversion", "1000 ml")
         p12=cvo.CVO().CreateCVO("Written as", "L or l")
-        p13=cvo.CVO().CreateCVO("Millilitre written as", "ml or mL")
         p10.cvolist.append(p11)
         p10.cvolist.append(p12)
-        p10.cvolist.append(p13)
-        self.setNumberOfCirclePositions(4)
+        self.setNumberOfCirclePositions(3)
         self.construct1(p10,p10)
   
     def Exercise1(self):
@@ -94,13 +92,15 @@ class Howmuchdothesebottleshold(AbstractAnim):
         self.wait(5)
 
     def Exercise2(self):
-        # Define the colors for the headers and answers
+        
+         # Define the colors for the headers and answers
         header_color = BLUE
         answer_color = YELLOW
         
         # Title text
-        title = Text("Q. Which of the following things do you take in millilitres \n""and which in litres?", font_size=30, weight=BOLD,color=RED)
-        title.shift(UP* 3)
+        title = Text("Q. Which of the following things do you take in millilitres \nand which in litres?", font_size=30, weight=BOLD, color=RED)
+        title.shift(UP * 3)
+        
         # Define the table data
         table_content = [
             ["Item", "Millilitres/ Litres"],
@@ -118,8 +118,8 @@ class Howmuchdothesebottleshold(AbstractAnim):
         # Calculate start position
         start_position = ORIGIN + UP * (len(table_content) * cell_height / 2)
         
-        # Create the table with colored headers and answers
-        table = VGroup(*[
+        # Create the table content with colored headers and answers
+        table_content_mobs = VGroup(*[
             VGroup(*[
                 Tex(content, color=header_color if j == 0 else answer_color if (i == 1 and j != 0) else WHITE).move_to(
                     start_position + np.array([i * cell_width, -j * cell_height, 0])
@@ -133,7 +133,7 @@ class Howmuchdothesebottleshold(AbstractAnim):
         h_lines = VGroup(*[
             Line(
                 start=start_position + np.array([-cell_width / 2, -j * cell_height - cell_height / 2, 0]),
-                end=start_position + np.array([(len(table_content[0])) * cell_width - cell_width / 2, -j * cell_height - cell_height / 2, 0])
+                end=start_position + np.array([(len(table_content[0]) - 1) * cell_width + cell_width / 2, -j * cell_height - cell_height / 2, 0])
             )
             for j in range(len(table_content) + 1)
         ])
@@ -141,7 +141,7 @@ class Howmuchdothesebottleshold(AbstractAnim):
         # Additional top horizontal line
         extra_h_line_top = Line(
             start=start_position + np.array([-cell_width / 2, cell_height / 2, 0]),
-            end=start_position + np.array([(len(table_content[0])) * cell_width - cell_width / 2, cell_height / 2, 0])
+            end=start_position + np.array([(len(table_content[0]) - 1) * cell_width + cell_width / 2, cell_height / 2, 0])
         )
         
         # Create vertical lines
@@ -153,16 +153,25 @@ class Howmuchdothesebottleshold(AbstractAnim):
             for i in range(len(table_content[0]) + 1)
         ])
         
-        # Combine table and lines
-        table_with_lines = VGroup(table, h_lines, v_lines, extra_h_line_top)
+        # Combine table structure and lines
+        table_with_lines = VGroup(h_lines, extra_h_line_top, v_lines)
         
         # Position adjustments
         table_with_lines.shift(LEFT * 2)
         table_with_lines.shift(DOWN * 1.5)
+        table_content_mobs.shift(LEFT * 2)
+        table_content_mobs.shift(DOWN * 1.5)
         
         # Animate the title and table
         self.play(Write(title))
+        self.wait(1)
         self.play(Create(table_with_lines))
+        self.wait(1)
+        
+        # Animate table contents row by row
+        for row in table_content_mobs:
+            self.play(Create(row))
+        
         self.wait(5)
 
     def fillbottle(self):
