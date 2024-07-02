@@ -193,7 +193,7 @@ class AlgebraicExpression(AbstractAnim):
         p11=cvo.CVO().CreateCVO("Monomial","x")
         p12=cvo.CVO().CreateCVO("Binomial","a+4x")
         p13=cvo.CVO().CreateCVO("Trinomial","$ax^2+4x+2$")
-        p14=cvo.CVO().CreateCVO("Multinomial","$4x^2+2xy+cx+d$")
+        p14=cvo.CVO().CreateCVO("Multinomial","$4x^2+2xy+cx+d$").setPosition([0,0,0])
         p14.setcircleradius(1.25)
         p10.cvolist.append(p11)
         p10.cvolist.append(p12)
@@ -421,7 +421,7 @@ class AlgebraicExpression(AbstractAnim):
         self.wait(1)
  
     def simplification(self):
-       self.positionChoice = [[-3,2,0],[2,2,0],[4,0,0],[-3,-2,0]]
+       self.positionChoice = [[-3,2,0],[2,2,0],[4,0,0],[4.3,-2.7,0]]
        self.isRandom = False
        p10=cvo.CVO().CreateCVO("simplification of Expression","")
        p11=cvo.CVO().CreateCVO("step1","write expression")
