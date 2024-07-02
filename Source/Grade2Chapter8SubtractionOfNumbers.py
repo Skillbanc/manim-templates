@@ -16,6 +16,10 @@ class Chap8G2_Subtraction(AbstractAnim):
         self.Introduction()
         self.fadeOutCurrentScene()
         self.sub()
+        self.fadeOutCurrentScene()
+        self.Heading()
+        self.fadeOutCurrentScene()
+        self.GithubSourceCodeReference()
 
     def SetDeveloperList(self):
         self.DeveloperList="Prithiv Shiv"
@@ -32,7 +36,9 @@ class Chap8G2_Subtraction(AbstractAnim):
 
         p11=cvo.CVO().CreateCVO("Subtraction","")
         p13=cvo.CVO().CreateCVO("Definition","Process of taking\\\\1 number from another")
+        p14=cvo.CVO().CreateCVO("Notation","5-3")
         p11.cvolist.append(p13)
+        p11.cvolist.append(p14)
         self.construct1(p11,p11)
 
     def sub(self):
@@ -59,10 +65,9 @@ class Chap8G2_Subtraction(AbstractAnim):
         
     
     def Heading(self):
-        title = Text("Subtraction Examples", font_size=72)
+        title = Text("Subtraction Examples", font_size=72).to_edge(UP)
         self.play(Write(title))
         self.wait(2)
-        self.play(FadeOut(title))
 
         # Subtraction problem
         problems = [(20,18),
