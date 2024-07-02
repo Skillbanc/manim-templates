@@ -30,17 +30,14 @@ class Litres(AbstractAnim):
 
     def Litre(self):
         self.isRandom = False
-        p10=cvo.CVO().CreateCVO("Litre","")
-        p11=cvo.CVO().CreateCVO("1 litre", "1000 ml")
-        p12=cvo.CVO().CreateCVO("Written as", "L or l")
-        p13=cvo.CVO().CreateCVO("Millilitre written as", "ml or mL")
-       
+        p10=cvo.CVO().CreateCVO("Litre","1").setPosition([-4,0,0])
+        p11=cvo.CVO().CreateCVO("Conversion", "1000 ml").setPosition([3,2,0])
+        p12=cvo.CVO().CreateCVO("Written as", "L or l").setPosition([3,-2,0])
+      
         p10.cvolist.append(p11)
         p10.cvolist.append(p12)
-        p10.cvolist.append(p13)
-        
        
-        self.setNumberOfCirclePositions(4)
+        self.setNumberOfCirclePositions(3)
         self.construct1(p10,p10)
 
 
@@ -50,7 +47,7 @@ class Litres(AbstractAnim):
         text.shift(UP * 3)
         self.play(Write(text))
         text2 =Text("Question :Amar wants to paint his home.The details of the\n                     quantity of each paint he bought are given below",color=GREEN).scale(0.65)
-        text2.shift(UP * 2,LEFT )
+        text2.shift(UP *1.5,LEFT )
         self.play(Write(text2))
 
       
@@ -65,14 +62,6 @@ class Litres(AbstractAnim):
         cell_width = 3.3
       
         start_position = ORIGIN + UP * (len(table_content) * cell_height / 2)
-
-        table = VGroup(*[
-            VGroup(*[
-                Tex(content,color=BLUE).move_to(start_position + np.array([i * cell_width, -j * cell_height, 0]))
-                for i, content in enumerate(row)
-            ])
-            for j, row in enumerate(table_content)
-        ])
 
         h_lines = VGroup(*[
             Line(
@@ -95,12 +84,25 @@ class Litres(AbstractAnim):
             for i in range(len(table_content[0]) + 1)
         ])
 
-        table_with_lines = VGroup(table, h_lines, v_lines, extra_h_line_top)
+        table_with_lines = VGroup( h_lines, v_lines, extra_h_line_top)
         table_with_lines.shift(LEFT * 5)
-        table_with_lines.shift(DOWN * 1.5)
-        self.play(Create(table_with_lines))
+        table_with_lines.shift(DOWN * 2)
+        self.add(table_with_lines)
 
+        table = VGroup(*[
+            VGroup(*[
+                Tex(content, color=BLUE if j == 0 or i==0 else LIGHT_PINK).move_to(start_position + np.array([i * cell_width, -j * cell_height, 0]))
+                for i, content in enumerate(row)
+            ])
+            for j, row in enumerate(table_content)
+        ])
+        table.shift(LEFT * 5 + DOWN * 2)
+        self.play(Create(table))
+        self.wait(0.5)
+        
         self.wait(5)
+        
+        
 
     def Qustion(self):
         
