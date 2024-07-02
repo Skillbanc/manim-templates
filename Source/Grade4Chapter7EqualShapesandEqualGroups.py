@@ -25,7 +25,7 @@ class EqualShapesandEqualGroups(AbstractAnim):
         
     def division(self):
         t1=Text("To divide a group using division, you split the group into equal parts.",font_size=24).to_edge(UP)
-        t2=Text("example:",font_size=24).next_to(t1,DOWN)
+        t2=Text("Example:",font_size=24).next_to(t1,DOWN)
         t3=Text(" If 12 is to be divided into 4 equal groups",font_size=24).next_to(t2,DOWN)
         self.play(Write(t1,run_time=4))
         self.play(Write(t2,run_time=2))
