@@ -41,14 +41,12 @@ class Howmuchdoesitweigh(AbstractAnim):
     def kilogram(self):
         # self.positionChoice = [[0,0,0],[-3,0,0],[3,0,0]]
         self.isRandom = False
-        p10=cvo.CVO().CreateCVO("Kilogram","")
-        p11=cvo.CVO().CreateCVO("1 Kilogram","1000grams")
+        p10=cvo.CVO().CreateCVO("Kilogram","1")
+        p11=cvo.CVO().CreateCVO("Conversion","1000grams")
         p12=cvo.CVO().CreateCVO(" Writtern as","Kg")
-        p13=cvo.CVO().CreateCVO("Gram Writtern as","g")
         p10.cvolist.append(p11)
         p10.cvolist.append(p12)
-        p10.cvolist.append(p13)
-        self.setNumberOfCirclePositions(4)
+        self.setNumberOfCirclePositions(3)
         self.construct1(p10,p10)
 
     def Example1(self):
@@ -327,7 +325,7 @@ class Howmuchdoesitweigh(AbstractAnim):
 
         # Calculation for 45 kg of old paper using Text instead of MathTex
         calculation = Text(
-            "45 kg × ₹8/kg = ₹360", font_size=28
+            "45 kg × ₹8 = ₹360", font_size=28
         )
         calculation.next_to(total_paid_per_kg, DOWN, buff=0.5)
 
@@ -428,7 +426,7 @@ class Howmuchdoesitweigh(AbstractAnim):
         self.wait(2)
 
     def Q5 (self):
-         # Setting up the text for the question
+        # Setting up the text for the question
         question = Text(
             "(e) Vishal sold each of the three items for ₹3 per kg more than \n""what he had purchased them for. So, how much he earned\n"" in the day?",
             font_size=24, color=GREEN
@@ -440,11 +438,11 @@ class Howmuchdoesitweigh(AbstractAnim):
         old_newspaper.next_to(question, DOWN, buff=0.1)
 
         old_newspaper_price = Text(
-            "Selling price per kg = 8 + 3 = 11/kg", font_size=24
+            "Selling price per kg = ₹8 + ₹3 = ₹11/kg", font_size=24
         ).next_to(old_newspaper, DOWN, buff=0.1)
 
         old_newspaper_total = Text(
-            "Total selling price = 45 kg × 11/kg = 495", font_size=24
+            "Total selling price = 45 kg × ₹11/kg = ₹495", font_size=24
         ).next_to(old_newspaper_price, DOWN, buff=0.1)
 
         # Scrap iron calculations
@@ -452,11 +450,11 @@ class Howmuchdoesitweigh(AbstractAnim):
         scrap_iron.next_to(old_newspaper_total, DOWN, buff=0.1)
 
         scrap_iron_price = Text(
-            "Selling price per kg = 20 + 3 = 23/kg", font_size=24
+            "Selling price per kg = ₹20 + ₹3 = ₹23/kg", font_size=24
         ).next_to(scrap_iron, DOWN, buff=0.1)
 
         scrap_iron_total = Text(
-            "Total selling price = 26 kg × 23/kg = 598", font_size=24
+            "Total selling price = 26 kg × ₹23/kg = ₹598", font_size=24
         ).next_to(scrap_iron_price, DOWN, buff=0.1)
 
         # Plastic material calculations
@@ -464,11 +462,11 @@ class Howmuchdoesitweigh(AbstractAnim):
         plastic_material.next_to(scrap_iron_total, DOWN, buff=0.1)
 
         plastic_material_price = Text(
-            "Selling price per kg = 15 + 3 = 18/kg", font_size=24
+            "Selling price per kg = ₹15 + ₹3 = ₹18/kg", font_size=24
         ).next_to(plastic_material, DOWN, buff=0.1)
 
         plastic_material_total = Text(
-            "Total selling price = 8 kg × 18/kg = 144", font_size=24
+            "Total selling price = 8 kg × ₹18/kg = ₹144", font_size=24
         ).next_to(plastic_material_price, DOWN, buff=0.1)
 
         # Total amount earned by selling
@@ -477,17 +475,17 @@ class Howmuchdoesitweigh(AbstractAnim):
         ).next_to(plastic_material_total, DOWN, buff=0.1)
 
         total_amount_earned_value = Text(
-            "495 + 598 + 144 = 1237", font_size=24
+            "₹495 + ₹598 + ₹144 = ₹1237", font_size=24
         ).next_to(total_amount_earned, DOWN, buff=0.1)
 
         # Total cost of materials purchased
         total_cost = Text(
-            "The total cost of materials purchased: 1000", font_size=24
+            "The total cost of materials purchased: ₹1000", font_size=24
         ).next_to(total_amount_earned_value, DOWN, buff=0.3)
 
         # Total profit earned
         total_profit = Text(
-            "Total profit earned: 1237 - 1000 = 237", font_size=24
+            "Total profit earned: ₹1237 - ₹1000 = ₹237", font_size=24
         ).next_to(total_cost, DOWN, buff=0.2)
 
         # Vishal's earnings in the day
@@ -512,8 +510,7 @@ class Howmuchdoesitweigh(AbstractAnim):
         self.play(Write(total_profit))
         self.play(Write(earnings))
 
-        self.wait(2)
-
+        self.wait(2) 
 
     def quintal(self):
         self.isRandom = False
