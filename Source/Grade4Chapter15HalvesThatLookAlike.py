@@ -54,7 +54,11 @@ class Chapter15Grade4(AbstractAnim):
         self.wait(1)
         text1 = Text("This is half of a figure.")
         text1.to_edge(DOWN)
+        text2 = Text("The figure gets completed after placing a mirror.")
+        text2.to_edge(DOWN)
         self.play(Write(text1))
+        self.wait(1)
+        self.play(Transform(text1, text2))
 
         # Reflect the half figure horizontally to create the mirrored half
         mirrored_half = half_figure.copy().scale([-1, 1, 1]).shift(LEFT)
@@ -62,11 +66,8 @@ class Chapter15Grade4(AbstractAnim):
         # Animate the appearance of the mirrored half
         self.play(FadeIn(mirrored_half))
         self.wait(1)
-        text2 = Text("The figure gets completed after placing a mirror.")
-        text2.to_edge(DOWN)
-        self.play(Write(text1))
-        self.wait(1)
-        self.play(Transform(text1, text2))
+       
+        
 
         # Combine the figures to show the complete image
         full_figure = VGroup(half_figure, mirrored_half)
