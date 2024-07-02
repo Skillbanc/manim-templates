@@ -5,6 +5,8 @@ class KnowingNumbers(AbstractAnim):
     def construct(self):
         self.RenderSkillbancLogo()
         self.fadeOutCurrentScene()
+        self.Extra_text()
+        self.fadeOutCurrentScene()
         self.finding_largest_smallestNumbers()
         self.fadeOutCurrentScene()
         self.ascendinganddescendingorder()
@@ -20,6 +22,14 @@ class KnowingNumbers(AbstractAnim):
         self.largeNumbersUsedInDailyLifeSituations()
         self.fadeOutCurrentScene()  
         self.GithubSourceCodeReference()
+
+
+
+    def Extra_text(self):
+        title = Text("Chapter1 : Knowing our Numbers", font_size=48)
+        self.play(Write(title))
+        self.wait(2)
+        self.play(FadeOut(title))
 
 
 
@@ -95,7 +105,7 @@ class KnowingNumbers(AbstractAnim):
         ).to_edge(UP*9.25+LEFT * 1)
         sub_title6 = Text("from numbers 9535 and 9635 comparing second digit from left 5 < 6",font_size=29).to_edge(UP*10.75+LEFT *2)
         sub_title7 = Text("so the number 9535 < 9635. so the greatest nuber is 9635.",font_size=29).to_edge(UP*12.25+LEFT * 2)
-        sub_title8 = Text("next step we can arrange these numbers in a Assending and Descending order.",font_size=29,color=GRAY).to_edge(UP*14+LEFT * 0.8)
+        sub_title8 = Text("next step we can arrange these numbers in a Assending and Descending order.",font_size=29,color=GRAY).to_edge(UP*14+LEFT * 0.6)
         
 
 
@@ -154,35 +164,10 @@ class KnowingNumbers(AbstractAnim):
         sub_title1 = Text("We usually round off the numbers to the nearest 10's(Tens),", font_size=29).to_edge(UP*3)
         sub_title2 = Text("100's(Hundreds), 1000's (Thousands), 10000's (Ten Thousands)... etc.", font_size=29).to_edge(UP*4.75)
         sub_title3 = Text("Rounding off the numbers to the nearest tens:", font_size=30, color=GREY).to_edge(UP*6.5+LEFT *1)
-        sub_title4 = Text("82 is near to 80 than 90, and 87 is near to 90 than 80.", font_size=29).to_edge(UP*12)
-        sub_title5 = Text("85 is at equal distance from 80 and 90.", font_size=29).to_edge(UP*13.6)
+        sub_title4 = Text("82 is near to 80 than 90, and 87 is near to 90 than 80.", font_size=29).to_edge(UP*13)
+        sub_title5 = Text("85 is at equal distance from 80 and 90.", font_size=29).to_edge(UP*14)
         
-        self.play(Write(union))
-        self.play(Write(sub_title1))
-        self.wait(1)
-        self.play(Write(sub_title2))
-        self.wait(1)
-        self.play(Write(sub_title3))
-        self.wait(1)
-        self.play(Create(number_line), run_time=3)  # Adjust run_time as needed
-        self.wait(1)
-        self.play(Create(circle_82))
-        self.play(Create(circle_85))
-        self.play(Create(circle_87))
-        self.wait(1)
-        self.play(Write(sub_title4))
-        self.wait(1)
-        self.play(Create(arrow_82_to_80))
-        self.wait(1)
-        self.play(Create(arrow_87_to_90))
-        self.wait(1)
-        self.play(Write(sub_title5))
-        self.wait(1)
-        self.play(Create(arrow_85_to_80))
-        self.play(Create(arrow_85_to_90))
-
-        # Wait before ending the scene
-        self.wait(2)
+        
 
         # Create number line from 80 to 90 with slower playback speed
         number_line = NumberLine(
@@ -229,6 +214,34 @@ class KnowingNumbers(AbstractAnim):
         ).add_tip(tip_length=0.2)
 
         
+
+
+        self.play(Write(union))
+        self.play(Write(sub_title1))
+        self.wait(1)
+        self.play(Write(sub_title2))
+        self.wait(1)
+        self.play(Write(sub_title3))
+        self.wait(1)
+        self.play(Create(number_line), run_time=3)  # Adjust run_time as needed
+        self.wait(1)
+        self.play(Create(circle_82))
+        self.play(Create(circle_85))
+        self.play(Create(circle_87))
+        self.wait(1)
+        self.play(Write(sub_title4))
+        self.wait(1)
+        self.play(Create(arrow_82_to_80))
+        self.wait(1)
+        self.play(Create(arrow_87_to_90))
+        self.wait(1)
+        self.play(Write(sub_title5))
+        self.wait(1)
+        self.play(Create(arrow_85_to_80))
+        self.play(Create(arrow_85_to_90))
+
+        # Wait before ending the scene
+        self.wait(2)
 
         # Fade out everything before ending the scene
         self.play(FadeOut(VGroup(union, sub_title1, sub_title2, sub_title3, sub_title4, sub_title5, 
@@ -543,7 +556,7 @@ class KnowingNumbers(AbstractAnim):
         # Title
         title = Text("Example :", font_size=30,color=BLUE).to_edge(UP * 1+LEFT*1)
         sub_title1 = Text("Expansion of 41430495   = ",font_size=29).to_edge(UP*3+LEFT*1)
-        sub_title2 = Text("So it has 8 digits expansion start from crore :",font_size=27).to_edge(UP*8.75+LEFT*0.7)
+        sub_title2 = Text("So the number has 8 digits expansion start from crore :",font_size=27).to_edge(UP*8.75+LEFT*0.7)
         sub_title3 = Text("4,14,30,495  =  (4 × 10000000) + (1 × 1000000) + (4 × 100000) + (3 × 10000) + ",font_size=27).to_edge(UP*10.25+LEFT*0.8)
         sub_title4 = Text("    (0 × 1000) + (4 × 100) + (9 × 10) + (5 × 1)",font_size=29).to_edge(UP* 11.75+  LEFT *6.75)
         sub_title5 = MarkupText(

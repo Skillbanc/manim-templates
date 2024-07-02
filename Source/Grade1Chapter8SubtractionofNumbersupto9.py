@@ -6,6 +6,9 @@ from AbstractAnim import AbstractAnim
 class SubtractionofNumbersupto9(AbstractAnim):
     def construct(self):
         self.RenderSkillbancLogo()
+        self.fadeOutCurrentScene()
+        self.Extra_text()
+        self.fadeOutCurrentScene()
         self.Subtraction()
         self.fadeOutCurrentScene()
         self.CirleExamples()
@@ -17,6 +20,13 @@ class SubtractionofNumbersupto9(AbstractAnim):
         self.ExampleExercise_2()
         self.fadeOutCurrentScene()
         self.GithubSourceCodeReference()
+
+
+    def Extra_text(self):
+        title = Text("Chapter8 : Subtraction of Numbers upto 9", font_size=48)
+        self.play(Write(title))
+        self.wait(2)
+        self.play(FadeOut(title))
         
 
     def Subtraction(self):
@@ -30,7 +40,7 @@ class SubtractionofNumbersupto9(AbstractAnim):
 
 
     def CirleExamples(self):
-        example = Text("Examples:", font_size=34).to_edge(UP)
+        example = Text("Find the remaining things:", font_size=34).to_edge(UP*1+LEFT*1)
 
         # Subtraction Example: 5 - 2 = 3
 
@@ -48,7 +58,7 @@ class SubtractionofNumbersupto9(AbstractAnim):
         s1 = Circle(radius=0.3, color=BLUE).next_to(minus1, RIGHT * 1.2).set_fill(opacity=0.4)
         s2 = Circle(radius=0.3, color=BLUE).next_to(s1, RIGHT * 1.2).set_fill(opacity=0.4)
 
-        two = Text("2").next_to(s1, DOWN)
+        two = Text("2").next_to(s1, DOWN).shift(RIGHT * 0.5)
 
         equal1 = Text("=").next_to(s2, RIGHT * 1.2)
 
@@ -78,7 +88,7 @@ class SubtractionofNumbersupto9(AbstractAnim):
         c4 = Circle(radius=0.3, color=GRAY).next_to(c3, RIGHT * 1.2).set_fill(opacity=0.4)
         c5 = Circle(radius=0.3, color=GRAY).next_to(c4, RIGHT * 1.2).set_fill(opacity=0.4)
         c6 = Circle(radius=0.3, color=GRAY).next_to(c5, RIGHT * 1.2).set_fill(opacity=0.4)
-        six = Text("6").next_to(c3, DOWN)
+        six = Text("6").next_to(c3, DOWN).shift(RIGHT * 0.5)
 
         minus2 = Text("-").next_to(c6, RIGHT * 1.2)
 
@@ -88,7 +98,7 @@ class SubtractionofNumbersupto9(AbstractAnim):
         s3 = Circle(radius=0.3, color=GRAY).next_to(s2, RIGHT * 1.2).set_fill(opacity=0.4)
         s4 = Circle(radius=0.3, color=GRAY).next_to(s3, RIGHT * 1.2).set_fill(opacity=0.4)
 
-        four = Text("4").next_to(s2, DOWN)
+        four = Text("4").next_to(s2, DOWN).shift(RIGHT * 0.5)
 
         equal2 = Text("=").next_to(s4, RIGHT * 1.2)
 
@@ -96,11 +106,12 @@ class SubtractionofNumbersupto9(AbstractAnim):
         result_c1 = Circle(radius=0.3, color=GRAY).next_to(equal2, RIGHT * 1.2).set_fill(opacity=0.4)
         result_c2 = Circle(radius=0.3, color=GRAY).next_to(result_c1, RIGHT * 1.2).set_fill(opacity=0.4)
 
-        two = Text("2").next_to(result_c1, DOWN)
+        two = Text("2").next_to(result_c1, DOWN).shift(RIGHT * 0.5)
 
         # Animation for the second example
         self.play(Write(c1), Write(c2), Write(c3), Write(c4), Write(c5), Write(c6))
         self.play(Write(six))
+        self.play(Write(minus2))
         self.play(Write(s1), Write(s2), Write(s3), Write(s4))
         self.play(Write(four))
         self.play(Write(equal2))
@@ -136,11 +147,12 @@ class SubtractionofNumbersupto9(AbstractAnim):
         result_c3 = Circle(radius=0.3, color=DARK_BROWN).next_to(result_c2, RIGHT * 1.2).set_fill(opacity=0.4)
         result_c4 = Circle(radius=0.3, color=DARK_BROWN).next_to(result_c3, RIGHT * 1.2).set_fill(opacity=0.4)
 
-        four = Text("4").next_to(result_c2, DOWN)
+        four = Text("4").next_to(result_c2, DOWN).shift(RIGHT * 0.5)
 
         # Animation for the third example
         self.play(Write(c1), Write(c2), Write(c3), Write(c4), Write(c5), Write(c6), Write(c7))
         self.play(Write(seven))
+        self.play(Write(minus3))
         self.play(Write(s1), Write(s2), Write(s3))
         self.play(Write(three))
         self.play(Write(equal3))
@@ -359,7 +371,7 @@ class SubtractionofNumbersupto9(AbstractAnim):
 
     def ExampleExercise_2(self):
         # Title
-        title = Tex("Solveing the following subtractions :",color=BLUE).to_edge(UP*1.5+LEFT*1)
+        title = Tex("Solving the following subtractions :",color=BLUE).to_edge(UP*1.5+LEFT*1)
         self.play(Write(title))
         
         # Subtraction 9 - 6

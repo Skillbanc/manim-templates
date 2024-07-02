@@ -9,13 +9,11 @@ class SquarecubeOperations(AbstractAnim):
         self.RenderSkillbancLogo()
         self.Extra_text()
         self.fadeOutCurrentScene()
-        self.introduction()
+        #self.introduction()
+        #self.fadeOutCurrentScene()
+        self.SquaringOfNumbers()
         self.fadeOutCurrentScene()
-        self.Square()
-        self.fadeOutCurrentScene()
-        self.Cube()
-        self.fadeOutCurrentScene()
-        self.Addition()
+        self.SubtopicsOfSquares()
         self.fadeOutCurrentScene()
         self.PropertiesofSquareNumbers()
         self.fadeOutCurrentScene()
@@ -29,11 +27,13 @@ class SquarecubeOperations(AbstractAnim):
         self.fadeOutCurrentScene()
         self.Subtractionofsuccessiveoddnumbers()
         self.fadeOutCurrentScene()
-        self.intro_text()
-        self.fadeOutCurrentScene()
+        #self.intro_text()
+        #self.fadeOutCurrentScene()
         #self.division_steps()
         #self.fadeOutCurrentScene()
         self.squarerootsofnonperfectsquarenumbers()
+        self.fadeOutCurrentScene()
+        self.Cube()
         self.fadeOutCurrentScene()
         self.CubeRoot()
         self.fadeOutCurrentScene()
@@ -45,7 +45,7 @@ class SquarecubeOperations(AbstractAnim):
 
 
     def Extra_text(self):
-        title = Text("Chapter : Square Roots and Cube Roots", font_size=48)
+        title = Text("Chapter6 : Square Roots and Cube Roots", font_size=48)
         self.play(Write(title))
         self.wait(2)
         self.play(FadeOut(title))
@@ -65,32 +65,15 @@ class SquarecubeOperations(AbstractAnim):
         self.construct1(p10,p10)
 
 
-    def Square(self):
-        self.setNumberOfCirclePositions(5)
+    def SquaringOfNumbers(self):
+        self.setNumberOfCirclePositions(4)
         #self.angleChoice = [0,0,0]
         self.isRandom = False
 
-        p10=cvo.CVO().CreateCVO("Squring of Numbers","$x^2$=").setPosition([0,2.5,0])
-        p11=cvo.CVO().CreateCVO("X variable","3").setPosition([-3.5,0,0])
-        p12=cvo.CVO().CreateCVO("Squaring of x","$3^2$=3*3").setPosition([0,-2.5,0])
-        p13=cvo.CVO().CreateCVO("Total","9").setPosition([2.5,0,0])
-        p10.cvolist.append(p11)
-        p11.cvolist.append(p12)
-        self.construct1(p10,p10)
-        self.construct1(p13,p13)
-        self.play(Create(CurvedArrow(p12.pos,p13.pos)))
-        #self.play()
-
-    
-    def Cube(self):
-        self.setNumberOfCirclePositions(5)
-        #self.angleChoice = [0,0,0]
-        self.isRandom = False
-
-        p10=cvo.CVO().CreateCVO("Cubing of Numbers","$x^3$").setPosition([-5,1,0])
-        p11=cvo.CVO().CreateCVO("X variable","2").setPosition([-3,-2,0])
-        p12=cvo.CVO().CreateCVO("Cubeing of x","$2^3$=2*2*2").setPosition([0,-2,0])
-        p13=cvo.CVO().CreateCVO("Total", "8").setPosition([4,1,0])
+        p10=cvo.CVO().CreateCVO("Squring of Numbers","$x^2$ = x*x").setPosition([-5,1,0])
+        p11=cvo.CVO().CreateCVO("x variable","3").setPosition([-2,-2,0])
+        p12=cvo.CVO().CreateCVO("Squaring of x","$3^2$=3*3").setPosition([2,-2,0])
+        p13=cvo.CVO().CreateCVO("Total","9").setPosition([5,0,0])
         p10.cvolist.append(p11)
         p11.cvolist.append(p12)
         self.construct1(p10,p10)
@@ -99,9 +82,10 @@ class SquarecubeOperations(AbstractAnim):
         #self.play()
 
 
-    def Addition(self):
+
+    def SubtopicsOfSquares(self):
         #  p1=cvo.CVO().CreateCVO("o1name","o2name","c1name","c2name")
-         p10=cvo.CVO().CreateCVO("sub topics of Square and Cube Roots","").setPosition([0,2.5,0])
+         p10=cvo.CVO().CreateCVO("sub topics of Square and Square Roots","").setPosition([0,2.5,0])
          p11=cvo.CVO().CreateCVO("Properties of Square Numbers","Chapter:6.1").setPosition([-4,1,0])
          p12=cvo.CVO().CreateCVO("Interesting Patterns","Chapter:6.2").setPosition([-3,-2,0])
          p13=cvo.CVO().CreateCVO("Pythogorean Triplets","Chapter:6.3").setPosition([2.5,0,0]).setangle(-TAU/4)
@@ -119,10 +103,10 @@ class SquarecubeOperations(AbstractAnim):
          p10=cvo.CVO().CreateCVO("Properties of SquareNumbers","Chapter:6.1").setPosition([0,2.5,0])
          p11=cvo.CVO().CreateCVO("Perfect Squares","RationalNum=$RationalNum^2$").setPosition([-5,1,0])
          p12=cvo.CVO().CreateCVO("Square Number","Integer=$Integer^2$").setPosition([0,0,0]).setangle(-TAU/4)
-         p13=cvo.CVO().CreateCVO("Unit digit","").setPosition([5,1,0]).setangle(-TAU/4)
+         p13=cvo.CVO().CreateCVO("Finding units place","").setPosition([5,1,0]).setangle(-TAU/4)
          p14=cvo.CVO().CreateCVO("Example","2.25=$(1.5)^2$=1.5*1.5").setPosition([-3,-3,0])
          p15=cvo.CVO().CreateCVO("Example","36=$(6)^2$=6*6").setPosition([0,-3,0])
-         p16=cvo.CVO().CreateCVO("Example","$17^2$=7*7=49=9").setPosition([3,-3,0])
+         p16=cvo.CVO().CreateCVO("Example","$7^2$=7*7=49=9").setPosition([3,-3,0])
          p10.cvolist.append(p11)
          p10.cvolist.append(p12)
          p10.cvolist.append(p13)
@@ -135,27 +119,39 @@ class SquarecubeOperations(AbstractAnim):
     
 
     def InterestingPatternsofSquare(self):
+
+        self.setNumberOfCirclePositions(7)
+        self.colorChoice=[RED,BLUE,PURPLE,YELLOW,GREEN,ORANGE,PINK]
+
         #  p1=cvo.CVO().CreateCVO("o1name","o2name","c1name","c2name")
-         p10=cvo.CVO().CreateCVO("Interesting patterns of Square","Chapter:6.2").setPosition([0,2.5,0])
-         p11=cvo.CVO().CreateCVO("Sum of first n odd numbers = $n^2$","$\sum_{i=1}^{n} (2i-1) = n^2$").setPosition([-4,1,0])
-         p12=cvo.CVO().CreateCVO("Numeric Palindrome","$1111^2$=1234321").setPosition([0,0,0]).setangle(-TAU/4)
-         p13=cvo.CVO().CreateCVO("Numbers between sucessive squares","2*Base of the first Number").setPosition([4,1,0]).setangle(-TAU/4)
-         p14=cvo.CVO().CreateCVO("Example 1","1+3+5+7=16=$4^2$").setPosition([-2,-2,0])
-         p15=cvo.CVO().CreateCVO("Example 2","$1001^2$=1002001").setPosition([0,-2,0])
-         p16=cvo.CVO().CreateCVO("Example","$2^2$=4;$3^2$=9=2*2=4").setPosition([2,-2,0])
-         p10.cvolist.append(p11)
-         p10.cvolist.append(p12)
-         p10.cvolist.append(p13)
-         p11.cvolist.append(p14)
-         p12.cvolist.append(p15)
-         p13.cvolist.append(p16)
+        p10=cvo.CVO().CreateCVO("Interesting patterns of Square","Chapter:6.2").setPosition([0,2.5,0])
+        p11=cvo.CVO().CreateCVO("Sum of first n odd numbers = $n^2$","$\sum_{i=1}^{n} (2i-1) = n^2$").setPosition([-4.12,1,0]).setangle(TAU/3)
+        p12=cvo.CVO().CreateCVO("Numeric Palindrome","$1111^2$=1234321").setPosition([0,0,0]).setangle(-TAU/4)
+        p13=cvo.CVO().CreateCVO("Numbers between sucessive squares","2*Base of the first Number").setPosition([4,1,0]).setangle(-TAU/3)
+        p14=cvo.CVO().CreateCVO("Example","1+3+5+7=16=$4^2$").setPosition([-2.25,-2,0])
+        p15=cvo.CVO().CreateCVO("Example","$1001^2$=1002001").setPosition([0,-2,0])
+        p16=cvo.CVO().CreateCVO("Example","$2^2$=4;$3^2$=9=2*2=4").setPosition([2.25,-2,0])
+        p10.cvolist.append(p11)
+        p10.cvolist.append(p12)
+        p10.cvolist.append(p13)
+        p11.cvolist.append(p14)
+        p12.cvolist.append(p15)
+        p13.cvolist.append(p16)
  
-         self.construct1(p10,p10)
-         #self.play()
+    
+        p11.setcircleradius(1.25)
+        p12.setcircleradius(1.05)
+        p14.setcircleradius(1.25)
+        p15.setcircleradius(1.1)
+        p16.setcircleradius(1.25)
+
+ 
+        self.construct1(p10,p10)
+        #self.play()
 
     def pythagoreanTriplets(self):
         #  p1=cvo.CVO().CreateCVO("o1name","o2name","c1name","c2name")
-         p10=cvo.CVO().CreateCVO("pythagorean Triplets","Chapter:6.3").setPosition([-4,2.5,0])
+         p10=cvo.CVO().CreateCVO("pythagorean Triplets","Chapter:6.3").setPosition([-5,2.5,0])
          p11=cvo.CVO().CreateCVO("If $a^2$+$b^2$=$c^2$","(a,b,c)are Pythagorean Triplts").setPosition([-3,-1,0])
          p12=cvo.CVO().CreateCVO("EX 1: $3^2$+$4^2$=25=$5^2$","(3,4,5)are Pythagorean Triplts").setPosition([3.5,1,0]).setangle(-TAU/4)
          p13=cvo.CVO().CreateCVO("EX 2: $5^2$+$12^2$=169=$13^2$","(5,12,13)are Pythagorean Triplts").setPosition([3.5,-2,0])
@@ -173,13 +169,21 @@ class SquarecubeOperations(AbstractAnim):
         #self.angleChoice = [0,0,0]
         self.isRandom = False
 
-        p10=cvo.CVO().CreateCVO("Square Root of Number",r"$\sqrt{x}$")
-        p11=cvo.CVO().CreateCVO("X variable","9")
-        p12=cvo.CVO().CreateCVO("Square root of 9",r"$\sqrt{9}$=3*3*3=3")
+        p10=cvo.CVO().CreateCVO("Square Root of Number",r"$\sqrt{x}$").setPosition([-4.5,1,0])
+        p11=cvo.CVO().CreateCVO("X variable","9").setPosition([-2,-2,0])
+        p12=cvo.CVO().CreateCVO("Square root of 9",r"$\sqrt{9}$=3*3").setPosition([2,-2,0])
+        p13=cvo.CVO().CreateCVO("result","3").setPosition([4.5,0,0])
         p10.cvolist.append(p11)
-        p10.cvolist.append(p12)
+        p11.cvolist.append(p12)
+        p12.cvolist.append(p13)
+
+        p10.setcircleradius(1.25)
+        p11.setcircleradius(1.25)
+        p12.setcircleradius(1.25)
+        p13.setcircleradius(1.25)
+        
+
         self.construct1(p10,p10)
-        self.play(Create(CurvedArrow(p11.pos,p12.pos)))
         #self.play()
 
 
@@ -328,21 +332,47 @@ class SquarecubeOperations(AbstractAnim):
         
         # Render the CVO object
         self.construct2(p10, p10)
+    
+
+
+    def Cube(self):
+        self.setNumberOfCirclePositions(5)
+        #self.angleChoice = [0,0,0]
+        self.isRandom = False
+
+        p10=cvo.CVO().CreateCVO("Cubing of Numbers","$x^3$= x*x*x").setPosition([-5,1,0])
+        p11=cvo.CVO().CreateCVO("X variable","2").setPosition([-3,-2,0])
+        p12=cvo.CVO().CreateCVO("Cubing of x","$2^3$=2*2*2").setPosition([0,-2,0])
+        p13=cvo.CVO().CreateCVO("Total", "8").setPosition([4,1,0])
+        p10.cvolist.append(p11)
+        p11.cvolist.append(p12)
+        self.construct1(p10,p10)
+        self.construct1(p13,p13)
+        self.play(Create(CurvedArrow(p12.pos,p13.pos)))
+        #self.play()
+
+
 
     def CubeRoot(self):
         self.setNumberOfCirclePositions(4)
         #self.angleChoice = [0,0,0]
         self.isRandom = False
 
-        p10=cvo.CVO().CreateCVO("Cube root of Numbers",r"$\sqrt[3]{x}$")
-        p11=cvo.CVO().CreateCVO("X variable","64")
-        p12=cvo.CVO().CreateCVO("Cuberoot of 64",r"$\sqrt[3]{64}$=$\sqrt[3]{4*4*4}$=4")
+        p10=cvo.CVO().CreateCVO("Cube root of Numbers",r"$\sqrt[3]{x}$").setPosition([-4.5,1,0])
+        p11=cvo.CVO().CreateCVO("X variable","64").setPosition([-2,-2,0])
+        p12=cvo.CVO().CreateCVO("Cuberoot of 64",r"$\sqrt[3]{64}$=$\sqrt[3]{4*4*4}$").setPosition([2,-2,0])
+        p13=cvo.CVO().CreateCVO("result","4").setPosition([4.5,0,0])
         p10.cvolist.append(p11)
-        p10.cvolist.append(p12)
+        p11.cvolist.append(p12)
+        p12.cvolist.append(p13)
+
+        p10.setcircleradius(1.25)
+        p11.setcircleradius(1.25)
+        p12.setcircleradius(1.25)
+        p13.setcircleradius(1.25)
+        
         self.construct1(p10,p10)
-        self.play(Create(CurvedArrow(p11.pos,p12.pos)))
         #self.play()
-    
 
     def cuberootthroughPrimeFactorization2(self):
         # Create CVO object with mathematical text
@@ -389,7 +419,7 @@ class SquarecubeOperations(AbstractAnim):
 
         
     def SetSourceCodeFileName(self):
-        self.SourceCodeFileName="SquareandCubeRoots.py"
+        self.SourceCodeFileName="SquareRootsandCubeRoots.py"
 
 
 if __name__ == "__main__":
