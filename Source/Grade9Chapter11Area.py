@@ -328,13 +328,16 @@ class Areas(AbstractAnim):
     def Area2(self):
         self.isRandom = False
        
-        p10=cvo.CVO().CreateCVO("Triangle", "same base and between the same parallels of parallelogram").setPosition([-3,-2,0])
-        p11=cvo.CVO().CreateCVO("Area", "half the area of the parallelogram").setPosition([-4,2,0])
+        p10=cvo.CVO().CreateCVO("Triangle", "").setPosition([-5,2,0])
+        p14=cvo.CVO().CreateCVO("Condition", "same base and between the same parallels of parallelogram").setPosition([-4,-2,0])
+        p11=cvo.CVO().CreateCVO("Area", "half the area of the parallelogram").setPosition([0,2,0])
         p12=cvo.CVO().CreateCVO("Example", "ADB and ACB are triangles on same base").setPosition([0,0,0])
-        p13=cvo.CVO().CreateCVO("Area", "1/2 * AB * DP").setPosition([2,2,0])
+        p13=cvo.CVO().CreateCVO("Area", "1/2 * AB * DP").setPosition([1,-2,0])
+        p10.cvolist.append(p14)
         p10.cvolist.append(p11)
         p11.cvolist.append(p12)
         p12.cvolist.append(p13)
+        
         A = [-2, -1, 0]
         B = [2, -1, 0]
         C = [3, 1, 0]
