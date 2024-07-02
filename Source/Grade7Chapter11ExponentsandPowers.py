@@ -42,7 +42,7 @@ class Poweranim(AbstractAnim):
         p11=cvo.CVO().CreateCVO("Base", "5")
         p12=cvo.CVO().CreateCVO("Expononet", "3")
         p13=cvo.CVO().CreateCVO("Read as", "5 to the power of 3")
-        p14=cvo.CVO().CreateCVO("Expand", "5*5*5")
+        p14=cvo.CVO().CreateCVO("Expand", "5*5*5").setPosition([0,2,0])
         
         p10.cvolist.append(p11)
         p10.cvolist.append(p12)
@@ -54,14 +54,14 @@ class Poweranim(AbstractAnim):
 
     def LawsofExponents(self):
         self.isRandom = False
-        p10=cvo.CVO().CreateCVO("Laws of Exponents","7 laws").setPosition([4,2,0])
-        p11=cvo.CVO().CreateCVO("Same base", "$a^m*a^n=a^{m+n}$").setPosition([5,-2,0])
-        p12=cvo.CVO().CreateCVO("Exponent of exponent", "$(a^m)^n=a^{m*n}$").setPosition([-4,3,0])
-        p13=cvo.CVO().CreateCVO("Exponent of product", "$a^m*b^m=(a*b)^m$").setPosition([-4,1,0])
-        p14=cvo.CVO().CreateCVO("Zero exponent", "$a^0=1$").setPosition([-4,-1,0])
-        p15=cvo.CVO().CreateCVO("Division with same base", "$a^m/a^n=a^{m-n}$").setPosition([-4,-3,0])
-        p16=cvo.CVO().CreateCVO("Division with same exponent", "$(a/b)^m=a^m/b^m$").setPosition([0,0,0])
-           
+        p10=cvo.CVO().CreateCVO("Laws of Exponents","").setPosition([0,2,0])
+        p11=cvo.CVO().CreateCVO("Same base", "$a^m*a^n=a^{m+n}$").setPosition([4,1,0]).setangle(-TAU /10)
+        p12=cvo.CVO().CreateCVO("Exponent of exponent", "$(a^m)^n=a^{m*n}$").setPosition([5,-1,0]).setangle(-TAU /10)
+        p13=cvo.CVO().CreateCVO("Exponent of product", "$a^m*b^m=(a*b)^m$").setPosition([3,-3,0]).setangle(TAU /10)
+
+        p15=cvo.CVO().CreateCVO("Division with same base", "$a^m/a^n=a^{m-n}$").setPosition([-5,-2,0]).setangle(-TAU /10)
+        p16=cvo.CVO().CreateCVO("Division with same exponent", "$(a/b)^m=a^m/b^m$").setPosition([-4,1,0]).setangle(-TAU /10)
+        p14=cvo.CVO().CreateCVO("Zero exponent", "$a^0=1$").setPosition([-1,-3,0]).setangle(TAU / 12)  
         p10.cvolist.append(p11)
         p10.cvolist.append(p12)
         p10.cvolist.append(p13)
@@ -167,7 +167,6 @@ class Poweranim(AbstractAnim):
        self.setNumberOfCirclePositions(5)
        self.construct1(p10,p10)
 
-
     def Example(self):
        self.isRandom = False
 
@@ -192,8 +191,7 @@ class Poweranim(AbstractAnim):
        p10.onameList.append("$(-5)^4=5^4$")
        p10.onameList.append("$(-3)^3=-3^3$")
        self.construct2(p10, p10)
-       
-
+      
     def SetDeveloperList(self): 
        self.DeveloperList="Khanak Gupta" 
 
