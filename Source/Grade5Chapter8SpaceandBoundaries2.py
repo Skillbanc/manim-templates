@@ -15,6 +15,9 @@ class Chap8G5_SandB_2(AbstractAnim):
     # use the appropriate method based on how the data is stored
     def construct(self):
         self.RenderSkillbancLogo()
+        self.fadeOutCurrentScene()
+        self.Definition()
+        self.fadeOutCurrentScene()
         self.Anim1()
         self.fadeOutCurrentScene()
         self.Anim2()
@@ -25,6 +28,27 @@ class Chap8G5_SandB_2(AbstractAnim):
         self.fadeOutCurrentScene()
         self.Anim5()
         self.fadeOutCurrentScene()
+        self.GithubSourceCodeReference()
+        
+    def SetDeveloperList(self):  
+        self.DeveloperList="Prithiv Shiv M V"
+
+    def SetSourceCodeFileName(self):
+        self.SourceCodeFileName="Grade5Chapter8SpaceandBoundaries2.py"
+
+    def Definition(self):
+        self.isRandom=False
+        self.setNumberOfCirclePositions(4)
+        p10=cvo.CVO().CreateCVO("Area","").setangle(-TAU/4)
+        p11=cvo.CVO().CreateCVO("Definition","Space inside the\\\\boundary of a closed shape")
+        p12=cvo.CVO().CreateCVO("Boundary","").setangle(-TAU/4)
+        p13=cvo.CVO().CreateCVO("Definition","Line that marks\\\\the limit of a closed shape")
+        p11.setcircleradius(1.5)
+        p13.setcircleradius(1.5)
+        p10.cvolist.append(p11)
+        p12.cvolist.append(p13)
+        self.construct1(p10,p10)
+        self.construct1(p12,p12)
 
     def Anim1(self):
         heading = Text("Area of Different Shapes-Triangle", font_size=36).to_edge(UP)
@@ -313,7 +337,7 @@ class Chap8G5_SandB_2(AbstractAnim):
         self.play(Write(multiplication_text))
         self.wait(1)
 
-        multiplication_example = Text("Area = 6 × 2 = 12 units", font_size=24, color=GREEN).next_to(multiplication_text, DOWN)
+        multiplication_example = Text("Area = 6 × 2 = 12 square units", font_size=24, color=GREEN).next_to(multiplication_text, DOWN)
         self.play(Write(multiplication_example))
         self.wait(2)
 
