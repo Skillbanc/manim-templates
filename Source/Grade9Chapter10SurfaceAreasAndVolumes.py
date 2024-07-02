@@ -500,7 +500,7 @@ class Surfaceareasandvolumes(AbstractAnim,ThreeDScene):
         self.positionChoice = [[-4,0,0],[-2,2,0],[2,-2,0]]
         self.isRandom = False
         p10=cvo.CVO().CreateCVO("Cone","")
-        p11=cvo.CVO().CreateCVO("Slant Height","$l=\sqrt (h^2 + r^2)$")
+        p11=cvo.CVO().CreateCVO("Slant Height","$l=\sqrt {(h^2 + r^2)}$")
         p12=cvo.CVO().CreateCVO("Curved Surface Area","$\pi rl$").setPosition([-4,2,0])
         p13=cvo.CVO().CreateCVO("Total Surface Area","$\pi r(r+l)$").setPosition([-0.5,2,0])
         p14=cvo.CVO().CreateCVO("Volume","$1/3 \pi r^2h$").setPosition([2,2,0])
