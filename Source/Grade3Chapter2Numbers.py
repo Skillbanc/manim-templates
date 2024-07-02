@@ -7,8 +7,24 @@ import cvo
 
 class numbers(AbstractAnim):
     def construct(self):
-        # self.Introduction()
-        self.test()
+        self.RenderSkillbancLogo()
+        self.Introduction()
+        self.fadeOutCurrentScene()
+        self.Hundred_intro()
+        self.fadeOutCurrentScene()
+        self.Placevalue()
+        self.fadeOutCurrentScene()
+        self.PlacevalueofZero()
+        self.fadeOutCurrentScene()
+        # self.Identifying_numbers()
+        # self.fadeOutCurrentScene()
+        self.UnderstandingDigits()
+        self.fadeOutCurrentScene()
+        self.ComparingNumbers()
+        self.fadeOutCurrentScene()
+        self.AscendingandDescending()
+        self.fadeOutCurrentScene()
+        self.GithubSourceCodeReference()
 
     def Introduction(self):
         self.angleChoice=[TAU/4,TAU/4,TAU/4]
@@ -50,18 +66,6 @@ class numbers(AbstractAnim):
         self.play(FadeIn(text))
         self.wait(2)
         self.play(FadeOut(threedigit,threedigit1,threedigit2,text))
-
-        # hundered1 = Text("1 hundred + 1 one = 101").shift(UP*2).set_color(YELLOW)
-        # self.play(Write(hundered1))
-        # self.wait(2)
-
-        # hundered10 = Text("1 hundred + 1 ten = 110").next_to(hundered1,DOWN,buff=1).set_color(YELLOW)
-        # self.play(Write(hundered10))
-        # self.wait(2)
-
-        # hundered11 = Text("1 hundred + 1 ten + 1 one = 111").next_to(hundered10,DOWN,buff=1).set_color(YELLOW)
-        # self.play(Write(hundered11))
-        # self.wait(2)
     
     def Placevalue(self):
         title = Text("Place Value", font_size=48)
@@ -222,7 +226,7 @@ class numbers(AbstractAnim):
             Text("hundreds", font_size=36, color=YELLOW),
             Text("tens", font_size=36, color=YELLOW),
             Text("ones", font_size=36, color=YELLOW)
-        ).arrange(RIGHT, buff=0.5)
+        ).arrange(RIGHT, buff=1)
         hundreds_tens_ones_349.next_to(digits_349, DOWN, buff=1.0)
       
         digits_349_text = Text("3, 4, and 9 are the digits", font_size=36, color=YELLOW)
@@ -237,164 +241,7 @@ class numbers(AbstractAnim):
         # Ending the scene
         self.play(FadeOut(three_digit_number,digits_349_text,three_digit_text,hundreds_tens_ones_349))
 
-    def testt(self):
-        # title = Text("Comparing numbers", font_size=40)
-        # self.play(Write(title))
-        # self.play(title.animate.to_edge(UP))
-
-        # # Explain Less Than (<)
-        # less_than = MathTex(r"<", font_size=72, color=RED)
-        # less_than.move_to(UP*2)
-        # less_than_text = Text("Less Than", font_size=36, color=YELLOW)
-        # less_than_text.next_to(less_than, DOWN)
-
-        # self.play(Write(less_than), Write(less_than_text))
-        
-        # # Demonstrate with stacked objects
-        # left_stack_lt = VGroup(*[Square(side_length=0.5, fill_color=BLUE, fill_opacity=1) for _ in range(3)]).arrange(UP, buff=0.1)
-        # right_stack_lt = VGroup(*[Square(side_length=0.5, fill_color=GREEN, fill_opacity=1) for _ in range(5)]).arrange(UP, buff=0.1)
-        
-        # left_stack_lt.move_to(LEFT*3 + DOWN*1)
-        # right_stack_lt.move_to(RIGHT*3 + DOWN*1)
-        
-        # self.play(Write(left_stack_lt), Write(right_stack_lt))
-        
-        # self.wait(2)
-        # self.play(FadeOut(less_than), FadeOut(less_than_text), FadeOut(left_stack_lt), FadeOut(right_stack_lt))
-
-        # # Explain Greater Than (>)
-        # greater_than = MathTex(r">", font_size=72, color=RED)
-        # greater_than.move_to(UP*2)
-        # greater_than_text = Text("Greater Than", font_size=36, color=YELLOW)
-        # greater_than_text.next_to(greater_than, DOWN)
-
-        # self.play(Write(greater_than), Write(greater_than_text))
-        
-        # # Demonstrate with stacked objects
-        # left_stack_gt = VGroup(*[Square(side_length=0.5, fill_color=BLUE, fill_opacity=1) for _ in range(6)]).arrange(UP, buff=0.1)
-        # right_stack_gt = VGroup(*[Square(side_length=0.5, fill_color=GREEN, fill_opacity=1) for _ in range(4)]).arrange(UP, buff=0.1)
-        
-        # left_stack_gt.move_to(LEFT*3 + DOWN*1)
-        # right_stack_gt.move_to(RIGHT*3 + DOWN*1)
-        
-        # self.play(Write(left_stack_gt), Write(right_stack_gt))
-        
-        # self.wait(2)
-        # self.play(FadeOut(greater_than), FadeOut(greater_than_text), FadeOut(left_stack_gt), FadeOut(right_stack_gt))
-
-        # # Explain Equals To (=)
-        # equals_to = Tex(r"=", font_size=72, color=RED)
-        # equals_to.move_to(UP*2)
-        # equals_to_text = Text("Equals To", font_size=36, color=YELLOW)
-        # equals_to_text.next_to(equals_to, DOWN)
-
-        # self.play(Write(equals_to), Write(equals_to_text))
-        
-        # # Demonstrate with stacked objects
-        # left_stack_eq = VGroup(*[Square(side_length=0.5, fill_color=BLUE, fill_opacity=1) for _ in range(5)]).arrange(UP, buff=0.1)
-        # right_stack_eq = VGroup(*[Square(side_length=0.5, fill_color=GREEN, fill_opacity=1) for _ in range(5)]).arrange(UP, buff=0.1)
-        
-        # left_stack_eq.move_to(LEFT*3 + DOWN*1)
-        # right_stack_eq.move_to(RIGHT*3 + DOWN*1)
-        
-        # self.play(Write(left_stack_eq), Write(right_stack_eq))
-
-        # self.wait(2)
-
-        # # Ending the scene
-        # self.play(
-        #     FadeOut(equals_to), FadeOut(equals_to_text),
-        #     FadeOut(left_stack_eq), FadeOut(right_stack_eq),
-        #     FadeOut(title)
-        # )
-
-        # self.wait(2)
-
-
-
-
-
-
-        title = Text("Comparing numbers", font_size=40)
-        self.play(Write(title))
-        self.play(title.animate.to_edge(UP))
-
-        # Explain Less Than (<)
-        less_than = MathTex(r"<", font_size=72, color=RED)
-        less_than.move_to(RIGHT*2+UP*1)
-        less_than_text = Text("Less Than", font_size=36, color=YELLOW)
-        less_than_text.next_to(less_than, DOWN)
-        example_text = MathTex(r"3<5",font_size=72,color = YELLOW).next_to(less_than_text,DOWN,buff=1)
-
-        self.play(Write(less_than), Write(less_than_text))
-        
-        # Demonstrate with stacked objects
-        left_stack_lt = VGroup(*[Square(side_length=0.5, fill_color=BLUE, fill_opacity=1) for _ in range(3)]).arrange(UP, buff=0.1)
-        right_stack_lt = VGroup(*[Square(side_length=0.5, fill_color=GREEN, fill_opacity=1) for _ in range(5)]).arrange(UP, buff=0.1)
-        
-        left_stack_lt.move_to(LEFT*3 + DOWN*1.65)
-        right_stack_lt.move_to(LEFT*2 + DOWN*1)
-        line1=Line(LEFT*6,LEFT*2).shift(DOWN*2.75,RIGHT*1).set_color(YELLOW)
-        line2=Line(line1.get_left(),line1.get_right()+UP*5).set_color(YELLOW)
-        self.play(Write(left_stack_lt), Write(right_stack_lt))
-        self.play(Write(line1),Write(line2))
-        self.wait(2)
-        self.play(Write(example_text))
-        self.play(FadeOut(less_than), FadeOut(less_than_text,example_text), FadeOut(left_stack_lt), FadeOut(right_stack_lt),FadeOut(line1,line2))
-
-        # Explain Greater Than (>)
-        greater_than = MathTex(r">", font_size=72, color=RED)
-        greater_than.move_to(RIGHT*2+UP*1)
-        greater_than_text = Text("Greater Than", font_size=36, color=YELLOW)
-        greater_than_text.next_to(greater_than, DOWN)
-        example_text = MathTex(r"5>3",font_size=72,color = YELLOW).next_to(greater_than_text,DOWN,buff=1)
-        self.play(Write(greater_than), Write(greater_than_text))
-        
-        # Demonstrate with stacked objects
-        left_stack_gt = VGroup(*[Square(side_length=0.5, fill_color=BLUE, fill_opacity=1) for _ in range(5)]).arrange(UP, buff=0.1)
-        right_stack_gt = VGroup(*[Square(side_length=0.5, fill_color=GREEN, fill_opacity=1) for _ in range(3)]).arrange(UP, buff=0.1)
-        
-        left_stack_gt.move_to(LEFT*4.25 + DOWN*1)
-        right_stack_gt.move_to(LEFT*3 + DOWN*1.65)
-        line1=Line(LEFT*6,LEFT*2).shift(DOWN*2.75,RIGHT*1).set_color(YELLOW)
-        line2=Line(line1.get_right(),line1.get_left()+UP*5).set_color(YELLOW)
-        self.play(Write(left_stack_gt), Write(right_stack_gt))
-        self.play(Write(line1),Write(line2))
-        self.wait(2)
-        self.play(Write(example_text))
-        self.play(FadeOut(greater_than), FadeOut(greater_than_text,example_text), FadeOut(left_stack_gt), FadeOut(right_stack_gt),FadeOut(line1,line2))
-
-        # Explain Equals To (=)
-        equals_to = Tex(r"=", font_size=72, color=RED)
-        equals_to.move_to(RIGHT*2+UP*1)
-        equals_to_text = Text("Equals To", font_size=36, color=YELLOW)
-        equals_to_text.next_to(equals_to, DOWN)
-        example_text=MathTex(r"5=5",font_size=72,color = YELLOW).next_to(greater_than_text,DOWN,buff=1)
-        self.play(Write(equals_to), Write(equals_to_text))
-        
-        # # Demonstrate with stacked objects
-        left_stack_eq = VGroup(*[Square(side_length=0.5, fill_color=BLUE, fill_opacity=1) for _ in range(5)]).arrange(UP, buff=0.1)
-        right_stack_eq = VGroup(*[Square(side_length=0.5, fill_color=GREEN, fill_opacity=1) for _ in range(5)]).arrange(UP, buff=0.1)
-        
-        left_stack_eq.move_to(LEFT*3 + DOWN*1)
-        right_stack_eq.move_to(LEFT*2 + DOWN*1)
-        line1=Line(LEFT*6,LEFT*2).set_color(YELLOW).shift(UP*0.75,RIGHT*1.5)
-        line2=Line(line1.get_left()+DOWN*3.25,line1.get_right()+DOWN*3.25).set_color(YELLOW)
-        self.play(Write(left_stack_eq), Write(right_stack_eq))
-        self.play(Write(line1),Write(line2))
-        self.wait(2)
-        self.play(Write(example_text))
-        # # Ending the scene
-        self.play(
-            FadeOut(equals_to), FadeOut(equals_to_text),
-            FadeOut(left_stack_eq), FadeOut(right_stack_eq),
-            FadeOut(title)
-        )
-
-        self.wait(2)
-
-
-    def test(self):
+    def ComparingNumbers(self):
         title = Text("Comparing numbers", font_size=40)
         self.play(Write(title))
         self.play(title.animate.to_edge(UP))
@@ -440,28 +287,114 @@ class numbers(AbstractAnim):
             self.play(FadeOut(math_symbol), FadeOut(text_obj, example_text), FadeOut(left_stack), FadeOut(right_stack), FadeOut(line1, line2))
 
         self.play(FadeOut(title))
-        self.wait(2)
+    
+    def AscendingandDescending(self):
+        # Title
+        title = Text("Ascending and Descending Order", font_size=40)
+        self.play(Write(title))
+        self.play(title.animate.to_edge(UP))
 
+        # Define random numbers
+        random_numbers = [3, 1, 4, 5, 2]
+        initial_numbers = random_numbers.copy()  # To keep track of initial positions
 
+        asc_desc = [
+            ("Ascending Order", sorted(random_numbers), BLUE, DOWN*1),
+            ("Descending Order", sorted(random_numbers, reverse=True), RED, DOWN*1)
+        ]
+        for desc, sorted_numbers, color, position in asc_desc:
+            # Display initial random sequence
+            initial_sequence = VGroup(*[MathTex(str(num), font_size=48) for num in random_numbers])
+            initial_sequence.arrange(RIGHT, buff=1)
+            initial_sequence.move_to(UP*2)
 
+            self.play(Write(initial_sequence))
+            self.wait(1)
 
-        
+            desc_text = Text(desc, font_size=36, color=color)
+            desc_text.move_to(position + UP)
+            self.play(Write(desc_text))
 
+            if desc == "Ascending Order":
+                explanation_text = Text("Arranging numbers from smallest to biggest", font_size=30)
+            else:
+                explanation_text = Text("Arranging numbers from biggest to smallest", font_size=30)
+            
+            explanation_text.shift(DOWN*1.5)
+            self.play(Write(explanation_text))
+            self.wait(1)
+            self.play(FadeOut(explanation_text))               
+            
+            sorted_objects = VGroup(*[MathTex(str(num), font_size=48, color=color) for num in sorted_numbers])
+            sorted_objects.arrange(RIGHT, buff=1)
+            sorted_objects.next_to(desc_text, DOWN, buff=1)
 
+            # Animate the sorting process
+            initial_positions = initial_sequence.copy()
+            sorted_indices = set()
+            for i, num in enumerate(sorted_numbers):
+                index = initial_numbers.index(num)
+                # Ensure we get the next unsorted index
+                while index in sorted_indices:
+                    index = initial_numbers.index(num, index + 1)
+                sorted_indices.add(index)
+                self.play(initial_positions[index].animate.move_to(sorted_objects[i].get_center()).set_color(color),
+                          run_time=0.5)
+            
+            self.wait(1)
+            self.play(FadeOut(desc_text), FadeOut(initial_positions))
 
+    def PlacevalueofZero(self):
+        # Title
+        title = Text("Place Value of 0 in Numbers", font_size=40)
+        self.play(Write(title))
+        self.play(title.animate.to_edge(UP))
 
+        examples = [
+            ("205", "no tens", 1),
+            ("023", "no hundreds", 0),
+            ("340", "no ones", 2)
+        ]
+        positions = [UP*2, UP*2, UP*2]
 
+        for (num, explanation, zero_index), position in zip(examples, positions):
+            num_text = VGroup(*[MathTex(digit, font_size=72) for digit in num])
+            num_text.arrange(RIGHT, buff=0.5).shift(UP*2)
 
+            self.play(Write(num_text))
 
+            # Extract digits
+            hundreds = num[0] if len(num) == 3 else "0"
+            tens = num[1] if len(num) >= 2 else "0"
+            ones = num[2] if len(num) >= 3 else num[1] if len(num) == 2 else num[0]
 
+            # Labels for hundreds, tens, ones
+            labels = VGroup(
+                VGroup(Text("Hundreds", font_size=24), MathTex(hundreds, font_size=48)).arrange(DOWN, buff=0.5).move_to(position + LEFT*3 + DOWN*3),
+                VGroup(Text("Tens", font_size=24), MathTex(tens, font_size=48)).arrange(DOWN, buff=0.5).move_to(position + DOWN*3),
+                VGroup(Text("Ones", font_size=24), MathTex(ones, font_size=48)).arrange(DOWN, buff=0.5).move_to(position + RIGHT*3 + DOWN*3)
+            )
 
+            self.play(Write(labels))
 
+            # Add arrow and explanation for 0
+            zero_digit = num_text[zero_index]
+            arrow = Arrow(start=zero_digit.get_bottom(), end=zero_digit.get_bottom() + DOWN*1, buff=0.1, color=YELLOW)
+            explanation_text = Text(explanation, font_size=24, color=YELLOW)
+            explanation_text.next_to(arrow.get_end(), DOWN)
+
+            self.play(Write(arrow), Write(explanation_text))
+            self.wait(2)
+
+            self.play(FadeOut(num_text), FadeOut(labels), FadeOut(arrow), FadeOut(explanation_text))
+
+        self.play(FadeOut(title))
 
     def SetDeveloperList(self):
         self.DeveloperList="Sindhu"
     
     def SetSourceCodeFileName(self):
-        self.SourceCodeFileName="MultiplyandDivide.py"
+        self.SourceCodeFileName="Grade3Chapter2MultiplyandDivide.py"
 
               
 if __name__ == "__main__":
