@@ -6,8 +6,10 @@ import cvo
 
 class Addition(AbstractAnim):
     def construct(self):
+        self.RenderSkillbancLogo()
         self.Add()
         self.NUM()
+        self.GithubSourceCodeReference()
 
     def Add(self):
 
@@ -52,6 +54,13 @@ class Addition(AbstractAnim):
         self.play(Create(CurvedArrow(p1.pos,p3.pos)))
         self.construct1(p4,p4)
         self.play(Create(CurvedArrow(p1.pos,p4.pos)))
+        self.fadeOutCurrentScene()
+
+    def SetDeveloperList(self):
+        self.DeveloperList="Bhaskar"
+
+    def SetSourceCodeFileName(self):
+        self.SourceCodeFileName="Grade3Chapter3Addition.py"
 
 if __name__ == "__main__":
     scene = Addition()
