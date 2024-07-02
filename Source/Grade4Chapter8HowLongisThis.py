@@ -24,6 +24,9 @@ class Grade4Chapter8HowLongisThis(AbstractAnim):
         self.Anim2()
         self.fadeOutCurrentScene()
         self.Anim3()
+        self.fadeOutCurrentScene()
+        self.conclusion()
+        self.fadeOutCurrentScene()
         self.GithubSourceCodeReference()
         
     def SetDeveloperList(self):  
@@ -39,28 +42,33 @@ class Grade4Chapter8HowLongisThis(AbstractAnim):
         self.isRandom=False
         self.positionChoice=[[-4,0,0],[4,0,0]]
         p10=cvo.CVO().CreateCVO("Length","Measurement")
-        p11=cvo.CVO().CreateCVO("Types","cm\\\\m\\\\inches")
+        p11=cvo.CVO().CreateCVO("Units","")
+        p11oname=["cm","m","inches"]
         p10.cvolist.append(p11)
+        p11.extendOname(p11oname)
         self.construct1(p10,p10)
 
     def Measurement(self):
         self.isRandom = False
         self.setNumberOfCirclePositions(4)
         p10=cvo.CVO().CreateCVO("Length","1 Meter")
-        p11=cvo.CVO().CreateCVO("Equals", "100 cm\\\\39.3 inches")
+        p11=cvo.CVO().CreateCVO("Equals", "")
+        p11oname=["100 cm","39.3 inches"]
         p12=cvo.CVO().CreateCVO("Length", "1 Centimeter")
-        p13=cvo.CVO().CreateCVO("Equals", "10mm\\\\0.39 inches")
+        p13=cvo.CVO().CreateCVO("Equals", "")
+        p13oname=["10mm","0.39 inches"]
         p10.cvolist.append(p11)
+        p11.extendOname(p11oname)
         p12.cvolist.append(p13)
+        p13.extendOname(p13oname)
         self.construct1(p10,p10)
         self.construct1(p12,p12)
        
     def Anim1(self):
         # Title
-        title = Text("Measurement Rulers: cm and inches", font_size=48)
+        title = Text("Measurement Rulers: cm and inches", font_size=48).to_edge(UP)
         self.play(Write(title))
         self.wait(2)
-        self.play(FadeOut(title))
 
         # Ruler length in centimeters (1 meter = 100 cm)
         ruler_length_cm = 100
@@ -284,6 +292,18 @@ class Grade4Chapter8HowLongisThis(AbstractAnim):
         all_elements = VGroup(addition_450, plus_sign, addition_150, equals_sign, result_600, total_distance_line, total_distance_label,total_distance_label, total_distance_line)
         self.play(FadeOut(all_elements))
         self.wait(1)
+
+    def conclusion(self):
+        self.isRandom = False
+        p10=cvo.CVO().CreateCVO("Length of Object","Big")
+        p11=cvo.CVO().CreateCVO("Use", "Bigger units(m, km)")
+        p12=cvo.CVO().CreateCVO("Length of Object", "small")
+        p13=cvo.CVO().CreateCVO("Use", "Smaller units(cm,inches)")
+
+        p10.cvolist.append(p11)
+        p12.cvolist.append(p13)
+        self.construct1(p10,p10)
+        self.construct1(p12,p12)
 
     def midpoint(p1, p2):
         return (p1 + p2) / 2
