@@ -30,6 +30,7 @@ class StatisticsAnim(AbstractAnim):
         self.Median4()
         self.cf()
         self.GithubSourceCodeReference()
+        
         # self.fadeOut()
         # self.constructDataByJSON()
         # self.fadeOut()
@@ -91,23 +92,35 @@ class StatisticsAnim(AbstractAnim):
 
     def Direct1(self):
 
-        title = Text( "Direct Method Example", font_size=48, color=BLUE)
+        title = Text("Direct Method Example", font_size=48, color=BLUE)
         title.to_edge(UP)
         self.play(Write(title))
         self.wait(2)
-        
+
         xi = [11, 14, 17, 20]
         fi = [3, 6, 8, 7]
-       
-        # Create a table to display the data
+
+        # Create the table with only the outer lines
         table = Table(
             [["xi", "fi", "fixi"],
              *[[str(x), str(f), str(f * x)] for x, f in zip(xi, fi)]],
             include_outer_lines=True
         )
         table.scale(0.4)
-        table.shift(LEFT,UP)
-        self.play(Write(table)) 
+        table.shift(LEFT + UP)
+        self.add(table.get_horizontal_lines(), table.get_vertical_lines())
+        self.play(Create(table.get_horizontal_lines()), Create(table.get_vertical_lines()))
+        self.wait(2)
+
+        rows = table.get_rows()
+        for row in rows:
+            self.play(Write(row))
+            self.wait(1)
+
+        # Add the data to the table
+        table_data = table.get_entries()
+        
+        self.play(*[Write(entry) for entry in table_data])
         self.wait(2)
         # Display the formula and calculations step by step
         formula_steps = [
@@ -116,6 +129,7 @@ class StatisticsAnim(AbstractAnim):
             MathTex(r"\sum fi = 24, \sum fixi = 393",font_size=30,color=GREEN).shift(DOWN*2),
             MathTex(r"\text{Mean} = \frac{393}{24} = 16.38",font_size=30,color=GREEN).shift(DOWN*3)
         ]
+        
 
         # Show the steps one by one
         for step in formula_steps:
@@ -183,9 +197,15 @@ class StatisticsAnim(AbstractAnim):
             include_outer_lines=True
         )
         table.scale(0.4)
-        table.shift(LEFT,UP)
-        self.play(Write(table))
+        table.shift(LEFT + UP)
+        self.add(table.get_horizontal_lines(), table.get_vertical_lines())
+        self.play(Create(table.get_horizontal_lines()), Create(table.get_vertical_lines()))
         self.wait(2)
+
+        rows = table.get_rows()
+        for row in rows:
+            self.play(Write(row))
+            self.wait(1)
        
         # Display the assumed mean formula and calculations step by step
         formula_steps = [
@@ -263,9 +283,15 @@ class StatisticsAnim(AbstractAnim):
             include_outer_lines=True
         )
         table.scale(0.4)
-        table.shift(LEFT,UP)
-        self.play(Write(table))
+        table.shift(LEFT + UP)
+        self.add(table.get_horizontal_lines(), table.get_vertical_lines())
+        self.play(Create(table.get_horizontal_lines()), Create(table.get_vertical_lines()))
         self.wait(2)
+
+        rows = table.get_rows()
+        for row in rows:
+            self.play(Write(row))
+            self.wait(1)
 
         # Display the formula and calculations step by step
         formula_steps = [
@@ -337,9 +363,15 @@ class StatisticsAnim(AbstractAnim):
             include_outer_lines=True
         )
         table.scale(0.4)
-        table.shift(LEFT*3,UP)
-        self.play(Write(table))
+        table.shift(LEFT + UP)
+        self.add(table.get_horizontal_lines(), table.get_vertical_lines())
+        self.play(Create(table.get_horizontal_lines()), Create(table.get_vertical_lines()))
         self.wait(2)
+
+        rows = table.get_rows()
+        for row in rows:
+            self.play(Write(row))
+            self.wait(1)
 
         # Display the formula and calculations step by step
         formula_steps = [
