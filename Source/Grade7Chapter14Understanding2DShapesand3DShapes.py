@@ -10,17 +10,17 @@ class Shapesanim(AbstractAnim):
     
     def construct(self):
         self.RenderSkillbancLogo()
-        #self.Shapes()
-        # self.Components()
-        # self.ExampleCube()
+        self.Shapes()
+        self.Components()
+        self.ExampleCube()
         self.Nets()
-        # self.Sketches()
-        # self.Oblique()
-        # self.Isometric()
-        # self.Shadows()
-        # self.Shadow1()
-        # self.Shadow2()
-        # self.GithubSourceCodeReference()
+        self.Sketches()
+        self.Oblique()
+        self.Isometric()
+        self.Shadows()
+        self.Shadow1()
+        self.Shadow2()
+        self.GithubSourceCodeReference()
     
         # self.fadeOut()
         # self.constructDataByJSON()
@@ -29,10 +29,10 @@ class Shapesanim(AbstractAnim):
 
     def Shapes(self):
         self.isRandom = False
-        p10=cvo.CVO().CreateCVO("Shapes", "").setPosition([0,2,0])
-        p11=cvo.CVO().CreateCVO("3DShapes", "").setPosition([3,0,0]).setangle(-TAU/4)
+        p10=cvo.CVO().CreateCVO("Shapes", "").setPosition([-3,0,0])
+        p11=cvo.CVO().CreateCVO("3DShapes", "").setPosition([2,2,0]).setangle(-TAU/4)
         
-        p12=cvo.CVO().CreateCVO("2DShapes", "").setPosition([-3,0,0]).setangle(TAU/4)
+        p12=cvo.CVO().CreateCVO("2DShapes", "").setPosition([2,-2,0]).setangle(-TAU/4)
         
         p10.cvolist.append(p11)
         p10.cvolist.append(p12)
@@ -46,15 +46,17 @@ class Shapesanim(AbstractAnim):
 
         self.isRandom = False
         p10=cvo.CVO().CreateCVO("3DShapes", "").setPosition([-6,0,0])
-        p11=cvo.CVO().CreateCVO("Components", "").setPosition([-3,0,0]).setangle(-TAU/6)
-        p12=cvo.CVO().CreateCVO("Faces", "").setPosition([3,2.5,0]).setangle(-TAU/6)
-        p13=cvo.CVO().CreateCVO("Edges", "").setPosition([3,0,0]).setangle(-TAU/6)
-        p14=cvo.CVO().CreateCVO("Vertices", "").setPosition([3,-2.5,0]).setangle(-TAU/6)
+        p11=cvo.CVO().CreateCVO("Components", "").setPosition([-3,0,0]).setangle(-TAU/4)
+        p12=cvo.CVO().CreateCVO("Faces", "").setPosition([1,2.5,0]).setangle(-TAU/4)
+        p13=cvo.CVO().CreateCVO("Edges", "").setPosition([2,0,0]).setangle(-TAU/4)
+        p14=cvo.CVO().CreateCVO("Vertices", "").setPosition([1,-2.5,0]).setangle(-TAU/4)
 
         p10.cvolist.append(p11)
         p11.cvolist.append(p12)
-        p11.cvolist.append(p14)
         p11.cvolist.append(p13)
+        p11.cvolist.append(p14)
+        
+        
         
 
         self.setNumberOfCirclePositions(6)
@@ -155,18 +157,19 @@ class Shapesanim(AbstractAnim):
     def Nets(self):
         title = Text("Nets of 3D Shapes", font_size=40, color=BLUE)
         title.to_edge(UP)
-        colors = [RED, GREEN, BLUE, YELLOW, ORANGE, PURPLE]
+        colors = [BLUE, BLUE, BLUE, BLUE, BLUE, BLUE]
 
         self.play(Write(title))
         self.wait(1)
+
         # Create the net of the cube
         net = VGroup(
             Square(side_length=1.5, fill_opacity=0.5, fill_color=colors[0]).shift(UP*2),
-            Square(side_length=1.5, fill_opacity=0.5, fill_color=colors[1]).shift(LEFT*1.5,UP*0.5),
+            Square(side_length=1.5, fill_opacity=0.5, fill_color=colors[1]).shift(LEFT*1.5 + UP*0.5),
             Square(side_length=1.5, fill_opacity=0.5, fill_color=colors[2]).shift(UP*0.5),
-            Square(side_length=1.5, fill_opacity=0.5, fill_color=colors[3]).shift(RIGHT*1.5,UP*0.5),
-            Square(side_length=1.5, fill_opacity=0.5, fill_color=colors[4]).shift(DOWN*1.5,UP*0.5),
-            Square(side_length=1.5, fill_opacity=0.5, fill_color=colors[5]).shift(DOWN*3,UP*0.5)
+            Square(side_length=1.5, fill_opacity=0.5, fill_color=colors[3]).shift(RIGHT*1.5 + UP*0.5),
+            Square(side_length=1.5, fill_opacity=0.5, fill_color=colors[4]).shift(DOWN*1.5 + UP*0.5),
+            Square(side_length=1.5, fill_opacity=0.5, fill_color=colors[5]).shift(DOWN*3 + UP*0.5)
         )
 
         self.play(FadeIn(net))
@@ -175,27 +178,28 @@ class Shapesanim(AbstractAnim):
         # Fold the net into a cube
         folds = [
             # Fold the top face down
-            (0, DOWN, PI/2),
+            (0, DOWN, PI / 2),
             # Fold the left face to the right
-            (1, RIGHT, PI/2),
+            (1, RIGHT, PI / 2),
             # Fold the right face to the left
-            (3, LEFT, PI/2),
+            (3, LEFT, PI / 2),
             # Fold the bottom face up
-            (4, UP, PI/2),
-            
-            (5, UP, PI/2)
+            (4, UP, PI / 2),
+            # Fold the far bottom face up
+            (5, UP, PI / 2)
         ]
 
         for index, direction, angle in folds:
             face = net[index]
             axis = np.cross([0, 0, 1], direction)
-            self.play(Rotate(face, angle, axis=axis, about_point=face.get_center() + direction))
+            self.play(Rotate(face, angle, axis=axis, about_point=face.get_center() + direction * 0.75))
             self.wait(1)
 
-        # Adjust final face to align properly
-        face = net[5]
-        self.play(Rotate(face, PI/2, axis=RIGHT, about_point=face.get_center() + UP*2))
+        # Adjust the final face to align properly
+        self.play(Rotate(net[5], -PI / 2, axis=RIGHT, about_point=net[5].get_center() + UP*1.5))
 
+        self.wait(2)
+        self.play(FadeOut(net))
         self.wait(2)
         self.fadeOutCurrentScene()
 
@@ -203,20 +207,20 @@ class Shapesanim(AbstractAnim):
 
     def Sketches(self):
        self.isRandom = False
-       p10=cvo.CVO().CreateCVO("Sketches","").setPosition([0,2.5,0])
-       p11=cvo.CVO().CreateCVO("Oblique Sketches", "").setPosition([-3,1,0]).setangle(-TAU/4)
-       p12=cvo.CVO().CreateCVO("Isometric Sketches", "").setPosition([3,1,0]).setangle(-TAU/4)
-       p13=cvo.CVO().CreateCVO("Property", "Focuses on face of object").setPosition([-5,-2,0]).setangle(-TAU/4)
-       p14=cvo.CVO().CreateCVO("Property", "45 degree for lines").setPosition([-2,-2,0]).setangle(-TAU/4)
-       p15=cvo.CVO().CreateCVO("Property", "Focuses on edge of object").setPosition([2,-2,0]).setangle(-TAU/4)
-       p16=cvo.CVO().CreateCVO("Property", "lines are drawn at 30 degree").setPosition([5,-2,0]).setangle(-TAU/4)
+       p10=cvo.CVO().CreateCVO("Sketches","").setPosition([-6,0,0])
+       p11=cvo.CVO().CreateCVO("Oblique Sketches", "").setPosition([-3,1.5,0]).setangle(-TAU/4)
+       p12=cvo.CVO().CreateCVO("Isometric Sketches", "").setPosition([-3,-1.5,0]).setangle(-TAU/4)
+       p13=cvo.CVO().CreateCVO("Property", "Focuses on face of object").setPosition([2,2.5,0]).setangle(-TAU/4)
+       p14=cvo.CVO().CreateCVO("Property", "45 degree for lines").setPosition([4.5,1.5,0]).setangle(-TAU/4)
+       p15=cvo.CVO().CreateCVO("Property", "Focuses on edge of object").setPosition([4.5,-1.5,0]).setangle(-TAU/4)
+       p16=cvo.CVO().CreateCVO("Property", "lines are drawn at 30 degree").setPosition([2,-2.5,0]).setangle(-TAU/4)
       
        p10.cvolist.append(p11)
        p10.cvolist.append(p12)
        p11.cvolist.append(p13)
        p11.cvolist.append(p14)
-       p12.cvolist.append(p15)
        p12.cvolist.append(p16)
+       p12.cvolist.append(p15)
        
        p13.setcircleradius(1.5)
        p14.setcircleradius(1.5)
@@ -359,9 +363,9 @@ class Shapesanim(AbstractAnim):
 
     def Shadows(self):
         self.isRandom = False
-        p10=cvo.CVO().CreateCVO("Shadow of Shape","").setPosition([0,-2,0])
-        p11=cvo.CVO().CreateCVO("Property ","Depends on shape of object").setPosition([-3,1,0])
-        p12=cvo.CVO().CreateCVO("Property ","Depends on source of light with respect to object").setPosition([3,1,0])
+        p10=cvo.CVO().CreateCVO("Shadow of Shape","").setPosition([-3,0,0])
+        p11=cvo.CVO().CreateCVO("Property ","Depends on shape of object").setPosition([1,2,0])
+        p12=cvo.CVO().CreateCVO("Property ","Depends on source of light with respect to object").setPosition([1,-2,0])
         p11.setcircleradius(2)
         p12.setcircleradius(2)
         p10.cvolist.append(p11)
