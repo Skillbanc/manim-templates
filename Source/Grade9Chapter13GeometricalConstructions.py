@@ -9,7 +9,7 @@ class GeometricalConstructions3(AbstractAnim):
 
     # use the appropriate method based on how the data is stored
     def construct(self):
-        self.RenderSkillbancLogo()
+        """self.RenderSkillbancLogo()
         self.fadeOutCurrentScene()
         self.constructDataByCVO()
         self.fadeOutCurrentScene()
@@ -24,13 +24,13 @@ class GeometricalConstructions3(AbstractAnim):
         self.BBAS2()
         self.fadeOutCurrentScene()
         self.BBAD2()
-        self.fadeOutCurrentScene()
+        self.fadeOutCurrentScene()"""
         self.P2BA()
         self.fadeOutCurrentScene()
-        self.SpecialCase()
+        """self.SpecialCase()
         self.fadeOutCurrentScene()
         self.GithubSourceCodeReference()
-        self.fadeOutCurrentScene()
+        self.fadeOutCurrentScene()"""
         # self.constructDataByJSON()
         # self.fadeOut()
     # render using CVO data object
@@ -106,6 +106,7 @@ class GeometricalConstructions3(AbstractAnim):
         p12=cvo.CVO().CreateCVO("Construction Steps","").setPosition([2,0,0]).setangle([-TAU/4])
         p12onamelist=["Draw line with perimeter","draw angles,bisectors for them","join intersection point","draw bisectors and join"]
         p12.extendOname(p12onamelist)
+        p12.circle_radius=2
         p11.cvolist.append(p12) 
         self.isRandom=False
         self.setNumberOfCirclePositions(2)
