@@ -110,18 +110,18 @@ class AbstractAnim(Scene):
         if( c1nameposition == None):
             c1nameposition = cir1.get_top()
         if (cvo.IsMathText):
-            cname = MathTex(cvo.cname,color=self.colorChoice[colorChoiceIndex]).move_to(c1nameposition).shift(UP * 0.25)
+            cname = MathTex(cvo.cname,color=self.colorChoice[colorChoiceIndex], tex_template=TexFontTemplates.epigrafica).move_to(c1nameposition).shift(UP * 0.25)
         else:
-            cname = Tex(cvo.cname,color=self.colorChoice[colorChoiceIndex]).move_to(c1nameposition).shift(UP * 0.25)
+            cname = Tex(cvo.cname,color=self.colorChoice[colorChoiceIndex], tex_template=TexFontTemplates.epigrafica).move_to(c1nameposition).shift(UP * 0.25)
         
         o1nameposition = cvo.o1nameposition
         if( o1nameposition == None):
             o1nameposition = star.get_top()
         
         if (cvo.IsMathText):
-            oname = MathTex(cvo.oname,color=self.colorChoice[colorChoiceIndex]).move_to(o1nameposition).shift(UP * 0.15)
+            oname = MathTex(cvo.oname,color=self.colorChoice[colorChoiceIndex], tex_template=TexFontTemplates.epigrafica).move_to(o1nameposition).shift(UP * 0.15)
         else:
-            oname = Tex(cvo.oname,color=self.colorChoice[colorChoiceIndex]).move_to(o1nameposition).shift(UP * 0.15)
+            oname = Tex(cvo.oname,color=self.colorChoice[colorChoiceIndex], tex_template=TexFontTemplates.epigrafica).move_to(o1nameposition).shift(UP * 0.15)
         
         
         self.play(Create(cir1,run_time=cvo.duration),Create(cname,run_time=cvo.duration))

@@ -7,7 +7,7 @@ import cvo
 
 # Read Excel data into a pandas DataFrame
 xlsx_path = "/Users/hridaybhushan/Downloads/NRIVAfinalList.xlsx"
-df = pd.read_excel(xlsx_path, sheet_name='Sheet2')  # Adjust sheet_name as per your Excel file
+df = pd.read_excel(xlsx_path, sheet_name='Sheet1')  # Adjust sheet_name as per your Excel file
 
 class MyAnimation(AbstractAnim):
     def construct(self):
