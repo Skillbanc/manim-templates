@@ -25,30 +25,30 @@ class Time(AbstractAnim):
   
     def Clock(self):
         self.isRandom = False
-        p10=cvo.CVO().CreateCVO("Time ","").setPosition([4,0,0])
-        p11=cvo.CVO().CreateCVO("Before Noon", "am").setPosition([-4,2,0])
-        p12=cvo.CVO().CreateCVO("After Noon", "pm").setPosition([-4,0,0])
-        p15=cvo.CVO().CreateCVO("1 day", "24 hours").setPosition([-4,-2,0])
-        p13=cvo.CVO().CreateCVO("1 hour", "60 minutes").setPosition([-2,-2,0]).setangle(-TAU/4)
-        p14=cvo.CVO().CreateCVO("1 minute", "60 seconds").setPosition([0,-2,0])
+        p10=cvo.CVO().CreateCVO("Time ","").setPosition([-4,0,0])
+        p11=cvo.CVO().CreateCVO("Before Noon", "am").setPosition([4,2,0])
+        p12=cvo.CVO().CreateCVO("After Noon", "pm").setPosition([4,-2,0])
+        # p15=cvo.CVO().CreateCVO("1 day", "24 hours").setPosition([-4,-2,0])
+        # p13=cvo.CVO().CreateCVO("1 hour", "60 minutes").setPosition([-2,-2,0]).setangle(-TAU/4)
+        # p14=cvo.CVO().CreateCVO("1 minute", "60 seconds").setPosition([0,-2,0])
         
         p10.cvolist.append(p11)
         p10.cvolist.append(p12)
-        p10.cvolist.append(p15)
-        p10.cvolist.append(p13)
-        p10.cvolist.append(p14)
+        # p10.cvolist.append(p15)
+        # p10.cvolist.append(p13)
+        # p10.cvolist.append(p14)
        
-        self.setNumberOfCirclePositions(6)
+        self.setNumberOfCirclePositions(3)
         self.construct1(p10,p10)  
 
     def Clock4(self):
         self.isRandom = False
-        p10=cvo.CVO().CreateCVO("Clock ","").setPosition([4,0,0])
-        p11=cvo.CVO().CreateCVO("Smaller Hand", "Hours").setPosition([-4,2,0])
-        p12=cvo.CVO().CreateCVO("Longer Hand", "Minutes").setPosition([-4,0,0])
-        p13=cvo.CVO().CreateCVO("", "").setPosition([0,-2,0])
-        p13.extendOname(["Long hand 1 - 5 min","Long hand 2 - 10 min","Long hand 3 - 15 min"])
-        p13.setcircleradius(2)
+        p10=cvo.CVO().CreateCVO("Clock ","").setPosition([-4,2,0])
+        p11=cvo.CVO().CreateCVO("Smaller Hand", "Hours").setPosition([-4,-2,0])
+        p12=cvo.CVO().CreateCVO("Longer Hand", "Minutes").setPosition([0,0,0])
+        p13=cvo.CVO().CreateCVO("", "").setPosition([4,0,0])
+        p13.extendOname(["Long hand 1 - 5 min","Long hand 2 - 10 min","Long hand 3 - 15 min","and so on"])
+        p13.setcircleradius(2.5)
         p10.cvolist.append(p11)
         p10.cvolist.append(p12)
         p12.cvolist.append(p13)
@@ -74,8 +74,8 @@ class Time(AbstractAnim):
 
         self.play(Create(hour_labels))
       
-        hour_hand = Line(ORIGIN, 0.5 * UP, color=RED, stroke_width=8)
-        minute_hand = Line(ORIGIN, RIGHT, color=BLUE, stroke_width=6)
+        hour_hand = Line(ORIGIN, 0.7 * UP, color=RED, stroke_width=8)
+        minute_hand = Line(ORIGIN, RIGHT *1.2, color=BLUE, stroke_width=6)
         
         self.play(Create(hour_hand))
         self.play(Create (minute_hand))
@@ -99,8 +99,8 @@ class Time(AbstractAnim):
 
         self.play(Create(hour_labels))
       
-        hour_hand = Line(ORIGIN, 0.5 * DOWN, color=RED, stroke_width=8)
-        minute_hand = Line(ORIGIN, LEFT, color=BLUE, stroke_width=6)
+        hour_hand = Line(ORIGIN, 0.7 * DOWN, color=RED, stroke_width=8)
+        minute_hand = Line(ORIGIN, LEFT * 1.2, color=BLUE, stroke_width=6)
         
         self.play(Create(hour_hand))
         self.play(Create (minute_hand))
@@ -110,11 +110,11 @@ class Time(AbstractAnim):
 
     def Year(self):
         self.isRandom = False
-        p10=cvo.CVO().CreateCVO("Year ","").setPosition([-3,-2,0])
-        p11=cvo.CVO().CreateCVO("1 Year", "12 Months").setPosition([-3,2,0])
-        p13=cvo.CVO().CreateCVO("", "365 Days").setPosition([-1,2,0])
+        p10=cvo.CVO().CreateCVO("Year ","1").setPosition([-4,2,0])
+        p11=cvo.CVO().CreateCVO("Months", "12 ").setPosition([-3,-2,0])
+        p13=cvo.CVO().CreateCVO(" Days", "365").setPosition([-1,2,0])
         
-        p12=cvo.CVO().CreateCVO("Names", "").setPosition([3,-2,0])
+        p12=cvo.CVO().CreateCVO("Month Names", "").setPosition([3,0,0])
         p12.extendOname(["January","February","March","April","May","June","July","August","September","October","November","December"])
        
         p12.setcircleradius(1.5)
@@ -128,17 +128,18 @@ class Time(AbstractAnim):
 
     def year2(self):
         self.isRandom = False
-        p10=cvo.CVO().CreateCVO("Leap Year ","Every 4 Years").setPosition([-4,-2,0])
-        p11=cvo.CVO().CreateCVO("", "366 Days").setPosition([-4,2,0])
-        p14=cvo.CVO().CreateCVO("","Extra day in February").setPosition([4,2,0])
-
-        p12=cvo.CVO().CreateCVO("Last Occured", "2024").setPosition([4,-2,0])
-        p13=cvo.CVO().CreateCVO("Next Occurence", "2028").setPosition([1,0,0])
+        p10=cvo.CVO().CreateCVO("Leap Year ","").setPosition([-4,2,0])
+        p11=cvo.CVO().CreateCVO("Days", "366 ").setPosition([1,2,0])
+        p14=cvo.CVO().CreateCVO("Condition", "Once in 4Years ").setPosition([4,2,0]).setangle(- TAU/ 10)
+        p15=cvo.CVO().CreateCVO("Extra day "," February - 29 Days").setPosition([4,0,0]).setangle(- TAU/ 10)
+        p12=cvo.CVO().CreateCVO("Last Occured", "2024").setPosition([4,-2,0]).setangle(- TAU/ 10)
+       
 
         p10.cvolist.append(p11)
-        p11.cvolist.append(p14)
-        p11.cvolist.append(p12)
-        p11.cvolist.append(p13)
+        p10.cvolist.append(p14)
+        p10.cvolist.append(p15)
+        p10.cvolist.append(p12)
+        
 
         self.setNumberOfCirclePositions(5)
         self.construct1(p10,p10) 
