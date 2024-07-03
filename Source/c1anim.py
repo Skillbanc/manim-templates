@@ -22,7 +22,8 @@ class C1Anim(AbstractAnim):
         
     # render using CVO data object
     def constructDataByCVO(self):
-        p10=cvo.CVO().CreateCVO("Person","$x^2+2x+1=0$")
+        p10=cvo.CVO().CreateCVO("Person","")
+        p10.extendOname(['a','b','c'])
     
         
         self.construct1(p10,p10)
