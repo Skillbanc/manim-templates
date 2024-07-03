@@ -11,25 +11,25 @@ class StatisticsAnim(AbstractAnim):
     def construct(self):
         
         
-        self.RenderSkillbancLogo()
-        self.Statistics()
-        self.Mean()
-        self.Direct()
-        self.Direct1()
-        self.Assumed()
-        self.Assumed1()
-        self.Step()
-        self.Self2()
-        self.Mode()
-        self.Mode1()
-        self.Mode2()
-        self.Median()
-        self.Median1()
-        self.Median2()
-        self.Median3()
-        self.Median4()
+        # self.RenderSkillbancLogo()
+        # self.Statistics()
+        # self.Mean()
+        # self.Direct()
+        # self.Direct1()
+        # self.Assumed()
+        # self.Assumed1()
+        # self.Step()
+        # self.Self2()
+        # self.Mode()
+        # self.Mode1()
+        # self.Mode2()
+        # self.Median()
+        # self.Median1()
+        # self.Median2()
+        # self.Median3()
+        # self.Median4()
         self.cf()
-        self.GithubSourceCodeReference()
+        # self.GithubSourceCodeReference()
         
         # self.fadeOut()
         # self.constructDataByJSON()
@@ -95,36 +95,42 @@ class StatisticsAnim(AbstractAnim):
         title = Text("Direct Method Example", font_size=48, color=BLUE)
         title.to_edge(UP)
         self.play(Write(title))
-        self.wait(2)
+        self.wait(0.5)
 
         xi = [11, 14, 17, 20]
         fi = [3, 6, 8, 7]
+        fixi = [f * x for f, x in zip(fi, xi)]
+
+        # Calculate the summations
+        sum_fi = sum(fi)
+        sum_fixi = sum(fixi)
 
         # Create the table with only the outer lines
         table = Table(
             [["xi", "fi", "fixi"],
-             *[[str(x), str(f), str(f * x)] for x, f in zip(xi, fi)]],
+             *[[str(x), str(f), str(fx)] for x, f, fx in zip(xi, fi, fixi)],
+             ["", "Σfi = " + str(sum_fi), "Σfixi = " + str(sum_fixi)]],
             include_outer_lines=True
         )
         table.scale(0.4)
         table.shift(LEFT + UP)
         self.add(table.get_horizontal_lines(), table.get_vertical_lines())
         self.play(Create(table.get_horizontal_lines()), Create(table.get_vertical_lines()))
-        self.wait(2)
+        self.wait(0.5)
 
         rows = table.get_rows()
         for row in rows:
             self.play(Write(row))
-            self.wait(1)
+            self.wait(0.5)
 
         # Add the data to the table
         table_data = table.get_entries()
-        
         self.play(*[Write(entry) for entry in table_data])
-        self.wait(2)
+        self.wait(0.5)
+
         # Display the formula and calculations step by step
         formula_steps = [
-            MathTex(r"\text{Mean } (\bar{x}) = \frac{\sum f_i x_i}{\sum f_i}", font_size=36, color=YELLOW).shift(DOWN*1),
+            MathTex(r"\text{Mean } (\bar{x}) = \frac{\sum f_i x_i}{\sum f_i}", font_size=36, color=YELLOW).next_to(table,RIGHT*3),
             
             MathTex(r"\sum fi = 24, \sum fixi = 393",font_size=30,color=GREEN).shift(DOWN*2),
             MathTex(r"\text{Mean} = \frac{393}{24} = 16.38",font_size=30,color=GREEN).shift(DOWN*3)
@@ -134,7 +140,7 @@ class StatisticsAnim(AbstractAnim):
         # Show the steps one by one
         for step in formula_steps:
             self.play(Write(step))
-            self.wait(2)
+            self.wait(0.5)
 
         self.fadeOutCurrentScene()    
              
@@ -145,11 +151,11 @@ class StatisticsAnim(AbstractAnim):
         title.to_edge(UP)
        
         formula = MathTex(
-            r"\text{Mean } (\bar{x}) = a + \frac{\sum f_i d_i}{\sum f_i}", font_size=36, color=YELLOW
+            r"\text{Mean } (\bar{x}) = A + \frac{\sum f_i d_i}{\sum f_i}", font_size=36, color=YELLOW
         )
         formula.next_to(title, DOWN, buff=0.5)
         
-        a_def1 = Tex(r"$a =$ assumed mean",font_size=34)
+        a_def1 = Tex(r"$A =$ assumed mean",font_size=34)
         a_def1.next_to(formula, DOWN, buff=0.5)
         a_def2 = Tex(r"$d_i = x_i - a =$ deviation of $i$-th class",font_size=34)
         a_def2.next_to(a_def1, DOWN, buff=0.25)
@@ -157,9 +163,9 @@ class StatisticsAnim(AbstractAnim):
         a_def3.next_to(a_def2, DOWN, buff=0.25)
 
         self.play(Write(title))
-        self.wait(2)
+        self.wait(1)
         self.play(Write(formula))
-        self.wait(2)
+        self.wait(1)
         self.play(Write(a_def1))
         self.wait(1)
         self.play(Write(a_def2))
@@ -172,7 +178,7 @@ class StatisticsAnim(AbstractAnim):
         title = Text("Assumed Mean Method Example", font_size=40, color=BLUE)
         title.to_edge(UP)
         self.play(Write(title))
-        self.wait(2)
+        self.wait(1)
 
         classes = ["0-10", "10-20", "20-30", "30-40", "40-50"]
         frequencies = [12, 28, 32, 25, 13]
@@ -193,25 +199,32 @@ class StatisticsAnim(AbstractAnim):
         # Create a table to display the data
         table = Table(
             [["Class (CI)", "Frequency (fi)", "Class mark (xi)", "di = xi - a", "fidi"],
-             *[[ci, str(fi), str(xi), str(di), str(fidi)] for ci, fi, xi, di, fidi in zip(classes, frequencies, class_marks, deviations, fi_di)]],
+             *[[ci, str(fi), str(xi), str(di), str(fidi)] for ci, fi, xi, di, fidi in zip(classes, frequencies, class_marks, deviations, fi_di)],
+             ["", f"Σfi = {total_frequency}", "", "", f"Σfidi = {sum_fi_di}"]],
             include_outer_lines=True
         )
         table.scale(0.4)
         table.shift(LEFT + UP)
         self.add(table.get_horizontal_lines(), table.get_vertical_lines())
         self.play(Create(table.get_horizontal_lines()), Create(table.get_vertical_lines()))
-        self.wait(2)
+        self.wait(0.5)
 
         rows = table.get_rows()
         for row in rows:
             self.play(Write(row))
-            self.wait(1)
-       
+            self.wait(0.5)
+
+        # Add the data to the table
+        table_data = table.get_entries()
+        self.play(*[Write(entry) for entry in table_data])
+        self.wait(0.5)
+        
+        
         # Display the assumed mean formula and calculations step by step
         formula_steps = [
-            MathTex(r"\text{Mean} = a + \frac{\sum f_i \cdot d_i}{\sum f_i}",font_size=30,color=YELLOW).shift(RIGHT*5),
-            
-            MathTex(r"\sum f_i = 110, \sum f_i d_i = -10",font_size=25,color=GREEN).shift(DOWN),
+            MathTex(r"\text{Mean} = A + \frac{\sum f_i \cdot d_i}{\sum f_i}",font_size=30,color=YELLOW).shift(RIGHT*5.5),
+            MathTex("Assumed Mean(A) = 25",font_size=30,color=YELLOW).shift(DOWN*2+LEFT*4),
+            MathTex(r"\sum f_i = 110, \sum f_i d_i = -10",font_size=25,color=GREEN).shift(DOWN*1.2),
             MathTex(r"\text{Mean} = 25 + \frac{-10}{110}",font_size=25,color=GREEN).shift(DOWN * 2),
             MathTex(r"\text{Mean} = 25 - \frac{1}{11}",font_size=25,color=GREEN).shift(DOWN * 3),
             MathTex(r"\text{Mean} = \frac{275 - 1}{11}",font_size=25,color=GREEN).shift(RIGHT*3,DOWN * 2),
@@ -230,12 +243,12 @@ class StatisticsAnim(AbstractAnim):
         title = Text("MEAN : Step - Deviation Method", font_size=48,color=BLUE).to_edge(UP)
 
         formula = MathTex(
-            r"\text{Mean } (\bar{x}) = a + h \left[ \frac{\sum u_i f_i}{\sum f_i} \right]",
+            r"\text{Mean } (\bar{x}) = A + h \left[ \frac{\sum u_i f_i}{\sum f_i} \right]",
             font_size=36,color=YELLOW 
              
         ).next_to(title, DOWN, buff=0.5)
 
-        a_text = MathTex(r"a = \text{assumed mean}", font_size=36).next_to(formula, DOWN, buff=0.5)
+        a_text = MathTex(r"A = \text{assumed mean}", font_size=36).next_to(formula, DOWN, buff=0.5)
         h_text = MathTex(r"h = \text{size of class}", font_size=36).next_to(a_text, DOWN, buff=0.25)
         ui_text = MathTex(r"u_i = \frac{x_i - a}{h}", font_size=36).next_to(h_text, DOWN, buff=0.25)
 
@@ -254,10 +267,10 @@ class StatisticsAnim(AbstractAnim):
         self.fadeOutCurrentScene()
 
     def Self2(self):
-        title = Text("Step Deviation Method Example", font_size=38, color=BLUE)
+        title = Text("Step Deviation Method Example", font_size=36, color=BLUE)
         title.to_edge(UP)
         self.play(Write(title))
-        self.wait(2)
+        self.wait(1)
 
         class_intervals = ["50-70", "70-90", "90-110", "110-130", "130-150", "150-170"]
         fi = [15, 10, 20, 22, 16, 17]
@@ -265,41 +278,49 @@ class StatisticsAnim(AbstractAnim):
         A = 50
         h = 20
 
-        # Calculate ui and fixi
+        # Calculate ui and fi*ui
         ui = [(x - A) / h for x in xi]
-        fixi = [f * ui_val for f, ui_val in zip(fi, ui)]
+        fiui = [f * ui_val for f, ui_val in zip(fi, ui)]
 
-        # Calculate the sum of fi and fixi
+        # Calculate the sum of fi and fi*ui
         sum_fi = sum(fi)
-        sum_fixi = sum(fixi)
+        sum_fiui = sum(fiui)
 
         # Calculate the step deviation mean
-        step_deviation_mean = A + h * (sum_fixi / sum_fi)
+        step_deviation_mean = A + h * (sum_fiui / sum_fi)
 
         # Create a table to display the data
         table = Table(
-            [["Class Interval", "fi", "xi", "ui", "fiui", "fixi",],
-             *[[interval, str(f), str(x), str(u), str(f * u), str(f * ui_val)] for interval, f, x, u, ui_val, fixi_val in zip(class_intervals, fi, xi, ui, ui, fixi)]],
+            [["Class Interval", "fi", "xi", "ui", "fiui"],
+             *[[interval, str(f), str(x), str(u), str(f * u)] for interval, f, x, u in zip(class_intervals, fi, xi, ui)],
+             ["", f"Σfi = {sum_fi}", "", "", f"Σfiui = {sum_fiui}"]],
             include_outer_lines=True
         )
         table.scale(0.4)
         table.shift(LEFT + UP)
+        
+        # Add the table lines
         self.add(table.get_horizontal_lines(), table.get_vertical_lines())
         self.play(Create(table.get_horizontal_lines()), Create(table.get_vertical_lines()))
-        self.wait(2)
+        self.wait(0.5)
 
         rows = table.get_rows()
         for row in rows:
             self.play(Write(row))
-            self.wait(1)
+            self.wait(0.5)
+
+        # Add the data to the table
+        table_data = table.get_entries()
+        self.play(*[Write(entry) for entry in table_data])
+        self.wait(0.5)
 
         # Display the formula and calculations step by step
         formula_steps = [
-            MathTex(r"\text{Step Deviation Mean} = A + h \left( \frac{\sum u_i f_i}{\sum f_i} \right)",font_size=30,color=YELLOW).shift(LEFT*4,DOWN * 1.5),
+            MathTex(r"\text{Step Deviation Mean} = A + h \left( \frac{\sum u_i f_i}{\sum f_i} \right)",font_size=30,color=YELLOW).shift(LEFT*4,DOWN * 2),
+            MathTex("Assumed Mean(A) = 50",font_size=30,color=YELLOW).shift(LEFT*4,DOWN * 3),
+            MathTex(r"h = 20, \sum fi = 100,\sum u_i f_i = 65",font_size=25,color=GREEN).shift(RIGHT*2.5,DOWN * 2),
             
-            MathTex(r"A = 50, h = 20, \sum fi = 100",font_size=25,color=GREEN).shift(RIGHT,DOWN * 1.5),
-            MathTex(r"\sum u_i f_i = 65, \sum fixi = 1000",font_size=25,color=GREEN).shift(RIGHT,DOWN * 2.5),
-            MathTex(r"\text{Step Deviation Mean} = 50 + 20 \left( \frac{65}{100} \right) = 113",font_size=25,color=GREEN).shift(RIGHT,DOWN * 3.5)
+            MathTex(r"\text{Step Deviation Mean} = 50 + 20 \left( \frac{65}{100} \right) = 113",font_size=25,color=GREEN).shift(RIGHT*2.5,DOWN * 3)
         ]
 
         # Show the steps one by one
@@ -351,19 +372,23 @@ class StatisticsAnim(AbstractAnim):
 
         class_intervals = ["10-20", "20-30", "30-40", "40-50", "50-60", "60-70"]
         fi = [7, 14, 13, 12, 20, 11]
-        
-        
 
-    
+        # Find the modal class (the one with the highest frequency)
+        modal_class_index = fi.index(max(fi))
+        
+        # Assign colors to f1, f0, f2
+        f1_color = BLUE
+        f0_color = RED
+        f2_color = GREEN
 
         # Create a table to display the data
         table = Table(
             [["Class Interval", "fi"],
-             *[[interval, str(f), ] for interval, f, in zip(class_intervals, fi,)]],
+             *[[interval, str(f)] for interval, f in zip(class_intervals, fi)]],
             include_outer_lines=True
         )
         table.scale(0.4)
-        table.shift(LEFT + UP)
+        table.shift(LEFT*3 + UP)
         self.add(table.get_horizontal_lines(), table.get_vertical_lines())
         self.play(Create(table.get_horizontal_lines()), Create(table.get_vertical_lines()))
         self.wait(2)
@@ -373,6 +398,31 @@ class StatisticsAnim(AbstractAnim):
             self.play(Write(row))
             self.wait(1)
 
+        # Add the data to the table
+        table_data = table.get_entries()
+        self.play(*[Write(entry) for entry in table_data])
+        self.wait(2)
+
+        # Get the specific entries for f1, f0, f2 and change their colors
+        f1_entry = table_data[(modal_class_index + 1) * 2 + 1]
+        f0_entry = table_data[(modal_class_index) * 2 + 1] if modal_class_index > 0 else None
+        f2_entry = table_data[(modal_class_index + 2) * 2 + 1] if modal_class_index < len(fi) - 1 else None
+
+        if f1_entry:
+            f1_label = MathTex(r"= f_1", font_size=24, color=f1_color).next_to(f1_entry, RIGHT*2)
+            self.play(Write(f1_label))
+            self.play(f1_entry.animate.set_color(f1_color))
+        if f0_entry:
+            f0_label = MathTex(r"= f_0", font_size=24, color=f0_color).next_to(f0_entry, RIGHT*2)
+            self.play(Write(f0_label))
+            self.play(f0_entry.animate.set_color(f0_color))
+        if f2_entry:
+            f2_label = MathTex(r"=f_2", font_size=24, color=f2_color).next_to(f2_entry, RIGHT*2)
+            self.play(Write(f2_label))
+            self.play(f2_entry.animate.set_color(f2_color))
+
+        self.wait(2)
+
         # Display the formula and calculations step by step
         formula_steps = [
             MathTex( r"\text{Mode} = l + \left(\frac{f_1 - f_0}{2f_1 - f_0 - f_2}\right) \times h",font_size=30,color=YELLOW).shift(LEFT*3,DOWN*2.5),
@@ -381,7 +431,7 @@ class StatisticsAnim(AbstractAnim):
             self.play(Write(step))
             self.wait(2) 
 
-        title =  MathTex(r"l = 50, h = 10",font_size=30).shift(RIGHT*4,UP)
+        title =  MathTex(r"l = 50, h = 10",font_size=30).shift(RIGHT*4+UP*2)
         self.play(Write(title))
         
         title1 = MathTex(r"f_0 = 12, f_1 = 20, f_2 = 11",font_size=30).next_to( title, DOWN)
@@ -539,7 +589,7 @@ class StatisticsAnim(AbstractAnim):
 
         title = Text("Graphical Representation of Cumulative Frequency Distribution", font_size=30, color=BLUE)
         self.play(Write(title))
-        self.wait(2)
+        self.wait(1)
         self.play(FadeOut(title))
         
         title1 = Text("Example Data", font_size=30, color=BLUE).to_edge(UP)
@@ -603,9 +653,9 @@ class StatisticsAnim(AbstractAnim):
         
         for dot, line in zip(dots, lines):
             self.play(Create(dot))
-            self.wait(0.5)
+            self.wait()
             self.play(Create(line))
-            self.wait(0.5)
+            self.wait()
 
         self.play(Create(dots[-1]))  # Last dot
         self.wait(1)
