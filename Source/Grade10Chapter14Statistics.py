@@ -11,25 +11,25 @@ class StatisticsAnim(AbstractAnim):
     def construct(self):
         
         
-        # self.RenderSkillbancLogo()
-        # self.Statistics()
-        # self.Mean()
-        # self.Direct()
-        # self.Direct1()
-        # self.Assumed()
-        # self.Assumed1()
-        # self.Step()
-        # self.Self2()
-        # self.Mode()
-        # self.Mode1()
-        # self.Mode2()
-        # self.Median()
-        # self.Median1()
-        # self.Median2()
-        # self.Median3()
-        # self.Median4()
+        self.RenderSkillbancLogo()
+        self.Statistics()
+        self.Mean()
+        self.Direct()
+        self.Direct1()
+        self.Assumed()
+        self.Assumed1()
+        self.Step()
+        self.Self2()
+        self.Mode()
+        self.Mode1()
+        self.Mode2()
+        self.Median()
+        self.Median1()
+        self.Median2()
+        self.Median3()
+        self.Median4()
         self.cf()
-        # self.GithubSourceCodeReference()
+        self.GithubSourceCodeReference()
         
         # self.fadeOut()
         # self.constructDataByJSON()
@@ -587,12 +587,12 @@ class StatisticsAnim(AbstractAnim):
 
     def cf(self):
 
-        title = Text("Graphical Representation of Cumulative Frequency Distribution", font_size=30, color=BLUE)
-        self.play(Write(title))
+        title2 = Text("Graphical Representation of 'Less Than' Cumulative Frequency Distribution", font_size=24, color=BLUE)
+        self.play(Write(title2))
         self.wait(1)
-        self.play(FadeOut(title))
+        self.play(FadeOut(title2))
         
-        title1 = Text("Example Data", font_size=30, color=BLUE).to_edge(UP)
+        title1 = Text("Example Data", font_size=24, color=BLUE).to_edge(UP)
         self.play(Write(title1))
         
         table = Table(
@@ -600,22 +600,15 @@ class StatisticsAnim(AbstractAnim):
              ["12", "14", "8", "6", "10"]],
             row_labels=[Text("Daily income (in Rupees)"), Text("Number of workers")],
             include_outer_lines=True,
-        ).scale(0.5)
+        ).scale(0.3).next_to(title1,DOWN)
         self.play(Create(table))
         self.wait(2)
-        self.play(FadeOut(title1))
-        self.play(FadeOut(table))
-       
-        title2 = Text("Graphical Representation of 'Less Than' Cumulative Frequency Distribution", font_size=24, color=BLUE)
-        self.play(Write(title2))
-        self.wait(1)
-        self.play(FadeOut(title2))
-        
+
         # Axes
         axes = Axes(
             x_range=[250, 550, 50],
             y_range=[0, 60, 10],
-            x_length=7,
+            x_length=6,
             y_length=5,
             axis_config={"color": BLUE},
             x_axis_config={
@@ -626,9 +619,9 @@ class StatisticsAnim(AbstractAnim):
                 "numbers_to_include": np.arange(0, 61, 10),
                 "label_direction": LEFT,
             },
-        )
+        ).scale(0.75).shift(DOWN)
         labels = axes.get_axis_labels(x_label="Upper limits", y_label="Cumulative frequency")
-        
+        labels.scale(0.75)
         # Data points
         data_points = [
             (300, 12), (350, 26), (400, 34), (450, 40), (500, 50)
@@ -652,22 +645,33 @@ class StatisticsAnim(AbstractAnim):
         self.wait(1)
         
         for dot, line in zip(dots, lines):
-            self.play(Create(dot))
+            self.play(Create(dot),run_time=0.2)
             self.wait()
-            self.play(Create(line))
+            self.play(Create(line),run_time=0.2)
             self.wait()
 
         self.play(Create(dots[-1]))  # Last dot
         self.wait(1)
         
-        # Fade out the scene
-        self.play(FadeOut(*self.mobjects))
-        self.wait()
+        self.fadeOutCurrentScene()
+
     
         title3 = Text("Graphical Representation of 'More Than' Cumulative Frequency Distribution", font_size=24, color=BLUE)
         self.play(Write(title3))
         self.wait(1)
         self.play(FadeOut(title3))
+
+        title1 = Text("Example Data", font_size=24, color=BLUE).to_edge(UP)
+        self.play(Write(title1))
+        
+        table = Table(
+            [["250-300", "300-350", "350-400", "400-450", "450-500"],
+             ["12", "14", "8", "6", "10"]],
+            row_labels=[Text("Daily income (in Rupees)"), Text("Number of workers")],
+            include_outer_lines=True,
+        ).scale(0.3).next_to(title1,DOWN)
+        self.play(Create(table))
+        self.wait(2)
         
         
         total_workers = 50
@@ -681,7 +685,7 @@ class StatisticsAnim(AbstractAnim):
         axes = Axes(
             x_range=[200, 550, 50],
             y_range=[0, 60, 10],
-            x_length=7,
+            x_length=6,
             y_length=5,
             axis_config={"color": BLUE},
             x_axis_config={
@@ -692,9 +696,9 @@ class StatisticsAnim(AbstractAnim):
                 "numbers_to_include": np.arange(0, 61, 10),
                 "label_direction": LEFT,
             },
-        )
+        ).scale(0.75).shift(DOWN)
         labels = axes.get_axis_labels(x_label="Upper limits", y_label="Cumulative frequency")
-        
+        labels.scale(0.75)
         # Data points
         data_points = [(x, y) for x, y in zip(upper_limits, more_than_cumulative_frequencies)]
         
@@ -716,23 +720,29 @@ class StatisticsAnim(AbstractAnim):
         self.wait(1)
         
         for dot, line in zip(dots, lines):
-            self.play(Create(dot))
+            self.play(Create(dot),run_time=0.2)
             self.wait(0.5)
-            self.play(Create(line))
+            self.play(Create(line),run_time=0.2)
             self.wait(0.5)
 
         self.play(Create(dots[-1]))  # Last dot
         self.wait(1)
         
-        # Fade out the scene
-        self.play(FadeOut(*self.mobjects))
-        self.wait()
-       
+        self.fadeOutCurrentScene()
+
         title = Text("Combined 'Less Than' and 'More Than' Cumulative Frequency Distributions", font_size=24, color=BLUE)
         self.play(Write(title))
         self.wait(2)
         self.play(FadeOut(title))
-    
+
+        table = Table(
+            [["250-300", "300-350", "350-400", "400-450", "450-500"],
+             ["12", "14", "8", "6", "10"]],
+            row_labels=[Text("Daily income (in Rupees)"), Text("Number of workers")],
+            include_outer_lines=True,
+        ).scale(0.3).next_to(title1, DOWN)
+        self.play(Create(table))
+        self.wait(2)
 
         # Data for cumulative frequency distributions
         intervals = ["250-300", "300-350", "350-400", "400-450", "450-500"]
@@ -747,6 +757,7 @@ class StatisticsAnim(AbstractAnim):
 
         # Corresponding upper limits for each interval
         upper_limits = [300, 350, 400, 450, 500]
+        more_than_upper_limits = [250] + upper_limits
 
         # Axes
         axes = Axes(
@@ -763,15 +774,15 @@ class StatisticsAnim(AbstractAnim):
                 "numbers_to_include": np.arange(0, 61, 10),
                 "label_direction": LEFT,
             },
-        )
+        ).scale(0.75).shift(DOWN)
         labels = axes.get_axis_labels(x_label="Upper limits", y_label="Cumulative frequency")
+        labels.scale(0.75)
         
         # Less than data points
         less_than_data_points = [(x, y) for x, y in zip(upper_limits, less_than_cumulative_frequencies)]
         less_than_graph_points = [axes.coords_to_point(x, y) for x, y in less_than_data_points]
         
         # More than data points
-        more_than_upper_limits = [250] + upper_limits
         more_than_data_points = [(x, y) for x, y in zip(more_than_upper_limits, more_than_cumulative_frequencies)]
         more_than_graph_points = [axes.coords_to_point(x, y) for x, y in more_than_data_points]
         
@@ -793,9 +804,9 @@ class StatisticsAnim(AbstractAnim):
         
         # Animate less than graph
         for dot, line in zip(less_than_dots, less_than_lines):
-            self.play(Create(dot))
+            self.play(Create(dot),run_time=0.2)
             self.wait(0.5)
-            self.play(Create(line))
+            self.play(Create(line),run_time=0.2)
             self.wait(0.5)
         self.play(Create(less_than_dots[-1]))  # Last dot
         self.wait(1)
