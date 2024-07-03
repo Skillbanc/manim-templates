@@ -53,8 +53,8 @@ class Statistics(AbstractAnim):
         p1223=cvo.CVO().CreateCVO("mean","145/4=36.5").setPosition([4,2,0])
         self.construct1(p10,p10)
         self.construct1(p12,p12)
-        self.play(Create(CurvedArrow(p122.pos,p1223.pos)),Create(CurvedArrow(p121.pos,p1223.pos)))
         self.construct1(p1223,p1223)
+        self.play(Create(CurvedArrow(p122.pos,p1223.pos)),Create(CurvedArrow(p121.pos,p1223.pos)))
         self.fadeOutCurrentScene()
     def MeanFormula(self):
         Observations=[20, 35, 20, 50]
@@ -66,6 +66,9 @@ class Statistics(AbstractAnim):
         self.play(Write(mean_formula))
         adding_text=MathTex(r"= \frac{20+35+20+50}{4}")
         self.play(Write(adding_text,run_time=4))
+        text = Text("∴ xi=20,35,20,50",font_size=40)
+        text.shift(UP+LEFT*3)
+        self.play(Write(text))
         adding_text1=MathTex(r"= \frac{125}{4}").next_to(adding_text,DOWN)
         self.play(Write(adding_text1,run_time=4))
         mean_value_text = Text("Mean: {:.2f}".format(mean_value)).next_to(adding_text1, DOWN)
@@ -105,7 +108,8 @@ class Statistics(AbstractAnim):
         median_index1 = len(sorted_dataset) // 2
         median = (sorted_dataset[median_index1 - 1] + sorted_dataset[median_index1]) / 2
         median_text = MathTex(r"\text{Median} = \frac{\frac{n}{2}^{\text{th term}} + (\frac{n}{2} + 1)^{\text{th term}}}{2}").next_to(sorted_group, DOWN)
-        subs = MathTex(r"= \frac{20+35}{2}").next_to(median_text, DOWN)
+        test2=MathTex(r"\frac{\text{2nd term} + \text{3rd term}}{2}", font_size=48).next_to(median_text,DOWN)
+        subs = MathTex(r"= \frac{20+35}{2}").next_to(test2, RIGHT)
         median_value = MathTex(f"= {median}").next_to(subs, RIGHT)
 
         self.play(Write(title))
@@ -118,6 +122,7 @@ class Statistics(AbstractAnim):
             sorted_elements[median_index1].animate.set_color(YELLOW)
         )
         self.play(Write(median_text))
+        self.play(Write(test2))
         self.play(Write(subs))
         self.play(Write(median_value))
         self.wait(2)
@@ -142,7 +147,8 @@ class Statistics(AbstractAnim):
         median_index2 = len(sorted_dataset2) // 2
         median2 = sorted_dataset2[median_index2]
         median_text2 = MathTex(r"\text{Median} = \left(\frac{n+1}{2}\right)^{\text{th term}}").next_to(sorted_group2, DOWN)
-        median_value2 = MathTex(f"= {median2}").next_to(median_text2, RIGHT)
+        test3=MathTex(r"\frac{\text{5th term} + 1}{2} = \text{3rd term}").next_to(median_text2,DOWN)
+        median_value2 = MathTex(f"= {median2}").next_to(test3, RIGHT)
 
         self.play(Write(title2))
         self.play(Write(dataset_text2))
@@ -152,6 +158,7 @@ class Statistics(AbstractAnim):
             sorted_elements2[median_index2].animate.set_color(YELLOW)
         )
         self.play(Write(median_text2))
+        self.play(Write(test3))
         self.play(Write(median_value2))
         self.wait(2)
         self.fadeOutCurrentScene()   
@@ -194,11 +201,12 @@ class Statistics(AbstractAnim):
         self.play(Write(mode_text))
         self.wait(3)
         self.fadeOutCurrentScene()
+
     def SetDeveloperList(self): 
        self.DeveloperList="Abhiram" 
 
     def SetSourceCodeFileName(self):
-       self.SourceCodeFileName="Class9Chapter9Statistics.py"
+       self.SourceCodeFileName="Grade9Chapter9Statistics.py"
 
 if __name__ == "__main__":
      scene = Statistics()
