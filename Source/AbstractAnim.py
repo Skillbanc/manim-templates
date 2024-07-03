@@ -139,9 +139,12 @@ class AbstractAnim(Scene):
             else:
                 oname = Tex(cvo.oname,color=self.colorChoice[colorChoiceIndex]).move_to(o1nameposition).shift(UP * 0.15)
 
-
-            cir1 = Ellipse(width=oname.width + 1, height=oname.height + 1,color=self.colorChoice[colorChoiceIndex])
-            cir1.move_to(oname)
+            if len(cvo.oname)>3:
+                cir1 = Ellipse(width=oname.width + 1, height=oname.height + 1,color=self.colorChoice[colorChoiceIndex])
+                cir1.move_to(oname)
+            else:
+                cir1=Ellipse(color=self.colorChoice[colorChoiceIndex])
+                cir1.move_to(oname)
 
             c1nameposition = cvo.c1nameposition
             if( c1nameposition == None):
@@ -160,13 +163,17 @@ class AbstractAnim(Scene):
             grp1=VGroup(cir1,star,cname,oname)
         else: 
             grp1=VGroup(cir1,cname)
+
         if not cvo.isEllipse:
             self.play(grp1.animate.scale(0.75).move_to(cvo.pos).shift(UP*0.16))
         else:
-            self.play(cir1.animate.scale(0.70))
-            self.play(grp1.animate.scale(0.72).move_to(cvo.pos).shift(UP*0.32))
     
-        
+            if len(cvo.oname)>12:
+                self.play(cir1.animate.scale(0.70))
+                self.play(grp1.animate.scale(0.72).move_to(cvo.pos).shift(UP*0.32))
+            else:
+                self.play(grp1.animate.scale(0.75).move_to(cvo.pos).shift(UP*0.32))
+
     
         if (cvo != cvoParent):
             if (self.isRandom):
