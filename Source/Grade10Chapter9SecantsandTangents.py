@@ -36,7 +36,7 @@ class secantsandtangents(AbstractAnim):
         self.isRandom = False
         self.positionChoice = [[-6,0,0],[3,0,0]]
         a10=cvo.CVO().CreateCVO("Tangent","")
-        a11=cvo.CVO().CreateCVO("Line that intersects circle a point","")
+        a11=cvo.CVO().CreateCVO("Line that intersects Circle at a point","")
         a10.cvolist.append(a11)
         a11.setcircleradius(1.5)
         self.construct1(a10,a10)
@@ -47,7 +47,9 @@ class secantsandtangents(AbstractAnim):
         text.to_corner(UP)
         self.play(Write(text))
 
-        text2=Text("1)Draw a circle", font_size=22).to_edge(RIGHT)
+        text6=Text("Steps",font_size=22).to_edge(RIGHT)
+        text6.add(Underline(text6,buff=0.1))
+        text2=Text("1)Draw a circle", font_size=22).next_to(text6,DOWN)
         text3=Text("2)Take a point ", font_size=22).next_to(text2,DOWN)
         text4=Text("3)Draw a perpendicular line from it", font_size=22).next_to(text3,DOWN)
         text5=Text("4)Tangent is formed", font_size=22).next_to(text4,DOWN)
@@ -64,11 +66,13 @@ class secantsandtangents(AbstractAnim):
         )
                 
         circle.shift(LEFT*2)
-        
-        text2.shift(LEFT*2)
-        text3.shift(LEFT*2)
-        text4.shift(LEFT*2)
-        text5.shift(LEFT*2)
+
+        text6.shift(LEFT*1.5)
+        text2.shift(LEFT*1.5)
+        text3.shift(LEFT*1.25)
+        text4.shift(LEFT*1.5)
+        text5.shift(LEFT*1.5)
+        text6.shift(UP*2)
         text2.shift(UP*2)
         text3.shift(UP*2)
         text4.shift(UP*2)
@@ -81,7 +85,7 @@ class secantsandtangents(AbstractAnim):
         tangent_dot = Dot(point=tangent_point, color=YELLOW)
         tangent_dot.shift(LEFT*2)
         tangent_line.shift(LEFT*2)
-        
+        self.play(Write(text6))
         self.play(Write(text2))
         self.play(Create(circle,run_time=3))
         self.play(Write(text3))  
@@ -90,8 +94,7 @@ class secantsandtangents(AbstractAnim):
         self.play(Create(tangent_line,run_time=3))
         self.play(Write(text5))  
 
-        self.wait(2)        
-
+        self.wait(2)
     def tangentexternal(self): 
         text = Text("Finding Tangent From External Point", font_size=22)
         underline = Underline(text)
