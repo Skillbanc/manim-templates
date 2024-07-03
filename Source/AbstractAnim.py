@@ -163,7 +163,8 @@ class AbstractAnim(Scene):
         if not cvo.isEllipse:
             self.play(grp1.animate.scale(0.75).move_to(cvo.pos).shift(UP*0.16))
         else:
-            self.play(grp1.animate.scale(0.75).move_to(cvo.pos).shift(UP*0.32))
+            self.play(cir1.animate.scale(0.70))
+            self.play(grp1.animate.scale(0.72).move_to(cvo.pos).shift(UP*0.32))
     
         
     
