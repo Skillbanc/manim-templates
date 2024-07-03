@@ -5,22 +5,41 @@ from manim import *
 
 class DifferentViews(AbstractAnim):
     def construct(self):
-        self.RenderSkillbancLogo()
-        self.Views()
-        self.GithubSourceCodeReference()
+        # self.RenderSkillbancLogo()
+        # self.Views()
+        # self.fadeOutCurrentScene()
+        # self.Sides()
+        # self.fadeOutCurrentScene()
+        # self.Cuboidscene()
+        # self.fadeOutCurrentScene()
+        # self.GithubSourceCodeReference()
+        self.test()
 
     def Views(self):
-        self.angleChoice=[TAU/4,TAU/4,TAU/4]
+        self.angleChoice=[TAU/4,TAU/4,TAU/4,TAU/4]
         p10=cvo.CVO().CreateCVO("Views of an Object","").setPosition([-3,0,0])
         p11=cvo.CVO().CreateCVO("Front View","").setPosition([0,2.5,0])
-        p12=cvo.CVO().CreateCVO("Top View","").setPosition([3,0,0])
-        p13=cvo.CVO().CreateCVO("Side View","").setPosition([0,-2.5,0])
+        p12=cvo.CVO().CreateCVO("Back View","").setPosition([3,0,0])
+        p13=cvo.CVO().CreateCVO("Top View","").setPosition([0,-2.5,0])
+        p14=cvo.CVO().CreateCVO("Bottom View","").setPosition([0,0,0])
         p10.cvolist.append(p11)
         p10.cvolist.append(p12)
         p10.cvolist.append(p13)
+        p10.cvolist.append(p14)
         self.construct1(p10,p10)
-        self.fadeOutCurrentScene()
+    
+    def Sides(self):
+        self.angleChoice=[TAU/4,TAU/4]
+        p10=cvo.CVO().CreateCVO("Sides of an Object","").setPosition([-3,0,0])
+        p11=cvo.CVO().CreateCVO("Right Side","").setPosition([0,2.5,0])
+        p12=cvo.CVO().CreateCVO("Left Side","").setPosition([0,-2.5,0])
+        p10.cvolist.append(p11)
+        p10.cvolist.append(p12)
+        self.construct1(p10,p10)
 
+    def Cuboidscene(self):
+        title = Text("Views of Cuboid",font_size=40).to_edge(UP)
+        self.play(Write(title))
         cuboid = Cube()
         cuboid.stretch(2, 0)  # stretch along x-axis
         cuboid.stretch(1, 1)  # normal along y-axis
@@ -47,69 +66,66 @@ class DifferentViews(AbstractAnim):
         self.wait(2)
         front = Rectangle(width=4, height=2).set_fill(GREEN, opacity=0.95)
         self.play(Create(front.shift(LEFT*3)))
-        text = Text("Front View").next_to(front,UP)
+        text = Text("Front View",font_size=38).next_to(front,UP)
         self.play(FadeIn(text))
         self.wait(2)
         self.play(FadeOut(front,text))
         top = Rectangle(width=4, height=0.75).set_fill(YELLOW, opacity=0.95)
         self.play(Create(top.shift(LEFT*3)))
-        text = Text("Top View").next_to(front,UP)
+        text = Text("Top View",font_size=38).next_to(front,UP)
         self.play(FadeIn(text))
         self.wait(2)
         self.play(FadeOut(top,text))
         side = Rectangle(width=0.75, height=2).set_fill(RED, opacity=0.95)
         self.play(Create(side.shift(LEFT*3)))
-        text = Text("Side View").next_to(side,UP)
+        text = Text("Side View",font_size=38).next_to(side,UP)
         self.play(FadeIn(text))
         self.wait(2)
 
+    def show_views(self, shape, shape_name):
+        # Positions to place shapes for different views
+        positions = {
+            "Front": ORIGIN,
+            "Side": 3 * RIGHT,
+            "Top": 3 * LEFT,
+        }
+
+        # Angles to rotate shapes for different views
+        rotations = {
+            "Front": [0, 0, 0],
+            "Side": [0, -PI / 2, 0],
+            "Top": [PI / 2, 0, 0],
+        }
+
+        # Create and animate the different views
+        for label, pos in positions.items():
+            rotated_shape = shape.copy()
+            rotated_shape.rotate(rotations[label][0], axis=RIGHT)
+            rotated_shape.rotate(rotations[label][1], axis=UP)
+            rotated_shape.rotate(rotations[label][2], axis=OUT)
+
+            shape_label = Text(f"{shape_name} - {label} View", font_size=24).next_to(rotated_shape, UP)
+            self.play(FadeIn(rotated_shape), Write(shape_label))
+            self.wait(2)
+            self.play(FadeOut(rotated_shape), FadeOut(shape_label))
+            self.wait(1)
+
+    def test(self):
+        # Create shapes
+        cube = Cube()
+        cylinder = Cylinder()
+        cone = Cone()
+
+        # Show views for each shape
+        self.show_views(cube, "Cube")
+        self.show_views(cylinder, "Cylinder")
+        self.show_views(cone, "Cone")
+
+# To render the video, you would use the following command in your terminal:
+# manim -pql different_views.py DifferentViews
 
 
 
-        # # Create a 3D cuboid (a box)
-        # cuboid = Cube()
-
-        # # Scale to make it a cuboid
-        # cuboid.stretch(2, 0)  # stretch along x-axis
-        # cuboid.stretch(1, 1)  # normal along y-axis
-        # cuboid.stretch(0.5, 2)  # compress along z-axis
-
-        # # Apply different colors to each face of the cuboid
-        # cuboid.set_color_by_gradient(BLUE, GREEN, RED)
-        # faces = cuboid.family_members_with_points()
-        # faces[0].set_fill(RED, opacity=0.25)    # front face
-        # faces[1].set_fill(GREEN, opacity=0.25)  # back face
-        # faces[2].set_fill(BLUE, opacity=0.25)   # right face
-        # faces[3].set_fill(YELLOW, opacity=0.25) # left face
-        # faces[4].set_fill(PURPLE, opacity=0.25) # top face
-        # faces[5].set_fill(ORANGE, opacity=0.25) # bottom face
-
-        # # Add cuboid to the scene
-        # self.add(cuboid)
-
-        # # Show the front view
-        # front_view_label = Text("Front View").to_edge(UP)
-        # self.play(Write(front_view_label))
-        # self.wait(2)
-        # self.play(Unwrite(front_view_label))
-
-        # # Rotate cuboid to show the top view
-        # self.play(Rotate(cuboid, angle=PI/2, axis=RIGHT))
-        # top_view_label = Text("Top View").to_edge(UP)
-        # self.play(Write(top_view_label))
-        # self.wait(2)
-        # self.play(Unwrite(top_view_label))
-
-        # # Rotate cuboid to show the side view
-        # self.play(Rotate(cuboid, angle=PI/2, axis=OUT))
-        # side_view_label = Text("Side View").to_edge(UP)
-        # self.play(Write(side_view_label))
-        # self.wait(2)
-        # self.play(Unwrite(side_view_label))
-
-        # # Rotate back to the original orientation
-        # self.play(Rotate(cuboid, angle=-PI/2, axis=OUT))
-        # self.wait(2)
     def SetDeveloperList(self):
         self.DeveloperList="Sindhu"
     
