@@ -1,6 +1,9 @@
 # Project: Manim-Templates
 # Copyright(c) 2024 Skillbanc.com, Inc.
 # License: MIT License
+# Contributor(s):   
+#   Sudhakar Moparthy
+#   Rohit Vailla
 
 
 from manim import *
@@ -99,32 +102,60 @@ class AbstractAnim(Scene):
        
             
         shapeChoiceIndex = 0 # random.randint(0,3)
+
         # Circle to contain objects
-        cir1 = Circle(radius=cvo.circle_radius,color=self.colorChoice[colorChoiceIndex])
-        star = Star(outer_radius=0.1, inner_radius=0.05,color=self.colorChoice[colorChoiceIndex]).move_to(cir1.get_center())
-        
-        c1nameposition = cvo.c1nameposition
-        if( c1nameposition == None):
-            c1nameposition = cir1.get_top()
-        if (cvo.IsMathText):
-            cname = MathTex(cvo.cname,color=self.colorChoice[colorChoiceIndex]).move_to(c1nameposition).shift(UP * 0.25)
-        else:
-            cname = Tex(cvo.cname,color=self.colorChoice[colorChoiceIndex]).move_to(c1nameposition).shift(UP * 0.25)
-        
-        o1nameposition = cvo.o1nameposition
-        if( o1nameposition == None):
-            o1nameposition = star.get_top()
-        
-        if (cvo.IsMathText):
-            oname = MathTex(cvo.oname,color=self.colorChoice[colorChoiceIndex]).move_to(o1nameposition).shift(UP * 0.15)
-        else:
-            oname = Tex(cvo.oname,color=self.colorChoice[colorChoiceIndex]).move_to(o1nameposition).shift(UP * 0.15)
-        
-        
-        self.play(Create(cir1,run_time=cvo.duration),Create(cname,run_time=cvo.duration))
+        if not cvo.isEllipse:
+            cir1 = Circle(radius=cvo.circle_radius,color=self.colorChoice[colorChoiceIndex])
+            star = Star(outer_radius=0.1, inner_radius=0.05,color=self.colorChoice[colorChoiceIndex]).move_to(cir1.get_center())
             
+            c1nameposition = cvo.c1nameposition
+            if( c1nameposition == None):
+                c1nameposition = cir1.get_top()
+            if (cvo.IsMathText):
+                cname = MathTex(cvo.cname,color=self.colorChoice[colorChoiceIndex]).move_to(c1nameposition).shift(UP * 0.25)
+            else:
+                cname = Tex(cvo.cname,color=self.colorChoice[colorChoiceIndex]).move_to(c1nameposition).shift(UP * 0.25)
+            
+            o1nameposition = cvo.o1nameposition
+            if( o1nameposition == None):
+                o1nameposition = star.get_top()
+            
+            if (cvo.IsMathText):
+                oname = MathTex(cvo.oname,color=self.colorChoice[colorChoiceIndex]).move_to(o1nameposition).shift(UP * 0.15)
+            else:
+                oname = Tex(cvo.oname,color=self.colorChoice[colorChoiceIndex]).move_to(o1nameposition).shift(UP * 0.15)
+            
+            
+            self.play(Create(cir1,run_time=cvo.duration),Create(cname,run_time=cvo.duration))
         
-        
+        else:
+            star = Star(outer_radius=0.1, inner_radius=0.05,color=self.colorChoice[colorChoiceIndex])
+            o1nameposition = cvo.o1nameposition
+            if( o1nameposition == None):
+                o1nameposition = star.get_top()
+            
+            if (cvo.IsMathText):
+                oname = MathTex(cvo.oname,color=self.colorChoice[colorChoiceIndex]).move_to(o1nameposition).shift(UP * 0.15)
+            else:
+                oname = Tex(cvo.oname,color=self.colorChoice[colorChoiceIndex]).move_to(o1nameposition).shift(UP * 0.15)
+
+            if len(cvo.oname)>3:
+                cir1 = Ellipse(width=oname.width + 1, height=oname.height + 1,color=self.colorChoice[colorChoiceIndex])
+                cir1.move_to(oname)
+            else:
+                cir1=Ellipse(color=self.colorChoice[colorChoiceIndex])
+                cir1.move_to(oname)
+
+            c1nameposition = cvo.c1nameposition
+            if( c1nameposition == None):
+                c1nameposition = cir1.get_top()
+            if (cvo.IsMathText):
+                cname = MathTex(cvo.cname,color=self.colorChoice[colorChoiceIndex]).move_to(c1nameposition).shift(UP * 0.25)
+            else:
+                cname = Tex(cvo.cname,color=self.colorChoice[colorChoiceIndex]).move_to(c1nameposition).shift(UP * 0.25)
+            
+            self.play(Create(cir1,run_time=cvo.duration),Create(cname,run_time=cvo.duration))
+
         if len(cvo.onameList) == 0:
             self.play(Create(oname),Create(star))
             self.play(cname.animate.scale(2.0), oname.animate.scale(2.0),run_time=1)
@@ -132,10 +163,17 @@ class AbstractAnim(Scene):
             grp1=VGroup(cir1,star,cname,oname)
         else: 
             grp1=VGroup(cir1,cname)
-        
-        self.play(grp1.animate.scale(0.75).move_to(cvo.pos).shift(UP*0.16))
+
+        if not cvo.isEllipse:
+            self.play(grp1.animate.scale(0.75).move_to(cvo.pos).shift(UP*0.16))
+        else:
     
-        
+            if len(cvo.oname)>12:
+                self.play(cir1.animate.scale(0.70))
+                self.play(grp1.animate.scale(0.72).move_to(cvo.pos).shift(UP*0.32))
+            else:
+                self.play(grp1.animate.scale(0.75).move_to(cvo.pos).shift(UP*0.32))
+
     
         if (cvo != cvoParent):
             if (self.isRandom):
@@ -150,8 +188,7 @@ class AbstractAnim(Scene):
             arrow1.tip.scale(0.75)
             if len(cvo.onameList) == 0:
                 self.play(Create(arrow1),run_time=cvo.duration)
-            #self.bring_to_back(arrow1)
-            #grp1.add(arrow1)
+            
             
         if (len(cvo.onameList) > 0 and len(cvo.onameList) < 5):
             for index in range(len(cvo.onameList)):
@@ -161,8 +198,9 @@ class AbstractAnim(Scene):
                 arrow2 = CurvedArrow(cvoParent.pos,starLocal.get_center(),angle=cvo.angle,stroke_width=0.5, tip_length=0.1)
                 self.play(Create(starLocal),Create(onameLocalText))#grpLocal.animate.move_to(cir1.get_center()).scale(0.5).shift(DOWN * 2))#scale(0.25))
                 self.play(onameLocalText.animate.scale(2.0),run_time=1)
-                self.play(onameLocalText.animate.scale(0.5),run_time=1)
-                self.play(Create(arrow2))
+                self.play(onameLocalText.animate.scale(0.7),run_time=1)
+                if (cvo != cvoParent):
+                    self.play(Create(arrow2))
         else:
             self.play(grp1.animate.scale(1+0.1*len(cvo.onameList)))
             for index in range(len(cvo.onameList)):
@@ -172,9 +210,10 @@ class AbstractAnim(Scene):
                 arrow2 = CurvedArrow(cvoParent.pos,starLocal.get_center(),angle=cvo.angle,stroke_width=0.5, tip_length=0.1)
                 self.play(Create(starLocal),Create(onameLocalText))#grpLocal.animate.move_to(cir1.get_center()).scale(0.5).shift(DOWN * 2))#scale(0.25))
                 self.play(onameLocalText.animate.scale(2.0),run_time=1)
-                self.play(onameLocalText.animate.scale(0.5),run_time=1)
-                self.play(Create(arrow2))
-                          
+                self.play(onameLocalText.animate.scale(0.7),run_time=1)
+                if (cvo != cvoParent):
+                    self.play(Create(arrow2))
+                            
         cvo.cnameMObject = cname
         cvo.onameMObject = oname
         
