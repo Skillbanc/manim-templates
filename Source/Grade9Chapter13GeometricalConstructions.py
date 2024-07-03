@@ -9,7 +9,7 @@ class GeometricalConstructions3(AbstractAnim):
 
     # use the appropriate method based on how the data is stored
     def construct(self):
-        """self.RenderSkillbancLogo()
+        self.RenderSkillbancLogo()
         self.fadeOutCurrentScene()
         self.constructDataByCVO()
         self.fadeOutCurrentScene()
@@ -24,20 +24,20 @@ class GeometricalConstructions3(AbstractAnim):
         self.BBAS2()
         self.fadeOutCurrentScene()
         self.BBAD2()
-        self.fadeOutCurrentScene()"""
+        self.fadeOutCurrentScene()
         self.P2BA()
         self.fadeOutCurrentScene()
-        """self.SpecialCase()
+        self.SpecialCase()
         self.fadeOutCurrentScene()
         self.GithubSourceCodeReference()
-        self.fadeOutCurrentScene()"""
+        self.fadeOutCurrentScene()
         # self.constructDataByJSON()
         # self.fadeOut()
     # render using CVO data object
     def constructDataByCVO(self):
-        p10=cvo.CVO().CreateCVO("Basic Constructions","").setPosition([-3.5,2,0])
-        p11=cvo.CVO().CreateCVO("perpendicular bisector","").setPosition([-3.5,-2.5,0]).setangle([-TAU/4])
-        p13=cvo.CVO().CreateCVO("Bisector of angle","").setPosition([3.5,2,0]).setangle([-TAU/4])
+        p10=cvo.CVO().CreateCVO("Basic Constructions","").setPosition([-3.5,0,0])
+        p11=cvo.CVO().CreateCVO("perpendicular bisector","").setPosition([3.5,2.5,0]).setangle([-TAU/4])
+        p13=cvo.CVO().CreateCVO("Bisector of angle","").setPosition([3.5,0,0]).setangle([-TAU/4])
         p12=cvo.CVO().CreateCVO("60 degrees angle","").setPosition([3.5,-2.5,0]).setangle([-TAU/4])
         p10.cvolist.append(p11)
         p10.cvolist.append(p13)
@@ -50,6 +50,7 @@ class GeometricalConstructions3(AbstractAnim):
         p12=cvo.CVO().CreateCVO("Construction Steps","").setPosition([2,0,0]).setangle([-TAU/4])
         p12onamelist=["Draw line AB","From A,draw arc with  more than 1/2 AB radius","same as A for B","Mark as P and Q and join"]
         p12.extendOname(p12onamelist)
+        p12.circle_radius=2
         p11.cvolist.append(p12)
         self.isRandom=False
         self.setNumberOfCirclePositions(2)
@@ -59,6 +60,7 @@ class GeometricalConstructions3(AbstractAnim):
         p12=cvo.CVO().CreateCVO("Construction Steps","").setPosition([2,0,0]).setangle([-TAU/4])
         p12onamelist=["Draw an angle","From B,draw arc with any radius","from intersection points, draw two arcs","from B, join F"]
         p12.extendOname(p12onamelist)
+        p12.circle_radius=2
         p11.cvolist.append(p12)
         self.isRandom=False   
         self.setNumberOfCirclePositions(2)
@@ -68,14 +70,15 @@ class GeometricalConstructions3(AbstractAnim):
         p12=cvo.CVO().CreateCVO("Construction Steps","").setPosition([2,0,0]).setangle([-TAU/4])
         p12onamelist=["Draw a ray","From A,draw arc with any radius","from D, draw arc with same radius","join E and A"]
         p12.extendOname(p12onamelist)
+        p12.circle_radius=2
         p11.cvolist.append(p12)
         self.isRandom=False
         self.setNumberOfCirclePositions(2)
         self.construct1(p11,p11)
     def ConstOfTriangles(self):
-        p10=cvo.CVO().CreateCVO("Construction of Triangles","").setPosition([-3.5,2,0])
-        p11=cvo.CVO().CreateCVO("given base, base angle, \\\\sum of 2 sides","").setPosition([-3.5,-2.5,0]).setangle([-TAU/4])
-        p13=cvo.CVO().CreateCVO("given base,base angle,\\\\difference of 2 sides","").setPosition([3.5,2,0]).setangle([-TAU/4])
+        p10=cvo.CVO().CreateCVO("Construction of Triangles","").setPosition([-3.5,0,0])
+        p11=cvo.CVO().CreateCVO("given base, base angle, \\\\sum of 2 sides","").setPosition([3.5,2.5,0]).setangle([-TAU/4])
+        p13=cvo.CVO().CreateCVO("given base,base angle,\\\\difference of 2 sides","").setPosition([3.5,0,0]).setangle([-TAU/4])
         p12=cvo.CVO().CreateCVO("given perimeter, \\\\2 base angles","").setPosition([3.5,-2.5,0]).setangle([-TAU/4])
         p10.cvolist.append(p11)
         p10.cvolist.append(p13)
