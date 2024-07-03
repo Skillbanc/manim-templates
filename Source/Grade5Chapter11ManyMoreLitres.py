@@ -105,7 +105,10 @@ class Litres(AbstractAnim):
         
 
     def Qustion(self):
-        
+        texta = Text("Question and Answers", color=YELLOW).scale(0.9)
+        texta.center()
+        texta.shift(UP * 3)
+        self.play(Write(texta))
         text2 =Text("(a).How many litres of paint did Amar buy in all?",color=GREEN).scale(0.8)
         text2.center()
         text2.shift(UP * 2,LEFT)
@@ -121,7 +124,10 @@ class Litres(AbstractAnim):
         self.wait(3)
 
     def Qustion2(self):
-        
+        texta = Text("Question and Answers", color=YELLOW).scale(0.9)
+        texta.center()
+        texta.shift(UP * 3)
+        self.add(texta)
         text2 =Text("(b).How much would one 100 ml can of green paint cost? \n       How much money did Amar spend on green paint?",color=GREEN).scale(0.7)
         text2.center()
         text2.shift(UP * 2,LEFT)
@@ -137,7 +143,10 @@ class Litres(AbstractAnim):
         self.wait(3)
 
     def Qustion3(self):
-        
+        texta = Text("Question and Answers", color=YELLOW).scale(0.9)
+        texta.center()
+        texta.shift(UP * 3)
+        self.add(texta)
         text2 =Text("(c).How much would one 100 ml can of red paint cost? \n       How much money did Amar spend on red paint?",color=GREEN).scale(0.7)
         text2.center()
         text2.shift(UP * 2,LEFT)
@@ -153,7 +162,10 @@ class Litres(AbstractAnim):
         self.wait(3)
     
     def Qustion4(self):
-        
+        texta = Text("Question and Answers", color=YELLOW).scale(0.9)
+        texta.center()
+        texta.shift(UP * 3)
+        self.add(texta)
         text2 =Text("(d).How much would one 100 ml can of yellow paint cost? \n       How much money did Amar spend on yellow paint?",color=GREEN).scale(0.7)
         text2.center()
         text2.shift(UP * 2,LEFT)
@@ -169,7 +181,10 @@ class Litres(AbstractAnim):
         self.wait(3)
 
     def Qustion5 (self):
-        
+        texta = Text("Question and Answers", color=YELLOW).scale(0.9)
+        texta.center()
+        texta.shift(UP * 3)
+        self.add(texta)
         text2 =Text("(e).How much would one 100 ml can of white paint cost? \n       How much money did Amar spend on white paint?",color=GREEN).scale(0.7)
         text2.center()
         text2.shift(UP * 2,LEFT)
@@ -185,7 +200,10 @@ class Litres(AbstractAnim):
         self.wait(3)
 
     def Qustion6(self):
-        
+        texta = Text("Question and Answer", color=YELLOW).scale(0.9)
+        texta.center()
+        texta.shift(UP * 3)
+        self.add(texta)
         text2 =Text("(f). What is the total amount that Amar spent on paint?",color=GREEN).scale(0.7)
         text2.center()
         text2.shift(UP * 2,LEFT)
