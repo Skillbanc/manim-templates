@@ -87,25 +87,28 @@ class GeometricalConstructions3(AbstractAnim):
         self.setNumberOfCirclePositions(4)
         self.construct1(p10,p10)
     def BBAS2(self):
-        p11=cvo.CVO().CreateCVO("given base, base angle, sum of 2 sides","").setPosition([-2,0,0])
+        p11=cvo.CVO().CreateCVO("given base, base angle, \\\\sum of 2 sides","").setPosition([-2,0,0])
         p12=cvo.CVO().CreateCVO("Construction Steps","").setPosition([2,0,0]).setangle([-TAU/4])
         p12onamelist=["Draw base and angle","From B and sum,draw arc","join C and D and draw perpendicular bisector","join A,C for triangle"]
         p12.extendOname(p12onamelist)
         p11.cvolist.append(p12)
+        p12.circle_radius=2
         self.isRandom=False    
         self.setNumberOfCirclePositions(2)
         self.construct1(p11,p11)    
     def BBAD2(self):
-        p11=cvo.CVO().CreateCVO("given base, base angle, difference of 2 sides","").setPosition([-2,0,0])
+        p11=cvo.CVO().CreateCVO("given base, base angle,\\\\ difference of 2 sides","").setPosition([-2,0,0])
         p12=cvo.CVO().CreateCVO("Construction Steps","").setPosition([2,0,0]).setangle([-TAU/4])
         p12onamelist=["Draw BCD triangle using SAS","draw perpendicular bisector of CD","join C and A for triangle"]
         p12.extendOname(p12onamelist)
+        p12.circle_radius=2
+        
         p11.cvolist.append(p12)   
         self.isRandom=False 
         self.setNumberOfCirclePositions(2)
         self.construct1(p11,p11)
     def P2BA(self):
-        p11=cvo.CVO().CreateCVO("given perimeter and 2 base angles","").setPosition([-2,0,0])
+        p11=cvo.CVO().CreateCVO("given perimeter and \\\\2 base angles","").setPosition([-2,0,0])
         p12=cvo.CVO().CreateCVO("Construction Steps","").setPosition([2,0,0]).setangle([-TAU/4])
         p12onamelist=["Draw line with perimeter","draw angles,bisectors for them","join intersection point","draw bisectors and join"]
         p12.extendOname(p12onamelist)
