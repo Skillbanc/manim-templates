@@ -28,10 +28,11 @@ class Shapesanim(AbstractAnim):
     
 
     def Shapes(self):
-        p10=cvo.CVO().CreateCVO("Shapes", "").setPosition([0,2,0])
-        p11=cvo.CVO().CreateCVO("3DShapes", "").setPosition([3,0,0]).setangle(-TAU/4)
+        self.isRandom = False
+        p10=cvo.CVO().CreateCVO("Shapes", "").setPosition([-3,0,0])
+        p11=cvo.CVO().CreateCVO("3DShapes", "").setPosition([2,2,0]).setangle(-TAU/4)
         
-        p12=cvo.CVO().CreateCVO("2DShapes", "").setPosition([-3,0,0]).setangle(-TAU/4)
+        p12=cvo.CVO().CreateCVO("2DShapes", "").setPosition([2,-2,0]).setangle(-TAU/4)
         
         p10.cvolist.append(p11)
         p10.cvolist.append(p12)
@@ -42,16 +43,20 @@ class Shapesanim(AbstractAnim):
         self.fadeOutCurrentScene()
 
     def Components(self):
+
+        self.isRandom = False
         p10=cvo.CVO().CreateCVO("3DShapes", "").setPosition([-6,0,0])
         p11=cvo.CVO().CreateCVO("Components", "").setPosition([-3,0,0]).setangle(-TAU/4)
-        p12=cvo.CVO().CreateCVO("Faces", "").setPosition([3,2.5,0]).setangle(-TAU/4)
-        p13=cvo.CVO().CreateCVO("Edges", "").setPosition([3,0,0]).setangle(-TAU/4)
-        p14=cvo.CVO().CreateCVO("Vertices", "").setPosition([3,-2.5,0]).setangle(-TAU/4)
+        p12=cvo.CVO().CreateCVO("Faces", "").setPosition([1,2.5,0]).setangle(-TAU/4)
+        p13=cvo.CVO().CreateCVO("Edges", "").setPosition([2,0,0]).setangle(-TAU/4)
+        p14=cvo.CVO().CreateCVO("Vertices", "").setPosition([1,-2.5,0]).setangle(-TAU/4)
 
         p10.cvolist.append(p11)
         p11.cvolist.append(p12)
-        p11.cvolist.append(p14)
         p11.cvolist.append(p13)
+        p11.cvolist.append(p14)
+        
+        
         
 
         self.setNumberOfCirclePositions(6)
@@ -152,18 +157,19 @@ class Shapesanim(AbstractAnim):
     def Nets(self):
         title = Text("Nets of 3D Shapes", font_size=40, color=BLUE)
         title.to_edge(UP)
-        colors = [RED, GREEN, BLUE, YELLOW, ORANGE, PURPLE]
+        colors = [BLUE, BLUE, BLUE, BLUE, BLUE, BLUE]
 
         self.play(Write(title))
         self.wait(1)
+
         # Create the net of the cube
         net = VGroup(
-            Square(side_length=2, fill_opacity=0.5, fill_color=colors[0]).shift(UP*2),
-            Square(side_length=2, fill_opacity=0.5, fill_color=colors[1]).shift(LEFT*2),
-            Square(side_length=2, fill_opacity=0.5, fill_color=colors[2]),
-            Square(side_length=2, fill_opacity=0.5, fill_color=colors[3]).shift(RIGHT*2),
-            Square(side_length=2, fill_opacity=0.5, fill_color=colors[4]).shift(DOWN*2),
-            Square(side_length=2, fill_opacity=0.5, fill_color=colors[5]).shift(DOWN*4)
+            Square(side_length=1.5, fill_opacity=0.5, fill_color=colors[0]).shift(UP*2),
+            Square(side_length=1.5, fill_opacity=0.5, fill_color=colors[1]).shift(LEFT*1.5 + UP*0.5),
+            Square(side_length=1.5, fill_opacity=0.5, fill_color=colors[2]).shift(UP*0.5),
+            Square(side_length=1.5, fill_opacity=0.5, fill_color=colors[3]).shift(RIGHT*1.5 + UP*0.5),
+            Square(side_length=1.5, fill_opacity=0.5, fill_color=colors[4]).shift(DOWN*1.5 + UP*0.5),
+            Square(side_length=1.5, fill_opacity=0.5, fill_color=colors[5]).shift(DOWN*3 + UP*0.5)
         )
 
         self.play(FadeIn(net))
@@ -172,47 +178,49 @@ class Shapesanim(AbstractAnim):
         # Fold the net into a cube
         folds = [
             # Fold the top face down
-            (0, DOWN, PI/2),
+            (0, DOWN, PI / 2),
             # Fold the left face to the right
-            (1, RIGHT, PI/2),
+            (1, RIGHT, PI / 2),
             # Fold the right face to the left
-            (3, LEFT, PI/2),
+            (3, LEFT, PI / 2),
             # Fold the bottom face up
-            (4, UP, PI/2),
-            
-            (5, UP, PI/2)
+            (4, UP, PI / 2),
+            # Fold the far bottom face up
+            (5, UP, PI / 2)
         ]
 
         for index, direction, angle in folds:
             face = net[index]
             axis = np.cross([0, 0, 1], direction)
-            self.play(Rotate(face, angle, axis=axis, about_point=face.get_center() + direction))
+            self.play(Rotate(face, angle, axis=axis, about_point=face.get_center() + direction * 0.75))
             self.wait(1)
 
-        # Adjust final face to align properly
-        face = net[5]
-        self.play(Rotate(face, PI/2, axis=RIGHT, about_point=face.get_center() + UP*2))
+        # Adjust the final face to align properly
+        self.play(Rotate(net[5], -PI / 2, axis=RIGHT, about_point=net[5].get_center() + UP*1.5))
 
+        self.wait(2)
+        self.play(FadeOut(net))
         self.wait(2)
         self.fadeOutCurrentScene()
 
 
 
     def Sketches(self):
-       p10=cvo.CVO().CreateCVO("Sketches","").setPosition([0,2.5,0])
-       p11=cvo.CVO().CreateCVO("Oblique Sketches", "").setPosition([-3,1,0]).setangle(-TAU/4)
-       p12=cvo.CVO().CreateCVO("Isometric Sketches", "").setPosition([3,1,0]).setangle(-TAU/4)
-       p13=cvo.CVO().CreateCVO("Property", "Focuses on face of object").setPosition([-5,-2,0]).setangle(-TAU/4)
-       p14=cvo.CVO().CreateCVO("Property", "45 degree for lines").setPosition([-2,-2,0]).setangle(-TAU/4)
-       p15=cvo.CVO().CreateCVO("Property", "Focuses on edge of object").setPosition([2,-2,0]).setangle(-TAU/4)
-       p16=cvo.CVO().CreateCVO("Property", "lines are drawn at 30 degree").setPosition([5,-2,0]).setangle(-TAU/4)
+       self.isRandom = False
+       p10=cvo.CVO().CreateCVO("Sketches","").setPosition([-6,0,0])
+       p11=cvo.CVO().CreateCVO("Oblique Sketches", "").setPosition([-3,1.5,0]).setangle(-TAU/4)
+       p12=cvo.CVO().CreateCVO("Isometric Sketches", "").setPosition([-3,-1.5,0]).setangle(-TAU/4)
+       p13=cvo.CVO().CreateCVO("Property", "Focuses on face of object").setPosition([2,2.5,0]).setangle(-TAU/4)
+       p14=cvo.CVO().CreateCVO("Property", "45 degree for lines").setPosition([4.5,1.5,0]).setangle(-TAU/4)
+       p15=cvo.CVO().CreateCVO("Property", "Focuses on edge of object").setPosition([4.5,-1.5,0]).setangle(-TAU/4)
+       p16=cvo.CVO().CreateCVO("Property", "lines are drawn at 30 degree").setPosition([2,-2.5,0]).setangle(-TAU/4)
       
        p10.cvolist.append(p11)
        p10.cvolist.append(p12)
        p11.cvolist.append(p13)
        p11.cvolist.append(p14)
-       p12.cvolist.append(p15)
        p12.cvolist.append(p16)
+       p12.cvolist.append(p15)
        
        p13.setcircleradius(1.5)
        p14.setcircleradius(1.5)
@@ -354,9 +362,10 @@ class Shapesanim(AbstractAnim):
 
 
     def Shadows(self):
-        p10=cvo.CVO().CreateCVO("Shadow of Shape","").setPosition([0,-2,0])
-        p11=cvo.CVO().CreateCVO("Property ","Depends on shape of object").setPosition([-3,1,0])
-        p12=cvo.CVO().CreateCVO("Property ","Depends on source of light with respect to object").setPosition([3,1,0])
+        self.isRandom = False
+        p10=cvo.CVO().CreateCVO("Shadow of Shape","").setPosition([-3,0,0])
+        p11=cvo.CVO().CreateCVO("Property ","Depends on shape of object").setPosition([1,2,0])
+        p12=cvo.CVO().CreateCVO("Property ","Depends on source of light with respect to object").setPosition([1,-2,0])
         p11.setcircleradius(2)
         p12.setcircleradius(2)
         p10.cvolist.append(p11)
@@ -367,23 +376,116 @@ class Shapesanim(AbstractAnim):
         self.fadeOutCurrentScene()
 
     def Shadow1(self):
-       p10=cvo.CVO().CreateCVO("Shape1","Cube").setPosition([-2,2,0])
-       p11=cvo.CVO().CreateCVO("Shadow of shape1", "Square").setPosition([2,2,0]).setangle(-TAU/4)
-       p10.cvolist.append(p11)
-       
-       
-       self.setNumberOfCirclePositions(2)
-       self.construct1(p10,p10)
+        
+        
+        title = Text("Shape - Cube", color=YELLOW, font_size=30)
+        title.move_to([-4,2,0])
+        
+
+        self.play(Write(title))
+        
+        self.wait()
+
+        # Coordinates for the cuboid centered around the origin with increased height
+        a = ((-1, -0.75, 0), (1, -0.75, 0), (2, -1.25, 0), (0, -1.25, 0), (-1, -0.75, 0))
+        base = Polygon(*a, stroke_width=5, color=WHITE)
+
+        # Adjusted y-coordinates for the top to increase height
+        b = ((-1, 1.0, 0), (1, 1.0, 0), (2, 0.5, 0), (0, 0.5, 0), (-1, 1.0, 0))
+        top = Polygon(*b, stroke_width=5, color=WHITE)
+
+        c = ((-1.1, 1.0, 0), (-1.1, -0.75, 0), (0, -1.25, 0), (0, 0.5, 0), (-1, 1.0, 0))
+        face1 = Polygon(*c, stroke_width=5, color=WHITE)
+
+        d = ((-1, 1.0, 0), (1, 1.0, 0), (1, -0.75, 0), (-1.1, -0.75, 0), (-1.1, 1.0, 0))
+        face2 = Polygon(*d, stroke_width=5, color=WHITE)
+
+        e = ((1, 1.0, 0), (1, -0.75, 0), (2.1, -1.25, 0), (2.1, 0.5, 0), (1, 1.0, 0))
+        face3 = Polygon(*e, stroke_width=5, color=WHITE)
+
+        f = ((0, 0.5, 0), (0, -1.25, 0), (2.1, -1.25, 0), (2.1, 0.5, 0), (0, 0.5, 0))
+        face4 = Polygon(*f, stroke_width=5, color=WHITE)
+
+        # Labels for dimensions
+        
+
+        cube_group = VGroup(base, top, face1, face2, face3, face4)
+        cube_group.move_to([-4, 0, 0])  # Move the cube towards the left
+
+        self.play(Create(cube_group))
+        
+        self.wait()
+
+        face1.set_fill(color=BLUE, opacity=0.5)
+        
+        face2.set_fill(color=BLUE, opacity=0.5)
+        
+        face3.set_fill(color=BLUE, opacity=0.5)
+        
+        face4.set_fill(color=BLUE, opacity=0.5)
+        
     
+        title = Text("Shadow - Square",color=YELLOW,font_size=30)
+        title.move_to([4,2,0])
+        
+
+        self.play(Write(title))
+        
+        self.wait()
+
+        g = ((-1, 1.0, 0), (1, 1.0, 0), (1, -0.75, 0), (-1.1, -0.75, 0), (-1.1, 1.0, 0))
+        Square1 = Polygon(*g, stroke_width=5, color=WHITE)
+        
+        Square1.move_to([4, 0, 0])
+        self.play(Write(Square1))
+
+        self.fadeOutCurrentScene()
+
     def Shadow2(self):
 
-       p10=cvo.CVO().CreateCVO("Shape2", "Pyramid").setPosition([-2,-2,0])
-       p11=cvo.CVO().CreateCVO("Shadow of shape2", "Triangle").setPosition([2,-2,0]).setangle(-TAU/4)
-       p10.cvolist.append(p11)
-      
-       self.setNumberOfCirclePositions(2)
-       self.construct1(p10,p10)
-       self.fadeOutCurrentScene()
+        title = Text("Shape - Pyramid", color=YELLOW, font_size=30)
+        title.move_to([-4,2,0])
+
+        self.play(Write(title))
+        
+        # Define the reduced base of the pyramid (square)
+        base_points = [(-1, -1, 0), (1, -1, 0), (0.5, -2, 0), (-1.5, -2, 0)]
+        base = Polygon(*base_points, stroke_width=5, color=WHITE)
+
+        # Apex of the pyramid
+        apex = [0, 1, 0]
+
+        # Faces of the pyramid
+        face1 = Polygon(apex, base_points[0], base_points[1], stroke_width=5, color=WHITE)
+        face2 = Polygon(apex, base_points[1], base_points[2], stroke_width=5, color=WHITE)
+        face3 = Polygon(apex, base_points[2], base_points[3], stroke_width=5, color=WHITE)
+        face4 = Polygon(apex, base_points[3], base_points[0], stroke_width=5, color=WHITE)
+
+       # Group all objects to move them together
+        group = VGroup(base, face1, face2, face3, face4)
+        
+        face1.set_fill(color=BLUE, opacity=0.5)
+        
+        face2.set_fill(color=BLUE, opacity=0.5)
+        
+        face3.set_fill(color=BLUE, opacity=0.5)
+        
+        face4.set_fill(color=BLUE, opacity=0.5)
+        
+        group.move_to([-4,0,0]) 
+        self.play(Create(group))
+        self.wait()
+
+        title = Text("Shadow - Triangle", color=YELLOW, font_size=30)
+        title.move_to([4,2,0])
+
+        self.play(Write(title))
+
+        face = Polygon(apex, base_points[0], base_points[1], stroke_width=5, color=WHITE)
+        face.move_to([4,0,0])
+        self.play(Write(face))
+        
+        self.fadeOutCurrentScene()
     
     def SetSourceCodeFileName(self):
         self.SourceCodeFileName="Grade7Chapter14Understanding2DShapesand3DShapes.py"

@@ -27,6 +27,7 @@ class ConstructionofTriangle(AbstractAnim):
         p10.cvolist.append(p14)
         self.construct1(p10,p10)
         self.fadeOutCurrentScene()
+        
     def threes(self):
         self.isRandom = False
         self.positionChoice = [[-4,0,0],[4,0,0]]
@@ -43,18 +44,20 @@ class ConstructionofTriangle(AbstractAnim):
         ab = Line([-5, -2, 0], [-2, -2, 0])
         label1_A = Text("A").next_to(ab.get_start(),DOWN)
         label1_B = Text("B").next_to(ab.get_end(),DOWN)
-
-        text1=Text("(1)Take a linesegment AB=3",font_size=24).to_edge(RIGHT)
-        text2=Text("(2)Take a as center and create an arc taking 4cm",font_size=24).next_to(text1,DOWN)
+        text=Text("Construction Steps",font_size=24,color= ORANGE).to_edge(RIGHT)
+        text.add(Underline(text, buff=0.1))
+        text1=Text("(1)Take a linesegment AB=3",font_size=24).next_to(text,DOWN)
+        text2=Text("(2)Take a as center and create a ray taking 4cm",font_size=24).next_to(text1,DOWN)
         text3=Text("(3)Repeat the step-2 taking 2cm",font_size=24).next_to(text2,DOWN)
         text4=Text("(4)Combine all the lines",font_size=24).next_to(text3,DOWN)
-        text5=Text("(5)Triangle is Constructed",font_size=24).next_to(text4,DOWN)
+        text5=Text("(5)Triangle(ABC) is Constructed",font_size=24).next_to(text4,DOWN)
 
-        text1.shift(LEFT*3)
-        text2.shift(LEFT*1.75)
-        text3.shift(LEFT*1.5)
-        text4.shift(LEFT*3)
-        text5.shift(LEFT*3)
+        text.shift(UP + LEFT*3)
+        text1.shift(UP + LEFT*3)
+        text2.shift(UP + LEFT*1.75)
+        text3.shift(UP + LEFT*1.75)
+        text4.shift(UP + LEFT*3)
+        text5.shift(UP + LEFT*3)
          
         # Define the arcs
         side1 = Text("3cm").next_to(ab,DOWN)
@@ -77,6 +80,7 @@ class ConstructionofTriangle(AbstractAnim):
         side3 = Text("2cm").next_to( line_to_start,RIGHT)
         
         # Play the animations
+        self.play(Write(text))
         self.play(Write(text1))
         self.play(Create(ab))
         self.play(Write(label1_A),Write(label1_B))
@@ -111,13 +115,14 @@ class ConstructionofTriangle(AbstractAnim):
         ab = Line([-5, -2, 0], [-2, -2, 0])
         label1_A = Text("A").next_to(ab.get_start(),DOWN)
         label1_B = Text("B").next_to(ab.get_end(),DOWN)
-
-        text1=Text("(1)Take a linesegment AB=4cm",font_size=24).to_edge(RIGHT)
-        text2=Text("(2)Take B as center and draw an arc taking 5cm",font_size=24).next_to(text1,DOWN)
+        text=Text("Construction Steps",font_size=24,color= ORANGE).to_edge(RIGHT)
+        text.add(Underline(text, buff=0.1))
+        text1=Text("(1)Take a linesegment AB=4cm",font_size=24).next_to(text,DOWN)
+        text2=Text("(2)Take B as center and draw a ray taking 50*Degrees",font_size=24).next_to(text1,DOWN)
         text3=Text("(3)Mark it as C",font_size=24).next_to(text2,DOWN)
         text4=Text("(4)Combine all the lines",font_size=24).next_to(text3,DOWN)
-        text5=Text("(5)Triangle is Constructed",font_size=24).next_to(text4,DOWN)
-
+        text5=Text("(5)Triangle(ABC) is Constructed",font_size=24).next_to(text4,DOWN)
+        text.shift(LEFT*1.5)
         text1.shift(LEFT*1.5)
         text2.shift(LEFT*1.5)
         text3.shift(LEFT*1.75)
@@ -146,6 +151,7 @@ class ConstructionofTriangle(AbstractAnim):
         side3 = Text("5cm").next_to( line_to_start,RIGHT*3)
         
         # arc2 = Arc(radius=2, start_angle=60*DEGREES, angle=30*DEGREES, color=GOLD).move_arc_center_to([-2, -2, 0])
+        self.play(Write(text))
         self.play(Write(text1))
         self.play(Create(ab))
         self.play(Write(label1_A),Write(label1_B))
@@ -182,14 +188,15 @@ class ConstructionofTriangle(AbstractAnim):
         ab = Line([-5, -2, 0], [-2, -2, 0])
         label1_A = Text("A").next_to(ab.get_start(),DOWN)
         label1_B = Text("B").next_to(ab.get_end(),DOWN)
-
-        text1=Text("(1)Take a linesegment AB=4cm",font_size=24).to_edge(RIGHT)
-        text2=Text("(2)From A draw an arc taking 45*Degrees",font_size=24).next_to(text1,DOWN)
-        text3=Text("(3)From B draw an arc taking 100*Degrees",font_size=24).next_to(text2,DOWN)
-        text4=Text("(4)Mark the Intersection of arcs point as C",font_size=24).next_to(text3,DOWN)
+        text=Text("Construction Steps",font_size=24,color= ORANGE).to_edge(RIGHT)
+        text.add(Underline(text, buff=0.1))
+        text1=Text("(1)Take a linesegment AB=4cm",font_size=24).next_to(text,DOWN)
+        text2=Text("(2)From A draw a ray taking 45*Degrees",font_size=24).next_to(text1,DOWN)
+        text3=Text("(3)From B draw a ray taking 100*Degrees",font_size=24).next_to(text2,DOWN)
+        text4=Text("(4)Mark the Intersection of the rays point as C",font_size=24).next_to(text3,DOWN)
         text5=Text("(5)Combine AC and BC line",font_size=24).next_to(text4,DOWN)
         text6=Text("(6)Triangle is Constructed",font_size=24).next_to(text5,DOWN)
-
+        text.shift(UP + LEFT*3)
         text1.shift(UP + LEFT*3)
         text2.shift(UP + LEFT*2)
         text3.shift(UP + LEFT*2)
@@ -219,6 +226,7 @@ class ConstructionofTriangle(AbstractAnim):
         angle1_label = MathTex(r"100^\circ").move_to(triangle1.get_vertices()[1] + 0.6 * LEFT + 0.4 * UP)
         angle2_label = MathTex(r"45^\circ").move_to(triangle1.get_vertices()[0] + 0.6 * RIGHT + 0.4 * UP)
 
+        self.play(Write(text))
         self.play(Create(text1))
         self.play(Create(ab))
         self.play(Create(label1_A))
@@ -258,13 +266,15 @@ class ConstructionofTriangle(AbstractAnim):
         ab = Line([-5, -2, 0], [-2, -2, 0])
         label1_A = Text("A").next_to(ab.get_start(),DOWN)
         label1_B = Text("B").next_to(ab.get_end(),DOWN)
-
-        text1=Text("(1)Take a linesegment AB=5cm",font_size=24).to_edge(RIGHT)
-        text2=Text("(2)From A draw an arc taking 90*Degrees and mark it C",font_size=24).next_to(text1,DOWN)
+        text=Text("Construction Steps",font_size=24,color= ORANGE).to_edge(RIGHT)
+        text.add(Underline(text, buff=0.1))
+        text1=Text("(1)Take a linesegment AB=5cm",font_size=24).next_to(text,DOWN)
+        text2=Text("(2)From A draw a ray taking 90*Degrees and mark it C",font_size=24).next_to(text1,DOWN)
         text3=Text("(3)From B join a line to C taking radius 11cm",font_size=24).next_to(text2,DOWN)
         text4=Text("(4)Combine AC line",font_size=24).next_to(text3,DOWN)
         text5=Text("(5)Triangle is Constructed",font_size=24).next_to(text4,DOWN)
 
+        text.shift(LEFT*3)
         text1.shift(LEFT*3)
         text2.shift(LEFT*2)
         text3.shift(LEFT*2)
@@ -290,7 +300,7 @@ class ConstructionofTriangle(AbstractAnim):
         triangle = Polygon([-5, -2, 0], [-2, -2, 0], dot.get_center())
         triangle.set_fill(GREEN, opacity=0.5)
         angle1_label = Square(side_length=0.5).move_to(triangle.get_vertices()[1] + 2.75 * LEFT + 0.3 * UP)
-
+        self.play(Write(text))
         self.play(Write(text1))
         self.play(Create(ab))
         self.play(Create(label1_A),Create(label1_B))
@@ -314,7 +324,7 @@ class ConstructionofTriangle(AbstractAnim):
        self.DeveloperList="Abhiram" 
 
     def SetSourceCodeFileName(self):
-       self.SourceCodeFileName="Class7Chap9ConstructionOfTriangle.py"  
+       self.SourceCodeFileName="Grade7Chapter9ConstructionOfTriangle.py"  
 
 if __name__ == "__main__":
     scene = ConstructionofTriangle()
