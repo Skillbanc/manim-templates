@@ -42,7 +42,7 @@ class daytodaymaths(AbstractAnim,ThreeDScene):
         p11=cvo.CVO().CreateCVO("Addition","")
         p12=cvo.CVO().CreateCVO("Subtraction","")
         p13=cvo.CVO().CreateCVO("Multiplication","")
-        p14=cvo.CVO().CreateCVO("Division","")
+        p14=cvo.CVO().CreateCVO("Division","").setPosition([0,0,0])
         p14.setcircleradius(1.25)
         p10.cvolist.append(p11)
         p10.cvolist.append(p12)
@@ -69,12 +69,9 @@ class daytodaymaths(AbstractAnim,ThreeDScene):
         wake_up_time = Text("Given,\n""Prashant gets up at 7 AM.", font_size=24, color=WHITE).next_to(problem_a, DOWN, aligned_edge=LEFT, buff=0.5)
         walk_to_bus_stop = Text("Time taken by Prashant to walk to the bus stop is 5 minutes.", font_size=24, color=WHITE).next_to(wake_up_time, DOWN, aligned_edge=LEFT)
         bus_arrival_time = Text("The time of arrival of school bus is 7:50 AM.", font_size=24, color=WHITE).next_to(walk_to_bus_stop, DOWN, aligned_edge=LEFT)
-        time_to_get_ready = Text(
-            "7 hours 50 minutes - 5 minutes = 7 hours 45 minutes.\n\n"
-            "Since Prashant gets up at 7 AM, he needs 45 minutes to get ready for school.\n\n"
-            "Hence, Prashant has 45 minutes to get ready for school.",
-            font_size=24, color=WHITE
-        ).next_to(bus_arrival_time, DOWN, aligned_edge=LEFT)
+        time_to_get_ready = Text("7 hours 50 minutes - 5 minutes = 7 hours 45 minutes.", font_size=24, color=WHITE).next_to(bus_arrival_time, DOWN, aligned_edge=LEFT)
+        time_to_get_ready1 = Text("Since Prashant gets up at 7 AM, he needs 45 minutes to get ready for school.", font_size=24, color=WHITE).next_to(time_to_get_ready, DOWN, aligned_edge=LEFT)
+        time_to_get_ready2 = Text("Hence, Prashant has 45 minutes to get ready for school.",font_size=24, color=WHITE).next_to(time_to_get_ready1, DOWN, aligned_edge=LEFT)
 
         self.play(Write(wake_up_time))
         self.wait(1)
@@ -83,9 +80,13 @@ class daytodaymaths(AbstractAnim,ThreeDScene):
         self.play(Write(bus_arrival_time))
         self.wait(1)
         self.play(Write(time_to_get_ready))
+        self.wait(1)
+        self.play(Write(time_to_get_ready1))
+        self.wait(1)
+        self.play(Write(time_to_get_ready2))
         self.wait(3)
 
-        self.play(FadeOut(problem_a), FadeOut(wake_up_time), FadeOut(walk_to_bus_stop), FadeOut(bus_arrival_time), FadeOut(time_to_get_ready))
+        self.play(FadeOut(problem_a), FadeOut(wake_up_time), FadeOut(walk_to_bus_stop), FadeOut(bus_arrival_time), FadeOut(time_to_get_ready), FadeOut(time_to_get_ready1), FadeOut(time_to_get_ready2))
 
         # Problem (B)
         problem_b = Text(
@@ -101,20 +102,23 @@ class daytodaymaths(AbstractAnim,ThreeDScene):
 
         # Answer to Problem (B)
         seats_per_side = Text(" Given,\n""There are 4 seats in each row.", font_size=24, color=WHITE).next_to(problem_b, DOWN, aligned_edge=LEFT, buff=0.5)
-        total_seats_per_side = Text("The number of seats on each side is 12.There are two sides inside the bus.\n\n", font_size=24, color=WHITE).next_to(seats_per_side, DOWN, aligned_edge=LEFT)
-        total_seats = Text(
-                           "So, the total number of seats is,\n\n"
-                           "12 + 12 = 24.\n\n"
-                           "Hence, there are 4 seats in each row and 24 seats inside the bus.", font_size=24, color=WHITE).next_to(total_seats_per_side, DOWN, aligned_edge=LEFT, buff=0.5)
+        total_seats_per_side = Text("The number of seats on each side is 12.There are two sides inside the bus.", font_size=24, color=WHITE).next_to(seats_per_side, DOWN, aligned_edge=LEFT)
+        total_seats = Text("So, the total number of seats are,", font_size=24, color=WHITE).next_to(total_seats_per_side, DOWN, aligned_edge=LEFT)
+        total_seats1 = Text("12 + 12 = 24.", font_size=24, color=WHITE).next_to(total_seats, DOWN, aligned_edge=LEFT)
+        total_seats2 = Text("Hence, there are 4 seats in each row and 24 seats inside the bus.", font_size=24, color=WHITE).next_to(total_seats1, DOWN, aligned_edge=LEFT)
 
         self.play(Write(seats_per_side))
         self.wait(1)
         self.play(Write(total_seats_per_side))
         self.wait(1)
         self.play(Write(total_seats))
+        self.wait(1)
+        self.play(Write(total_seats1))
+        self.wait(1)
+        self.play(Write(total_seats2))
         self.wait(3)
 
-        self.play(FadeOut(problem_b), FadeOut(seats_per_side), FadeOut(total_seats_per_side), FadeOut(total_seats))
+        self.play(FadeOut(problem_b), FadeOut(seats_per_side), FadeOut(total_seats_per_side), FadeOut(total_seats), FadeOut(total_seats1), FadeOut(total_seats2))
 
         # Problem (C)
         problem_c = Text(
@@ -129,20 +133,18 @@ class daytodaymaths(AbstractAnim,ThreeDScene):
         # Answer to Problem (C)
         bananas_in_morning = Text("Given,\n""The number of bananas with Ramesh in the morning = 320", font_size=24, color=WHITE).next_to(problem_c, DOWN, aligned_edge=LEFT, buff=0.5)
         bananas_left_evening = Text("The number of bananas left with him by evening = 54", font_size=24, color=WHITE).next_to(bananas_in_morning, DOWN, aligned_edge=LEFT)
-        bananas_sold = Text(
-            " 320 - 54 = 266 bananas were sold.\n\n"
-            "Therefore, Ramesh sold 266 bananas.",
-            font_size=24, color=WHITE
-        ).next_to(bananas_left_evening, DOWN, aligned_edge=LEFT, buff=0.5)
+        bananas_sold = Text("320 - 54 = 266 bananas were sold.", font_size=24, color=WHITE).next_to(bananas_left_evening, DOWN, aligned_edge=LEFT)
+        bananas_sold1 = Text("Therefore, Ramesh sold 266 bananas.",font_size=24, color=WHITE).next_to(bananas_sold, DOWN, aligned_edge=LEFT, buff=0.5)
 
         self.play(Write(bananas_in_morning))
         self.wait(1)
         self.play(Write(bananas_left_evening))
         self.wait(1)
         self.play(Write(bananas_sold))
+        self.wait(1)
+        self.play(Write(bananas_sold1))
         self.wait(3)
-
-        self.play(FadeOut(problem_c), FadeOut(bananas_in_morning), FadeOut(bananas_left_evening), FadeOut(bananas_sold))
+        self.play(FadeOut(problem_c), FadeOut(bananas_in_morning), FadeOut(bananas_left_evening), FadeOut(bananas_sold),FadeOut(bananas_sold1))
 
         # Problem (D)
         problem_d = Text(
@@ -159,15 +161,11 @@ class daytodaymaths(AbstractAnim,ThreeDScene):
         time_to_cook_rice = Text("Given,\n""The time taken to cook rice = 25 minutes", font_size=24, color=WHITE).next_to(problem_d, DOWN, aligned_edge=LEFT, buff=0.5)
         time_to_cook_curry = Text("The time taken to cook curry = 20 minutes", font_size=24, color=WHITE).next_to(time_to_cook_rice, DOWN, aligned_edge=LEFT)
         time_to_cook_rasam = Text("The time taken to cook rasam = 15 minutes", font_size=24, color=WHITE).next_to(time_to_cook_curry, DOWN, aligned_edge=LEFT)
-        total_cooking_time = Text(
-            "The total time taken to cook = 25 minutes + 20 minutes + 15 minutes\n\n"
-            "= 60 minutes = 1 hour\n\n"
-            "She has to serve food at 8:00 o'clock.So,should enter the kitchen 1 hour i.e.\n\n"
-
-            "8:00 - 1:00 = 7:00."
-            "Hence, she should enter the kitchen at 7:00 o'clock.",
-            font_size=24, color=WHITE
-        ).next_to(time_to_cook_rasam, DOWN, aligned_edge=LEFT, buff=0.4)
+        total_cooking_time = Text("The total time taken to cook = 25 minutes + 20 minutes + 15 minutes",font_size=24, color=WHITE).next_to(time_to_cook_rasam, DOWN, aligned_edge=LEFT)
+        total_cooking_time1 = Text("= 60 minutes = 1 hour",font_size=24, color=WHITE).next_to(total_cooking_time, DOWN, aligned_edge=LEFT)
+        total_cooking_time2 = Text("She has to serve food at 8:00 o'clock.So,should enter the kitchen 1 hour i.e.",font_size=24, color=WHITE).next_to(total_cooking_time1, DOWN, aligned_edge=LEFT)
+        total_cooking_time3 = Text("8:00 - 1:00 = 7:00.",font_size=24, color=WHITE).next_to(total_cooking_time2, DOWN, aligned_edge=LEFT)
+        total_cooking_time4 = Text("Hence, she should enter the kitchen at 7:00 o'clock.",font_size=24, color=WHITE).next_to(total_cooking_time3, DOWN, aligned_edge=LEFT)
 
         self.play(Write(time_to_cook_rice))
         self.wait(1)
@@ -176,12 +174,17 @@ class daytodaymaths(AbstractAnim,ThreeDScene):
         self.play(Write(time_to_cook_rasam))
         self.wait(1)
         self.play(Write(total_cooking_time))
+        self.wait(1)
+        self.play(Write(total_cooking_time1))
+        self.wait(1)
+        self.play(Write(total_cooking_time2))
+        self.wait(1)
+        self.play(Write(total_cooking_time3))
+        self.wait(1)
+        self.play(Write(total_cooking_time4))
         self.wait(3)
 
-        self.play(FadeOut(problem_d), FadeOut(time_to_cook_rice), FadeOut(time_to_cook_curry), FadeOut(time_to_cook_rasam), FadeOut(total_cooking_time))
-
-        self.wait(2)
-
+        self.play(FadeOut(problem_d), FadeOut(time_to_cook_rice), FadeOut(time_to_cook_curry), FadeOut(time_to_cook_rasam), FadeOut(total_cooking_time),FadeOut(total_cooking_time1),FadeOut(total_cooking_time2),FadeOut(total_cooking_time3),FadeOut(total_cooking_time4))
 
     def Example2(self):
         # Given information
@@ -204,7 +207,7 @@ class daytodaymaths(AbstractAnim,ThreeDScene):
             "The elephant needs 5 kg clay, the cat needs 3 kg, and the rat needs 1 kg.\n "
             "How much clay is needed to make all the toys?\n",
             font_size=24,
-            color=GREEN  # Set the color of the question to green
+            color=GREEN  
         )
 
         elephant_clay_text = Text(
@@ -371,6 +374,8 @@ class daytodaymaths(AbstractAnim,ThreeDScene):
             Write(time_total_time),
             Write(extra_answer)
         )
+        self.wait(3)
+
 
     def Example6(self):
         title = Text("Shikha goes to her grandmother's village", font_size=36, weight=BOLD, color=YELLOW).to_edge(UP)
@@ -390,8 +395,14 @@ class daytodaymaths(AbstractAnim,ThreeDScene):
         answer_a_1 = Text("The leaving time of the bus = 9 AM", font_size=24, color=WHITE).next_to(problem_a, DOWN, buff=1)
         answer_a_2 = Text("The time taken to reach the village = 3 hours", font_size=24, color=WHITE).next_to(answer_a_1, DOWN, buff=0.3)
         answer_a_3 = Text("Now, Shikha will reach the village at", font_size=24, color=WHITE).next_to(answer_a_2, DOWN, buff=0.3)
-        answer_a_4 = Text("9:00 + 3:00 = 12:00", font_size=24, color=WHITE).next_to(answer_a_3, DOWN, buff=0.3)
-        self.play(Write(answer_a_1), Write(answer_a_2), Write(answer_a_3), Write(answer_a_4))
+        answer_a_4 = Text("9:00 + 3:00 = 12PM", font_size=24, color=WHITE).next_to(answer_a_3, DOWN, buff=0.3)
+        self.play(Write(answer_a_1))
+        self.wait(1)
+        self.play(Write(answer_a_2))
+        self.wait(1)
+        self.play(Write(answer_a_3))
+        self.wait(1)
+        self.play(Write(answer_a_4))
         self.wait(2)
         self.play(FadeOut(problem_a), FadeOut(answer_a_1), FadeOut(answer_a_2), FadeOut(answer_a_3), FadeOut(answer_a_4))
 
@@ -410,8 +421,18 @@ class daytodaymaths(AbstractAnim,ThreeDScene):
         answer_b_4 = Text("12:00 + 2:00 = 2:00 = 2 hours = 2 PM", font_size=24, color=WHITE).next_to(answer_b_3, DOWN, buff=0.3)
         answer_b_5 = Text("Hence, the time taken to reach the village without any delay is 12:00", font_size=24, color=WHITE).next_to(answer_b_4, DOWN, buff=1)
         answer_b_6 = Text("and with delay of 2 hours is 2 PM.", font_size=24, color=WHITE).next_to(answer_b_5, DOWN, buff=0.3)
-        self.play(Write(answer_b_1), Write(answer_b_2), Write(answer_b_3), Write(answer_b_4), Write(answer_b_5), Write(answer_b_6))
-        self.wait(2)
+        self.play(Write(answer_b_1))
+        self.wait(1)
+        self.play(Write(answer_b_2))
+        self.wait(1)
+        self.play(Write(answer_b_3))
+        self.wait(1)
+        self.play(Write(answer_b_4))
+        self.wait(1)
+        self.play(Write(answer_b_5))
+        self.wait(1)
+        self.play(Write(answer_b_6))
+        self.wait(3)
 
     def Example7(self):
         title = Text("Seema prepares tea ", font_size=36, weight=BOLD, color=YELLOW).to_edge(UP)
@@ -435,8 +456,10 @@ class daytodaymaths(AbstractAnim,ThreeDScene):
             
         ).scale(0.8).next_to(answer_a_title, DOWN)
         answer_a_2 = Text("So, she needs to prepare 6 cups of tea.", font_size=24, color=WHITE).next_to(answer_a_1, DOWN, buff=0.5)
-        self.play(Write(answer_a_title), Write(answer_a_1))
-        self.wait(2)
+        self.play(Write(answer_a_title))
+        self.wait(1)
+        self.play(Write(answer_a_1))
+        self.wait(1)
         self.play(Write(answer_a_2))
         self.wait(2)
         self.play(FadeOut(answer_a_title), FadeOut(answer_a_1), FadeOut(answer_a_2))
@@ -579,7 +602,6 @@ class daytodaymaths(AbstractAnim,ThreeDScene):
 
         self.play(FadeOut(problem_b), FadeOut(answer_b_1), FadeOut(answer_b_2))
 
-        self.wait(2)
 
     def SetDeveloperList(self): 
        self.DeveloperList="Potluri Divya Reddy" 
