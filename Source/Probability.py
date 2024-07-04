@@ -5,7 +5,7 @@ import cvo
 class probability(AbstractAnim):
 
     def construct(self):
-        '''self.RenderSkillbancLogo()
+        self.RenderSkillbancLogo()
         self.fadeOutCurrentScene()
         self.Introduction()
         self.fadeOutCurrentScene()
@@ -21,7 +21,7 @@ class probability(AbstractAnim):
         self.fadeOutCurrentScene()
         self.die()
         self.fadeOutCurrentScene()
-        self.DeckOfCards()'''
+        self.DeckOfCards()
         self.GithubSourceCodeReference()
 
 
