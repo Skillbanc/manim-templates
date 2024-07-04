@@ -206,7 +206,7 @@ class probability(AbstractAnim):
         self.DeveloperList="SURADHYA REDDY"
 
     def SetSourceCodeFileName(self):
-        self.SourceCodeFileName="Probability.py"
+        self.SourceCodeFileName="Grade10Chapter13Probability.py"
 
 if __name__ == "__main__":
     scene = probability()
