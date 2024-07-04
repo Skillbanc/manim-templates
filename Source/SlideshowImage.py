@@ -14,23 +14,14 @@ import os.path
 
 
 # Read Excel data into a pandas DataFrame
-xlsx_path = "/Users/hridaybhushan/Downloads/SlideShowTest.xlsx"
-df = pd.read_excel(xlsx_path, sheet_name='Sheet1')  # Adjust sheet_name as per your Excel file
+xlsx_path = "/Users/hridaybhushan/Downloads/SlideShowVideo.xlsx"
+df = pd.read_excel(xlsx_path, sheet_name='Sheet2')  # Adjust sheet_name as per your Excel file
 
 class SlideShowAnimation(AbstractAnim):
     def construct(self):
         self.setNameWithImage()
-        
-        #self.ImageURLReader()
 
     def setNameWithImage(self):
-        
-        # Folder containing final images
-        images_folder = "/Users/hridaybhushan/Downloads/Final images"
-        
-        # List of possible file extensions to check
-        image_extensions = ['.png', '.jpg', '.jpeg']  # Add more extensions as needed
-        
         # Loop through each row in the Excel data
         for index, row in df.iterrows():
             self.setBackgroundImage()
@@ -41,22 +32,23 @@ class SlideShowAnimation(AbstractAnim):
             imageURL = row['Image URL']
             scrollingText = row['Scrollable Text']
             fileExtension = row['File Extension']
-            o1_name = f"{O1name}"  # Assuming "Garu" suffix as per previous instructions
+            o1_name = (f"{O1name}")
+            o1Text = Text(o1_name, font_size=32, color=GOLD)
+            o1Text.move_to(LEFT*4)
             c1_name = f"{C1name}"
-            p1=cvo.CVO().CreateCVO(c1_name,"")
-           
-                
+            c1Text = Text(c1_name, font_size=28, color=GOLD)
+            c1Text.next_to(o1Text, UP)
+            p1=cvo.CVO().CreateCVO(c1_name,"")   
             p1.setcircleradius(3)
-   
             p1.setPosition([0,0,0])
+
             self.ImageURLReader(imageURL, o1_name, fileExtension)
             self.construct1(p1,p1)
+            self.play(Write(o1Text))
             self.ImageScale()
             self.ScrollingText(scrollingText)
             self.fadeOutCurrentScene()
             
-            
-
     def setBackgroundImage(self):
 
         # Background image
@@ -78,10 +70,6 @@ class SlideShowAnimation(AbstractAnim):
             self.play(background.animate.scale(0),top_left.animate.to_corner(UL), top_right.animate.to_corner(UR)
                       ,bottom_left.animate.to_corner(DL), bottom_right.animate.to_corner(DR))
             
-            
-            
-            
-
     def ImageURLReader(self, imageURL, o1_name, fileExtension):
         
         # URL of the image
@@ -100,8 +88,6 @@ class SlideShowAnimation(AbstractAnim):
         self.play(FadeIn(self.image_mobject))
         self.play(self.image_mobject.animate.scale(0.25))
         
-    
-
     def ImageScale(self):
         
         self.play(self.image_mobject.animate.scale(4))
