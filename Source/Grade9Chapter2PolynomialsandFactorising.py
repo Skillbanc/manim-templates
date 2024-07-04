@@ -404,7 +404,7 @@ class Polynomial(AbstractAnim):
         self.wait(3)
 
     def SetDeveloperList(self):
-        self.DeveloperList="Sindhu"
+        self.DeveloperList="A.Sindhu sri"
     
     def SetSourceCodeFileName(self):
         self.SourceCodeFileName="Grade9Chapter2PolynomialsandFactorising.py"
