@@ -45,7 +45,7 @@ class EqualShapesandEqualGroups(AbstractAnim):
         t6.shift(RIGHT*0.25)
         t7=MathTex(r"\overline{ \,0").next_to(t6,DOWN*0.2)
         t8=MathTex(r"\therefore 12 \div4 = 3").to_edge(DOWN*2)
-        
+        m11=Text("-").next_to(t6,LEFT*0.3)
         mul.shift(LEFT*2)
         t5.shift(LEFT*2)
         self.play(Write(mul))
