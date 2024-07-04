@@ -373,10 +373,10 @@ class MultiplyandDivide(AbstractAnim):
         self.fadeOutCurrentScene()
 
     def SetDeveloperList(self):
-        self.DeveloperList="Sindhu"
+        self.DeveloperList="A.Sindhu sri"
     
     def SetSourceCodeFileName(self):
-        self.SourceCodeFileName="MultiplyandDivide.py"
+        self.SourceCodeFileName="Grade5Chapter2MultiplyandDivide.py"
 
               
 if __name__ == "__main__":
