@@ -465,7 +465,7 @@ class fractionanim(AbstractAnim):
         self.wait(2)
         
     def SetDeveloperList(self):
-        self.DeveloperList="Sindhu"
+        self.DeveloperList="A.Sindhu sri"
     
     def SetSourceCodeFilename(self):
         self.SourceCodeFilename="Grade7FractionsDecimalsandRationalnumbers.py"
