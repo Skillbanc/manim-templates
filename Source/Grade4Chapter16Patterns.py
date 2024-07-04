@@ -171,7 +171,7 @@ class PatternAnimation(AbstractAnim):
         self.wait(1)
         self.play(FadeIn(triangle4), FadeIn(dot4))
         self.wait(1)
-        self.play(FadeOut(triangle1, dot1, triangle2, dot2, triangle3, dot3, triangle4, dot4,sub_title1, heading2,sub_title3,sub_title2,heading))
+        self.play(FadeOut(triangle1, dot1, triangle2, dot2, triangle3, dot3, triangle4, dot4,sub_title1, heading2,sub_title3,sub_title2,sub_title1,heading))
 
 
        
