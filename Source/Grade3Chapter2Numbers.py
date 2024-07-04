@@ -391,10 +391,10 @@ class numbers(AbstractAnim):
         self.play(FadeOut(title))
 
     def SetDeveloperList(self):
-        self.DeveloperList="Sindhu"
+        self.DeveloperList="A.Sindhu sri"
     
     def SetSourceCodeFileName(self):
-        self.SourceCodeFileName="Grade3Chapter2MultiplyandDivide.py"
+        self.SourceCodeFileName="Grade3Chapter2Numbers.py"
 
               
 if __name__ == "__main__":
