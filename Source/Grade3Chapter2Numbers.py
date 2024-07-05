@@ -30,8 +30,8 @@ class numbers(AbstractAnim):
         self.angleChoice=[TAU/4,TAU/4,TAU/4]
         p10=cvo.CVO().CreateCVO("Three-digit Number","").setPosition([-3,0,0])
         p11=cvo.CVO().CreateCVO("Ones","1").setPosition([0,2,0])
-        p12=cvo.CVO().CreateCVO("Tens","10").setPosition([3,0,0])
-        p13=cvo.CVO().CreateCVO("Hundereds","100").setPosition([0,-2,0])
+        p12=cvo.CVO().CreateCVO("Tens","10").setPosition([3,1,0])
+        p13=cvo.CVO().CreateCVO("Hundereds","100").setPosition([3,-2,0])
         p10.cvolist.append(p11)
         p10.cvolist.append(p12)
         p10.cvolist.append(p13)
@@ -352,10 +352,9 @@ class numbers(AbstractAnim):
 
         examples = [
             ("205", "no tens", 1),
-            ("023", "no hundreds", 0),
             ("340", "no ones", 2)
         ]
-        positions = [UP*2, UP*2, UP*2]
+        positions = [UP*2, UP*2]
 
         for (num, explanation, zero_index), position in zip(examples, positions):
             num_text = VGroup(*[MathTex(digit, font_size=72) for digit in num])
