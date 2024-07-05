@@ -123,17 +123,19 @@ class MultiplyandDivide(AbstractAnim):
         self.fadeOutCurrentScene()
     
     def Pattern_in_Mul(self):
-        text = Text("Q) If a box contains 200 chocolates , then").scale(0.75).to_edge(UP)
-        text1 = Text("2 boxes contains = ").scale(0.75).shift(UP*2,LEFT*1)
-        ans1 = MathTex("200 \\times 2 = 400").scale(0.75).next_to(text1,RIGHT)
+        pattern_text=Text("Observe the PATTERN").scale(0.75).to_edge(UP).set_color(YELLOW)
+        self.play(Write(pattern_text))
+        text = Text("Q) If a box contains 200 chalks , then").scale(0.6).next_to(pattern_text,DOWN,buff=0.5)
+        text1 = Text("2 boxes contains = ").scale(0.75).shift(UP*1.5,LEFT*3)
+        ans1 = MathTex("200 \\times 2 = 400\\text{ chalks}").scale(0.75).next_to(text1,RIGHT)
         text2 = Text("3 boxes contains = ").scale(0.75).next_to(text1,DOWN).shift(DOWN*0.5)
-        ans2 = MathTex("200 \\times 3 = 600").scale(0.75).next_to(text2,RIGHT)
+        ans2 = MathTex("200 \\times 3 = 600\\text{ chalks}").scale(0.75).next_to(text2,RIGHT)
         text3 = Text("4 boxes contains = ").scale(0.75).next_to(text2,DOWN).shift(DOWN*0.5)
-        ans3 = MathTex("200 \\times 4 = 800").scale(0.75).next_to(text3,RIGHT)
+        ans3 = MathTex("200 \\times 4 = 800\\text{ chalks}").scale(0.75).next_to(text3,RIGHT)
         text4 = Text("5 boxes contains = ").scale(0.75).next_to(text3,DOWN).shift(DOWN*0.5)
-        ans4 = MathTex("200 \\times 5 = 1000").scale(0.75).next_to(text4,RIGHT)
-        curved_arrow = CurvedArrow(UP*2,UP*1, angle=-PI/4).shift(RIGHT*4)
-        diff = MathTex("+ 200").scale(0.75)
+        ans4 = MathTex("200 \\times 5 = 1000\\text{ chalks}").scale(0.75).next_to(text4,RIGHT)
+        curved_arrow = CurvedArrow(ans1.get_right(),ans2.get_right(), angle=-PI/4).shift(RIGHT*0.5)
+        diff = MathTex("+ 200\\text{ chalks}").scale(0.75)
         self.play(Write(text))
         self.wait(1)
         self.play(FadeIn(text1))
@@ -148,13 +150,11 @@ class MultiplyandDivide(AbstractAnim):
         self.play(FadeIn(text4))
         self.wait(1)
         self.play(Write(ans4))
-        pattern_text=Text("Observe the PATTERN").scale(0.75).to_edge(DOWN).shift(UP*0.75)
-        self.play(Write(pattern_text))
         self.play(Create(curved_arrow))
         self.play(Write(diff.next_to(ans1,RIGHT).shift(DOWN*0.5,RIGHT*0.75)))
         self.play(Create(curved_arrow.shift(DOWN*1.25)))
         self.play(Write(diff.next_to(ans2,RIGHT).shift(DOWN*0.5,RIGHT*0.75)))
-        self.play(Create(curved_arrow.shift(DOWN*1.5)))
+        self.play(Create(curved_arrow.shift(DOWN*1.25)))
         self.play(Write(diff.next_to(ans3,RIGHT).shift(DOWN*0.5,RIGHT*0.75)))
         self.fadeOutCurrentScene()
 
@@ -171,8 +171,8 @@ class MultiplyandDivide(AbstractAnim):
         p10=cvo.CVO().CreateCVO("Division","").setPosition([-3,0,0])
         p11=cvo.CVO().CreateCVO("Dividend","").setPosition([0.5,2.5,0])
         p12=cvo.CVO().CreateCVO("Divisor","").setPosition([3,2,0])
-        p13=cvo.CVO().CreateCVO("Quotient","").setPosition([3,-2.5,0])
-        p14=cvo.CVO().CreateCVO("Remainder","").setPosition([0.5,-2.5,0])
+        p13=cvo.CVO().CreateCVO("Quotient","").setPosition([4.5,0,0])
+        p14=cvo.CVO().CreateCVO("Remainder","").setPosition([3,-2.5,0])
         p10.cvolist.append(p11)
         p10.cvolist.append(p12)
         p10.cvolist.append(p13)
@@ -347,7 +347,7 @@ class MultiplyandDivide(AbstractAnim):
     def Div_formula_check(self):
         title = MathTex("\\text{Check with Division Formula}").to_edge(UP)
         self.play(Write(title))
-        text = MathTex("Dividend=(Quotient\\times Divisor)+Remainder").next_to(title,DOWN)
+        text = MathTex("Dividend=(Quotient\\times Divisor)+Remainder").next_to(title,DOWN,buff=0.5).set_color(BLUE)
         self.play(Write(text))
         multiline1 = MathTex("Dividend:1440","Divisor:3","Quotient:480","Remainder:0").arrange(DOWN, aligned_edge=LEFT).to_edge(LEFT).scale(0.75).set_color(YELLOW)
         self.play(Write(multiline1))
@@ -359,17 +359,86 @@ class MultiplyandDivide(AbstractAnim):
         self.fadeOutCurrentScene()
 
     def Inverse_operation(self):
-        text = MathTex("\\text{Finding value of n with an INVERSE OPERATION}").to_edge(UP)
-        self.play(Write(text))
-        text1 = MathTex("4\\times 50 = 200").shift(UP*1.5)
-        self.play(Write(text1))
+        # Heading
+        heading = Text("Inverse Operation",font_size=40)
+        heading.to_edge(UP)
+
+        self.play(Write(heading))
+        example_text1 = Text("Example 1:",font_size=30).shift(2*UP + 3*LEFT)
+        self.play(Write(example_text1))
+        # First example equations
+        eq1 = MathTex("4 \\times 50 = \\_\\_\\_\\_")
+        eq2 = MathTex("\\_\\_\\_\\_ \\div 4 = 50")
+        
+        eq1.shift(1*UP + 3*LEFT)
+        eq2.next_to(eq1, DOWN)
+
+        self.play(Write(eq1), Write(eq2))
+
+        explanation2 = Text("4 x 50 = 200",font_size=36)
+        explanation2.shift(RIGHT*3)
+        
+        explanation3 = Text("Verifying: 200/ 4 = 50",font_size=36)
+        explanation3.next_to(explanation2, DOWN,buff=0.75)
+
+        # self.play(Write(explanation1))
+        self.play(Write(explanation2))
         self.wait(1)
-        text2 = MathTex("n\div 4=50","n=4\\times 50","n=200").arrange(DOWN, aligned_edge=LEFT)
-        self.play(Write(text2))
+        self.play(Write(explanation3))
         self.wait(2)
-        self.play(FadeOut(text2))
-        text1 = MathTex("200\div 4 = 50").next_to(text1,DOWN)
-        self.play(FadeIn(text1))
+
+        # Fade away the explanation
+        self.play(FadeOut( explanation2, explanation3))
+
+        # Filling in the answers for the first example
+        filled_eq1 = MathTex("4 \\times 50 = ").move_to(eq1).align_to(eq1, LEFT)
+        answer1 = MathTex("200", color=YELLOW).next_to(filled_eq1, RIGHT)
+
+        filled_eq2 = MathTex(" \\div 4 = 50").move_to(eq2).align_to(eq1, RIGHT)
+        answer2 = MathTex("200", color=YELLOW).next_to(filled_eq2, LEFT)
+
+        self.play(Transform(eq1, filled_eq1), FadeIn(answer1))
+        self.play(Transform(eq2, filled_eq2),FadeIn(answer2))
+
+        self.wait(1)
+        
+        example_text2 = Text("Example 2:",font_size=30).shift(3*LEFT,DOWN*1)
+        self.play(Write(example_text2))
+        # Second example equations
+        eq3 = MathTex("20 \\div 4 = \\_\\_\\_\\_")
+        eq4 = MathTex("5 \\times 4 = \\_\\_\\_\\_")
+        
+        eq3.shift(DOWN*2 + 3*LEFT)
+        eq4.next_to(eq3, DOWN)
+
+        self.play(Write(eq3), Write(eq4))
+
+        # Explanation for the second example
+        explanation4 = Text("20 / 4 = 5",font_size=36)
+        explanation4.shift(RIGHT*3)
+        
+        explanation5 = Text("Verifying: 5 x 4 = 20",font_size=36)
+        explanation5.next_to(explanation4, DOWN,buff=0.75)
+
+        self.play(Write(explanation4))
+        self.wait(1)
+        self.play(Write(explanation5))
+        self.wait(2)
+
+        # Fade away the explanation
+        self.play(FadeOut(explanation4, explanation5))
+
+        # Filling in the answers for the second example
+        filled_eq3 = MathTex("20 \\div 4 = ").move_to(eq3).align_to(eq3, LEFT)
+        answer3 = MathTex("5", color=YELLOW).next_to(filled_eq3, RIGHT)
+
+        filled_eq4 = MathTex("5 \\times 4 = ").move_to(eq4).align_to(eq4, LEFT)
+        answer4 = MathTex("20", color=YELLOW).next_to(filled_eq4, RIGHT)
+
+        self.play(Transform(eq3, filled_eq3), FadeIn(answer3))
+        self.play(Transform(eq4, filled_eq4), FadeIn(answer4))
+
+        self.wait(2)
         self.fadeOutCurrentScene()
 
     def SetDeveloperList(self):
