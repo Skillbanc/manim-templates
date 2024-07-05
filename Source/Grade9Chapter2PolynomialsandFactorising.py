@@ -239,15 +239,14 @@ class Polynomial(AbstractAnim):
         text = Text("Example").scale(0.5).next_to(title,DOWN)
         self.play(Write(text))
         multiline1 = MathTex("Dividend:3x^2 + x - 1", "Divisor:x + 1").arrange(DOWN, aligned_edge=LEFT).to_edge(RIGHT).scale(0.65).shift(DOWN*1)
-
         Steps = VGroup(
             MathTex("\\text{Step 1: Divide } \\frac{3x^2}{x}=3x,","\\text{it becomes first term in quotient}").arrange(DOWN),
             MathTex("\\text{Step 2: Multiply } (x + 1)3x = 3x^2 + 3x"),
             MathTex("\\text{Step 3: Divide }\\frac{-2x}{x}=-2,","\\text{it becomes second term in quotient}").arrange(DOWN),
             MathTex("\\text{Step 4: Multiply } (x + 1)-2 = -2x - 2"),
             MathTex("\\text{Step 5: We stop here as the }","\\text{remainder is 1, a constant}").arrange(DOWN),
-            Text("The division process is said to be complete \n if we get the remainder 0 or the \n degree of the remainder is less than\n the degree of the divisor",font_size=30)
-            ).scale(0.65).shift(UP*1,RIGHT*2).set_color(YELLOW)
+            Tex(r"The division process is said to be complete \\ if we get the remainder 0 or the \\ degree of the remainder is less than \\ the degree of the divisor",font_size=50)
+        ).scale(0.65).shift(UP*1,RIGHT*2).set_color(YELLOW)
         
         divisor = MathTex("x + 1").to_edge(LEFT).shift(UP*1.5)
         dividend = MathTex("3x^2 + x - 1").next_to(divisor, RIGHT)
