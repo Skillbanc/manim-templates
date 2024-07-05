@@ -5,7 +5,7 @@ from AbstractAnim import AbstractAnim
 
 import cvo
 
-class fractionanim(AbstractAnim):
+class Fractions(AbstractAnim):
 
     def construct(self):
         self.RenderSkillbancLogo()
@@ -63,16 +63,20 @@ class fractionanim(AbstractAnim):
             fill_color=BLUE,         # Fill color
             stroke_width=0           # No border
         )
-        text1 = MathTex(r"\frac{1}{2}").next_to(square1, DOWN, buff=0.5)
-        self.play(Write(square1), FadeIn(shaded_half), Write(text1))
+        text1 = MathTex(r"\frac{1}{2}").next_to(square1, DOWN, buff=0.5).set_color(BLUE)
+        self.play(Write(square1))
+        self.wait(1)
+        self.play(FadeIn(shaded_half), Write(text1))
         self.wait(2)
 
         # Create and display the second square with 1/3 shaded
         square2 = Square(side_length=3).shift(RIGHT * 3 + UP * 1)
         shaded_rectangle = Rectangle(width=1, height=3, fill_opacity=0.5, fill_color=BLUE, stroke_width=0)
         shaded_rectangle.next_to(square2.get_left(), RIGHT, buff=0)
-        text2 = MathTex(r"\frac{1}{3}").next_to(square2, DOWN, buff=0.5)
-        self.play(Write(square2), FadeIn(shaded_rectangle), Write(text2))
+        text2 = MathTex(r"\frac{1}{3}").next_to(square2, DOWN, buff=0.5).set_color(BLUE)
+        self.play(Write(square2))
+        self.wait(1)
+        self.play(FadeIn(shaded_rectangle), Write(text2))
         self.wait(2)
 
     def TypesofFraction(self):
@@ -404,7 +408,7 @@ class fractionanim(AbstractAnim):
         self.wait(2)
 
         # Example 3: Showing 4/6 is equivalent to 2/3
-        example3_text = MathTex(r"\text{Example 3: } \frac{-4}{6} \text{ and } \frac{-2}{3}", font_size=36).to_edge(LEFT).shift(DOWN * 0.5)
+        example3_text = MathTex(r"\text{Example 2: } \frac{-4}{6} \text{ and } \frac{-2}{3}", font_size=36).to_edge(LEFT).shift(DOWN * 0.5)
         self.play(Write(example3_text))
         self.wait(2)
 
@@ -472,5 +476,5 @@ class fractionanim(AbstractAnim):
 
               
 if __name__ == "__main__":
-    scene = fractionanim()
+    scene = Fractions()
     scene.render()
