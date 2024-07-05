@@ -120,6 +120,7 @@ class DifferentViews(AbstractAnim):
         self.wait(2)
         self.play(FadeOut(title))
         self.create_house_front_view()
+        self.create_house_front_view()
         self.wait(2)
         self.fadeOutCurrentScene()
 
@@ -129,8 +130,6 @@ class DifferentViews(AbstractAnim):
         self.fadeOutCurrentScene()
         self.create_house_top_view()
         self.wait(2)
-
-
     def create_house_front_view(self):
         house_body = Rectangle(width=4, height=3)
         house_body.set_fill(BLUE, opacity=0.5)
@@ -154,9 +153,8 @@ class DifferentViews(AbstractAnim):
         
         text = Text("Front View", font_size=36).set_color(YELLOW).shift(DOWN*2.5)
         
-        self.add(house_body, roof, door, roof_lines, text)
+        self.play(Create(house_body), Create(roof), Create(door), Create(roof_lines))
         self.play(Write(text))
-
     def create_house_side_view(self):
         house_body = Rectangle(width=3, height=3)
         house_body.set_fill(BLUE, opacity=0.5)
@@ -180,7 +178,7 @@ class DifferentViews(AbstractAnim):
 
         text = Text("Side View", font_size=36).set_color(YELLOW).shift(DOWN*2.5)
 
-        self.add(house_body, roof, window, roof_lines, text)
+        self.play(Create(house_body), Create(roof), Create(window), Create(roof_lines))
         self.play(Write(text))
 
     def create_roof_lines(self, roof_points):
@@ -212,7 +210,7 @@ class DifferentViews(AbstractAnim):
         line = Line(rectangle.get_left()+UP*0.1,rectangle.get_right()+UP*0.1)
         text = Text("Top View", font_size=36).set_color(YELLOW).shift(DOWN*2)
     
-        self.play(FadeIn(rectangle),FadeIn(lines),FadeIn(line))
+        self.play(Create(rectangle),FadeIn(lines),FadeIn(line))
         self.play(Write(text))
 
     def SetDeveloperList(self):
