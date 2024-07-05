@@ -120,7 +120,6 @@ class DifferentViews(AbstractAnim):
         self.wait(2)
         self.play(FadeOut(title))
         self.create_house_front_view()
-        self.create_house_front_view()
         self.wait(2)
         self.fadeOutCurrentScene()
 
