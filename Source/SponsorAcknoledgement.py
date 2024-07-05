@@ -6,8 +6,8 @@ from AbstractAnim import AbstractAnim
 import cvo
 
 # Read Excel data into a pandas DataFrame
-xlsx_path = "/Users/hridaybhushan/Downloads/NRIVAfinalList.xlsx"
-df = pd.read_excel(xlsx_path, sheet_name='Sheet1')  # Adjust sheet_name as per your Excel file
+xlsx_path = "/Users/hridaybhushan/Downloads/ConventionRegistrations.xlsx"
+df = pd.read_excel(xlsx_path, sheet_name='Sheet2')  # Adjust sheet_name as per your Excel file
 
 class MyAnimation(AbstractAnim):
     def construct(self):
@@ -17,7 +17,7 @@ class MyAnimation(AbstractAnim):
     def setNameWithImage(self):
         
         # Folder containing final images
-        images_folder = "/Users/hridaybhushan/Downloads/Final images"
+        images_folder = "/Users/hridaybhushan/Downloads/2024 St Louis Donor Sponsor List"
         
         # List of possible file extensions to check
         image_extensions = ['.png', '.jpg', '.jpeg']  # Add more extensions as needed
@@ -35,11 +35,14 @@ class MyAnimation(AbstractAnim):
             sponsorship_category = row['Sponsorship Category']
             o1_name = f"{name} Garu"  # Assuming "Garu" suffix as per previous instructions
             c1_name = f"{sponsorship_category} Sponsor"
-            p1=cvo.CVO().CreateCVO(c1_name,o1_name).setPosition([-4.5,0,0])
+            o1 = Text(o1_name, font_size=26)
+            c1 = Text(c1_name, font_size=30)
+            c1.move_to(LEFT * 4).scale(0.1)
+            o1.next_to(c1, DOWN*1.5).scale(0.1)
+
             #if len(self.colorChoice)==0:
                 #self.colorChoice=CircleColor()
-                
-            p1.setcircleradius(1.4)
+            
             
             
             
@@ -66,24 +69,27 @@ class MyAnimation(AbstractAnim):
                 center_image.scale_to_fit_width(4)
                 center_image.scale(0.1)
                 
-                self.construct1(p1,p1)
+                
                 # Animation sequence
                 
-                self.play(center_image.animate.scale(10), run_time=2)
-                self.wait(1.5)
+                self.play(center_image.animate.scale(10), o1.animate.scale(8), c1.animate.scale(8), run_time=2)
+                self.wait(8)
                 self.clear()
                 
             else:
                 self.setBackgroundImage()
-                p1.setPosition([0,-0.5,0])
-                self.construct1(p1,p1)
+                o1 = Text(o1_name, font_size=26).scale(0.1)
+                c1 = Text(c1_name, font_size=30).scale(0.1)
+                o1.next_to(c1, DOWN*1.5)
+                self.play(o1.animate.scale(10), c1.animate.scale(10), run_time=2)
+                self.wait(8)
                 # If no matching image found, skip displaying it
                 continue
 
     def setBackgroundImage(self):
 
         # Background image
-            background_image_path = '/Users/hridaybhushan/Downloads/Skillbanc TempImage/Background Image.png'
+            background_image_path = '/Users/hridaybhushan/Downloads/Digital Background.png'
             background = ImageMobject(background_image_path)
             background.scale_to_fit_width(config.frame_width)
             background.scale_to_fit_height(config.frame_height)
