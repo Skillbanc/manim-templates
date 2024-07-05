@@ -346,7 +346,7 @@ class numbers(AbstractAnim):
 
     def PlacevalueofZero(self):
         # Title
-        title = Text("Place Value of 0 in Numbers", font_size=40)
+        title = MathTex("\\text{Place Value of 0 in Numbers}").scale(0.75)
         self.play(Write(title))
         self.play(title.animate.to_edge(UP))
 
