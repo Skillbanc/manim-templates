@@ -19,6 +19,8 @@ class cordinateAnim(AbstractAnim):
          self.fadeOutCurrentScene()
          self.parallel()
          self.fadeOutCurrentScene()
+         self.quadrants()
+         self.fadeOutCurrentScene()
          self.geo1()
          self.fadeOutCurrentScene()
          self.add_quadrants()
@@ -33,8 +35,8 @@ class cordinateAnim(AbstractAnim):
    
     def constructDataByCVO(self):
         self.isRandom = False
-        p10=cvo.CVO().CreateCVO("Co-ordinate Geometry","Cordinates")
-        p11=cvo.CVO().CreateCVO("Quadrant","Any two points on the number line form a cordinate")
+        p10=cvo.CVO().CreateCVO("Co-ordinate Geometry","")
+        p11=cvo.CVO().CreateCVO("Definition","The study of algebraic equations on graphs")
         
         p10.cvolist.append(p11)
 
@@ -44,48 +46,122 @@ class cordinateAnim(AbstractAnim):
 
     def parallel(self):
     
+     
+   
+        # Title
+        title = Text("Number Line", font_size=36)
+        title.to_edge(UP, buff=1)
+        self.play(Write(title))
+
         # Create the number line
         number_line = NumberLine(
-            x_range=[-7, 8, 1],  # from -7 to 7 with step of 1
-            length=14,  # total length of the number line
-            color=BLUE,
-            include_numbers=True,  # include numbers on the number line
-            label_direction=DOWN,  # direction to place the labels
-        )
+            x_range=[-7, 8, 1],
+            length=14,
+            include_numbers=True,
+            label_direction=DOWN,
+        ).shift(DOWN)
+
+        # Create labels for negative and positive integers
+        negative_label = Text("Negative Integer", font_size=24)
+        positive_label = Text("Positive Integer", font_size=24)
         
-        # Add the number line to the scene
+        # Add brackets
+        negative_bracket = Brace(Line(number_line.n2p(-7), number_line.n2p(0)), direction=UP)
+        positive_bracket = Brace(Line(number_line.n2p(0), number_line.n2p(7)), direction=UP)
+        
+        # Position labels above the brackets
+        negative_label.next_to(negative_bracket, UP, buff=0.1)
+        positive_label.next_to(positive_bracket, UP, buff=0.1)
+        
+        # Add all elements to the scene
         self.play(Create(number_line))
-        
-        # Create circles at the points -6 and -5
-        circle_minus_6 = Circle(radius=0.2, color=RED).move_to(number_line.n2p(-6))
-        circle_minus_5 = Circle(radius=0.2, color=RED).move_to(number_line.n2p(-5))
-        
-        # Add the circles to the scene
-        self.play(Create(circle_minus_6), Create(circle_minus_5))
-        
-        # Create the conclusion text
-        conclusion_text = Text(
-            "(-6,-5) is a coordinate\n"
-            "Any two points on the number line form a coordinate.",
-            font_size=24
-        ).to_edge(DOWN)
-        
-        # Add the conclusion text to the scene
-        self.play(Write(conclusion_text))
-        
-        # Add the title
-        title = Text("Number Line", font_size=36).to_edge(UP)
-        self.play(Write(title))
-        
-        # Keep the scene displayed for a few seconds
-        self.wait(3)
+        self.play(Create(negative_bracket), Create(positive_bracket))
+        self.play(Write(negative_label), Write(positive_label))
+
+        # Add arrows at the ends of the number line
+        left_arrow = Arrow(start=number_line.n2p(-7), end=number_line.n2p(-7.5), buff=0)
+        right_arrow = Arrow(start=number_line.n2p(7), end=number_line.n2p(7.5), buff=0)
+        self.play(Create(left_arrow), Create(right_arrow))
+
+        # Conclusion text
+        conclusion = Text("The fixed point corresponding to zero is called Origin", font_size=24)
+        conclusion.next_to(number_line, DOWN, buff=1)
+        self.play(Write(conclusion))
+
+        self.wait(2)
 
 
+
+       
+    def quadrants(self):
+     
+        
+        # Create the axes with x and y labels
+        axes = NumberPlane(
+            x_range=[-6, 6, 1],
+            y_range=[-6, 6, 1],
+            axis_config={"color": WHITE},
+            background_line_style={"stroke_color": BLUE_E, "stroke_width": 2},
+            x_axis_config={"label_direction": UP},  # Label direction for x-axis
+            y_axis_config={"label_direction": RIGHT},  # Label direction for y-axis
+        ).scale(0.5).to_edge(LEFT, buff=1)  # Scale down the axes and move to the left
+        axes.add_coordinates()
+
+        # Labels for the axes
+        x_label = axes.get_x_axis_label("X", direction=RIGHT, buff=0.1)
+        y_label = axes.get_y_axis_label("Y", direction=UP, buff=0.2)
+
+        # Add points
+        point_Q = Dot(axes.c2p(-4, 5), color=RED)
+        point_P = Dot(axes.c2p(4, 3), color=RED)
+        point_R = Dot(axes.c2p(-2, -4), color=RED)
+        point_S = Dot(axes.c2p(4, -5), color=RED)
+
+        # Add labels for the points
+        label_Q = MathTex("Q", font_size=24).next_to(point_Q, UP, buff=0.1)
+        label_P = MathTex("P", font_size=24).next_to(point_P, UP, buff=0.1)
+        label_R = MathTex("R", font_size=24).next_to(point_R, UP, buff=0.1)
+        label_S = MathTex("S", font_size=24).next_to(point_S, UP, buff=0.1)
+        
+        # Add dashed lines (changed color to GREEN)
+        dashed_line_Q = DashedLine(point_Q.get_center(), axes.c2p(-4, 0), color=GREEN)
+        dashed_line_Q_y = DashedLine(point_Q.get_center(), axes.c2p(0, 5), color=GREEN)
+        dashed_line_P = DashedLine(point_P.get_center(), axes.c2p(4, 0), color=GREEN)
+        dashed_line_P_y = DashedLine(point_P.get_center(), axes.c2p(0, 3), color=GREEN)
+        dashed_line_R = DashedLine(point_R.get_center(), axes.c2p(-2, 0), color=GREEN)
+        dashed_line_R_y = DashedLine(point_R.get_center(), axes.c2p(0, -4), color=GREEN)
+        dashed_line_S = DashedLine(point_S.get_center(), axes.c2p(4, 0), color=GREEN)
+        dashed_line_S_y = DashedLine(point_S.get_center(), axes.c2p(0, -5), color=GREEN)
+
+        # Add all elements to the scene
+        self.add(axes, x_label, y_label)  # Add axes, x_label, and y_label
+        self.play(Create(point_Q), Create(label_Q), Create(dashed_line_Q), Create(dashed_line_Q_y))
+        self.play(Create(point_P), Create(label_P), Create(dashed_line_P), Create(dashed_line_P_y))
+        self.play(Create(point_R), Create(label_R), Create(dashed_line_R), Create(dashed_line_R_y))
+        self.play(Create(point_S), Create(label_S), Create(dashed_line_S), Create(dashed_line_S_y))
+        
+        # Add conclusions
+        conclusion_Q = Text("The coordinates of point Q are (-4, 5)", font_size=24).to_edge(RIGHT, buff=1).shift(UP*1.5)
+        conclusion_P = Text("The coordinates of point P are (4, 3)", font_size=24).next_to(conclusion_Q, DOWN, buff=0.3)
+        conclusion_R = Text("The coordinates of point R are (-2, -4)", font_size=24).next_to(conclusion_P, DOWN, buff=0.3)
+        conclusion_S = Text("The coordinates of point S are (4, -5)", font_size=24).next_to(conclusion_R, DOWN, buff=0.3)
+
+        self.play(Write(conclusion_Q))
+        self.play(Write(conclusion_P))
+        self.play(Write(conclusion_R))
+        self.play(Write(conclusion_S))
+
+        self.wait(2)
+
+
+      
+
+        
 
 
     def geo1(self):
         self.isRandom = False
-        p20=cvo.CVO().CreateCVO("Co-ordinate Geometry", "Quadrants").setPosition([-4,0,0])
+        p20=cvo.CVO().CreateCVO("Cartesian System", "Quadrants").setPosition([-4,0,0])
         p21=cvo.CVO().CreateCVO("Quadrant 1", "(+,+)").setPosition([-1,2,0]).setangle(-TAU/4)
         p22=cvo.CVO().CreateCVO("Quadrant 2", "(-,+)").setPosition([1,2.5,0]).setangle(-TAU/4)
         p23=cvo.CVO().CreateCVO("Quadrant 3", "(-,-)").setPosition([4.5,0,0]).setangle(-TAU/4)
@@ -115,10 +191,10 @@ class cordinateAnim(AbstractAnim):
         h_line = Line(start=axes.c2p(-5, 0), end=axes.c2p(5, 0), color=WHITE)
 
         # Add labels for each quadrant
-        label_1 = Text("I \n (++)").move_to(axes.c2p(2, 2))
-        label_2 = Text("II \n (-+)").move_to(axes.c2p(-2, 2))
-        label_3 = Text("III \n (+-)").move_to(axes.c2p(-2, -2))
-        label_4 = Text("IV \n (--)").move_to(axes.c2p(2, -2))
+        label_1 = Text("I \n (+,+)").move_to(axes.c2p(2, 2))
+        label_2 = Text("II \n (-,+)").move_to(axes.c2p(-2, 2))
+        label_3 = Text("III \n (+,-)").move_to(axes.c2p(-2, -2))
+        label_4 = Text("IV \n (-,-)").move_to(axes.c2p(2, -2))
 
         # Add everything to the scene
         self.add(axes, v_line, h_line, label_1, label_2, label_3, label_4)
