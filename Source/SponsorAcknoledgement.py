@@ -37,8 +37,8 @@ class MyAnimation(AbstractAnim):
             c1_name = f"{sponsorship_category} Sponsor"
             o1 = Text(o1_name, font_size=26)
             c1 = Text(c1_name, font_size=30)
-            c1.move_to(LEFT * 4).scale(0.1)
-            o1.next_to(c1, DOWN*1.5).scale(0.1)
+            c1.move_to(LEFT * 3).scale(0.1)
+            o1.next_to(c1, DOWN*1.75).scale(0.1)
 
             #if len(self.colorChoice)==0:
                 #self.colorChoice=CircleColor()
@@ -67,6 +67,7 @@ class MyAnimation(AbstractAnim):
                 
                 center_image.scale_to_fit_height(2)
                 center_image.scale_to_fit_width(4)
+                center_image.move_to(RIGHT * 3)
                 center_image.scale(0.1)
                 
                 
@@ -80,7 +81,7 @@ class MyAnimation(AbstractAnim):
                 self.setBackgroundImage()
                 o1 = Text(o1_name, font_size=26).scale(0.1)
                 c1 = Text(c1_name, font_size=30).scale(0.1)
-                o1.next_to(c1, DOWN*1.5)
+                o1.next_to(c1, DOWN*1.75)
                 self.play(o1.animate.scale(10), c1.animate.scale(10), run_time=2)
                 self.wait(8)
                 # If no matching image found, skip displaying it
