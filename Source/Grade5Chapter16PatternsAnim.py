@@ -12,10 +12,10 @@ class Grade5Chapter16PatternsAnim(AbstractAnim):
         self.intro()
         self.fadeOutCurrentScene()
         self.ex1()
-        # self.fadeOutCurrentScene()
-        # self.ex3()
-        # self.fadeOutCurrentScene()
-        # self.pat()
+        self.fadeOutCurrentScene()
+        self.ex3()
+        self.fadeOutCurrentScene()
+        self.pat()
         # self.fadeOutCurrentScene()
         # self.pat1()
         # self.fadeOutCurrentScene()
@@ -46,18 +46,31 @@ class Grade5Chapter16PatternsAnim(AbstractAnim):
 
     def intro(self):
         
-        p10=cvo.CVO().CreateCVO("Patterns","").setPosition([0,2.5,0])
-        p14=cvo.CVO().CreateCVO("Patterns are recurring sequences that can be observed in various contexts.","").setPosition([3.5,-2.7,0])
-        p11=cvo.CVO().CreateCVO("Types of Patterns","").setPosition([0,0.2,0])
-        p12=cvo.CVO().CreateCVO("Patterns in numbers","").setPosition([-5,-1.2,0])
-        p13=cvo.CVO().CreateCVO("Patterns with turns","").setPosition([-2.5,-2.3,0])
+        p10=cvo.CVO().CreateCVO("Patterns","").setPosition([0.3,2.5,0])
+        p15=cvo.CVO().CreateCVO("A pattern is a sequence that repeats.","").setPosition([3,0.5,0])
+        p11=cvo.CVO().CreateCVO("Types of Patterns","").setPosition([-3,0.5,0])
+        p12=cvo.CVO().CreateCVO("Color Patterns","").setPosition([-5,-1.2,0])
+        p13=cvo.CVO().CreateCVO("Shape Patterns","").setPosition([-2.5,-2.3,0])
+        p14=cvo.CVO().CreateCVO("Number Patterns","").setPosition([0,-2.7,0])
 
+        p10.cvolist.append(p15)
         p10.cvolist.append(p11)
         p11.cvolist.append(p12)
         p11.cvolist.append(p13)
         p11.cvolist.append(p14)  
-
+        
         self.construct1(p10,p10)
+
+        self.fadeOutCurrentScene()
+
+        title = Text("Identifying Patterns",font_size=45,color=BLUE).move_to([-3.5,2.3,0])
+        u = Underline(title)
+        subtil = Text("Look for the part that repeats.\n\n"
+                      "That part is called 'core' of the pattern.",font_size=28).move_to([-2.25,1,0])
+        self.play(Write(title))
+        self.play(Write(u))
+        self.play(Write(subtil,run_time=6))
+        self.wait()
 
 
     def ex1(self):
@@ -66,7 +79,7 @@ class Grade5Chapter16PatternsAnim(AbstractAnim):
         r =  Square(color=BLUE,side_length=0.66).move_to([-3,2.35,0])
         t1 = Triangle(color=BLUE).scale(0.4).move_to([-3,1.7,0]).rotate(PI)
         s1 = Text("In this pattern,", font_size=28).move_to([-5,2.5,0]) 
-        s2 = Text("is repeating itself continuously", font_size=26).move_to([0,2.5,0]) 
+        s2 = Text("is repeating itself. Hence it is the core.", font_size=26).move_to([0,2.5,0]) 
 
         t01 = Triangle(color=BLUE).scale(0.4).move_to([-1.5,-2,0]).rotate(PI)
         r1 =  Square(color=BLUE,side_length=0.66).move_to([-1.5,-1.35,0])
@@ -126,7 +139,7 @@ class Grade5Chapter16PatternsAnim(AbstractAnim):
         t1 = Triangle(color=BLUE).scale(0.3).move_to([-2,2.7,0]).rotate(PI)
         s1 = Text("Here,", font_size=28).move_to([-5,2.5,0])
         s11 = Text("and", font_size=28).move_to([-3,2.5,0])  
-        s2 = Text("are repeating alternately", font_size=26).move_to([0.5,2.5,0]) 
+        s2 = Text("are repeating alternately.\n Hence they are the core.", font_size=26).move_to([0.5,2.5,0]) 
 
 
 
@@ -141,6 +154,9 @@ class Grade5Chapter16PatternsAnim(AbstractAnim):
         t20 = Triangle(color=BLUE).scale(0.3).move_to([2,-0.7,0])
         s22 = Square(color=BLUE,side_length=0.66).rotate(angle= 45* DEGREES).move_to([2.5,-0.45,0])
         
+        tg = Text("Pattern - 2",font_size=28).move_to([-1.8,0.8,0])
+        self.play(Write(tg))
+
         self.play(Write(s01))  
         self.play(Write(t01))
         self.play(Write(t00))
@@ -175,30 +191,31 @@ class Grade5Chapter16PatternsAnim(AbstractAnim):
         self.play(Write(t3))
         self.play(Write(t4))
 
-        p1 = cvo.CVO().CreateCVO("Each turn takes","").setPosition([-4.5,-1,0]).set
-        p2 = cvo.CVO().CreateCVO("1/4 part of circular rotation","").setPosition([-2,-3,0])
-        
-        p1.cvolist.append(p2)
-        self.construct1(p1,p1)
+        title = Text("Each turn of the shape pattern takes",font_size=28).move_to([-3.5,-1.3,0])
+        subtil = Text("1/2th part of circular rotation",font_size=28).move_to([-2.25,-2,0])
+        self.play(Write(title))
+        self.play(Write(subtil))
+        self.wait()
 
-        t5 = Triangle(color=GREEN,fill_opacity=1).scale(0.5).move_to([4,-0.5,0])
-        t6 = Triangle(color=GREEN,fill_opacity=1).scale(0.5).move_to([3,-1.5,0]).rotate(PI/2)
-        t7 = Triangle(color=GREEN,fill_opacity=1).scale(0.5).move_to([4,-2.5,0]).rotate(PI)
-        t8 = Triangle(color=GREEN,fill_opacity=1).scale(0.5).move_to([5,-1.5,0]).rotate(3*(PI/2))
 
-        self.play(Write(t5))
-        self.play(Write(t6))
-        self.play(Write(t7))
-        self.play(Write(t8))
+        # t5 = Triangle(color=GREEN,fill_opacity=1).scale(0.5).move_to([4,-0.5,0])
+        # t6 = Triangle(color=GREEN,fill_opacity=1).scale(0.5).move_to([3,-1.5,0]).rotate(PI/2)
+        # t7 = Triangle(color=GREEN,fill_opacity=1).scale(0.5).move_to([4,-2.5,0]).rotate(PI)
+        # t8 = Triangle(color=GREEN,fill_opacity=1).scale(0.5).move_to([5,-1.5,0]).rotate(3*(PI/2))
+
+        # self.play(Write(t5))
+        # self.play(Write(t6))
+        # self.play(Write(t7))
+        # self.play(Write(t8))
        
-        d = DashedLine(end=[3.5,-0.5,0],start=[3,-1.2,0]).add_tip(at_start=True)
-        d1 = DashedLine(end=[3,-1.8,0],start=[3.5,-2.5,0]).add_tip(at_start=True)
-        d2 = DashedLine(end=[4.3,-2.5,0],start=[5,-1.8,0]).add_tip(at_start=True)
-        d3 = DashedLine(end=[5,-1.2,0],start=[4.3,-0.5,0]).add_tip(at_start=True)
-        self.play(Write(d))
-        self.play(Write(d1))
-        self.play(Write(d2))
-        self.play(Write(d3))
+        # d = DashedLine(end=[3.5,-0.5,0],start=[3,-1.2,0]).add_tip(at_start=True)
+        # d1 = DashedLine(end=[3,-1.8,0],start=[3.5,-2.5,0]).add_tip(at_start=True)
+        # d2 = DashedLine(end=[4.3,-2.5,0],start=[5,-1.8,0]).add_tip(at_start=True)
+        # d3 = DashedLine(end=[5,-1.2,0],start=[4.3,-0.5,0]).add_tip(at_start=True)
+        # self.play(Write(d))
+        # self.play(Write(d1))
+        # self.play(Write(d2))
+        # self.play(Write(d3))
 
 
     def pat1(self):  
@@ -222,6 +239,12 @@ class Grade5Chapter16PatternsAnim(AbstractAnim):
         
         p1.cvolist.append(p2)
         self.construct1(p1,p1)
+
+        # title = Text("Each turn of the shape pattern takes",font_size=28).move_to([-3.5,-1.3,0])
+        # subtil = Text("1/2th part of circular rotation",font_size=28).move_to([-2.25,-2,0])
+        # self.play(Write(title))
+        # self.play(Write(subtil))
+        # self.wait()
 
     def pat2(self):
 

@@ -9,6 +9,8 @@ class Grade1Chapter12Tens10to100Anim(AbstractAnim):
 
     def construct(self):
         self.RenderSkillbancLogo()
+        self.first()
+        self.fadeOutCurrentScene()
         self.page1()
         self.fadeOutCurrentScene()
         self.page2()
@@ -29,6 +31,46 @@ class Grade1Chapter12Tens10to100Anim(AbstractAnim):
     def SetSourceCodeFileName(self):
         self.SourceCodeFileName = "Grade1Chapter12Tens10to100Anim.py"     
     
+    def first(self):
+        title = Text("Tens from 10 to 100",font_size=45,color=BLUE).move_to([-3.5,3.3,0])
+        u = Underline(title)
+        subtil = Text("Numbers can be grouped into tens. This helps us\n\n"
+                      "understand and count larger numbers easily.",font_size=28).move_to([-2.25,2,0])
+        self.play(Write(title))
+        self.play(Write(u))
+        self.play(Write(subtil,run_time=6))
+        self.wait()
+
+
+        formula_steps = [
+            Text("What are tens?",font_size=30,color=BLUE).shift(LEFT*3),
+            Text("A 'ten' is a group of 10 units. \n Example, 10 ones make one ten" ,font_size=28,color=WHITE).shift(DOWN),           
+                       
+        ]
+         
+        for step in formula_steps:
+            self.play(Write(step))
+            self.wait(2)
+
+        self.fadeOutCurrentScene()    
+
+
+        title1 = Text("PATTERN",font_size=45,color=BLUE).move_to([-3.5,3.3,0])
+        u1 = Underline(title1) 
+        self.play(Write(title1))
+        self.play(Write(u1))  
+
+        pattern_steps = [
+            Text("10 (one ten and zero ones)",font_size=30,color=WHITE).shift(UP*2),
+            Text("20 (two tens and zero ones)" ,font_size=30,color=WHITE).shift(UP),           
+            Text("30 (three tens and zero ones)",font_size=30,color=WHITE),           
+            Text("So on...This continues upto \n 100 (ten tens and zero ones).)",font_size=30,color=WHITE).shift(DOWN),
+        ]
+         
+        for step in pattern_steps:
+            self.play(Write(step))
+            self.wait(2) 
+
 
     def page1(self):
 
