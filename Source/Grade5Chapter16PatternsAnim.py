@@ -8,7 +8,7 @@ import cvo
 class Grade5Chapter16PatternsAnim(AbstractAnim):
 
     def construct(self):
-        # self.RenderSkillbancLogo()
+        self.RenderSkillbancLogo()
         self.intro()
         self.fadeOutCurrentScene()
         self.ex1()
@@ -16,22 +16,22 @@ class Grade5Chapter16PatternsAnim(AbstractAnim):
         self.ex3()
         self.fadeOutCurrentScene()
         self.pat()
-        # self.fadeOutCurrentScene()
-        # self.pat1()
-        # self.fadeOutCurrentScene()
-        # self.pat2()
-        # self.fadeOutCurrentScene()
-        # self.ex4()
-        # self.fadeOutCurrentScene()
-        # self.ex5()
-        # self.fadeOutCurrentScene()
-        # self.topic1()
-        # self.fadeOutCurrentScene()
-        # self.topic2()
-        # self.fadeOutCurrentScene()
-        # self.topic3()
-        # self.fadeOutCurrentScene()
-        # self.GithubSourceCodeReference()
+        self.fadeOutCurrentScene()
+        self.pat1()
+        self.fadeOutCurrentScene()
+        self.pat2()
+        self.fadeOutCurrentScene()
+        self.ex4()
+        self.fadeOutCurrentScene()
+        self.ex5()
+        self.fadeOutCurrentScene()
+        self.topic1()
+        self.fadeOutCurrentScene()
+        self.topic2()
+        self.fadeOutCurrentScene()
+        self.topic3()
+        self.fadeOutCurrentScene()
+        self.GithubSourceCodeReference()
         
 
 
@@ -46,9 +46,9 @@ class Grade5Chapter16PatternsAnim(AbstractAnim):
 
     def intro(self):
         
-        p10=cvo.CVO().CreateCVO("Patterns","").setPosition([0.3,2.5,0])
-        p15=cvo.CVO().CreateCVO("A pattern is a sequence that repeats.","").setPosition([3,0.5,0])
-        p11=cvo.CVO().CreateCVO("Types of Patterns","").setPosition([-3,0.5,0])
+        p10=cvo.CVO().CreateCVO("Patterns","").setPosition([-3,2.5,0])
+        p15=cvo.CVO().CreateCVO("A pattern is a sequence that repeats.","").setPosition([3,2.5,0])
+        p11=cvo.CVO().CreateCVO("Types of Patterns","").setPosition([-3.5,0.5,0])
         p12=cvo.CVO().CreateCVO("Color Patterns","").setPosition([-5,-1.2,0])
         p13=cvo.CVO().CreateCVO("Shape Patterns","").setPosition([-2.5,-2.3,0])
         p14=cvo.CVO().CreateCVO("Number Patterns","").setPosition([0,-2.7,0])
@@ -79,7 +79,7 @@ class Grade5Chapter16PatternsAnim(AbstractAnim):
         r =  Square(color=BLUE,side_length=0.66).move_to([-3,2.35,0])
         t1 = Triangle(color=BLUE).scale(0.4).move_to([-3,1.7,0]).rotate(PI)
         s1 = Text("In this pattern,", font_size=28).move_to([-5,2.5,0]) 
-        s2 = Text("is repeating itself. Hence it is the core.", font_size=26).move_to([0,2.5,0]) 
+        s2 = Text("is repeating itself. Hence it is the core.", font_size=26).move_to([0,2.8,0]) 
 
         t01 = Triangle(color=BLUE).scale(0.4).move_to([-1.5,-2,0]).rotate(PI)
         r1 =  Square(color=BLUE,side_length=0.66).move_to([-1.5,-1.35,0])
@@ -178,112 +178,140 @@ class Grade5Chapter16PatternsAnim(AbstractAnim):
     def pat(self):    
 
         te = Text("Look at this triangles pattern:",font_size=28).move_to([-3,3,0])
-        t0 = Triangle(color=GREEN,fill_opacity=1).scale(0.5).move_to([-2,1.5,0])
-        t1 = Triangle(color=GREEN,fill_opacity=1).scale(0.5).move_to([-1,1.5,0]).rotate(PI/2)
-        t2 = Triangle(color=GREEN,fill_opacity=1).scale(0.5).move_to([0,1.5,0]).rotate(PI)
-        t3 = Triangle(color=GREEN,fill_opacity=1).scale(0.5).move_to([1,1.5,0]).rotate(3*(PI/2))
-        t4 = Triangle(color=GREEN,fill_opacity=1).scale(0.5).move_to([2,1.5,0]).rotate(2*PI)
-
         self.play(Write(te))
-        self.play(Write(t0))
-        self.play(Write(t1))
-        self.play(Write(t2))
-        self.play(Write(t3))
-        self.play(Write(t4))
+        triangles = [
+            Triangle(color=GREEN, fill_opacity=1).scale(0.5).move_to([-2, 1.5, 0]),
+            Triangle(color=GREEN, fill_opacity=1).scale(0.5).move_to([-1, 1.5, 0]).rotate(PI / 2),
+            Triangle(color=GREEN, fill_opacity=1).scale(0.5).move_to([0, 1.5, 0]).rotate(PI),
+            Triangle(color=GREEN, fill_opacity=1).scale(0.5).move_to([1, 1.5, 0]).rotate(3 * (PI / 2)),
+            Triangle(color=GREEN, fill_opacity=1).scale(0.5).move_to([2, 1.5, 0]).rotate(2 * PI)
+        ]
 
+        for i, triangle in enumerate(triangles):
+            self.play(Write(triangle))
+            
+            # Get the vertices of the triangle
+            vertices = triangle.get_vertices()
+            
+            # Choose one vertex to place the dot (e.g., the first vertex)
+            dot_position = vertices[0]
+            dot = Dot(dot_position, color=WHITE)
+            self.play(Write(dot))
+            
+            
+            # Add the number under the triangle
+            number = Text(str(i + 1), font_size=24)
+            number_position = triangle.get_center() + DOWN
+            number.move_to([triangle.get_center()[0], number_position[1], 0])
+            self.play(Write(number))
+
+        self.wait(2)
         title = Text("Each turn of the shape pattern takes",font_size=28).move_to([-3.5,-1.3,0])
-        subtil = Text("1/2th part of circular rotation",font_size=28).move_to([-2.25,-2,0])
+        subtil = Text("1/4th part of circular rotation.",font_size=28).move_to([-2.25,-2,0])
         self.play(Write(title))
         self.play(Write(subtil))
         self.wait()
 
 
-        # t5 = Triangle(color=GREEN,fill_opacity=1).scale(0.5).move_to([4,-0.5,0])
-        # t6 = Triangle(color=GREEN,fill_opacity=1).scale(0.5).move_to([3,-1.5,0]).rotate(PI/2)
-        # t7 = Triangle(color=GREEN,fill_opacity=1).scale(0.5).move_to([4,-2.5,0]).rotate(PI)
-        # t8 = Triangle(color=GREEN,fill_opacity=1).scale(0.5).move_to([5,-1.5,0]).rotate(3*(PI/2))
-
-        # self.play(Write(t5))
-        # self.play(Write(t6))
-        # self.play(Write(t7))
-        # self.play(Write(t8))
-       
-        # d = DashedLine(end=[3.5,-0.5,0],start=[3,-1.2,0]).add_tip(at_start=True)
-        # d1 = DashedLine(end=[3,-1.8,0],start=[3.5,-2.5,0]).add_tip(at_start=True)
-        # d2 = DashedLine(end=[4.3,-2.5,0],start=[5,-1.8,0]).add_tip(at_start=True)
-        # d3 = DashedLine(end=[5,-1.2,0],start=[4.3,-0.5,0]).add_tip(at_start=True)
-        # self.play(Write(d))
-        # self.play(Write(d1))
-        # self.play(Write(d2))
-        # self.play(Write(d3))
 
 
     def pat1(self):  
         
         te = Text("Now,",font_size=28).move_to([-3,3,0])
-        t0 = Triangle(color=GREEN,fill_opacity=1).scale(0.5).move_to([-2,1.5,0])
-        t1 = Triangle(color=GREEN,fill_opacity=1).scale(0.5).move_to([-1,1.5,0]).rotate(PI)
-        t2 = Triangle(color=GREEN,fill_opacity=1).scale(0.5).move_to([0,1.5,0]).rotate(3*(PI/2))
-        t3 = Triangle(color=GREEN,fill_opacity=1).scale(0.5).move_to([1,1.5,0]).rotate(2*PI)
-        t4 = Triangle(color=GREEN,fill_opacity=1).scale(0.5).move_to([2,1.5,0]).rotate(5*(PI/2))
-
         self.play(Write(te))
-        self.play(Write(t0))
-        self.play(Write(t1))
-        self.play(Write(t2))
-        self.play(Write(t3))
-        self.play(Write(t4))  
+        triangles = [
+            Triangle(color=GREEN, fill_opacity=1).scale(0.5).move_to([-2, 1.5, 0]),
+            Triangle(color=GREEN, fill_opacity=1).scale(0.5).move_to([-1, 1.5, 0]).rotate(PI),
+            Triangle(color=GREEN, fill_opacity=1).scale(0.5).move_to([0, 1.5, 0]).rotate(3 * (PI / 2)),
+            Triangle(color=GREEN, fill_opacity=1).scale(0.5).move_to([1, 1.5, 0]).rotate(2 * PI),
+            Triangle(color=GREEN, fill_opacity=1).scale(0.5).move_to([2, 1.5, 0]).rotate(5 * (PI / 2))
+        ]
 
-        p1 = cvo.CVO().CreateCVO("Each turn takes","").setPosition([-4.5,-1,0])
-        p2 = cvo.CVO().CreateCVO("1/2 part of circular rotation","").setPosition([-2,-3,0])
-        
-        p1.cvolist.append(p2)
-        self.construct1(p1,p1)
+        # Define the vertex offsets (assuming we use the top vertex of the unrotated triangle)
+        for i, triangle in enumerate(triangles):
+            self.play(Write(triangle))
+            
+            # Get the vertices of the triangle
+            vertices = triangle.get_vertices()
+            
+            # Choose one vertex to place the dot (e.g., the first vertex)
+            dot_position = vertices[0]
+            dot = Dot(dot_position, color=WHITE)
+            self.play(Write(dot))
+            
+            # Add the number under the triangle
+            number = Text(str(i + 1), font_size=24)
+            number_position = triangle.get_center() + DOWN
+            number.move_to([triangle.get_center()[0], number_position[1], 0])
+            self.play(Write(number))
 
-        # title = Text("Each turn of the shape pattern takes",font_size=28).move_to([-3.5,-1.3,0])
-        # subtil = Text("1/2th part of circular rotation",font_size=28).move_to([-2.25,-2,0])
-        # self.play(Write(title))
-        # self.play(Write(subtil))
-        # self.wait()
+        self.wait(2)
+  
+
+        title = Text("Each turn of the shape pattern takes",font_size=28).move_to([-3.5,-1.3,0])
+        subtil = Text("1/2th part of circular rotation.",font_size=28).move_to([-2.25,-2,0])
+        self.play(Write(title))
+        self.play(Write(subtil))
+        self.wait()
+
+       
 
     def pat2(self):
 
         te = Text("In this pattern,",font_size=28).move_to([-3,3,0])
-        t0 = Triangle(color=GREEN,fill_opacity=1).scale(0.5).move_to([-2,1.5,0])
-        t1 = Triangle(color=GREEN,fill_opacity=1).scale(0.5).move_to([-1,1.5,0]).rotate(PI/8)
-        t2 = Triangle(color=GREEN,fill_opacity=1).scale(0.5).move_to([0,1.5,0]).rotate(PI/4)
-        t3 = Triangle(color=GREEN,fill_opacity=1).scale(0.5).move_to([1,1.5,0]).rotate(3*(PI/8))
-    
         self.play(Write(te))
-        self.play(Write(t0))
-        self.play(Write(t1))
-        self.play(Write(t2))
-        self.play(Write(t3))
+        triangles = [
+            Triangle(color=GREEN, fill_opacity=1).scale(0.5).move_to([-2, 1.5, 0]),
+            Triangle(color=GREEN, fill_opacity=1).scale(0.5).move_to([-1, 1.5, 0]).rotate(PI / 8),
+            Triangle(color=GREEN, fill_opacity=1).scale(0.5).move_to([0, 1.5, 0]).rotate(PI / 4),
+            Triangle(color=GREEN, fill_opacity=1).scale(0.5).move_to([1, 1.5, 0]).rotate(3 * (PI / 8)),
+            Triangle(color=GREEN, fill_opacity=1).scale(0.5).move_to([2, 1.5, 0]).rotate(PI / 2)
+        ]
+
+        # Add the triangles, dots, and numbers to the scene
+        for i, triangle in enumerate(triangles):
+            self.play(Write(triangle))
+            
+            # Get the vertices of the triangle
+            vertices = triangle.get_vertices()
+            
+            # Choose one vertex to place the dot (e.g., the first vertex)
+            dot_position = vertices[0]
+            dot = Dot(dot_position, color=WHITE)
+            self.play(Write(dot))
+            
+            # Add the number under the triangle
+            number = Text(str(i + 1), font_size=24)
+            number_position = triangle.get_center() + DOWN
+            number.move_to([triangle.get_center()[0], number_position[1], 0])
+            self.play(Write(number))
+
+        self.wait(2)
     
 
-        p1 = cvo.CVO().CreateCVO("Each turn takes","").setPosition([-4.5,-1,0])
-        p2 = cvo.CVO().CreateCVO("1/8 part of circular rotation","").setPosition([-2,-3,0])
-        
-        p1.cvolist.append(p2)
-        self.construct1(p1,p1)
+        title = Text("Each turn of the shape pattern takes",font_size=28).move_to([-3.5,-1.3,0])
+        subtil = Text("1/8th part of circular rotation.",font_size=28).move_to([-2.25,-2,0])
+        self.play(Write(title))
+        self.play(Write(subtil))
+        self.wait()
        
     
 
     def ex4(self):
          
-        t = Text("Some patterns follow Number rules",font_size=28).move_to([-3,3,0])
+        t = Text("Some patterns follow Number rules:",font_size=35,color=BLUE).move_to([-3,3,0])
 
         self.play(Write(t))  
          
-        t1 = Text("Now an example,",font_size=28).move_to([0,1.5,0])
+        t1 = Text("Now an example,",font_size=28).next_to(t,DOWN)
         self.play(Write(t1)) 
-        p1 = Text("5  10  15  20  25")
-         
+
+        p1 = Text("5  10  15  20  25").next_to(t1,DOWN)
         self.play(Write(p1))   
 
-        p1 = cvo.CVO().CreateCVO("The rule is either","").setPosition([0,-3,0])
-        p2 = cvo.CVO().CreateCVO("multiply 1, 2, 3... by 5","").setPosition([-4,-3,0])
-        p3 = cvo.CVO().CreateCVO("add 5 to the number before","").setPosition([4,-3,0])
+        p1 = cvo.CVO().CreateCVO("The rule is either","").setPosition([0,-1,0])
+        p2 = cvo.CVO().CreateCVO("multiply 1, 2, 3... by 5","").setPosition([-4,-1,0])
+        p3 = cvo.CVO().CreateCVO("add 5 to the number before","").setPosition([4,-1,0])
         
         p1.cvolist.append(p2)
         p1.cvolist.append(p3)
@@ -291,8 +319,10 @@ class Grade5Chapter16PatternsAnim(AbstractAnim):
 
     def ex5(self):
 
-        
-        t1 = Text(" We could write the rule of the number pattern 1, 4, 9, 16 as",font_size=28).move_to([-1.5,1.5,0])
+        t = Text("Now, let's see how number patterns can \n\n be represented as shape patterns too. ",font_size=35,color=BLUE).move_to([-2.7,2.8,0])
+        self.play(Write(t))
+
+        t1 = Text("We could write the rule of 'number pattern 1, 4, 9, 16' as following:",font_size=28).move_to([-1.2,1.5,0])
         self.play(Write(t1)) 
 
 
@@ -301,65 +331,45 @@ class Grade5Chapter16PatternsAnim(AbstractAnim):
         t1 = Text(" 1 ",font_size=30).move_to([-4,-2.1,0])
         self.play(Write(t1))
 
-        r1 =  Square(color=BLUE,side_length=0.5,fill_opacity=1).move_to([-1.5,-1.5,0])
-        self.play(Write(r1))
-        r2 =  Square(color=BLUE,side_length=0.5,fill_opacity=1).move_to([-0.9,-1.5,0])
-        self.play(Write(r2))
-        r3 =  Square(color=BLUE,side_length=0.5,fill_opacity=1).move_to([-1.5,-0.9,0])
-        self.play(Write(r3))
-        r4 =  Square(color=BLUE,side_length=0.5,fill_opacity=1).move_to([-0.9,-0.9,0])
-        self.play(Write(r4))
+        i2 = [-2.2, -1.5, 0]  
+        s2 = 0.6  
+        for i in range(2):  
+            for j in range(2):  
+            
+                x = i2[0] + j * s2
+                y = i2[1] + i * s2
 
-        t2 = Text(" 1 + 3 = 4 ",font_size=30).move_to([-1.1,-2.1,0])
+                square2 = Square(color=BLUE, side_length=0.5, fill_opacity=1).move_to([x, y, 0])
+                self.play(Write(square2))
+
+        t2 = Text(" 1 + 3 = 4 ",font_size=30).move_to([-1.8,-2.1,0])
         self.play(Write(t2))
 
-        r5 =  Square(color=BLUE,side_length=0.5,fill_opacity=1).move_to([1,-1.5,0])
-        self.play(Write(r5))
-        r6 =  Square(color=BLUE,side_length=0.5,fill_opacity=1).move_to([1.6,-1.5,0])
-        self.play(Write(r6))
-        r9 =  Square(color=BLUE,side_length=0.5,fill_opacity=1).move_to([2.2,-1.5,0])
-        self.play(Write(r9))
-        r7 =  Square(color=BLUE,side_length=0.5,fill_opacity=1).move_to([1,-0.9,0])
-        self.play(Write(r7))
-        r8 =  Square(color=BLUE,side_length=0.5,fill_opacity=1).move_to([1.6,-0.9,0])
-        self.play(Write(r8))
-        r11 =  Square(color=BLUE,side_length=0.5,fill_opacity=1).move_to([2.2,-0.9,0])
-        self.play(Write(r11))
-        r0 =  Square(color=BLUE,side_length=0.5,fill_opacity=1).move_to([1,-0.3,0])
-        self.play(Write(r0))
-        r12 =  Square(color=BLUE,side_length=0.5,fill_opacity=1).move_to([1.6,-0.3,0])
-        self.play(Write(r12))
-        r22 =  Square(color=BLUE,side_length=0.5,fill_opacity=1).move_to([2.2,-0.3,0])
-        self.play(Write(r22))
+        i3 = [0.3, -1.5, 0]  
+        s3 = 0.6  
+        for i in range(3):  
+            for j in range(3):  
+            
+                x = i3[0] + j * s3
+                y = i3[1] + i * s3
 
-        t3 = Text(" 1 + 3 + 5 = 9 ",font_size=30).move_to([1.6,-2.1,0])
+                square3 = Square(color=BLUE, side_length=0.5, fill_opacity=1).move_to([x, y, 0])
+                self.play(Write(square3))
+
+        t3 = Text(" 1 + 3 + 5 = 9 ",font_size=30).move_to([0.8,-2.1,0])
         self.play(Write(t3))
 
 
-        r33 =  Square(color=BLUE,side_length=0.5,fill_opacity=1).move_to([3.5,-1.5,0])
-        self.play(Write(r33))
-        r44 =  Square(color=BLUE,side_length=0.5,fill_opacity=1).move_to([4.1,-1.5,0])
-        self.play(Write(r44))
-        r55 =  Square(color=BLUE,side_length=0.5,fill_opacity=1).move_to([4.7,-1.5,0])
-        self.play(Write(r55))
-        r50 =  Square(color=BLUE,side_length=0.5,fill_opacity=1).move_to([5.3,-1.5,0])
-        self.play(Write(r50))
-        r66 =  Square(color=BLUE,side_length=0.5,fill_opacity=1).move_to([3.5,-0.9,0])
-        self.play(Write(r66))
-        r77 =  Square(color=BLUE,side_length=0.5,fill_opacity=1).move_to([4.1,-0.9,0])
-        self.play(Write(r77))
-        r88 =  Square(color=BLUE,side_length=0.5,fill_opacity=1).move_to([4.7,-0.9,0])
-        self.play(Write(r88))
-        r80 =  Square(color=BLUE,side_length=0.5,fill_opacity=1).move_to([5.3,-0.9,0])
-        self.play(Write(r80))
-        r99 =  Square(color=BLUE,side_length=0.5,fill_opacity=1).move_to([3.5,-0.3,0])
-        self.play(Write(r99))
-        r00 =  Square(color=BLUE,side_length=0.5,fill_opacity=1).move_to([4.1,-0.3,0])
-        self.play(Write(r00))
-        r90 =  Square(color=BLUE,side_length=0.5,fill_opacity=1).move_to([4.7,-0.3,0])
-        self.play(Write(r90))
-        r70 =  Square(color=BLUE,side_length=0.5,fill_opacity=1).move_to([5.3,-0.3,0])
-        self.play(Write(r70))
+        i4 = [3.5, -1.5, 0]  
+        s4 = 0.6  
+        for i in range(4):  
+            for j in range(4):  
+            
+                x = i4[0] + j * s4
+                y = i4[1] + i * s4
+
+                square4 = Square(color=BLUE, side_length=0.5, fill_opacity=1).move_to([x, y, 0])
+                self.play(Write(square4))
 
         t4 = Text(" 1 + 3 + 5 + 7 = 16 ",font_size=30).move_to([4.7,-2.1,0])
         self.play(Write(t4))
@@ -500,7 +510,7 @@ class Grade5Chapter16PatternsAnim(AbstractAnim):
         t2 =Text("Add the numbers in the last row.\n We get 2 + 9 + 4 = 15",font_size=28).move_to([3,1,0])
         t3 =Text("Add the numbers in the middle column.\n We get 7 + 5 + 3 = 15",font_size=28).move_to([3.5,0,0])
         t4 =Text("Add the numbers on the diagonal.\n We get 6 + 5 + 4 = 15",font_size=28).move_to([3,-1,0])
-        t5 = Text("This special number grid is called a magic square.").move_to([-3,-2.3,0])
+        t5 = Text("This special number grid is called a magic square.",font_size=30).move_to([-3,-2.3,0])
 
         
         self.play(Write(t1))

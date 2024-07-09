@@ -8,32 +8,34 @@ import cvo
 class Grade8Chapter9PlanefiguresAreasAnim(AbstractAnim):
 
     def construct(self):
-        self.RenderSkillbancLogo()
-        self.Intro()
-        self.fadeOutCurrentScene()
-        self.shape1()
-        self.fadeOutCurrentScene()
-        self.shape2()
-        self.fadeOutCurrentScene()
-        self.shape3()
-        self.fadeOutCurrentScene()
-        self.shape4()
-        self.fadeOutCurrentScene()
-        self.shape5()
-        self.fadeOutCurrentScene()
-        self.shape6()
-        self.fadeOutCurrentScene()
-        self.shape7()
-        self.fadeOutCurrentScene()
-        self.quad()
-        self.fadeOutCurrentScene()
-        self.poly()
-        self.fadeOutCurrentScene()
-        self.cirpath()
-        self.fadeOutCurrentScene()
-        self.sector()
-        self.fadeOutCurrentScene()
-        self.GithubSourceCodeReference()
+        # self.RenderSkillbancLogo()
+        # self.Intro()
+        # self.fadeOutCurrentScene()
+        # self.shape1()
+        # self.fadeOutCurrentScene()
+        # self.shape2()
+        # self.fadeOutCurrentScene()
+        # self.shape3()
+        # self.fadeOutCurrentScene()
+        # self.shape4()
+        # self.fadeOutCurrentScene()
+        # self.shape5()
+        # self.fadeOutCurrentScene()
+        # self.shape6()
+        # self.fadeOutCurrentScene()
+        # self.shape7()
+        # self.fadeOutCurrentScene()
+        # self.quad()
+        # self.fadeOutCurrentScene()
+        # self.poly()
+        # self.fadeOutCurrentScene()
+        # self.cirpath()
+        # self.fadeOutCurrentScene()
+        # self.sector()
+        # self.fadeOutCurrentScene()
+        self.shaded()
+        # self.fadeOutCurrentScene()
+        # self.GithubSourceCodeReference()
     
 
     def SetDeveloperList(self):
@@ -46,7 +48,7 @@ class Grade8Chapter9PlanefiguresAreasAnim(AbstractAnim):
     def Intro(self):
         
         self.isRandom = False
-        # self.play(Write(NumberPlane()))
+        
         self.positionChoice=[[-4.5,2,0],[0,2,0],[-5,-2,0],[-1,0,0],[-1,-2,0],[1,0,0],[1,-2,0],[5,0,0],[5,-2,0]]
 
         p1=cvo.CVO().CreateCVO("Plane Figures and their Areas","")
@@ -90,7 +92,7 @@ class Grade8Chapter9PlanefiguresAreasAnim(AbstractAnim):
 
         self.play(Write(c))
         self.play(Write(t1)) 
-        # self.play(Write(NumberPlane()))
+       
         self.play(Create(arrow))
         self.play(Write(t2)) 
         self.wait(1)
@@ -107,11 +109,7 @@ class Grade8Chapter9PlanefiguresAreasAnim(AbstractAnim):
         p4.cvolist.append(p5)
 
         self.construct1(p2,p2)
-        # p2.setcircleradius(1.5)
-        # p3.setcircleradius(1.5)
-        # p4.setcircleradius(3)
-        # p5.setcircleradius(2)
-
+       
 
     def shape2(self):
 
@@ -129,7 +127,7 @@ class Grade8Chapter9PlanefiguresAreasAnim(AbstractAnim):
         t2.move_to([-6,0,0])
         arrow = DoubleArrow(color = ORANGE,start=[-5.5,1.5,0],end=[-5.5,-1.5,0])
 
-        # self.play(Write(NumberPlane()))
+       
         self.play(Write(s))
         self.play(Write(t1))
         self.play(Create(arrow))
@@ -174,7 +172,7 @@ class Grade8Chapter9PlanefiguresAreasAnim(AbstractAnim):
         self.play(Write(t2))
         self.play(Create(arrow2))
         self.play(Write(t3))
-        # self.play(Write(NumberPlane()))
+       
         self.wait(1)
 
         self.isRandom = False
@@ -218,7 +216,7 @@ class Grade8Chapter9PlanefiguresAreasAnim(AbstractAnim):
         self.play(Create(arrow2))
         self.play(Write(t3))
 
-        # self.play(Write(NumberPlane()))
+      
         self.wait(1)
 
         p2=cvo.CVO().CreateCVO("Area Formula", "1/2(b*h)").setPosition([2.5,2,0]).setangle(-TAU/4)
@@ -236,7 +234,7 @@ class Grade8Chapter9PlanefiguresAreasAnim(AbstractAnim):
 
     def shape5(self):  
          
-        # self.play(Write(NumberPlane()))
+    
         t1 = Text("Parallelogram",font="Comic Sans MS",color=LIGHT_PINK,weight=BOLD)
         t2 = Text("b",color=WHITE)
         t3 = Text("h",color=WHITE)
@@ -278,7 +276,7 @@ class Grade8Chapter9PlanefiguresAreasAnim(AbstractAnim):
 
     def shape6(self):  
          
-        # self.play(Write(NumberPlane()))
+        
         t1 = Text("Rhombus",font="Comic Sans MS",color=LIGHT_PINK,weight=BOLD)
         t2 = Text("d1",color=WHITE)
         t3 = Text("d2",color=WHITE)
@@ -323,7 +321,7 @@ class Grade8Chapter9PlanefiguresAreasAnim(AbstractAnim):
 
     def shape7(self):  
          
-        # self.play(Write(NumberPlane()))
+      
         t1 = Text("Trapezium",font="Comic Sans MS",color=LIGHT_PINK,weight=BOLD)
         t2 = Text("a",color=WHITE)
         t3 = Text("b",color=WHITE)
@@ -372,7 +370,7 @@ class Grade8Chapter9PlanefiguresAreasAnim(AbstractAnim):
 
     def quad(self):
         
-        # self.play(Write(NumberPlane()))
+
         title = Text("Area of a Quadrilateral",font_size=45)
         title.move_to([-3,3.3,0])
         u = Underline(title)
@@ -631,7 +629,6 @@ class Grade8Chapter9PlanefiguresAreasAnim(AbstractAnim):
  
     def sector(self):
 
-        # self.play(Write(NumberPlane()))
 
         title = Text("Area of Sector",font_size=45).move_to([-3.5,3.3,0])
         u = Underline(title)
@@ -709,6 +706,38 @@ class Grade8Chapter9PlanefiguresAreasAnim(AbstractAnim):
         for step in formula_steps:
             self.play(Write(step))
             self.wait(2)
+
+
+
+    def shaded(self):
+
+        square_side_length = 2
+        square = Square(side_length=square_side_length,color=GREEN, fill_color=BLUE,fill_opacity=1).move_to([4.5,2.5,0])
+        circle_radius = square_side_length / 2  
+        circle = Circle(radius=circle_radius,color=GREEN, fill_color=BLACK,fill_opacity=1).move_to([4.5,2.5,0])
+
+        circle.move_to(square.get_center())
+
+        self.add(square, circle) 
+
+        self.play(Create(square))
+        self.play(Create(circle))
+        self.wait(1)
+
+
+        formula_steps = [
+            MathTex(r"Area \ of \ the\ shaded\ region = {Area \ of \ \triangle with\ side\ + Area \ of \ trap \ BCFH", font_size=40, color=WHITE).shift(UP*1.5),
+            MathTex(r"+ Area \ of \ \triangle CDF + Area \ of \ \triangle AED", font_size=40, color=WHITE).shift(UP),
+            MathTex(r"Now, Area \ of \ \triangle ABH",font_size=40,color=WHITE).shift(LEFT*3),
+            MathTex(r"= \frac{1}{2}*AH*HB",font_size=40,color=WHITE).shift(DOWN),
+            MathTex(r"=\frac{1}{2}*25*25",font_size=40,color=WHITE).shift(DOWN*2),
+            MathTex(r"=\frac{652}{2} \ m^2 = 312.5 \ m^2",font_size=40,color=WHITE).shift(DOWN*3)
+        ]
+         
+        for step in formula_steps:
+            self.play(Write(step))
+            self.wait(2)
+
             
  
 
