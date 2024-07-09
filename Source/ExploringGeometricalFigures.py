@@ -15,6 +15,8 @@ import cvo
 class ExploringGeometricalFigures(AbstractAnim):
     def construct(self):
         self.RenderSkillbancLogo()
+        self.Title()
+        self.fadeOutCurrentScene()
         self.Introduction()
         self.fadeOutCurrentScene()
         self.GeometricFigures()
@@ -45,7 +47,13 @@ class ExploringGeometricalFigures(AbstractAnim):
 
 
 
-
+    def Title(self):
+        # Title
+        title = Text("Exploring Geometrical Figures ", font_size=70)
+        self.play(Write(title))
+        self.wait(3)
+        self.play(Unwrite(title))
+        self.wait(2)  
 
 
 
@@ -70,7 +78,7 @@ class ExploringGeometricalFigures(AbstractAnim):
          p10.cvolist.append(p14)
          p10.cvolist.append(p15)
          self.construct1(p10,p10)
-         self.wait(2)
+         self.wait(4)
 
 
 #geometric 
@@ -110,7 +118,7 @@ class ExploringGeometricalFigures(AbstractAnim):
         
         # Animate the transformation from square to triangle
          self.play(Transform(circle, triangle), Transform(circle_label, triangle_label))
-         self.wait(1)
+         self.wait(2)
 
         # Reset labels
          self.remove(circle_label)
@@ -128,7 +136,7 @@ class ExploringGeometricalFigures(AbstractAnim):
             Create(triangle)
         )
         
-         self.wait(2)
+         self.wait(4)
 
 
 
@@ -145,7 +153,7 @@ class ExploringGeometricalFigures(AbstractAnim):
          p10.cvolist.append(p12)
         
          self.construct1(p10,p10)
-         self.wait(2)
+         self.wait(4)
 
 
 
@@ -189,7 +197,7 @@ class ExploringGeometricalFigures(AbstractAnim):
         self.play(Transform(square1, square2), run_time=3)
 
         # Wait for a few seconds
-        self.wait(2)
+        self.wait(4)
 
 
 #rotation
@@ -206,14 +214,14 @@ class ExploringGeometricalFigures(AbstractAnim):
         square.shift(UP + RIGHT)
 
         self.play(Write(title))
-        self.wait()
+        self.wait(1)
 
         self.play(Create(square))
-        self.wait()
+        self.wait(2)
 
         rotation_animation = Rotate(square, 2*PI, axis=OUT, rate_func=linear)
         self.play(rotation_animation)
-        self.wait()
+        self.wait(1)
 
         self.play(Unwrite(title))
         self.wait(2)
@@ -233,17 +241,17 @@ class ExploringGeometricalFigures(AbstractAnim):
         square.shift(UP + RIGHT)
 
         self.play(Write(title))
-        self.wait()
+        self.wait(2)
 
         self.play(Create(square))
         self.wait()
 
         flip_animation = square.animate.flip(axis=UP)
         self.play(flip_animation)
-        self.wait()
+        self.wait(2)
 
         self.play(Unwrite(title))
-        self.wait(2)
+        self.wait(1)
 
 
 
@@ -277,12 +285,12 @@ class ExploringGeometricalFigures(AbstractAnim):
         group = VGroup(square1, square2, square3, circle1, circle2, circle3, square_title, circle_title)
 
         self.add(group)
-        self.wait()
+        self.wait(2)
         self.play(group.animate.shift(DOWN))  # shift all shapes down
         self.play(square1.animate.shift(RIGHT))  # move only one square
         self.play(circle1.animate.shift(UP))  # move only one circle
         self.play(group.animate.shift(RIGHT))  # shift all shapes to the right
-        self.wait(2)
+        self.wait(4)
 
 
 
@@ -322,7 +330,7 @@ class ExploringGeometricalFigures(AbstractAnim):
 
 
          self.construct1(p10,p10)
-         self.wait(2)
+         self.wait(5)
 
 
 
@@ -352,6 +360,7 @@ class ExploringGeometricalFigures(AbstractAnim):
         p15.cvolist.append(p16)
         
         self.construct1(p10,p10)
+        self.wait(4)
         
         #self.play()
         
@@ -407,12 +416,13 @@ class ExploringGeometricalFigures(AbstractAnim):
 
         # Create a group
         group = VGroup(square, line_of_symmetry, title, symmetry_title)
+    
 
         self.add(group)
-        self.wait()
+        self.wait(2)
         self.play(square.animate.shift(UP))  # shift butterfly up
         self.play(line_of_symmetry.animate.shift(UP))  # shift line of symmetry up
-        self.wait(2)
+        self.wait(4)
 
 
 
@@ -457,7 +467,7 @@ class ExploringGeometricalFigures(AbstractAnim):
 
        
 
-        self.wait(2)
+        self.wait(5)
 
 
 #rotationalsymmetry
@@ -488,7 +498,7 @@ class ExploringGeometricalFigures(AbstractAnim):
         # Rotational Symmetry Animation for Rectangle
         self.wait(2)
         self.play(Rotating(s, about_point=s.get_center(), radians=PI/2, run_time=2))
-        self.wait(2)
+        self.wait(5)
 
        
 
@@ -508,7 +518,7 @@ class ExploringGeometricalFigures(AbstractAnim):
         # Rotational Symmetry Animation for Rectangle
         self.wait(2)
         self.play(Rotating(rectangle, about_point=rectangle.get_center(), radians=PI/2, run_time=2))
-        self.wait(2)
+        self.wait(3)
 
         # Circle
         circle = Circle(radius=1)
@@ -524,7 +534,7 @@ class ExploringGeometricalFigures(AbstractAnim):
         # Rotational Symmetry Animation for Circle
         self.wait(2)
         self.play(Rotating(circle, about_point=circle.get_center(), radians=PI/4, run_time=2))
-        self.wait(2)
+        self.wait(3)
 
 
 
@@ -542,7 +552,7 @@ class ExploringGeometricalFigures(AbstractAnim):
         # Rotational Symmetry Animation for Isosceles Triangle
         self.wait(2)
         self.play(Rotating(isosceles_triangle, about_point=isosceles_triangle.get_center(), radians=PI/2, run_time=2))
-        self.wait(2)
+        self.wait(5)
 
 
 
@@ -572,7 +582,7 @@ class ExploringGeometricalFigures(AbstractAnim):
             run_time=2
         )
 
-        self.wait(2)
+        self.wait(5)
 
 
 

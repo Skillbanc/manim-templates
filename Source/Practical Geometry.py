@@ -80,7 +80,7 @@ class PracticalGeometryIntroduction(AbstractAnim):
         right_angle_label = MathTex(r"\angle ABC = 90^\circ", font_size=45)
         right_angle_label.next_to(right_angle, DOWN)
         self.play(DrawBorderThenFill(right_angle), Write(right_angle_label))
-        self.wait(2)
+        self.wait(3)
 
 
         # Circle at (1, 1)
@@ -89,7 +89,7 @@ class PracticalGeometryIntroduction(AbstractAnim):
         circle_diagonal_label = MathTex(r"circle", font_size=37)
         circle_diagonal_label.next_to(circle_diagonal, DOWN)
         self.play(DrawBorderThenFill(circle_diagonal), Write(circle_diagonal_label))
-        self.wait(2)
+        self.wait(3)
 
           #line
          
@@ -105,7 +105,7 @@ class PracticalGeometryIntroduction(AbstractAnim):
 
         self.add(group)
         self.play(Write(title))
-        self.wait(2)
+        self.wait(3)
 
 
         self.fadeOutCurrentScene()
@@ -127,7 +127,7 @@ class PracticalGeometryIntroduction(AbstractAnim):
         self.wait(2)
 
         p10.setcircleradius(3)
-        self.wait(1)
+        self.wait(4)
 
       
 
@@ -157,7 +157,7 @@ class PracticalGeometryIntroduction(AbstractAnim):
         self.add(title.to_edge(UP), A, label_A, B, label_B, line)
         
 
-        self.wait(2)
+        self.wait(3)
 
         title = Text("The distance between the points A and B is called the length of AB", font_size=30,color = YELLOW ).shift(DOWN * 2)
         
@@ -224,7 +224,7 @@ class PracticalGeometryIntroduction(AbstractAnim):
         self.add(measurement_label)
 
         # Wait for a few seconds
-        self.wait(3)
+        self.wait(4)
 
 
 
@@ -242,7 +242,7 @@ class PracticalGeometryIntroduction(AbstractAnim):
         
         self.play(Write(step1_text))
       #  self.play(Create(center_point))
-        self.wait(1)
+        self.wait(2)
 
         line2 = Line(start=RIGHT*3 + RIGHT * 3, end=LEFT*6 + RIGHT * 3, color=WHITE)
         self.add( line2)
@@ -252,7 +252,7 @@ class PracticalGeometryIntroduction(AbstractAnim):
         # Step 2: Set the compass radius
         step2_text = Text("Step 2: Mark the starting point A on the line segment.",font_size=35,color = GREEN).next_to(title, DOWN).shift(DOWN * 4.5)    
         self.play(Transform(step1_text, step2_text))
-        self.wait(1)
+        self.wait(2)
 
         # Points
         start_point = LEFT * 3
@@ -305,7 +305,7 @@ class PracticalGeometryIntroduction(AbstractAnim):
         self.wait(2)
         step5_text = Text("Final Line Segment",font_size=35,color = GREEN).next_to(title, DOWN).shift(DOWN * 4.5)    
         self.play(Transform(step1_text, step5_text))
-        self.wait(2)
+        self.wait(4)
 
 
         ###construction of circle 
@@ -313,7 +313,7 @@ class PracticalGeometryIntroduction(AbstractAnim):
         # Title
         title = Text("Construction of a Circle",color=PINK).to_edge(UP)
         self.play(Write(title))
-        self.wait(1)
+        self.wait(3)
         
         # Step 1: Draw the center point
         step1_text = Text("Step 1: Mark the center point",font_size= 40).next_to(title, DOWN).shift(DOWN * 5)
@@ -346,7 +346,7 @@ class PracticalGeometryIntroduction(AbstractAnim):
         
         self.play(Transform(step1_text, final_text))
         self.play(final_diagram.animate.move_to(ORIGIN))
-        self.wait(2)
+        self.wait(4)
 
 
 ##############perpendiculars
@@ -354,7 +354,7 @@ class PracticalGeometryIntroduction(AbstractAnim):
         # Title
         title = Text("Perpendiculars").to_edge(UP)
         self.play(Write(title))
-        self.wait(1)
+        self.wait(2)
         
         # Step 1: Draw the initial line
         step1_text = Text("Horizontal Line ",color = BLUE).next_to(title, DOWN).shift(DOWN * 5)
@@ -394,7 +394,7 @@ class PracticalGeometryIntroduction(AbstractAnim):
         
         self.play(Transform(step1_text, final_text))
         self.play(final_diagram.animate.move_to(ORIGIN))
-        self.wait(2)
+        self.wait(4)
 
 # To render the scene, save this script to a file (e.g., construct_perpendiculars.py) and run the following command in your terminal:
 # manim -pql construct_perpendiculars.py ConstructPerpendiculars
@@ -406,7 +406,7 @@ class PracticalGeometryIntroduction(AbstractAnim):
         # Title
         title = Text("Perpendicular Bisector of a Line Segment",color=PINK).to_edge(UP)
         self.play(Write(title))
-        self.wait(1)
+        self.wait(2)
 
         # Step 1: Draw the initial line segment
         step1_text = Text("Step 1: Draw the initial line segment AB",font_size=40).next_to(title, DOWN).shift(DOWN*5.8)
@@ -418,7 +418,7 @@ class PracticalGeometryIntroduction(AbstractAnim):
         
         self.play(Write(step1_text))
         self.play(Create(line_segment), Write(label_A), Write(label_B))
-        self.wait(1)
+        self.wait(2)
 
         # Step 2: Draw arcs from both endpoints with radius greater than half the length of the segment
         step2_text = Text("Step 2: Draw arcs from both endpoints",font_size=40).next_to(title, DOWN).shift(DOWN*5.8)
@@ -430,7 +430,7 @@ class PracticalGeometryIntroduction(AbstractAnim):
 
         self.play(Transform(step1_text, step2_text))
         self.play(Create(arc1_top), Create(arc1_bottom), Create(arc2_top), Create(arc2_bottom))
-        self.wait(1)
+        self.wait(2)
 
         # Step 3: Mark the intersection points of the arcs
         step3_text = Text("Step 3: Mark the intersection points M and N",font_size=40).next_to(title, DOWN).shift(DOWN*5.8)
@@ -441,7 +441,7 @@ class PracticalGeometryIntroduction(AbstractAnim):
 
         self.play(Transform(step1_text, step3_text))
         self.play(Create(intersection_top), Create(intersection_bottom), Write(label_M), Write(label_N))
-        self.wait(1)
+        self.wait(2)
 
         # Step 4: Draw the perpendicular bisector through the intersection points
         step4_text = Text("Step 4: Draw the perpendicular bisector",font_size=40).next_to(title, DOWN).shift(DOWN*5.8)
@@ -451,7 +451,7 @@ class PracticalGeometryIntroduction(AbstractAnim):
 
         self.play(Transform(step1_text, step4_text))
         self.play(Create(perpendicular_bisector), Create(midpoint), Write(label_P))
-        self.wait(1)
+        self.wait(2)
 
         # Final Diagram
         final_text = Text("Final Perpendicular Bisector Diagram",font_size=40).next_to(title, DOWN).shift(DOWN*5.8)
@@ -459,7 +459,7 @@ class PracticalGeometryIntroduction(AbstractAnim):
         
         self.play(Transform(step1_text, final_text))
         self.play(final_diagram.animate.move_to(ORIGIN))
-        self.wait(2)
+        self.wait(4)
 
 # To render the scene, save this script to a file (e.g., construct_perpendicular_bisector.py) and run the following command in your terminal:
 # manim -pql construct_perpendicular_bisector.py ConstructPerpendicularBisector
@@ -472,6 +472,7 @@ class PracticalGeometryIntroduction(AbstractAnim):
         # Title
         title = Text("DRAWING ANGLES USING PROTRACTOR",color = BLUE).scale(0.75).to_edge(UP)
         self.play(Write(title))
+        self.wait(2)
 
         # Protractor Diagram
         protractor_arc = Arc(radius=2, start_angle=0, angle=PI).shift(DOWN)
@@ -511,11 +512,11 @@ class PracticalGeometryIntroduction(AbstractAnim):
 
         for step_text in step_texts:
             self.play(Write(step_text))
-            self.wait(2)
+            self.wait(3)
             self.play(FadeOut(step_text))
 
         # Wait before ending scene
-        self.wait(2)
+        self.wait(4)
 
 
 
@@ -528,7 +529,7 @@ class PracticalGeometryIntroduction(AbstractAnim):
         # Title for the scene
         title = Text("CONSTRUCTING A COPY OF AN ANGLE OF UNKNOWN MEASURE",font_size= 32,color = YELLOW).to_edge(UP)
         self.play(Write(title))
-        self.wait(1)
+        self.wait(2)
 
         # Step 1: Draw the original angle
         step1_title = Text("Step 1: Draw the original angle", font_size=32,color=BLUE).next_to(title, DOWN).shift(DOWN * 5.7)
@@ -547,7 +548,7 @@ class PracticalGeometryIntroduction(AbstractAnim):
         self.add( line2)
          # Step 1: Draw the center point
 
-        self.wait(1)
+        self.wait(2)
 
         # Step 2: Draw a ray from a new point
         step2_title = Text("Step 2: Draw a ray from a new point", font_size=32,color = PINK).next_to(title, DOWN).shift(DOWN * 5.7)
@@ -559,7 +560,7 @@ class PracticalGeometryIntroduction(AbstractAnim):
         self.play(Write(start_label))
         new_ray = Line(P.get_center(), P.get_center() + RIGHT * 3)
         self.play(Create(P), Create(new_ray))
-        self.wait(1)
+        self.wait(2)
 
         # Step 3: Draw an arc on the original angle
         step3_title = Text("Step 3: Draw an arc on the original angle", font_size=32,color=BLUE).next_to(title, DOWN).shift(DOWN * 5.7)
@@ -568,7 +569,7 @@ class PracticalGeometryIntroduction(AbstractAnim):
         arc_radius = 2.5
         arc1 = Arc(radius=arc_radius, angle=PI / 3).move_arc_center_to(O.get_center())
         self.play(Create(arc1))
-        self.wait(1)
+        self.wait(2)
 
         # Step 4: Copy the arc to the new angle
         step4_title = Text("Step 4: Copy the arc to the new angle", font_size=32,color=PINK).next_to(title, DOWN).shift(DOWN * 5.7)
@@ -576,7 +577,7 @@ class PracticalGeometryIntroduction(AbstractAnim):
 
         arc2 = Arc(radius=arc_radius, angle=PI / 3).move_arc_center_to(P.get_center())
         self.play(Create(arc2))
-        self.wait(1)
+        self.wait(2)
 
         # Step 5: Mark the intersections of the arc with the original angle
         step5_title = Text("Step 5: Mark the intersections of the arc with the original angle", font_size=32,color=BLUE).next_to(title, DOWN).shift(DOWN * 5.7)
@@ -587,7 +588,7 @@ class PracticalGeometryIntroduction(AbstractAnim):
         mark_A = Dot(intersect_A)
         mark_B = Dot(intersect_B)
         self.play(Create(mark_A), Create(mark_B))
-        self.wait(1)
+        self.wait(2)
 
         # Step 6: Copy the distances of the intersections to the new arc
         step6_title = Text("Step 6: Copy the distances of the intersections to the new arc", font_size=32,color=PINK).next_to(title, DOWN).shift(DOWN * 5.7)
@@ -595,7 +596,7 @@ class PracticalGeometryIntroduction(AbstractAnim):
 
         distance_AB = Line(intersect_A, intersect_B)
         self.play(Create(distance_AB))
-        self.wait(1)
+        self.wait(2)
 
         # Use the compass to transfer the distance to the new arc
        # compass_arc = Arc(radius=distance_AB.get_length(), angle=PI / 6).move_arc_center_to(intersect_A)
@@ -606,7 +607,7 @@ class PracticalGeometryIntroduction(AbstractAnim):
         intersect_Q = arc2.point_from_proportion(0.3)
         mark_Q = Dot(intersect_Q)
         self.play(Create(mark_Q))
-        self.wait(1)
+        self.wait(2)
 
         # Step 7: Draw the second ray of the copied angle
         step7_title = Text("Step 7: Draw the second ray of the copied angle", font_size=32,color=BLUE).next_to(title, DOWN).shift(DOWN * 5.7)
@@ -614,13 +615,13 @@ class PracticalGeometryIntroduction(AbstractAnim):
 
         copied_angle_side = Line(P.get_center(), mark_Q.get_center())
         self.play(Create(copied_angle_side))
-        self.wait(1)
+        self.wait(2)
 
         # Final title
         final_title = Text("Constructed Angle Copy", font_size=32,color = PINK).next_to(title, DOWN).shift(DOWN * 5.7)
         self.play(Transform(step1_title, final_title))
         self.play(Write(final_title))
-        self.wait(2)
+        self.wait(4)
 
         # Clear the scene
         self.play(FadeOut(final_title), FadeOut(title), FadeOut(step1_title), *[FadeOut(mob) for mob in self.mobjects])
@@ -634,7 +635,7 @@ class PracticalGeometryIntroduction(AbstractAnim):
 
       title = Text("CONSTRUCTION TO BISECT A GIVEN ANGLE",font_size= 36,color = ORANGE).to_edge(UP)
       self.play(Write(title))
-      self.wait(1)
+      self.wait(2)
         # Step text configurations with smaller font size
       step1_text = Tex("Step 1: Draw the Given Angle .",color = WHITE).scale(1.2).to_edge(DOWN*2.5)
       self.play(Write(step1_text))
@@ -749,6 +750,7 @@ class PracticalGeometryIntroduction(AbstractAnim):
       angle_radians = angle_degrees* DEGREES
       angle_line = DashedLine( ORIGIN,3.47 * RIGHT).rotate(angle_radians).shift(DOWN*1.55+LEFT*0.47+UP*1.5).set_length(3.7)
       self.play(Create(angle_line))
+      self.wait(4)
 #self.play(Write(angle_label))
 
 
@@ -762,7 +764,7 @@ class PracticalGeometryIntroduction(AbstractAnim):
          # Title for the scene
         title = Text("CONSTRUCTING ANGLES OF SPECIAL MEASURES \n                        Construction of 60° Angle",font_size= 32,color = WHITE).to_edge(UP)
         self.play(Write(title))
-        self.wait(1)
+        self.wait(2)
         # Step text configurations with smaller font size
         step1_text = Tex("Step 1: Draw a line $l$ and mark a point $O$ on it.",color = ORANGE).scale(0.76).to_edge(DOWN*2.5)
         step2_text = Tex("Step 2: Place the pointer of the compasses at $O$ and draw an arc of convenient radius which cuts the line $l$ at a point, say $A$.",color = BLUE).scale(0.77).to_edge(DOWN*2.5)
@@ -798,14 +800,14 @@ class PracticalGeometryIntroduction(AbstractAnim):
         self.play(Write(step1_text))
         self.play(Create(line_l))
         self.play(Create(point_O), Write(label_O))
-        self.wait(2)
+        self.wait(3)
         self.play(FadeOut(step1_text))
 
         # Step 2: Draw arc from O
         self.play(Write(step2_text))
         self.play(Create(arc_OA))
         self.play(Create(point_A), Write(label_A))
-        self.wait(2)
+        self.wait(3)
         self.play(FadeOut(step2_text))
 
         # Step 3: Draw arc from A
@@ -813,7 +815,7 @@ class PracticalGeometryIntroduction(AbstractAnim):
 
         self.play(Write(step3_text))
         self.play(Create(arc_AB))
-        self.wait(2)
+        self.wait(3)
         self.play(FadeOut(step3_text))
 
         # Step 4: Mark point B, join OB, and label the angle
@@ -831,7 +833,7 @@ class PracticalGeometryIntroduction(AbstractAnim):
         angle_line = Line(ORIGIN, 2 * RIGHT).rotate(angle_radians).shift(DOWN*-0.85+LEFT*0.47)
         self.play(Create(angle_line))
         self.play(Write(angle_label))
-        self.wait(2)
+        self.wait(4)
         self.play(FadeOut(step4_text))
 
 # To render the scene, use:
@@ -850,7 +852,7 @@ class PracticalGeometryIntroduction(AbstractAnim):
     def CON120deg(self):
         title = Text("Construction of 120° Angle",font_size= 45,color = YELLOW).to_edge(UP)
         self.play(Write(title))
-        self.wait(1)
+        self.wait(2)
 
         # Step 1: Draw the original angle
         step1_title = Text("Step 1:  Draw a ray OA.", font_size=32,color=BLUE).next_to(title, DOWN).shift(DOWN * 5.55)
@@ -901,6 +903,7 @@ class PracticalGeometryIntroduction(AbstractAnim):
  # Step 5: Mark the intersections of the arc with the original angle
         step5_title = Text("Step 3: Now, taking M as center and with the same radius\n as before,draw an arc intersecting the previously drawn arc at point P.", font_size=26,color=BLUE).next_to(title, DOWN).shift(DOWN * 5.6)
         self.play(Transform(step1_title, step5_title))
+        self.wait(2)
 
         arc6 = Arc(radius=3, angle=PI/6.2, arc_center=RIGHT*1.3+DOWN*1.6+UP*1).rotate(90)
         arc6.set_color(YELLOW)
@@ -926,6 +929,7 @@ class PracticalGeometryIntroduction(AbstractAnim):
         # Step 6: Copy the distances of the intersections to the new arc
         step6_title = Text("Step 4: With P as center and the same radius, draw an arc cutting the arc at Q", font_size=26,color=PINK).next_to(title, DOWN).shift(DOWN * 5.7)
         self.play(Transform(step1_title, step6_title))
+        self.wait(2)
 
      #   distance_AB = Line(intersect_A, intersect_B)
  
@@ -946,7 +950,7 @@ class PracticalGeometryIntroduction(AbstractAnim):
 
         copied_angle_side = Line(P.get_center(), mark_Q.get_center()).set_length(4)
         self.play(Create(copied_angle_side))
-        self.wait(2)
+        self.wait(4)
 
 
 
@@ -956,7 +960,7 @@ class PracticalGeometryIntroduction(AbstractAnim):
     
         title = Text("Construction of 90° Angle",font_size= 45,color = LOGO_WHITE).to_edge(UP)
         self.play(Write(title))
-        self.wait(1)
+        self.wait(2)
 
         # Step 1: Draw the original angle
         #step1_title = Text("Step 1:  Draw a ray OA.", font_size=32,color=BLUE).next_to(title, DOWN).shift(DOWN * 5.55)
@@ -1082,7 +1086,7 @@ class PracticalGeometryIntroduction(AbstractAnim):
 #### # Step 7: Draw the second ray of the copied angle
         step27_title = Text("∠BOP = 30° and finally we got ∠AOB = 90°", font_size=32,color=ORANGE).next_to(title, DOWN).shift(DOWN * 5.6)
         self.play(Write(step27_title))
-        self.wait(3.5)
+        self.wait(5)
         self.play(FadeOut(step27_title))
 
 
