@@ -35,12 +35,14 @@ class symmetry6thgrade(AbstractAnim):
     
     
     def symmetry1(self):
+        self.isRandom = False
+        self.angleChoice = [TAU/4,TAU/4,-TAU/4,-TAU/4,TAU/4]
         p10=cvo.CVO().CreateCVO("Symmetry","").setPosition([0,2.5,0])
         p11=cvo.CVO().CreateCVO("def", " Balanced, mirrored, harmonious, equal, reflection").setPosition([4,2,0])
         p12=cvo.CVO().CreateCVO("ETI", "balanced arrangement of shapes, objects, or patterns").setPosition([2,-3,0])
-        p13=cvo.CVO().CreateCVO("Types", "").setPosition([-4,3,0]).setangle(-TAU/4)
-        p14=cvo.CVO().CreateCVO("", "line symmetry ").setPosition([-4,1,0]).setangle(-TAU/4)
-        p15=cvo.CVO().CreateCVO("", "multiple line of symmetry").setPosition([-4,-3,0]).setangle(-TAU/4)
+        p13=cvo.CVO().CreateCVO("Types", "").setPosition([-4,3,0])
+        p14=cvo.CVO().CreateCVO("", "line symmetry ").setPosition([-4,1,0])
+        p15=cvo.CVO().CreateCVO("", "multiple line of symmetry").setPosition([-4,-3,0])
         p10.cvolist.append(p11)
         p10.cvolist.append(p12)
         p10.cvolist.append(p13)
@@ -78,10 +80,12 @@ class symmetry6thgrade(AbstractAnim):
 
 
     def symmetry3(self):
+        self.isRandom = False
+        self.angleChoice = [TAU/4,TAU/3,-TAU/4]
         p10=cvo.CVO().CreateCVO("line symmetry","").setPosition([0,2.5,0])
-        p11=cvo.CVO().CreateCVO("defination", "").setPosition([4,2,0])
-        p12=cvo.CVO().CreateCVO("", "a line that divides a shape into two identical halves").setPosition([0,-2.5,0]).setangle(-TAU/3)
-        p13=cvo.CVO().CreateCVO("Eg", "square has 4(i.e Dia) and circle has infinite through center").setPosition([-4,3,0]).setangle(-TAU/4)
+        p11=cvo.CVO().CreateCVO("def", "").setPosition([4,2,0])
+        p12=cvo.CVO().CreateCVO("", "a line that divides a shape into two identical halves").setPosition([0,-2.5,0])
+        p13=cvo.CVO().CreateCVO("Eg", "square has 4(i.e Dia) and circle has infinite through center").setPosition([-4,1,0])
 
         p10.cvolist.append(p11)
         p11.cvolist.append(p12)
@@ -93,31 +97,31 @@ class symmetry6thgrade(AbstractAnim):
         symmetry_types = {
         
             'A': 'Vertical',
-            'B': 'Vertical',
-            'C': 'No',
-            'D': 'Vertical',
-            'E': 'Vertical',
-            'F': 'Vertical',
+            'B': 'Both',
+            'C': 'Horizontal',
+            'D': 'Horizontal',
+            'E': 'Horizontal',
+            'F': 'No',
             'G': 'No',
-            'H': 'Horizontal',
-            'I': 'Horizontal',
+            'H': 'Both',
+            'I': 'Both',
             'J': 'No',
-            'K': 'No',
-            'L': 'Vertical',
+            'K': 'Horizontal',
+            'L': 'No',
             'M': 'Vertical',
             'N': 'Vertical',
             'O': 'Both',
-            'P': 'Vertical',
+            'P': 'No',
             'Q': 'No',
-            'R': 'Vertical',
-            'S': 'No',
-            'T': 'Horizontal',
-            'U': 'Horizontal',
-            'V': 'Horizontal',
-            'W': 'Horizontal',
+            'R': 'No',
+            'S': 'Horizonatal',
+            'T': 'Vertical',
+            'U': 'Vertical',
+            'V': 'Vertical',
+            'W': 'Vertical',
             'X': 'Both',
-            'Y': 'Horizontal',
-            'Z': 'No'
+            'Y': 'No',
+            'Z': 'Horizontal'
         
         }
         alphabets = [chr(i) for i in range(65, 91)]
@@ -195,9 +199,11 @@ class symmetry6thgrade(AbstractAnim):
     
     
     def symmetry7(self):
+        self.isRandom = False
+        self.angleChoice = [TAU/4,-TAU/3]
         p10=cvo.CVO().CreateCVO("Multiple line of symmetry","").setPosition([0,2.5,0])
-        p11=cvo.CVO().CreateCVO("defination", " more than one line of symmetry").setPosition([4,2,0])
-        p12=cvo.CVO().CreateCVO("Eg", "Rectangle,Triangle(equi),Circle").setPosition([0,-2.5,0]).setangle(-TAU/3)
+        p11=cvo.CVO().CreateCVO("def", " more than one line of symmetry").setPosition([4,2,0])
+        p12=cvo.CVO().CreateCVO("Eg", "Rectangle,Triangle(equi),Circle").setPosition([0,-2.5,0])
        
         p10.cvolist.append(p11)
         p10.cvolist.append(p12)
@@ -256,9 +262,11 @@ class symmetry6thgrade(AbstractAnim):
         
         
     def symmetry10(self):
+        self.isRandom = False
+        self.angleChoice = [TAU/4,-TAU/3]
         p10=cvo.CVO().CreateCVO("Rectangle","").setPosition([0,2.5,0])
-        p11=cvo.CVO().CreateCVO("", "consist of length and breadth").setPosition([4,2,0])
-        p12=cvo.CVO().CreateCVO("LOS", "one passing through l and another through b ").setPosition([0,-2.5,0]).setangle(-TAU/3)
+        p11=cvo.CVO().CreateCVO("", "consist of length'l' and breadth'b'").setPosition([4,2,0])
+        p12=cvo.CVO().CreateCVO("LOS", "one passing through l and another through b ").setPosition([0,-2.5,0])
        
         p10.cvolist.append(p11)
         p10.cvolist.append(p12)

@@ -30,11 +30,13 @@ class LengthWeightSizeClass1(AbstractAnim):
 
 
     def topic1(self):
+        self.isRandom = False
+        self.angleChoice = [-TAU/4,TAU/4,-TAU/4,-TAU/4]
         p10=cvo.CVO().CreateCVO("length-weight-size","").setPosition([0,2.5,0])
         p11=cvo.CVO().CreateCVO("def", "").setPosition([4,2,0])
         p12=cvo.CVO().CreateCVO("length", "how long something is").setPosition([5,-2,0])
-        p13=cvo.CVO().CreateCVO("weight", "how heavy something is").setPosition([-4,3,0]).setangle(-TAU/4)
-        p14=cvo.CVO().CreateCVO("size", "how big or small something is").setPosition([-4,1,0]).setangle(-TAU/4)
+        p13=cvo.CVO().CreateCVO("weight", "how heavy something is").setPosition([-4,3,0])
+        p14=cvo.CVO().CreateCVO("size", "how big or small something is").setPosition([-4,1,0])
 
         p10.cvolist.append(p11)
         p11.cvolist.append(p12)
@@ -44,11 +46,13 @@ class LengthWeightSizeClass1(AbstractAnim):
         self.construct1(p10,p10)
 
     def topic2(self):
+        self.isRandom = False
+        self.angleChoice = [TAU/4,-TAU/4,-TAU/4,-TAU/4]
         p10=cvo.CVO().CreateCVO("Measuring tools","").setPosition([0,2.5,0])
         p11=cvo.CVO().CreateCVO("Standard measuring tools", "official tools we use to measure").setPosition([4,2,0])
         p12=cvo.CVO().CreateCVO("Non-standard measuring tools", "everyday things we use to measure").setPosition([5,-2,0])
-        p13=cvo.CVO().CreateCVO("eg", "rulers ,tapes,meter sticks").setPosition([-4,3,0]).setangle(-TAU/4)
-        p14=cvo.CVO().CreateCVO("eg", "body parts,ojects").setPosition([-4,1,0]).setangle(-TAU/4)
+        p13=cvo.CVO().CreateCVO("eg", "rulers ,tapes,meter sticks").setPosition([-4,3,0])
+        p14=cvo.CVO().CreateCVO("eg", "body parts,ojects").setPosition([-4,1,0])
 
         p10.cvolist.append(p11)
         p10.cvolist.append(p12)
@@ -58,12 +62,14 @@ class LengthWeightSizeClass1(AbstractAnim):
 
 
     def topic3(self):
+        self.isRandom = False
+        self.angleChoice = [TAU/4,-TAU/4,-TAU/4,-TAU/4,-TAU/4]
         p10=cvo.CVO().CreateCVO("Non-standard measuring tools","").setPosition([0,2.5,0])
         p11=cvo.CVO().CreateCVO("using body parts", "").setPosition([4,2,0])
         p12=cvo.CVO().CreateCVO("Hand-breadth", "equal to width of 4 fingers").setPosition([5,-2,0])
-        p13=cvo.CVO().CreateCVO("Hand-span", "btw the little finger and thumb of hand").setPosition([-4,3,0]).setangle(-TAU/4)
-        p14=cvo.CVO().CreateCVO("cubit", "btw the elbow and tip of the fingers").setPosition([-4,1,0]).setangle(-TAU/4)
-        p15=cvo.CVO().CreateCVO("foot", "btw the sole and the toes").setPosition([-4,-1,0]).setangle(-TAU/4)
+        p13=cvo.CVO().CreateCVO("Hand-span", "btw the little finger and thumb of hand").setPosition([-4,3,0])
+        p14=cvo.CVO().CreateCVO("cubit", "btw the elbow and tip of the fingers").setPosition([-4,1,0])
+        p15=cvo.CVO().CreateCVO("foot", "btw the sole and the toes").setPosition([-4,-1,0])
         p10.cvolist.append(p11)
         p11.cvolist.append(p12)
         p11.cvolist.append(p13)
@@ -148,6 +154,8 @@ class LengthWeightSizeClass1(AbstractAnim):
         self.construct1(p10,p10)
 
     def topic6(self):
+        self.isRandom = False
+        self.angleChoice = [TAU/4,TAU/4]
         p10=cvo.CVO().CreateCVO("Weight","").setPosition([0,2.5,0])
         p11=cvo.CVO().CreateCVO("Light", "Something that feels easy to pick up").setPosition([4,2,0])
         p12=cvo.CVO().CreateCVO("Heavy", "Something that feels hard to pick up").setPosition([5,-2,0])
@@ -158,6 +166,7 @@ class LengthWeightSizeClass1(AbstractAnim):
         self.construct1(p10,p10)
 
     def topic7(self):
+        
         p10=cvo.CVO().CreateCVO("Size","").setPosition([0,2.5,0])
         p11=cvo.CVO().CreateCVO("Big", "Something that takes up a lot of space").setPosition([4,2,0])
         p12=cvo.CVO().CreateCVO("Small", "Something that takes up little space").setPosition([5,-2,0])
