@@ -3,10 +3,17 @@ from numpy import size
 from AbstractAnim import AbstractAnim
 import cvo
 
-class MathsAroundUsGrade4(AbstractAnim,Scene):
+
+class class4_17test(AbstractAnim,Scene):
+    
+    
+    
+    
     def construct(self):
         self.RenderSkillbancLogo()
         self.topic1()
+        self.fadeOutCurrentScene()
+        self.topic2()
         self.fadeOutCurrentScene()
         self.introduction()
         self.shopping_for_sarees()
@@ -18,35 +25,57 @@ class MathsAroundUsGrade4(AbstractAnim,Scene):
         self.purchasing_flowers()
         self.conclusion()
         self.fadeOutCurrentScene()
+        
+        
         self.GithubSourceCodeReference()
+        
+    def SetDeveloperList(self):
+        self.DeveloperList="dhanushofc"   
 
-    
+
+    def SetSourceCodeFileName(self):
+        self.SourceCodeFileName = "ClassCh17LengthWeightSize.py"
+        
     def topic1(self):
-        #  p1=cvo.CVO().CreateCVO("o1name","o2name","c1name","c2name")
-         p10=cvo.CVO().CreateCVO("Maths Around Us","a magical toolbox that helps us solve problems and understand the world around us").setPosition([0,2.5,0])
-         p11=cvo.CVO().CreateCVO("Topic ","we learn abt who it is useful for santosh sister marriage").setPosition([4,2,0])
-         p12=cvo.CVO().CreateCVO("Maths used in various scenario","").setPosition([5,-2,0])
-         p13=cvo.CVO().CreateCVO("shopping of sarees","").setPosition([-4,3,0]).setangle(-TAU/4)
-         p14=cvo.CVO().CreateCVO("buying sweets","").setPosition([-4,1,0]).setangle(-TAU/4)
-         p15=cvo.CVO().CreateCVO("posting marriage cards","").setPosition([-4,-1,0]).setangle(-TAU/4)
-         p16=cvo.CVO().CreateCVO("preparing for journey","").setPosition([-4,-3,0]).setangle(-TAU/4)
-         p17=cvo.CVO().CreateCVO("tea and juice break","").setPosition([-2,-3,0])
-         p18=cvo.CVO().CreateCVO("purchasing flowers","").setPosition([-6,-3,0]).setangle(-TAU/4)
-         p11.cvolist.append(p12)
-
-         p12.cvolist.append(p17)
-         p12.cvolist.append(p18)
+        self.isRandom = False
+        self.angleChoice = [-TAU/4,-TAU/4]
+        
+        p10=cvo.CVO().CreateCVO("Maths Around Us","a magical toolbox that helps us solve problems and understand the world around us").setPosition([0,2.5,0])
+        p11=cvo.CVO().CreateCVO("Topic ","we learn abt who it is useful for santosh sister marriage").setPosition([4,2,0])
+         
+        p16=cvo.CVO().CreateCVO("Maths used in various scenario","").setPosition([-4,-3,0])
          
 
-         p10.cvolist.append(p11)
-         p12.cvolist.append(p13)
-         p12.cvolist.append(p14)
-         p12.cvolist.append(p15)
-         p12.cvolist.append(p16)
+        
          
-         self.construct1(p10,p10)
-    
-    
+
+        p10.cvolist.append(p11)
+         
+        p11.cvolist.append(p16)
+         
+        self.construct1(p10,p10)
+         
+         
+         
+    def topic2(self):
+        self.isRandom = False
+        self.angleChoice = [TAU/4,TAU/4,-TAU/4,-TAU/4]
+        p10=cvo.CVO().CreateCVO("Used basic Mathematics concepts","").setPosition([0,2.5,0])
+        p11=cvo.CVO().CreateCVO("Addition", "").setPosition([4,2,0])
+        p12=cvo.CVO().CreateCVO("Subtraction", "").setPosition([5,-2,0])
+        p13=cvo.CVO().CreateCVO("Multiplication", "").setPosition([-4,-3,0])
+        p14=cvo.CVO().CreateCVO("Division", "").setPosition([-4,1,0])
+        
+        p10.cvolist.append(p11)
+        p10.cvolist.append(p12)
+        p10.cvolist.append(p13)
+        p10.cvolist.append(p14)
+        
+        
+       
+        
+        self.construct1(p10,p10)
+        
     
     def introduction(self):
         title = Text("Maths Around Us: A Wedding Journey", font_size=48, color=BLUE)
@@ -76,19 +105,12 @@ class MathsAroundUsGrade4(AbstractAnim,Scene):
         self.wait(1)
 
         total = sum(saree_prices)
-        total_text = MathTex(f"{'+'.join(map(str, saree_prices))} = {total}", font_size=36)
+        total_text = Text(f"Total prices:₹1500+₹1300+₹850+₹2000+₹3200 = ₹{total}", font_size=36)
         total_text.next_to(sarees, DOWN, buff=1)
         self.play(Write(total_text))
         self.wait(2)
 
-        payment = 9000
-        change = payment - total
-        change_text = Text(f"Change: ₹{change}", font_size=32, color=GREEN).next_to(total_text, DOWN)
-        self.play(Write(change_text))
-        self.wait(2)
-
-        self.play(FadeOut(section_title), FadeOut(sarees), FadeOut(price_labels), 
-                  FadeOut(total_text), FadeOut(change_text))
+        self.play(FadeOut(section_title), FadeOut(sarees), FadeOut(price_labels), FadeOut(total_text))
 
     def buying_sweets(self):
         section_title = Text("Buying Sweets", font_size=40, color=YELLOW)
@@ -108,66 +130,25 @@ class MathsAroundUsGrade4(AbstractAnim,Scene):
 
         self.play(Create(sweets_group), Write(laddoo_text), Write(badhushaw_text))
         self.wait(1)
-
-        calculation = MathTex("(20 \\times 120) + (20 \\times 150) = 5400", font_size=36)
-        calculation.next_to(sweets_group, DOWN, buff=0.5)
+        
+        calculation_laddoo = Text("For:(20 kg × ₹120/kg) = ₹2400", font_size=36)
+        calculation_laddoo.next_to(sweets_group, DOWN)
+        self.play(Write(calculation_laddoo))
+        self.wait(2)
+        
+        calculation_badhushaw = Text("For:(20 kg × ₹150/kg) = ₹3000", font_size=36)
+        calculation_badhushaw.next_to(calculation_laddoo, DOWN)
+        self.play(Write(calculation_badhushaw))
+        self.wait(2)
+          
+        
+        calculation = Text("Total cost: ₹2400 + ₹3000  = ₹5400", font_size=36)
+        calculation.next_to(calculation_badhushaw, DOWN)
         self.play(Write(calculation))
         self.wait(2)
 
-        boxes = Text("40 boxes of 0.5 kg laddoos", font_size=32, color=GREEN).next_to(calculation, DOWN)
-        self.play(Write(boxes))
-        self.wait(2)
-
         self.play(FadeOut(section_title), FadeOut(sweets_group), FadeOut(laddoo_text), 
-                FadeOut(badhushaw_text), FadeOut(calculation), FadeOut(boxes))
-
-    """def buying_sweets(self):
-        section_title = Text("Buying Sweets", font_size=40, color=YELLOW)
-        self.play(Write(section_title))
-        self.wait(1)
-        self.play(section_title.animate.to_edge(UP))
-
-        laddoo = Circle(radius=0.3, color=ORANGE, fill_opacity=0.8)
-        badhushaw = Rectangle(width=0.6, height=0.3, color=YELLOW, fill_opacity=0.8)
-
-        laddoo_group = Group(*[laddoo.copy() for _ in range(5)]).arrange(RIGHT, buff=0.2)
-        badhushaw_group = Group(*[badhushaw.copy() for _ in range(5)]).arrange(RIGHT, buff=0.2)
-        sweets_group = VGroup(laddoo_group, badhushaw_group).arrange(DOWN, buff=0.5)
-
-        laddoo_text = Text("Laddoo: ₹120/kg", font_size=24).next_to(laddoo_group, LEFT)
-        badhushaw_text = Text("Badhushaw: ₹150/kg", font_size=24).next_to(badhushaw_group, LEFT)
-
-        self.play(Create(sweets_group), Write(laddoo_text), Write(badhushaw_text))
-        self.wait(1)
-
-        calculation = MathTex("(20 \\times 120) + (20 \\times 150) = 5400", font_size=36)
-        calculation.next_to(sweets_group, DOWN, buff=0.5)
-        self.play(Write(calculation))
-        self.wait(2)
-
-        boxes = Text("40 boxes of 0.5 kg laddoos", font_size=32, color=GREEN).next_to(calculation, DOWN)
-        self.play(Write(boxes))
-        self.wait(2)
-
-        self.play(FadeOut(section_title), FadeOut(sweets_group), FadeOut(laddoo_text), 
-                  FadeOut(badhushaw_text), FadeOut(calculation), FadeOut(boxes))
-    """
-    """def buying_sweets(self):
-        laddoo_box = Square(side_length=1).set_fill(YELLOW, opacity=0.8)
-        badhushaw_box = Square(side_length=1).set_fill(ORANGE, opacity=0.8)
-        
-        laddoo_label = Text("Laddoo\n20 kg", font_size=24).next_to(laddoo_box, DOWN)
-        badhushaw_label = Text("Badhushaw\n20 kg", font_size=24).next_to(badhushaw_box, DOWN)
-        
-        laddoo_group = VGroup(laddoo_box, laddoo_label).shift(LEFT*2)
-        badhushaw_group = VGroup(badhushaw_box, badhushaw_label).shift(RIGHT*2)
-        
-        laddoo_price = Text("₹120/kg", font_size=20).next_to(laddoo_box, UP)
-        badhushaw_price = Text("₹150/kg", font_size=20).next_to(badhushaw_box, UP)
-        
-        self.play(Create(laddoo_group), Create(badhushaw_group))
-        self.play(Write(laddoo_price), Write(badhushaw_price))
-        self.wait(2)"""
+                  FadeOut(badhushaw_text),FadeOut(calculation_laddoo),FadeOut(calculation_badhushaw) ,FadeOut(calculation))
 
     def posting_marriage_cards(self):
         section_title = Text("Posting Marriage Cards", font_size=40, color=YELLOW)
@@ -175,29 +156,55 @@ class MathsAroundUsGrade4(AbstractAnim,Scene):
         self.wait(1)
         self.play(section_title.animate.to_edge(UP))
 
-        envelope = Polygon([-0.5, 0, 0], [0.5, 0, 0], [0.5, 0.75, 0], [0, 0.5, 0], [-0.5, 0.75, 0], color=WHITE)
-        scale_factor = 2
-        envelope.scale(scale_factor)
-        weight_text = Text("35 grams", font_size=24).next_to(envelope, DOWN)
+        # Create a more realistic envelope shape
+        envelope_width = 3
+        envelope_height = 2
+        flap_height = 0.8
 
-        self.play(Create(envelope), Write(weight_text))
+        envelope_body = Polygon(
+            [-envelope_width/2, -envelope_height/2, 0],  # Bottom left
+            [envelope_width/2, -envelope_height/2, 0],   # Bottom right
+            [envelope_width/2, envelope_height/2, 0],    # Top right
+            [-envelope_width/2, envelope_height/2, 0],   # Top left
+            color=WHITE
+        )
+
+        # Create a curved flap
+        flap_curve = ArcBetweenPoints(
+            start=[-envelope_width/2, envelope_height/2, 0],
+            end=[envelope_width/2, envelope_height/2, 0],
+            angle=PI/3
+        )
+
+        # Combine envelope body and flap
+        envelope = VGroup(envelope_body, flap_curve)
+
+        # Add a line to represent the flap fold
+        fold_line = Line(
+            [-envelope_width/2, envelope_height/2, 0],
+            [envelope_width/2, envelope_height/2, 0],
+            color=WHITE
+        )
+
+        envelope_group = VGroup(envelope, fold_line)
+
+        weight_text = Text("35 grams", font_size=24).next_to(envelope_group, DOWN)
+
+        self.play(Create(envelope_group), Write(weight_text))
         self.wait(1)
 
-        rate_text = Text("Rate: ₹5 for every 20 gm or less", font_size=28).next_to(envelope, RIGHT)
+        rate_text = Text("Rate: ₹5 for every 20g or less", font_size=28).next_to(envelope_group, RIGHT)
         self.play(Write(rate_text))
         self.wait(1)
 
-        calculation = MathTex("200 \\times 5 = 1000", font_size=36)
-        calculation.next_to(envelope, DOWN, buff=1)
+        calculation = Text("For:(200 cards × ₹5/card) = ₹1000", font_size=36).next_to(envelope_group, DOWN)
+        calculation.next_to(weight_text, DOWN)
         self.play(Write(calculation))
         self.wait(2)
 
-        total_cost = Text("Total cost for 200 cards: ₹1000", font_size=32, color=GREEN).next_to(calculation, DOWN)
-        self.play(Write(total_cost))
-        self.wait(2)
-
-        self.play(FadeOut(section_title), FadeOut(envelope), FadeOut(weight_text), 
-                  FadeOut(rate_text), FadeOut(calculation), FadeOut(total_cost))
+        self.play(FadeOut(section_title), FadeOut(envelope_group), FadeOut(weight_text), 
+                FadeOut(rate_text), FadeOut(calculation))
+    
 
     def preparing_for_journey(self):
         section_title = Text("Preparing for the Journey", font_size=40, color=YELLOW)
@@ -214,21 +221,26 @@ class MathsAroundUsGrade4(AbstractAnim,Scene):
         self.play(Create(bus_with_seats))
         self.wait(1)
 
-        capacity_text = Text("Capacity: 60 people", font_size=28).next_to(bus_with_seats, DOWN)
+        capacity_text = Text("Capacity: 60 people per bus", font_size=28).next_to(bus_with_seats, DOWN)
         self.play(Write(capacity_text))
         self.wait(1)
-
-        total_people = MathTex("40 \\times 4 = 160", "\\text{ people}", font_size=36)
-        total_people.next_to(capacity_text, DOWN)
+        
+        capacity_text1 = Text("since a has bus 15 rows and 4 cols , 15 × 4 = 60", font_size=28).next_to(bus_with_seats, DOWN)
+        capacity_text1.next_to(capacity_text,DOWN)
+        self.play(Write(capacity_text1))
+        self.wait(1)
+        
+        total_people = Text("40 families × 4 people/family = 160 people", font_size=36)
+        total_people.next_to(capacity_text1, DOWN)
         self.play(Write(total_people))
         self.wait(1)
 
-        buses_needed = MathTex("160 \\div 60 = 2.67", "\\approx 3 \\text{ buses}", font_size=36)
+        buses_needed = Text("160 people ÷ 60 people/bus ≈ 3 buses", font_size=36)
         buses_needed.next_to(total_people, DOWN)
         self.play(Write(buses_needed))
         self.wait(2)
 
-        self.play(FadeOut(section_title), FadeOut(bus_with_seats), FadeOut(capacity_text), 
+        self.play(FadeOut(section_title), FadeOut(bus_with_seats), FadeOut(capacity_text), FadeOut(capacity_text1),
                   FadeOut(total_people), FadeOut(buses_needed))
 
     def journey_to_warangal(self):
@@ -284,14 +296,14 @@ class MathsAroundUsGrade4(AbstractAnim,Scene):
         self.play(Write(tea_text), Write(juice_text))
         self.wait(1)
 
-        tea_calculation = MathTex("90 \\times 5 = 450", font_size=32)
-        juice_calculation = MathTex("10 \\times 18 = 180", font_size=32)
+        tea_calculation = Text("90 cups × ₹5/cup = ₹450", font_size=32)
+        juice_calculation = Text("10 liters × ₹18/liter = ₹180", font_size=32)
         calculations = VGroup(tea_calculation, juice_calculation).arrange(DOWN, buff=0.5)
-        calculations.next_to(drinks_group, DOWN, buff=1)
+        calculations.next_to(drinks_group, DOWN, buff=0.5)
         self.play(Write(calculations))
         self.wait(2)
 
-        total_cost = Text("Total cost: ₹630", font_size=32, color=GREEN).next_to(calculations, DOWN)
+        total_cost = Text("Total cost: ₹630", font_size=32, color=GREEN).next_to(tea_calculation, LEFT)
         self.play(Write(total_cost))
         self.wait(2)
 
@@ -316,32 +328,29 @@ class MathsAroundUsGrade4(AbstractAnim,Scene):
 
         garland_text = Text("35 cubits of jasmine garlands", font_size=28).next_to(flower_garland, DOWN)
         self.play(Write(garland_text))
+        self.wait(1)
+
+        cubit_info = Text("(1 cubit ≈ 45 cm)", font_size=24, color=BLUE)
+        cubit_info.next_to(garland_text, DOWN)
+        self.play(Write(cubit_info))
+        self.wait(1)
+
+        calculation = Text("35 cubits × 0.45 m/cubit = 15.75 meters", font_size=32)
+        calculation.next_to(cubit_info, DOWN)
+        self.play(Write(calculation))
         self.wait(2)
 
-        arrival_time = Text("Arrived at Warangal: 1:30 PM", font_size=32, color=GREEN).next_to(garland_text, DOWN)
-        self.play(Write(arrival_time))
-        self.wait(2)
-
-        self.play(FadeOut(section_title), FadeOut(flower_garland), FadeOut(garland_text), FadeOut(arrival_time))
+        self.play(FadeOut(section_title), FadeOut(flower_garland), FadeOut(garland_text), 
+                  FadeOut(cubit_info), FadeOut(calculation))
 
     def conclusion(self):
-        conclusion_text = Text("Math is everywhere in wedding preparations!", font_size=48, color=YELLOW)
-        subtext = Text("From shopping to travel, we use math in many ways.", font_size=32, color=GREEN)
-        subtext.next_to(conclusion_text, DOWN)
-
+        conclusion_text = Text("Math is all around us, even in wedding preparations!", font_size=36, color=YELLOW)
         self.play(Write(conclusion_text))
-        self.play(FadeIn(subtext))
-        self.wait(3)
-        self.play(FadeOut(conclusion_text), FadeOut(subtext))
+        self.wait(2)
+        self.play(FadeOut(conclusion_text))
     
     
-    def SetDeveloperList(self): 
-       self.DeveloperList="Dhanush" 
-    
-    def SetSourceCodeFileName(self):
-        self.SourceCodeFileName="MathsAroundUsGrade4.py"  
-        
-        
+
 if __name__ == "__main__":
-    scene = MathsAroundUsGrade4()
+    scene = class4_17test()
     scene.render()
