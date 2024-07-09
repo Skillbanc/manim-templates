@@ -211,10 +211,10 @@ class constructionofquadrilateral8thgrade(AbstractAnim):
     
     
     def SetDeveloperList(self): 
-       self.DeveloperList="Dhanush" 
+       self.DeveloperList="dhanushofc" 
     
     def SetSourceCodeFileName(self):
-        self.SourceCodeFileName="ConstructionOfQuadrilaterals.py"    
+        self.SourceCodeFileName="Class8Ch3ConstructionOfQuadrilaterals.py"    
 
 
 if __name__ == "__main__":

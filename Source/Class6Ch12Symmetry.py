@@ -354,10 +354,10 @@ class symmetry6thgrade(AbstractAnim):
         self.play(FadeOut(line_m), FadeOut(line_A), FadeOut(curve), FadeOut(mirror_curve), FadeOut(final_step_text))
 
     def SetDeveloperList(self): 
-       self.DeveloperList="Dhanush" 
+       self.DeveloperList="dhanushofc" 
     
     def SetSourceCodeFileName(self):
-        self.SourceCodeFileName="symmetry6thgrade.py"    
+        self.SourceCodeFileName="Class6Ch12Symmetry.py"    
 
 
     

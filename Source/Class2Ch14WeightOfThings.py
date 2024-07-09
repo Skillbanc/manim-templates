@@ -239,10 +239,10 @@ class WeightOfTHingsClass2(AbstractAnim):
         self.construct2(p10,p10)"""
         
     def SetDeveloperList(self): 
-       self.DeveloperList="Dhanush" 
+       self.DeveloperList="dhanushofc" 
     
     def SetSourceCodeFileName(self):
-        self.SourceCodeFileName="WeightOfThingsClass2.py"    
+        self.SourceCodeFileName="Class2Ch14WeightOfThings.py"    
 
     
     
