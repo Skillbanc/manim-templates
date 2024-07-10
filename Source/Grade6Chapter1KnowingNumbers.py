@@ -839,7 +839,7 @@ class KnowingNumbers(AbstractAnim):
 
         
     def SetSourceCodeFileName(self):
-        self.SourceCodeFileName="KnowingNumbers.py"
+        self.SourceCodeFileName="KnowingourNumbers.py"
 
 
 
