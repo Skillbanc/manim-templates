@@ -99,8 +99,8 @@ class ProbabilityAnim(AbstractAnim):
 
     def Formula(self):
         self.isRandom = False
-        p10=cvo.CVO().CreateCVO("Probability","").setPosition([-2,2,0])
-        p11=cvo.CVO().CreateCVO("Formula","Favourable outcomes / Total number of outcomes").setPosition([2,0,0]).setangle(-TAU/4)
+        p10=cvo.CVO().CreateCVO("Probability","").setPosition([-3,0,0])
+        p11=cvo.CVO().CreateCVO("Formula","Favourable outcomes / Total number of outcomes").setPosition([3,0,0]).setangle(-TAU/4)
  
         p10.cvolist.append(p11)
         
