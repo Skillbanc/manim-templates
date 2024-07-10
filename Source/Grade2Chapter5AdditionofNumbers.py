@@ -5,16 +5,17 @@ import cvo
 
 class AdditionofNumbers(AbstractAnim):
     def construct(self):
-        """self.RenderSkillbancLogo()
+        self.RenderSkillbancLogo()
         self.fadeOutCurrentScene()
         self.Extra_text()
         self.fadeOutCurrentScene()
         self.addition()
-        self.fadeOutCurrentScene()"""
+        self.fadeOutCurrentScene()
         self.vertical_addition_Exercise_1()
         self.fadeOutCurrentScene()
-        #self.horizontal_additionExercise()
-        #self.GithubSourceCodeReference()
+        self.horizontal_additionExercise()
+        self.fadeOutCurrentScene()
+        self.GithubSourceCodeReference()
 
 
     def Extra_text(self):
@@ -39,6 +40,83 @@ class AdditionofNumbers(AbstractAnim):
 
 
 
+
+    def vertical_addition_Exercise_1(self):
+        # Title
+        title = Tex("Solving the following additions:", color=BLUE).to_edge(UP*1.5+LEFT*1)
+        self.play(Write(title))
+    
+        # Addition 52 + 21 = 73
+        addition1 = self.vertical_addition("52", "21", "73")
+        addition1.move_to([-5,1,0])
+
+        # Addition 24 + 22 = 46
+        addition2 = self.vertical_addition("24", "22", "46")
+        addition2.move_to([-1.5,1,0])
+
+        # Addition 16 + 33 = 49
+        addition3 = self.vertical_addition("16", "33", "49")
+        addition3.move_to([1.5,1,0])
+
+        # Addition 37 + 51 = 88
+        addition4 = self.vertical_addition("37", "51", "88")
+        addition4.move_to([5,1,0])
+
+        # Addition 12 + 53 = 65
+        addition5 = self.vertical_addition("12", "53", "65")
+        addition5.move_to([-5,-2,0])
+
+        # Addition 66 + 13 = 99
+        addition6 = self.vertical_addition("66", "13", "79")
+        addition6.move_to([-1.5,-2,0])
+
+        # Addition 30 + 20 = 50
+        addition7 = self.vertical_addition("30", "20", "50")
+        addition7.move_to([1.5,-2,0])
+
+        # Addition 60 + 23 = 83
+        addition8 = self.vertical_addition("60", "23", "83")
+        addition8.move_to([5,-2,0])
+
+
+        
+        self.play(Create(addition1))
+        self.wait(1.5)
+        self.play(Create(addition2))
+        self.wait(1.5)
+        self.play(Create(addition3))
+        self.wait(2)
+        self.play(Create(addition4))
+        self.wait(2)
+        self.play(Create(addition5))
+        self.wait(2)
+        self.play(Create(addition6))
+        self.wait(2)
+        self.play(Create(addition7))
+        self.wait(2)
+        self.play(Create(addition8))
+        self.wait(2)
+
+
+    def vertical_addition(self, top_number, bottom_number, result):
+        
+        numbers = VGroup(
+        Tex(top_number).scale(1.1),
+        Tex(bottom_number).scale(1.1), 
+        Tex("\\underline{\\phantom{0000}}").scale(2), 
+        Tex(result).scale(1.1),               
+        Tex("\\underline{\\phantom{0000}}").scale(2), 
+        Tex("+").scale(1.1)
+        ).arrange(DOWN, buff=0.2) 
+    
+     
+       
+        numbers.move_to(ORIGIN)
+
+        numbers[1].next_to(numbers[0],DOWN)
+        numbers[5].next_to(numbers[1],LEFT)
+
+        return numbers
 
 
 
@@ -92,7 +170,10 @@ class AdditionofNumbers(AbstractAnim):
         self.play(Write(s12))
         self.wait(1)
 
-        
+
+
+
+
 
         # Define and display the second addition expression (s2)
         s2 = Text("75 + 24 = ", color=PINK, font_size=33).next_to(s1, DOWN * 3.5)
@@ -137,6 +218,10 @@ class AdditionofNumbers(AbstractAnim):
         self.play(Write(s22))
         self.wait(1)
 
+
+
+
+
         # Define and display the third addition expression (s3)
         s3 = Text("63 + 23 = ", color=PINK, font_size=33).next_to(s2, DOWN * 3.5)
         ss3 = Square(side_length=0.8).next_to(s3, RIGHT)
@@ -180,6 +265,9 @@ class AdditionofNumbers(AbstractAnim):
         self.play(Write(s32))
         self.wait(1)
 
+
+
+
         # Define and display the fourth addition expression (s4)
         s4 = Text("21 + 50 = ", color=PINK, font_size=33).next_to(s3, DOWN * 3.5)
         ss4 = Square(side_length=0.8).next_to(s4, RIGHT)
@@ -215,8 +303,8 @@ class AdditionofNumbers(AbstractAnim):
         self.play(Transform(s4, s4_original))
         self.wait(1)
 
-        # Remove intermediate digits
-        self.play(FadeOut(intermediate_result_2), FadeOut(intermediate_result_1))
+        
+
 
 
 
@@ -255,8 +343,8 @@ class AdditionofNumbers(AbstractAnim):
         self.play(Transform(s5, s5_original))
         self.wait(1)
 
-        # Remove intermediate digits
-        self.play(FadeOut(intermediate_result_2), FadeOut(intermediate_result_1))
+
+
 
 
 
@@ -295,8 +383,7 @@ class AdditionofNumbers(AbstractAnim):
         self.play(Transform(s6, s6_original))
         self.wait(1)
 
-        # Remove intermediate digits
-        self.play(FadeOut(intermediate_result_2), FadeOut(intermediate_result_1))
+
 
 
 
@@ -335,8 +422,8 @@ class AdditionofNumbers(AbstractAnim):
         self.play(Transform(s7, s7_original))
         self.wait(1)
 
-        # Remove intermediate digits
-        self.play(FadeOut(intermediate_result_2), FadeOut(intermediate_result_1))
+
+
 
 
         # Define and display the eighth addition expression (s8)
@@ -382,6 +469,11 @@ class AdditionofNumbers(AbstractAnim):
         self.play(Write(s82))
         self.wait(1)
 
+
+
+
+
+
         # Define and display the ninth addition expression (s9)
         s9 = Text("46 + 23 = ", color=PINK, font_size=33).next_to(s8, DOWN * 3.5)
         ss9 = Square(side_length=0.8).next_to(s9, RIGHT)
@@ -417,8 +509,7 @@ class AdditionofNumbers(AbstractAnim):
         self.play(Transform(s9, s9_original))
         self.wait(1)
 
-        # Remove intermediate digits
-        self.play(FadeOut(intermediate_result_2), FadeOut(intermediate_result_1))
+
 
 
 
