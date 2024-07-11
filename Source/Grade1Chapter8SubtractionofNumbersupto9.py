@@ -32,9 +32,13 @@ class SubtractionofNumbersupto9(AbstractAnim):
     def Subtraction(self):
         self.isRandom=False
         self.setNumberOfCirclePositions(2)
-        p10=cvo.CVO().CreateCVO("Subtraction","")
-        p11=cvo.CVO().CreateCVO("Symbol","-")
+        p10=cvo.CVO().CreateCVO("Subtraction","").setPosition([-4.5,1,0])
+        p11=cvo.CVO().CreateCVO("definition","Subtraction is finding the difference between numbers").setPosition([1.5,2,0]).setangle(-TAU/4)
+        p12=cvo.CVO().CreateCVO("Symbol","-").setPosition([3.5,-1,0])
         p10.cvolist.append(p11)
+        p10.cvolist.append(p12)
+
+        p11.setcircleradius(1.25)
         self.construct1(p10,p10)
 
 
