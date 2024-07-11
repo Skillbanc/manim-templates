@@ -28,7 +28,7 @@ class Class5(AbstractAnim):
     def floor(self):
         self.isRandom = False
         self.positionChoice = [[-5,0,0],[3,0,0]]
-        f=cvo.CVO().CreateCVO("Types","Floor Map")
+        f=cvo.CVO().CreateCVO("Maps","Floor Map")
         f1=cvo.CVO().CreateCVO("Definition","A Map that shows Shape,Size and Arrangments of a room")
         f.cvolist.append(f1)
         self.construct1(f,f)
@@ -122,12 +122,13 @@ class Class5(AbstractAnim):
         self.play(traveler.animate.move_to(temple), run_time=2)
         self.play(traveler.animate.move_to(school), run_time=2)
         
-        finish_message = Text("Arrived at School!", font_size=36).move_to(DOWN * 3)
-        self.play(Write(finish_message))
+        text = Text("Route Map from House to School is shown above", font_size=30,color=ORANGE)
+        text.to_corner(DOWN)
+        self.play(Write(text))
+        self.wait(2)
         self.fadeOutCurrentScene()
-
     def SetDeveloperList(self): 
-       self.DeveloperList="Abhiram" 
+       self.DeveloperList="Abhiram"
 
     def SetSourceCodeFileName(self):
        self.SourceCodeFileName="Class5Chapter9MAPSANDROUTES.py"
