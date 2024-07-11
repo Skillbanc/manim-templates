@@ -51,14 +51,7 @@ class DataHandling(AbstractAnim):
       
         start_position = ORIGIN + UP * (len(table_content) * cell_height / 2)
 
-        table = VGroup(*[
-            VGroup(*[
-                Tex(content, color=BLUE).move_to(start_position + np.array([i * cell_width, -j * cell_height, 0]))
-                for i, content in enumerate(row)
-            ])
-            for j, row in enumerate(table_content)
-        ])
-
+        
         h_lines = VGroup(*[
             Line(
                 start=start_position + np.array([-cell_width / 2, -j * cell_height - cell_height / 2, 0]),
@@ -80,14 +73,31 @@ class DataHandling(AbstractAnim):
             for i in range(len(table_content[0]) + 1)
         ])
 
-        table_with_lines = VGroup(table, h_lines, v_lines, extra_h_line_top)
+        table_with_lines = VGroup( h_lines, v_lines, extra_h_line_top)
         table_with_lines.shift(LEFT * 5)
         table_with_lines.shift(DOWN)
-        self.play(Create(table_with_lines))
+        self.add(table_with_lines)
+
+        table = VGroup(*[
+            VGroup(*[
+                Tex(content, color=BLUE if j == 0 or i == 0 else LIGHT_PINK).move_to(start_position + np.array([i * cell_width, -j * cell_height, 0]))
+                for i, content in enumerate(row)
+            ])
+            for j, row in enumerate(table_content)
+        ])
+        table.shift(LEFT * 5 + DOWN )
+        self.play(Create(table))
+        self.wait(1)
+        
+        self.wait(5)
 
         self.wait(7)
 
     def Qustion2(self):
+        text = Text("Question and Answers", color=YELLOW).scale(0.9)
+        text.center()
+        text.shift(UP * 3)
+        self.play(Write(text))
         
         text2 =Text("(d). How many students were absent in class 1?",color=BLUE).scale(0.7)
         text2.center()
@@ -117,6 +127,10 @@ class DataHandling(AbstractAnim):
         self.wait(7)
 
     def Qustion(self):
+        text = Text("Question and Answers", color=YELLOW).scale(0.9)
+        text.center()
+        text.shift(UP * 3)
+        self.play(Write(text))
         
         text2 =Text("(a). How many students are present in class 4?",color=BLUE).scale(0.7)
         text2.center()
@@ -208,10 +222,18 @@ class DataHandling(AbstractAnim):
         self.play(Create(vertical_line),Create(horizontal_line),Create(h2),Create(v2),Create(v3),Create(h3))
         self.play(Write(title),Write(title2))
         self.play(Write(circ_title),Write(sq_title),Write(tri_title),Write(star_title),)
-        self.play(Write(circ), Write(sq), Write(tri), Write(star))
+        self.play(Write(circ))
+        self.play(Write(sq))
+        self.play(Write(tri))
+        self.play(Write(star))
+
         self.wait(7)
 
     def Q1(self):
+        text = Text("Question and Answers", color=YELLOW).scale(0.9)
+        text.center()
+        text.shift(UP * 3)
+        self.play(Write(text))
         text2 =Text("(a). Which Shape is more in number the following table?",color=BLUE).scale(0.7)
         text2.center()
         text2.shift(UP * 2)
