@@ -15,11 +15,11 @@ class DivAnim(AbstractAnim):
 
     # use the appropriate method based on how the data is stored
     def construct(self):
-        self.RenderSkillbancLogo()
-        self.Division()
+        #self.RenderSkillbancLogo()
+        #self.Division()
         self.Example()
         
-        self.GithubSourceCodeReference()
+        #self.GithubSourceCodeReference()
 
         
         # self.fadeOut()
@@ -48,72 +48,35 @@ class DivAnim(AbstractAnim):
         self.fadeOutCurrentScene()
 
     def Example(self):
-       # Set up the scene for 1080p resolution
-        self.camera.frame_width = 16
-        self.camera.frame_height = 9
-        
 
         # Title
-        title = Text("Distribute 18 marbles among 3 people equally.", font_size=36)
+        title = Text("Distribute 18 marbles among 3 people equally.", font_size=40)
         title.to_edge(UP)
         self.play(Write(title))
 
         # Texts and positions
-        labels = [
-            "Total number of marbles",
-            "Marbles distributed for the first time",
-            "Remaining marbles",
-            "Marbles distributed for the second time",
-            "Remaining marbles",
-            "Marbles distributed for the third time",
-            "Remaining marbles",
-            "By distributing equally, each one gets",
-            "The Division form"
-        ]
+        symbol = Text("")
+        text1=Tex("Total number of marbles = 18").next_to(title, DOWN*2)
+        self.play(Write(text1))
+        text2=Tex("Marbles distributed for the first time = 6").next_to(text1, DOWN*1.5)
+        self.play(Write(text2))
+        text3=Tex("Remaining marbles = 12").next_to(text2, DOWN*1.5)
+        self.play(Write(text3))
+        text4=Tex("Marbles distributed for the second time = 6").next_to(text3, DOWN*1.5)
+        self.play(Write(text4))
+        text5=Tex("Remaining marbles = 6").next_to(text4, DOWN*1.5)
+        self.play(Write(text5))
+        text6=Tex("Marbles distributed for the third time = 6").next_to(text5, DOWN*1.5)
+        self.play(Write(text6))
+        text7=Tex("Remaining marbles = 0").next_to(text6, DOWN*1.5)
+        self.play(Write(text7))
+        text8=Tex("By distributing equally, each one gets 6 marbles").next_to(text7, DOWN*1.5)
+        self.play(Write(text8))
+        text9=Tex("The Division form = 18/3").next_to(text8, DOWN*1.5)
+        self.play(Write(text9))
+        #self.play(FadeIn(symbol))
 
-        equal_signs = [Text("=", font_size=24) for _ in labels]
-
-        # Positioning the labels
-        left_column_x = -5
-        middle_column_x = 0
-        right_column_x = 5
-        y_start = 2
-
-        label_positions = [UP * (y_start - i * 0.75) + LEFT * 5 for i in range(len(labels))]
-        equal_sign_positions = [UP * (y_start - i * 0.75) for i in range(len(labels))]
-        value_positions = [UP * (y_start - i * 0.75) + RIGHT * 5 for i in range(len(labels))]
-
-        labels_mobjects = [Text(label, font_size=24).move_to(pos) for label, pos in zip(labels, label_positions)]
-
-        # Writing labels and equal signs
-        for label, equal_sign in zip(labels_mobjects, equal_signs):
-            self.play(Write(label))
-            equal_sign.move_to(equal_sign_positions[labels_mobjects.index(label)])
-            self.play(Write(equal_sign))
-
-        # Initial numbers
-        total_marbles = 18
-        people = 3
-        marbles_each_round = total_marbles // people
-
-        total_text = Text(str(total_marbles), font_size=24).move_to(value_positions[0])
-        self.play(Write(total_text))
-
-        # Distribute marbles
-        for i in range(3):
-            distributed_text = Text(str(marbles_each_round), font_size=24).move_to(value_positions[1 + i*2])
-            self.play(Write(distributed_text))
-
-            remaining_marbles = total_marbles - (i + 1) * marbles_each_round
-            remaining_text = Text(str(remaining_marbles), font_size=24).move_to(value_positions[2 + i*2])
-            self.play(Write(remaining_text))
-
-        # Final results
-        result_text = Text(str(marbles_each_round), font_size=24).move_to(value_positions[7])
-        self.play(Write(result_text))
-
-        division_text = Text(f"{total_marbles} ÷ {people} = {marbles_each_round}", font_size=24).move_to(value_positions[8])
-        self.play(Write(division_text))
+        
 
         self.wait(2)
         self.fadeOutCurrentScene()
