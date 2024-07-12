@@ -257,7 +257,8 @@ class trianglesAnim(AbstractAnim):
     def triangles111(self):
         p24=cvo.CVO().CreateCVO("triangles","based on angles ").setPosition(-TAU/4)
         p25=cvo.CVO().CreateCVO("Acute angled triangle","angle ($A= B=C>90$)")
-        p26=cvo.CVO().CreateCVO("Right angled triangle ","angle(A/B/C=90)")
+        p26=cvo.CVO().CreateCVO("Right angled triangle ","angle(A/B/C=90)")   
+        
         p27=cvo.CVO().CreateCVO("Obtuse angled triangle","angle ($A=B=C<90$)")
 
         p24.cvolist.append(p25)
