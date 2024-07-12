@@ -100,23 +100,23 @@ class FrequencyDistribution(AbstractAnim):
 
     def org_of_gd(self):
         self.isRandom=False
-        p1=cvo.CVO().CreateCVO("Organisation of Grouped Data","").setPosition([0,2.5,0])
+        p1=cvo.CVO().CreateCVO("Organisation of Grouped Data","").setPosition([-4,2.5,0])
         p2=cvo.CVO().CreateCVO("Grouped Frequency Distribution","").setPosition([-4,1,0])
-        p3=cvo.CVO().CreateCVO("Limits and Boundaries","").setPosition([-3,-1.5,0])
+        p3=cvo.CVO().CreateCVO("Limits and Boundaries","").setPosition([-4,-1.5,0])
         p4=cvo.CVO().CreateCVO("Construction of Grouped Frequency Distribution","").setPosition([2,-2,0])
         p5=cvo.CVO().CreateCVO("Characteristics of Grouped Frequency Distribution","").setPosition([3,0.7,0])
         p1.cvolist.append(p2)
-        p1.cvolist.append(p3)
-        p1.cvolist.append(p4)
-        p1.cvolist.append(p5)
+        p2.cvolist.append(p3)
+        p2.cvolist.append(p4)
+        p2.cvolist.append(p5)
         self.construct1(p1,p1)
         self.fadeOutCurrentScene()
 
     def GroupedFD(self):
         self.isRandom=False
-        p1=cvo.CVO().CreateCVO("Grouped Frequency Distribution","").setPosition([-2,2,0])
-        p2=cvo.CVO().CreateCVO("Class Intervals","").setPosition([-2,0,0])
-        p3=cvo.CVO().CreateCVO("Upper Limit","Highest value included in a class interval").setPosition([-5,-1,0])
+        p1=cvo.CVO().CreateCVO("Grouped Frequency Distribution","").setPosition([-4,2,0])
+        p2=cvo.CVO().CreateCVO("Class Intervals","").setPosition([-2,0.8,0])
+        p3=cvo.CVO().CreateCVO("Upper Limit","Highest value included in a class interval").setPosition([-5,-1.5,0])
         p4=cvo.CVO().CreateCVO("Lower Limit","Lowest value included in a class interval").setPosition([-3,-3,0])
         p1.cvolist.append(p2)
         p2.cvolist.append(p3)
@@ -148,9 +148,9 @@ class FrequencyDistribution(AbstractAnim):
         p2=cvo.CVO().CreateCVO("Limits","").setPosition([-3,1.5,0])
         p3=cvo.CVO().CreateCVO("Boundaries","").setPosition([3,1.5,0])
         p4=cvo.CVO().CreateCVO("Upper limit","Highest value included in a class interval").setPosition([-5,-1,0])
-        p5=cvo.CVO().CreateCVO("Lower limit","Lower value included in a class interval").setPosition([-2,-2,0])
-        p6=cvo.CVO().CreateCVO("Upper boundary","value marking the end of C.I, adding  0.5 to the upper limit.").setPosition([1,-1,0])
-        p7=cvo.CVO().CreateCVO("Lower boundary","value marking the end of C.I, subtracting  0.5 to the lower limit.").setPosition([3,-2.5,0])
+        p5=cvo.CVO().CreateCVO("Lower limit","Lower value included in a class interval").setPosition([-2,-1.7,0])
+        p6=cvo.CVO().CreateCVO("Upper boundary","value marking the end of C.I, adding  0.5 to the upper limit.").setPosition([1.5,-2.5,0])
+        p7=cvo.CVO().CreateCVO("Lower boundary","value marking the end of C.I, subtracting  0.5 to the lower limit.").setPosition([3.5,-1,0])
         p1.cvolist.append(p2)
         p1.cvolist.append(p3)
         p2.cvolist.append(p4)
@@ -159,6 +159,9 @@ class FrequencyDistribution(AbstractAnim):
         p3.cvolist.append(p7)
         self.construct1(p1,p1)
         self.fadeOutCurrentScene()
+        text=Text("Example for Limits and Boundaries (for inclusive class intervals)",font_size=25)
+        text.to_edge(UP)
+        self.play(Write(text))
         table_data = [
             ["Inclusive classes", "Lower limit", "Upper limit", "Lower boundary", "Upper boundary"],
             ["1-10", "1", "10", "0.5", "10.5"],
@@ -178,7 +181,7 @@ class FrequencyDistribution(AbstractAnim):
         self.isRandom=False
         p1=cvo.CVO().CreateCVO("Construction of Grouped Frequency Distribution","").setPosition([0,2.5,0])
         p2=cvo.CVO().CreateCVO("Step 1: Find Range of Data","Range = Max. value-Min value").setPosition([-4,1.5,0])
-        p3=cvo.CVO().CreateCVO("Step 2: Decide no.of class intervals(random)","length of class= (max.value)/no.of class intervals").setPosition([-3,-0.5,0])
+        p3=cvo.CVO().CreateCVO("Step 2: Decide no.of class intervals","length of class= (max.value)/no.of class intervals").setPosition([-3,-0.5,0])
         p4=cvo.CVO().CreateCVO("Step 3: Write inclusive class intervals","Boundaries are included").setPosition([0,-2.5,0])
         p5=cvo.CVO().CreateCVO("Step 4: ","Distribute the Observations using Tally marks").setPosition([4,-0.5,0])
         p6=cvo.CVO().CreateCVO("Step 5:","Use the Tally marks to write the frequencies in the table").setPosition([4,1.5,0])
@@ -209,8 +212,8 @@ class FrequencyDistribution(AbstractAnim):
         p10.onameList.append("3.Inclusive C.I : Both the upper and lower limits are included")
         p10.onameList.append("4.Exclusive C.I : The upper limit is excluded")
         p10.onameList.append("5.U.boundary of a C.I is the avg of its \\\\  U.limit and L.limit of next C.I.")
-        p10.onameList.append("6.In exclusive C.I, limits and boundaries are equal;\\\\ in inclusive C.I, they differ.")
-        p10.onameList.append("7.Length of class : upper - lower boundary")
+        p10.onameList.append("6.Length of class : upper - lower boundary")
+        p10.onameList.append("7.In exclusive C.I, limits and boundaries are equal;\\\\ in inclusive C.I, they differ.")
         p10.onameList.append("8.Class mark = Avg of upper and lower boundaries of a C.I")
       
        
@@ -227,6 +230,9 @@ class FrequencyDistribution(AbstractAnim):
         p1.cvolist.append(p3)
         self.construct1(p1,p1)
         self.fadeOutCurrentScene()
+        text=Text("Here's an example for L.C.F and G.C.F")
+        text.to_edge(UP)
+        self.play(Write(text))
         original_table_data = [
             ["Class Interval\n(Marks)", "UB", "No of\nCandidates\nfrequency"],
             ["0 - 5", "5", "7"],
@@ -279,15 +285,15 @@ class FrequencyDistribution(AbstractAnim):
         ).scale(0.5)
         greater_than_cumulative_table.next_to(less_than_cumulative_table, RIGHT, buff=0.6)
         self.play(Create(greater_than_cumulative_table))
-        self.wait(2)
+        self.wait(4)
         self.fadeOutCurrentScene()
 
     def graph_rep_data(self):
         self.isRandom=False
-        p1=cvo.CVO().CreateCVO("Graphical representation of Data","").setPosition([0,2.5,0])
-        p2=cvo.CVO().CreateCVO("BAR GRAPHS","").setPosition([0,0,0])
-        p3=cvo.CVO().CreateCVO("Vertical Bars","Bars are parallel to y-axis").setPosition([-3,-1,0])
-        p4=cvo.CVO().CreateCVO("Horizontal Bars","Bars are parallel to x-axis").setPosition([3,-1,0])
+        p1=cvo.CVO().CreateCVO("Graphical representation of Data","").setPosition([-4,2.5,0])
+        p2=cvo.CVO().CreateCVO("BAR GRAPHS","").setPosition([0,2,0])
+        p3=cvo.CVO().CreateCVO("Vertical Bars","Bars are parallel to y-axis").setPosition([-2,-1,0])
+        p4=cvo.CVO().CreateCVO("Horizontal Bars","Bars are parallel to x-axis").setPosition([2,-1,0])
         p1.cvolist.append(p2)
         p2.cvolist.append(p3)
         p2.cvolist.append(p4)
@@ -310,8 +316,11 @@ class FrequencyDistribution(AbstractAnim):
         title.to_edge(UP)
         self.add(bar_chart, title)
         self.play(Create(bar_chart))
+        self.play(bar_chart.animate.shift(RIGHT * 3))
+        text=Text("The length of the bars\n represents the frequency\n of the data items\n\n\n Scale on X axis 1 cm=1 unit \n Scale on Y axis 1 cm=2 units",font_size=30,color=WHITE)
+        self.play(Write(text))
+        self.play(text.animate.shift(LEFT * 4))
         self.wait(3)
-
         self.fadeOutCurrentScene()
 
         values = [4, 7, 1, 8, 5]
@@ -331,6 +340,10 @@ class FrequencyDistribution(AbstractAnim):
         title.to_edge(UP)
         self.add(bar_chart, title)
         self.play(Create(bar_chart))
+        self.play(bar_chart.animate.shift(RIGHT * 3))
+        text=Text(" Scale on X axis 1 cm=2 units \n Scale on Y axis 1 cm=1 unit",font_size=30,color=WHITE)
+        self.play(Write(text))
+        self.play(text.animate.shift(LEFT * 4))
         self.wait(3)
         self.fadeOutCurrentScene()
          
@@ -354,7 +367,7 @@ class FrequencyDistribution(AbstractAnim):
         self.DeveloperList="Srujan"
 
     def SetSourceCodeFileName(self):
-        self.SourceCodeFileName="Grade8CH7FrequencyDistribution.py"
+        self.SourceCodeFileName="Grade8Chapter7FrequencyDistribution.py"
 
         
 

@@ -153,7 +153,7 @@ class NUM10to99(AbstractAnim):
         self.DeveloperList="Srujan"
 
     def SetSourceCodeFileName(self):
-        self.SourceCodeFileName="Grade2CH2NumbersFrom10to99.py"
+        self.SourceCodeFileName="Grade2Chapter2Numbers10to99.py"
 
 
 if __name__ == "__main__":
