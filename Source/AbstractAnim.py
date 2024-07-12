@@ -11,6 +11,7 @@ import random
 # class that has all common methods that can be used by subclasses
 class AbstractAnim(Scene):
     grpAll = VGroup()
+    grp2All=VGroup()
     isFadeOutAtTheEndOfThisScene = False
     colorChoice=[RED,BLUE,GREEN,PURPLE,ORANGE,YELLOW,LIGHT_PINK,WHITE,LIGHT_GRAY,LIGHT_BROWN,PINK,GRAY_BROWN]
     shapeChoice=[Circle,Triangle,Square,Rectangle]
@@ -269,11 +270,14 @@ class AbstractAnim(Scene):
     def GithubSourceCodeReference(self): 
         self.PurchaseSkillbancSubscription()
         self.fadeOutCurrentScene()
+        self.SubscribeYoutube()
         self.SetDeveloperList()
         self.SetSourceCodeFileName()
+
         
         self.colorChoice=[BLUE,ORANGE,PINK,ORANGE,PURPLE]
         p2 = cvo.CVO().CreateCVO("SOURCE CODE FOR THIS VIDEO", "").setPosition([0,2.5,0])
+        
         p4 = cvo.CVO().CreateCVO("Github URL", "https://github.com/Skillbanc/manim-templates").setPosition([-4,1,0]).setangle(TAU / 3)
         p5 = cvo.CVO().CreateCVO("File Name", self.GetSourceCodeFileName()).setPosition([4,1,0]).setangle(TAU / 3)
 
@@ -282,16 +286,22 @@ class AbstractAnim(Scene):
 
         p7=cvo.CVO().CreateCVO("Developed By",self.GetDeveloperList()).setPosition([0,-2,0]).setangle(-TAU / 4)
         
-        p2.cvolist.append(p4)
-        p2.cvolist.append(p5)
-        self.setNumberOfCirclePositions(5)
-        p4.setcircleradius(3)
-        p5.setcircleradius(2)
-        p6.setcircleradius(1.5)
-        p2.cvolist.append(p6)
-        p2.cvolist.append(p7)
-        self.construct1(p2,p2)
-        self.SubscribeYoutube()
+        # p2.cvolist.append(p4)
+        # p2.cvolist.append(p5)
+        # self.setNumberOfCirclePositions(5)
+        # p4.setcircleradius(3)
+        # p5.setcircleradius(2)
+        # p6.setcircleradius(1.5)
+        # p2.cvolist.append(p6)
+        # p2.cvolist.append(p7)
+        p2.appendOname(p2.cname)
+        p2.appendOname(p4.cname + " : " + p4.oname)
+        p2.appendOname(p5.cname + " : " + p5.oname)
+        p2.appendOname(p6.cname + " : " + p6.oname)
+        p2.appendOname(p7.cname + " : " + p7.oname)
+        p2.setduration(0.5)
+        self.construct2(p2,p2)
+       
         
     def SubscribeYoutube(self):
         button = RoundedRectangle(corner_radius=0.2, height=1, width=3)
@@ -304,13 +314,13 @@ class AbstractAnim(Scene):
         subscribe_button = VGroup(button, subscribe_text).move_to(LEFT*4 + DOWN * 2.5)
 
         self.play(GrowFromCenter(subscribe_button))
-
         
-        for _ in range(3):  
-            self.play(subscribe_button.animate.scale(1.1), run_time=1)
-            self.play(subscribe_button.animate.scale(1/1.1), run_time=1)
+        
+        # for _ in range(3):  
+        #     self.play(subscribe_button.animate.scale(1.1), run_time=0.5)
+        #     self.play(subscribe_button.animate.scale(1/1.1), run_time=0.5)
 
-        self.wait(2)
+        self.wait(0.2)
 
     def PurchaseSkillbancSubscription(self): 
         
@@ -323,11 +333,11 @@ class AbstractAnim(Scene):
         p2.setduration(1)
         p2.setcircleradius(7)
         p1.cvolist.append(p2)
-
+        
         self.setNumberOfCirclePositions(2)
         self.construct5(p1,p1)
-        self.play(self.grpAll.animate.scale(1.1))
-        self.play(self.grpAll.animate.scale(0.9))
+        self.play(self.grp2All.animate.scale(1.1))
+        self.play(self.grp2All.animate.scale(0.9))
         
     def GetDeveloperList(self): 
         return self.DeveloperList
@@ -346,7 +356,7 @@ class AbstractAnim(Scene):
         text0 = Tex(p10.onameList[0],color=BLUE)
         text01 = Tex(p10.onameList[0],color=BLUE)
         
-        self.play(Create(text0))
+        self.play(Create(text0), run_time=p10.duration)
         grp1 = VGroup(text01)
         
         for i in range(1,len(p10.onameList)):
@@ -360,8 +370,8 @@ class AbstractAnim(Scene):
             text01 = Tex(p10.onameList[i],color=BLUE)
             
            
-           self.play(grp1.animate.shift(UP * 1))
-           self.play(ReplacementTransform(text0,text1))
+           self.play(grp1.animate.shift(UP * 1),run_time=p10.duration)
+           self.play(ReplacementTransform(text0,text1),run_time=p10.duration)
            
            grp1.add(text01)
            text0 = text1
@@ -397,14 +407,14 @@ class AbstractAnim(Scene):
 
         # Add circle and name to the scene
         self.add(cir1, cname)
-        grp1 = VGroup(cir1, cname)
+        grp2 = VGroup(cir1, cname)
 
         if not cvo.onameList:
             self.add(oname, star)
-            grp1.add(star, oname)
+            grp2.add(star, oname)
 
         # Move group to position
-        grp1.move_to(cvo.pos).shift(UP * 0.16)
+        grp2.move_to(cvo.pos).shift(UP * 0.16)
 
         # Draw arrow if needed
         if cvo != cvoParent:
@@ -415,7 +425,7 @@ class AbstractAnim(Scene):
             arrow1.tip.scale(0.75)
             if not cvo.onameList:
                 self.add(arrow1)
-                grp1.add(arrow1)
+                grp2.add(arrow1)
                 
 
         # Handle additional stars and names
@@ -446,11 +456,11 @@ class AbstractAnim(Scene):
                 self.construct5(cvo.cvolist[idx], cvo)
 
         # Add group to the scene
-        self.grpAll.add(grp1)
+        self.grp2All.add(grp2)
 
         # Handle fade out
-        if self.isFadeOutAtTheEndOfThisScene:
-            self.add(self.grpAll)
+        # if self.isFadeOutAtTheEndOfThisScene:
+        #     self.add(self.grpAll)
   
         self.wait(1)
 
