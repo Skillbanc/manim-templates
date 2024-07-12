@@ -315,13 +315,19 @@ class AbstractAnim(Scene):
     def PurchaseSkillbancSubscription(self): 
         
         self.colorChoice=[BLUE,ORANGE,PINK,ORANGE,PURPLE]
-        p1 = cvo.CVO().CreateCVO("Need Help?", "We are here to support").setPosition([0,2.5,0])
-        p2 = cvo.CVO().CreateCVO("Get Skillbanc Subscription", "https://skillbanc.com/SBstore").setPosition([-4,1,0]).setangle(TAU / 3)
-        
+        self.angleChoice = [- TAU/3]
+        p1 = cvo.CVO().CreateCVO("Need Help?", "We are here to support").setPosition([3.5,1,0])
+        p1.setduration(1)
+        p1.setcircleradius(5.5)
+        p2 = cvo.CVO().CreateCVO("Get Skillbanc Subscription", "https://skillbanc.com/SBstore").setPosition([-2.5,-1,0])
+        p2.setduration(1)
+        p2.setcircleradius(7)
         p1.cvolist.append(p2)
 
         self.setNumberOfCirclePositions(2)
-        self.construct1(p1,p1)
+        self.construct5(p1,p1)
+        self.play(self.grpAll.animate.scale(1.1))
+        self.play(self.grpAll.animate.scale(0.9))
         
     def GetDeveloperList(self): 
         return self.DeveloperList
@@ -364,3 +370,88 @@ class AbstractAnim(Scene):
            
            
         self.wait(2)
+
+    # Draw Ellipse and add object instead of playing
+    def construct5(self, cvo, cvoParent): 
+        # Determine color choice
+        colorChoiceIndex = random.randint(0, len(self.colorChoice) - 1) if self.isRandom else 0
+        cvo.color = self.colorChoice[colorChoiceIndex]
+
+        # Determine position choice
+        positionChoiceIndex = self.get_random_position() if self.isRandom else 0
+        if cvo.pos is None:
+            cvo.pos = self.positionChoice[positionChoiceIndex]
+
+        # Create circle and star
+        # cir1 = Circle(radius=cvo.circle_radius, color=self.colorChoice[colorChoiceIndex])
+        cir1 = Ellipse(width=cvo.circle_radius, height= 3 , color=self.colorChoice[colorChoiceIndex])
+        star = Star(outer_radius=0.1, inner_radius=0.05, color=self.colorChoice[colorChoiceIndex]).move_to(cir1.get_center())
+       
+
+        # Determine name positions
+        c1nameposition = cvo.c1nameposition or cir1.get_top()
+        cname = MathTex(cvo.cname, color=self.colorChoice[colorChoiceIndex]).move_to(c1nameposition).shift(UP * 0.25) if cvo.IsMathText else Tex(cvo.cname, color=self.colorChoice[colorChoiceIndex]).move_to(c1nameposition).shift(UP * 0.25)
+
+        o1nameposition = cvo.o1nameposition or star.get_top()
+        oname = MathTex(cvo.oname, color=self.colorChoice[colorChoiceIndex]).move_to(o1nameposition).shift(UP * 0.15) if cvo.IsMathText else Tex(cvo.oname, color=self.colorChoice[colorChoiceIndex]).move_to(o1nameposition).shift(UP * 0.15)
+
+        # Add circle and name to the scene
+        self.add(cir1, cname)
+        grp1 = VGroup(cir1, cname)
+
+        if not cvo.onameList:
+            self.add(oname, star)
+            grp1.add(star, oname)
+
+        # Move group to position
+        grp1.move_to(cvo.pos).shift(UP * 0.16)
+
+        # Draw arrow if needed
+        if cvo != cvoParent:
+            angleChoiceIndex = random.randint(0, len(self.angleChoice) - 1) if self.isRandom else 0
+            cvo.angle = self.angleChoice[angleChoiceIndex]
+
+            arrow1 = CurvedArrow(cvoParent.pos, cvo.pos, angle=cvo.angle, stroke_width=1.5)
+            arrow1.tip.scale(0.75)
+            if not cvo.onameList:
+                self.add(arrow1)
+                grp1.add(arrow1)
+                
+
+        # Handle additional stars and names
+        for index in range(len(cvo.onameList)):
+            starLocal = Star(outer_radius=0.1, inner_radius=0.05, color=self.colorChoice[colorChoiceIndex]).move_to(cir1.get_top()).shift(LEFT * 0.35, DOWN * 0.25 * (index + 1))
+            onameLocalText = Tex(cvo.onameList[index], color=self.colorChoice[colorChoiceIndex]).scale(0.45).next_to(starLocal).shift(LEFT * 0.20)
+            arrow2 = CurvedArrow(cvoParent.pos, starLocal.get_center(), angle=cvo.angle, stroke_width=0.5, tip_length=0.1)
+            self.add(starLocal, onameLocalText, arrow2)
+
+        # Assign name objects for later use
+        cvo.cnameMObject = cname
+        cvo.onameMObject = oname
+
+        # Update choices
+        if cvo.pos in self.positionChoice:
+            self.positionChoice.remove(cvo.pos)
+
+        if cvo != cvoParent:
+            if cvo.angle in self.angleChoice:
+                self.angleChoice.remove(cvo.angle)
+
+        if cvo.color in self.colorChoice:
+            self.colorChoice.remove(cvo.color)
+
+        # Recursively construct for child objects
+        if len(cvo.cvolist) > 0:
+            for idx in range(len(cvo.cvolist)):
+                self.construct5(cvo.cvolist[idx], cvo)
+
+        # Add group to the scene
+        self.grpAll.add(grp1)
+
+        # Handle fade out
+        if self.isFadeOutAtTheEndOfThisScene:
+            self.add(self.grpAll)
+  
+        self.wait(1)
+
+   
