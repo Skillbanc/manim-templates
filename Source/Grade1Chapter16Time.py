@@ -14,18 +14,18 @@ import cvo
 config.max_files_cached = 800  # Change this number to your desired value
 
 
-class Grade1TimeChapter(AbstractAnim):
+class Grade1CH16Time(AbstractAnim):
     def construct(self):
         self.RenderSkillbancLogo()
         self.fadeOutCurrentScene()
-        self.Time()
+        self.time()
         self.fadeOutCurrentScene()
         self.Hour()
         self.Minutes()
         self.fadeOutCurrentScene()
         self.intro1()
         self.fadeOutCurrentScene()
-        self.intro1()
+        self.intro2()
         self.fadeOutCurrentScene()
         self.GithubSourceCodeReference()
      
@@ -35,17 +35,14 @@ class Grade1TimeChapter(AbstractAnim):
     def SetSourceCodeFileName(self):
         self.SourceCodeFileName="Grade1Chapter16Time.py"   
         
-    def Time(self):
-         self.colorChoice=[LIGHT_BROWN]
-         p1 = cvo.CVO().CreateCVO("Time", "").setPosition([-3,2,0])
-         p1.setcircleradius(1.5) 
-         p2 = cvo.CVO().CreateCVO("Definition", "Time helps us understand when things happen and how long they take.").setPosition([2,-2,0])
-         p2.setcircleradius(1.5) 
-         p1.cvolist.append(p2) 
-         self.setNumberOfCirclePositions(2)
-         self.construct1(p1, p1 )
-         self.wait(3)
-    
+    def time(self):
+        p10=cvo.CVO().CreateCVO("Time", "").setPosition([-3,1.5,0])
+        p11=cvo.CVO().CreateCVO("Definition", "Time helps us understand when things happen\nand how long they take.").setPosition([2,-1.5,0])
+        
+        p10.cvolist.append(p11)
+        
+        self.construct1(p10,p10)
+        
     def Hour(self):
         title = Text("Hours", font_size=36).to_edge(UP)
         self.play(Create(title))
@@ -256,7 +253,7 @@ class Grade1TimeChapter(AbstractAnim):
         
         return hour_hand, minute_hand
         
-    def intro1(self):
+    def intro2(self):
         # Define heading for the amount to be paid to the bus agency
         heading = Text("what we do in a day", font_size=26, color=RED)
         heading.to_edge(UP)
@@ -284,5 +281,5 @@ class Grade1TimeChapter(AbstractAnim):
         self.construct1(p10,p10)    
     
 if __name__ == "__main__":
-    scene = Grade1TimeChapter()
+    scene = Grade1CH16Time()
     scene.render()
