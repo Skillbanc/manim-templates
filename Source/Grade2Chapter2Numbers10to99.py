@@ -16,21 +16,20 @@ class NUM10to99(AbstractAnim):
         self.fadeOutCurrentScene()
         
     def TenAnd99(self):
-        text = Text("Number 10", font_size=60,color=LOGO_BLUE)
-        self.play(Write(text))
-        self.play(text.animate.shift(UP * 3))
-
-        text = Text("10 is the smallest two digit number")
-        self.play(Write(text))
+        p1=cvo.CVO().CreateCVO("Number:10","").setPosition([0,2.5,0])
+        p2=cvo.CVO().CreateCVO("10 is the smallest two digit number","You write the number 10 using the digits 1 and 0").setPosition([0,0,0])
+        p1.cvolist.append(p2)
+        self.construct1(p1,p1)
+        self.wait(1)
         self.fadeOutCurrentScene()
 
-        text = Text("Number 99", font_size=60,color=LOGO_BLUE)
-        self.play(Write(text))
-        self.play(text.animate.shift(UP * 3))
-
-        text = Text("99 is the largest two digit number")
-        self.play(Write(text))
+        p1=cvo.CVO().CreateCVO("Number:99","").setPosition([0,2.5,0])
+        p2=cvo.CVO().CreateCVO("99 is the largest two digit number","You write the number 99 using the digit 9").setPosition([0,0,0])
+        p1.cvolist.append(p2)
+        self.construct1(p1,p1)
+        self.wait(1)
         self.fadeOutCurrentScene()
+        
 
     def create_number_representation(self):
         number_line = NumberLine(
@@ -44,20 +43,26 @@ class NUM10to99(AbstractAnim):
         self.wait(1)
 
         tens_label = Text("Tens", color=GREEN).to_edge(UP + LEFT)
-        units_label = Text("Units", color=YELLOW).to_edge(UP + RIGHT)
+        units_label = Text("Ones", color=YELLOW).to_edge(UP + RIGHT)
         self.play(Write(tens_label), Write(units_label))
         self.wait(1)
 
         def show_number(num, position):
             tens_digit = num // 10
             units_digit = num % 10
+
             number_group = VGroup(
                 Text(str(tens_digit), color=GREEN).scale(2),
                 Text(str(units_digit), color=YELLOW).scale(2)
-            ).arrange(RIGHT).move_to(position)
+            ).arrange(RIGHT).move_to(UP * 2)
+
             self.play(Write(number_group))
-            self.wait(0.5)
-            self.play(FadeOut(number_group))
+            tens_arrow = Arrow(start=Text("Tens").to_edge(UP + LEFT).get_bottom(), end=number_group[0].get_top(), color=GREEN)
+            ones_arrow = Arrow(start=Text("Ones").to_edge(UP + RIGHT).get_bottom(), end=number_group[1].get_top(), color=YELLOW)
+            self.play(Create(tens_arrow), Create(ones_arrow))
+
+            self.wait(2)
+            self.play(FadeOut(number_group), FadeOut(tens_arrow), FadeOut(ones_arrow))
 
         def mark_number_on_line(num):
             dot = Dot(number_line.n2p(num), color=RED)
@@ -68,14 +73,13 @@ class NUM10to99(AbstractAnim):
 
         key_numbers = [10, 23, 45, 67, 89]
         for i, number in enumerate(key_numbers):
-            position = DOWN + i * 0.5 * DOWN 
+            position = DOWN + i * 0.5 * DOWN
             mark_number_on_line(number)
             show_number(number, position)
 
         self.wait(1)
         self.fadeOutCurrentScene()
-
-
+    
     def AscAndDescOrder(self):
         title = Text("Ascending and Descending Order", font_size=50)
         self.play(Write(title))
@@ -143,11 +147,6 @@ class NUM10to99(AbstractAnim):
 
         self.wait(2)
         self.play(FadeOut(number_grid), FadeOut(title))   
-
-        
-
-
-
     
     def SetDeveloperList(self):
         self.DeveloperList="Srujan"
