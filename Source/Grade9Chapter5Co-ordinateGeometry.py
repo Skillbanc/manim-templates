@@ -47,6 +47,8 @@ class cordinateAnim(AbstractAnim):
     def parallel(self):
     
      
+
+     
    
         # Title
         title = Text("Number Line", font_size=36)
