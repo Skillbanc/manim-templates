@@ -520,7 +520,7 @@ class LengthWeightSizeClass1(AbstractAnim):
        self.DeveloperList="dhanushofc" 
 
     def SetSourceCodeFileName(self):
-        self.SourceCodeFileName="Class1Ch17LengthWeightSize.py"    
+        self.SourceCodeFileName="Grade1Chapter17LengthWeightSize.py"    
 
 
 
