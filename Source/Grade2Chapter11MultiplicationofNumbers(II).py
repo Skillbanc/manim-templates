@@ -13,11 +13,13 @@ import cvo
 
 config.max_files_cached = 800  # Change this number to your desired value
 
-class grade6(AbstractAnim):
+class grade2(AbstractAnim):
     def construct(self):
         self.RenderSkillbancLogo()
         self.fadeOutCurrentScene()
         self.introduction()
+        self.fadeOutCurrentScene()
+        self.intro()
         self.fadeOutCurrentScene()
         self.pencil()
         self.fadeOutCurrentScene()
@@ -42,10 +44,20 @@ class grade6(AbstractAnim):
         self.SourceCodeFileName="Grade2Chapter11MultiplicationofNumbers(II).py"
     
     def introduction(self):
-        heading = Text("Multiplication of Numbers - 2").scale(1.2)
+        heading = Text("Multiplication of Numbers - II").scale(1.2)
         heading.move_to(ORIGIN)  # Center the heading
         self.play(Write(heading))
         self.wait(2)
+        
+    def intro(self):
+        p10=cvo.CVO().CreateCVO("multiplication ","").setPosition([-3.5,1,0]).setangle(-TAU/4)
+        p11=cvo.CVO().CreateCVO("Definition"," the process of calculating the product of two or more numbers.").setPosition([0,-2,0]).setangle(-TAU/4)
+        p11.setcircleradius(1.5)
+        p12=cvo.CVO().CreateCVO("symbol","x").setPosition([3,1,0]).setangle(-TAU/4)
+        p10.cvolist.append(p11)
+        p11.cvolist.append(p12)
+        
+        self.construct1(p10,p10)
         
     def pencil(self):
         # Initial statement
@@ -58,20 +70,20 @@ class grade6(AbstractAnim):
         self.wait(2)
 
         # Calculation steps
-        step1 = Text("15 * 3 = ?").scale(1.0)
-        step2 = Text("= (10 + 5) * 3").scale(1.0)
-        step3 = Text("= 30 + 15").scale(1.0)
-        step4 = Text("= 30 + 10 + 5").scale(1.0)
-        step5 = Text("= 40 + 5").scale(1.0)
-        step6 = Text("= 45").scale(1.0)
+        step1 = Text("15 * 3 = ?").scale(0.5)
+        step2 = Text("= (10 + 5) * 3").scale(0.5)
+        step3 = Text("= 30 + 15").scale(0.5)
+        step4 = Text("= 30 + 10 + 5").scale(0.5)
+        step5 = Text("= 40 + 5").scale(0.5)
+        step6 = Text("= 45").scale(0.5)
 
         # Positioning the steps
         step1.move_to(2*UP)
-        step2.next_to(step1, DOWN, buff=0.2)
-        step3.next_to(step2, DOWN, buff=0.2)
-        step4.next_to(step3, DOWN, buff=0.2)
-        step5.next_to(step4, DOWN, buff=0.2)
-        step6.next_to(step5, DOWN, buff=0.2)
+        step2.next_to(step1, DOWN, buff=0.5)
+        step3.next_to(step2, DOWN, buff=0.5)
+        step4.next_to(step3, DOWN, buff=0.5)
+        step5.next_to(step4, DOWN, buff=0.5)
+        step6.next_to(step5, DOWN, buff=0.5)
         
         # Showing the steps with reduced space
         self.play(Write(step1))
@@ -166,18 +178,25 @@ class grade6(AbstractAnim):
         )
         self.wait(1)
 
-        # Showing left_box and right_box with their borders
-        self.play(
-            Write(left_box_border),
-            Write(left_box),
-        )
-        self.wait(1)
+        # # Showing left_box and right_box with their borders
+        # self.play(
+        #     Write(left_box_border),
+        #     Write(left_box),
+        # )
+        # self.wait(2)
         
         self.play(
             Write(right_box_border),
             Write(right_box),
         )
         self.wait(2)
+        # Showing left_box and right_box with their borders
+        self.play(
+            Write(left_box_border),
+            Write(left_box),
+        )
+        self.wait(2)
+        
 
     def multiplycationofnumbers1(self):
         heading = Text("multiplication of numbers").scale(1.0)
@@ -208,8 +227,7 @@ class grade6(AbstractAnim):
         
          # Create all Text objects
         texts = [
-            Text("= 30 + 6"),
-            Text("= * 3"),
+            Text("= (30 + 6)*3"),
             Text("= 90 + 18"),
             Text("= 90 + 10 + 8"),
             Text("= 100 + 8"),
@@ -225,7 +243,7 @@ class grade6(AbstractAnim):
             text.scale(0.8)
 
         # Insert the additional text between the second and third lines
-        texts.insert(2, additional_text)
+        texts.insert(1, additional_text)
 
         # Arrange texts vertically with a specific buffer
         texts_group = VGroup(*texts).arrange(DOWN, buff=0.5)
@@ -267,24 +285,16 @@ class grade6(AbstractAnim):
         
          # Create all Text objects
         texts = [
-            Text("= 6 ones x 3 = 18 ones = 1 ten + 8 ones"),
-            Text("= 3 tens x 3           = 9 tens"),
-            Text("= 10 tens + 8 ones"),
-            Text("= 100 ones + 8 ones"),
-            Text("= 108"),
+            Text("=> 6 ones x 3 = 18 ones = 1 ten + 8 ones"),
+            Text("=> 3 tens x 3           = 9 tens"),
+            Text("                        = 10 tens + 8 ones"),
+            Text("                        = 100 ones + 8 ones"),
+            Text("                        = 108"),
         ]
-
-        # Additional text to be inserted between two lines
-        additional_text = Text("30*3 + 6*3")
-        additional_text.scale(0.8)  # Scale down the additional text
 
         # Scale down all texts uniformly
         for text in texts:
             text.scale(0.8)
-
-        # Insert the additional text between the second and third lines
-        texts.insert(2, additional_text)
-
         # Arrange texts vertically with a specific buffer
         texts_group = VGroup(*texts).arrange(DOWN, buff=0.5)
 
@@ -303,7 +313,8 @@ class grade6(AbstractAnim):
              ["14", "70", "84", "98", "112", "168"],
              ["16", "80", "96", "112", "128", "192"],
              ["18", "90", "108", "126", "144", "216"]],
-            include_outer_lines=True
+            include_outer_lines=True,
+            line_config={"color": WHITE}
         ).scale(0.6)  # Scale down the table
         
         # Add a smaller rectangle around the table
@@ -311,6 +322,12 @@ class grade6(AbstractAnim):
         
         # Group the table and rectangle
         table_group = VGroup(table, rect).move_to(LEFT * 3)
+        
+        # Highlight the first row and first column
+        first_row = table.get_rows()[0]
+        first_column = table.get_columns()[0]
+        first_row.set_color(YELLOW)
+        first_column.set_color(BLUE)
         
         # Create explanation text with smaller font size
         explanation = VGroup(
@@ -322,12 +339,20 @@ class grade6(AbstractAnim):
         
         # Animation
         self.play(Create(rect))
-        self.play(Write(table))
-        self.play(Write(explanation))
-        
-        
+        self.play(Write(first_row), Write(first_column))
         self.wait(2)
+        self.play(Write(explanation))
+        self.wait(2)
+
+        # Show the remaining numbers in the table
+        remaining_cells = VGroup()
+        for row in table.get_rows()[1:]:
+            for cell in row[1:]:
+                remaining_cells.add(cell)
         
+        self.play(LaggedStart(*[Write(cell) for cell in remaining_cells], lag_ratio=0.1))
+        self.wait(2)
+
     def seriesofnumbers(self):
         heading = Text("Series of Numbers", font_size=48)
         heading.to_edge(UP)
@@ -342,31 +367,37 @@ class grade6(AbstractAnim):
         ]
 
         for i, (start, continuation, explanation) in enumerate(series):
-        # Create the initial series text
+            # Create the initial series text
             text = Text(start, font_size=36)
             text.to_edge(LEFT).shift(UP * (1 - i * 0.75))
 
-        # Create explanation text box
+            # Create explanation text box
             explain_box = Text(explanation, font_size=24, color=BLUE)
             explain_box.to_edge(RIGHT).align_to(text, UP)
 
-        # Add the initial text and explanation
+            # Add the initial text and explanation
             self.play(Write(text), Write(explain_box))
 
-        # Add each new number
+            # Create a line for the numbers
+            # line = Line(text.get_left(), text.get_right()).shift(DOWN * 0.5)
+            # self.play(Create(line))
+
+            # Add each new number on the line
             for j, num in enumerate(continuation):
                 new_num = Text(str(num) + (", " if j < 2 else ""), font_size=36)
-                new_num.next_to(text, RIGHT, buff=0.1)
+                new_num.next_to(text, RIGHT, buff=(j + 1) * 0.1)
                 underline = Underline(new_num, color=YELLOW)
 
-                self.play(Write(new_num))
+                # self.play(Write(new_num))
                 self.play(Create(underline))
+                self.play(Write(new_num))
 
+                # Update the position for the next number
                 text = VGroup(text, new_num)
 
             self.wait(0.5)
 
-        self.wait(2)    
+        self.wait(2)
         
     def pyramid(self): 
         # Title
@@ -427,5 +458,5 @@ class grade6(AbstractAnim):
         self.wait(2)
 
 if __name__ == "__main__":
-    scene = grade6()
+    scene = grade2()
     scene.render()
