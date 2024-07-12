@@ -8,34 +8,34 @@ import cvo
 class Grade8Chapter9PlanefiguresAreasAnim(AbstractAnim):
 
     def construct(self):
-        # self.RenderSkillbancLogo()
-        # self.Intro()
-        # self.fadeOutCurrentScene()
-        # self.shape1()
-        # self.fadeOutCurrentScene()
-        # self.shape2()
-        # self.fadeOutCurrentScene()
-        # self.shape3()
-        # self.fadeOutCurrentScene()
-        # self.shape4()
-        # self.fadeOutCurrentScene()
-        # self.shape5()
-        # self.fadeOutCurrentScene()
-        # self.shape6()
-        # self.fadeOutCurrentScene()
-        # self.shape7()
-        # self.fadeOutCurrentScene()
-        # self.quad()
-        # self.fadeOutCurrentScene()
-        # self.poly()
-        # self.fadeOutCurrentScene()
-        # self.cirpath()
-        # self.fadeOutCurrentScene()
-        # self.sector()
-        # self.fadeOutCurrentScene()
+        self.RenderSkillbancLogo()
+        self.Intro()
+        self.fadeOutCurrentScene()
+        self.shape1()
+        self.fadeOutCurrentScene()
+        self.shape2()
+        self.fadeOutCurrentScene()
+        self.shape3()
+        self.fadeOutCurrentScene()
+        self.shape4()
+        self.fadeOutCurrentScene()
+        self.shape5()
+        self.fadeOutCurrentScene()
+        self.shape6()
+        self.fadeOutCurrentScene()
+        self.shape7()
+        self.fadeOutCurrentScene()
+        self.quad()
+        self.fadeOutCurrentScene()
+        self.poly()
+        self.fadeOutCurrentScene()
+        self.cirpath()
+        self.fadeOutCurrentScene()
+        self.sector()
+        self.fadeOutCurrentScene()
         self.shaded()
-        # self.fadeOutCurrentScene()
-        # self.GithubSourceCodeReference()
+        self.fadeOutCurrentScene()
+        self.GithubSourceCodeReference()
     
 
     def SetDeveloperList(self):
@@ -711,33 +711,52 @@ class Grade8Chapter9PlanefiguresAreasAnim(AbstractAnim):
 
     def shaded(self):
 
+
         square_side_length = 2
-        square = Square(side_length=square_side_length,color=GREEN, fill_color=BLUE,fill_opacity=1).move_to([4.5,2.5,0])
+        square = Square(side_length=square_side_length,color=WHITE, fill_color=BLUE,fill_opacity=0.5).move_to([4.5,2.5,0])
         circle_radius = square_side_length / 2  
-        circle = Circle(radius=circle_radius,color=GREEN, fill_color=BLACK,fill_opacity=1).move_to([4.5,2.5,0])
+        circle = Circle(radius=circle_radius,color=WHITE, fill_color=BLACK,fill_opacity=1).move_to([4.5,2.5,0])
 
         circle.move_to(square.get_center())
-
-        self.add(square, circle) 
 
         self.play(Create(square))
         self.play(Create(circle))
         self.wait(1)
 
+        g1 = DoubleArrow(buff=2).next_to(square,DOWN)
+        t1 = Text("21m",font_size=24).next_to(g1,DOWN)
+        self.play(Create(g1), Write(t1))
+
+        g2 = DoubleArrow(buff=2).next_to(square,LEFT,buff=0).rotate(PI/2)
+        t2 = Text("21m",font_size=24).next_to(g2,LEFT,buff=0)
+        self.play(Create(g2), Write(t2))
+
+        title = Text("Find the area of the shaded region",font_size=33).move_to([-3.5,2.8,0])
+        self.play(Write(title))
+
 
         formula_steps = [
-            MathTex(r"Area \ of \ the\ shaded\ region = {Area \ of \ \triangle with\ side\ + Area \ of \ trap \ BCFH", font_size=40, color=WHITE).shift(UP*1.5),
-            MathTex(r"+ Area \ of \ \triangle CDF + Area \ of \ \triangle AED", font_size=40, color=WHITE).shift(UP),
-            MathTex(r"Now, Area \ of \ \triangle ABH",font_size=40,color=WHITE).shift(LEFT*3),
-            MathTex(r"= \frac{1}{2}*AH*HB",font_size=40,color=WHITE).shift(DOWN),
-            MathTex(r"=\frac{1}{2}*25*25",font_size=40,color=WHITE).shift(DOWN*2),
-            MathTex(r"=\frac{652}{2} \ m^2 = 312.5 \ m^2",font_size=40,color=WHITE).shift(DOWN*3)
-        ]
+            MathTex(r"Area \ of \ the\ shaded\ region =", font_size=40, color=WHITE).shift(UP),
+            MathTex(r"{Area \ of \ square\ with\ side\ 21m} - {Area \ of \ the\ circle\ with\ diameter\ 21m}", font_size=40, color=WHITE),
+            MathTex(r"If\ the\ diameter\ of\ the\ circle\ is\ 21m\ \\ Then\ the\ radius\ of\ the\ circle\ is\ \frac{21}{2} = 10.5m", font_size=40, color=WHITE).shift(DOWN*2),
+            ]
          
         for step in formula_steps:
             self.play(Write(step))
             self.wait(2)
 
+
+        self.fadeOutCurrentScene()
+
+        formula_steps = [
+            MathTex(r"Area\ of\ the\ shaded\ region\ = (21*21)-(\frac{22}{7}*\frac{21}{2}*\frac{21}{2})*m^2",font_size=40,color=WHITE).shift(UP*2),
+            MathTex(r"= 441 - 346.5",font_size=40,color=WHITE).shift(UP),
+            MathTex(r"= 94.5 m^2",font_size=40,color=WHITE),
+        ]
+         
+        for step in formula_steps:
+            self.play(Write(step))
+            self.wait(2)    
             
  
 
