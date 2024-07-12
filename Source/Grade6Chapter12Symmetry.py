@@ -365,7 +365,7 @@ class symmetry6thgrade(AbstractAnim):
        self.DeveloperList="dhanushofc" 
     
     def SetSourceCodeFileName(self):
-        self.SourceCodeFileName="Class6Ch12Symmetry.py"    
+        self.SourceCodeFileName="Grade6Chapter12Symmetry.py"    
 
 
     
