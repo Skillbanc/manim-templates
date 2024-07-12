@@ -4,12 +4,6 @@
 # Contributor(s):   
 #   Sudhakar Moparthy
 #   Rohit Vailla
-# Project: Manim-Templates
-# Copyright(c) 2024 Skillbanc.com, Inc.
-# License: MIT License
-# Contributor(s):   
-#   Sudhakar Moparthy
-#   Rohit Vailla
 import json
 from manim import *
 from numpy import size
