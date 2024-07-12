@@ -224,7 +224,7 @@ class constructionofquadrilateral8thgrade(AbstractAnim):
        self.DeveloperList="dhanushofc" 
     
     def SetSourceCodeFileName(self):
-        self.SourceCodeFileName="Class8Ch3ConstructionOfQuadrilaterals.py"    
+        self.SourceCodeFileName="Grade88Chapter3ConstructionOfQuadrilaterals.py"    
 
 
 if __name__ == "__main__":
