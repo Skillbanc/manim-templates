@@ -34,7 +34,7 @@ class class4_17test(AbstractAnim,Scene):
 
 
     def SetSourceCodeFileName(self):
-        self.SourceCodeFileName = "ClassCh17LengthWeightSize.py"
+        self.SourceCodeFileName = "Grade4Chapter17LengthWeightSize.py"
         
     def topic1(self):
         self.isRandom = False
