@@ -370,7 +370,7 @@ class AdditionofNumbers(AbstractAnim):
 
     def horizontal_additionExercise(self):
         # Create and display the initial text
-        t1 = Text("Calculate the sum of the following pairs of numbers:", font_size=35).to_edge(UP + LEFT * 1)
+        t1 = Text("Add the numbers given. Write your answer in the box", font_size=35).to_edge(UP + LEFT * 1)
         self.play(Write(t1))
         
 
@@ -617,7 +617,7 @@ class AdditionofNumbers(AbstractAnim):
         self.wait(1)
 
         # Highlight tens place digits 3 (in 37) and 5 (in 52)
-        s6_tens_highlighted = Text("37 + 52 = ", t2c={'3': YELLOW, '+': PURE_BLUE, '5': YELLOW}, font_size=33).next_to(s1, RIGHT * 20.5)
+        s6_tens_highlighted = Text("37 + 52 = ", t2c={'3': YELLOW, '+': PURE_GREEN, '5': YELLOW}, font_size=33).next_to(s1, RIGHT * 20.5)
         self.play(Transform(s6, s6_tens_highlighted))
         self.wait(1)
 

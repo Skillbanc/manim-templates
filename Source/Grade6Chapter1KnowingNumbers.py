@@ -125,7 +125,7 @@ class KnowingNumbers(AbstractAnim):
         ).to_edge(UP*9.25+LEFT * 1)
         sub_title6 = Text("from numbers 9535 and 9635 comparing second digit from left 5 < 6",font_size=29).to_edge(UP*10.75+LEFT *2)
         sub_title7 = Text("so the number 9535 < 9635. so the greatest nuber is 9635.",font_size=29).to_edge(UP*12.25+LEFT * 2)
-        sub_title8 = Text("next step we can arrange these numbers in a Assending and Descending order.",font_size=29,color=GRAY).to_edge(UP*14+LEFT * 0.6)
+        sub_title8 = Text("next step we can arrange these numbers in a Assending and Descending order.",font_size=29,color=GRAY).to_edge(UP*14+LEFT * 0.55)
         
 
 
