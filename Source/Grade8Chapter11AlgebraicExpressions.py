@@ -4,12 +4,6 @@
 # Contributor(s):   
 #   Sudhakar Moparthy
 #   Rohit Vailla
-# Project: Manim-Templates
-# Copyright(c) 2024 Skillbanc.com, Inc.
-# License: MIT License
-# Contributor(s):   
-#   Sudhakar Moparthy
-#   Rohit Vailla
 import json
 from manim import *
 from numpy import size
@@ -18,11 +12,13 @@ from AbstractAnim import AbstractAnim
 import cvo
 
 # Configure Manim to allow more cached files
-config.max_files_cached = 550  # Change this number to your desired value
+config.max_files_cached = 600  # Change this number to your desired value
 
-class AlgebraicAnim5(AbstractAnim):
+class AlgebraicExpression(AbstractAnim):
     def construct(self):
         self.RenderSkillbancLogo()
+        self.fadeOutCurrentScene()
+        self.heading()
         self.fadeOutCurrentScene()
         self.Introduction()
         self.fadeOutCurrentScene()
@@ -39,49 +35,30 @@ class AlgebraicAnim5(AbstractAnim):
         self.MultiplyingTrinomialByMonomial()
         self.MultiplyingBinomialByBinomial()
         self.MultiplyingBinomialByTrinomial()
-        self.MultiplyingBinomialByTrinomial()
         self.identities()
         self.fadeOutCurrentScene()
         self.ApplicationOfIdentities()
         self.GeometricVerification1()
         self.GeometricVerification2()
         self.GeometricVerification3()
+        self.GeometricVerification4()
+        self.fadeOutCurrentScene()
         self.GithubSourceCodeReference()
+        
+    def SetDeveloperList(self):
+       self.DeveloperList="Vasudha"
+       
+    def SetSourceCodeFileName(self):
+        self.SourceCodeFileName="Grade8CH11AlgebraicExpressions.py"
     
+    def heading(self):
+        title = Text("              CHAPTER 11\n\nALGEBRAIC EXPRESSIONS", font_size=48, color=PURPLE)
+        
+        # Animate the title text
+        self.play(Write(title))
+        self.wait(2)
+        self.play(title.animate.to_edge(UP))
     
-    def RenderSkillbancLogo(self):
-        
-        self.orange = "#D76800"
-        self.blue = "#3F64A7"
-        self.green = "#96D24D"
-        self.circles = VGroup(
-            Circle(radius=1).rotate(PI/2).set_fill(self.orange, opacity=1).set_stroke(self.orange, opacity=1).shift(LEFT*3),
-            Circle(radius=1).rotate(PI/2).set_fill(self.blue, opacity=1).set_stroke(self.blue, opacity=1),
-            Circle(radius=1).rotate(PI/2).set_fill(self.green, opacity=1).set_stroke(self.green, opacity=1).shift(RIGHT*3)
-        )
-        circle1, circle2, circle3 = self.circles
-        
-        lines = VGroup(
-            Arrow(circle1.get_right(), circle2.get_left(), max_tip_length_to_length_ratio=2),
-            Arrow(circle2.get_right(), circle3.get_left(), max_tip_length_to_length_ratio=2),
-            CurvedArrow(circle1.get_top(), circle3.get_top(), angle=-TAU/4),
-            CurvedArrow(circle1.get_bottom(), circle3.get_bottom(), angle=TAU/4)
-        )
-
-        # Adjust the starting points of the straight arrows to touch the circumference
-        lines[0].put_start_and_end_on(circle1.get_right(), circle2.get_left())
-        lines[1].put_start_and_end_on(circle2.get_right(), circle3.get_left())
-
-        # Add the text "skillbanc" below the curved arrows
-        self.play(Create(circle1), Create(circle2), Create(circle3), rate_func=smooth, run_time=1)
-        self.play(Create(lines), rate_func=smooth, run_time=1)
-        text = Text("Skillbanc.com, Inc.").next_to(lines[3], DOWN)
-        self.play(Create(text), rate_func=smooth, run_time=0.75)
-        
-        self.logoGroup = VGroup().add(self.circles).add(lines).add(text)
-        self.play(self.logoGroup.animate.scale(0),run_time=1)
-        # self.play(self.circles.animate.scale(0),lines.animate.scale(0),text.animate.scale(0),run_time=3)
-
     def Introduction(self):
         self.setNumberOfCirclePositions(3)
         self.isRandom = False
@@ -151,23 +128,26 @@ class AlgebraicAnim5(AbstractAnim):
         
     def AdditionOfAlgebraicExpressions(self):
         # Title
-        title = Text("Addition of Algebraic Expressions")
+        title = Text("Addition of Algebraic Expressions",color=PINK)
         title.to_edge(UP)
         self.play(Write(title))
         self.wait(1)
 
         # Expressions
-        expr1 = MathTex("3x + 2y")
-        expr2 = MathTex("5x - 3y")
-        add_expr_step1 = MathTex("(3x + 2y) + (5x - 3y)")
-        add_expr_step2 = MathTex("= (3x + 5x) + (2y - 3y)= 8x - y")
-
+        expr1 = MathTex("eq(1):3x + 2y",color=YELLOW)
+        expr2 = MathTex("eq(2):5x - 3y",color=YELLOW)
+        add_expr_step1 = MathTex("eq(1) + eq(2)")
+        add_expr_step2 = MathTex("(3x + 2y) + (5x - 3y)")
+        add_expr_step3 = MathTex("= (3x + 5x) + (2y - 3y)")
+        add_expr_step4 = MathTex("= 8x - y")
 
         # Positioning
-        expr1.shift(UP + 3*LEFT)
-        expr2.shift(UP + 3*RIGHT)
-        add_expr_step1.next_to(expr1, DOWN, buff=1.5).shift(1.5*RIGHT)
-        add_expr_step2.next_to(add_expr_step1, DOWN, buff=1)
+        expr1.shift(UP*2 + 3*LEFT)
+        expr2.shift(UP*2 + 3*RIGHT)
+        add_expr_step1.next_to(expr1, DOWN, buff=1).shift(1.5*RIGHT)
+        add_expr_step2.next_to(add_expr_step1, DOWN, buff=0.5)
+        add_expr_step3.next_to(add_expr_step2, DOWN, buff=0.5)
+        add_expr_step4.next_to(add_expr_step3, DOWN, buff=0.5)
 
         # Writing expressions
         self.play(Write(expr1))
@@ -179,98 +159,121 @@ class AlgebraicAnim5(AbstractAnim):
         self.wait(1)
         self.play(Write(add_expr_step2))
         self.wait(1)
+        self.play(Write(add_expr_step3))
+        self.wait(1)
+        self.play(Write(add_expr_step4))
+        self.wait(1)
+        
         # Clean up
-        self.play(FadeOut(expr1), FadeOut(expr2), FadeOut(add_expr_step1), FadeOut(add_expr_step2), FadeOut(title))
+        self.play(FadeOut(expr1), FadeOut(expr2), FadeOut(add_expr_step1), FadeOut(add_expr_step2), FadeOut(add_expr_step3), FadeOut(add_expr_step4), FadeOut(title))
         self.wait(1)
 
     def SubtractionOfAlgebraicExpressions(self):
-        # Title
-        title = Text("Subtraction of Algebraic Expressions")
+         # Title
+        title = Text("Subtraction of Algebraic Expressions",color=PINK)
         title.to_edge(UP)
         self.play(Write(title))
         self.wait(1)
 
         # Expressions
-        expr1 = MathTex("3x + 2y")
-        expr2 = MathTex("5x - 3y")
-        sub_expr_step1 = MathTex("(3x + 2y) - (5x - 3y)")
-        sub_expr_step2 = MathTex("= (3x - 5x) + (2y + 3y) = -2x + 5y")
-    
-        # Positioning
-        expr1.shift(UP + 3*LEFT)
-        expr2.shift(UP + 3*RIGHT)
-        sub_expr_step1.next_to(expr1, DOWN, buff=1.5).shift(1.5*RIGHT)
-        sub_expr_step2.next_to(sub_expr_step1, DOWN, buff=1)
+        expr1 = MathTex("eq(1):3x + 2y",color=YELLOW)
+        expr2 = MathTex("eq(2):5x - 3y",color=YELLOW)
+        add_expr_step1 = MathTex("eq(1) - eq(2)")
+        add_expr_step2 = MathTex("(3x + 2y) - (5x - 3y)")
+        add_expr_step3 = MathTex("= (3x - 5x) + (2y + 3y)")
+        add_expr_step4 = MathTex("= -2x + 5y")
 
+        # Positioning
+        expr1.shift(UP*2 + 3*LEFT)
+        expr2.shift(UP*2 + 3*RIGHT)
+        add_expr_step1.next_to(expr1, DOWN, buff=1).shift(1.5*RIGHT)
+        add_expr_step2.next_to(add_expr_step1, DOWN, buff=0.5)
+        add_expr_step3.next_to(add_expr_step2, DOWN, buff=0.5)
+        add_expr_step4.next_to(add_expr_step3, DOWN, buff=0.5)
 
         # Writing expressions
         self.play(Write(expr1))
         self.play(Write(expr2))
         self.wait(1)
 
-        # Showing subtraction step by step
-        self.play(Write(sub_expr_step1))
+        # Showing addition step by step
+        self.play(Write(add_expr_step1))
         self.wait(1)
-        self.play(Write(sub_expr_step2))
+        self.play(Write(add_expr_step2))
+        self.wait(1)
+        self.play(Write(add_expr_step3))
+        self.wait(1)
+        self.play(Write(add_expr_step4))
         self.wait(1)
         
         # Clean up
-        self.play(FadeOut(expr1), FadeOut(expr2), FadeOut(sub_expr_step1), FadeOut(sub_expr_step2), FadeOut(title))
+        self.play(FadeOut(expr1), FadeOut(expr2), FadeOut(add_expr_step1), FadeOut(add_expr_step2), FadeOut(add_expr_step3), FadeOut(add_expr_step4), FadeOut(title))
         self.wait(1)
-
+        
     def MultiplyingMonomials(self):
-        # Title
-        title = Text("Multiplying Monomials")
+         # Title
+        title = Text("Multiplying Monomials",color=PINK)
         title.to_edge(UP)
         self.play(Write(title))
         self.wait(1)
 
         # Expressions
-        expr1 = MathTex("2x^2")
-        expr2 = MathTex("3x^3")
-        multiply_expr_step1 = MathTex("2x^2 \\cdot 3x^3 = 2 \\cdot 3 \\cdot x^2 \\cdot x^3")
-        multiply_expr_step2 = MathTex("= 6 \\cdot x^{2+3} = 6x^5")
+        expr1 = MathTex("eq(1):2x^2",color=YELLOW)
+        expr2 = MathTex("eq(2):3x^3",color=YELLOW)
+        mul_expr_step1 = MathTex("eq(1) * eq(2)")
+        mul_expr_step2 = MathTex("2x^2 \\cdot 3x^3 = 2 \\cdot 3 \\cdot x^2 \\cdot x^3")
+        mul_expr_step3 = MathTex("= 6 \\cdot x^{2+3}")
+        mul_expr_step4 = MathTex("= 6x^5")
 
         # Positioning
-        expr1.shift(UP + 3*LEFT)
-        expr2.shift(UP + 3*RIGHT)
-        multiply_expr_step1.next_to(expr1, DOWN, buff=1.5).shift(1.5*RIGHT)
-        multiply_expr_step2.next_to(multiply_expr_step1, DOWN, buff=1)
-    
+        expr1.shift(UP*2 + 3*LEFT)
+        expr2.shift(UP*2 + 3*RIGHT)
+        mul_expr_step1.next_to(expr1, DOWN, buff=1).shift(1.5*RIGHT)
+        mul_expr_step2.next_to(mul_expr_step1, DOWN, buff=0.5)
+        mul_expr_step3.next_to(mul_expr_step2, DOWN, buff=0.5)
+        mul_expr_step4.next_to(mul_expr_step3, DOWN, buff=0.5)
+
         # Writing expressions
         self.play(Write(expr1))
         self.play(Write(expr2))
         self.wait(1)
 
-        # Showing multiplication step by step
-        self.play(Write(multiply_expr_step1))
+        # Showing addition step by step
+        self.play(Write(mul_expr_step1))
         self.wait(1)
-        self.play(Write(multiply_expr_step2))
+        self.play(Write(mul_expr_step2))
+        self.wait(1)
+        self.play(Write(mul_expr_step3))
+        self.wait(1)
+        self.play(Write(mul_expr_step4))
         self.wait(1)
         
         # Clean up
-        self.play(FadeOut(expr1), FadeOut(expr2), FadeOut(multiply_expr_step1), FadeOut(multiply_expr_step2), FadeOut(title))
+        self.play(FadeOut(expr1), FadeOut(expr2), FadeOut(mul_expr_step1), FadeOut(mul_expr_step2), FadeOut(mul_expr_step3), FadeOut(mul_expr_step4), FadeOut(title))
         self.wait(1)
-
+        
     def MultiplyingBinomialByMonomial(self):
         # Title
-        title = Text("Multiplying a Binomial by a Monomial")
+        title = Text("Multiplying a Binomial by a Monomial",color=PINK)
         title.to_edge(UP)
         self.play(Write(title))
         self.wait(1)
 
         # Expressions
-        binomial = MathTex("2x + 3")
-        monomial = MathTex("4x")
-        multiply_expr_step1 = MathTex("4x(2x + 3)")
-        multiply_expr_step2 = MathTex("= 4x \\cdot 2x + 4x \\cdot 3 = 8x^2 + 12x")
-
+        binomial = MathTex("binomial:2x + 3",color=YELLOW)
+        monomial = MathTex("monomial:4x",color=YELLOW)
+        multiply_expr_step1 = MathTex("binomial * monomial")
+        multiply_expr_step2 = MathTex("4x(2x + 3)")
+        multiply_expr_step3 = MathTex("= 4x \\cdot 2x + 4x \\cdot 3")
+        multiply_expr_step4 = MathTex("= 8x^2 + 12x")
 
         # Positioning
-        binomial.shift(UP + 3*LEFT)
-        monomial.shift(UP + 3*RIGHT)
-        multiply_expr_step1.next_to(binomial, DOWN, buff=1.5).shift(1.5*RIGHT)
-        multiply_expr_step2.next_to(multiply_expr_step1, DOWN, buff=1)
+        binomial.shift(UP*2 + 3*LEFT)
+        monomial.shift(UP*2 + 3*RIGHT)
+        multiply_expr_step1.next_to(binomial, DOWN, buff=1).shift(1.5*RIGHT)
+        multiply_expr_step2.next_to(multiply_expr_step1, DOWN, buff=0.5)
+        multiply_expr_step3.next_to(multiply_expr_step2, DOWN, buff=0.5)
+        multiply_expr_step4.next_to(multiply_expr_step3, DOWN, buff=0.5)
     
         # Writing expressions
         self.play(Write(binomial))
@@ -282,30 +285,37 @@ class AlgebraicAnim5(AbstractAnim):
         self.wait(1)
         self.play(Write(multiply_expr_step2))
         self.wait(1)
+        self.play(Write(multiply_expr_step3))
+        self.wait(1)
+        self.play(Write(multiply_expr_step4))
+        self.wait(1)
 
         # Clean up
-        self.play(FadeOut(binomial), FadeOut(monomial), FadeOut(multiply_expr_step1), FadeOut(multiply_expr_step2), FadeOut(title))
+        self.play(FadeOut(binomial), FadeOut(monomial), FadeOut(multiply_expr_step1), FadeOut(multiply_expr_step2), FadeOut(multiply_expr_step3), FadeOut(multiply_expr_step4), FadeOut(title))
         self.wait(1)
 
     def MultiplyingTrinomialByMonomial(self):
         # Title
-        title = Text("Multiplying a Trinomial by a Monomial")
+        title = Text("Multiplying a Trinomial by a Monomial",color=PINK)
         title.to_edge(UP)
         self.play(Write(title))
         self.wait(1)
 
         # Expressions
-        trinomial = MathTex("x^2 + 2x + 3")
-        monomial = MathTex("4x")
-        multiply_expr_step1 = MathTex("4x(x^2 + 2x + 3)")
-        multiply_expr_step2 = MathTex("= 4x \\cdot x^2 + 4x \\cdot 2x + 4x \\cdot 3 = 4x^3 + 8x^2 + 12x")
-
+        trinomial = MathTex("trinomial:x^2 + 2x + 3",color=YELLOW)
+        monomial = MathTex("monomial:4x",color=YELLOW)
+        multiply_expr_step1 = MathTex("trinomial * monomial")
+        multiply_expr_step2 = MathTex("4x(x^2 + 2x + 3)")
+        multiply_expr_step3 = MathTex("= 4x \\cdot x^2 + 4x \\cdot 2x + 4x \\cdot 3")
+        multiply_expr_step4 = MathTex("= 4x^3 + 8x^2 + 12x")
 
         # Positioning
-        trinomial.shift(UP + 3*LEFT)
-        monomial.shift(UP + 3*RIGHT)
-        multiply_expr_step1.next_to(trinomial, DOWN, buff=1.5).shift(1.5*RIGHT)
-        multiply_expr_step2.next_to(multiply_expr_step1, DOWN, buff=1)
+        trinomial.shift(UP*2 + 3*LEFT)
+        monomial.shift(UP*2 + 3*RIGHT)
+        multiply_expr_step1.next_to(trinomial, DOWN, buff=1).shift(1.5*RIGHT)
+        multiply_expr_step2.next_to(multiply_expr_step1, DOWN, buff=0.5)
+        multiply_expr_step3.next_to(multiply_expr_step2, DOWN, buff=0.5)
+        multiply_expr_step4.next_to(multiply_expr_step3, DOWN, buff=0.5)
 
         # Writing expressions
         self.play(Write(trinomial))
@@ -317,29 +327,36 @@ class AlgebraicAnim5(AbstractAnim):
         self.wait(1)
         self.play(Write(multiply_expr_step2))
         self.wait(1)
+        self.play(Write(multiply_expr_step3))
+        self.wait(1)
+        self.play(Write(multiply_expr_step4))
+        self.wait(1)
 
         # Clean up
-        self.play(FadeOut(trinomial), FadeOut(monomial), FadeOut(multiply_expr_step1), FadeOut(multiply_expr_step2), FadeOut(title))
+        self.play(FadeOut(trinomial), FadeOut(monomial), FadeOut(multiply_expr_step1), FadeOut(multiply_expr_step2),FadeOut(multiply_expr_step3),FadeOut(multiply_expr_step4), FadeOut(title))
         self.wait(1)
 
     def MultiplyingBinomialByBinomial(self):
         # Title
-        title = Text("Multiplying a Binomial by a Binomial")
+        title = Text("Multiplying a Binomial by a Binomial",color=PINK)
         title.to_edge(UP)
         self.play(Write(title))
         self.wait(1)
 
         # Expressions
-        binomial1 = MathTex("a + b")
-        binomial2 = MathTex("c + d")
-        multiply_expr_step1 = MathTex("(a + b)(c + d)")
-        multiply_expr_step2 = MathTex("= a(c + d) + b(c + d) = ac + ad + bc + bd")
-    
+        binomial1 = MathTex("eq(1):a + b",color=YELLOW)
+        binomial2 = MathTex("eq(2):c + d",color=YELLOW)
+        multiply_expr_step1 = MathTex("eq(1) * eq(2)")
+        multiply_expr_step2 = MathTex("(a + b)(c + d)")
+        multiply_expr_step3 = MathTex("= a(c + d) + b(c + d) ")
+        multiply_expr_step4 = MathTex("= ac + ad + bc + bd")
         # Positioning
-        binomial1.shift(UP + 3*LEFT)
-        binomial2.shift(UP + 3*RIGHT)
-        multiply_expr_step1.next_to(binomial1, DOWN, buff=1.5).shift(1.5*RIGHT)
-        multiply_expr_step2.next_to(multiply_expr_step1, DOWN, buff=1)
+        binomial1.shift(UP*2 + 3*LEFT)
+        binomial2.shift(UP*2 + 3*RIGHT)
+        multiply_expr_step1.next_to(binomial1, DOWN, buff=1).shift(1.5*RIGHT)
+        multiply_expr_step2.next_to(multiply_expr_step1, DOWN, buff=0.5)
+        multiply_expr_step3.next_to(multiply_expr_step2, DOWN, buff=0.5)
+        multiply_expr_step4.next_to(multiply_expr_step3, DOWN, buff=0.5)
     
         # Writing expressions
         self.play(Write(binomial1))
@@ -351,29 +368,37 @@ class AlgebraicAnim5(AbstractAnim):
         self.wait(1)
         self.play(Write(multiply_expr_step2))
         self.wait(1)
+        self.play(Write(multiply_expr_step3))
+        self.wait(1)
+        self.play(Write(multiply_expr_step4))
+        self.wait(1)
 
         # Clean up
-        self.play(FadeOut(binomial1), FadeOut(binomial2), FadeOut(multiply_expr_step1), FadeOut(multiply_expr_step2), FadeOut(title))
+        self.play(FadeOut(binomial1), FadeOut(binomial2), FadeOut(multiply_expr_step1), FadeOut(multiply_expr_step2), FadeOut(multiply_expr_step3), FadeOut(multiply_expr_step4), FadeOut(title))
         self.wait(1)
 
     def MultiplyingBinomialByTrinomial(self):
         # Title
-        title = Text("Multiplying a Binomial by a Trinomial")
+        title = Text("Multiplying a Binomial by a Trinomial",color=PINK)
         title.to_edge(UP)
         self.play(Write(title))
         self.wait(1)
 
         # Expressions
-        binomial = MathTex("a + b")
-        trinomial = MathTex("c + d + e")
-        multiply_expr_step1 = MathTex("(a + b)(c + d + e) = a(c + d + e) + b(c + d + e)")
-        multiply_expr_step2 = MathTex("= ac + ad + ae + bc + bd + be")
+        binomial = MathTex("binomial:a + b",color=YELLOW)
+        trinomial = MathTex("trinomial:c + d + e",color=YELLOW)
+        multiply_expr_step1 = MathTex("binomial * trinomial")
+        multiply_expr_step2 = MathTex("(a + b)(c + d + e)")
+        multiply_expr_step3 = MathTex("= a(c + d + e) + b(c + d + e)")
+        multiply_expr_step4 = MathTex("= ac + ad + ae + bc + bd + be")
        
         # Positioning
-        binomial.shift(UP + 3*LEFT)
-        trinomial.shift(UP + 3*RIGHT)
-        multiply_expr_step1.next_to(binomial, DOWN, buff=1.5).shift(1.5*RIGHT)
-        multiply_expr_step2.next_to(multiply_expr_step1, DOWN, buff=1)
+        binomial.shift(UP*2 + 3*LEFT)
+        trinomial.shift(UP*2 + 3*RIGHT)
+        multiply_expr_step1.next_to(binomial, DOWN, buff=1).shift(1.5*RIGHT)
+        multiply_expr_step2.next_to(multiply_expr_step1, DOWN, buff=0.5)
+        multiply_expr_step3.next_to(multiply_expr_step2, DOWN, buff=0.5)
+        multiply_expr_step4.next_to(multiply_expr_step3, DOWN, buff=0.5)
 
         # Writing expressions
         self.play(Write(binomial))
@@ -385,9 +410,13 @@ class AlgebraicAnim5(AbstractAnim):
         self.wait(1)
         self.play(Write(multiply_expr_step2))
         self.wait(1)
+        self.play(Write(multiply_expr_step3))
+        self.wait(1)
+        self.play(Write(multiply_expr_step4))
+        self.wait(1)
 
         # Clean up
-        self.play(FadeOut(binomial), FadeOut(trinomial), FadeOut(multiply_expr_step1), FadeOut(multiply_expr_step2), FadeOut(title))
+        self.play(FadeOut(binomial), FadeOut(trinomial), FadeOut(multiply_expr_step1), FadeOut(multiply_expr_step2), FadeOut(multiply_expr_step3), FadeOut(multiply_expr_step4), FadeOut(title))
         self.wait(1)
 
     def identities(self):
@@ -575,7 +604,60 @@ class AlgebraicAnim5(AbstractAnim):
         # Fade out all objects
         self.play(FadeOut(shapes_group), FadeOut(title))
         self.wait()
+        
+    def GeometricVerification4(self):
+        # Title
+        title = Tex("Geometrical Verification of Identity (4)")
+        title.to_edge(UP)
+        self.play(Write(title))
+
+         # Define the lengths
+        x = 2
+        a = 1
+        b = 1
+        
+        # Create the main rectangle (x + a) * (x + b)
+        main_rect = Rectangle(width=x+a, height=x+b)
+        main_rect.set_fill(WHITE, opacity=0.5)
+        main_rect.set_stroke(BLUE, width=2)
+        
+        # Create smaller rectangles to represent x^2, ax, bx, and ab
+        square_x2 = Square(side_length=x)
+        rect_ax = Rectangle(width=a, height=x)
+        rect_bx = Rectangle(width=x, height=b)
+        square_ab = Square(side_length=1)
+        
+        # Position smaller rectangles
+        square_x2.move_to(main_rect.get_corner(UP + LEFT) + np.array([x/2, -x/2, 0]))
+        rect_ax.next_to(square_x2, RIGHT, buff=0)
+        rect_bx.next_to(square_x2, DOWN, buff=0)
+        square_ab.next_to(rect_ax, DOWN, buff=0)
+        
+        # Add labels
+        label_x2 = MathTex("x^2").move_to(square_x2.get_center())
+        label_ax = MathTex("ax").move_to(rect_ax.get_center())
+        label_bx = MathTex("bx").move_to(rect_bx.get_center())
+        label_ab = MathTex("ab").move_to(square_ab.get_center())
+        
+        # Add labels to the sides
+        label_x1 = MathTex("x").next_to(square_x2, LEFT, buff=0.1)
+        label_x2 = MathTex("x").next_to(square_x2, UP, buff=0.1)
+        label_a = MathTex("a").next_to(rect_ax, RIGHT, buff=0.1)
+        label_b = MathTex("b").next_to(rect_bx, DOWN, buff=0.1)
+        
+        # Create the equation
+        equation = MathTex("(x + a)(x + b) = x^2 + ax + bx + ab").to_edge(DOWN)
+        
+        # Animate the construction
+        self.play(FadeIn(main_rect))
+        self.play(FadeIn(square_x2), FadeIn(rect_ax), FadeIn(rect_bx), FadeIn(square_ab))
+        self.play(FadeIn(label_x2), FadeIn(label_ax), FadeIn(label_bx), FadeIn(label_ab))
+        self.play(FadeIn(label_x1), FadeIn(label_x2), FadeIn(label_a), FadeIn(label_b))
+        self.play(Write(equation))
+        
+        # Pause to view
+        self.wait(2)
 
 if __name__ == "__main__":
-    scene = AlgebraicAnim5()
+    scene = AlgebraicExpression()
     scene.render()
