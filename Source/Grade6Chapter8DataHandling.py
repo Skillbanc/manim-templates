@@ -13,34 +13,21 @@ class DATA_HANDLING(AbstractAnim):
         self.organising_data()
         self.representation_data()
         self.GithubSourceCodeReference()
+        self.SubscribeYoutube()
+        self.fadeOutCurrentScene()
 
 
     def Data_Handling(self):
-        text = Text("Data Handling", font_size=60,color=YELLOW,font="Bookman Old Style")
-        self.play(Write(text))
-        self.play(text.animate.shift(UP * 3))
-        
-        
-        text = Text("1.Introduction", font_size=40,color=BLUE)
-        self.play(Write(text))
-        self.play(text.animate.shift(UP * 2))
-        # self.play(text.animate.shift(LEFT * 4))
-        
-        text = Text("2.Recording Of Data", font_size=40,color=GREEN)
-        self.play(Write(text))
-        self.play(text.animate.shift(UP * 1))
-        # self.play(text.animate.shift(LEFT * 4))
-        
-        text = Text("3.Organisation Of Data", font_size=40,color=RED)
-        self.play(Write(text))
-        self.play(text.animate.shift(UP * 0))
-        # self.play(text.animate.shift(LEFT * 4))
-        
-        text = Text("4.Representation Of Data", font_size=40,color=PURPLE)
-        self.play(Write(text))
-        self.play(text.animate.shift(DOWN * 1))
-        # self.play(text.animate.shift(LEFT * 4))
-
+        p1=cvo.CVO().CreateCVO("DATA HANDLING","").setPosition([0,2.5,0])
+        p2=cvo.CVO().CreateCVO("Introduction","").setPosition([-4,1,0])
+        p3=cvo.CVO().CreateCVO("Recording of Data","").setPosition([-2,-2,0])
+        p4=cvo.CVO().CreateCVO("Organisation of Data","").setPosition([2,-2,0])
+        p5=cvo.CVO().CreateCVO("Representation of Data","").setPosition([4,1,0])
+        p1.cvolist.append(p2)
+        p1.cvolist.append(p3)
+        p1.cvolist.append(p4)  
+        p1.cvolist.append(p5)      
+        self.construct1(p1,p1)
         self.fadeOutCurrentScene()
 
 
@@ -171,6 +158,7 @@ class DATA_HANDLING(AbstractAnim):
         text=Text("Data that has been organised and presented in frequency distribution \n\n tables can also be presented using pictographs and bar graphs",font_size=30)
         self.play(Write(text))
         self.play(text.animate.shift(UP * 0))
+        self.wait(2)
         self.fadeOutCurrentScene()
         p1=cvo.CVO().CreateCVO("Representation Of Data","").setPosition([0,2.5,0])
         p2=cvo.CVO().CreateCVO("Pictographs","").setPosition([3,0,0])
@@ -208,10 +196,11 @@ class DATA_HANDLING(AbstractAnim):
             rows.add(row)
         table = VGroup(title, rows).arrange(DOWN, buff=0.5)
         self.play(FadeIn(table))
+        self.play(table.animate.shift(RIGHT * 3))
         self.wait(2)
-        text=Text("Here the number of books of \n each  subject  is  represented \n as a PICTOGRAPH",font_size=20,color=ORANGE)
+        text=Text("Here the number of books of \n each  subject  is  represented \n as a PICTOGRAPH",font_size=30)
         self.play(Write(text))
-        self.play(text.animate.shift(LEFT * 5))
+        self.play(text.animate.shift(LEFT * 4))
         self.wait(2)
         self.fadeOutCurrentScene()
 
@@ -245,9 +234,10 @@ class DATA_HANDLING(AbstractAnim):
         title.to_edge(UP)
         self.add(bar_chart, title)
         self.play(Create(bar_chart))
-        text=Text("The length of the bars\n represents the frequency\n of the data items\n\n\n Scale on X axis 1cm=1unit \n Scale on Y axis 1cm=2units",font_size=20,color=WHITE)
+        self.play(bar_chart.animate.shift(RIGHT * 3))
+        text=Text("The length of the bars\n represents the frequency\n of the data items\n\n\n Scale on X axis 1 cm=1 unit \n Scale on Y axis 1 cm=2 units",font_size=30,color=WHITE)
         self.play(Write(text))
-        self.play(text.animate.shift(LEFT * 5))
+        self.play(text.animate.shift(LEFT * 4))
         self.wait(3)
         self.fadeOutCurrentScene()
 
@@ -268,9 +258,10 @@ class DATA_HANDLING(AbstractAnim):
         title.to_edge(UP)
         self.add(bar_chart, title)
         self.play(Create(bar_chart))
-        text=Text(" Scale on X axis 1cm=2units \n Scale on Y axis 1cm=1unit",font_size=20,color=WHITE)
+        self.play(bar_chart.animate.shift(RIGHT * 3))
+        text=Text(" Scale on X axis 1 cm=2 units \n Scale on Y axis 1 cm=1 unit",font_size=30,color=WHITE)
         self.play(Write(text))
-        self.play(text.animate.shift(LEFT * 5))
+        self.play(text.animate.shift(LEFT * 4))
         self.wait(3)
         self.fadeOutCurrentScene()
 
@@ -279,7 +270,7 @@ class DATA_HANDLING(AbstractAnim):
         self.DeveloperList="Srujan"
 
     def SetSourceCodeFileName(self):
-        self.SourceCodeFileName="Grade6DataHandling.py"
+        self.SourceCodeFileName="Grade6Chapter8DataHandling.py"
 
 
 
