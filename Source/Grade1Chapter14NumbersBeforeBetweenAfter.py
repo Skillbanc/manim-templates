@@ -141,7 +141,8 @@ class Grade1Chapter14NumbersBeforeBetweenAfter(AbstractAnim):
         smallest_label = Text(f"{smallest}", color=RED, font_size=24).next_to(smallest_dot, UP)
         self.play(FadeIn(smallest_dot), Write(smallest_label))
         self.wait(1)
-
+        self.play(FadeOut(smallest_dot), FadeOut(smallest_label))
+        
         biggest_text = Text(f"The biggest number among {num1} and {num2} is {biggest}", font_size=32).to_edge(UP)
         self.play(Transform(smallest_text, biggest_text))
         self.wait(1)
@@ -150,8 +151,7 @@ class Grade1Chapter14NumbersBeforeBetweenAfter(AbstractAnim):
         biggest_label = Text(f"{biggest}", color=BLUE, font_size=24).next_to(biggest_dot, UP)
         self.play(FadeIn(biggest_dot), Write(biggest_label))
         self.wait(1)
-
-        self.play(FadeOut(smallest_text), FadeOut(smallest_dot), FadeOut(smallest_label),FadeOut(biggest_dot), FadeOut(biggest_label), FadeOut(number_line))
+        self.play(FadeOut(smallest_text),FadeOut(biggest_dot), FadeOut(biggest_label), FadeOut(number_line))
 
     def show_order(self, num1, num2):
         ordered = sorted([num1, num2])

@@ -20,11 +20,11 @@ class Grade6Chapter2WholenumbersTopic2(AbstractAnim):
 
     def Introduction(self):
         self.setNumberOfCirclePositions(2)
-        self.angleChoice = [-TAU/4]
+        self.angleChoice = [-TAU/3]
         self.isRandom = False
         p10=cvo.CVO().CreateCVO("Whole Numbers","")
         p11=cvo.CVO().CreateCVO("Operations", "")
-        p11.extendOname(["Addition","Subtraction","Multiplication","Division"])
+        p11.extendOname([" Addition"," Subtraction"," Multiplication"," Division"])
         p11.setcircleradius(1.5)
         p10.cvolist.append(p11)
         self.construct1(p10,p10)

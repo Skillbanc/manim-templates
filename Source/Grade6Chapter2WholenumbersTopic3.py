@@ -18,9 +18,9 @@ class Grade6Chapter2WholenumbersTopic3(AbstractAnim):
     def Introduction(self):
         self.setNumberOfCirclePositions(3)
         self.isRandom = False
-        p10=cvo.CVO().CreateCVO("Whole Numbers","Properties")
-        p11=cvo.CVO().CreateCVO("Commutative Property of Addition","")
-        p12=cvo.CVO().CreateCVO("Commutative Property of Multiplication","")
+        p10=cvo.CVO().CreateCVO("Whole Numbers","Properties").setPosition([0,2.5,0])
+        p11=cvo.CVO().CreateCVO("Commutative Property of Addition","").setPosition([2,0,0])
+        p12=cvo.CVO().CreateCVO("Commutative Property of Multiplication","").setPosition([-2,-2,0])
         
         p10.cvolist.append(p11)
         p10.cvolist.append(p12)

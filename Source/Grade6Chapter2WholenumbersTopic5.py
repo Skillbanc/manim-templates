@@ -55,10 +55,10 @@ class Grade6Chapter2WholenumbersTopic5(AbstractAnim):
         self.isRandom = False
 
         p10=cvo.CVO().CreateCVO("Multiplicative Identity","One is called as the Multiplicative identity ")
-        p11=cvo.CVO().CreateCVO("Means","Any whole number multiplied with 1 gives the same whole number")
-        p12=cvo.CVO().CreateCVO("Multiplicative Identity of Whole Numbers","X*1=X")
-        p13=cvo.CVO().CreateCVO("X variable","2")
-        p14=cvo.CVO().CreateCVO("Product", "2*1=2")
+        p11=cvo.CVO().CreateCVO("Means","Any whole number multiplied with 1 gives the same whole number").setPosition([3,-2,0])
+        p12=cvo.CVO().CreateCVO("Multiplicative Identity of Whole Numbers","X*1=X").setPosition([-3,2,0])
+        p13=cvo.CVO().CreateCVO("X variable","2").setPosition([2,2,0])
+        p14=cvo.CVO().CreateCVO("Product", "2*1=2").setPosition([4,2,0])
         p10.cvolist.append(p11)
         p10.cvolist.append(p12)
         p12.cvolist.append(p13)

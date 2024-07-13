@@ -38,7 +38,7 @@ class Grade8Chapter15PlayingWithNumbersTopic7(AbstractAnim):
         self.isRandom = False
 
         p10=cvo.CVO().CreateCVO("Example","$17A + 2A4 = 407$")
-        p11=cvo.CVO().CreateCVO("Step 1","$A + 4 = 7$")
+        p11=cvo.CVO().CreateCVO("Step 1(units place)","$A + 4 = 7$")
         p12=cvo.CVO().CreateCVO("Step 2","$A = 7-4 = 3$")
         p13=cvo.CVO().CreateCVO("Solution", "$173 + 234 = 407$")
         p10.setcircleradius(1.5)
