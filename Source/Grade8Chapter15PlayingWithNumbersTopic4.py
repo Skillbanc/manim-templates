@@ -55,7 +55,7 @@ class Grade8Chapter15PlayingWithNumbersTopic4(AbstractAnim):
 
         p10=cvo.CVO().CreateCVO("Divisibility Rule 3","sum of digits divisible by 3")
         p11=cvo.CVO().CreateCVO("example","12")
-        p12=cvo.CVO().CreateCVO("sum of digits","3")
+        p12=cvo.CVO().CreateCVO("sum of digits","1+2=3(divisible by 3)")
         p13=cvo.CVO().CreateCVO("Divisibility Rule of 3", "satisfied")
         p10.cvolist.append(p11)
         p11.cvolist.append(p12)
@@ -72,7 +72,7 @@ class Grade8Chapter15PlayingWithNumbersTopic4(AbstractAnim):
 
         p10=cvo.CVO().CreateCVO("Divisibility Rule 4","last 2 digits divisible by 4")
         p11=cvo.CVO().CreateCVO("example","116")
-        p12=cvo.CVO().CreateCVO("last 2 digits ","16")
+        p12=cvo.CVO().CreateCVO("last 2 digits ","16(divisible by 4)")
         p13=cvo.CVO().CreateCVO("Divisibility Rule of 4", "satisfied")
         p10.cvolist.append(p11)
         p11.cvolist.append(p12)
