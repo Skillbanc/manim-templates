@@ -13,6 +13,8 @@ class SquarecubeOperations(AbstractAnim):
         #self.fadeOutCurrentScene()
         self.SquaringOfNumbers()
         self.fadeOutCurrentScene()
+        self.PerfectSquareandSquareNumber()
+        self.fadeOutCurrentScene()
         self.SubtopicsOfSquares()
         self.fadeOutCurrentScene()
         self.PropertiesofSquareNumbers()
@@ -22,6 +24,8 @@ class SquarecubeOperations(AbstractAnim):
         self.pythagoreanTriplets()
         self.fadeOutCurrentScene()
         self.SquareRoot()
+        self.fadeOutCurrentScene()
+        self.SquareandSquareroot_table()
         self.fadeOutCurrentScene()
         self.PrimeFactorization2()
         self.fadeOutCurrentScene()
@@ -35,7 +39,11 @@ class SquarecubeOperations(AbstractAnim):
         self.fadeOutCurrentScene()
         self.Cube()
         self.fadeOutCurrentScene()
+        self.Cube_Table()
+        self.fadeOutCurrentScene()
         self.CubeRoot()
+        self.fadeOutCurrentScene()
+        self.CubeandCubeRoot_table()
         self.fadeOutCurrentScene()
         self.cuberootthroughPrimeFactorization2()
         self.fadeOutCurrentScene()
@@ -65,21 +73,116 @@ class SquarecubeOperations(AbstractAnim):
         self.construct1(p10,p10)
 
 
-    def SquaringOfNumbers(self):
-        self.setNumberOfCirclePositions(4)
-        #self.angleChoice = [0,0,0]
-        self.isRandom = False
 
-        p10=cvo.CVO().CreateCVO("Squring of Numbers","$x^2$ = x*x").setPosition([-5,1,0])
-        p11=cvo.CVO().CreateCVO("x variable","3").setPosition([-2,-2,0])
-        p12=cvo.CVO().CreateCVO("Squaring of x","$3^2$=3*3").setPosition([2,-2,0])
-        p13=cvo.CVO().CreateCVO("Total","9").setPosition([5,0,0])
+    def SquaringOfNumbers(self):
+        
+        # self.angleChoice = [0,0,0]
+        self.isRandom = False
+    
+        # Create CVO objects with their respective labels and positions
+        p10 = cvo.CVO().CreateCVO("Squaring of Numbers", "").setPosition([-5, 1.25, 0])
+        p11 = cvo.CVO().CreateCVO("Notation", "$x^2$").setPosition([-1, 1.25, 0])
+        p12 = cvo.CVO().CreateCVO("Expansion", "$x^2 = x * x$").setPosition([3.5, 1.25, 0])
+        p13 = cvo.CVO().CreateCVO("x variable", "3").setPosition([-1, -2, 0])
+        p14 = cvo.CVO().CreateCVO("result", "9").setPosition([4, -2, 0])
+    
+        # Build the hierarchy of CVO objects
         p10.cvolist.append(p11)
         p11.cvolist.append(p12)
+        p11.cvolist.append(p13)
+        p13.cvolist.append(p14)
+
+        # Construct the animation from the root p10
         self.construct1(p10,p10)
-        self.construct1(p13,p13)
-        self.play(Create(CurvedArrow(p12.pos,p13.pos)))
-        #self.play()
+
+
+
+    def PerfectSquareandSquareNumber(self):
+        title = Text("Perfect Square and Square Number").to_edge(UP)
+        self.play(Write(title))
+        self.wait(0.7)
+
+        # Perfect Square Section
+        perfect_square_title = Text("Perfect Square", color=BLUE, font_size=39).shift(UP*2)
+        perfect_square_def = Text("A rational number that is equal to the square of another rational number.", font_size=30).next_to(perfect_square_title, DOWN*1.25)
+        self.play(Write(perfect_square_title))
+        self.wait(0.8)
+        self.play(Write(perfect_square_def))
+        self.wait(1)
+
+        # Example 1
+        example1 = MarkupText(
+            "<span foreground='PURPLE'>Example 1:</span>",
+            font_size=34
+        ).next_to(perfect_square_def, DOWN*2.75).to_edge(LEFT*5.5)
+        perfect_square_ex1 = MathTex(r"\left(\frac{3}{2}\right)^2 = \frac{9}{4}", font_size=35).next_to(example1, RIGHT*2.25)
+        explanation_ex1 = MathTex(r"\frac{9}{4} \text{ is a perfect square.}", font_size=34).next_to(perfect_square_ex1, DOWN*1.8).to_edge(LEFT*11.5)
+
+        self.play(Write(example1))
+        self.play(Write(perfect_square_ex1))
+        self.wait(1)
+        self.play(Write(explanation_ex1))
+        self.wait(2)
+        self.play(FadeOut(example1), FadeOut(perfect_square_ex1), FadeOut(explanation_ex1))
+
+        # Example 2
+        example2 = MarkupText(
+            "<span foreground='PURPLE'>Example 2:</span>",
+            font_size=34
+        ).next_to(perfect_square_def, DOWN*2.75).to_edge(LEFT*5.5)
+        perfect_square_ex2 = MathTex(r"4^2 = 16", font_size=35).next_to(example2, RIGHT*2.25)
+        explanation_ex2 = Text("16 is a perfect square.", font_size=30).next_to(perfect_square_ex1, DOWN*1.8).to_edge(LEFT*11.5)
+
+        self.play(Write(example2))
+        self.play(Write(perfect_square_ex2))
+        self.wait(1)
+        self.play(Write(explanation_ex2))
+        self.wait(2)
+        self.play(FadeOut(example2), FadeOut(perfect_square_ex2), FadeOut(explanation_ex2))
+
+        # Fade out the Perfect Square section
+        self.play(FadeOut(perfect_square_title), FadeOut(perfect_square_def))
+
+        # Square Number Section
+        square_number_title = Text("Square Number", color=GREEN, font_size=39).shift(UP*2)
+        square_number_def = Text("A number that is the product of an integer with itself.", font_size=30).next_to(square_number_title, DOWN*1.25)
+        self.play(Write(square_number_title))
+        self.wait(0.8)
+        self.play(Write(square_number_def))
+        self.wait(1)
+
+        # Example 1
+        example_sn1 = MarkupText(
+            "<span foreground='PURPLE'>Example 1:</span>",
+            font_size=34
+        ).next_to(square_number_def, DOWN*2.75).to_edge(LEFT*5.5)
+        square_number_ex1 = MathTex(r"3^2 = 9", font_size=35).next_to(example_sn1, RIGHT*2.25)
+        explanation_sn_ex1 = Text("9 is a square number.", font_size=30).next_to(square_number_ex1, DOWN*1.8).to_edge(LEFT*11.5)
+
+        self.play(Write(example_sn1))
+        self.play(Write(square_number_ex1))
+        self.wait(1)
+        self.play(Write(explanation_sn_ex1))
+        self.wait(2)
+        self.play(FadeOut(example_sn1), FadeOut(square_number_ex1), FadeOut(explanation_sn_ex1))
+
+        # Example 2
+        example_sn2 = MarkupText(
+            "<span foreground='PURPLE'>Example 2:</span>",
+            font_size=34
+        ).next_to(square_number_def, DOWN*2.75).to_edge(LEFT*5.5)
+        square_number_ex2 = MathTex(r"(-5)^2 = 25", font_size=35).next_to(example_sn2, RIGHT*2.25)
+        explanation_sn_ex2 = Text("25 is a square number.", font_size=30).next_to(square_number_ex2, DOWN*1.8).to_edge(LEFT*11.5)
+
+        self.play(Write(example_sn2))
+        self.play(Write(square_number_ex2))
+        self.wait(1)
+        self.play(Write(explanation_sn_ex2))
+        self.wait(2)
+        self.play(FadeOut(example_sn2), FadeOut(square_number_ex2), FadeOut(explanation_sn_ex2))
+
+        self.play(FadeOut(square_number_title), FadeOut(square_number_def), FadeOut(title))
+        self.wait(2)
 
 
 
@@ -170,9 +273,9 @@ class SquarecubeOperations(AbstractAnim):
         self.isRandom = False
 
         p10=cvo.CVO().CreateCVO("Square Root of Number",r"$\sqrt{x}$").setPosition([-4.5,1,0])
-        p11=cvo.CVO().CreateCVO("X variable","9").setPosition([-2,-2,0])
-        p12=cvo.CVO().CreateCVO("Square root of 9",r"$\sqrt{9}$=3*3").setPosition([2,-2,0])
-        p13=cvo.CVO().CreateCVO("result","3").setPosition([4.5,0,0])
+        p11=cvo.CVO().CreateCVO("x variable","9").setPosition([-2,-2,0])
+        p12=cvo.CVO().CreateCVO("Square root of x",r"$\sqrt{9}$=3*3").setPosition([2,-2,0])
+        p13=cvo.CVO().CreateCVO("result","3").setPosition([5.7,-1,0])
         p10.cvolist.append(p11)
         p11.cvolist.append(p12)
         p12.cvolist.append(p13)
@@ -185,6 +288,58 @@ class SquarecubeOperations(AbstractAnim):
 
         self.construct1(p10,p10)
         #self.play()
+
+
+    
+    def SquareandSquareroot_table(self):
+
+        table_data = [
+            ["Square", "Square roots"],
+            ["1² = 1", "√1 = 1"],
+            ["2² = 4", "√4 = 2"],
+            ["3² = 9", "√9 = 3"],
+            ["4² = 16", "√16 = 4"],
+            ["5² = 25", "√25 = 5"], 
+            ["6² = 36", "√36 = 6"],
+            ["7² = 49", "√49 = 7"],
+            ["8² = 64", "√64 = 8"],
+            ["9² = 81", "√81 = 9"],
+            ["10² = 100", "√100 = 10"],
+        ]
+
+        # Create the table with the title
+        table = Table(
+            table_data,
+            include_outer_lines=True,
+            h_buff=1.5,
+            v_buff=0.4
+        )
+        
+
+        # Change the color of the table lines to blue
+        table.get_horizontal_lines().set_color(BLUE)
+        table.get_vertical_lines().set_color(BLUE)
+
+        # Change the color of the headings to pink
+        table.get_entries((1, 1)).set_color(PINK)
+        table.get_entries((1, 2)).set_color(PINK)
+
+        # Position the table at the center of the scene
+        table.scale(0.6)
+        table.move_to(ORIGIN)
+
+        # Play the title and table together
+        self.play(Create(table.get_horizontal_lines()), Create(table.get_vertical_lines()))
+        self.wait(1)
+
+        # Sequentially play each cell in the table
+        for row in table.get_entries():
+            for cell in row:
+                self.play(FadeIn(cell))
+                self.wait(0.5)
+
+        self.wait(2)
+
 
 
 
@@ -336,20 +491,77 @@ class SquarecubeOperations(AbstractAnim):
 
 
     def Cube(self):
-        self.setNumberOfCirclePositions(5)
-        #self.angleChoice = [0,0,0]
+        # self.angleChoice = [0,0,0]
         self.isRandom = False
-
-        p10=cvo.CVO().CreateCVO("Cubing of Numbers","$x^3$= x*x*x").setPosition([-5,1,0])
-        p11=cvo.CVO().CreateCVO("X variable","2").setPosition([-3,-2,0])
-        p12=cvo.CVO().CreateCVO("Cubing of x","$2^3$=2*2*2").setPosition([0,-2,0])
-        p13=cvo.CVO().CreateCVO("Total", "8").setPosition([4,1,0])
+    
+        # Create CVO objects with their respective labels and positions
+        p10 = cvo.CVO().CreateCVO("Cubing of Numbers", "").setPosition([-5, 1.25, 0])
+        p11 = cvo.CVO().CreateCVO("Notation", "$x^3$").setPosition([-1, 1.25, 0])
+        p12 = cvo.CVO().CreateCVO("Expansion", "$x^3 = x * x * x$").setPosition([3.5, 1.25, 0])
+        p13 = cvo.CVO().CreateCVO("x variable", "4").setPosition([-1, -2, 0])
+        p14 = cvo.CVO().CreateCVO("result", "64").setPosition([4, -2, 0])
+    
+        # Build the hierarchy of CVO objects
         p10.cvolist.append(p11)
         p11.cvolist.append(p12)
+        p11.cvolist.append(p13)
+        p13.cvolist.append(p14)
+
+        # Construct the animation from the root p10
         self.construct1(p10,p10)
-        self.construct1(p13,p13)
-        self.play(Create(CurvedArrow(p12.pos,p13.pos)))
-        #self.play()
+
+
+
+    def Cube_Table(self):
+
+        table_data =[
+
+            ["Number", "Cube"],
+            ["1", "1³ = 1 * 1 * 1 = 1"],
+            ["2", "2³ = 2 * 2 * 2 = 8"],
+            ["3", "3³ = 3 * 3 * 3 = 27"],
+            ["4", "4³ = 4 * 4 * 4 = 64"],
+            ["5", "5³ = 5 * 5 * 5 = 125"],
+            ["6", "6³ = 6 * 6 * 6 = 216"],
+            ["7", "7³ = 7 * 7 * 7 = 343"],
+            ["8", "8³ = 8 * 8 * 8 = 512"],
+            ["9", "9³ = 9 * 9 * 9 = 729"],
+            ["10", "10³ = 10 * 10 * 10 = 1000"],
+        ]
+
+        # Create the table with the title
+        table = Table(
+            table_data,
+            include_outer_lines=True,
+            h_buff=1.6,
+            v_buff=0.45
+        )
+        
+        # Change the color of the table lines to blue
+        table.get_horizontal_lines().set_color(BLUE)
+        table.get_vertical_lines().set_color(BLUE)
+
+        # Change the color of the headings to pink
+        table.get_entries((1, 1)).set_color(GOLD)
+        table.get_entries((1, 2)).set_color(GOLD)
+
+
+        # Position the table at the center of the scene
+        table.scale(0.6)
+        table.move_to(ORIGIN)
+
+
+        # Play the title and table together
+        self.play( Create(table.get_horizontal_lines()), Create(table.get_vertical_lines()))
+        self.wait(1)
+
+        # Sequentially play each cell in the table
+        for row in table.get_entries():
+            for cell in row:
+                self.play(FadeIn(cell))
+                self.wait(0.5)
+
+        self.wait(2)
 
 
 
@@ -361,7 +573,7 @@ class SquarecubeOperations(AbstractAnim):
         p10=cvo.CVO().CreateCVO("Cube root of Numbers",r"$\sqrt[3]{x}$").setPosition([-4.5,1,0])
         p11=cvo.CVO().CreateCVO("X variable","64").setPosition([-2,-2,0])
         p12=cvo.CVO().CreateCVO("Cuberoot of 64",r"$\sqrt[3]{64}$=$\sqrt[3]{4*4*4}$").setPosition([2,-2,0])
-        p13=cvo.CVO().CreateCVO("result","4").setPosition([4.5,0,0])
+        p13=cvo.CVO().CreateCVO("result","4").setPosition([5.7,-1,0])
         p10.cvolist.append(p11)
         p11.cvolist.append(p12)
         p12.cvolist.append(p13)
@@ -373,6 +585,57 @@ class SquarecubeOperations(AbstractAnim):
         
         self.construct1(p10,p10)
         #self.play()
+
+
+    def CubeandCubeRoot_table(self):
+
+        table_data = [
+            ["Cube",  "Cube roots"],
+            ["1³ = 1", "∛1 = 1"],
+            ["2³ = 8", "∛8 = 2"],
+            ["3³ = 27", "∛27 = 3"],
+            ["4³ = 64", "∛64 = 4"],
+            ["5³ = 125", "∛125 = 5"],
+            ["6³ = 216", "∛216 = 6"],
+            ["7³ = 343", "∛343 = 7"],
+            ["8³ = 512", "∛512 = 8"],
+            ["9³ = 729", "∛729 = 9"],
+            ["10³ = 1000", "∛1000 = 10"],
+        ]
+        
+        # Create the table with the title
+        table = Table(
+            table_data,
+            include_outer_lines=True,
+            h_buff=1.7,
+            v_buff=0.4
+        )
+        
+        # Change the color of the table lines to blue
+        table.get_horizontal_lines().set_color(BLUE)
+        table.get_vertical_lines().set_color(BLUE)
+
+        # Change the color of the headings to pink
+        table.get_entries((1, 1)).set_color(PINK)
+        table.get_entries((1, 2)).set_color(PINK)
+
+
+        # Position the table at the center of the scene
+        table.scale(0.6)
+        table.move_to(ORIGIN)
+
+
+        # Play the title and table together
+        self.play(Create(table.get_horizontal_lines()), Create(table.get_vertical_lines()))
+        self.wait(1)
+
+        # Sequentially play each cell in the table
+        for row in table.get_entries():
+            for cell in row:
+                self.play(FadeIn(cell))
+                self.wait(0.5)
+
+        self.wait(2)
 
     def cuberootthroughPrimeFactorization2(self):
         # Create CVO object with mathematical text
