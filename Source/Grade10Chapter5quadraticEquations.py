@@ -34,6 +34,7 @@ class quadraticAnim(AbstractAnim):
            self.GithubSourceCodeReference()
 
 
+
 # render using CVO data object
 # render using CVO data object
     def constructDataByCVO(self):
@@ -45,6 +46,7 @@ class quadraticAnim(AbstractAnim):
          p11 = cvo.CVO().CreateCVO("Standard form", "$ax^2 + bx + c = 0$").setPosition([3, -2, 0]).setangle(-TAU / 4)
          p12 = cvo.CVO().CreateCVO("real numbers", "a, b, c are real numbers").setPosition([0, 2, 0]).setangle(-TAU / 4)
          p13 = cvo.CVO().CreateCVO("Condition", "$a \\neq 0$").setPosition([3, 2, 0]).setangle(-TAU / 4)
+
 
 
          p11.setcircleradius(1.5)
