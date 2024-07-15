@@ -306,10 +306,6 @@ class SetOperations(AbstractAnim):
 
 
     def BasicOperationsonSets(self):
-        # Create the title
-        title = Text("Basic Operations on Sets").to_edge(UP)
-
-        # Create the LaTeX strings for operations
 
         union = Text("Basic Operations on Sets").to_edge(UP*1.25)
         sub_title1 = Text("1. Union of Sets = 'A U B '.",font_size=30).to_edge(UP*4.5)
@@ -412,6 +408,7 @@ class SetOperations(AbstractAnim):
         self.play(Create(only_B_area), Write(numbers_only_B))
         self.play(Create(intersection_area), Write(intersection_numbers))
         self.wait(2)
+
 
 
 
