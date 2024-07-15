@@ -7,6 +7,7 @@ class SquarecubeOperations(AbstractAnim):
     def construct(self):
 
         self.RenderSkillbancLogo()
+        self.fadeOutCurrentScene()
         self.Extra_text()
         self.fadeOutCurrentScene()
         #self.introduction()
@@ -15,10 +16,10 @@ class SquarecubeOperations(AbstractAnim):
         self.fadeOutCurrentScene()
         self.PerfectSquareandSquareNumber()
         self.fadeOutCurrentScene()
-        self.SubtopicsOfSquares()
-        self.fadeOutCurrentScene()
-        self.PropertiesofSquareNumbers()
-        self.fadeOutCurrentScene()
+        #self.SubtopicsOfSquares()
+        #self.fadeOutCurrentScene()
+        #self.PropertiesofSquareNumbers()
+        #self.fadeOutCurrentScene()
         self.InterestingPatternsofSquare()
         self.fadeOutCurrentScene()
         self.pythagoreanTriplets()
@@ -222,39 +223,108 @@ class SquarecubeOperations(AbstractAnim):
     
 
     def InterestingPatternsofSquare(self):
+        
+        
+        union = Text("Interesting patterns of Square", color=ORANGE, font_size=31).to_edge(UP*1)
+        
+        sub_title1 = VGroup(
+            Text("1.", color=GREEN, font_size=32),
+            MathTex(r"\text{ Sum of first } n \text{ odd numbers is equal to } n^2 \quad \quad \sum_{i=1}^{n} (2i-1) = n^2", font_size=36)
+        ).arrange(RIGHT).to_edge(UP * 2.65 + LEFT * 2)
 
-        self.setNumberOfCirclePositions(7)
-        self.colorChoice=[RED,BLUE,PURPLE,YELLOW,GREEN,ORANGE,PINK]
 
-        #  p1=cvo.CVO().CreateCVO("o1name","o2name","c1name","c2name")
-        p10=cvo.CVO().CreateCVO("Interesting patterns of Square","Chapter:6.2").setPosition([0,2.5,0])
-        p11=cvo.CVO().CreateCVO("Sum of first n odd numbers = $n^2$","$\sum_{i=1}^{n} (2i-1) = n^2$").setPosition([-4.12,1,0]).setangle(TAU/3)
-        p12=cvo.CVO().CreateCVO("Numeric Palindrome","$1111^2$=1234321").setPosition([0,0,0]).setangle(-TAU/4)
-        p13=cvo.CVO().CreateCVO("Numbers between sucessive squares","2*Base of the first Number").setPosition([4,1,0]).setangle(-TAU/3)
-        p14=cvo.CVO().CreateCVO("Example","1+3+5+7=16=$4^2$").setPosition([-2.25,-2,0])
-        p15=cvo.CVO().CreateCVO("Example","$1001^2$=1002001").setPosition([0,-2,0])
-        p16=cvo.CVO().CreateCVO("Example","$2^2$=4;$3^2$=9=2*2=4").setPosition([2.25,-2,0])
-        p10.cvolist.append(p11)
-        p10.cvolist.append(p12)
-        p10.cvolist.append(p13)
-        p11.cvolist.append(p14)
-        p12.cvolist.append(p15)
-        p13.cvolist.append(p16)
- 
-    
-        p11.setcircleradius(1.25)
-        p12.setcircleradius(1.05)
-        p14.setcircleradius(1.25)
-        p15.setcircleradius(1.1)
-        p16.setcircleradius(1.25)
 
- 
-        self.construct1(p10,p10)
-        #self.play()
+        sub_title2 = Text("1 = 1 = 1²", font_size=29).to_edge(UP*5+LEFT *7)
+        sub_title3 = Text("1 + 3 = 4 = 2²", font_size=29).to_edge(UP*6.5+LEFT *7)
+        sub_title4 = Text("1 + 3 + 5 = 9 = 3²", font_size=29).to_edge(UP*8+LEFT*7)
+        sub_title5 = Text("1 + 3 + 5 + 7 = 16 = 4²", font_size=29).to_edge(UP*9.5+LEFT*7)
+        sub_title6 = Text("1 + 3 + 5 + 7 + 9 = 25 = 5²", font_size=29).to_edge(UP*11+LEFT*7)
+        sub_title7 = Text("1 + 3 + 5 + 7 + 9 + 11 = 36 = 6²", font_size=29).to_edge(UP*12.5+LEFT*7)
+        sub_title8 = Text("1 + 3 + 5 + 7 + 9 + 11 + 13 = 49 = 7²....", font_size=29).to_edge(UP*14+LEFT*7)
+
+        self.play(Write(union))
+        self.wait(1)
+        self.play(Write(sub_title1))
+        self.wait(2)
+        self.play(Write(sub_title2))
+        self.wait(1)
+        self.play(Write(sub_title3))
+        self.wait(1)
+        self.play(Write(sub_title4))
+        self.wait(1)
+        self.play(Write(sub_title5))
+        self.wait(1)
+        self.play(Write(sub_title6))
+        self.wait(1)
+        self.play(Write(sub_title7))
+        self.wait(1)
+        self.play(Write(sub_title8))
+        self.wait(1)
+
+        elements_to_fade = VGroup(sub_title1, sub_title2, sub_title3, sub_title4, sub_title5, sub_title6, sub_title7, sub_title8)
+        self.play(FadeOut(elements_to_fade))
+        self.wait(1)
+        
+
+        
+        title = VGroup(
+            Text("2.", color=GREEN, font_size=27),
+            Text(" The square of any odd number say n can be expressed as the", font_size=27)
+        ).arrange(RIGHT).to_edge(UP * 3 + LEFT * 2)
+        self.play(Write(title))
+        self.wait(1)
+        
+        # Display the subtitle with the text before the fractions
+        sub_title1 = MarkupText("Sum of two consecutive numbers: ", font_size=27).to_edge(UP*5.75+LEFT*3)
+        self.play(Write(sub_title1))
+        self.wait(0.5)
+        
+        # Display the formula next to the subtitle text
+        sub_title1_formula = MathTex(r"\left( \frac{n^2-1}{2} \right) + \left( \frac{n^2+1}{2} \right)").next_to(sub_title1, RIGHT*1.5)
+        self.play(Write(sub_title1_formula))
+        self.wait(1)
+        
+        # Create a surrounding rectangle for the subtitle and formula
+        rect = SurroundingRectangle(VGroup(sub_title1, sub_title1_formula), color=PINK, buff=0.2)
+        self.play(Create(rect))
+        self.wait(1)
+        
+        # Display the example text
+        sub_title2 = MarkupText("Example: ", font_size=27, color=BLUE).to_edge(UP*9.4+LEFT*1)
+        self.play(Write(sub_title2))
+        self.wait(1)
+
+        # Display the equation
+        eq1 = MathTex(r"3^2 = 9 = 4 + 5").to_edge(UP*11.75+LEFT*2) 
+        self.play(Write(eq1))
+        self.wait(1.5)
+
+        # Display the general formula
+        general_formula = MathTex(r"\left( \frac{3^2-1}{2} \right) + \left( \frac{3^2+1}{2} \right)").move_to(eq1.get_right() + RIGHT*5.5)
+        self.play(Write(general_formula))
+        self.wait(1)
+
+        
+        """print("eq1 submobjects:")
+        for i, obj in enumerate(eq1[0].submobjects):
+            print(f"{i}: {obj}")
+
+        print("general_formula submobjects:")
+        for i, obj in enumerate(general_formula[0].submobjects):
+            print(f"{i}: {obj}")
+        
+        
+        arrow_4_to_frac = CurvedArrow(eq1[0][6].get_center(), general_formula[0][2].get_center(), color=RED)
+        arrow_5_to_frac = CurvedArrow(eq1[0][8].get_center(), general_formula[0][14].get_center(), color=GREEN)
+
+        
+        self.play(Create(arrow_4_to_frac))
+        self.play(Create(arrow_5_to_frac))
+        self.wait(1)"""
 
     def pythagoreanTriplets(self):
         #  p1=cvo.CVO().CreateCVO("o1name","o2name","c1name","c2name")
-         p10=cvo.CVO().CreateCVO("pythagorean Triplets","Chapter:6.3").setPosition([-5,2.5,0])
+         p10=cvo.CVO().CreateCVO("pythagorean Triplets","").setPosition([-5,2.5,0])
          p11=cvo.CVO().CreateCVO("If $a^2$+$b^2$=$c^2$","(a,b,c)are Pythagorean Triplts").setPosition([-3,-1,0])
          p12=cvo.CVO().CreateCVO("EX 1: $3^2$+$4^2$=25=$5^2$","(3,4,5)are Pythagorean Triplts").setPosition([3.5,1,0]).setangle(-TAU/4)
          p13=cvo.CVO().CreateCVO("EX 2: $5^2$+$12^2$=169=$13^2$","(5,12,13)are Pythagorean Triplts").setPosition([3.5,-2,0])
@@ -490,7 +560,7 @@ class SquarecubeOperations(AbstractAnim):
     
 
 
-    def Cube(self):
+    def Cube(self):   
         # self.angleChoice = [0,0,0]
         self.isRandom = False
     
