@@ -349,7 +349,7 @@ class AnglesInSurroundings(AbstractAnim):
         # Create angle label
         angle_label = MathTex(r"\theta", color=BLUE).next_to(arc.point_from_proportion(0.5), direction=arc.get_center() - vertex, buff=0.1)
 
-        angle_label1 = MathTex(r"90^\circ>\theta", color=BLUE, font_size=40).to_edge(RIGHT, buff=4)
+        angle_label1 = MathTex(r"\theta<90^\circ", color=BLUE, font_size=40).to_edge(RIGHT, buff=4)
         
         # Create an arc to represent the angle less than 90 degrees
         # arc = Arc(radius=0.5, angle=ray2.get_angle() - ray1.get_angle(), start_angle=ray1.get_angle(), color=BLUE)
@@ -396,7 +396,7 @@ class AnglesInSurroundings(AbstractAnim):
         # Create angle label
         angle_label = MathTex(r"\theta", color=BLUE).next_to(arc.point_from_proportion(0.5), direction=arc.get_center() - vertex, buff=0.1)
 
-        angle_label1 = MathTex(r"90^\circ<\theta", color=BLUE, font_size=40).to_edge(RIGHT, buff=4)
+        angle_label1 = MathTex(r"\theta>90^\circ", color=BLUE, font_size=40).to_edge(RIGHT, buff=4)
         
         # Create an arc to represent the angle less than 90 degrees
         # arc = Arc(radius=0.5, angle=ray2.get_angle() - ray1.get_angle(), start_angle=ray1.get_angle(), color=BLUE)
