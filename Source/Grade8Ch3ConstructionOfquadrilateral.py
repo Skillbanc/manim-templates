@@ -29,9 +29,9 @@ class constructionofquadrilateral8thgrade(AbstractAnim):
         self.angleChoice = [TAU/4,-TAU/3,-TAU/4]
         
         p10=cvo.CVO().CreateCVO("Quadrilaterals","").setPosition([0,2.5,0])
-        p11=cvo.CVO().CreateCVO("defination", " It consist of 4S,4A").setPosition([4,2,0])
+        p11=cvo.CVO().CreateCVO("definition", " It consist of 4S,4A").setPosition([4,2,0])
         p12=cvo.CVO().CreateCVO("ETI", "Latin words “quadri”=“four” and “latus”=“side”").setPosition([0,-2.5,0])
-        p13=cvo.CVO().CreateCVO("keypoints", "Vertices\nSides\nDiagonals\nInterior Angles\n").setPosition([-4,3,0])
+        p13=cvo.CVO().CreateCVO("key points", "Vertices\nSides\nDiagonals\nInterior Angles\n").setPosition([-4,3,0])
 
         p10.cvolist.append(p11)
         p10.cvolist.append(p12)
@@ -188,7 +188,7 @@ class constructionofquadrilateral8thgrade(AbstractAnim):
         self.angleChoice = [TAU/4,TAU/4,-TAU/4,-TAU/4,-TAU/4]
         
 
-        p10=cvo.CVO().CreateCVO("Quadrilateral Meaurements","").setPosition([0,2.5,0])
+        p10=cvo.CVO().CreateCVO("Quadrilateral Measurements","").setPosition([0,2.5,0])
         p11=cvo.CVO().CreateCVO("4S AND 1A", "S.S.S.S.A").setPosition([4,2,0])
         p12=cvo.CVO().CreateCVO("4S AND 1Diag", "S.S.S.S.Diag").setPosition([5,-2,0])
         p13=cvo.CVO().CreateCVO("3S AND 2Diag", "S.S.S.Diag.Diag").setPosition([-4,3,0])

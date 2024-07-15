@@ -38,7 +38,7 @@ class symmetry6thgrade(AbstractAnim):
         self.isRandom = False
         self.angleChoice = [TAU/4,TAU/4,-TAU/4,-TAU/4,TAU/4]
         p10=cvo.CVO().CreateCVO("Symmetry","").setPosition([0,2.5,0])
-        p11=cvo.CVO().CreateCVO("def", " Balanced, mirrored, harmonious, equal, reflection").setPosition([4,2,0])
+        p11=cvo.CVO().CreateCVO("definition", " Balanced, mirrored, harmonious, equal, reflection").setPosition([4,2,0])
         p12=cvo.CVO().CreateCVO("ETI", "balanced arrangement of shapes, objects, or patterns").setPosition([2,-3,0])
         p13=cvo.CVO().CreateCVO("Types", "").setPosition([-4,3,0])
         p14=cvo.CVO().CreateCVO("", "line symmetry ").setPosition([-4,1,0])
@@ -83,9 +83,9 @@ class symmetry6thgrade(AbstractAnim):
         self.isRandom = False
         self.angleChoice = [TAU/4,TAU/3,-TAU/4]
         p10=cvo.CVO().CreateCVO("line symmetry","").setPosition([0,2.5,0])
-        p11=cvo.CVO().CreateCVO("def", "").setPosition([4,2,0])
+        p11=cvo.CVO().CreateCVO("definition", "").setPosition([4,2,0])
         p12=cvo.CVO().CreateCVO("", "a line that divides a shape into two identical halves").setPosition([0,-2.5,0])
-        p13=cvo.CVO().CreateCVO("Eg", "square has 4(i.e Dia) and circle has infinite through center").setPosition([-4,1,0])
+        p13=cvo.CVO().CreateCVO("Example", "square has 4(i.e Dia) and circle has infinite through center").setPosition([-4,1,0])
 
         p10.cvolist.append(p11)
         p11.cvolist.append(p12)
@@ -114,7 +114,7 @@ class symmetry6thgrade(AbstractAnim):
             'P': 'No',
             'Q': 'No',
             'R': 'No',
-            'S': 'Horizonatal',
+            'S': 'Horizontal',
             'T': 'Vertical',
             'U': 'Vertical',
             'V': 'Vertical',
@@ -202,8 +202,8 @@ class symmetry6thgrade(AbstractAnim):
         self.isRandom = False
         self.angleChoice = [TAU/4,-TAU/3]
         p10=cvo.CVO().CreateCVO("Multiple line of symmetry","").setPosition([0,2.5,0])
-        p11=cvo.CVO().CreateCVO("def", " more than one line of symmetry").setPosition([4,2,0])
-        p12=cvo.CVO().CreateCVO("Eg", "Rectangle,Triangle(equi),Circle").setPosition([0,-2.5,0])
+        p11=cvo.CVO().CreateCVO("definition", " more than one line of symmetry").setPosition([4,2,0])
+        p12=cvo.CVO().CreateCVO("Example", "Rectangle,Triangle(equi),Circle").setPosition([0,-2.5,0])
        
         p10.cvolist.append(p11)
         p10.cvolist.append(p12)
