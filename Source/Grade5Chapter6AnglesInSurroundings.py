@@ -11,7 +11,6 @@ class AnglesInSurroundings(AbstractAnim):
         self.fadeOutCurrentScene()
         self.figure1()
         self.fadeOutCurrentScene()
-        self.fadeOutCurrentScene()
         self.ClockHands()
         self.fadeOutCurrentScene()
         self.angletypes()
@@ -37,7 +36,7 @@ class AnglesInSurroundings(AbstractAnim):
         self.isRandom = False
         p10=cvo.CVO().CreateCVO("Angle","")
         p11=cvo.CVO().CreateCVO("Definition", "The figure formed by two rays which \n are sharing a common vertex").setPosition([3,2,0])
-        p12=cvo.CVO().CreateCVO("Measurement", "Degrees^{0} ").setPosition([3,-2,0])
+        p12=cvo.CVO().CreateCVO("Units", "Degrees^{0} ").setPosition([3,-2,0])
         p12.SetIsMathText(True)
 
         
@@ -79,6 +78,8 @@ class AnglesInSurroundings(AbstractAnim):
 
         # Create vertex point
         vertex_point = Dot(vertex, color=RED)
+        vertex_label = MathTex("A", color=RED).next_to(vertex_point, DOWN+LEFT*0.1, buff=0.1)
+
 
         # Angle definition text (adjusted for fitting)
         definition_text = """
@@ -88,7 +89,7 @@ class AnglesInSurroundings(AbstractAnim):
         # Display everything
         #self.play(Create(ray1), Create(ray2))
         self.play(GrowArrow(arrow1), GrowArrow(arrow2))
-        self.play(Create(arc), Write(angle_label), Create(vertex_point))
+        self.play(Create(arc), Write(angle_label), Create(vertex_point),Create(vertex_label))
         self.wait(1)
         self.play(Write(definition_label))
         self.wait(3)
@@ -180,7 +181,7 @@ class AnglesInSurroundings(AbstractAnim):
         self.play(Write(text_label_3), run_time=1)
         self.play(Create(hour_hand_3), Create(minute_hand_3), run_time=2)
         self.play(Create(arc_3), run_time=2)
-        self.wait(2)
+        self.wait(1)
 
         self.play(Write(additional_text))
         
@@ -208,10 +209,10 @@ class AnglesInSurroundings(AbstractAnim):
         self.isRandom = False
         self.angleChoice = [TAU/4,TAU/4,TAU/4]
 
-        p10=cvo.CVO().CreateCVO("Angles ","").setPosition([-4,0,0])
-        p11=cvo.CVO().CreateCVO("Right\tAngle","Degree=90^{0}").setPosition([3,2,0])
-        p12=cvo.CVO().CreateCVO("Less\tOf\tRight\tAngle","Degree<90^{0}").setPosition([3,0,0])
-        p13=cvo.CVO().CreateCVO("More\tOf\tRight\tAngle","Degree>90^{0}").setPosition([3,-2,0])
+        p10=cvo.CVO().CreateCVO("Angles ","").setPosition([-2,0,0])
+        p11=cvo.CVO().CreateCVO("Right Angle","Degree=90^{0}").setPosition([2,2,0])
+        p12=cvo.CVO().CreateCVO("Acute Angle","Degree<90^{0}").setPosition([3,0,0])
+        p13=cvo.CVO().CreateCVO("Obtuse Angle","Degree>90^{0}").setPosition([2,-2.5,0])
         p11.SetIsMathText(True)
         p12.SetIsMathText(True)
         p13.SetIsMathText(True)
@@ -323,7 +324,7 @@ class AnglesInSurroundings(AbstractAnim):
 
 
     def lessrightangle(self):
-        title = Text("Less Than Right Angle").to_edge(UP)
+        title = Text(" Acute Angle").to_edge(UP)
         underline = Line(
             start=title.get_left() + DOWN * 0.3,
             end=title.get_right() + DOWN * 0.3,
@@ -348,7 +349,7 @@ class AnglesInSurroundings(AbstractAnim):
         # Create angle label
         angle_label = MathTex(r"\theta", color=BLUE).next_to(arc.point_from_proportion(0.5), direction=arc.get_center() - vertex, buff=0.1)
 
-        angle_label1 = MathTex(r"90^\circ>\theta", color=BLUE, font_size=40).to_edge(RIGHT, buff=4)
+        angle_label1 = MathTex(r"\theta<90^\circ", color=BLUE, font_size=40).to_edge(RIGHT, buff=4)
         
         # Create an arc to represent the angle less than 90 degrees
         # arc = Arc(radius=0.5, angle=ray2.get_angle() - ray1.get_angle(), start_angle=ray1.get_angle(), color=BLUE)
@@ -370,7 +371,7 @@ class AnglesInSurroundings(AbstractAnim):
         self.wait()
 
     def morerightangle(self):
-        title = Text("More Than Right Angle").to_edge(UP)
+        title = Text("Obtuse Angle").to_edge(UP)
         underline = Line(
             start=title.get_left() + DOWN * 0.3,
             end=title.get_right() + DOWN * 0.3,
@@ -395,7 +396,7 @@ class AnglesInSurroundings(AbstractAnim):
         # Create angle label
         angle_label = MathTex(r"\theta", color=BLUE).next_to(arc.point_from_proportion(0.5), direction=arc.get_center() - vertex, buff=0.1)
 
-        angle_label1 = MathTex(r"90^\circ<\theta", color=BLUE, font_size=40).to_edge(RIGHT, buff=4)
+        angle_label1 = MathTex(r"\theta>90^\circ", color=BLUE, font_size=40).to_edge(RIGHT, buff=4)
         
         # Create an arc to represent the angle less than 90 degrees
         # arc = Arc(radius=0.5, angle=ray2.get_angle() - ray1.get_angle(), start_angle=ray1.get_angle(), color=BLUE)
