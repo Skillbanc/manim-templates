@@ -18,12 +18,14 @@ from AbstractAnim import AbstractAnim
 import cvo
 
 # Configure Manim to allow more cached files
-config.max_files_cached = 800  # Change this number to your desired value
+config.max_files_cached = 1000  # Change this number to your desired value
 
 
 class PerimeterAndAreas(AbstractAnim):
     def construct(self):
         self.RenderSkillbancLogo()
+        self.fadeOutCurrentScene()
+        self.Intro()
         self.fadeOutCurrentScene()
         self.introduction()
         self.fadeOutCurrentScene()
@@ -59,13 +61,20 @@ class PerimeterAndAreas(AbstractAnim):
     def SetSourceCodeFileName(self):
         self.SourceCodeFileName="Grade6CH10PerimeterAndArea"
         
+    def Intro(self): 
+        heading = Text("CHAPTER-10:Perimeter and Areas",color=PURPLE)
+        heading.to_edge(ORIGIN + UP) 
+        self.play(Write(heading))
+        self.wait(2)
+        self.play(heading.animate.to_edge(UP))
+        
     def introduction(self):
         
         self.setNumberOfCirclePositions(3)
         self.isRandom = False
-        p10 = cvo.CVO().CreateCVO("perimeter and Area", "")
-        p12 = cvo.CVO().CreateCVO("perimeter", "Perimeter is the distance around the outside of a shape.")
-        p13 = cvo.CVO().CreateCVO("area", "Area is the amount of space inside a shape.")
+        p10 = cvo.CVO().CreateCVO("Perimeter and Area", "")
+        p12 = cvo.CVO().CreateCVO("Perimeter", "Perimeter is the distance around the outside of a shape.")
+        p13 = cvo.CVO().CreateCVO("Area", "Area is the amount of space inside a shape.")
 
         p10.cvolist.append(p12)
         p10.cvolist.append(p13)
@@ -75,8 +84,8 @@ class PerimeterAndAreas(AbstractAnim):
     def shapes(self):
         self.setNumberOfCirclePositions(2)
         self.isRandom = False
-        p10=cvo.CVO().CreateCVO("parimeter and area","")
-        p11=cvo.CVO().CreateCVO("shapes","").setPosition([2,0,0])
+        p10=cvo.CVO().CreateCVO("Perimeter and Area","")
+        p11=cvo.CVO().CreateCVO("Shapes","").setPosition([2,0,0])
         p11onnamelist=["triangle","square","rectangle","pentagon","hexagon","octagon"]
         p11.extendOname(p11onnamelist)
         p11.setcircleradius(1.5)
@@ -104,17 +113,17 @@ class PerimeterAndAreas(AbstractAnim):
         C = np.array([2, -1, 0])
 
         # Create the triangle with no fill
-        triangle = Polygon(A, B, C, color=WHITE, fill_opacity=0).shift(LEFT*3)
+        triangle = Polygon(A, B, C, color=WHITE, fill_opacity=0).shift(LEFT*4)
         
         # Labels for the vertices
-        label_a = MathTex("A", color=WHITE).next_to(A + LEFT*3, UP)
-        label_b = MathTex("B", color=WHITE).next_to(B + LEFT*3, DOWN + LEFT*0.2)
-        label_c = MathTex("C", color=WHITE).next_to(C + LEFT*3, DOWN + RIGHT*0.2)
+        label_a = MathTex("A", color=WHITE).next_to(A + LEFT*4, UP)
+        label_b = MathTex("B", color=WHITE).next_to(B + LEFT*4, DOWN + LEFT*0.2)
+        label_c = MathTex("C", color=WHITE).next_to(C + LEFT*4, DOWN + RIGHT*0.2)
         
         # Create double-sided arrows and labels for the sides
-        side_ab = DoubleArrow(A, B, buff=0, color=WHITE).shift(UP*0.2 + LEFT*3)
-        side_bc = DoubleArrow(B, C, buff=0, color=WHITE).shift(DOWN*0.2 + LEFT*3)
-        side_ca = DoubleArrow(C, A, buff=0, color=WHITE).shift(RIGHT*0.2 + LEFT*3)
+        side_ab = DoubleArrow(A, B, buff=0, color=WHITE).shift(UP*0.2 + LEFT*4)
+        side_bc = DoubleArrow(B, C, buff=0, color=WHITE).shift(DOWN*0.2 + LEFT*4)
+        side_ca = DoubleArrow(C, A, buff=0, color=WHITE).shift(RIGHT*0.2 + LEFT*4)
         
         label_ab = MathTex("a", color=WHITE).next_to(side_ab, LEFT)
         label_bc = MathTex("b", color=WHITE).next_to(side_bc, DOWN)
@@ -164,19 +173,19 @@ class PerimeterAndAreas(AbstractAnim):
         D = np.array([-1, -1, 0])
 
         # Create the square with no fill
-        square = Polygon(A, B, C, D, color=WHITE, fill_opacity=0).scale(0.8).shift(LEFT*3)
+        square = Polygon(A, B, C, D, color=WHITE, fill_opacity=0).scale(0.8).shift(LEFT*4)
         
         # Labels for the vertices
-        label_a = MathTex("A", color=WHITE).next_to(A + LEFT*3, UP)
-        label_b = MathTex("B", color=WHITE).next_to(B + LEFT*3, UP)
-        label_c = MathTex("C", color=WHITE).next_to(C + LEFT*3, DOWN)
-        label_d = MathTex("D", color=WHITE).next_to(D + LEFT*3, DOWN)
+        label_a = MathTex("A", color=WHITE).next_to(A + LEFT*4, UP)
+        label_b = MathTex("B", color=WHITE).next_to(B + LEFT*4, UP)
+        label_c = MathTex("C", color=WHITE).next_to(C + LEFT*4, DOWN)
+        label_d = MathTex("D", color=WHITE).next_to(D + LEFT*4, DOWN)
         
         # Create double-sided arrows and labels for the sides
-        side_ab = DoubleArrow(A, B, buff=0, color=WHITE).shift(UP*0.1 + LEFT*3)
-        side_bc = DoubleArrow(B, C, buff=0, color=WHITE).shift(RIGHT*0.1 + LEFT*3)
-        side_cd = DoubleArrow(C, D, buff=0, color=WHITE).shift(DOWN*0.1 + LEFT*3)
-        side_da = DoubleArrow(D, A, buff=0, color=WHITE).shift(LEFT*0.1 + LEFT*3)
+        side_ab = DoubleArrow(A, B, buff=0, color=WHITE).shift(UP*0.1 + LEFT*4)
+        side_bc = DoubleArrow(B, C, buff=0, color=WHITE).shift(RIGHT*0.1 + LEFT*4)
+        side_cd = DoubleArrow(C, D, buff=0, color=WHITE).shift(DOWN*0.1 + LEFT*4)
+        side_da = DoubleArrow(D, A, buff=0, color=WHITE).shift(LEFT*0.1 + LEFT*4)
         
         label_ab = MathTex("s", color=WHITE).next_to(side_ab, UP)
         label_bc = MathTex("s", color=WHITE).next_to(side_bc, RIGHT)
@@ -220,19 +229,19 @@ class PerimeterAndAreas(AbstractAnim):
         D = np.array([-2, -1, 0])
 
         # Create the rectangle with no fill
-        rectangle = Polygon(A, B, C, D, color=WHITE, fill_opacity=0).shift(LEFT*3)
+        rectangle = Polygon(A, B, C, D, color=WHITE, fill_opacity=0).shift(LEFT*4)
         
         # Labels for the vertices
-        label_a = MathTex("A", color=WHITE).next_to(A + LEFT*3, UP)
-        label_b = MathTex("B", color=WHITE).next_to(B + LEFT*3, UP)
-        label_c = MathTex("C", color=WHITE).next_to(C + LEFT*3, DOWN)
-        label_d = MathTex("D", color=WHITE).next_to(D + LEFT*3, DOWN)
+        label_a = MathTex("A", color=WHITE).next_to(A + LEFT*4, UP)
+        label_b = MathTex("B", color=WHITE).next_to(B + LEFT*4, UP)
+        label_c = MathTex("C", color=WHITE).next_to(C + LEFT*4, DOWN)
+        label_d = MathTex("D", color=WHITE).next_to(D + LEFT*4, DOWN)
         
         # Create double-sided arrows and labels for the sides
-        side_ab = DoubleArrow(A, B, buff=0, color=WHITE).shift(UP*0.1 + LEFT*3)
-        side_bc = DoubleArrow(B, C, buff=0, color=WHITE).shift(RIGHT*0.1 + LEFT*3)
-        side_cd = DoubleArrow(C, D, buff=0, color=WHITE).shift(DOWN*0.1 + LEFT*3)
-        side_da = DoubleArrow(D, A, buff=0, color=WHITE).shift(LEFT*0.1 + LEFT*3)
+        side_ab = DoubleArrow(A, B, buff=0, color=WHITE).shift(UP*0.1 + LEFT*4)
+        side_bc = DoubleArrow(B, C, buff=0, color=WHITE).shift(RIGHT*0.1 + LEFT*4)
+        side_cd = DoubleArrow(C, D, buff=0, color=WHITE).shift(DOWN*0.1 + LEFT*4)
+        side_da = DoubleArrow(D, A, buff=0, color=WHITE).shift(LEFT*0.1 + LEFT*4)
         
         label_ab = MathTex("l", color=WHITE).next_to(side_ab, UP)
         label_bc = MathTex("b", color=WHITE).next_to(side_bc, RIGHT)
@@ -274,7 +283,7 @@ class PerimeterAndAreas(AbstractAnim):
         # Create a pentagon
         pentagon = RegularPolygon(n=5, start_angle=0, color=WHITE)
         pentagon.set_width(side_length)
-        pentagon.move_to(LEFT * 3)
+        pentagon.move_to(LEFT * 4)
 
         # Get vertices of the pentagon
         vertices = pentagon.get_vertices()
@@ -327,7 +336,7 @@ class PerimeterAndAreas(AbstractAnim):
         # Create a hexagon
         hexagon = RegularPolygon(n=6, start_angle=0, color=WHITE)
         hexagon.set_width(side_length)
-        hexagon.move_to(LEFT * 3)
+        hexagon.move_to(LEFT * 4)
 
         # Get vertices of the hexagon
         vertices = hexagon.get_vertices()
@@ -386,7 +395,7 @@ class PerimeterAndAreas(AbstractAnim):
         # Create an octagon
         octagon = RegularPolygon(n=8, start_angle=0, color=WHITE)
         octagon.set_width(side_length)
-        octagon.move_to(LEFT * 3)
+        octagon.move_to(LEFT * 4)
 
         # Get vertices of the octagon
         vertices = octagon.get_vertices()
@@ -504,19 +513,19 @@ class PerimeterAndAreas(AbstractAnim):
         D = np.array([-1, -1, 0])
 
         # Create the square with fill
-        square = Polygon(A, B, C, D, color=BLUE, fill_opacity=0).scale(0.8).shift(LEFT*3)
+        square = Polygon(A, B, C, D, color=BLUE, fill_opacity=0).scale(0.8).shift(LEFT*4)
         
         # Labels for the vertices
-        label_a = MathTex("A", color=WHITE).next_to(A + LEFT*3, UP)
-        label_b = MathTex("B", color=WHITE).next_to(B + LEFT*3, UP)
-        label_c = MathTex("C", color=WHITE).next_to(C + LEFT*3, DOWN)
-        label_d = MathTex("D", color=WHITE).next_to(D + LEFT*3, DOWN)
+        label_a = MathTex("A", color=WHITE).next_to(A + LEFT*4, UP)
+        label_b = MathTex("B", color=WHITE).next_to(B + LEFT*4, UP)
+        label_c = MathTex("C", color=WHITE).next_to(C + LEFT*4, DOWN)
+        label_d = MathTex("D", color=WHITE).next_to(D + LEFT*4, DOWN)
         
         # Create double-sided arrows and labels for the sides
-        side_ab = DoubleArrow(A, B, buff=0, color=WHITE).shift(UP*0.1 + LEFT*3)
-        side_bc = DoubleArrow(B, C, buff=0, color=WHITE).shift(RIGHT*0.1 + LEFT*3)
-        side_cd = DoubleArrow(C, D, buff=0, color=WHITE).shift(DOWN*0.1 + LEFT*3)
-        side_da = DoubleArrow(D, A, buff=0, color=WHITE).shift(LEFT*0.1 + LEFT*3)
+        side_ab = DoubleArrow(A, B, buff=0, color=WHITE).shift(UP*0.1 + LEFT*4)
+        side_bc = DoubleArrow(B, C, buff=0, color=WHITE).shift(RIGHT*0.1 + LEFT*4)
+        side_cd = DoubleArrow(C, D, buff=0, color=WHITE).shift(DOWN*0.1 + LEFT*4)
+        side_da = DoubleArrow(D, A, buff=0, color=WHITE).shift(LEFT*0.1 + LEFT*4)
         
         label_ab = MathTex("s", color=WHITE).next_to(side_ab, UP)
         label_bc = MathTex("s", color=WHITE).next_to(side_bc, RIGHT)
@@ -560,19 +569,19 @@ class PerimeterAndAreas(AbstractAnim):
         D = np.array([-2, -1, 0])
 
         # Create the rectangle with no fill initially
-        rectangle = Polygon(A, B, C, D, color=WHITE, fill_opacity=0).scale(0.8).shift(LEFT*3)
+        rectangle = Polygon(A, B, C, D, color=WHITE, fill_opacity=0).scale(0.8).shift(LEFT*4)
         
         # Labels for the vertices
-        label_a = MathTex("A", color=WHITE).next_to(A + LEFT*3, UP)
-        label_b = MathTex("B", color=WHITE).next_to(B + LEFT*3, UP)
-        label_c = MathTex("C", color=WHITE).next_to(C + LEFT*3, DOWN)
-        label_d = MathTex("D", color=WHITE).next_to(D + LEFT*3, DOWN)
+        label_a = MathTex("A", color=WHITE).next_to(A + LEFT*4, UP)
+        label_b = MathTex("B", color=WHITE).next_to(B + LEFT*4, UP)
+        label_c = MathTex("C", color=WHITE).next_to(C + LEFT*4, DOWN)
+        label_d = MathTex("D", color=WHITE).next_to(D + LEFT*4, DOWN)
         
         # Create double-sided arrows and labels for the sides
-        side_ab = DoubleArrow(A, B, buff=0, color=WHITE).shift(UP*0.1 + LEFT*3)
-        side_bc = DoubleArrow(B, C, buff=0, color=WHITE).shift(RIGHT*0.1 + LEFT*3)
-        side_cd = DoubleArrow(C, D, buff=0, color=WHITE).shift(DOWN*0.1 + LEFT*3)
-        side_da = DoubleArrow(D, A, buff=0, color=WHITE).shift(LEFT*0.1 + LEFT*3)
+        side_ab = DoubleArrow(A, B, buff=0, color=WHITE).shift(UP*0.1 + LEFT*4)
+        side_bc = DoubleArrow(B, C, buff=0, color=WHITE).shift(RIGHT*0.1 + LEFT*4)
+        side_cd = DoubleArrow(C, D, buff=0, color=WHITE).shift(DOWN*0.1 + LEFT*4)
+        side_da = DoubleArrow(D, A, buff=0, color=WHITE).shift(LEFT*0.1 + LEFT*4)
         
         label_ab = MathTex("l", color=WHITE).next_to(side_ab, UP)
         label_bc = MathTex("b", color=WHITE).next_to(side_bc, RIGHT)
