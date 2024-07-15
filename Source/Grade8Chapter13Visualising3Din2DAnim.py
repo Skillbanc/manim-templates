@@ -12,6 +12,8 @@ class Grade8Chapter13Visualising3Din2DAnim(AbstractAnim):
         self.intro()
         self.fadeOutCurrentScene()
         self.layers()
+        self.fadeOutCurrentScene()
+        self.positions()
 
 
     def intro(self):
@@ -93,6 +95,82 @@ class Grade8Chapter13Visualising3Din2DAnim(AbstractAnim):
 
         n3 = Text("(3)",font_size=22).move_to([3.75,-3,0])
         self.play(Write(n3))
+
+    def positions(self):
+        
+        
+        t1 = Text("If we observe a 3-D object from different positions,\n\n"
+                  "it seems to be different. But the object is same.",font_size=28).move_to([-2,2.5,0])
+        self.play(Write(t1))
+        
+        polygons = [
+            ((-5, -0.75, 0), (-5, 0, 0), (-4.25, 0, 0), (-4.25, -0.75, 0), (-5, -0.75, 0)),
+            ((-4.5, 0.25, 0), (-5, 0, 0), (-4.25, 0, 0), (-3.75, 0.25, 0), (-4.5, 0.25, 0)),
+            ((-4.25, 0, 0), (-4.25, -0.75, 0), (-3.75, -0.5, 0), (-3.75, 0.25, 0), (-4.25, 0, 0)),
+            ((-5, -1.5, 0), (-5, -0.75, 0), (-4.25, -0.75, 0), (-4.25, -1.5, 0), (-5, -1.5, 0)),
+            ((-4.25, -0.75, 0), (-4.25, -1.5, 0), (-3.75, -1.25, 0), (-3.75, -0.5, 0), (-4.25, -0.75, 0)),
+            ((-3.75, 0.25, 0), (-3.75, -0.5, 0), (-3.25, -0.25, 0), (-3.25, 0.5, 0), (-3.75, 0.25, 0)),
+            ((-4.5, 0.25, 0), (-4.5, 1, 0), (-3.75, 1, 0), (-3.75, 0.25, 0), (-4.5, 0.25, 0)),
+            ((-4, 1.25, 0), (-4.5, 1, 0), (-3.75, 1, 0), (-3.25, 1.25, 0), (-4, 1.25, 0)),
+            ((-3.75, 0.75, 0), (-3.75, 0.25, 0), (-3.25, 0.5, 0), (-3.25, 1.25, 0), (-3.75, 1, 0))
+        ]
+        
+        colors = ["#6DC9CD", "RED", "#6DC9CD", "#6DC9CD", "#6DC9CD", "#6DC9CD", "#6DC9CD", "RED", "#6DC9CD"]
+        
+        animations = []
+        for vertices, color in zip(polygons, colors):
+            polygon = Polygon(*vertices, color=WHITE, fill_color=color, fill_opacity=1, stroke_width=2)
+            animations.append(Create(polygon, lag_ratio=0))
+        
+        self.play(*animations)
+        
+        s2 = Text("Front view", font_size=27).move_to([-2.5, -0.75, 0])
+        self.play(Write(s2, lag_ratio=0.5))
+        
+        self.wait()
+
+
+
+        polygons = [
+            ((-5.25,-2.75,0),(-5.25,-2,0),(-4.5,-2,0),(-4.5,-2.75,0),(-5.25,-2.75,0)),
+            ((-4.5,-2.75,0),(-4.5,-2,0),(-3.75,-2,0),(-3.75,-2.75,0),(-4.5,-2.75,0)),
+            ((-4.75,-1.75,0),(-5.25,-2,0),(-4.5,-2,0),(-4,-1.75,0),(-4.75,-1.75,0)),
+            ((-4,-1.75,0),(-4.5,-2,0),(-3.75,-2,0),(-3.25,-1.75,0),(-4,-1.75,0)),
+            ((-3.75,-2,0),(-3.75,-2.75,0),(-3.25,-2.5,0),(-3.25,-1.75,0),(-3.75,-2,0)),
+            ((-6.5,-3,0),(-6.5,-2.25,0),(-5.75,-2.25,0),(-5.75,-3,0),(-6.5,-3,0)),
+            ((-5.75,-3,0),(-5.75,-2.25,0),(-5,-2.25,0),(-5,-3,0),(-5.75,-3,0)),
+            ((-6.49,-2.25,0),(-6,-2,0),(-5.25,-2,0),(-5.75,-2.25,0),(-6.5,-2.25,0)),
+            ((-5.25,-2,0),(-5.75,-2.25,0),(-5,-2.25,0),(-4.5,-2,0),(-5.25,-2,0)),
+             ((-5,-2.25,0),(-5,-3,0),(-4.5,-2.75,0),(-4.5,-2,0),(-5,-2.25,0))            
+            ]
+        
+        colors = ["#6DC9CD", "#6DC9CD", "#6DC9CD", "#6DC9CD", RED, "#6DC9CD", "#6DC9CD", "#6DC9CD", "#6DC9CD", RED]
+
+
+        animations = []
+        for vertices, color in zip(polygons, colors):
+            polygon = Polygon(*vertices, color=WHITE, fill_color=color, fill_opacity=1, stroke_width=2)
+            animations.append(Create(polygon, lag_ratio=0))
+        
+        self.play(*animations)
+        
+        s2 = Text("Side view", font_size=27).move_to([-4,-3.25,0])
+        self.play(Write(s2, lag_ratio=0.5))
+        
+        self.wait()
+
+        p11=cvo.CVO().CreateCVO("Different Positions","").setPosition([3.5,0.5,0])
+        p12=cvo.CVO().CreateCVO("Top View","").setPosition([5,-1.5,0])
+        p13=cvo.CVO().CreateCVO("Front View","").setPosition([2.5,-2.3,0])
+        p14=cvo.CVO().CreateCVO("Side View","").setPosition([0,-2,0])
+
+        p11.cvolist.append(p12)
+        p11.cvolist.append(p13)
+        p11.cvolist.append(p14)  
+        
+        self.construct1(p11,p11)
+
+
 
 
 
