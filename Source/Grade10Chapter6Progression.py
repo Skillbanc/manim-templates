@@ -9,7 +9,7 @@ class Progression(AbstractAnim):
         self.RenderSkillbancLogo()
         self.Introduction()
         self.fadeOutCurrentScene()
-        #self.definition()
+        self.definition()
         self.fadeOutCurrentScene()
         self.AP()
         self.fadeOutCurrentScene()
@@ -25,7 +25,7 @@ class Progression(AbstractAnim):
         self.fadeOutCurrentScene()
         self.example2()
         self.fadeOutCurrentScene()
-        #self.definition1()
+        self.definition1()
         self.fadeOutCurrentScene()
         self.GP()
         self.fadeOutCurrentScene()
@@ -55,26 +55,26 @@ class Progression(AbstractAnim):
         p10.cvolist.append(p12)
         self.construct1(p10,p10)
 
-    # def definition(self):
+    def definition(self):
 
 
-    #     title = Text("Arithmetic Progression", font_size=48).set_color(BLUE)
-    #     self.play(Write(title))
-    #     self.wait(1)
-    #     self.play(title.animate.to_edge(UP))
+        title = Text("Arithmetic Progression", font_size=48).set_color(BLUE)
+        self.play(Write(title))
+        self.wait(1)
+        self.play(title.animate.to_edge(UP))
 
-    #     # Define the text
-    #     text = Text(
-    #         "Arithmetic progression is a sequence of numbers in which each\n"
-    #         "term, except the first term, is obtained by adding a fixed\n"
-    #         "number to the preceding term.",
-    #         font_size=30,
-    #         line_spacing=1.5
-    #     ).set_color(WHITE).move_to(ORIGIN)
+        # Define the text
+        text = Text(
+            "Arithmetic progression is a sequence of numbers in which each\n"
+            "term, except the first term, is obtained by adding a fixed\n"
+            "number to the preceding term.",
+            font_size=30,
+            line_spacing=1.5
+        ).set_color(WHITE).move_to(ORIGIN)
 
-    #     # Display the text
-    #     self.play(Write(text))
-    #     self.wait(2)
+        # Display the text
+        self.play(Write(text))
+        self.wait(2)
     
     
 
@@ -238,26 +238,26 @@ class Progression(AbstractAnim):
         
         self.play(FadeOut(a_text), FadeOut(title))
 
-    # def definition1(self):
+    def definition1(self):
 
 
-    #     title = Text("Geometric Progression", font_size=48).set_color(BLUE)
-    #     self.play(Write(title))
-    #     self.wait(1)
-    #     self.play(title.animate.to_edge(UP))
+        title = Text("Geometric Progression", font_size=48).set_color(BLUE)
+        self.play(Write(title))
+        self.wait(1)
+        self.play(title.animate.to_edge(UP))
 
-    #     # Define the text
-    #     text = Text(
-    #         "Geometric progression is a sequence of numbers in which we get \n"
-    #         "each term except by multiplying or divinding a particular number \n"
-    #         "to the previous term except the first term.",
-    #         font_size=30,
-    #         line_spacing=1.5
-    #     ).set_color(WHITE).move_to(ORIGIN)
+        # Define the text
+        text = Text(
+            "Geometric progression is a sequence of numbers in which we get \n"
+            "each term except by multiplying or divinding a particular number \n"
+            "to the previous term except the first term.",
+            font_size=30,
+            line_spacing=1.5
+        ).set_color(WHITE).move_to(ORIGIN)
 
-    #     # Display the text
-    #     self.play(Write(text))
-    #     self.wait(2)
+        # Display the text
+        self.play(Write(text))
+        self.wait(2)
 
 
 
