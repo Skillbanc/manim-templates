@@ -225,7 +225,7 @@ class Grade1Chapter12Tens10to100Anim(AbstractAnim):
         
         self.play(Create(table1.get_horizontal_lines()), Create(table1.get_vertical_lines()))
         for row in table1.get_rows():
-            self.play(Create(row), run_time=1)
+            self.play(Create(row), run_time=3)
         self.wait(1)
         
         table2 = Table(
@@ -240,7 +240,7 @@ class Grade1Chapter12Tens10to100Anim(AbstractAnim):
 
         self.play(Create(table2.get_horizontal_lines()), Create(table2.get_vertical_lines()))
         for row in table2.get_rows():
-            self.play(Create(row), run_time=1)
+            self.play(Create(row), run_time=3)
         self.wait(5)
     
 
