@@ -77,14 +77,14 @@ class Grade1chapter4Numbersfrom6to9(AbstractAnim):
 
     def Matching(self):
         self.title()
-        self.construct2()
-        self.construct3()
-        self.construct4()
-        self.construct5()
-        self.construct6()
-        self.construct7()
-        self.construct8()
-        self.construct9()
+        self.construc2()
+        self.construc3()
+        self.construc4()
+        self.construc5()
+        self.construc6()
+        self.construc7()
+        self.construc8()
+        self.construc9()
         self.add_matching_lines()
   
     def title(self):
@@ -93,35 +93,35 @@ class Grade1chapter4Numbersfrom6to9(AbstractAnim):
         self.play(Write(title))
         self.wait(2)
 
-    def construct2(self):
+    def construc2(self):
         self.t2 = Text('🕯️🕯️🕯️🕯️🕯️', font_size=28).move_to([-3, 2, 0])
         self.play(FadeIn(self.t2))
 
-    def construct3(self):
+    def construc3(self):
         self.t3 = Text('⚽⚽⚽⚽⚽', font_size=28).move_to([-3, 0.5, 0])
         self.play(FadeIn(self.t3))
 
-    def construct4(self):
+    def construc4(self):
         self.t4 = Text('⭐⭐⭐⭐⭐⭐', font_size=28).move_to([-3, -1, 0])
         self.play(FadeIn(self.t4))
 
-    def construct5(self):
+    def construc5(self):
         self.t5 = Text('🌹🌹🌹🌹🌹🌹', font_size=28).move_to([-3, -2.5, 0])
         self.play(FadeIn(self.t5))
 
-    def construct6(self):
+    def construc6(self):
         self.t6 = Text('⚽⚽⚽⚽⚽', font_size=28).move_to([3, 2, 0])
         self.play(FadeIn(self.t6))
 
-    def construct7(self):
+    def construc7(self):
         self.t7 = Text('🕯️🕯️🕯️🕯️🕯️', font_size=28).move_to([3, 0.5, 0])
         self.play(FadeIn(self.t7))
 
-    def construct8(self):
+    def construc8(self):
         self.t8 = Text('🌹🌹🌹🌹🌹🌹', font_size=28).move_to([3, -1, 0])
         self.play(FadeIn(self.t8))
 
-    def construct9(self):
+    def construc9(self):
         self.t9 = Text('⭐⭐⭐⭐⭐⭐', font_size=28).move_to([3, -2.5, 0])
         self.play(FadeIn(self.t9))
 
