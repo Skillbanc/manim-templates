@@ -48,19 +48,19 @@ class Grade1CH16Time(AbstractAnim):
         self.play(Create(title))
         self.isRandom = False
         self.angleChoice = [TAU/2]
-        p10=cvo.CVO().CreateCVO("Hours", "1").setPosition([-4.5,1.5,0])
-        p11=cvo.CVO().CreateCVO("Minutes", "60").setPosition([-4.5,-1.5,0])
-        
+        p10 = cvo.CVO().CreateCVO("Hours", "1").setPosition([-4.5,1.5,0])
+        p11 = cvo.CVO().CreateCVO("Minutes", "60").setPosition([-4.5,-1.5,0])
+    
         p10.cvolist.append(p11)
-        
+    
         p10.setcircleradius(1)
+        
         p11.setcircleradius(1)
-       
+   
         self.setNumberOfCirclePositions(2)
-        self.construct1(p10,p10)
-
-
-        # Create clock face
+        self.construct1(p10, p10)
+ 
+    # Create clock face
         clock_face = Circle(radius=2, color=WHITE)
         self.play(Create(clock_face))
 
@@ -72,47 +72,38 @@ class Grade1CH16Time(AbstractAnim):
             label.move_to(2.3 * np.array([np.sin(angle), np.cos(angle), 0]))
             hour_labels.add(label)
 
-        
-
         self.play(Create(hour_labels))
-        
 
-        # Create hour, minute, and second hands
+    # Create hour, minute, and second hands
         hour_hand = Line(ORIGIN, 0.5 * UP, color=RED, stroke_width=8)
         minute_hand = Line(ORIGIN, RIGHT, color=BLUE, stroke_width=6)
         second_hand = Line(ORIGIN, 1.2 * DOWN, color=GREEN, stroke_width=4)
         self.play(Create(hour_hand))
         self.wait(2)
-        self.play(Create (minute_hand))
+        self.play(Create(minute_hand))
         self.wait(2)
         self.play(Create(second_hand))
         self.wait(2)
 
-        # Animation of the clock
+    # Animation of the clock
         def update_clock(mob, dt):
-            # Update time
+        # Update time
             mob.second += dt
             total_seconds = mob.second
-            # Calculate the angles for each hand
-            hour_angle =  PI * (total_seconds / 3600) / 12
-            minute_angle = -2 * PI * (total_seconds / 60) / 60
-            second_angle = -4 * PI * (total_seconds % 60) / 60
-            # Rotate hands
-            hour_hand.set_angle(hour_angle)
+        # Calculate the angle for the minute hand
+            minute_angle = -2 * PI * (total_seconds % 60) / 60
+        # Rotate minute hand
             minute_hand.set_angle(minute_angle)
-            second_hand.set_angle(second_angle)
 
-        clock = VGroup(hour_hand, minute_hand, second_hand)
+        clock = VGroup(minute_hand)
         clock.second = 0
         clock.add_updater(update_clock)
 
         self.add(clock)
         self.wait(5)  # Run the animation for 5 seconds
-        
-        
+    
         self.fadeOutCurrentScene()
 
-    
     def Minutes(self):
         title = Text("Minutes", font_size=36).to_edge(UP)
         self.play(Create(title))
@@ -213,7 +204,7 @@ class Grade1CH16Time(AbstractAnim):
             new_time_label = Text(time_text).scale(0.5).next_to(clock, DOWN)
 
             self.play(Transform(hour_hand, new_hour_hand), Transform(minute_hand, new_minute_hand), Transform(time_label, new_time_label))
-            self.wait(1)
+            self.wait(2)
 
         # Conclusion
         conclusion = Text("Now you can read different times!", font_size=24).next_to(clock, DOWN, buff=1.5)
@@ -235,9 +226,12 @@ class Grade1CH16Time(AbstractAnim):
         # Create initial hour and minute hands with different colors
         hour_hand = Line(ORIGIN, UP * 0.7, color=BLUE).set_stroke(width=8)
         minute_hand = Line(ORIGIN, UP * 1.3, color=RED).set_stroke(width=5)
+        self.wait(2)
         
         clock.add(circle, numbers, hour_hand, minute_hand)
         return clock, hour_hand, minute_hand
+    
+        # self.wait(2)
 
     def create_clock_hands(self, hour, minute):
         # Create new hour and minute hands for transformation
@@ -250,9 +244,10 @@ class Grade1CH16Time(AbstractAnim):
 
         hour_hand.rotate(-hour_angle, about_point=ORIGIN)
         minute_hand.rotate(-minute_angle, about_point=ORIGIN)
-        
+        self.wait(2)
         return hour_hand, minute_hand
-        
+    
+        # self.wait(2)
     def intro2(self):
         # Define heading for the amount to be paid to the bus agency
         heading = Text("what we do in a day", font_size=26, color=RED)

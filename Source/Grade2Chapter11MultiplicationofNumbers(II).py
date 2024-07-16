@@ -50,12 +50,14 @@ class grade2(AbstractAnim):
         self.wait(2)
         
     def intro(self):
-        p10=cvo.CVO().CreateCVO("multiplication ","").setPosition([-3.5,1,0]).setangle(-TAU/4)
+        self.setNumberOfCirclePositions(3)
+        self.isRandom = False
+        p10=cvo.CVO().CreateCVO("Multiplication ","").setPosition([-3.5,1,0]).setangle(-TAU/4)
         p11=cvo.CVO().CreateCVO("Definition"," the process of calculating the product of two or more numbers.").setPosition([0,-2,0]).setangle(-TAU/4)
         p11.setcircleradius(1.5)
-        p12=cvo.CVO().CreateCVO("symbol","x").setPosition([3,1,0]).setangle(-TAU/4)
+        p12=cvo.CVO().CreateCVO("Symbol","x").setPosition([3,1,0]).setangle(-TAU/4)
         p10.cvolist.append(p11)
-        p11.cvolist.append(p12)
+        p10.cvolist.append(p12)
         
         self.construct1(p10,p10)
         
@@ -110,7 +112,19 @@ class grade2(AbstractAnim):
         heading.move_to(UP * 3 + LEFT * 4)  # Position on the top-left corner
         self.play(Write(heading))
         self.wait(2)
-        
+
+        # New: Add T = tens, O = ones box at top right
+        to_explanation = VGroup(
+            Text("T = tens", font_size=24),
+            Text("O = ones", font_size=24)
+        ).arrange(DOWN, aligned_edge=LEFT)
+        to_box = SurroundingRectangle(to_explanation, buff=0.1)
+        to_group = VGroup(to_explanation, to_box).move_to(UP * 3 + RIGHT * 4)
+    
+        self.play(Write(to_group))
+        self.wait(1)
+
+        # Rest of the code remains the same
         # Calculation steps - Left side (for "If tens are multiplied")
         left_box_texts = [
             Text("If tens are multiplied.").scale(0.8),
@@ -143,8 +157,8 @@ class grade2(AbstractAnim):
                 Text("1").scale(0.8),  # Scale down the text to fit within the circle
             ),
             Text("1 5").scale(1.0),
-           VGroup(   # VGroup for "* 3" and line underneath
-                Text("* 3").scale(1.0),
+            VGroup(   # VGroup for "* 3" and line underneath
+                Text("x 3").scale(1.0),
                 Line(color=WHITE).set_width(Text("* 3").get_width()).move_to(DOWN * 0.5),  # Line below "* 3"
             ),
             Text("4 5").scale(1.0),
@@ -176,47 +190,55 @@ class grade2(AbstractAnim):
             Write(central_box),
             Write(line),
         )
-        self.wait(1)
+        self.wait(2)
 
-        # # Showing left_box and right_box with their borders
-        # self.play(
-        #     Write(left_box_border),
-        #     Write(left_box),
-        # )
-        # self.wait(2)
-        
+        # Showing right_box with its border and then displaying the circle around "1" and "5"
         self.play(
             Write(right_box_border),
             Write(right_box),
         )
         self.wait(2)
-        # Showing left_box and right_box with their borders
+        self.play(
+            central_box[1].animate.set_color(YELLOW),  # Highlight the circle around "1"
+            central_box[4].animate.set_color(YELLOW),  # Highlight "1 5"
+        )
+        self.wait(2)
+
+        # Showing left_box with its border and then displaying "4" in the central box
         self.play(
             Write(left_box_border),
             Write(left_box),
         )
         self.wait(2)
-        
+        self.play(
+            central_box[4].animate.set_color(YELLOW),  # Highlight "4"
+        )
+        self.wait(2)
 
     def multiplycationofnumbers1(self):
         heading = Text("multiplication of numbers").scale(1.0)
         heading.move_to(UP * 3 + LEFT * 3)  # Position on the top-left corner
         self.play(Write(heading))
         self.wait(2)
+        
         # Creating the texts with reduced scale
         text_t_o = Text("T O", color=BLUE).scale(1.0)  # Set "T O" in blue
         text_3_6 = Text("3 6").scale(1.0)
-        text_star_3 = Text("* 3").scale(1.0)
+        text_star_3 = Text("x 3").scale(1.0)
 
         # Arranging the texts vertically with reduced buffer and aligning to the left
         texts_group = VGroup(text_t_o, text_3_6, text_star_3).arrange(DOWN, buff=0.4, aligned_edge=LEFT)
 
         # Creating the lines with reduced spacing
         line1 = Line(color=WHITE).set_width(text_star_3.get_width()).next_to(text_star_3, DOWN, buff=0.3)
-        line2 = Line(color=WHITE).set_width(text_star_3.get_width()).next_to(line1, DOWN, buff=0.3)
+        line2 = Line(color=WHITE).set_width(text_star_3.get_width()).next_to(line1, DOWN*2, buff=0.3)
+
+        # Create the "108" text
+        text_108 = Text("108").scale(0.7)
+        text_108.move_to((line1.get_center() + line2.get_center()) / 2)
 
         # Combine texts and lines
-        display_group = VGroup(texts_group, line1, line2)
+        display_group = VGroup(texts_group, line1, text_108, line2)
 
         # Aligning everything to the left side
         display_group.move_to(LEFT * 4)
@@ -224,6 +246,7 @@ class grade2(AbstractAnim):
         # Displaying the texts and lines on the screen
         self.play(Write(display_group))
         self.wait(2)
+
         
          # Create all Text objects
         texts = [
@@ -250,6 +273,10 @@ class grade2(AbstractAnim):
 
         # Move texts to the right side of the screen
         texts_group.move_to(RIGHT * 4)
+        # Display the texts one by one on the screen
+        for text in texts_group:
+            self.play(Write(text))
+            self.wait(2)
 
         # Display the texts on the screen
         self.play(Write(texts_group))
@@ -261,20 +288,25 @@ class grade2(AbstractAnim):
         heading.move_to(UP * 3 )  # Position on the top-left corner
         self.play(Write(heading))
         self.wait(2)
+
         # Creating the texts with reduced scale
         text_t_o = Text("T O", color=BLUE).scale(1.0)  # Set "T O" in blue
         text_3_6 = Text("3 6").scale(1.0)
-        text_star_3 = Text("* 3").scale(1.0)
+        text_star_3 = Text("x 3").scale(1.0)
 
         # Arranging the texts vertically with reduced buffer and aligning to the left
         texts_group = VGroup(text_t_o, text_3_6, text_star_3).arrange(DOWN, buff=0.4, aligned_edge=LEFT)
 
         # Creating the lines with reduced spacing
         line1 = Line(color=WHITE).set_width(text_star_3.get_width()).next_to(text_star_3, DOWN, buff=0.3)
-        line2 = Line(color=WHITE).set_width(text_star_3.get_width()).next_to(line1, DOWN, buff=0.3)
+        line2 = Line(color=WHITE).set_width(text_star_3.get_width()).next_to(line1, DOWN*2, buff=0.3)
+
+        # Create the "108" text
+        text_108 = Text("108").scale(0.7)
+        text_108.move_to((line1.get_center() + line2.get_center()) / 2)
 
         # Combine texts and lines
-        display_group = VGroup(texts_group, line1, line2)
+        display_group = VGroup(texts_group, line1, text_108, line2)
 
         # Aligning everything to the left side
         display_group.move_to(LEFT * 4)
@@ -282,6 +314,7 @@ class grade2(AbstractAnim):
         # Displaying the texts and lines on the screen
         self.play(Write(display_group))
         self.wait(2)
+
         
          # Create all Text objects
         texts = [
@@ -300,10 +333,17 @@ class grade2(AbstractAnim):
 
         # Move texts to the right side of the screen
         texts_group.move_to(RIGHT * 2)
+        
+        # Display the texts one by one on the screen
+        for text in texts_group:
+            self.play(Write(text))
+            self.wait(2)
 
         # Display the texts on the screen
         self.play(Write(texts_group))
         self.wait(2)
+        
+
         
     def box(self):
         # Create the table with reduced size
@@ -316,19 +356,19 @@ class grade2(AbstractAnim):
             include_outer_lines=True,
             line_config={"color": WHITE}
         ).scale(0.6)  # Scale down the table
-        
+    
         # Add a smaller rectangle around the table
         rect = SurroundingRectangle(table, buff=0.05, color=WHITE)
-        
+    
         # Group the table and rectangle
         table_group = VGroup(table, rect).move_to(LEFT * 3)
-        
+    
         # Highlight the first row and first column
         first_row = table.get_rows()[0]
         first_column = table.get_columns()[0]
         first_row.set_color(YELLOW)
         first_column.set_color(BLUE)
-        
+    
         # Create explanation text with smaller font size
         explanation = VGroup(
             Text("Multiplication Table:", font_size=24),
@@ -336,7 +376,7 @@ class grade2(AbstractAnim):
             Text("the first number multiplied by", font_size=20),
             Text("the numbers in the top row.", font_size=20)
         ).arrange(DOWN, aligned_edge=LEFT).next_to(table_group, RIGHT, buff=0.3)
-        
+    
         # Animation
         self.play(Create(rect))
         self.play(Write(first_row), Write(first_column))
@@ -344,14 +384,13 @@ class grade2(AbstractAnim):
         self.play(Write(explanation))
         self.wait(2)
 
-        # Show the remaining numbers in the table
-        remaining_cells = VGroup()
+        # Show the remaining rows one by one
         for row in table.get_rows()[1:]:
-            for cell in row[1:]:
-                remaining_cells.add(cell)
-        
-        self.play(LaggedStart(*[Write(cell) for cell in remaining_cells], lag_ratio=0.1))
+            self.play(Write(VGroup(*row[1:])))
+            self.wait(1)
+
         self.wait(2)
+
 
     def seriesofnumbers(self):
         heading = Text("Series of Numbers", font_size=48)
@@ -369,7 +408,7 @@ class grade2(AbstractAnim):
         for i, (start, continuation, explanation) in enumerate(series):
             # Create the initial series text
             text = Text(start, font_size=36)
-            text.to_edge(LEFT).shift(UP * (1 - i * 0.75))
+            text.to_edge(LEFT).shift(UP * (1 - i * 1))  # Increased vertical spacing
 
             # Create explanation text box
             explain_box = Text(explanation, font_size=24, color=BLUE)
@@ -378,27 +417,28 @@ class grade2(AbstractAnim):
             # Add the initial text and explanation
             self.play(Write(text), Write(explain_box))
 
-            # Create a line for the numbers
-            # line = Line(text.get_left(), text.get_right()).shift(DOWN * 0.5)
-            # self.play(Create(line))
-
-            # Add each new number on the line
+            # Create placeholders and underlines for new numbers
+            new_nums = []
+            underlines = []
             for j, num in enumerate(continuation):
                 new_num = Text(str(num) + (", " if j < 2 else ""), font_size=36)
-                new_num.next_to(text, RIGHT, buff=(j + 1) * 0.1)
-                underline = Underline(new_num, color=YELLOW)
+                new_num.next_to(text, RIGHT, buff=(j + 1) * 0.8)  # Increased horizontal spacing
+                underline = Underline(new_num, color=YELLOW).shift(DOWN * 0.1)  # Shifted underline down
+                new_nums.append(new_num)
+                underlines.append(underline)
 
-                # self.play(Write(new_num))
-                self.play(Create(underline))
+            # Show all underlines first
+            self.play(*[Create(underline) for underline in underlines])
+
+            # Then reveal each new number
+            for new_num in new_nums:
                 self.play(Write(new_num))
-
-                # Update the position for the next number
                 text = VGroup(text, new_num)
 
             self.wait(0.5)
 
         self.wait(2)
-        
+
     def pyramid(self): 
         # Title
         title = Text("Multiplication Pyramid", font_size=36)
