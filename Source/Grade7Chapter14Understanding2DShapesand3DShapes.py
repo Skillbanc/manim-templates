@@ -15,7 +15,9 @@ class Shapesanim(AbstractAnim):
         self.ExampleCube()
         self.Nets()
         self.Sketches()
+        self.Sketches1()
         self.Oblique()
+        self.Sketches2()
         self.Isometric()
         self.Shadows()
         self.Shadow1()
@@ -45,11 +47,12 @@ class Shapesanim(AbstractAnim):
     def Components(self):
 
         self.isRandom = False
+        self.angleChoice = [-TAU/5,-TAU/5,-TAU/5,-TAU/5]
         p10=cvo.CVO().CreateCVO("3DShapes", "").setPosition([-6,0,0])
-        p11=cvo.CVO().CreateCVO("Components", "").setPosition([-3,0,0]).setangle(-TAU/4)
-        p12=cvo.CVO().CreateCVO("Faces", "").setPosition([1,2.5,0]).setangle(-TAU/4)
-        p13=cvo.CVO().CreateCVO("Edges", "").setPosition([2,0,0]).setangle(-TAU/4)
-        p14=cvo.CVO().CreateCVO("Vertices", "").setPosition([1,-2.5,0]).setangle(-TAU/4)
+        p11=cvo.CVO().CreateCVO("Components", "").setPosition([-3,0,0])
+        p12=cvo.CVO().CreateCVO("Faces", "").setPosition([1,2.5,0])
+        p13=cvo.CVO().CreateCVO("Edges", "").setPosition([2,0,0])
+        p14=cvo.CVO().CreateCVO("Vertices", "").setPosition([1,-2.5,0])
 
         p10.cvolist.append(p11)
         p11.cvolist.append(p12)
@@ -204,29 +207,37 @@ class Shapesanim(AbstractAnim):
         self.fadeOutCurrentScene()
 
 
-
     def Sketches(self):
+       
        self.isRandom = False
-       p10=cvo.CVO().CreateCVO("Sketches","").setPosition([-6,0,0])
-       p11=cvo.CVO().CreateCVO("Oblique Sketches", "").setPosition([-3,1.5,0]).setangle(-TAU/4)
-       p12=cvo.CVO().CreateCVO("Isometric Sketches", "").setPosition([-3,-1.5,0]).setangle(-TAU/4)
-       p13=cvo.CVO().CreateCVO("Property", "Focuses on face of object").setPosition([2,2.5,0]).setangle(-TAU/4)
-       p14=cvo.CVO().CreateCVO("Property", "45 degree for lines").setPosition([4.5,1.5,0]).setangle(-TAU/4)
-       p15=cvo.CVO().CreateCVO("Property", "Focuses on edge of object").setPosition([4.5,-1.5,0]).setangle(-TAU/4)
-       p16=cvo.CVO().CreateCVO("Property", "lines are drawn at 30 degree").setPosition([2,-2.5,0]).setangle(-TAU/4)
+       self.angleChoice = [-TAU/5,-TAU/5]
+       p10=cvo.CVO().CreateCVO("Sketches","").setPosition([-3,0,0])
+       p11=cvo.CVO().CreateCVO("Oblique Sketches", "").setPosition([1.5,1.5,0])
+       p12=cvo.CVO().CreateCVO("Isometric Sketches", "").setPosition([1.5,-1.5,0])
+       
       
        p10.cvolist.append(p11)
        p10.cvolist.append(p12)
-       p11.cvolist.append(p13)
-       p11.cvolist.append(p14)
-       p12.cvolist.append(p16)
-       p12.cvolist.append(p15)
        
-       p13.setcircleradius(1.5)
-       p14.setcircleradius(1.5)
-       p15.setcircleradius(1.5)
-       p16.setcircleradius(1.5)
+       self.setNumberOfCirclePositions(5)
+       self.construct1(p10,p10)
+       self.fadeOutCurrentScene()
+
+    def Sketches1(self):
        
+       self.isRandom = False
+       self.angleChoice = [-TAU/5,-TAU/5]
+       p10=cvo.CVO().CreateCVO("Oblique Sketch","").setPosition([-3,0,0])
+       p11=cvo.CVO().CreateCVO("Property", "Focuses on the face of object").setPosition([1.5,2.5,0])
+       p12=cvo.CVO().CreateCVO("Property", "edges are drawn at 45 degrees").setPosition([1.5,-2.5,0])
+       
+      
+       p10.cvolist.append(p11)
+       p10.cvolist.append(p12)
+       
+       p11.setcircleradius(1.7)
+       p12.setcircleradius(1.7)
+
        self.setNumberOfCirclePositions(5)
        self.construct1(p10,p10)
        self.fadeOutCurrentScene()
@@ -297,6 +308,25 @@ class Shapesanim(AbstractAnim):
         
         self.wait(2)
         self.fadeOutCurrentScene()
+    
+    def Sketches2(self):
+       
+       self.isRandom = False
+       self.angleChoice = [-TAU/5,-TAU/5]
+       p10=cvo.CVO().CreateCVO("Isometric Sketch","").setPosition([-3,0,0])
+       p11=cvo.CVO().CreateCVO("Property", "Focuses on the edge of object").setPosition([1.5,2.5,0])
+       p12=cvo.CVO().CreateCVO("Property", "Edges are drawn at 30 degrees").setPosition([1.5,-2.5,0])
+       
+      
+       p10.cvolist.append(p11)
+       p10.cvolist.append(p12)
+
+       p11.setcircleradius(1.7)
+       p12.setcircleradius(1.7)
+
+       self.setNumberOfCirclePositions(5)
+       self.construct1(p10,p10)
+       self.fadeOutCurrentScene()
 
     def Isometric(self):
 
