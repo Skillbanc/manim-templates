@@ -14,7 +14,7 @@ class trianglesAnim(AbstractAnim):
      # use the appropriate method based on how the data is stored
     def construct(self):
          self.RenderSkillbancLogo()
-         self.constructDataByCVO()
+        #  self.constructDataByCVO()
          self.fadeOutCurrentScene() 
          self.trianglepqr()
          self.fadeOutCurrentScene() 
@@ -32,25 +32,23 @@ class trianglesAnim(AbstractAnim):
          self.fadeOutCurrentScene() 
          self.triangles1155()
          self.fadeOutCurrentScene()
-       
          self.triangles1122()
          self.fadeOutCurrentScene()
          self.triangles1133()
          self.fadeOutCurrentScene()
          self.triangles1144()
          self.fadeOutCurrentScene() 
-       
          self.fadeOutCurrentScene() 
          self.GithubSourceCodeReference()
 
 
 # render using CVO data object
     def constructDataByCVO(self):
-        p10=cvo.CVO().CreateCVO("Triangles and its Properties","").setPosition(-TAU/4)
-        p11=cvo.CVO().CreateCVO("Properties","")
-        p12=cvo.CVO().CreateCVO("Sides","PQ,QR,RP")
-        p13=cvo.CVO().CreateCVO("Angles","angle Q,angle P,angle R")
-        p14=cvo.CVO().CreateCVO("Vertices","p,q,r")
+        p10=cvo.CVO().CreateCVO("Triangles and its Properties","")
+        p11=cvo.CVO().CreateCVO("Properties","").setPosition(-TAU/4)
+        p12=cvo.CVO().CreateCVO("Sides","PQ,QR,RP").setPosition(-TAU/4)
+        p13=cvo.CVO().CreateCVO("Angles","angle Q,angle P,angle R").setPosition(-TAU/4)
+        p14=cvo.CVO().CreateCVO("Vertices","p,q,r").setPosition(-TAU/4)
         
         p10.cvolist.append(p11)
         p11.cvolist.append(p12)
