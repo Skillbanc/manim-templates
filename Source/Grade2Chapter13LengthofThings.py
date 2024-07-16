@@ -36,12 +36,12 @@ class Grade2Chapter13LengthofThings(AbstractAnim):
 
     def topic2(self):
         self.isRandom = False
-        self.angleChoice = [TAU/4,-TAU/4,-TAU/4,-TAU/4]
+        self.angleChoice = [TAU/4,-TAU/2,-TAU/4,-TAU/2]
         p10=cvo.CVO().CreateCVO("Measuring tools","").setPosition([0,2.5,0])
         p11=cvo.CVO().CreateCVO("Standard measuring tools", "official tools we use to measure").setPosition([4,2,0])
-        p12=cvo.CVO().CreateCVO("Non-standard measuring tools", "everyday things we use to measure").setPosition([-4,3,0])
+        p12=cvo.CVO().CreateCVO("Non-standard measuring tools", "everyday things we use to measure").setPosition([-4,2,0])
         p13=cvo.CVO().CreateCVO("examples", "rulers ,tapes,meter sticks").setPosition([5,-2,0])
-        p14=cvo.CVO().CreateCVO("examples", "body parts").setPosition([-4,1,0])
+        p14=cvo.CVO().CreateCVO("examples", "body parts").setPosition([-4,0,0])
 
         p10.cvolist.append(p11)
         p10.cvolist.append(p12)
@@ -126,9 +126,9 @@ class Grade2Chapter13LengthofThings(AbstractAnim):
         p10=cvo.CVO().CreateCVO("Non-standard measuring tools","").setPosition([0,2.5,0])
         p11=cvo.CVO().CreateCVO("using body parts", "").setPosition([4,2,0])
         p12=cvo.CVO().CreateCVO("Hand-breadth", "equal to width of 4 fingers").setPosition([5,-2,0])
-        p13=cvo.CVO().CreateCVO("Hand-span", "btw the little finger and thumb of hand").setPosition([-4,3,0])
-        p14=cvo.CVO().CreateCVO("cubit", "btw the elbow and tip of the fingers").setPosition([-4,1,0])
-        p15=cvo.CVO().CreateCVO("foot", "btw the sole and the toes").setPosition([-4,-1,0])
+        p13=cvo.CVO().CreateCVO("Hand-span", "btw the little finger and thumb of hand").setPosition([-4,2,0])
+        p14=cvo.CVO().CreateCVO("cubit", "btw the elbow and tip of the fingers").setPosition([-4,0,0])
+        p15=cvo.CVO().CreateCVO("foot", "btw the sole and the toes").setPosition([-4,-2,0])
         p10.cvolist.append(p11)
         p11.cvolist.append(p12)
         p11.cvolist.append(p13)
