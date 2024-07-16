@@ -14,6 +14,9 @@ class Grade8Chapter13Visualising3Din2DAnim(AbstractAnim):
         self.layers()
         self.fadeOutCurrentScene()
         self.positions()
+        self.fadeOutCurrentScene()
+        self.views()
+
 
 
     def intro(self):
@@ -130,7 +133,6 @@ class Grade8Chapter13Visualising3Din2DAnim(AbstractAnim):
         self.wait()
 
 
-
         polygons = [
             ((-5.25,-2.75,0),(-5.25,-2,0),(-4.5,-2,0),(-4.5,-2.75,0),(-5.25,-2.75,0)),
             ((-4.5,-2.75,0),(-4.5,-2,0),(-3.75,-2,0),(-3.75,-2.75,0),(-4.5,-2.75,0)),
@@ -169,6 +171,79 @@ class Grade8Chapter13Visualising3Din2DAnim(AbstractAnim):
         p11.cvolist.append(p14)  
         
         self.construct1(p11,p11)
+
+    def views(self):
+
+        polygons = [
+            ((-5,-3,0),(-5,-2.25,0),(-4.25,-2.25,0),(-4.25,-3,0),(-5,-3,0)),
+            ((-5.75,-3,0),(-5.75,-2.25,0),(-5,-2.25,0),(-5,-3,0),(-5.75,-3,0)),
+            ((-5.75,-2.25,0),(-5.25,-2,0),(-4.5,-2,0),(-5,-2.25,0),(-5.75,-2.25,0)),
+            ((-4.5,-2,0),(-5,-2.25,0),(-4.25,-2.25,0),(-3.75,-2,0),(-4.5,-2,0)),
+            ((-4.25,-2.25,0),(-4.25,-3,0),(-3.75,-2.75,0),(-3.75,-2,0),(-4.25,-2.25,0)),
+            ((-4.75,-1.75,0),(-5.25,-2,0),(-4.5,-2,0),(-4,-1.75,0),(-4.75,-1.75,0)),
+            ((-4,-1.75,0),(-4.5,-2,0),(-3.75,-2,0),(-3.25,-1.75,0),(-4,-1.75,0)),
+            ((-3.75,-2,0),(-3.75,-2.75,0),(-3.25,-2.5,0),(-3.25,-1.75,0),(-3.75,-2,0)),
+            ((-4.25,-1.5,0),(-4.75,-1.75,0),(-4,-1.75,0),(-3.5,-1.5,0),(-4.25,-1.5,0)),
+            ((-3.5,-1.5,0),(-4,-1.75,0),(-3.25,-1.75,0),(-2.75,-1.5,0),(-3.5,-1.5,0)),
+            ((-3.25,-1.75,0),(-3.25,-2.5,0),(-2.75,-2.25,0),(-2.75,-1.5,0),(-3.25,-1.75,0)),
+            ((-4.25,-0.75,0),(-4.75,-1,0),(-4,-1,0),(-3.5,-0.75,0),(-4.25,-0.75,0)),
+            ((-4.75,-1.75,0),(-4.75,-1,0),(-4,-1,0),(-4,-1.75,0),(-4.75,-1.75,0)),
+            ((-4,-1,0),(-4,-1.75,0),(-3.5,-1.5,0),(-3.5,-0.75,0),(-4,-1,0))
+            ]
+        
+        colors = [LOGO_GREEN,LOGO_GREEN,LOGO_BLUE, LOGO_BLUE,LOGO_RED, LOGO_BLUE,LOGO_BLUE, LOGO_RED, LOGO_BLUE, LOGO_BLUE, LOGO_RED,LOGO_BLUE, LOGO_GREEN, LOGO_RED]
+
+
+        animations = []
+        for vertices, color in zip(polygons, colors):
+            polygon = Polygon(*vertices, color=LOGO_WHITE, fill_color=color, fill_opacity=1, stroke_width=2).shift(UP*2)
+            animations.append(Create(polygon, lag_ratio=0))
+        self.play(*animations)
+
+        t1 = Text("Top View",font_size=26).move_to([-3.7,2,0])
+        a1 = Arrow(start=[-3.7,2,0],end=[-4,1,0])
+        self.play(Write(t1),Create(a1))
+
+        t2 = Text("Front View",font_size=26).move_to([-5,-2,0])
+        a2 = Arrow(end=[-5,-1,0],start=[-5,-2,0])
+        self.play(Write(t2),Create(a2))
+
+        t3 = Text("Side View",font_size=26).move_to([-2.7,-1.3,0])
+        a3 = Arrow(end=[-3.5,-0.5,0],start=[-2.7,-1.3,0])
+        self.play(Write(t3),Create(a3))
+
+        s1 = Square(fill_color=LOGO_GREEN, side_length=0.75,color=LOGO_WHITE, fill_opacity=1,stroke_width=2).move_to([-1, 1, 0])
+        s2 = Square(fill_color=LOGO_GREEN, side_length=0.75,color=LOGO_WHITE, fill_opacity=1,stroke_width=2).move_to([-1, 1.75, 0])
+        s3 = Square(fill_color=LOGO_GREEN, side_length=0.75,color=LOGO_WHITE, fill_opacity=1,stroke_width=2).move_to([-0.25, 1, 0])
+        t10 = Text("Front View",font_size=24).move_to([-0.5,0.2,0])
+        self.add(s1,s2,s3)
+        self.wait(1)
+        self.add(t10)
+        self.wait(2)
+
+        s11 = Square(fill_color=LOGO_RED, side_length=0.75,color=LOGO_WHITE, fill_opacity=1,stroke_width=2).move_to([1.5, -1.25, 0])
+        s21 = Square(fill_color=LOGO_RED, side_length=0.75,color=LOGO_WHITE, fill_opacity=1,stroke_width=2).move_to([2.25, -1.25, 0])
+        s31 = Square(fill_color=LOGO_RED, side_length=0.75,color=LOGO_WHITE, fill_opacity=1,stroke_width=2).move_to([3, -1.25, 0])
+        s41 = Square(fill_color=LOGO_RED, side_length=0.75,color=LOGO_WHITE, fill_opacity=1,stroke_width=2).move_to([3, -0.5, 0])
+        t11 = Text("Side View",font_size=24).move_to([2.3,-2.2,0])
+        self.add(s11,s21,s31,s41)
+        self.wait(1)
+        self.add(t11)
+        self.wait(2)
+        
+        i3 = [4.5, 0, 0]  
+        s3 = 0.75  
+        for i in range(2):  
+            for j in range(3):  
+            
+                x = i3[0] + j * s3
+                y = i3[1] + i * s3
+
+                square3 = Square(fill_color=LOGO_BLUE, side_length=0.75,color=LOGO_WHITE, fill_opacity=1,stroke_width=2).move_to([x, y, 0])
+                self.add(square3)
+        self.wait(1)
+        t12 = Text("Top View",font_size=24).move_to([5.3,-1,0])
+        self.play(Write(t12))
 
 
 
