@@ -33,20 +33,25 @@ class LinesAndAngles(AbstractAnim):
         self.Transversal()
         self.fadeOutCurrentScene()
         self.Corresponding()
+        self.CorrespondingAngles()
         self.fadeOutCurrentScene()
         self.Interior()
+        self.InteriorAngles()
         self.fadeOutCurrentScene()
         self.Exterior()
+        self.ExteriorAngles()
         self.fadeOutCurrentScene()
         self.VertOpp()
+        self.VerticallyOppositeAngles()
         self.fadeOutCurrentScene()
         self.AltInt()
+        self.AlternateInteriorAngles()
         self.fadeOutCurrentScene()
         self.AltExt()
+        self.AlternateExteriorAngles()
         self.fadeOutCurrentScene()
         self.ConsecIntExt()
-        self.fadeOutCurrentScene()
-        self.TransversalAnim()
+        self.ConsecutiveAngles()
         self.fadeOutCurrentScene()
         self.TransversalIntersectsParallelLinesProperties()
         self.fadeOutCurrentScene()
@@ -54,15 +59,14 @@ class LinesAndAngles(AbstractAnim):
 
 
     def Lines(self):
-        self.positionChoice=[[-3,0,0],[3,2,0],[3,-2,0]]
-        # self.angleChoice=[TAU/4,-TAU/4]
+        self.positionChoice=[[0,2,0],[-3,-2,0],[3,-2,0]]
         self.isRandom = False
         p10=cvo.CVO().CreateCVO("Lines","")
-        p11=cvo.CVO().CreateCVO("Parallel Lines","")
-        p12=cvo.CVO().CreateCVO("Intersecting Lines","")
-        # p10.setcircleradius(1.5)
-        # p11.setcircleradius(1.5)
-        # p12.setcircleradius(1.5)
+        p11=cvo.CVO().CreateCVO("Parallel lines","do not intersect at any point")
+        p12=cvo.CVO().CreateCVO("Intersecting lines","lines meet at a point")
+        p10.setcircleradius(1.75)
+        p11.setcircleradius(1.75)
+        p12.setcircleradius(1.75)
         p10.cvolist.append(p11)
         p10.cvolist.append(p12)
         self.construct1(p10,p10)
@@ -106,7 +110,7 @@ class LinesAndAngles(AbstractAnim):
 
 
     def Angle(self):
-        self.positionChoice=[[-5,-2,0],[-1,-2,0],[-4,2,0],[-1,2,0],[3,2,0],[2,-2,0]]
+        self.positionChoice=[[-5,-2,0],[-1,-2,0],[-4,2,0],[-1,2,0],[3,2,0],[3,-2,0]]
         self.isRandom = False
         p10=cvo.CVO().CreateCVO("Angles","")
         p11=cvo.CVO().CreateCVO("Acute",r"$Angle<90^\circ$")
@@ -134,7 +138,7 @@ class LinesAndAngles(AbstractAnim):
         p10=cvo.CVO().CreateCVO("Complementary Angle","")
         p11=cvo.CVO().CreateCVO("Property",r"$Adjacent \quad angles \quad summing \quad to \quad 90^\circ$")
         p12=cvo.CVO().CreateCVO("Example",r"$50^\circ,40^\circ$")
-        p11.setcircleradius(1.5)
+        p11.setcircleradius(2)
         p10.cvolist.append(p11)
         p11.cvolist.append(p12)
         self.construct1(p10,p10)
@@ -172,7 +176,7 @@ class LinesAndAngles(AbstractAnim):
 
         # Explanation of complementary angles
         explanation = [
-            r"\text{If the sum of two angles is } 90^\circ, \text{ are called complementary angles.}",
+            r"\text{If the sum of two angles is } 90^\circ, \text{ they are called complementary angles.}",
             r"\text{These angles are complementary, as} 30^\circ + 60^\circ = 90^\circ.",
             r"\text{We can also say that the complement of } 30^\circ \text{ is } 60^\circ \text{ and}",
             r"\text{the complement of } 60^\circ \text{ is } 30^\circ."
@@ -181,7 +185,7 @@ class LinesAndAngles(AbstractAnim):
         # Create the explanation text
         explanation_text = VGroup(
             *[MathTex(text, font_size=40) for text in explanation]
-        ).arrange(DOWN, aligned_edge=LEFT).scale(0.8).to_edge(RIGHT*1.7)
+        ).arrange(DOWN, aligned_edge=LEFT).scale(0.8).to_edge(RIGHT*1.5)
 
         # Display the explanation text on the right side of the screen
         self.play(Write(explanation_text))
@@ -201,7 +205,7 @@ class LinesAndAngles(AbstractAnim):
         p10=cvo.CVO().CreateCVO("Supplementary Angle","")
         p11=cvo.CVO().CreateCVO("Property",r"$Adjacent \quad angles \quad summing \quad to \quad 180^\circ$")
         p12=cvo.CVO().CreateCVO("Example",r"$80^\circ,100^\circ$")
-        p11.setcircleradius(1.5)
+        p11.setcircleradius(2)
         p10.cvolist.append(p11)
         p11.cvolist.append(p12)
         self.construct1(p10,p10)
@@ -401,13 +405,15 @@ class LinesAndAngles(AbstractAnim):
         p11.setcircleradius(1)
         p12=cvo.CVO().CreateCVO("Angles on Transversal", "")
         p12.extendOname(["Corresponding","Interior","Exterior","Vertically Opposite","Consecutive Interior","Alternate Interior","Consecutive Exterior","Alternate Exterior"])
-        # p12.setcircleradius(1.5)
+        p12.setcircleradius(1.5)
         p10.cvolist.append(p11)
         p10.cvolist.append(p12)
         self.construct1(p10,p10)
 
     def Corresponding(self):
-        self.positionChoice=[[3,-2,0],[0,2,0],[-3,-2,0]]
+        title = Text("Corresponding Angles").to_edge(UP+LEFT*2)
+        self.play(Write(title))
+        self.positionChoice=[[3.5,-2,0],[3,2,0],[0,0,0]]
         self.isRandom = False
         p10=cvo.CVO().CreateCVO("Corresponding Angle","")
         p11=cvo.CVO().CreateCVO("Property","Angles on same side of transversal")
@@ -416,78 +422,8 @@ class LinesAndAngles(AbstractAnim):
         p11.cvolist.append(p12)
         self.construct1(p10,p10)
 
-    def Interior(self):
-        self.setNumberOfCirclePositions(2)
-        self.isRandom = False
-        p10=cvo.CVO().CreateCVO("Interior Angle","")
-        p11=cvo.CVO().CreateCVO("Property","within the shape")
-        # p10.setcircleradius(1.5)
-        p11.setcircleradius(1.5)
-        p10.cvolist.append(p11)
-        self.construct1(p10,p10)
-
-    def Exterior(self):
-        self.setNumberOfCirclePositions(2)
-        self.isRandom = False
-        p10=cvo.CVO().CreateCVO("Exterior Angle","")
-        p11=cvo.CVO().CreateCVO("Property","outside the shape")
-        # p10.setcircleradius(1.5)
-        p11.setcircleradius(1.5)
-        p10.cvolist.append(p11)
-        self.construct1(p10,p10)
-
-    def VertOpp(self):
-        self.positionChoice=[[3,-2,0],[0,2,0],[-3,-2,0]]
-        self.isRandom = False
-        p10=cvo.CVO().CreateCVO("Vertically Opposite Angle","")
-        p11=cvo.CVO().CreateCVO("Property","opposite eachother at intersection point")
-        p12=cvo.CVO().CreateCVO("Property","These angles are Equal")
-        p11.setcircleradius(2)
-        p10.cvolist.append(p11)
-        p11.cvolist.append(p12)
-        self.construct1(p10,p10)
-
-    def AltInt(self):
-        self.positionChoice=[[-4,-2,0],[1,-2,0],[-4,2,0],[0,2,0]]
-        self.isRandom = False
-        p10=cvo.CVO().CreateCVO("Alternate Interior \& Exterior Angle","")
-        p11=cvo.CVO().CreateCVO("Property","have different vertices")
-        p12=cvo.CVO().CreateCVO("Property","on either side of transversal")
-        p13=cvo.CVO().CreateCVO("Property","lie b/w the 2 lines is interior")
-        p10.cvolist.append(p11)
-        p10.cvolist.append(p12)
-        p10.cvolist.append(p13)
-        self.construct1(p10,p10)
-
-    def AltExt(self):
-        self.positionChoice=[[-4,-2,0],[1,-2,0],[-4,2,0],[0,2,0]]
-        self.isRandom = False
-        p10=cvo.CVO().CreateCVO("Alternate Interior \& Exterior Angle","")
-        p11=cvo.CVO().CreateCVO("Property","have different vertices")
-        p12=cvo.CVO().CreateCVO("Property","on either side of transversal")
-        p13=cvo.CVO().CreateCVO("Property","lie outside the 2 lines is exterior")
-        p10.cvolist.append(p11)
-        p10.cvolist.append(p12)
-        p10.cvolist.append(p13)
-        self.construct1(p10,p10)
-
-
-    def ConsecIntExt(self):
-        self.setNumberOfCirclePositions(2)
-        self.isRandom = False
-        p10=cvo.CVO().CreateCVO("Consecutive Interior \& Exterior Angle","")
-        p11=cvo.CVO().CreateCVO("Property","Angles on same side of transversal")
-        p10.setcircleradius(1.5)
-        p11.setcircleradius(2)
-        p10.cvolist.append(p11)
-        self.construct1(p10,p10)
-        
-    def TransversalAnim(self):
-
-        title = Text("Angles Made by a Transversal").to_edge(UP)
-        self.play(Write(title))
-
-        # Define the lines and transversal
+    def CorrespondingAngles(self):
+    # Shift lines and transversal to the left
         line_l = Line(LEFT * 3, RIGHT * 3, color=BLUE).shift(UP)
         line_m = Line(LEFT * 3, RIGHT * 3, color=BLUE).shift(DOWN)
         transversal = Line(LEFT * 2 + UP * 2, RIGHT * 2 + DOWN * 2, color=RED)
@@ -496,7 +432,7 @@ class LinesAndAngles(AbstractAnim):
         lines = VGroup(line_l, line_m, transversal).scale(0.8).to_edge(LEFT)
         self.play(Create(lines))
 
-        # Define angles
+    # Create only the specified angles
         angles = [
             Angle(line_l, transversal, radius=0.5, quadrant=(1, 1), other_angle=False, color=YELLOW),
             Angle(line_l, transversal, radius=0.5, quadrant=(1, -1), other_angle=True, color=GREEN),
@@ -510,14 +446,14 @@ class LinesAndAngles(AbstractAnim):
 
         # Label angles
         labels = [
-            MathTex(r"\angle 1").scale(0.7).next_to(angles[0].point_from_proportion(0.5), UR, buff=0.2),
-            MathTex(r"\angle 2").scale(0.7).next_to(angles[1].point_from_proportion(0.5), UP*4+ LEFT*2, buff=0.2),
-            MathTex(r"\angle 3").scale(0.7).next_to(angles[2].point_from_proportion(0.5), UR, buff=0.2),
-            MathTex(r"\angle 4").scale(0.7).next_to(angles[3].point_from_proportion(0.5), UP*4 + LEFT*2, buff=0.2),
-            MathTex(r"\angle 5").scale(0.7).next_to(angles[4].point_from_proportion(0.5), RIGHT*3+UP*0.5, buff=0.2),
-            MathTex(r"\angle 6").scale(0.7).next_to(angles[5].point_from_proportion(0.5), DOWN*2, buff=0.2),
-            MathTex(r"\angle 7").scale(0.7).next_to(angles[6].point_from_proportion(0.5), RIGHT*3+UP*0.5, buff=0.2),
-            MathTex(r"\angle 8").scale(0.7).next_to(angles[7].point_from_proportion(0.5), DOWN*2, buff=0.2)
+            MathTex(r"\angle 1").next_to(angles[0].point_from_proportion(0.5), UR, buff=0.2),
+            MathTex(r"\angle 2").next_to(angles[1].point_from_proportion(0.5), UP*4+ LEFT*2, buff=0.2),
+            MathTex(r"\angle 3").next_to(angles[2].point_from_proportion(0.5), UR, buff=0.2),
+            MathTex(r"\angle 4").next_to(angles[3].point_from_proportion(0.5), UP*4 + LEFT*2, buff=0.2),
+            MathTex(r"\angle 5").next_to(angles[4].point_from_proportion(0.5), RIGHT*3, buff=0.2),
+            MathTex(r"\angle 6").next_to(angles[5].point_from_proportion(0.5), DOWN*2, buff=0.2),
+            MathTex(r"\angle 7").next_to(angles[6].point_from_proportion(0.5), RIGHT*3, buff=0.2),
+            MathTex(r"\angle 8").next_to(angles[7].point_from_proportion(0.5), DOWN*2, buff=0.2)
         ]
 
         # Group angles and labels
@@ -527,28 +463,348 @@ class LinesAndAngles(AbstractAnim):
         self.play(Create(VGroup(*angles)))
         self.play(Write(VGroup(*labels)))
 
-        # Explanation
-        explanation_text = VGroup(
-            MathTex(r"\text{Angles formed by a transversal are categorized as:}"),
-            MathTex(r"\text{1. Corresponding Angles: } \angle 1 = \angle 3 \text{ and } \angle 5 = \angle 7"),
-            MathTex(r"\text{2. Interior Angles: } \angle 3, \angle 4, \angle 5, \angle 6"),
-            MathTex(r"\text{3. Exterior Angles: } \angle 1, \angle 2, \angle 7, \angle 8"),
-            MathTex(r"\text{4. Vertically Opposite Angles: } \angle 1 = \angle 3 \text{ and } \angle 2 = \angle 4"),
-            MathTex(r"\text{5. Alternate Interior Angles: } \angle 5 = \angle 4 \text{ and } \angle 3 = \angle 6"), 
-            MathTex(r"\text{6. Alternate Exterior Angles: } \angle 1, \angle 8 \text{ and } \angle 2, \angle 7"),
-            MathTex(r"\text{7. Consecutive Interior Angles: } \angle 5, \angle 3 \text{ and } \angle 6, \angle 4"),
-            MathTex(r"\text{8. Consecutive Exterior Angles: } \angle 1, \angle 7 \text{ and } \angle 2, \angle 8")
-        ).arrange(DOWN, aligned_edge=LEFT).scale(0.7).to_edge(RIGHT)
+    # Position explanation to the bottom
+        explanation = VGroup(
+        MathTex(r"\angle 1 = \angle 3").set_color(YELLOW),
+        Text(" and "),
+        MathTex(r"\angle 2 = \angle 4").set_color(PINK)
+    ).arrange(RIGHT).scale(0.8).next_to(line_m, DOWN * 1.5, buff=1)
 
-        self.play(Write(explanation_text))
+        explanation1 = VGroup(
+        MathTex(r"\angle 5 = \angle 7").set_color(GREEN),
+        Text(" and "),
+        MathTex(r"\angle 6 = \angle 8").set_color(ORANGE)
+    ).arrange(RIGHT).scale(0.8).next_to(explanation, DOWN, buff=0.2)
 
-        self.wait(10)
+        self.play(Write(explanation))
+        self.wait(1)
+        self.play(Write(explanation1))
+        self.wait(2)
 
-        # Clear the scene
-        self.clear_scene()
 
-    def clear_scene(self):
-        self.play(*[FadeOut(mob) for mob in self.mobjects])
+    def Interior(self):
+        title = Text("Interior Angles").to_edge(UP+LEFT)
+        self.play(Write(title))
+        self.positionChoice=[[4,-1,0],[3,1.5,0]]
+        self.isRandom = False
+        p10=cvo.CVO().CreateCVO("Interior Angle","")
+        p11=cvo.CVO().CreateCVO("Property","within the shape")
+        p10.cvolist.append(p11)
+        self.construct1(p10,p10)
+
+
+    def InteriorAngles(self):
+    # Create lines and transversal
+       line_l = Line(LEFT * 3, RIGHT * 4, color=BLUE).shift(UP)
+       line_m = Line(LEFT * 3, RIGHT * 4, color=BLUE).shift(DOWN)
+       transversal = Line(LEFT * 2 + UP * 2, RIGHT * 2 + DOWN * 2, color=RED)
+
+    # Position lines to the left
+       lines = VGroup(line_l, line_m, transversal).scale(0.8).to_edge(LEFT)
+       self.play(Create(lines))
+
+    # Create angles
+       angle3 = Angle(line_m, transversal, radius=0.5, quadrant=(-1, -1), other_angle=True, color=GREEN)
+       angle4 = Angle(line_m, transversal, radius=0.5, quadrant=(1, -1), other_angle=False, color=GREEN)
+       angle5 = Angle(line_l, transversal, radius=0.5, quadrant=(-1, 1), other_angle=False, color=GREEN)
+       angle6 = Angle(line_l, transversal, radius=0.5, quadrant=(1, 1), other_angle=True, color=GREEN)
+
+    # Create labels for the angles
+       label3 = MathTex(r"\angle 3").next_to(angle3.point_from_proportion(0.5), UR, buff=0.2)
+       label4 = MathTex(r"\angle 4").next_to(angle4.point_from_proportion(0.5), LEFT * 3.5, buff=0.2)
+       label5 = MathTex(r"\angle 5").next_to(angle5.point_from_proportion(0.5), RIGHT * 3, buff=0.2)
+       label6 = MathTex(r"\angle 6").next_to(angle6.point_from_proportion(0.5), DL, buff=0.2)
+
+    # Display angles and labels
+       self.play(Create(angle3), Create(angle4), Create(angle5), Create(angle6))
+       self.play(Write(label3), Write(label4), Write(label5), Write(label6))
+
+    # Explanation text with increased size
+       explanation = VGroup(
+         MathTex(r"\angle 3, \angle 4, \angle 5, \angle 6").set_color(GREEN).scale(1.0),
+        Text("are Interior angles ").scale(1.0)
+    ).arrange(RIGHT).next_to(transversal.get_start(), buff=1).shift(DOWN*4)
+
+       self.play(Write(explanation))
+       self.wait(2)
+
+    def Exterior(self):
+        title = Text("Exterior Angles").to_edge(UP+LEFT)
+        self.play(Write(title))
+        self.positionChoice=[[3.5,-1,0],[3,2,0]]
+        self.isRandom = False
+        p10=cvo.CVO().CreateCVO("Exterior Angle","")
+        p11=cvo.CVO().CreateCVO("Property","outside the shape")
+        p10.cvolist.append(p11)
+        self.construct1(p10,p10)
+
+    def ExteriorAngles(self):
+        line_l = Line(LEFT * 3, RIGHT * 4, color=BLUE).shift(UP)
+        line_m = Line(LEFT * 3, RIGHT * 4, color=BLUE).shift(DOWN)
+        transversal = Line(LEFT * 2 + UP * 2, RIGHT * 2 + DOWN * 2, color=RED)
+
+        # Create lines
+        lines = VGroup(line_l, line_m, transversal).scale(0.8).to_edge(LEFT)
+        self.play(Create(lines))
+        angle1 = Angle(line_l, transversal, radius=0.5, quadrant=(-1, -1), other_angle=True, color=PINK)
+        angle2 = Angle(line_l, transversal, radius=0.5, quadrant=(1, -1), other_angle=False, color=PINK)
+        angle7 = Angle(line_m, transversal, radius=0.5, quadrant=(-1, 1), other_angle=False, color=PINK)
+        angle8 = Angle(line_m, transversal, radius=0.5, quadrant=(1, 1), other_angle=True, color=PINK)
+
+        label1 = MathTex(r"\angle 1").next_to(angle1.point_from_proportion(0.5), UR, buff=0.2)
+        label2 = MathTex(r"\angle 2").next_to(angle2.point_from_proportion(0.5), LEFT*3.5, buff=0.2)
+        label7 = MathTex(r"\angle 7").next_to(angle7.point_from_proportion(0.5), RIGHT*3.5, buff=0.2)
+        label8 = MathTex(r"\angle 8").next_to(angle8.point_from_proportion(0.5), DL, buff=0.2)
+
+        self.play(Create(angle1), Create(angle2), Create(angle7), Create(angle8))
+        self.play(Write(label1), Write(label2), Write(label7), Write(label8))
+
+        explanation = VGroup(
+        MathTex(r"\angle 1, \angle 2, \angle 7, \angle 8").set_color(PINK).scale(1),
+        Text("are Exterior angles ").scale(1)
+        ).arrange(RIGHT).next_to(transversal.get_start(), buff=1).shift(DOWN * 4)
+        self.play(Write(explanation))
+        self.wait(2)
+
+    def VertOpp(self):
+        title = Text("Vertically Opposite Angles").to_edge(UP+LEFT)
+        self.play(Write(title))
+        self.positionChoice=[[3.5,-2,0],[3,2,0],[0,0,0]]
+        self.isRandom = False
+        p10=cvo.CVO().CreateCVO("Vertically Opposite Angle","")
+        p11=cvo.CVO().CreateCVO("Property","opposite eachother at intersection point")
+        p12=cvo.CVO().CreateCVO("Property","These angles are Equal")
+        p11.setcircleradius(1.5)
+        p10.cvolist.append(p11)
+        p11.cvolist.append(p12)
+        self.construct1(p10,p10)
+
+    def VerticallyOppositeAngles(self):
+
+        line_l = Line(LEFT * 3, RIGHT * 3, color=BLUE).shift(UP)
+        line_m = Line(LEFT * 3, RIGHT * 3, color=BLUE).shift(DOWN)
+        transversal = Line(LEFT * 2 + UP * 2, RIGHT * 2 + DOWN * 2, color=RED)
+
+        # Create lines
+        lines = VGroup(line_l, line_m, transversal).scale(0.8).to_edge(LEFT)
+        self.play(Create(lines))
+
+    # Create only the specified angles
+        angles = [
+            Angle(line_l, transversal, radius=0.5, quadrant=(1, 1), other_angle=False, color=YELLOW),
+            Angle(line_l, transversal, radius=0.5, quadrant=(1, -1), other_angle=True, color=PINK),
+            Angle(line_m, transversal, radius=0.5, quadrant=(1, 1), other_angle=False, color=ORANGE),
+            Angle(line_m, transversal, radius=0.5, quadrant=(1, -1), other_angle=True, color=GREEN),
+            Angle(line_l, transversal, radius=0.5, quadrant=(-1, 1), other_angle=False, color=YELLOW),
+            Angle(line_l, transversal, radius=0.5, quadrant=(-1, -1), other_angle=True, color=PINK),
+            Angle(line_m, transversal, radius=0.5, quadrant=(-1, 1), other_angle=False, color=ORANGE),
+            Angle(line_m, transversal, radius=0.5, quadrant=(-1, -1), other_angle=True, color=GREEN)
+        ]
+
+        # Label angles
+        labels = [
+            MathTex(r"\angle 1").next_to(angles[0].point_from_proportion(0.5), UR, buff=0.2),
+            MathTex(r"\angle 2").next_to(angles[1].point_from_proportion(0.5), UP*4+ LEFT*2, buff=0.2),
+            MathTex(r"\angle 3").next_to(angles[2].point_from_proportion(0.5), UR, buff=0.2),
+            MathTex(r"\angle 4").next_to(angles[3].point_from_proportion(0.5), UP*4 + LEFT*2, buff=0.2),
+            MathTex(r"\angle 5").next_to(angles[4].point_from_proportion(0.5), RIGHT*3, buff=0.2),
+            MathTex(r"\angle 6").next_to(angles[5].point_from_proportion(0.5), DOWN*2, buff=0.2),
+            MathTex(r"\angle 7").next_to(angles[6].point_from_proportion(0.5), RIGHT*3, buff=0.2),
+            MathTex(r"\angle 8").next_to(angles[7].point_from_proportion(0.5), DOWN*2, buff=0.2)
+        ]
+
+        # Group angles and labels
+        all_angles = VGroup(*angles, *labels)
+
+        # Animate angles and labels
+        self.play(Create(VGroup(*angles)))
+        self.play(Write(VGroup(*labels)))
+
+    # Position explanation to the bottom
+        explanation = VGroup(
+        MathTex(r"\angle 1 = \angle 6").set_color(YELLOW),
+        Text(" and "),
+        MathTex(r"\angle 2 = \angle 5").set_color(PINK)
+    ).arrange(RIGHT).scale(0.8).next_to(line_m, DOWN * 1.5, buff=1)
+
+        explanation1 = VGroup(
+        MathTex(r"\angle 3 = \angle 8").set_color(GREEN),
+        Text(" and "),
+        MathTex(r"\angle 4 = \angle 7").set_color(ORANGE)
+    ).arrange(RIGHT).scale(0.8).next_to(explanation, DOWN, buff=0.2)
+
+        self.play(Write(explanation))
+        self.wait(1)
+        self.play(Write(explanation1))
+        self.wait(2)
+
+    def AltInt(self):
+        title = Text("Alternate Interior Angles").to_edge(UP+LEFT)
+        self.play(Write(title))
+        self.positionChoice=[[0.8,-2,0],[4.5,-2.3,0],[2.5,2,0],[0,0,0]]
+        self.isRandom = False
+        p10=cvo.CVO().CreateCVO("Alternate Interior \& Exterior Angle","")
+        p11=cvo.CVO().CreateCVO("Property","have different vertices")
+        p12=cvo.CVO().CreateCVO("Property","on either side of transversal")
+        p13=cvo.CVO().CreateCVO("Property","lie b/w the 2 lines is interior")
+        p10.cvolist.append(p11)
+        p10.cvolist.append(p12)
+        p10.cvolist.append(p13)
+        self.construct1(p10,p10)
+
+
+    def AlternateInteriorAngles(self):
+
+       line_l = Line(LEFT * 3, RIGHT * 4, color=BLUE).shift(UP)
+       line_m = Line(LEFT * 3, RIGHT * 4, color=BLUE).shift(DOWN)
+       transversal = Line(LEFT * 2 + UP * 2, RIGHT * 2 + DOWN * 2, color=RED)
+
+    # Position lines to the left
+       lines = VGroup(line_l, line_m, transversal).scale(0.8).to_edge(LEFT)
+       self.play(Create(lines))
+
+    # Create angles
+       angle3 = Angle(line_m, transversal, radius=0.5, quadrant=(-1, -1), other_angle=True, color=GREEN)
+       angle4 = Angle(line_m, transversal, radius=0.5, quadrant=(1, -1), other_angle=False, color=PINK)
+       angle5 = Angle(line_l, transversal, radius=0.5, quadrant=(-1, 1), other_angle=False, color=PINK)
+       angle6 = Angle(line_l, transversal, radius=0.5, quadrant=(1, 1), other_angle=True, color=GREEN)
+
+    # Create labels for the angles
+       label3 = MathTex(r"\angle 3").next_to(angle3.point_from_proportion(0.5), UR, buff=0.2)
+       label4 = MathTex(r"\angle 4").next_to(angle4.point_from_proportion(0.5), LEFT * 3.5, buff=0.2)
+       label5 = MathTex(r"\angle 5").next_to(angle5.point_from_proportion(0.5), RIGHT * 3, buff=0.2)
+       label6 = MathTex(r"\angle 6").next_to(angle6.point_from_proportion(0.5), DL, buff=0.2)
+
+    # Display angles and labels
+       self.play(Create(angle3), Create(angle4), Create(angle5), Create(angle6))
+       self.play(Write(label3), Write(label4), Write(label5), Write(label6))
+
+    # Explanation text with increased size
+       explanation = VGroup(
+       MathTex(r"\angle 5 = \angle 4").set_color(GREEN),
+       Text(" and "),
+       MathTex(r"\angle 3 = \angle 6").set_color(PINK)
+    ).arrange(RIGHT).scale(0.8).next_to(line_m, DOWN * 1.5, buff=1)
+
+       self.play(Write(explanation))
+       self.wait(2)
+
+    def AltExt(self):
+        title = Text("Alternate Exterior Angles").to_edge(UP+LEFT)
+        self.play(Write(title))
+        self.positionChoice=[[0.8,-2,0],[4.5,-2.3,0],[2.5,2,0],[0,0,0]]
+        self.isRandom = False
+        p10=cvo.CVO().CreateCVO("Alternate Interior \& Exterior Angle","")
+        p11=cvo.CVO().CreateCVO("Property","have different vertices")
+        p12=cvo.CVO().CreateCVO("Property","on either side of transversal")
+        p13=cvo.CVO().CreateCVO("Property","lie outside the 2 lines is exterior")
+        p10.cvolist.append(p11)
+        p10.cvolist.append(p12)
+        p10.cvolist.append(p13)
+        self.construct1(p10,p10)
+
+
+    def AlternateExteriorAngles(self):
+
+        line_l = Line(LEFT * 3, RIGHT * 4, color=BLUE).shift(UP)
+        line_m = Line(LEFT * 3, RIGHT * 4, color=BLUE).shift(DOWN)
+        transversal = Line(LEFT * 2 + UP * 2, RIGHT * 2 + DOWN * 2, color=RED)
+
+        # Create lines
+        lines = VGroup(line_l, line_m, transversal).scale(0.8).to_edge(LEFT)
+        self.play(Create(lines))
+        angle1 = Angle(line_l, transversal, radius=0.5, quadrant=(-1, -1), other_angle=True, color=YELLOW)
+        angle2 = Angle(line_l, transversal, radius=0.5, quadrant=(1, -1), other_angle=False, color=ORANGE)
+        angle7 = Angle(line_m, transversal, radius=0.5, quadrant=(-1, 1), other_angle=False, color=ORANGE)
+        angle8 = Angle(line_m, transversal, radius=0.5, quadrant=(1, 1), other_angle=True, color=YELLOW)
+
+        label1 = MathTex(r"\angle 1").next_to(angle1.point_from_proportion(0.5), UR, buff=0.2)
+        label2 = MathTex(r"\angle 2").next_to(angle2.point_from_proportion(0.5), LEFT*3.5, buff=0.2)
+        label7 = MathTex(r"\angle 7").next_to(angle7.point_from_proportion(0.5), RIGHT*3.5, buff=0.2)
+        label8 = MathTex(r"\angle 8").next_to(angle8.point_from_proportion(0.5), DL, buff=0.2)
+
+        self.play(Create(angle1), Create(angle8), Create(angle2), Create(angle7))
+        self.play(Write(label1), Write(label8), Write(label2), Write(label7))
+
+        explanation = VGroup(
+        MathTex(r"\angle 1 = \angle 8").set_color(ORANGE),
+        Text(" and "),
+        MathTex(r"\angle 2 = \angle 7").set_color(YELLOW)
+    ).arrange(RIGHT).scale(0.8).next_to(line_m, DOWN * 1.5, buff=1)
+
+        self.play(Write(explanation))
+        self.wait(2)
+
+    def ConsecIntExt(self):
+        title = Text("Consecutive Interior Angles").to_edge(UP+LEFT)
+        self.play(Write(title))
+
+        self.positionChoice=[[3.5,-2,0],[3,1,0]]
+        self.isRandom = False
+        p10=cvo.CVO().CreateCVO("Consecutive Interior \& Exterior Angle","")
+        p11=cvo.CVO().CreateCVO("Property","Angles on same side of transversal")
+        p10.cvolist.append(p11)
+        self.construct1(p10,p10)
+        
+
+    def ConsecutiveAngles(self):
+
+        line_l = Line(LEFT * 3, RIGHT * 3, color=BLUE).shift(UP)
+        line_m = Line(LEFT * 3, RIGHT * 3, color=BLUE).shift(DOWN)
+        transversal = Line(LEFT * 2 + UP * 2, RIGHT * 2 + DOWN * 2, color=RED)
+
+        # Create lines
+        lines = VGroup(line_l, line_m, transversal).scale(0.8).to_edge(LEFT)
+        self.play(Create(lines))
+
+    # Create only the specified angles
+        angles = [
+            Angle(line_l, transversal, radius=0.5, quadrant=(1, 1), other_angle=False, color=YELLOW),
+            Angle(line_l, transversal, radius=0.5, quadrant=(1, -1), other_angle=True, color=ORANGE),
+            Angle(line_m, transversal, radius=0.5, quadrant=(1, 1), other_angle=False, color=ORANGE),
+            Angle(line_m, transversal, radius=0.5, quadrant=(1, -1), other_angle=True, color=YELLOW),
+            Angle(line_l, transversal, radius=0.5, quadrant=(-1, 1), other_angle=False, color=GREEN),
+            Angle(line_l, transversal, radius=0.5, quadrant=(-1, -1), other_angle=True, color=PINK),
+            Angle(line_m, transversal, radius=0.5, quadrant=(-1, 1), other_angle=False, color=PINK),
+            Angle(line_m, transversal, radius=0.5, quadrant=(-1, -1), other_angle=True, color=GREEN)
+        ]
+
+        # Label angles
+        labels = [
+            MathTex(r"\angle 1").next_to(angles[0].point_from_proportion(0.5), UR, buff=0.2),
+            MathTex(r"\angle 2").next_to(angles[1].point_from_proportion(0.5), UP*4+ LEFT*2, buff=0.2),
+            MathTex(r"\angle 3").next_to(angles[2].point_from_proportion(0.5), UR, buff=0.2),
+            MathTex(r"\angle 4").next_to(angles[3].point_from_proportion(0.5), UP*4 + LEFT*2, buff=0.2),
+            MathTex(r"\angle 5").next_to(angles[4].point_from_proportion(0.5), RIGHT*3, buff=0.2),
+            MathTex(r"\angle 6").next_to(angles[5].point_from_proportion(0.5), DOWN*2, buff=0.2),
+            MathTex(r"\angle 7").next_to(angles[6].point_from_proportion(0.5), RIGHT*3, buff=0.2),
+            MathTex(r"\angle 8").next_to(angles[7].point_from_proportion(0.5), DOWN*2, buff=0.2)
+        ]
+
+        # Group angles and labels
+        all_angles = VGroup(*angles, *labels)
+
+        # Animate angles and labels
+        self.play(Create(VGroup(*angles)))
+        self.play(Write(VGroup(*labels)))
+
+    # Position explanation to the bottom
+        explanation = VGroup(Text("Consecutive Exterior Angles: ").scale(0.5),
+        MathTex(r"\angle 1 = \angle 7").set_color(YELLOW),
+        Text(" and "),
+        MathTex(r"\angle 2 = \angle 8").set_color(PINK)
+    ).arrange(RIGHT).scale(0.8).next_to(transversal.get_start(), buff=0.5).shift(DOWN*4)
+
+        explanation1 = VGroup(Text("Consecutive Interior Angles: ").scale(0.5),
+        MathTex(r"\angle 5 = \angle 3").set_color(ORANGE),
+        Text(" and "),
+        MathTex(r"\angle 6 = \angle 4").set_color(GREEN)
+    ).arrange(RIGHT).scale(0.8).next_to(explanation, DOWN, buff=0.2)
+
+        self.play(Write(explanation))
+        self.wait(1)
+        self.play(Write(explanation1))
+        self.wait(2)
 
 
     def TransversalIntersectsParallelLinesProperties(self):
