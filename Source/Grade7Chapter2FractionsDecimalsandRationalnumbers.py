@@ -1,11 +1,10 @@
 import json
 from manim import *
-from numpy import size
 from AbstractAnim import AbstractAnim
 
 import cvo
 
-class fractionanim(AbstractAnim):
+class Fractions(AbstractAnim):
 
     def construct(self):
         self.RenderSkillbancLogo()
@@ -23,6 +22,8 @@ class fractionanim(AbstractAnim):
         self.fadeOutCurrentScene()
         self.Decimals()
         self.fadeOutCurrentScene()
+        self.ExpandedForm()
+        self.fadeOutCurrentScene()
         self.Dec_addandsub()
         self.fadeOutCurrentScene()
         self.Dec_mul()
@@ -31,9 +32,9 @@ class fractionanim(AbstractAnim):
         self.fadeOutCurrentScene()
         self.Rational()
         self.fadeOutCurrentScene()
-        self.Rat_add()
+        self.EquivalentRationalNumbers()
         self.fadeOutCurrentScene()
-        self.Rat_sub()
+        self.Rat_addsub()
         self.fadeOutCurrentScene()
         self.GithubSourceCodeReference()
 
@@ -44,12 +45,38 @@ class fractionanim(AbstractAnim):
         self.angleChoice=[TAU/4,TAU/4]
         p14=cvo.CVO().CreateCVO("Fraction","").setPosition([-3,0,0])
         p10=cvo.CVO().CreateCVO("Representation","p/q").setPosition([0.5,2.5,0])
-        p13=cvo.CVO().CreateCVO("conditions","").setPosition([4,0.5,0])
+        p13=cvo.CVO().CreateCVO("conditions","").setPosition([0.5,-2.5,0])
         p13onamelist=["p and q are whole numbers","$q \\neq 0$"]
         p14.cvolist.append(p10)
         p13.extendOname(p13onamelist)
         p14.cvolist.append(p13)
         self.construct1(p14,p14)
+        self.fadeOutCurrentScene()
+        # Create and display the first square with 1/2 shaded
+        square1 = Square(side_length=2).shift(LEFT * 3 + UP * 1)
+        shaded_half = Polygon(
+            square1.get_corner(UL),  # Upper left corner
+            square1.get_corner(UR),  # Upper right corner
+            square1.get_corner(DL),  # Lower left corner
+            fill_opacity=0.5,        # Fill opacity for shading
+            fill_color=BLUE,         # Fill color
+            stroke_width=0           # No border
+        )
+        text1 = MathTex(r"\frac{1}{2}").next_to(square1, DOWN, buff=0.5).set_color(BLUE)
+        self.play(Write(square1))
+        self.wait(1)
+        self.play(FadeIn(shaded_half), Write(text1))
+        self.wait(2)
+
+        # Create and display the second square with 1/3 shaded
+        square2 = Square(side_length=3).shift(RIGHT * 3 + UP * 1)
+        shaded_rectangle = Rectangle(width=1, height=3, fill_opacity=0.5, fill_color=BLUE, stroke_width=0)
+        shaded_rectangle.next_to(square2.get_left(), RIGHT, buff=0)
+        text2 = MathTex(r"\frac{1}{3}").next_to(square2, DOWN, buff=0.5).set_color(BLUE)
+        self.play(Write(square2))
+        self.wait(1)
+        self.play(FadeIn(shaded_rectangle), Write(text2))
+        self.wait(2)
 
     def TypesofFraction(self):
         self.angleChoice=[TAU/4,TAU/4,TAU/4]
@@ -63,24 +90,43 @@ class fractionanim(AbstractAnim):
         self.construct1(p14,p14)
     
     def Multiplication_of_frac(self):
-        self.angleChoice=[TAU/4]
-        p10=cvo.CVO().CreateCVO("Multiplication of Fraction","").setPosition([-3,2,0])
-        p15=cvo.CVO().CreateCVO("Formula","$\\frac{\\text{product of numerator}}{\\text{product of denominators}}$").setPosition([3,2,0])
-        p10.cvolist.append(p15)
+        self.angleChoice=[TAU/4,TAU/4]
+        p10=cvo.CVO().CreateCVO("Multiplication","").setPosition([-3,0,0])
+        p11=cvo.CVO().CreateCVO("Fraction by Whole number","").setPosition([3,2,0])
+        p12=cvo.CVO().CreateCVO("Fraction with Fraction","").setPosition([3,-2,0])
+        p10.cvolist.append(p11)
+        p10.cvolist.append(p12)
         self.construct1(p10,p10)
-        example1 = MathTex("Example:(\\frac{3}{2} \\times \\frac{1}{4})", font_size=36).to_edge(LEFT)
-        self.play(Write(example1))
-        frac= MathTex(r"\frac{3}{2} \times \frac{1}{4}")
-        self.play(Write(frac))
-        self.wait(1)
-    
-        result = MathTex(r"= \frac{3 \times 1}{2 \times 4}")
-        self.play(Write(result.next_to(frac,RIGHT)))
-        self.wait(1)
-        
-        final_result = MathTex(r"= \frac{3}{8}").next_to(frac,RIGHT)
-        self.play(Transform(result, final_result))
-        self.wait(2)
+        self.fadeOutCurrentScene()
+        examples = [
+            ("Multiplication of Fraction by Whole number",r"Example: (3 \times \frac{2}{5})", r"3 \times \frac{2}{5}", r"= \frac{3 \times 2}{5}", r"= \frac{6}{5}"),
+            ("Multiplication of Fraction with a Fraction",r"Example: (\frac{3}{2} \times \frac{1}{4})", r"\frac{3}{2} \times \frac{1}{4}", r"= \frac{3 \times 1}{2 \times 4}", r"= \frac{3}{8}")
+        ]
+
+        for example in examples:
+            title = Text(example[0],font_size=36).to_edge(UP)
+            self.play(Write(title))
+
+            if example==examples[1]:
+                text = MathTex("Formula = \\frac{\\text{Product of Numerators}}{\\text{Product of Denominators}}").next_to(title,DOWN,buff=0.5).scale(0.75).set_color(YELLOW)
+                self.play(Write(text))
+            
+            example_text = MathTex(example[1], font_size=36).to_edge(LEFT).shift(RIGHT*1)
+            self.play(Write(example_text))
+            
+            frac = MathTex(example[2])
+            self.play(Write(frac))
+            self.wait(1)
+            
+            result = MathTex(example[3])
+            self.play(Write(result.next_to(frac, RIGHT)))
+            self.wait(1)
+            
+            final_result = MathTex(example[4]).next_to(frac, RIGHT).set_color(YELLOW)
+            self.play(Transform(result, final_result))
+            self.wait(2)
+            self.play(FadeOut(title,example_text,frac,result,final_result))
+
 
     def Reciprocal(self):
         title = Text("Fraction to Reciprocal Conversion").scale(0.8).to_edge(UP)
@@ -101,8 +147,8 @@ class fractionanim(AbstractAnim):
         # Loop through the fractions and reciprocals
         for frac, recip in zip(fractions, reciprocals):
             # Create MathTex objects for fractions and reciprocals
-            frac_tex = MathTex(frac).scale(0.65).next_to(previous_frac, DOWN, buff=0.8)
-            recip_tex = MathTex(recip).scale(0.65).next_to(previous_recip, DOWN, buff=0.8)
+            frac_tex = MathTex(frac).scale(0.75).next_to(previous_frac, DOWN, buff=0.8).set_color(YELLOW)
+            recip_tex = MathTex(recip).scale(0.75).next_to(previous_recip, DOWN, buff=0.8).set_color(YELLOW)
             arrow = Arrow(frac_tex.get_right(), recip_tex.get_left())
             
             # Animate the writing and arrow creation
@@ -148,12 +194,12 @@ class fractionanim(AbstractAnim):
 
         # Loop through the examples
         for example_info in examples:
-            self.show_example(*example_info)
+            self.show_example_div(*example_info)
         
         self.play(FadeOut(self.title))
         
     # Helper function to animate the conversion and calculation process
-    def show_example(self, intro_text_str, example, example_fraction, multiplication, result, final_result):
+    def show_example_div(self, intro_text_str, example, example_fraction, multiplication, result, final_result):
         # Introductory text
         intro_text = Text(intro_text_str, font_size=30).next_to(self.title, DOWN, buff=0.75).set_color(YELLOW)
         self.play(Write(intro_text))
@@ -179,7 +225,7 @@ class fractionanim(AbstractAnim):
         
         # Display result and final result
         result_tex = MathTex(result).next_to(example_frac, RIGHT)
-        final_result_tex = MathTex(final_result).next_to(example_frac, RIGHT)
+        final_result_tex = MathTex(final_result).next_to(example_frac, RIGHT).set_color(YELLOW)
         self.play(Write(result_tex))
         self.wait(1)
         self.play(Transform(result_tex, final_result_tex))
@@ -189,42 +235,94 @@ class fractionanim(AbstractAnim):
         self.play(FadeOut(intro_text, example_text, conversion_text_obj, example_frac, result_tex))
 
     def Decimals(self):
-        self.colorChoice=[BLUE,ORANGE,PINK,PURPLE,ORANGE,PINK,PURPLE,]
-        self.angleChoice=[TAU/4,TAU/4,TAU/4,TAU/4,TAU/4,TAU/4,TAU/4]
-        p16=cvo.CVO().CreateCVO("Decimal number","").setPosition([-5.5,0,0])
-        p10=cvo.CVO().CreateCVO("Example","16.95").setPosition([-4,-2,0])
-        p11=cvo.CVO().CreateCVO("tens","1*10").setPosition([-3,2,0])
-        p12=cvo.CVO().CreateCVO("ones","6*1").setPosition([0.5,2.5,0])
-        p13=cvo.CVO().CreateCVO("decimal point",".").setPosition([2.75,2,0])
-        p14=cvo.CVO().CreateCVO("tenths","9*1/10").setPosition([4,0.5,0])
-        p15=cvo.CVO().CreateCVO("hundredths","5*1/100").setPosition([3,-2,0])
-        p16.cvolist.append(p10)
-        p10.cvolist.append(p11)
-        p10.cvolist.append(p12)
-        p10.cvolist.append(p13)
-        p10.cvolist.append(p14)
-        p10.cvolist.append(p15)
-        self.construct1(p16,p16)
+        text = Text("Decimal Numbers").to_edge(UP)
+        self.play(Write(text))
+        examples = [
+            ("1 unit","1",""),
+            (r"\frac{1}{10}","0.1", r"10^{th}part"),
+            (r"\frac{1}{100}","0.01", r"100^{th}part"),
+            (r"\frac{1}{1000}","0.001", r"1000^{th}part"),
+           ]
+        
+        for example in examples:
+            
+            if example==examples[0]:
+                example_text = MathTex(example[0], font_size=40).to_edge(LEFT).shift(RIGHT*1).set_color(YELLOW)
+                self.play(Write(example_text))
+            else :
+                example_text = MathTex(example[0], font_size=40).next_to(prev,RIGHT,buff=1).shift(RIGHT*1).set_color(YELLOW)
+                self.play(Write(example_text))
+            
+            frac = MathTex(example[1]).next_to(example_text,DOWN,buff=0.5)
+            self.play(Write(frac))
+            self.wait(1)
+            
+            result = MathTex(example[2]).next_to(example_text, UP,buff=0.5)
+            self.play(Write(result))
+            self.wait(1)
+            
+            arr = Arrow(example_text.get_right(),example_text.get_right()+RIGHT*2)
+            symbol = MathTex("\\div 10").next_to(arr,UP,buff=0.1).scale(0.65)
+            self.play(Create(arr),Write(symbol))
+
+            prev = example_text
+        text1 = Text("and so on",font_size=26).to_edge(RIGHT)
+        self.play(Write(text1))
+    
+    def ExpandedForm(self):
+        text = Text("Expanded Form",font_size=40).to_edge(UP)
+        self.play(Write(text))
+        example = Text("Example : 21.75",font_size=40).shift(UP*1)
+        self.play(Write(example))
+        expanded = MathTex("2 \\times 10","+ 1 \\times 1","+ 7 \\times \\frac{1}{10}","+ 5 \\times \\frac{1}{100}").scale(1).next_to(example,DOWN,buff=0.5).set_color(YELLOW)
+        self.play(Write(expanded))
+        self.wait(3)
 
     def Dec_addandsub(self):
-        intro_text = Text("Addtion and Subratction of Decimals").to_edge(UP)
+        intro_text = Text("Addition and Subtraction of Decimals").to_edge(UP)
         self.play(Write(intro_text))
-        example1 = MathTex("Example:", font_size=36).to_edge(LEFT).shift(UP*1,RIGHT*1)
+
+        # Rules for addition and subtraction of decimals
+        rules = [
+            "1. While adding or subtracting decimal numbers,\n   the digits in the same places must be added or subtracted\n",
+            "2. Decimal points must come one below the other\n",
+            "3. Decimal places may be made equal by placing\n   zeroes on the right side of the decimal number"
+        ]
+
+        rules_text = VGroup(*[Text(rule).scale(0.5).set_color(YELLOW) for rule in rules]).arrange(DOWN, aligned_edge=LEFT).to_edge(RIGHT)
+
+        # Example 1
+        example1 = MathTex("Example:", font_size=36).to_edge(LEFT).shift(UP * 1, RIGHT * 1)
         self.play(Write(example1))
-        var1 = MathTex("39.70").shift(UP*1)
-        var2 = MathTex("6.45").next_to(var1, DOWN)
+
+        var1 = MathTex("39.7").shift(LEFT * 4)
+        var2 = MathTex("16.45").next_to(var1, DOWN).shift(RIGHT * 0.15)
+        zero = MathTex("0").next_to(var1, RIGHT, buff=0.1).set_color(PINK)
         sign = MathTex("+").next_to(var2, LEFT)
-        line = Line(var2.get_right(), var2.get_right() + RIGHT * 2).shift(DOWN*0.5,LEFT*1.5)
-        line1 = Line(var2.get_right(), var2.get_right() + RIGHT * 2).shift(DOWN*1.5,LEFT*1.5)
-        self.play(Write(var1),Write(var2),Write(sign),Write(line),Write(line1))
-        res1 = MathTex("46.15").next_to(var2, DOWN*2)
+        line1 = Line(var2.get_right(), var2.get_right() + RIGHT * 2).shift(DOWN * 0.5, LEFT * 1.5)
+        line2 = Line(var2.get_right(), var2.get_right() + RIGHT * 2).shift(DOWN * 1.5, LEFT * 1.5)
+
+        self.play(Write(var1), Write(var2), Write(sign), Write(line1), Write(line2))
+        
+        # Write the rules
+        for rule_text in rules_text:
+            self.play(Write(rule_text))
+            self.wait(2)
+
+        self.play(Write(zero))
+
+        res1 = MathTex("56.15").next_to(var2, DOWN, buff=0.5)
         self.play(Write(res1))
         self.wait(2)
+
+        # Transition to subtraction
         sign1 = MathTex("-").next_to(var2, LEFT)
-        res2 = MathTex("33.25").next_to(var2, DOWN*2)
+        res2 = MathTex("23.25").next_to(var2, DOWN * 2)
+        
         self.play(FadeOut(res1))
-        self.play(Transform(sign,sign1))
+        self.play(Transform(sign, sign1))
         self.play(FadeIn(res2))
+        self.wait(2)
     
     def Dec_mul(self):
         text2 = Text("Multiplcation",font_size=30).to_edge(UP)
@@ -277,21 +375,59 @@ class fractionanim(AbstractAnim):
     
     def Rational(self):
         self.angleChoice=[TAU/4,TAU/4,TAU/4]
-        p10=cvo.CVO().CreateCVO("Rational number","").setPosition([-2,0,0])
-        p12=cvo.CVO().CreateCVO("Representation","p/q").setPosition([-5.5,0,0])
-        p13=cvo.CVO().CreateCVO("conditions","").setPosition([2.75,2,0])
+        p10=cvo.CVO().CreateCVO("Rational number","").setPosition([-3,0,0])
+        p12=cvo.CVO().CreateCVO("Representation","p/q").setPosition([0.5,2.5,0])
+        p13=cvo.CVO().CreateCVO("conditions","").setPosition([0.5,-2.5,0])
         p13onamelist=["p and q are integers","$q \\neq 0$"]
-        p11=cvo.CVO().CreateCVO("Examples","").setPosition([3,-1.5,0])
-        p11.setcircleradius(1.25)
-        p11.onameList=["-7/3","0","1/4","6/1"]
         p13.extendOname(p13onamelist)
         p10.cvolist.append(p12)
         p10.cvolist.append(p13)
-        p10.cvolist.append(p11)
         self.construct1(p10,p10)
+    
+    def EquivalentRationalNumbers(self):
+        # Introduction text
+        intro_text = Text("Equivalent Rational Numbers",font_size=36).to_edge(UP)
+        self.play(Write(intro_text))
+        self.wait(2)
 
-    def Rat_add(self):
-        intro_text = Text("Addition of Rational Numbers", font_size=36).to_edge(UP)
+        # Example 1: Showing 1/2 is equivalent to 2/4
+        example1_text = MathTex(r"\text{Example 1: } \frac{1}{2} \text{ and } \frac{2}{4}", font_size=36).to_edge(LEFT).shift(UP * 2)
+        self.play(Write(example1_text))
+        self.wait(2)
+
+        frac1 = MathTex(r"\frac{1}{2}", font_size=48).shift(LEFT * 1,UP*1)
+        frac2 = MathTex(r"\frac{2}{4}", font_size=48).shift(RIGHT * 3,UP*1)
+
+        arrow1 = Arrow(frac1.get_right(), frac2.get_left(), buff=0.1)
+        explanation1 = Text("Multiply numerator and denominator by 2", font_size=24).next_to(arrow1, UP, buff=0.5)
+
+        self.play(Write(frac1), Write(frac2))
+        self.wait(1)
+        self.play(GrowArrow(arrow1), Write(explanation1))
+        self.wait(2)
+
+        # Example 3: Showing 4/6 is equivalent to 2/3
+        example3_text = MathTex(r"\text{Example 2: } \frac{-4}{6} \text{ and } \frac{-2}{3}", font_size=36).to_edge(LEFT).shift(DOWN * 0.5)
+        self.play(Write(example3_text))
+        self.wait(2)
+
+        frac5 = MathTex(r"\frac{-4}{6}", font_size=48).shift(LEFT * 1,DOWN*1)
+        frac6 = MathTex(r"\frac{-2}{3}", font_size=48).shift(RIGHT * 3,DOWN*1)
+
+        arrow3 = Arrow(frac5.get_right(), frac6.get_left(), buff=0.1)
+        explanation3 = Text("Divide numerator and denominator by 2", font_size=24).next_to(arrow3, UP, buff=0.5)
+
+        self.play(Write(frac5), Write(frac6))
+        self.wait(1)
+        self.play(GrowArrow(arrow3), Write(explanation3))
+        self.wait(2)
+
+        # Concluding text
+        conclusion_text1 = MathTex("\\text{Hence }\\frac{1}{2}\\equiv\\frac{2}{4} \\text{ and } \\frac{-4}{6}\\equiv\\frac{-2}{3}", font_size=40).to_edge(DOWN).shift(UP*0.5).set_color(YELLOW)
+        self.play(Write(conclusion_text1))
+
+    def Rat_addsub(self):
+        intro_text = Text("Addition and Subtraction of Rational Numbers", font_size=36).to_edge(UP)
         self.play(Write(intro_text))
         example_text = MathTex("Example: (\\frac{1}{3} + \\frac{2}{5})", font_size=36).shift(UP*2,LEFT*1.5)
         self.play(Write(example_text))
@@ -299,62 +435,45 @@ class fractionanim(AbstractAnim):
         fraction1 = MathTex(r"\frac{1}{3} + \frac{2}{5}").next_to(example_text,DOWN).shift(RIGHT*1)
         self.play(Write(fraction1))
         self.wait(2)
-        step2_text = Text("Step 1: Find LCM of denominators", font_size=30).next_to(fraction1, DOWN).shift(DOWN*1.5)
-        self.play(Write(step2_text))
-        self.wait(2)
-        common_denominator = MathTex(r"\text{LCM: } 15").next_to(step2_text, DOWN)
+        steps = VGroup(
+            Text("Step 1: Find LCM of denominators", font_size=30),
+            Text("Step 2: Divide the LCM with each of the denominators seperately", font_size=30),
+            Text("Step 3: Multiply with corresponding numerators and denominators", font_size=30),
+            Text("Step 4: Add/Subtract the numerators", font_size=30) 
+                            ).next_to(fraction1, DOWN).shift(DOWN*1.5).set_color(YELLOW)
+        self.play(Write(steps[0]))
+        self.wait(1)
+        common_denominator = MathTex(r"\text{LCM: } 15").next_to(steps[0], DOWN)
         self.play(Write(common_denominator))
         self.wait(2)
-        converted_fractions = MathTex(r"\frac{1}{3} = \frac{5}{15}, \frac{2}{5} = \frac{6}{15}").shift(UP*0.5,LEFT*1)
-        self.play(Transform(fraction1, converted_fractions))
+        converted_fractions = VGroup(
+            MathTex(r"15 \div 3 = 5",r"\text{ , }15 \div 5 = 3"),
+            MathTex(r"\frac{1\times 5}{3\times 5} + \frac{2\times 3}{5\times 3}"),
+            MathTex(r"\frac{5}{15} + \frac{6}{15} = \frac{5 + 6}{15}"),
+            MathTex(r"= \frac{11}{15}")
+            ).shift(UP*0.5,LEFT*1)
+        self.play(Transform(steps[0], steps[1]))
         self.wait(2)
-        self.play(FadeOut(step2_text,common_denominator))
-        step3_text = Text("Step 2: Add the numerators", font_size=30).next_to(fraction1, DOWN).shift(DOWN*1)
-        self.play(Write(step3_text))
+        self.play(Transform(fraction1, converted_fractions[0]))
         self.wait(2)
-        addition = MathTex(r"\frac{5}{15} + \frac{6}{15} = \frac{5 + 6}{15}").shift(UP*0.5)
-        self.play(Transform(fraction1, addition))
+        self.play(Transform(steps[0], steps[2]))
         self.wait(2)
-        result = MathTex(r"= \frac{11}{15}").shift(UP*0.5)
-        self.play(Transform(fraction1, result))
+        self.play(Transform(fraction1, converted_fractions[1]))
         self.wait(2)
-
-    def Rat_sub(self):
-        intro_text = Text("Subtraction of Rational Numbers", font_size=36).to_edge(UP)
-        self.play(Write(intro_text))
-        example_text = MathTex("Example: (\\frac{2}{3} - \\frac{4}{7})", font_size=36).shift(UP*2,LEFT*1.5)
-        self.play(Write(example_text))
+        self.play(Transform(steps[0], steps[3]))
         self.wait(2)
-        fraction1 = MathTex(r"\frac{2}{3} - \frac{4}{7}").next_to(example_text,DOWN).shift(RIGHT*1)
-        self.play(Write(fraction1))
+        self.play(Transform(fraction1, converted_fractions[2]))
         self.wait(2)
-        step2_text = Text("Step 1: Find LCM of denominators", font_size=30).next_to(fraction1, DOWN).shift(DOWN*1.5)
-        self.play(Write(step2_text))
+        self.play(Transform(fraction1, converted_fractions[3]))
         self.wait(2)
-        common_denominator = MathTex(r"\text{LCM: } 21").next_to(step2_text, DOWN)
-        self.play(Write(common_denominator))
-        self.wait(2)
-        converted_fractions = MathTex(r"\frac{2}{3} = \frac{6}{21}, \frac{4}{7} = \frac{12}{21}").shift(UP*0.5,LEFT*1)
-        self.play(Transform(fraction1, converted_fractions))
-        self.wait(2)
-        self.play(FadeOut(step2_text,common_denominator))
-        step3_text = Text("Step 2: Subtract the numerators", font_size=30).next_to(fraction1, DOWN).shift(DOWN*1)
-        self.play(Write(step3_text))
-        self.wait(2)
-        addition = MathTex(r"\frac{6}{21} - \frac{12}{21} = \frac{6 - 12}{21}").shift(UP*0.5)
-        self.play(Transform(fraction1, addition))
-        self.wait(2)
-        result = MathTex(r"= \frac{-6}{21}").shift(UP*0.5)
-        self.play(Transform(fraction1, result))
-        self.wait(2)
-
+        
     def SetDeveloperList(self):
-        self.DeveloperList="Sindhu"
+        self.DeveloperList="A.Sindhu sri"
     
     def SetSourceCodeFilename(self):
         self.SourceCodeFilename="Grade7FractionsDecimalsandRationalnumbers.py"
 
               
 if __name__ == "__main__":
-    scene = fractionanim()
+    scene = Fractions()
     scene.render()
