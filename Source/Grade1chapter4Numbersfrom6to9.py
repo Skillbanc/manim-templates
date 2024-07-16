@@ -8,6 +8,8 @@ class Grade1chapter4Numbersfrom6to9(AbstractAnim):
     def construct(self):
         self.RenderSkillbancLogo()
         self.fadeOutCurrentScene()
+        self.c1c2()
+        self.fadeOutCurrentScene()
         self.WriteNumbersWithWords()
         self.fadeOutCurrentScene()
         self.Matching()
@@ -21,7 +23,29 @@ class Grade1chapter4Numbersfrom6to9(AbstractAnim):
         self.GithubSourceCodeReference()
 
         
+    def c1c2(self):
+        self.isRandom = False
+        self.positionChoice = [[0, 2.5, 0],[-6,0,0],[-3,-2,0],[3,-2,0], [6, 0, 0]]
+        p10 = cvo.CVO().CreateCVO("Numbers from 6 to 9", "Numbers")
+        p11 = cvo.CVO().CreateCVO("", "6")
+        p12 = cvo.CVO().CreateCVO("", "7")
+        p13 = cvo.CVO().CreateCVO("", "8")
+        p14 = cvo.CVO().CreateCVO("", "9")
 
+        p10.setcircleradius(1.25)
+        p11.setcircleradius(1.25)
+        p12.setcircleradius(1.25)
+        p13.setcircleradius(1.25)
+        p14.setcircleradius(1.25) 
+        
+        p10.cvolist.append(p11)
+        p10.cvolist.append(p12) 
+        p10.cvolist.append(p13)
+        p10.cvolist.append(p14)
+
+        self.construct1(p10, p10)
+        self.wait(1)
+        self.fadeOutCurrentScene()
 
     def WriteNumbersWithWords(self):
         # Define the numbers and their words

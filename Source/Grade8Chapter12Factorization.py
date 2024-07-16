@@ -2,7 +2,7 @@ from manim import *
 from AbstractAnim import AbstractAnim
 import cvo
 
-class Factorization(AbstractAnim):
+class Grade8Chapter12Factorization(AbstractAnim):
 
     def construct(self):
         self.RenderSkillbancLogo()
@@ -28,8 +28,9 @@ class Factorization(AbstractAnim):
         self.divisionofalgebraicexpression()
         self.fadeOutCurrentScene()
         self.GithubSourceCodeReference()
-
+        
     def Introduction(self):
+
         self.isRandom=False
         p10=cvo.CVO().CreateCVO("Factorization","").setPosition([-4.5,-1.5,0])
         p11=cvo.CVO().CreateCVO("definition","The process of breaking down an expression into a product of simpler factors.").setPosition([0.5,0.5,0]).setangle(-TAU/4)
@@ -352,14 +353,13 @@ class Factorization(AbstractAnim):
         self.wait(1)
 
 
+    def SetDeveloperList(self):
+        self.DeveloperList="Bommi Yaswanth"
 
-    def SetDeveloperList(self):  
-        self.DeveloperList="yaswanth"
-
-        
     def SetSourceCodeFileName(self):
-        self.SourceCodeFileName="Factorisation.py"
+        self.SourceCodeFileName="Grade8Chapter12Factoeization.py"
+
 
 if __name__ == "__main__":
-    scene = Factorization()
+    scene = Grade8Chapter12Factorization()
     scene.render()

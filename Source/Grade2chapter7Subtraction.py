@@ -75,100 +75,302 @@ class Grade2Chapter7Subtraction(AbstractAnim):
 
 
     def VerticalSubtraction(self):
-        # Title
-        title = Tex("Subtract the numbers").to_edge(UP)
+        # self.play(Write(NumberPlane()))
+        title = Text("Subtract the numbers given below:", font_size=25)
+        title.move_to([-3, 3, 0])
         self.play(Write(title))
+        self.wait(1)
+        # First problem
+        num = Text("4 8", font_size=40)
+        num.move_to([0, 1.3, 0])
+        self.play(Write(num))
+        self.wait(1.5)
+
+        # Minus sign
+        minus = Text("-", font_size=60)
+        minus.move_to([-0.8, 0.1, 0])
+        self.play(Write(minus))
+
+        # Second number
+        num0 = Text("2 6", font_size=40)
+        num0.move_to([0, 0.2, 0])
+        self.play(Write(num0))
+        self.wait(1)
+
+        # Calculation details
+        calculation = Text("Calculation:", font_size=30)
+        calculation.move_to([4,2,0])
+        t1 = Text("8 - 6 = 2", font_size=30)
+        t1.move_to([4,1.1,0])
+        t2 = Text("4 - 2 = 2", font_size=30)
+        t2.move_to([4,0,0])
         
-        # Subtraction 48 - 26
-        subtraction1 = self.vertical_subtraction("48", "26", "22")
-        subtraction1.move_to([-4,0,0])
+        # Result positions
+        result1_position = [0.2, -0.7, 0]
+        result2_position = [-0.2, -0.7, 0]
 
-        # Subtraction 59 - 24
-        subtraction2 = self.vertical_subtraction("59", "24", "35")
-        subtraction2.move_to([-1,0,0])
+        # Line above and below result
+        line_above = Line(start=[-0.8, 0, 0], end=[0.7, 0, 0], color=WHITE).move_to([result1_position[0], result1_position[1] + 0.4, 0])
+        line_below = Line(start=[-0.8, 0, 0], end=[0.7, 0, 0], color=WHITE).move_to([result1_position[0], result1_position[1] - 0.4, 0])
 
-        # Subtraction 68 - 20
-        subtraction3 = self.vertical_subtraction("68", "20", "48")
-        subtraction3.move_to([2,0,0])
-
-        # Subtraction 99 - 69
-        subtraction4 = self.vertical_subtraction("99", "69", "30")
-        subtraction4.move_to([5,0,0])
-
-        # Animate sequentially
-        self.play(Create(subtraction1))
-        self.wait(1)
-        self.play(Create(subtraction2))
-        self.wait(1)
-        self.play(Create(subtraction3))
-        self.wait(1)
-        self.play(Create(subtraction4))
-        self.wait(1)
+        # Draw lines
+        self.play(Create(line_above))
+        self.play(Create(line_below))
         
-    def vertical_subtraction(self, top_number, bottom_number, result):
+        # Results
+        result1 = Text(" 2", font_size=40)
+        result1.move_to(result1_position)
+        result2 = Text(" 2", font_size=40)
+        result2.move_to(result2_position)
         
-        numbers = VGroup(
-        Tex(top_number).scale(1.1),
-        Tex(bottom_number).scale(1.1), 
-        Tex("\\underline{\\phantom{0000}}").scale(2), 
-        Tex(result).scale(1.1),               
-        Tex("\\underline{\\phantom{0000}}").scale(2), 
-        Tex("-").scale(1.1)
-        ).arrange(DOWN, buff=0.2) 
-    
-     
-       
-        numbers.move_to(ORIGIN)
+        self.play(Write(calculation))
+        self.wait(1)
+        self.play(Write(t1))
+        self.wait(2)
+        self.play(Write(result1))
+        self.wait(1)
+        self.play(Write(t2))
+        self.wait(2)
+        self.play(Write(result2))
+        self.wait(3)
+        self.play(FadeOut(num), FadeOut(minus),FadeOut(num0), FadeOut(line_above),FadeOut(line_below),FadeOut(calculation),FadeOut(t1), FadeOut(t2),FadeOut(result1),FadeOut(result2))
 
-        numbers[1].next_to(numbers[0],DOWN)
-        numbers[5].next_to(numbers[1],LEFT)
+    # self.play(Write(NumberPlane()))
+        title = Text("Subtract the numbers given below:", font_size=25)
+        title.move_to([-3, 3, 0])
+        self.play(Write(title))
+        self.wait(1)
+        # First problem
+        num = Text("5 9", font_size=40)
+        num.move_to([0, 1.3, 0])
+        self.play(Write(num))
+        self.wait(1.5)
 
-        return numbers
+        # Minus sign
+        minus = Text("-", font_size=60)
+        minus.move_to([-0.8, 0.1, 0])
+        self.play(Write(minus))
+
+        # Second number
+        num0 = Text("2 4", font_size=40)
+        num0.move_to([0, 0.2, 0])
+        self.play(Write(num0))
+        self.wait(1)
+
+        # Calculation details
+        calculation = Text("Calculation:", font_size=30)
+        calculation.move_to([4,2,0])
+        t1 = Text("9 - 4 = 5", font_size=30)
+        t1.move_to([4,1.1,0])
+        t2 = Text("5 - 2 = 3", font_size=30)
+        t2.move_to([4,0,0])
+        
+        # Result positions
+        result1_position = [0.2, -0.7, 0]
+        result2_position = [-0.2, -0.7, 0]
+
+        # Line above and below result
+        line_above = Line(start=[-0.8, 0, 0], end=[0.7, 0, 0], color=WHITE).move_to([result1_position[0], result1_position[1] + 0.4, 0])
+        line_below = Line(start=[-0.8, 0, 0], end=[0.7, 0, 0], color=WHITE).move_to([result1_position[0], result1_position[1] - 0.4, 0])
+
+        # Draw lines
+        self.play(Create(line_above))
+        self.play(Create(line_below))
+        
+        # Results
+        result1 = Text(" 5", font_size=40)
+        result1.move_to(result1_position)
+        result2 = Text(" 3", font_size=40)
+        result2.move_to(result2_position)
+        
+        self.play(Write(calculation))
+        self.wait(1)
+        self.play(Write(t1))
+        self.wait(2)
+        self.play(Write(result1))
+        self.wait(1)
+        self.play(Write(t2))
+        self.wait(2)
+        self.play(Write(result2))
+        self.wait(3)
+        self.play(FadeOut(num), FadeOut(minus),FadeOut(num0), FadeOut(line_above),FadeOut(line_below),FadeOut(calculation),FadeOut(t1), FadeOut(t2),FadeOut(result1),FadeOut(result2))
+
+    # self.play(Write(NumberPlane()))
+        title = Text("Subtract the numbers given below:", font_size=25)
+        title.move_to([-3, 3, 0])
+        self.play(Write(title))
+        self.wait(1)
+        # First problem
+        num = Text("6 8", font_size=40)
+        num.move_to([0, 1.3, 0])
+        self.play(Write(num))
+        self.wait(1.5)
+
+        # Minus sign
+        minus = Text("-", font_size=60)
+        minus.move_to([-0.8, 0.1, 0])
+        self.play(Write(minus))
+
+        # Second number
+        num0 = Text("2 0", font_size=40)
+        num0.move_to([0, 0.2, 0])
+        self.play(Write(num0))
+        self.wait(1)
+
+        # Calculation details
+        calculation = Text("Calculation:", font_size=30)
+        calculation.move_to([4,2,0])
+        t1 = Text("8 - 0 = 8", font_size=30)
+        t1.move_to([4,1.1,0])
+        t2 = Text("6 - 2 = 4", font_size=30)
+        t2.move_to([4,0,0])
+        
+        # Result positions
+        result1_position = [0.2, -0.7, 0]
+        result2_position = [-0.2, -0.7, 0]
+
+        # Line above and below result
+        line_above = Line(start=[-0.8, 0, 0], end=[0.7, 0, 0], color=WHITE).move_to([result1_position[0], result1_position[1] + 0.4, 0])
+        line_below = Line(start=[-0.8, 0, 0], end=[0.7, 0, 0], color=WHITE).move_to([result1_position[0], result1_position[1] - 0.4, 0])
+
+        # Draw lines
+        self.play(Create(line_above))
+        self.play(Create(line_below))
+        
+        # Results
+        result1 = Text(" 8", font_size=40)
+        result1.move_to(result1_position)
+        result2 = Text(" 4", font_size=40)
+        result2.move_to(result2_position)
+        
+        self.play(Write(calculation))
+        self.wait(1)
+        self.play(Write(t1))
+        self.wait(2)
+        self.play(Write(result1))
+        self.wait(1)
+        self.play(Write(t2))
+        self.wait(2)
+        self.play(Write(result2))
+        self.wait(3)
+        self.play(FadeOut(num), FadeOut(minus),FadeOut(num0), FadeOut(line_above),FadeOut(line_below),FadeOut(calculation),FadeOut(t1), FadeOut(t2),FadeOut(result1),FadeOut(result2))
+
+    # self.play(Write(NumberPlane()))
+        title = Text("Subtract the numbers given below:", font_size=25)
+        title.move_to([-3, 3, 0])
+        self.play(Write(title))
+        self.wait(1)
+        # First problem
+        num = Text("9 9", font_size=40)
+        num.move_to([0, 1.3, 0])
+        self.play(Write(num))
+        self.wait(1.5)
+
+        # Minus sign
+        minus = Text("-", font_size=60)
+        minus.move_to([-0.8, 0.1, 0])
+        self.play(Write(minus))
+
+        # Second number
+        num0 = Text("6 9", font_size=40)
+        num0.move_to([0, 0.2, 0])
+        self.play(Write(num0))
+        self.wait(1)
+
+        # Calculation details
+        calculation = Text("Calculation:", font_size=30)
+        calculation.move_to([4,2,0])
+        t1 = Text("9 - 9 = 0", font_size=30)
+        t1.move_to([4,1.1,0])
+        t2 = Text("9 - 6 = 3", font_size=30)
+        t2.move_to([4,0,0])
+        
+        # Result positions
+        result1_position = [0.2, -0.7, 0]
+        result2_position = [-0.2, -0.7, 0]
+
+        # Line above and below result
+        line_above = Line(start=[-0.8, 0, 0], end=[0.7, 0, 0], color=WHITE).move_to([result1_position[0], result1_position[1] + 0.4, 0])
+        line_below = Line(start=[-0.8, 0, 0], end=[0.7, 0, 0], color=WHITE).move_to([result1_position[0], result1_position[1] - 0.4, 0])
+
+        # Draw lines
+        self.play(Create(line_above))
+        self.play(Create(line_below))
+        
+        # Results
+        result1 = Text(" 0", font_size=40)
+        result1.move_to(result1_position)
+        result2 = Text(" 3", font_size=40)
+        result2.move_to(result2_position)
+        
+        self.play(Write(calculation))
+        self.wait(1)
+        self.play(Write(t1))
+        self.wait(2)
+        self.play(Write(result1))
+        self.wait(1)
+        self.play(Write(t2))
+        self.wait(2)
+        self.play(Write(result2))
+        self.wait(3)
+        self.play(FadeOut(num), FadeOut(minus),FadeOut(num0), FadeOut(line_above),FadeOut(line_below),FadeOut(calculation),FadeOut(t1), FadeOut(t2),FadeOut(result1),FadeOut(result2))
 
     def HorizontalSubtraction(self):
+        self.display_horizontal_subtraction("54", "31", ["4 - 1 = 3", "5 - 3 = 2"])
+        self.display_horizontal_subtraction("35", "23", ["5 - 3 = 2", "3 - 2 = 1"])
+        self.display_horizontal_subtraction("65", "24", ["5 - 4 = 1", "6 - 2 = 4"])
+        self.display_horizontal_subtraction("76", "30", ["6 - 0 = 6", "7 - 3 = 4"])
+
+    def display_horizontal_subtraction(self, top_number, bottom_number, calculations):
         # Title
-        title = Tex("Subtract the numbers given.").to_edge(UP)
+        title = Text("Subtract the numbers given below:", font_size=25)
+        title.to_edge(UP)
         self.play(Write(title))
         self.wait(1)
 
-        # Subtraction 54 - 31
-        subtraction1 = self.horizontal_subtraction("54", "31", "23")
-        subtraction1.move_to(UP * 1)
-
-        # Subtraction 35 - 23
-        subtraction2 = self.horizontal_subtraction("35", "23", "12")
-        subtraction2.move_to(DOWN * 0)
-
-        # Subtraction 65 - 24
-        subtraction3 = self.horizontal_subtraction("65", "24", "41")
-        subtraction3.move_to(DOWN * 1)
-
-        # Subtraction 76 - 30
-        subtraction4 = self.horizontal_subtraction("76", "30", "46")
-        subtraction4.move_to(DOWN * 2)
-
-        # Animate sequentially
-        self.play(Create(subtraction1))
-        self.wait(1)
-        self.play(Create(subtraction2))
-        self.wait(1)
-        self.play(Create(subtraction3))
-        self.wait(1)
-        self.play(Create(subtraction4))
+        # Display top number
+        num = Text(top_number, font_size=40)
+        num.move_to([-2, 0, 0])
+        self.play(Write(num))
         self.wait(1)
 
-    def horizontal_subtraction(self, top_number, bottom_number, result):
-        numbers = VGroup(
-            Tex(top_number).scale(1.5),
-            Tex("-").scale(1.5),
-            Tex(bottom_number).scale(1.5),
-            Tex("=").scale(1.5),
-            Tex(result).scale(1.5)
-        ).arrange(RIGHT, buff=0.5)
+        # Display minus symbol
+        minus = Text("-", font_size=60)
+        self.play(Write(minus.next_to(num, RIGHT, buff=0.5)))
+        self.wait(1)
 
-        numbers.move_to(ORIGIN)
+        # Display bottom number in the middle
+        num0 = Text(bottom_number, font_size=40)
+        num0.move_to([0, 0, 0])
+        self.play(Write(num0))
+        self.wait(1)
 
-        return numbers
+        # Display equal symbol
+        equals = Text("=", font_size=60)
+        self.play(Write(equals.next_to(num0, RIGHT, buff=0.5)))
+        self.wait(1)
+
+        # Calculate and display the result
+        result_value = eval(f"{top_number} - {bottom_number}")
+        result = Text(str(result_value), font_size=40)
+        self.play(Write(result.next_to(equals, RIGHT, buff=0.5)))
+        self.wait(1.5)
+
+        # Display calculation steps
+        calculation = Text("Calculation:", font_size=30)
+        calculation.move_to([0, -1.5, 0])  # Move calculation part up
+        self.play(Write(calculation))
+        self.wait(1)
+
+        for i, calc in enumerate(calculations):
+            calc_text = Text(calc, font_size=30)
+            calc_text.next_to(calculation, DOWN, buff=0.5).shift(DOWN * i * 0.6)
+            self.play(Write(calc_text))
+            self.wait(2)
+
+        # Fade out all elements
+        self.play(*[FadeOut(mob) for mob in self.mobjects])
+        self.wait(1)
 
     
     def SymbolFillScene(self):
@@ -256,27 +458,32 @@ class Grade2Chapter7Subtraction(AbstractAnim):
             # Display the given numbers in tens and ones place
             num1_tens = Text(nums[0], font_size=24, color=BLUE).move_to(pos)
             num1_ones = Text(nums[1], font_size=24, color=BLUE).next_to(num1_tens, RIGHT, buff=0.5)
-            minus_sign = Text("-", font_size=24, color=BLUE).next_to(num1_tens, DOWN * 1.5)
-            num2_tens = Text(nums[2], font_size=24, color=BLUE).next_to(minus_sign, RIGHT, buff=0.2)
+            
+            # Adjust the positions to place tens of num2 below tens of num1 with a 0.5 unit gap
+            num2_tens = Text(nums[2], font_size=24, color=BLUE).next_to(num1_tens, DOWN, buff=0.5)
+            minus_sign = Text("-", font_size=24, color=BLUE).next_to(num2_tens, LEFT, buff=0.2)
+            
             box = Square(side_length=0.4, color=PINK).next_to(num2_tens, RIGHT, buff=0.5)
-            line = Line(LEFT, RIGHT).next_to(minus_sign, DOWN, buff=0.8).scale(2)
-            result_tens = Text(results[0], font_size=24, color=BLUE).next_to(line, DOWN, buff=0.5)
+            line1 = Line(LEFT, RIGHT).next_to(num2_tens, DOWN, buff=0.3).scale(1)
+            result_tens = Text(results[0], font_size=24, color=BLUE).next_to(line1, DOWN, buff=0.3)
             result_ones = Text(results[1], font_size=24, color=BLUE).next_to(result_tens, RIGHT, buff=0.5)
+            line2 = Line(LEFT, RIGHT).next_to(result_tens, DOWN, buff=0.3).scale(1)
 
             self.play(Write(num1_tens), Write(num1_ones))
             self.wait(1)
             self.play(Write(minus_sign), Write(num2_tens), Create(box))
             self.wait(1)
-            self.play(Create(line))
+            self.play(Create(line1))
             self.wait(1)
             self.play(Write(result_tens), Write(result_ones))
+            self.wait(1)
+            self.play(Create(line2))
             self.wait(1)
 
             # Display the box value
             box_value_text = Text(box_value, font_size=24, color=BLUE).move_to(box.get_center())
             self.play(Write(box_value_text))
             self.wait(2)
-
 
     def series_problem(self):
         title = Text("Observe the series of numbers. Write the next two numbers in each row.", font_size=24)
