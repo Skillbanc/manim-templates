@@ -228,7 +228,7 @@ class AdditionAnim(AbstractAnim):
         
     
     def AdditionExample4(self):
-        fraction_heading = MathTex("Example 4: ", r" 472 + 548", font_size=36).to_edge(UP*3 + LEFT)
+        fraction_heading = MathTex("Example 4: ", r" 543 + 698", font_size=36).to_edge(UP*3 + LEFT)
         num1 = Tex("5 4 3", font_size=70).shift(LEFT * 3)
         num2 = Tex("6 9 8", font_size=70).shift(DOWN * 0.6 + LEFT * 3)
         plus_sign = Tex("+").scale(1.5).shift(DOWN * 0.6 + LEFT * 4.1)
