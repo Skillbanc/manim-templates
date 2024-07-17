@@ -28,7 +28,7 @@ class Grade1Chapter15Money(AbstractAnim):
     def Introduce_currency(self):
         self.angleChoice=[TAU/4,TAU/4]
         p10=cvo.CVO().CreateCVO("Currency","").setPosition([-3,0,0])
-        p11=cvo.CVO().CreateCVO("Coins","").setPosition([0,2,0])
+        p11=cvo.CVO().CreateCVO("Coins","").setPosition([1,2,0])
         p12=cvo.CVO().CreateCVO("Notes","").setPosition([0,-2,0])
         p10.cvolist.append(p11)
         p10.cvolist.append(p12)
@@ -88,8 +88,15 @@ class Grade1Chapter15Money(AbstractAnim):
         
         # 2 Rupee in Circle = 1 Rupee of two Circles
         equation_1 = self.create_equation("₹2",["₹1","₹1"], use_circle=True)
+        #equation_2 = self.create_equation(["₹1","₹1"], use_circle=True)
+        #explanation = Tex("A frog jumped 3 steps in a single jump. It jumped 6 times.",font_size=35).next_to(number_line, DOWN,buff=1)
+        #title1 = Text("Two Rupee coin is equivalent to two one rupee coins", font_size=32).set_color(BLUE).to_edge(DOWN)
+        self.play(Write(title))
         self.play(FadeIn(equation_1))
         self.wait(2)
+        #self.play(FadeIn(equation_2))
+        self.wait(1)
+        #self.play(Write(title1))
         self.play(FadeOut(equation_1))
 
         # 5 Rupee in Circle = 1 Rupee of five Circles

@@ -23,7 +23,7 @@ class Grade6Chapter2WholenumbersTopic1(AbstractAnim):
         p11=cvo.CVO().CreateCVO("Denoted by","W")
         p12=cvo.CVO().CreateCVO("Representation", "W={0,1,2,3....}")
         p10.cvolist.append(p11)
-        p11.cvolist.append(p12)
+        p10.cvolist.append(p12)
         self.construct1(p10,p10)
         #self.construct1(p13,p13)
         #self.play(Create(CurvedArrow(p11.pos,p13.pos)),Create(CurvedArrow(p12.pos,p13.pos)))

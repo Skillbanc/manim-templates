@@ -12,7 +12,7 @@ from AbstractAnim import AbstractAnim
 import cvo
 
 
-class Grade8Chapter15PlayingWithNumbersTopic1(AbstractAnim):
+class Grade8Chapter15PlayingWithNumbers(AbstractAnim):
 
     def construct(self):
         self.RenderSkillbancLogo()
@@ -32,8 +32,8 @@ class Grade8Chapter15PlayingWithNumbersTopic1(AbstractAnim):
         self.fadeOutCurrentScene()
         self.DivisibilityRule5()
         self.fadeOutCurrentScene()
-        self.Introduction1()
-        self.fadeOutCurrentScene()
+        #self.Introduction1()
+        #self.fadeOutCurrentScene()
         self.DivisibilityRule6()
         self.fadeOutCurrentScene()
         self.DivisibilityRule7()
@@ -42,8 +42,8 @@ class Grade8Chapter15PlayingWithNumbersTopic1(AbstractAnim):
         self.fadeOutCurrentScene()
         self.DivisibilityRule9()
         self.fadeOutCurrentScene()
-        self.Introduction2()
-        self.fadeOutCurrentScene()
+        #self.Introduction2()
+        #self.fadeOutCurrentScene()
         self.DivisibilityRule10()
         self.fadeOutCurrentScene()
         self.DivisibilityRule11()
@@ -60,6 +60,7 @@ class Grade8Chapter15PlayingWithNumbersTopic1(AbstractAnim):
     
     
     def Playing_numbers(self):
+         self.isRandom = False
         #  p1=cvo.CVO().CreateCVO("o1name","o2name","c1name","c2name")
          p10=cvo.CVO().CreateCVO("Place Value","").setPosition([0,2.5,0])
          p11=cvo.CVO().CreateCVO("Example","64").setPosition([4,2,0])
@@ -74,9 +75,37 @@ class Grade8Chapter15PlayingWithNumbersTopic1(AbstractAnim):
          p11.cvolist.append(p13)
          
          self.construct1(p10,p10)
+         self.fadeOutCurrentScene()
+
+         title = Text("Addition").to_edge(UP)
+         self.play(Write(title))
+
+         examples = [
+            r"32\quad \text{example:}\quad 30+2(thirty two)",
+            r"76 \quad \text{example:} \quad 70+6(seventy six)",
+            r"22 \quad \text{example:} \quad 20+2(twenty two)",
+            r"108 \quad \text{example:}\quad 100+8(one hundred and eight)"
+         ]
+         example1 = MathTex(examples[0]).scale(0.8).next_to(title, DOWN, buff=1)
+         example2 = MathTex(examples[1]).scale(0.8).next_to(example1, DOWN, aligned_edge=LEFT, buff=0.5)
+         example3 = MathTex(examples[2]).scale(0.8).next_to(example2, DOWN, aligned_edge=LEFT, buff=0.5)
+         example4 = MathTex(examples[3]).scale(0.8).next_to(example3, DOWN, aligned_edge=LEFT, buff=0.5)
+
+         self.play(Write(example1))
+         self.wait(1)
+         self.play(Write(example2))
+         self.wait(1)
+         self.play(Write(example3))
+         self.wait(1)
+         self.play(Write(example4))
+         self.wait(1)
+
+         self.wait(3)
+          
          
 
     def Expanded_Form(self):
+         self.isRandom = False
         #  p1=cvo.CVO().CreateCVO("o1name","o2name","c1name","c2name")
          p10=cvo.CVO().CreateCVO("Expanded Form","").setPosition([0,2.5,0])
          p11=cvo.CVO().CreateCVO("Example","64").setPosition([4,2,0])
@@ -91,6 +120,32 @@ class Grade8Chapter15PlayingWithNumbersTopic1(AbstractAnim):
          p12.cvolist.append(p13)
          
          self.construct1(p10,p10)
+         self.fadeOutCurrentScene()
+
+         title = Text("Addition").to_edge(UP)
+         self.play(Write(title))
+
+         examples = [
+            r"32\quad \text{example:}\quad (10*3)+(2)=thirty two",
+            r"76 \quad \text{example:} \quad (10*7)+(6)=seventy six",
+            r"22 \quad \text{example:} \quad (10*2)+(2)=twenty two",
+            r"108 \quad \text{example:}\quad (10*10)+(8)=one hundred and eight"
+         ]
+         example1 = MathTex(examples[0]).scale(0.8).next_to(title, DOWN, buff=1)
+         example2 = MathTex(examples[1]).scale(0.8).next_to(example1, DOWN, aligned_edge=LEFT, buff=0.5)
+         example3 = MathTex(examples[2]).scale(0.8).next_to(example2, DOWN, aligned_edge=LEFT, buff=0.5)
+         example4 = MathTex(examples[3]).scale(0.8).next_to(example3, DOWN, aligned_edge=LEFT, buff=0.5)
+
+         self.play(Write(example1))
+         self.wait(1)
+         self.play(Write(example2))
+         self.wait(1)
+         self.play(Write(example3))
+         self.wait(1)
+         self.play(Write(example4))
+         self.wait(1)
+
+         self.wait(3)
 
 
     def create_animation(self):
@@ -120,8 +175,8 @@ class Grade8Chapter15PlayingWithNumbersTopic1(AbstractAnim):
         self.isRandom = False
         p10=cvo.CVO().CreateCVO("Playing With Numbers","")
         p11=cvo.CVO().CreateCVO("Divisibility Rules", "")
-        p11.extendOname(["2","3","4","5"])
-        p11.setcircleradius(1.5)
+        p11.extendOname(["2","3","4","5","6","7","8","9","10","11","12"])
+        p11.setcircleradius(2.0)
         p10.cvolist.append(p11)
         self.construct1(p10,p10)
 
@@ -193,7 +248,7 @@ class Grade8Chapter15PlayingWithNumbersTopic1(AbstractAnim):
         #self.play(Create(CurvedArrow(p11.pos,p13.pos)),Create(CurvedArrow(p12.pos,p13.pos)))
         #self.play()
 
-    def Introduction1(self):
+    """def Introduction1(self):
         self.setNumberOfCirclePositions(2)
         self.angleChoice = [-TAU/4]
         self.isRandom = False
@@ -202,7 +257,7 @@ class Grade8Chapter15PlayingWithNumbersTopic1(AbstractAnim):
         p11.extendOname(["6","7","8","9"])
         p11.setcircleradius(1.5)
         p10.cvolist.append(p11)
-        self.construct1(p10,p10)
+        self.construct1(p10,p10)"""
 
     def DivisibilityRule6(self):
         self.setNumberOfCirclePositions(7)
@@ -279,17 +334,6 @@ class Grade8Chapter15PlayingWithNumbersTopic1(AbstractAnim):
         #self.construct1(p13,p13)
         #self.play(Create(CurvedArrow(p11.pos,p13.pos)),Create(CurvedArrow(p12.pos,p13.pos)))
         #self.play()
-
-    def Introduction2(self):
-        self.setNumberOfCirclePositions(2)
-        self.angleChoice = [-TAU/4]
-        self.isRandom = False
-        p10=cvo.CVO().CreateCVO("Playing With Numbers","")
-        p11=cvo.CVO().CreateCVO("Divisibility Rules", "")
-        p11.extendOname(["10","11","12"])
-        p11.setcircleradius(1.5)
-        p10.cvolist.append(p11)
-        self.construct1(p10,p10)
 
 
     def DivisibilityRule10(self):
@@ -393,9 +437,9 @@ class Grade8Chapter15PlayingWithNumbersTopic1(AbstractAnim):
        self.DeveloperList="Medha Masanam" 
 
     def SetSourceCodeFileName(self):
-       self.SourceCodeFileName="Grade8Chapter15PlayingWithNumbersTopic1.py"
+       self.SourceCodeFileName="Grade8Chapter15PlayingWithNumbers.py"
   
       
 if __name__ == "__main__":
-    scene = Grade8Chapter15PlayingWithNumbersTopic1()
+    scene = Grade8Chapter15PlayingWithNumbers()
     scene.render()
