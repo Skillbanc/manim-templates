@@ -3,7 +3,7 @@ from numpy import size
 from AbstractAnim import AbstractAnim
 import cvo
 
-class LengthWeightSizeClass1(AbstractAnim):
+class Grade1Chapter17LengthWeightSize(AbstractAnim):
 
     def construct(self):
         self.RenderSkillbancLogo()
@@ -324,12 +324,12 @@ class LengthWeightSizeClass1(AbstractAnim):
        self.DeveloperList="dhanushofc" 
 
     def SetSourceCodeFileName(self):
-        self.SourceCodeFileName="Class1Ch17LengthWeightSize.py"    
+        self.SourceCodeFileName="Grade1Chapter17LengthWeightSize.py"    
 
 
 
 
 
 if __name__ == "__main__":
-    scene = LengthWeightSizeClass1()
+    scene = Grade1Chapter17LengthWeightSize()
     scene.render()

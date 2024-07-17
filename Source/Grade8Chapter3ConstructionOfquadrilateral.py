@@ -3,7 +3,7 @@ from numpy import size
 from AbstractAnim import AbstractAnim
 import cvo
 
-class constructionofquadrilateral8thgrade(AbstractAnim):
+class Grade8Chapter3ConstructionOfQuadrilateral(AbstractAnim):
 
     def construct(self):
         self.RenderSkillbancLogo()
@@ -335,9 +335,9 @@ class constructionofquadrilateral8thgrade(AbstractAnim):
        self.DeveloperList="dhanushofc" 
     
     def SetSourceCodeFileName(self):
-        self.SourceCodeFileName="Class8Ch3ConstructionOfQuadrilaterals.py"    
+        self.SourceCodeFileName="Grade8Chapter3ConstructionOfQuadrilaterals.py"    
 
 
 if __name__ == "__main__":
-    scene = constructionofquadrilateral8thgrade()
+    scene = Grade8Chapter3ConstructionOfQuadrilateral()
     scene.render()

@@ -4,7 +4,7 @@ from AbstractAnim import AbstractAnim
 import cvo
 import random
 
-class WeightOfTHingsClass2(AbstractAnim):
+class Grade2Chapter14WeightOfTHings(AbstractAnim):
 
     def construct(self):
         self.RenderSkillbancLogo()
@@ -20,7 +20,7 @@ class WeightOfTHingsClass2(AbstractAnim):
         self.isRandom = False
         self.angleChoice = [TAU/4,TAU/4,TAU/4]
         
-        p10=cvo.CVO().CreateCVO("Weight of Things","").setPosition([0,2.5,0])
+        p10=cvo.CVO().CreateCVO("Weight","").setPosition([0,2.5,0])
         p11=cvo.CVO().CreateCVO("Definition", "how heavy something is").setPosition([4,2,0])
         p12=cvo.CVO().CreateCVO("Heavy", "Something that feels hard to pick up").setPosition([5,-2,0])
         p13=cvo.CVO().CreateCVO("Light", "Something that feels easy to pick up").setPosition([-4,-1,0])
@@ -116,20 +116,7 @@ class WeightOfTHingsClass2(AbstractAnim):
             FadeOut(compare_text),
             FadeOut(result_text)
         )
-    """def compare_weights(self):
-        compare_text = Text("Comparing Weights ⚖️", font_size=48, color=GOLD).to_edge(UP, buff=1.5)
-        self.play(Write(compare_text))
-
-        cow = self.create_animal_with_label("🐄", "Cow", MAROON)
-        dog = self.create_animal_with_label("🐕", "Dog", PINK)
-        
-        scale = Text("⚖️", font_size=96).move_to(self.camera.frame_center)
-        cow.next_to(scale, LEFT, buff=1)
-        dog.next_to(scale, RIGHT, buff=1)
-
-        self.play(FadeIn(scale), FadeIn(cow), FadeIn(dog))
-        self.wait(2)
-        self.play(FadeOut(scale), FadeOut(cow), FadeOut(dog), FadeOut(compare_text))"""
+    
 
     
     def order_by_weight(self):
@@ -174,28 +161,7 @@ class WeightOfTHingsClass2(AbstractAnim):
         self.wait(2)
         self.play(FadeOut(object_group), FadeOut(numbers), FadeOut(random_text))
 
-    """def order_by_weight(self):
-        order_text = Text("Ordering by Weight 📊", font_size=48, color=BLUE_D).to_edge(UP, buff=1.5)
-        self.play(Write(order_text))
-
-        objects = [
-            self.create_object_with_label("🖊️", "Pen", RED_A),
-            self.create_object_with_label("📕", "Book", GREEN_A),
-            self.create_object_with_label("🪑", "Chair", YELLOW_A),
-            self.create_object_with_label("🚗", "Car", PURPLE_A)
-        ]
-        
-        object_group = VGroup(*objects).arrange(RIGHT, buff=1.5)
-        object_group.next_to(order_text, DOWN, buff=1)
-
-        numbers = VGroup(*[Text(str(i), font_size=36, color=BLUE) for i in range(1, 5)])
-        for number, obj in zip(numbers, objects):
-            number.next_to(obj, DOWN, buff=0.5)
-
-        self.play(FadeIn(object_group), Write(numbers))
-        self.wait(2)
-        self.play(FadeOut(object_group), FadeOut(numbers), FadeOut(order_text))
-"""
+    
     def create_animal_with_label(self, emoji, animal_type, color):
         animal = Text(emoji, font_size=96)
         label = Text(animal_type.capitalize(), font_size=36, color=color).next_to(animal, DOWN, buff=0.5)
@@ -372,12 +338,12 @@ class WeightOfTHingsClass2(AbstractAnim):
        self.DeveloperList="dhanushofc" 
     
     def SetSourceCodeFileName(self):
-        self.SourceCodeFileName="Class2Ch14WeightOfThings.py"    
+        self.SourceCodeFileName="Grade2Chapter14WeightOfThings.py"    
 
     
     
     
     
 if __name__ == "__main__":
-    scene = WeightOfTHingsClass2()
+    scene = Grade2Chapter14WeightOfTHings()
     scene.render()

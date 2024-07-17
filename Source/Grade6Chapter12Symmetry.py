@@ -3,7 +3,7 @@ from numpy import size
 from AbstractAnim import AbstractAnim
 import cvo
 
-class symmetry6thgrade(AbstractAnim):
+class Grade6Chapter12Symmetry(AbstractAnim):
 
     def construct(self):
         self.RenderSkillbancLogo()
@@ -464,10 +464,10 @@ class symmetry6thgrade(AbstractAnim):
        self.DeveloperList="dhanushofc" 
     
     def SetSourceCodeFileName(self):
-        self.SourceCodeFileName="Class6Ch12Symmetry.py"    
+        self.SourceCodeFileName="Grade6Chapter12Symmetry.py"    
 
 
     
 if __name__ == "__main__":
-    scene = symmetry6thgrade()
+    scene = Grade6Chapter12Symmetry()
     scene.render()
