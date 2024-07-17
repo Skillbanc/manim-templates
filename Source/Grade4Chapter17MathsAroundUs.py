@@ -4,7 +4,7 @@ from AbstractAnim import AbstractAnim
 import cvo
 
 
-class class4_17test(AbstractAnim,Scene):
+class Grade4Chapter17MathsAroundUs(AbstractAnim,Scene):
     
     
     
@@ -34,7 +34,7 @@ class class4_17test(AbstractAnim,Scene):
 
 
     def SetSourceCodeFileName(self):
-        self.SourceCodeFileName = "Grade4Chapter17LengthWeightSize.py"
+        self.SourceCodeFileName = "Grade4Chapter17MathsAroundUs.py"
         
     def topic1(self):
         self.isRandom = False
@@ -352,5 +352,5 @@ class class4_17test(AbstractAnim,Scene):
     
 
 if __name__ == "__main__":
-    scene = class4_17test()
+    scene = Grade4Chapter17MathsAroundUs()
     scene.render()
