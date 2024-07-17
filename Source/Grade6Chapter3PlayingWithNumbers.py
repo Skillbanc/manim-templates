@@ -16,74 +16,90 @@ class Grade6Chapter3PlayingWithNumbers(AbstractAnim):
         self.LCM()
         self.fadeOutCurrentScene()
         self.GithubSourceCodeReference()
-
+ 
     def show_divisibility_rules(self):
-        self.display_title("Divisibility Rules") 
-        rules = [
+        self.display_title("Divisibility Rules")
+        
+        rules_and_examples = [
             ("Divisibility Rule for 2", [
                 "A number is divisible by 2 if",
                 "the last digit is even (0, 2, 4, 6, 8)."
-            ]),
+            ], "Example: 42 is divisible by 2 because 2 is even."),
             ("Divisibility Rule for 3", [
                 "A number is divisible by 3 if",
                 "the sum of its digits is divisible by 3."
-            ]),
+            ], "Example: 123 is divisible by 3 because 1+2+3=6 is divisible by 3."),
             ("Divisibility Rule for 4", [
                 "A number is divisible by 4 if",
                 "the last two digits form a number",
                 "that is divisible by 4."
-            ]),
+            ], "Example: 1236 is divisible by 4 because 36 is divisible by 4."),
             ("Divisibility Rule for 5", [
                 "A number is divisible by 5 if",
                 "the last digit is 0 or 5."
-            ]),
+            ], "Example: 145 is divisible by 5 because the last digit is 5."),
             ("Divisibility Rule for 6", [
                 "A number is divisible by 6 if",
                 "it is divisible by both 2 and 3."
-            ]),
+            ], "Example: 54 is divisible by 6 because it is divisible by both 2 and 3."),
             ("Divisibility Rule for 7", [
                 "A number is divisible by 7 if",
                 "doubling the last digit and",
                 "subtracting it from the rest of",
                 "the number gives a result",
                 "that is divisible by 7."
-            ]),
+            ], "Example: 203 is divisible by 7 because 20 - (2*3) = 14 is divisible by 7."),
             ("Divisibility Rule for 8", [
                 "A number is divisible by 8 if",
                 "the last three digits form a number",
                 "that is divisible by 8."
-            ]),
+            ], "Example: 1232 is divisible by 8 because 232 is divisible by 8."),
             ("Divisibility Rule for 9", [
                 "A number is divisible by 9 if",
                 "the sum of its digits is divisible by 9."
-            ]),
+            ], "Example: 234 is divisible by 9 because 2+3+4=9 is divisible by 9."),
             ("Divisibility Rule for 10", [
                 "A number is divisible by 10 if",
                 "the last digit is 0."
-            ]),
+            ], "Example: 140 is divisible by 10 because the last digit is 0."),
             ("Divisibility Rule for 11", [
                 "A number is divisible by 11 if",
                 "the difference between the sum of the digits",
                 "in the odd positions and the sum of the digits",
                 "in the even positions is divisible by 11."
-            ])
+            ], "Example: 121 is divisible by 11 because (1+1)-2=0 is divisible by 11.")
         ]
 
-        for rule in rules:
+        for rule in rules_and_examples:
             self.show_rule(rule)
-            self.wait(1)
+            self.wait(2)
             self.clear_screen()
 
     def show_rule(self, rule):
-        title_text, lines = rule
+        title_text, lines, example = rule
         title = Text(title_text).scale(0.8).to_edge(UP)
         self.play(Write(title))
         self.wait(0.5)
 
+        rule_group = VGroup()
         for i, line in enumerate(lines):
-            text = Text(line).scale(0.6).shift(DOWN * (i - 1))
+            text = Text(line).scale(0.6).next_to(title, DOWN, buff=1 + i * 0.8)
+            rule_group.add(text)
             self.play(Write(text))
             self.wait(0.5)
+
+        example_text = Text(example).scale(0.6).next_to(rule_group, DOWN, buff=1)
+        self.play(Write(example_text))
+        self.wait(1)
+    
+    def display_title(self, title):
+        title_text = Text(title).scale(1).to_edge(UP)
+        self.play(Write(title_text))
+        self.wait(1)
+
+    def clear_screen(self):
+        self.play(FadeOut(*self.mobjects))
+
 
     def show_number_concepts(self):
         self.isRandom=False

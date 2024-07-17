@@ -127,33 +127,33 @@ class Grade3Chapter8Measurement(AbstractAnim):
             ["5.", "Pencil", "18cm"]
         ]
 
-        # Create the table with the title
-        table = Table(
-            table_data,
-            include_outer_lines=True,
-            h_buff=1,
-            v_buff=0.4
-        )
+        # # Create the table with the title
+        # table = Table(
+        #     table_data,
+        #     include_outer_lines=True,
+        #     h_buff=1,
+        #     v_buff=0.4
+        # )
 
-        # Position the table at the center of the scene
-        table.scale(0.6)
-        table.move_to(ORIGIN)
+        # # Position the table at the center of the scene
+        # table.scale(0.6)
+        # table.move_to(ORIGIN)
 
-        # Add the title
-        title = Text("Measure the objects given in the table using a scale.", font_size=24)
-        title.next_to(table, UP * 0.5)
+        # # Add the title
+        # title = Text("Measure the objects given in the table using a scale.", font_size=24)
+        # title.next_to(table, UP * 0.5)
 
-        # Play the title and table together
-        self.play(Write(title), Create(table.get_horizontal_lines()), Create(table.get_vertical_lines()))
-        self.wait(1)
+        # # Play the title and table together
+        # self.play(Write(title), Create(table.get_horizontal_lines()), Create(table.get_vertical_lines()))
+        # self.wait(1)
 
-        # Sequentially play each cell in the table
-        for row in table.get_entries():
-            for cell in row:
-                self.play(FadeIn(cell))
-                self.wait(0.5)
+        # # Sequentially play each cell in the table
+        # for row in table.get_entries():
+        #     for cell in row:
+        #         self.play(FadeIn(cell))
+        #         self.wait(0.5)
 
-        self.wait(2)
+        # self.wait(2)
 
 
 
@@ -242,9 +242,9 @@ class Grade3Chapter8Measurement(AbstractAnim):
         p11 = cvo.CVO().CreateCVO("Measurement", "").setPosition([0, -1, 0])
         p12 = cvo.CVO().CreateCVO("Standard Units", "Litre").setPosition([3, -1, 0])
 
-        p10.setcircleradius(1.25)
-        p11.setcircleradius(1.25)
-        p12.setcircleradius(1.25)
+        p10.setcircleradius(1)
+        p11.setcircleradius(1)
+        p12.setcircleradius(1)
 
         p10.cvolist.append(p11)
         p11.cvolist.append(p12)
