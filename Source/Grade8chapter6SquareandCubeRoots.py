@@ -10,16 +10,10 @@ class SquarecubeOperations(AbstractAnim):
         self.fadeOutCurrentScene()
         self.Extra_text()
         self.fadeOutCurrentScene()
-        #self.introduction()
-        #self.fadeOutCurrentScene()
         self.SquaringOfNumbers()
         self.fadeOutCurrentScene()
         self.PerfectSquareandSquareNumber()
         self.fadeOutCurrentScene()
-        #self.SubtopicsOfSquares()
-        #self.fadeOutCurrentScene()
-        #self.PropertiesofSquareNumbers()
-        #self.fadeOutCurrentScene()
         self.InterestingPatternsofSquare()
         self.fadeOutCurrentScene()
         self.pythagoreanTriplets()
@@ -32,10 +26,6 @@ class SquarecubeOperations(AbstractAnim):
         self.fadeOutCurrentScene()
         self.Subtractionofsuccessiveoddnumbers()
         self.fadeOutCurrentScene()
-        #self.intro_text()
-        #self.fadeOutCurrentScene()
-        #self.division_steps()
-        #self.fadeOutCurrentScene()
         self.squarerootsofnonperfectsquarenumbers()
         self.fadeOutCurrentScene()
         self.Cube()
@@ -54,38 +44,26 @@ class SquarecubeOperations(AbstractAnim):
 
 
     def Extra_text(self):
-        title = Text("Chapter6 : Square Roots and Cube Roots", font_size=48)
+        title = Text("Chapter 6 : Square Roots and Cube Roots", font_size=48)
         self.play(Write(title))
         self.wait(2)
         self.play(FadeOut(title))
        
 
-    def introduction(self):
-        # p1=cvo.CVO().CreateCVO("cname","oname")
-
-        p10=cvo.CVO().CreateCVO("Numbers","").setPosition([-5,0,0])
-        p11=cvo.CVO().CreateCVO("Operations on Numbers","Squaring,Cubing").setPosition([-1,0,0])
-        p12=cvo.CVO().CreateCVO("Squaring","$x^2$=x*x").setPosition([3.5,1,0])
-        p13=cvo.CVO().CreateCVO("Cubing","$x^3$=x*x*x").setPosition([3.5,-2,0])
-        p10.cvolist.append(p11)
-        p11.cvolist.append(p12)
-        p11.cvolist.append(p13)
-
-        self.construct1(p10,p10)
-
 
 
     def SquaringOfNumbers(self):
         
-        # self.angleChoice = [0,0,0]
+     
         self.isRandom = False
+        self.angleChoice = [TAU/4,TAU/4,TAU/4,TAU/4]
     
         # Create CVO objects with their respective labels and positions
-        p10 = cvo.CVO().CreateCVO("Squaring of Numbers", "").setPosition([-5, 1.25, 0])
-        p11 = cvo.CVO().CreateCVO("Notation", "$x^2$").setPosition([-1, 1.25, 0])
-        p12 = cvo.CVO().CreateCVO("Expansion", "$x^2 = x * x$").setPosition([3.5, 1.25, 0])
-        p13 = cvo.CVO().CreateCVO("x variable", "3").setPosition([-1, -2, 0])
-        p14 = cvo.CVO().CreateCVO("result", "9").setPosition([4, -2, 0])
+        p10 = cvo.CVO().CreateCVO("Squaring of Numbers", "").setPosition([-5, 2, 0])
+        p11 = cvo.CVO().CreateCVO("Notation", "$x^2$").setPosition([-1, 2.25, 0])
+        p12 = cvo.CVO().CreateCVO("Expansion", "$x^2 = x * x$").setPosition([3.5, 2, 0])
+        p13 = cvo.CVO().CreateCVO("x variable", "3").setPosition([-0.5, -2, 0])
+        p14 = cvo.CVO().CreateCVO("result", "9").setPosition([4.25, -2, 0])
     
         # Build the hierarchy of CVO objects
         p10.cvolist.append(p11)
@@ -187,40 +165,6 @@ class SquarecubeOperations(AbstractAnim):
 
 
 
-    def SubtopicsOfSquares(self):
-        #  p1=cvo.CVO().CreateCVO("o1name","o2name","c1name","c2name")
-         p10=cvo.CVO().CreateCVO("sub topics of Square and Square Roots","").setPosition([0,2.5,0])
-         p11=cvo.CVO().CreateCVO("Properties of Square Numbers","Chapter:6.1").setPosition([-4,1,0])
-         p12=cvo.CVO().CreateCVO("Interesting Patterns","Chapter:6.2").setPosition([-3,-2,0])
-         p13=cvo.CVO().CreateCVO("Pythogorean Triplets","Chapter:6.3").setPosition([2.5,0,0]).setangle(-TAU/4)
-         p14=cvo.CVO().CreateCVO("Methods for finding Squareroots","Chapter:6.4").setPosition([4,-2,0]).setangle(-TAU/4)
-         p10.cvolist.append(p11)
-         p10.cvolist.append(p12)
-         p10.cvolist.append(p13)
-         p10.cvolist.append(p14)
-         self.construct1(p10,p10)
-         #self.play()
-
-
-    def PropertiesofSquareNumbers(self):
-        #  p1=cvo.CVO().CreateCVO("o1name","o2name","c1name","c2name")
-         p10=cvo.CVO().CreateCVO("Properties of SquareNumbers","Chapter:6.1").setPosition([0,2.5,0])
-         p11=cvo.CVO().CreateCVO("Perfect Squares","RationalNum=$RationalNum^2$").setPosition([-5,1,0])
-         p12=cvo.CVO().CreateCVO("Square Number","Integer=$Integer^2$").setPosition([0,0,0]).setangle(-TAU/4)
-         p13=cvo.CVO().CreateCVO("Finding units place","").setPosition([5,1,0]).setangle(-TAU/4)
-         p14=cvo.CVO().CreateCVO("Example","2.25=$(1.5)^2$=1.5*1.5").setPosition([-3,-3,0])
-         p15=cvo.CVO().CreateCVO("Example","36=$(6)^2$=6*6").setPosition([0,-3,0])
-         p16=cvo.CVO().CreateCVO("Example","$7^2$=7*7=49=9").setPosition([3,-3,0])
-         p10.cvolist.append(p11)
-         p10.cvolist.append(p12)
-         p10.cvolist.append(p13)
-         p11.cvolist.append(p14)
-         p12.cvolist.append(p15)
-         p13.cvolist.append(p16)
- 
-         self.construct1(p10,p10)
-         #self.play()
-    
 
     def InterestingPatternsofSquare(self):
         
@@ -322,18 +266,22 @@ class SquarecubeOperations(AbstractAnim):
         self.play(Create(arrow_5_to_frac))
         self.wait(1)"""
 
+
+
     def pythagoreanTriplets(self):
+        self.isRandom=False
+        self.angleChoice = [TAU/4,TAU/4,TAU/4,TAU/4]
+
         #  p1=cvo.CVO().CreateCVO("o1name","o2name","c1name","c2name")
-         p10=cvo.CVO().CreateCVO("pythagorean Triplets","").setPosition([-5,2.5,0])
-         p11=cvo.CVO().CreateCVO("If $a^2$+$b^2$=$c^2$","(a,b,c)are Pythagorean Triplts").setPosition([-3,-1,0])
-         p12=cvo.CVO().CreateCVO("EX 1: $3^2$+$4^2$=25=$5^2$","(3,4,5)are Pythagorean Triplts").setPosition([3.5,1,0]).setangle(-TAU/4)
-         p13=cvo.CVO().CreateCVO("EX 2: $5^2$+$12^2$=169=$13^2$","(5,12,13)are Pythagorean Triplts").setPosition([3.5,-2,0])
-         p10.cvolist.append(p11)
-         p11.cvolist.append(p12)
-         p11.cvolist.append(p13)
+        p10=cvo.CVO().CreateCVO("pythagorean Triplets","").setPosition([-4,-1.5,0])
+        p11=cvo.CVO().CreateCVO("definition","A Pythagorean triplet consists of integers a,b, and c where $a^2$+$b^2$=$c^2$.").setPosition([1.5,1.5,0])
+        p12=cvo.CVO().CreateCVO("Example","$3^2$+$4^2$=25=$5^2$ so (3,4,5) are Pythagorean Triplets").setPosition([2.5,-2,0])
+
+        p10.cvolist.append(p11)
+        p10.cvolist.append(p12)
          
-         self.construct1(p10,p10)
-         #self.play()
+        self.construct1(p10,p10)
+        #self.play()
     
 
     
@@ -433,6 +381,8 @@ class SquarecubeOperations(AbstractAnim):
         # Render the CVO object
         self.construct2(p10, p10)
 
+
+
     def Subtractionofsuccessiveoddnumbers(self):
         # Create CVO object with mathematical text
         p10 = cvo.CVO().CreateCVO("Square root through Subtraction of successive odd numbers","").SetIsMathText(True)
@@ -459,82 +409,8 @@ class SquarecubeOperations(AbstractAnim):
         # Render the CVO object
         self.construct2(p10, p10)
 
-    def intro_text(self):
-        title = Text("3. Finding Square Root using Division Method", font_size=48)
-        self.play(Write(title))
-        self.wait(2)
-        self.play(FadeOut(title))
-    
-    def division_steps(self):
-        step_title = Text("Finding √784 using Division Method", font_size=36)
-        self.play(Write(step_title))
-        self.wait(2)
-        self.play(FadeOut(step_title))
 
-        step1 = Text("Step 1: Group the digits in pairs from right to left.", font_size=24)
-        self.play(Write(step1))
-        self.wait(2)
-        self.play(FadeOut(step1))
 
-        grouped_digits = Text("784 -> 7 | 84", font_size=24)
-        self.play(Write(grouped_digits))
-        self.wait(2)
-        self.play(FadeOut(grouped_digits))
-
-        step2 = Text("Step 2: Find the largest number whose square is less than or equal to 7.", font_size=24)
-        self.play(Write(step2))
-        self.wait(2)
-        self.play(FadeOut(step2))
-
-        step2_result = MathTex("2^2 = 4")
-        self.play(Write(step2_result))
-        self.wait(2)
-        self.play(FadeOut(step2_result))
-
-        step3 = Text("Step 3: Subtract 4 from 7, get 3.", font_size=24)
-        self.play(Write(step3))
-        self.wait(2)
-        self.play(FadeOut(step3))
-
-        subtraction = MathTex("7 - 4 = 3")
-        self.play(Write(subtraction))
-        self.wait(2)
-        self.play(FadeOut(subtraction))
-
-        bring_down = Text("Step 4: Bring down the next pair of digits (84).", font_size=24)
-        self.play(Write(bring_down))
-        self.wait(2)
-        self.play(FadeOut(bring_down))
-
-        new_number = MathTex("384")
-        self.play(Write(new_number))
-        self.wait(2)
-        self.play(FadeOut(new_number))
-
-        step5 = Text("Step 5: Double the divisor (2 becomes 4). Find a digit (x) such that 4x * x <= 384.", font_size=24)
-        self.play(Write(step5))
-        self.wait(2)
-        self.play(FadeOut(step5))
-
-        calculation = MathTex("48 \\times 8 = 384")
-        self.play(Write(calculation))
-        self.wait(2)
-        self.play(FadeOut(calculation))
-
-        remainder = MathTex("384 - 384 = 0")
-        self.play(Write(remainder))
-        self.wait(2)
-        self.play(FadeOut(remainder))
-
-        final_step = Text("Step 6: Since the remainder is 0, the square root of 784 is 28.", font_size=24)
-        self.play(Write(final_step))
-        self.wait(2)
-        self.play(FadeOut(final_step))
-
-        conclusion = Text("Therefore, √784 = 28", font_size=36)
-        self.play(Write(conclusion))
-        self.wait(2)
-        self.play(FadeOut(conclusion))
 
 
     def squarerootsofnonperfectsquarenumbers(self):
@@ -561,15 +437,16 @@ class SquarecubeOperations(AbstractAnim):
 
 
     def Cube(self):   
-        # self.angleChoice = [0,0,0]
+
         self.isRandom = False
+        self.angleChoice = [TAU/4,TAU/4,TAU/4,TAU/4]
     
         # Create CVO objects with their respective labels and positions
-        p10 = cvo.CVO().CreateCVO("Cubing of Numbers", "").setPosition([-5, 1.25, 0])
-        p11 = cvo.CVO().CreateCVO("Notation", "$x^3$").setPosition([-1, 1.25, 0])
-        p12 = cvo.CVO().CreateCVO("Expansion", "$x^3 = x * x * x$").setPosition([3.5, 1.25, 0])
-        p13 = cvo.CVO().CreateCVO("x variable", "4").setPosition([-1, -2, 0])
-        p14 = cvo.CVO().CreateCVO("result", "64").setPosition([4, -2, 0])
+        p10 = cvo.CVO().CreateCVO("Cubing of Numbers", "").setPosition([-5, 2, 0])
+        p11 = cvo.CVO().CreateCVO("Notation", "$x^3$").setPosition([-1, 2.25, 0])
+        p12 = cvo.CVO().CreateCVO("Expansion", "$x^3 = x * x * x$").setPosition([3.5, 2, 0])
+        p13 = cvo.CVO().CreateCVO("x variable", "4").setPosition([-0.5, -2, 0])
+        p14 = cvo.CVO().CreateCVO("result", "64").setPosition([4.25, -2, 0])
     
         # Build the hierarchy of CVO objects
         p10.cvolist.append(p11)
@@ -707,6 +584,8 @@ class SquarecubeOperations(AbstractAnim):
 
         self.wait(2)
 
+
+
     def cuberootthroughPrimeFactorization2(self):
         # Create CVO object with mathematical text
         p10 = cvo.CVO().CreateCVO("Cube Root through Prime Factorization", "2x^2 + 5x + 3").SetIsMathText(True)
@@ -725,6 +604,8 @@ class SquarecubeOperations(AbstractAnim):
  
         # Render the CVO object
         self.construct2(p10, p10)
+
+
 
     def Estimatingthecuberootofanumber(self):
         # Create CVO object with mathematical text
@@ -746,6 +627,8 @@ class SquarecubeOperations(AbstractAnim):
         
         # Render the CVO object
         self.construct2(p10, p10)
+
+
 
     def SetDeveloperList(self):  
         self.DeveloperList="Raghu"
