@@ -14,6 +14,7 @@ import random
 # class that has all common methods that can be used by subclasses
 class AbstractAnim(Scene):
     grpAll = VGroup()
+    grp2All=VGroup()
     isFadeOutAtTheEndOfThisScene = False
     colorChoice=[RED,BLUE,GREEN,PURPLE,ORANGE,YELLOW,LIGHT_PINK,WHITE,LIGHT_GRAY,LIGHT_BROWN,PINK,GRAY_BROWN]
     shapeChoice=[Circle,Triangle,Square,Rectangle]
@@ -103,7 +104,7 @@ class AbstractAnim(Scene):
             
         shapeChoiceIndex = 0 # random.randint(0,3)
 
-        # Circle to contain objects
+         # Circle to contain objects
         if not cvo.isEllipse:
             cir1 = Circle(radius=cvo.circle_radius,color=self.colorChoice[colorChoiceIndex])
             star = Star(outer_radius=0.1, inner_radius=0.05,color=self.colorChoice[colorChoiceIndex]).move_to(cir1.get_center())
@@ -127,6 +128,7 @@ class AbstractAnim(Scene):
             
             
             self.play(Create(cir1,run_time=cvo.duration),Create(cname,run_time=cvo.duration))
+        
         
         else:
             star = Star(outer_radius=0.1, inner_radius=0.05,color=self.colorChoice[colorChoiceIndex])
@@ -188,8 +190,8 @@ class AbstractAnim(Scene):
             arrow1.tip.scale(0.75)
             if len(cvo.onameList) == 0:
                 self.play(Create(arrow1),run_time=cvo.duration)
-            
-            
+
+                
         if (len(cvo.onameList) > 0 and len(cvo.onameList) < 5):
             for index in range(len(cvo.onameList)):
                 # starLocal = Star(outer_radius=0.15, inner_radius=0.1,color=self.colorChoice[colorChoiceIndex]).move_to(cir1.get_center())
@@ -215,7 +217,7 @@ class AbstractAnim(Scene):
                     self.play(Create(arrow2))
                             
         cvo.cnameMObject = cname
-        cvo.onameMObject = oname
+        cvo.onameMObject = oname 
         
         #self.wait()
         
@@ -308,11 +310,14 @@ class AbstractAnim(Scene):
     def GithubSourceCodeReference(self): 
         self.PurchaseSkillbancSubscription()
         self.fadeOutCurrentScene()
+        self.SubscribeYoutube()
         self.SetDeveloperList()
         self.SetSourceCodeFileName()
+
         
         self.colorChoice=[BLUE,ORANGE,PINK,ORANGE,PURPLE]
         p2 = cvo.CVO().CreateCVO("SOURCE CODE FOR THIS VIDEO", "").setPosition([0,2.5,0])
+        
         p4 = cvo.CVO().CreateCVO("Github URL", "https://github.com/Skillbanc/manim-templates").setPosition([-4,1,0]).setangle(TAU / 3)
         p5 = cvo.CVO().CreateCVO("File Name", self.GetSourceCodeFileName()).setPosition([4,1,0]).setangle(TAU / 3)
 
@@ -321,16 +326,22 @@ class AbstractAnim(Scene):
 
         p7=cvo.CVO().CreateCVO("Developed By",self.GetDeveloperList()).setPosition([0,-2,0]).setangle(-TAU / 4)
         
-        p2.cvolist.append(p4)
-        p2.cvolist.append(p5)
-        self.setNumberOfCirclePositions(5)
-        p4.setcircleradius(3)
-        p5.setcircleradius(2)
-        p6.setcircleradius(1.5)
-        p2.cvolist.append(p6)
-        p2.cvolist.append(p7)
-        self.construct1(p2,p2)
-        self.SubscribeYoutube()
+        # p2.cvolist.append(p4)
+        # p2.cvolist.append(p5)
+        # self.setNumberOfCirclePositions(5)
+        # p4.setcircleradius(3)
+        # p5.setcircleradius(2)
+        # p6.setcircleradius(1.5)
+        # p2.cvolist.append(p6)
+        # p2.cvolist.append(p7)
+        p2.appendOname(p2.cname)
+        p2.appendOname(p4.cname + " : " + p4.oname)
+        p2.appendOname(p5.cname + " : " + p5.oname)
+        p2.appendOname(p6.cname + " : " + p6.oname)
+        p2.appendOname(p7.cname + " : " + p7.oname)
+        p2.setduration(0.5)
+        self.construct2(p2,p2)
+       
         
     def SubscribeYoutube(self):
         button = RoundedRectangle(corner_radius=0.2, height=1, width=3)
@@ -343,24 +354,30 @@ class AbstractAnim(Scene):
         subscribe_button = VGroup(button, subscribe_text).move_to(LEFT*4 + DOWN * 2.5)
 
         self.play(GrowFromCenter(subscribe_button))
-
         
-        for _ in range(3):  
-            self.play(subscribe_button.animate.scale(1.1), run_time=1)
-            self.play(subscribe_button.animate.scale(1/1.1), run_time=1)
+        
+        # for _ in range(3):  
+        #     self.play(subscribe_button.animate.scale(1.1), run_time=0.5)
+        #     self.play(subscribe_button.animate.scale(1/1.1), run_time=0.5)
 
-        self.wait(2)
+        self.wait(0.2)
 
     def PurchaseSkillbancSubscription(self): 
         
         self.colorChoice=[BLUE,ORANGE,PINK,ORANGE,PURPLE]
-        p1 = cvo.CVO().CreateCVO("Need Help?", "We are here to support").setPosition([0,2.5,0])
-        p2 = cvo.CVO().CreateCVO("Get Skillbanc Subscription", "https://skillbanc.com/SBstore").setPosition([-4,1,0]).setangle(TAU / 3)
-        
+        self.angleChoice = [- TAU/3]
+        p1 = cvo.CVO().CreateCVO("Need Help?", "We are here to support").setPosition([3.5,1,0])
+        p1.setduration(1)
+        p1.setcircleradius(5.5)
+        p2 = cvo.CVO().CreateCVO("Get Skillbanc Subscription", "https://skillbanc.com/SBstore").setPosition([-2.5,-1,0])
+        p2.setduration(1)
+        p2.setcircleradius(7)
         p1.cvolist.append(p2)
-
+        
         self.setNumberOfCirclePositions(2)
-        self.construct1(p1,p1)
+        self.construct5(p1,p1)
+        self.play(self.grp2All.animate.scale(1.1))
+        self.play(self.grp2All.animate.scale(0.9))
         
     def GetDeveloperList(self): 
         return self.DeveloperList
@@ -379,7 +396,7 @@ class AbstractAnim(Scene):
         text0 = Tex(p10.onameList[0],color=BLUE)
         text01 = Tex(p10.onameList[0],color=BLUE)
         
-        self.play(Create(text0))
+        self.play(Create(text0), run_time=p10.duration)
         grp1 = VGroup(text01)
         
         for i in range(1,len(p10.onameList)):
@@ -393,8 +410,8 @@ class AbstractAnim(Scene):
             text01 = Tex(p10.onameList[i],color=BLUE)
             
            
-           self.play(grp1.animate.shift(UP * 1))
-           self.play(ReplacementTransform(text0,text1))
+           self.play(grp1.animate.shift(UP * 1),run_time=p10.duration)
+           self.play(ReplacementTransform(text0,text1),run_time=p10.duration)
            
            grp1.add(text01)
            text0 = text1
@@ -403,3 +420,88 @@ class AbstractAnim(Scene):
            
            
         self.wait(2)
+
+    # Draw Ellipse and add object instead of playing
+    def construct5(self, cvo, cvoParent): 
+        # Determine color choice
+        colorChoiceIndex = random.randint(0, len(self.colorChoice) - 1) if self.isRandom else 0
+        cvo.color = self.colorChoice[colorChoiceIndex]
+
+        # Determine position choice
+        positionChoiceIndex = self.get_random_position() if self.isRandom else 0
+        if cvo.pos is None:
+            cvo.pos = self.positionChoice[positionChoiceIndex]
+
+        # Create circle and star
+        # cir1 = Circle(radius=cvo.circle_radius, color=self.colorChoice[colorChoiceIndex])
+        cir1 = Ellipse(width=cvo.circle_radius, height= 3 , color=self.colorChoice[colorChoiceIndex])
+        star = Star(outer_radius=0.1, inner_radius=0.05, color=self.colorChoice[colorChoiceIndex]).move_to(cir1.get_center())
+       
+
+        # Determine name positions
+        c1nameposition = cvo.c1nameposition or cir1.get_top()
+        cname = MathTex(cvo.cname, color=self.colorChoice[colorChoiceIndex]).move_to(c1nameposition).shift(UP * 0.25) if cvo.IsMathText else Tex(cvo.cname, color=self.colorChoice[colorChoiceIndex]).move_to(c1nameposition).shift(UP * 0.25)
+
+        o1nameposition = cvo.o1nameposition or star.get_top()
+        oname = MathTex(cvo.oname, color=self.colorChoice[colorChoiceIndex]).move_to(o1nameposition).shift(UP * 0.15) if cvo.IsMathText else Tex(cvo.oname, color=self.colorChoice[colorChoiceIndex]).move_to(o1nameposition).shift(UP * 0.15)
+
+        # Add circle and name to the scene
+        self.add(cir1, cname)
+        grp2 = VGroup(cir1, cname)
+
+        if not cvo.onameList:
+            self.add(oname, star)
+            grp2.add(star, oname)
+
+        # Move group to position
+        grp2.move_to(cvo.pos).shift(UP * 0.16)
+
+        # Draw arrow if needed
+        if cvo != cvoParent:
+            angleChoiceIndex = random.randint(0, len(self.angleChoice) - 1) if self.isRandom else 0
+            cvo.angle = self.angleChoice[angleChoiceIndex]
+
+            arrow1 = CurvedArrow(cvoParent.pos, cvo.pos, angle=cvo.angle, stroke_width=1.5)
+            arrow1.tip.scale(0.75)
+            if not cvo.onameList:
+                self.add(arrow1)
+                grp2.add(arrow1)
+                
+
+        # Handle additional stars and names
+        for index in range(len(cvo.onameList)):
+            starLocal = Star(outer_radius=0.1, inner_radius=0.05, color=self.colorChoice[colorChoiceIndex]).move_to(cir1.get_top()).shift(LEFT * 0.35, DOWN * 0.25 * (index + 1))
+            onameLocalText = Tex(cvo.onameList[index], color=self.colorChoice[colorChoiceIndex]).scale(0.45).next_to(starLocal).shift(LEFT * 0.20)
+            arrow2 = CurvedArrow(cvoParent.pos, starLocal.get_center(), angle=cvo.angle, stroke_width=0.5, tip_length=0.1)
+            self.add(starLocal, onameLocalText, arrow2)
+
+        # Assign name objects for later use
+        cvo.cnameMObject = cname
+        cvo.onameMObject = oname
+
+        # Update choices
+        if cvo.pos in self.positionChoice:
+            self.positionChoice.remove(cvo.pos)
+
+        if cvo != cvoParent:
+            if cvo.angle in self.angleChoice:
+                self.angleChoice.remove(cvo.angle)
+
+        if cvo.color in self.colorChoice:
+            self.colorChoice.remove(cvo.color)
+
+        # Recursively construct for child objects
+        if len(cvo.cvolist) > 0:
+            for idx in range(len(cvo.cvolist)):
+                self.construct5(cvo.cvolist[idx], cvo)
+
+        # Add group to the scene
+        self.grp2All.add(grp2)
+
+        # Handle fade out
+        # if self.isFadeOutAtTheEndOfThisScene:
+        #     self.add(self.grpAll)
+  
+        self.wait(1)
+
+   
