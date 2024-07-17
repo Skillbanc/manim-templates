@@ -15,15 +15,25 @@ class int6(AbstractAnim):
     def construct(self):
         self.RenderSkillbancLogo()
         self.fadeOutCurrentScene()
+        self.intro1()
+        self.fadeOutCurrentScene()
         self.RenderAboutMe()
         self.fadeOutCurrentScene()
         self.Addition()
         self.fadeOutCurrentScene()
+        self.addexample()
+        self.fadeOutCurrentScene()
         self.Subtraction()
+        self.fadeOutCurrentScene()
+        self.subexample()
         self.fadeOutCurrentScene()  
         self.Multiplication()
         self.fadeOutCurrentScene()
+        self.mulexample()
+        self.fadeOutCurrentScene()
         self.Division()
+        self.fadeOutCurrentScene()
+        self.divexample()
         self.fadeOutCurrentScene()
         self.numberlineintro()
         self.fadeOutCurrentScene()
@@ -69,7 +79,59 @@ class int6(AbstractAnim):
         self.play(self.logoGroup.animate.scale(0),run_time=1)
         # self.play(self.circles.animate.scale(0),lines.animate.scale(0),text.animate.scale(0),run_time=3)
         
+    def intro1(self):
+
+        # Title
+        title = Text("Understanding Integers",color=RED ,font_size=48)
+        self.play(Write(title))
+        self.wait(1)
+        self.play(title.animate.to_edge(UP))
+
+        # Definition of rational numbers
+        definition = Text("Integers are whole numbers that can be positive, negative, or zero",color=RED_A, font_size=24)
+        # fraction = MathTex(r"",color=BLUE, font_size=48)
+        # condition = Text("where p and q are integers and q ≠ 0.", font_size=24)
+
+        self.play(Write(definition.next_to(title,DOWN)))
+        # self.play(Write(fraction.next_to(definition, DOWN, buff=0.5)))
+        # self.play(Write(condition.next_to(fraction, DOWN, buff=0.5)))
+        self.wait(1)
+
+        # self.play(FadeOut(definition)),
+                #    FadeOut(condition))
+        # self.play(fraction.animate.to_edge(UP*2.2))
+
+        # Examples of rational numbers
+        # examples_title = Text("Integers",color=ORANGE ,font_size=36)
+        # self.play(Write(examples_title.next_to(fraction, DOWN, buff=1)))
+        # self.wait(1)
+
+        examples = [
+            ("", MathTex(r"Positive= 1", font_size=48)),
+            ("", MathTex(r"Negative= -1", font_size=48)),
+            # ("", MathTex(r"Integer={2}/{1}", font_size=48)),
+            ("", MathTex(r"zero= 0", font_size=48))
+        ]
+
+        positions = [
+            LEFT * 3 + UP * 0,
+            RIGHT * 3 + UP * 0,
+            LEFT * 3 + DOWN * 1.5,
+            RIGHT * 3 + DOWN * 1.5,
+        ]
+
+        for (label, example), position in zip(examples, positions):
+            label_text = Text(label, font_size=24).next_to(position, UP)
+            example.move_to(position)
+            self.play(Write(label_text), FadeIn(example))
+            self.wait(1)
+
+        # Concluding visualization
+        self.play(*[FadeOut(mob) for mob in self.mobjects])
         
+        # conclusion = Text("Rational numbers can be positive, negative, integers, or zero", font_size=30,color=GOLD)
+        # self.play(Write(conclusion))
+        # self.wait(2)
     # render using CVO data object
     def RenderAboutMe(self):
         count = 0
@@ -112,6 +174,34 @@ class int6(AbstractAnim):
         self.play(Create(CurvedArrow(p11.pos,p13.pos)),Create(CurvedArrow(p12.pos,p13.pos)))
         #self.play()
 
+    def addexample(self):
+
+        title = Text("Addition",color=PURPLE).to_edge(UP)
+        self.play(Write(title))
+
+        examples = [
+            r"X + Y \quad \text{example:}\quad 2+3 =5",
+            r"(-X) + Y \quad \text{example:} \quad -2 + 3 = 1",
+            r"(-X) +(-Y) \quad \text{example:} \quad -2 + -3 = -5",
+            r"X + (-Y) \quad \text{example:}\quad 2 + (-3) = -1"
+        ]
+        example1 = MathTex(examples[0]).scale(0.8).next_to(title, DOWN, buff=1)
+        example2 = MathTex(examples[1]).scale(0.8).next_to(example1, DOWN, aligned_edge=LEFT, buff=0.5)
+        example3 = MathTex(examples[2]).scale(0.8).next_to(example2, DOWN, aligned_edge=LEFT, buff=0.5)
+        example4 = MathTex(examples[3]).scale(0.8).next_to(example3, DOWN, aligned_edge=LEFT, buff=0.5)
+
+        self.play(Write(example1,color=ORANGE))
+        self.wait(1)
+        self.play(Write(example2))
+        self.wait(1)
+        self.play(Write(example3))
+        self.wait(1)
+        self.play(Write(example4))
+        self.wait(1)
+
+        self.wait(3)
+
+
     def Subtraction(self):
         self.setNumberOfCirclePositions(4)
         #self.angleChoice = [0,0,0]
@@ -127,6 +217,33 @@ class int6(AbstractAnim):
         self.construct1(p13,p13)
         self.play(Create(CurvedArrow(p11.pos,p13.pos)),Create(CurvedArrow(p12.pos,p13.pos)))
         #self.play()
+
+    def subexample(self):
+    
+        title = Text("Subtraction",color=PURPLE).to_edge(UP)
+        self.play(Write(title))
+
+        examples = [
+        r"X - Y \quad \text{example:} \quad 2 - 3 = -1",
+        r"(-X) - Y \quad \text{example:} \quad -2 - 3 = -5",
+        r"(-X) - (-Y) \quad \text{example:} \quad -2 - (-3) = 1",
+        r"X - (-Y) \quad \text{example:} \quad 2 - (-3) = 5"
+         ]
+        example1 = MathTex(examples[0]).scale(0.8).next_to(title, DOWN, buff=1)
+        example2 = MathTex(examples[1]).scale(0.8).next_to(example1, DOWN, aligned_edge=LEFT, buff=0.5)
+        example3 = MathTex(examples[2]).scale(0.8).next_to(example2, DOWN, aligned_edge=LEFT, buff=0.5)
+        example4 = MathTex(examples[3]).scale(0.8).next_to(example3, DOWN, aligned_edge=LEFT, buff=0.5)
+        self.play(Write(example1))
+        self.wait(1)
+        self.play(Write(example2))
+        self.wait(1)
+        self.play(Write(example3))
+        self.wait(1)
+        self.play(Write(example4))
+        self.wait(1)
+ 
+        self.wait(3)
+
 
     def Multiplication(self):
         self.setNumberOfCirclePositions(4)
@@ -144,6 +261,34 @@ class int6(AbstractAnim):
         self.play(Create(CurvedArrow(p11.pos,p13.pos)),Create(CurvedArrow(p12.pos,p13.pos)))
         #self.play()
 
+
+    def mulexample(self):
+        title = Text("Multiplication",color=PURPLE).to_edge(UP)
+        self.play(Write(title))
+
+        examples = [
+            r"X \times Y \quad \text{example:} \quad 2 \times 3 = 6",
+            r"(-X) \times Y \quad \text{example:} \quad -2 \times 3 = -6",
+            r"(-X) \times (-Y) \quad \text{example:} \quad -2 \times -3 = 6",
+            r"X \times (-Y) \quad \text{example:} \quad 2 \times (-3) = -6"
+        ]
+        example1 = MathTex(examples[0]).scale(0.8).next_to(title, DOWN, buff=1)
+        example2 = MathTex(examples[1]).scale(0.8).next_to(example1, DOWN, aligned_edge=LEFT, buff=0.5)
+        example3 = MathTex(examples[2]).scale(0.8).next_to(example2, DOWN, aligned_edge=LEFT, buff=0.5)
+        example4 = MathTex(examples[3]).scale(0.8).next_to(example3, DOWN, aligned_edge=LEFT, buff=0.5)
+        self.play(Write(example1))
+        self.wait(1)
+        self.play(Write(example2))
+        self.wait(1)
+        self.play(Write(example3))
+        self.wait(1)
+        self.play(Write(example4))
+        self.wait(1)
+ 
+        self.wait(3)
+
+    
+
     def Division(self):
         self.setNumberOfCirclePositions(4)
         #self.angleChoice = [0,0,0]
@@ -159,6 +304,32 @@ class int6(AbstractAnim):
         self.construct1(p13,p13)
         self.play(Create(CurvedArrow(p11.pos,p13.pos)),Create(CurvedArrow(p12.pos,p13.pos)))
         #self.play()
+
+
+    def divexample(self):
+        title = Text("Division",color=PURPLE).to_edge(UP)
+        self.play(Write(title))
+
+        examples = [
+        r"X \div Y \quad \text{example:} \quad 6 \div 3 = 2",
+        r"(-X) \div Y \quad \text{example:} \quad -6 \div 3 = -2",
+        r"(-X) \div (-Y) \quad \text{example:} \quad -6 \div -3 = 2",
+        r"X \div (-Y) \quad \text{example:} \quad 6 \div (-3) = -2"
+        ]
+        example1 = MathTex(examples[0]).scale(0.8).next_to(title, DOWN, buff=1)
+        example2 = MathTex(examples[1]).scale(0.8).next_to(example1, DOWN, aligned_edge=LEFT, buff=0.5)
+        example3 = MathTex(examples[2]).scale(0.8).next_to(example2, DOWN, aligned_edge=LEFT, buff=0.5)
+        example4 = MathTex(examples[3]).scale(0.8).next_to(example3, DOWN, aligned_edge=LEFT, buff=0.5)
+        self.play(Write(example1))
+        self.wait(1)
+        self.play(Write(example2))
+        self.wait(1)
+        self.play(Write(example3))
+        self.wait(1)
+        self.play(Write(example4))
+        self.wait(1)
+ 
+        self.wait(3)
 
     def RenderNaturalNumbers(self):
         number_line = NumberLine(x_range=[-5,5,1],include_numbers=1)
