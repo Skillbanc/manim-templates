@@ -64,6 +64,7 @@ class CVO:
     self.onameList = []
     self.SetIsMathText(False)
     self.speech=""
+    self.isEllipse=False
     return self
   
 
