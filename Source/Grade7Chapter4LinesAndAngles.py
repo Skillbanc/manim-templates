@@ -628,9 +628,9 @@ class LinesAndAngles(AbstractAnim):
     ).arrange(RIGHT).scale(0.8).next_to(line_m, DOWN * 1.5, buff=1)
 
         explanation1 = VGroup(
-        MathTex(r"\angle 3 = \angle 8").set_color(GREEN),
+        MathTex(r"\angle 3 = \angle 8").set_color(ORANGE),
         Text(" and "),
-        MathTex(r"\angle 4 = \angle 7").set_color(ORANGE)
+        MathTex(r"\angle 4 = \angle 7").set_color(GREEN)
     ).arrange(RIGHT).scale(0.8).next_to(explanation, DOWN, buff=0.2)
 
         self.play(Write(explanation))
@@ -736,10 +736,10 @@ class LinesAndAngles(AbstractAnim):
         self.wait(2)
 
     def ConsecIntExt(self):
-        title = Text("Consecutive Interior Angles").to_edge(UP+LEFT)
+        title = Text("Consecutive Angles").to_edge(UP+LEFT)
         self.play(Write(title))
 
-        self.positionChoice=[[3.5,-2,0],[3,1,0]]
+        self.positionChoice=[[3.5,-1,0],[3,1,0]]
         self.isRandom = False
         p10=cvo.CVO().CreateCVO("Consecutive Interior \& Exterior Angle","")
         p11=cvo.CVO().CreateCVO("Property","Angles on same side of transversal")
@@ -790,15 +790,15 @@ class LinesAndAngles(AbstractAnim):
 
     # Position explanation to the bottom
         explanation = VGroup(Text("Consecutive Exterior Angles: ").scale(0.5),
-        MathTex(r"\angle 1 = \angle 7").set_color(YELLOW),
+        MathTex(r"\angle 1 + \angle 7=180^\circ").set_color(YELLOW),
         Text(" and "),
-        MathTex(r"\angle 2 = \angle 8").set_color(PINK)
+        MathTex(r"\angle 2 + \angle 8=180^\circ").set_color(PINK)
     ).arrange(RIGHT).scale(0.8).next_to(transversal.get_start(), buff=0.5).shift(DOWN*4)
 
         explanation1 = VGroup(Text("Consecutive Interior Angles: ").scale(0.5),
-        MathTex(r"\angle 5 = \angle 3").set_color(ORANGE),
+        MathTex(r"\angle 5 + \angle 3=180^\circ").set_color(ORANGE),
         Text(" and "),
-        MathTex(r"\angle 6 = \angle 4").set_color(GREEN)
+        MathTex(r"\angle 6 + \angle 4=180^\circ").set_color(GREEN)
     ).arrange(RIGHT).scale(0.8).next_to(explanation, DOWN, buff=0.2)
 
         self.play(Write(explanation))
