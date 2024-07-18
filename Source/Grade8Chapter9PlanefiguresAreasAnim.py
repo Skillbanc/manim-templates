@@ -381,8 +381,8 @@ class Grade8Chapter9PlanefiguresAreasAnim(AbstractAnim):
         self.play(Write(u))
         self.play(Write(subtil))
 
-        a = ((1.9,0.2,0),(5.1,0.6,0),(5.5,2.5,0),(2.5,2,0),(1.9,0.2,0),(5.5,2.5,0))
-        ex1 = Polygon(*a,color=WHITE,stroke_width=5)
+        a = ((1.9,0.2,0),(5.1,0.6,0),(5.5,2.5,0),(2.5,2,0),(2,0.2,0),(5.5,2.5,0))
+        ex1 = Polygon(*a,color=BLUE,stroke_width= 10)
         self.play(Write(ex1))
         self.wait()
 
@@ -395,16 +395,16 @@ class Grade8Chapter9PlanefiguresAreasAnim(AbstractAnim):
         self.play(Write(s3))
         self.play(Write(s4))
 
-        dia = DoubleArrow(start=[1.8,0.05,0], end=[5.6,2.4,0],color=RED,stroke_width=1)
+        dia = DoubleArrow(start=[1.8,0.05,0], end=[5.6,2.4,0],color=ORANGE)
         self.play(Write(dia))
 
         t1 = Text("d",color=RED,font_size=25).move_to([3.7,1.7,0])
         self.play(Write(t1))
 
-        d1 = DashedLine(start=[2.5,2,0],end=[3.1,1,0],color=BLUE)
+        d1 = DashedLine(start=[2.5,2,0],end=[3.1,1,0],color=ORANGE)
         self.play(Write(d1))
 
-        d2 = DashedLine(start=[5.1,0.6,0],end=[4.4,1.7,0],color=BLUE)
+        d2 = DashedLine(start=[5.1,0.6,0],end=[4.4,1.7,0],color=ORANGE)
         self.play(Write(d2))
 
         a1 = Text("h1",font_size=25,color=ORANGE).move_to([3,1.8,0])
@@ -451,7 +451,7 @@ class Grade8Chapter9PlanefiguresAreasAnim(AbstractAnim):
         self.play(Write(subtil,run_time=6))
 
         a = ((4.6,3.3,0),(6.3,1.5,0),(5.6,-0.2,0),(4.6,-1.3,0),(2.3,0.5,0),(4.6,3.3,0))
-        ex1 = Polygon(*a,color=WHITE,stroke_width=5)
+        ex1 = Polygon(*a,color=BLUE,stroke_width= 10)
         self.play(Write(ex1))
         self.wait()
 
@@ -468,16 +468,16 @@ class Grade8Chapter9PlanefiguresAreasAnim(AbstractAnim):
 
 
 
-        d1 = Line(start=[4.6,-1.3,0],end=[4.6,3.3,0],color=BLUE)
+        d1 = Line(start=[4.6,-1.3,0],end=[4.6,3.3,0],color=ORANGE,stroke_width= 10)
         self.play(Write(d1))
 
-        d2 = Line(start=[6.3,1.5,0],end=[4.6,1.5,0],color=BLUE)
+        d2 = Line(start=[6.3,1.5,0],end=[4.6,1.5,0],color=ORANGE,stroke_width= 10)
         self.play(Write(d2))
 
-        d3 = Line(start=[5.6,-0.2,0],end=[4.6,-0.2,0],color=BLUE)
+        d3 = Line(start=[5.6,-0.2,0],end=[4.6,-0.2,0],color=ORANGE,stroke_width= 10)
         self.play(Write(d3))
 
-        d4 = Line(start=[2.3,0.5,0],end=[4.6,0.5,0],color=BLUE)
+        d4 = Line(start=[2.3,0.5,0],end=[4.6,0.5,0],color=ORANGE,stroke_width= 10)
         self.play(Write(d4))
 
         s6= Text("F",font_size=30).move_to([4.2,1.5,0])
