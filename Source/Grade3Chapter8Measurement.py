@@ -117,43 +117,7 @@ class Grade3Chapter8Measurement(AbstractAnim):
 
         self.play(FadeOut(sub_title1), FadeOut(sub_title2), FadeOut(sub_title3), FadeOut(sub_title4), FadeOut(scale), FadeOut(scale_border), FadeOut(scale_label), FadeOut(tape), FadeOut(tape_border), FadeOut(tape_label), FadeOut(tape_markings))
 
-         # Define the table data
-        table_data = [
-            ["S. No.", "Name of Object", "Length"],
-            ["1.", "Pen", "13cm"],
-            ["2.", "Chalk", "7.62cm"],
-            ["3.", "Eraser", "5cm"],
-            ["4.", "Duster", "14cm"],
-            ["5.", "Pencil", "18cm"]
-        ]
-
-        # Create the table with the title
-        table = Table(
-            table_data,
-            include_outer_lines=True,
-            h_buff=1,
-            v_buff=0.4
-        )
-
-        # Position the table at the center of the scene
-        table.scale(0.6)
-        table.move_to(ORIGIN)
-
-        # Add the title
-        title = Text("Measure the objects given in the table using a scale.", font_size=24)
-        title.next_to(table, UP * 0.5)
-
-        # Play the title and table together
-        self.play(Write(title), Create(table.get_horizontal_lines()), Create(table.get_vertical_lines()))
-        self.wait(1)
-
-        # Sequentially play each cell in the table
-        for row in table.get_entries():
-            for cell in row:
-                self.play(FadeIn(cell))
-                self.wait(0.5)
-
-        self.wait(2)
+       
 
 
 
