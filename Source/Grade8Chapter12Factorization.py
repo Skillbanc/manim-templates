@@ -81,11 +81,15 @@ class Grade8Chapter12Factorization(AbstractAnim):
         self.setNumberOfCirclePositions(5)
         #self.angleChoice = [0,0,0]
         self.isRandom = False
-        p10=cvo.CVO().CreateCVO("factors of algebraic expression","7yz").setPosition([-4,-2.5,0])
-        p11=cvo.CVO().CreateCVO("7(yz)","7 and yz are factors").setPosition([4.5,-1.75,0])
-        p12=cvo.CVO().CreateCVO("7y(z)","7y and z are factors").setPosition([4,1,0])
-        p13=cvo.CVO().CreateCVO("7z(y)","7z and y are factors").setPosition([1.25,2,0])
-        p14=cvo.CVO().CreateCVO("7xy","7,y and z are factors").setPosition([-2.25,1.75,0])
+        p10=cvo.CVO().CreateCVO("algebraic expression","7yz").setPosition([-4,-2.5,0])
+        p11=cvo.CVO().CreateCVO("Factors","").setPosition([4.5,-1.75,0])
+        p11.extendOname(["7","yz"])
+        p12=cvo.CVO().CreateCVO("Factors","").setPosition([4,1,0])
+        p12.extendOname(["7y","z"])
+        p13=cvo.CVO().CreateCVO("Factors","7z and y are factors").setPosition([1.25,2,0])
+        p13.extendOname(["7z","y"])
+        p14=cvo.CVO().CreateCVO("Factors","7,y and z are factors").setPosition([-2.25,1.75,0])
+        p14.extendOname(["7","y","z"])
         p10.cvolist.append(p11)
         p10.cvolist.append(p12)
         p10.cvolist.append(p13)
@@ -103,7 +107,7 @@ class Grade8Chapter12Factorization(AbstractAnim):
 
     def Types_of_Factorization(self):
         self.isRandom = False
-        p10=cvo.CVO().CreateCVO("Types of Factorization","").setPosition([-2,0,0])
+        p10=cvo.CVO().CreateCVO("Factorization","").setPosition([-2,0,0])
         p11=cvo.CVO().CreateCVO("Prime Factorization", "").setPosition([2.5,2,0])
         p12=cvo.CVO().CreateCVO("Complex Factorization", "").setPosition([2.5,-2,0])
         
@@ -145,38 +149,86 @@ class Grade8Chapter12Factorization(AbstractAnim):
 
 
 
-
         # Subtitle
-        sub_title1 = Text("Example:         (4x-1) ÷ (2x-1)", font_size=27).to_edge(UP*1.5 + LEFT*1)
+        sub_title1 = Text("Example: (4x² - 1) ÷ (2x - 1)", font_size=27).to_edge(UP*1.5 + LEFT*1)
         sub_title1[0:8].set_color(PURPLE)
         self.play(Write(sub_title1))
         self.wait(2)
 
         # Step 1: Write the initial expression
         initial_expression = MathTex(r"\frac{4x^2 - 1}{2x - 1}").to_edge(UP*3)
-        step_1 = MathTex(r"= \frac{(2x)^2 - 1^2}{2x - 1}").to_edge(UP*5)
-        step_2 = MathTex(r"= \frac{(2x + 1)(2x - 1)}{2x - 1}").to_edge(UP*7)
-        final_step = MathTex(r"= 2x + 1").to_edge(UP*9)  # Simplified final step
-
-        # Arrange them
-        step_1.next_to(initial_expression, DOWN*0.75, buff=1)
-        step_2.next_to(step_1, DOWN*0.75, buff=1)
-        final_step.next_to(step_2, DOWN*0.75, buff=1)
-
-        # Animation sequence
         self.play(Write(initial_expression))
         self.wait(1)
+
+        # Step 2: Show the expression as a difference of squares
+        step_1 = MathTex(r"= \frac{(2x)^2 - 1^2}{2x - 1}").to_edge(UP*5.5)
         self.play(Transform(initial_expression.copy(), step_1))
         self.wait(1)
+
+        # Step 3: Introduce the difference of squares formula
+        diff_squares = Text(r"a² - b² = (a+b) (a-b)", font_size=24).next_to(step_1, DOWN*2.5)
+        self.play(Write(diff_squares))
+        self.wait(1)
+
+        # Step 4: Factor the numerator using the difference of squares formula
+        step_2 = MathTex(r"= \frac{(2x + 1)(2x - 1)}{2x - 1}").to_edge(UP*10.7)
         self.play(Transform(step_1.copy(), step_2))
         self.wait(1)
+
+        # Step 5: Fade out the common term (2x - 1) in the numerator and denominator
+        numerator_term = step_2[0][11:19]  # (2x - 1) in the numerator
+        denominator_term = step_2[0][20:28]  # (2x - 1) in the denominator
+
+        self.play(FadeOut(numerator_term), FadeOut(denominator_term))
+        self.wait(1)
+
+        # Step 6: Write the simplified final step
+        final_step = MathTex(r"= 2x + 1").to_edge(UP*13.5)
         self.play(Transform(step_2.copy(), final_step))
         self.wait(1)
 
-        self.wait(2)  # Optional wait at the end
+        # Optional wait at the end
+        self.wait(2)
 
         # Add the final expressions to the scene
         self.add(final_step)
+
+
+
+
+        
+
+        # # Subtitle
+        # sub_title1 = Text("Example:         (4x²-1) ÷ (2x-1)", font_size=27).to_edge(UP*1.5 + LEFT*1)
+        # sub_title1[0:8].set_color(PURPLE)
+        # self.play(Write(sub_title1))
+        # self.wait(2)
+
+        # # Step 1: Write the initial expression
+        # initial_expression = MathTex(r"\frac{4x^2 - 1}{2x - 1}").to_edge(UP*3)
+        # step_1 = MathTex(r"= \frac{(2x)^2 - 1^2}{2x - 1}").to_edge(UP*5)
+        # step_2 = MathTex(r"= \frac{(2x + 1)(2x - 1)}{2x - 1}").to_edge(UP*7)
+        # final_step = MathTex(r"= 2x + 1").to_edge(UP*9)  # Simplified final step
+
+        # # Arrange them
+        # step_1.next_to(initial_expression, DOWN*0.75, buff=1)
+        # step_2.next_to(step_1, DOWN*0.75, buff=1)
+        # final_step.next_to(step_3, DOWN*0.75, buff=1)
+
+        # # Animation sequence
+        # self.play(Write(initial_expression))
+        # self.wait(1)
+        # self.play(Transform(initial_expression.copy(), step_1))
+        # self.wait(1)
+        # self.play(Transform(step_1.copy(), step_2))
+        # self.wait(1)
+        # self.play(Transform(step_2.copy(), final_step))
+        # self.wait(1)
+
+        # self.wait(2)  # Optional wait at the end
+
+        # # Add the final expressions to the scene
+        # self.add(final_step)
 
 
     def MethodofCommonfactors(self):
@@ -329,10 +381,10 @@ class Grade8Chapter12Factorization(AbstractAnim):
     def divisionofalgebraicexpression(self):
 
         sub_title2 = Text("Division of Algebraic Expression",font_size=30,color=YELLOW).to_edge(UP*1+LEFT*1)
-        sub_title3 = Text("Let us consider 3x × 5³ = 15x⁴ ",font_size=29).to_edge(UP* 3+LEFT*4)
+        sub_title3 = Text("Example 1. Let us consider 3x × 5³ = 15x⁴ ",font_size=29).to_edge(UP* 3+LEFT*4)
         sub_title4 = Text("Then 15x⁴ ÷ 5x³ = 3x and 15x⁴ ÷ 3x = 5x³",font_size=29).to_edge(UP*4.5+LEFT*4)
-        sub_title5 = Text("consider 6a(a+5) = 6a² + 30a",font_size=29).to_edge(UP*6+LEFT*4)
-        sub_title6 = Text("(6a² + 30a) + 6a + a + 5",font_size=29).to_edge(UP*7.5+LEFT*4)
+        sub_title5 = Text("Example 2.Let us consider 6a(a+5) = 6a² + 30a",font_size=29).to_edge(UP*6.5+LEFT*4)
+        sub_title6 = Text("(6a² + 30a) ÷ 6a = a + 5",font_size=29).to_edge(UP*7.5+LEFT*4)
         sub_title7 = Text("(6a² + 30a) + (a+5) = 6a",font_size=29).to_edge(UP*9+LEFT*4)
        
         self.play(Write(sub_title2))
