@@ -86,9 +86,9 @@ class BigNumbers(AbstractAnim):
         self.wait(3)
 
     def addingBiggerNumbers(self):
-        self.positionChoice=[[-4,2,0],[-4,-2,0],[0,2,0],[0,-2,0],[3,0,0]]
+        self.positionChoice=[[-4,0,0],[-1,2,0],[-1,-2,0],[2,0,0],[5,0,0]]
         self.isRandom = False
-        self.angleChoice=[TAU/4,TAU/4,TAU/4,TAU/4,TAU/4]
+        self.angleChoice=[TAU/3,TAU/2,TAU/2,TAU/2,TAU/2]
         p10=cvo.CVO().CreateCVO("Bigger Numbers","")
         p11=cvo.CVO().CreateCVO("Number 1","12345")
         p12=cvo.CVO().CreateCVO("Number 2","67890")
@@ -133,14 +133,14 @@ class BigNumbers(AbstractAnim):
         self.wait(3)
 
     def subtractingBiggerNumbers(self):
-        self.positionChoice=[[-4,2,0],[-4,-2,0],[0,2,0],[0,-2,0],[3,0,0]]
+        self.positionChoice=[[-4,0,0],[-1,2,0],[-1,-2,0],[2,0,0],[5,0,0]]
         self.isRandom = False
-        self.angleChoice=[TAU/3,TAU/4,TAU/4,-TAU/4,TAU/4]
+        self.angleChoice=[TAU/3,TAU/2,TAU/2,TAU/2,TAU/2]
         p10=cvo.CVO().CreateCVO("Bigger Numbers","")
         p11=cvo.CVO().CreateCVO("Number 1","67890")
         p12=cvo.CVO().CreateCVO("Number 2","12345")
-        p13=cvo.CVO().CreateCVO("Addition","67890-12345")
-        p14 = cvo.CVO().CreateCVO("Sum", "55545")
+        p13=cvo.CVO().CreateCVO("Subtraction","67890-12345")
+        p14 = cvo.CVO().CreateCVO("Difference", "55545")
         p10.cvolist.append(p11)
         p10.cvolist.append(p12)
         self.construct1(p10,p10)
@@ -202,8 +202,14 @@ class BigNumbers(AbstractAnim):
             r"\text{8. Since } 7 < 8, \text{ we conclude that } 4567 < 4568.",
         ]
 
+        # steps_group = VGroup(*[MathTex(text, font_size=30) for text in steps]).arrange(DOWN, aligned_edge=LEFT).next_to(example, DOWN)
+        # self.play(Write(steps_group))
         steps_group = VGroup(*[MathTex(text, font_size=30) for text in steps]).arrange(DOWN, aligned_edge=LEFT).next_to(example, DOWN)
-        self.play(Write(steps_group))
+
+        # Animate each step with a 1-second gap
+        for step in steps_group:
+            self.play(Write(step))
+            self.wait(1)
         self.wait(5)
        
 

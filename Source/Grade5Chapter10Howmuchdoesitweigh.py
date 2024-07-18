@@ -116,7 +116,57 @@ class Howmuchdoesitweigh(AbstractAnim):
         question.to_edge(UP)
         self.play(Write(question))
         self.wait(1)
-
+    
+        # Create the table of contents
+        table_content = [
+            ["Bengal gram flour", "2 kg"],
+            ["Sugar", "3 kg"],
+            ["Kishmish", "200 gms"],
+            ["Kaaju", "150 gms"],
+            ["Badam", "100 gms"],
+        ]
+        cell_height = 0.7
+        cell_width = 3
+        
+        start_position = ORIGIN + UP * (len(table_content) * cell_height / 2)
+        
+        table = VGroup(*[
+            VGroup(*[
+                Tex(content, color=BLUE).scale(0.7).move_to(start_position + np.array([i * cell_width, -j * cell_height, 0]))
+                for i, content in enumerate(row)
+            ])
+            for j, row in enumerate(table_content)
+        ])
+        
+        h_lines = VGroup(*[
+            Line(
+                start=start_position + np.array([-cell_width / 2, -j * cell_height - cell_height / 2, 0]),
+                end=start_position + np.array([(len(table_content[0])) * cell_width - cell_width / 2, -j * cell_height - cell_height / 2, 0])
+            )
+            for j in range(len(table_content))
+        ])
+        
+        extra_h_line_top = Line(
+            start=start_position + np.array([-cell_width / 2, cell_height / 2, 0]),
+            end=start_position + np.array([(len(table_content[0])) * cell_width - cell_width / 2, cell_height / 2, 0])
+        )
+        
+        v_lines = VGroup(
+            Line(
+                start=start_position + np.array([-cell_width / 2, cell_height / 2, 0]),
+                end=start_position + np.array([-cell_width / 2, -(len(table_content)) * cell_height + cell_height / 2, 0])
+            ),
+            Line(
+                start=start_position + np.array([(len(table_content[0])) * cell_width - cell_width / 2, cell_height / 2, 0]),
+                end=start_position + np.array([(len(table_content[0])) * cell_width - cell_width / 2, -(len(table_content)) * cell_height + cell_height / 2, 0])
+            )
+        )
+        
+        table_with_lines = VGroup(table, h_lines, v_lines, extra_h_line_top)
+        table_with_lines.scale(0.9)
+        table_with_lines.next_to(question, DOWN, buff=0.5).to_edge(LEFT)
+        self.play(Create(table_with_lines))
+        
         # Dry fruit weights
         weights = [
             "Kishmish: 200 grams",
@@ -125,16 +175,16 @@ class Howmuchdoesitweigh(AbstractAnim):
         ]
         weight_text = VGroup(*[Text(weight, font_size=36) for weight in weights])
         weight_text.arrange(DOWN, aligned_edge=LEFT)
-        weight_text.next_to(question, DOWN, buff=1.0)
+        weight_text.next_to(table_with_lines, RIGHT, buff=0.5)
         self.play(FadeIn(weight_text, shift=DOWN))
         self.wait(1)
-
+    
         # Summation
         equation_text = Text("Total weight of dry fruits:", font_size=36)
         equation_text.next_to(weight_text, DOWN, buff=1.0)
         self.play(FadeIn(equation_text, shift=DOWN))
         self.wait(1)
-
+    
         # Equation
         equation = MathTex(
             "200 \\text{ grams} + 150 \\text{ grams} + 100 \\text{ grams} = 450 \\text{ grams}",
@@ -147,13 +197,63 @@ class Howmuchdoesitweigh(AbstractAnim):
     def Question2(self):
         # Setting up the text for the question
         question = Text(
-            "(b) Write the items on the list in the order of their weights, from \n""lightest to heaviest.",
+            "(b) Write the items on the list in the order of their weights, from \nlightest to heaviest.",
             font_size=30, color=GREEN
         )
         question.to_edge(UP)
         self.play(Write(question))
         self.wait(1)
-
+    
+        # Create the table of contents
+        table_content = [
+            ["Bengal gram flour", "2 kg"],
+            ["Sugar", "3 kg"],
+            ["Kishmish", "200 gms"],
+            ["Kaaju", "150 gms"],
+            ["Badam", "100 gms"],
+        ]
+        cell_height = 0.6
+        cell_width = 2.8
+        
+        start_position = ORIGIN + UP * (len(table_content) * cell_height / 2)
+        
+        table = VGroup(*[
+            VGroup(*[
+                Tex(content, color=BLUE).scale(0.7).move_to(start_position + np.array([i * cell_width, -j * cell_height, 0]))
+                for i, content in enumerate(row)
+            ])
+            for j, row in enumerate(table_content)
+        ])
+        
+        h_lines = VGroup(*[
+            Line(
+                start=start_position + np.array([-cell_width / 2, -j * cell_height - cell_height / 2, 0]),
+                end=start_position + np.array([(len(table_content[0])) * cell_width - cell_width / 2, -j * cell_height - cell_height / 2, 0])
+            )
+            for j in range(len(table_content))
+        ])
+        
+        extra_h_line_top = Line(
+            start=start_position + np.array([-cell_width / 2, cell_height / 2, 0]),
+            end=start_position + np.array([(len(table_content[0])) * cell_width - cell_width / 2, cell_height / 2, 0])
+        )
+        
+        v_lines = VGroup(
+            Line(
+                start=start_position + np.array([-cell_width / 2, cell_height / 2, 0]),
+                end=start_position + np.array([-cell_width / 2, -(len(table_content)) * cell_height + cell_height / 2, 0])
+            ),
+            Line(
+                start=start_position + np.array([(len(table_content[0])) * cell_width - cell_width / 2, cell_height / 2, 0]),
+                end=start_position + np.array([(len(table_content[0])) * cell_width - cell_width / 2, -(len(table_content)) * cell_height + cell_height / 2, 0])
+            )
+        )
+        
+        table_with_lines = VGroup(table, h_lines, v_lines, extra_h_line_top)
+        table_with_lines.scale(0.9)
+        table_with_lines.next_to(question, DOWN, buff=0.5).to_edge(LEFT)
+        self.play(Create(table_with_lines))
+        
         # Items with weights in order from lightest to heaviest
         items = [
             "Badam: 100 grams",
@@ -164,10 +264,11 @@ class Howmuchdoesitweigh(AbstractAnim):
         ]
         item_text = VGroup(*[Text(item, font_size=36) for item in items])
         item_text.arrange(DOWN, aligned_edge=LEFT, buff=0.5)
-
+        item_text.next_to(table_with_lines, RIGHT, buff=0.5)
+        
         self.play(FadeIn(item_text, shift=DOWN))
         self.wait(2)
-
+        
     def Question3(self):
         # Setting up the text for the question
         question = Text(

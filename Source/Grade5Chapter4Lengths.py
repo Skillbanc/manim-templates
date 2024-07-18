@@ -14,7 +14,7 @@ class Lengths(AbstractAnim):
         self.fadeOutCurrentScene()
         self.units()
         self.fadeOutCurrentScene()
-        self.inc()
+        self.foot()
         self.fadeOutCurrentScene()
         self.units1()
         self.fadeOutCurrentScene()
@@ -39,7 +39,7 @@ class Lengths(AbstractAnim):
 
     def metre(self):
         self.isRandom = False
-        self.positionChoice = [[-4,-2,0],[0,1,0],[4.5,-2,0],[0,-2,0]]
+        self.positionChoice = [[-4,-2,0],[-3,1,0],[4,1,0],[3,-2,0]]
         self.angleChoice=[TAU/4,TAU/4,-TAU/4]
         title=Title("Metric Conversions").to_edge(UP)
         self.play(Write(title))
@@ -53,7 +53,7 @@ class Lengths(AbstractAnim):
         self.construct1(p10,p10)
 
     def metric(self):
-        title = Text("Metric Conversion")
+        title = Text("Metric Conversion",color=RED)
         title.to_edge(UP)
         self.play(Write(title))
 
@@ -103,7 +103,7 @@ class Lengths(AbstractAnim):
         
 
     def units(self):
-        title1=Text("Conversions").to_edge(UP)
+        title1=Text("Conversions",color=RED).to_edge(UP)
         km = MathTex(r"Kilometers (km) \quad 1km = 1000m").next_to(title1,DOWN*2)
         m = MathTex("Meters (m) \quad 1m = 100cm \quad = \\frac{1}{1000} km").next_to(km, DOWN, buff=0.5)
         cm = MathTex("Centimeters (cm) \quad 1cm = 10mm \quad = \\frac{1}{100} m").next_to(m, DOWN, buff=0.5)
@@ -121,7 +121,7 @@ class Lengths(AbstractAnim):
         self.play(FadeOut(km),FadeOut(m),FadeOut(cm),FadeOut(mm),FadeOut(title1))
 
         # Examples for each conversion
-        title=Text("Examples").to_edge(UP)
+        title=Text("Examples",color=RED).to_edge(UP)
         example_km_to_m = MathTex("(1) 1.7 km = 1.7 \\times 1000 = 1700 m").scale(0.7).next_to(title,DOWN, buff=0.2)
         example_m_to_km = MathTex("(2)9000 m = 9000 \\div 1000 = 9 km").scale(0.7).next_to(example_km_to_m, DOWN, buff=0.5)
         example_m_to_mm = MathTex("(3)11 m = 11 \\times 1000 = 11000 mm").scale(0.7).next_to(example_m_to_km, DOWN, buff=0.5)
@@ -152,11 +152,11 @@ class Lengths(AbstractAnim):
         self.wait(3)
 
 
-    def inc(self):
+    def foot(self):
         self.setNumberOfCirclePositions(2)
         self.isRandom = False
-        p10=cvo.CVO().CreateCVO("Length in inches","1 inch = 1/12 feet")
-        p11=cvo.CVO().CreateCVO("Length in foot","1 foot = 12 inches")    
+        p10=cvo.CVO().CreateCVO("Length in foot","1 foot")
+        p11=cvo.CVO().CreateCVO("Length in inches","12 inches")    
         p10.setcircleradius(2)
         p11.setcircleradius(2)
         p10.cvolist.append(p11) 
@@ -164,7 +164,7 @@ class Lengths(AbstractAnim):
 
 
     def units1(self):
-        title1=Text("Conversions").to_edge(UP)
+        title1=Text("Conversions",color=RED).to_edge(UP)
         ft = MathTex("feet (') \quad 1ft = 12in ").next_to(title1,DOWN*2)
         iN = MathTex("Inches (\") \quad 1in = \\frac{1}{12}ft = 0.0833ft ").next_to(ft, DOWN*2, buff=0.5)
        
@@ -177,7 +177,7 @@ class Lengths(AbstractAnim):
         self.play(FadeOut(title1),FadeOut(ft),FadeOut(iN))
 
         # Examples for each conversion
-        title=Text("Examples").to_edge(UP)
+        title=Text("Examples",color=RED).to_edge(UP)
         text=Text("Feet to Inches:",font_size=30).next_to(title,DOWN*2)
         example_ft_to_in = MathTex("(1) 3.2 ft = 3.2 \\times 12  = 38.4in").scale(0.7).next_to(text,DOWN, buff=0.5)
         text1=Text("Inches to Feet:",font_size=30).next_to(example_ft_to_in,DOWN*3)
