@@ -9,15 +9,15 @@ class FactorsAnim(AbstractAnim):
 
     
     def construct(self):
-        # self.RenderSkillbancLogo()
-        # self.Factors()
-        # self.Important()
-        # self.Multiples()
-        # self.Multiples1()
+        self.RenderSkillbancLogo()
+        self.Factors()
+        self.Important()
+        self.Multiples()
+        self.Multiples1()
         self.Multiple()
-        # self.Important1()
-        # self.Example()
-        # self.GithubSourceCodeReference() 
+        self.Important1()
+        self.Example()
+        self.GithubSourceCodeReference() 
 
     def Factors(self):
         
@@ -152,7 +152,7 @@ class FactorsAnim(AbstractAnim):
            num_text = Text(str(num), font_size=24, color=color)
            angle = np.pi  # 180 degrees (left side)
            radius = circle.radius * 0.7
-           num_text.move_to(circle.get_center() + radius * np.array([np.cos(angle), np.sin(angle), 0]) + np.array([position_offset, 0, 0]))
+           num_text.move_to(circle.get_center() + radius * np.array([np.cos(angle), np.sin(angle), 0]) + position_offset)
            self.play(FadeIn(num_text))
 
         # Place multiples of 3 in the red circle
