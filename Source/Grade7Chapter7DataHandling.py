@@ -55,12 +55,69 @@ class DataHandling(AbstractAnim):
     #     self.fadeOutCurrentScene()
 
     def dblgrph(self):
-        self.isRandom = False
-        self.positionChoice=[[-3,0,0]]
-        p10=cvo.CVO().CreateCVO("doublebargraph","similar as bar graph but has 2 columns attached for each element of y axis")
-        p10.setcircleradius(2)
-        self.construct1(p10,p10)
-        self.fadeOutCurrentScene()
+        data1 = [0, 6, 3, 5]
+        data2 = [2, 4, 5, 3]
+        labels = ["0", "A", "B", "C"]
+        colors1 = [RED, GREEN, BLUE, YELLOW]
+        colors2 = [BLACK, ORANGE, BLUE, PINK]
+
+        # Create axes
+        axes = Axes(
+            x_range=[0, len(data1), 1],
+            y_range=[0, max(max(data1), max(data2)) + 2, 1],
+            axis_config={"color": WHITE},
+            tips=False,
+        ).add_coordinates()
+
+        # Manually add labels for axes
+        x_axis_label = Text("x-axis", font_size=16, color=WHITE).next_to(axes.x_axis.get_end(), DOWN)
+        y_axis_label = Text("y-axis", font_size=16, color=WHITE).next_to(axes.y_axis.get_end(), LEFT)
+        yaxislabel = Text("values", font_size=16, color=WHITE).next_to(axes.y_axis.get_center(), LEFT)
+        xaxislabel = Text("categories", font_size=16, color=WHITE).next_to(axes.x_axis.get_center(), DOWN)
+
+        y_axis_label.shift(LEFT*0.25)
+        xaxislabel.shift(DOWN*0.1)
+
+        # Create bars and labels
+        bars1 = VGroup()
+        bars2 = VGroup()
+        bar_labels = VGroup()
+
+        for i, (value1, value2) in enumerate(zip(data1, data2)):
+            bar1 = Rectangle(
+                width=0.35,
+                height=value1,
+                fill_color=colors1[i],
+                fill_opacity=0.8,
+                stroke_width=0
+            ).move_to(axes.c2p(i - 0.2, 0), aligned_edge=DOWN)
+            bars1.add(bar1)
+
+            bar2 = Rectangle(
+                width=0.35,
+                height=value2,
+                fill_color=colors2[i],
+                fill_opacity=0.8,
+                stroke_width=0
+            ).move_to(axes.c2p(i + 0.2, 0), aligned_edge=DOWN)
+            bars2.add(bar2)
+
+            # Label for each bar group
+            bar_label = Text(labels[i], font_size=16, color=WHITE).next_to(bar1, DOWN)
+            bar_labels.add(bar_label)
+
+        # Add a title
+        title = Text("Double Bar Graph Example", font_size=24).to_edge(UP)
+        self.play(Write(title))
+        self.wait(1)
+
+        # Display elements
+        self.play(Create(axes), Write(x_axis_label), Write(y_axis_label))
+        self.play(Create(bars1), Create(bars2))
+        self.play(Write(xaxislabel), Write(yaxislabel))
+        self.play(Write(bar_labels))
+        
+        self.wait(4)
 
     # def piechart(self):
     #     self.isRandom = False
@@ -359,11 +416,11 @@ class DataHandling(AbstractAnim):
         
         self.wait(2)
 
-    def SetDeveloperList(self): 
-       self.DeveloperList="T Sai Rohith Reddy" 
+    # def SetDeveloperList(self): 
+    #    self.DeveloperList="T Sai Rohith Reddy" 
 
-    def SetSourceCodeFileName(self):
-       self.SourceCodeFileName="Grade7Chapter7DataHandling.py" 
+    # def SetSourceCodeFileName(self):
+    #    self.SourceCodeFileName="Grade7Chapter7DataHandling.py" 
 
 if __name__ == "__main__":
     scene = DataHandling()
