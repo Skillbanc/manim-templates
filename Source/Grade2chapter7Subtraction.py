@@ -8,8 +8,6 @@ class Grade2Chapter7Subtraction(AbstractAnim):
         self.fadeOutCurrentScene()
         self.c1c2()
         self.fadeOutCurrentScene()
-        self.SubtractionUsingExpansion()
-        self.fadeOutCurrentScene()
         self.VerticalSubtraction()
         self.fadeOutCurrentScene()
         self.HorizontalSubtraction()
@@ -38,40 +36,7 @@ class Grade2Chapter7Subtraction(AbstractAnim):
         self.wait(1)
         self.fadeOutCurrentScene()
 
-    def SubtractionUsingExpansion(self):
-        # Title
-        title = Text("Subtract numbers using the method of expansion of numbers.", font_size=24)
-        title.move_to(UP * 3.5)
-        self.play(Write(title))
-        self.wait(1)
 
-        # Numbers and breakdowns
-        num1 = 65
-        num2 = 30
-
-        num1_breakdown = Tex(r"65 = 60 + 5").move_to(UP * 1.2)
-        num2_breakdown = Tex(r"30 = 30 + 0").move_to(UP * 0.6)
-        self.play(Write(num1_breakdown), Write(num2_breakdown))
-        self.wait(1)
-
-        # Perform the subtraction step by step
-        sub_step1 = Tex("65 - 30").move_to(UP * 0)
-        self.play(Write(sub_step1))
-        self.wait(1)
-
-        # Manual calculation steps
-        calculation_steps = [
-            Tex("65 - 30 = (60 + 5) - 30").move_to(DOWN * 0.5),
-            Tex("= 60 + (5 - 30)").move_to(DOWN * 1),
-            Tex("= 60 - 25").move_to(DOWN * 1.6),
-            Tex("= 35").move_to(DOWN * 2.2),
-        ]
-
-        for step in calculation_steps:
-            self.play(Write(step))
-            self.wait(1)
-
-        self.wait(2)
 
 
     def VerticalSubtraction(self):
@@ -135,7 +100,7 @@ class Grade2Chapter7Subtraction(AbstractAnim):
         self.wait(3)
         self.play(FadeOut(num), FadeOut(minus),FadeOut(num0), FadeOut(line_above),FadeOut(line_below),FadeOut(calculation),FadeOut(t1), FadeOut(t2),FadeOut(result1),FadeOut(result2))
 
-    # self.play(Write(NumberPlane()))
+        # self.play(Write(NumberPlane()))
         title = Text("Subtract the numbers given below:", font_size=25)
         title.move_to([-3, 3, 0])
         self.play(Write(title))
@@ -195,7 +160,7 @@ class Grade2Chapter7Subtraction(AbstractAnim):
         self.wait(3)
         self.play(FadeOut(num), FadeOut(minus),FadeOut(num0), FadeOut(line_above),FadeOut(line_below),FadeOut(calculation),FadeOut(t1), FadeOut(t2),FadeOut(result1),FadeOut(result2))
 
-    # self.play(Write(NumberPlane()))
+        # self.play(Write(NumberPlane()))
         title = Text("Subtract the numbers given below:", font_size=25)
         title.move_to([-3, 3, 0])
         self.play(Write(title))
@@ -255,7 +220,7 @@ class Grade2Chapter7Subtraction(AbstractAnim):
         self.wait(3)
         self.play(FadeOut(num), FadeOut(minus),FadeOut(num0), FadeOut(line_above),FadeOut(line_below),FadeOut(calculation),FadeOut(t1), FadeOut(t2),FadeOut(result1),FadeOut(result2))
 
-    # self.play(Write(NumberPlane()))
+        # self.play(Write(NumberPlane()))
         title = Text("Subtract the numbers given below:", font_size=25)
         title.move_to([-3, 3, 0])
         self.play(Write(title))
@@ -315,6 +280,7 @@ class Grade2Chapter7Subtraction(AbstractAnim):
         self.wait(3)
         self.play(FadeOut(num), FadeOut(minus),FadeOut(num0), FadeOut(line_above),FadeOut(line_below),FadeOut(calculation),FadeOut(t1), FadeOut(t2),FadeOut(result1),FadeOut(result2))
 
+
     def HorizontalSubtraction(self):
         self.display_horizontal_subtraction("54", "31", ["4 - 1 = 3", "5 - 3 = 2"])
         self.display_horizontal_subtraction("35", "23", ["5 - 3 = 2", "3 - 2 = 1"])
@@ -350,12 +316,6 @@ class Grade2Chapter7Subtraction(AbstractAnim):
         self.play(Write(equals.next_to(num0, RIGHT, buff=0.5)))
         self.wait(1)
 
-        # Calculate and display the result
-        result_value = eval(f"{top_number} - {bottom_number}")
-        result = Text(str(result_value), font_size=40)
-        self.play(Write(result.next_to(equals, RIGHT, buff=0.5)))
-        self.wait(1.5)
-
         # Display calculation steps
         calculation = Text("Calculation:", font_size=30)
         calculation.move_to([0, -1.5, 0])  # Move calculation part up
@@ -367,6 +327,12 @@ class Grade2Chapter7Subtraction(AbstractAnim):
             calc_text.next_to(calculation, DOWN, buff=0.5).shift(DOWN * i * 0.6)
             self.play(Write(calc_text))
             self.wait(2)
+
+        # Calculate and display the result
+        result_value = eval(f"{top_number} - {bottom_number}")
+        result = Text(str(result_value), font_size=40)
+        self.play(Write(result.next_to(equals, RIGHT, buff=0.5)))
+        self.wait(1.5)
 
         # Fade out all elements
         self.play(*[FadeOut(mob) for mob in self.mobjects])
