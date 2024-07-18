@@ -32,8 +32,10 @@ class TrianglesAndItsProperties(AbstractAnim):
         
     def triangles(self):
         self.isRandom=False
-        self.positionChoice=[[0,0,0]]
-        p10=cvo.CVO().CreateCVO("Triangle","A closed figure made up of three line segments.")
+        self.setNumberOfCirclePositions(2)
+        p10=cvo.CVO().CreateCVO("Triangle","")
+        p11=cvo.CVO().CreateCVO("Definition","A closed figure made up of three line segments.")
+        p10.cvolist.append(p11)
         p10.setcircleradius(1.8)
         self.construct1(p10,p10)
 
@@ -68,7 +70,7 @@ class TrianglesAndItsProperties(AbstractAnim):
     def classification(self):
         self.isRandom=False
         self.setNumberOfCirclePositions(2)
-        p10=cvo.CVO().CreateCVO("Triangle","Classifying them")
+        p10=cvo.CVO().CreateCVO("Triangle","")
         p11=cvo.CVO().CreateCVO("Classification","")
         p11onamelist=["Based on Sides","Based on Angles"]
         p10.cvolist.append(p11)
@@ -100,12 +102,12 @@ class TrianglesAndItsProperties(AbstractAnim):
         ]
 
         side_labels[0].move_to((np.array(A) + np.array(B)) / 2 + DOWN * 0.5)
-        side_labels[1].move_to((np.array(B) + np.array(C)) / 2 + RIGHT * 0.2)
-        side_labels[2].move_to((np.array(C) + np.array(A)) / 2 + LEFT * 0.2)
+        side_labels[1].move_to((np.array(B) + np.array(C)) / 2 + RIGHT * 0.4)
+        side_labels[2].move_to((np.array(C) + np.array(A)) / 2 + LEFT * 0.4)
 
         side_labels[0].rotate(np.arctan2(B[1] - A[1], B[0] - A[0]))
-        side_labels[1].rotate(np.arctan2(C[1] - B[1], C[0] - B[0]))
-        side_labels[2].rotate(np.arctan2(A[1] - C[1], A[0] - C[0]))
+        side_labels[1].rotate(np.arctan2(B[1] - C[1], B[0] - C[0]))
+        side_labels[2].rotate(np.arctan2(C[1] - A[1], C[0] - A[0]))
 
         for side_label in side_labels:
             self.add(side_label)
@@ -137,12 +139,12 @@ class TrianglesAndItsProperties(AbstractAnim):
         ]
 
         side_labels[0].move_to((np.array(A) + np.array(B)) / 2 + DOWN * 0.5)
-        side_labels[1].move_to((np.array(B) + np.array(C)) / 2 + RIGHT * 0.2)
-        side_labels[2].move_to((np.array(C) + np.array(A)) / 2 + LEFT * 0.2)
+        side_labels[1].move_to((np.array(B) + np.array(C)) / 2 + RIGHT * 0.4)
+        side_labels[2].move_to((np.array(C) + np.array(A)) / 2 + LEFT * 0.4)
 
         side_labels[0].rotate(np.arctan2(B[1] - A[1], B[0] - A[0]))
-        side_labels[1].rotate(np.arctan2(C[1] - B[1], C[0] - B[0]))
-        side_labels[2].rotate(np.arctan2(A[1] - C[1], A[0] - C[0]))
+        side_labels[1].rotate(np.arctan2(B[1] - C[1], B[0] - C[0]))
+        side_labels[2].rotate(np.arctan2(C[1] - A[1], C[0] - A[0]))
 
         for side_label in side_labels:
             self.add(side_label)
@@ -175,12 +177,12 @@ class TrianglesAndItsProperties(AbstractAnim):
         ]
 
         side_labels[0].move_to((np.array(A) + np.array(B)) / 2 + DOWN * 0.5)
-        side_labels[1].move_to((np.array(B) + np.array(C)) / 2 + RIGHT * 0.2)
-        side_labels[2].move_to((np.array(C) + np.array(A)) / 2 + LEFT * 0.2)
+        side_labels[1].move_to((np.array(B) + np.array(C)) / 2 + RIGHT * 0.4)
+        side_labels[2].move_to((np.array(C) + np.array(A)) / 2 + LEFT * 0.4)
 
         side_labels[0].rotate(np.arctan2(B[1] - A[1], B[0] - A[0]))
-        side_labels[1].rotate(np.arctan2(C[1] - B[1], C[0] - B[0]))
-        side_labels[2].rotate(np.arctan2(A[1] - C[1], A[0] - C[0]))
+        side_labels[1].rotate(np.arctan2(B[1] - C[1], B[0] - C[0]))
+        side_labels[2].rotate(np.arctan2(C[1] - A[1], C[0] - A[0]))
 
         for side_label in side_labels:
             self.add(side_label)
@@ -258,9 +260,9 @@ class TrianglesAndItsProperties(AbstractAnim):
         label_C = Text("C").next_to(vertices[2], UP).scale(0.5).shift(DOWN*2+LEFT*0.5)
 
         # Define angle labels
-        angle1_label = MathTex(r"30^\circ").move_to(vertices[1] + 0.6 * LEFT + 0.4 * UP).scale(0.5).shift(DOWN*2)
+        angle1_label = MathTex(r"30^\circ").move_to(vertices[1] + 1 * LEFT + 0.4 * UP).scale(0.5).shift(DOWN*2)
         angle2_label = MathTex(r"100^\circ").move_to(vertices[0] + 0.6 * RIGHT + 0.4 * UP).scale(0.5).shift(DOWN*2)
-        angle3_label = MathTex(r"50^\circ").move_to(vertices[2] + 0.6 * LEFT + 0.4 * DOWN).scale(0.5).shift(DOWN*2)
+        angle3_label = MathTex(r"50^\circ").move_to(vertices[2] + 0.6 * RIGHT + 0.9 * DOWN).scale(0.5).shift(DOWN*2)
 
         # Define angle arcs
         angle1_arc = Arc(radius=0.5, start_angle=150*DEGREES, angle=30*DEGREES).move_arc_center_to(vertices[1]).shift(DOWN*2)
@@ -304,7 +306,7 @@ class TrianglesAndItsProperties(AbstractAnim):
         label_D = Text("D",font_size=24).next_to(midpoint_AB, DOWN*0.4)
         self.add(label_D)
         med=Text("The line drawn from a midpoint of a side to its opposite vertex is called median",font_size=24).next_to(triangle,DOWN*2)
-        mte=MathTex(r"\text{In this case it is } \overline{AD}").next_to(med,DOWN*0.3).scale(0.8)
+        mte=MathTex(r"\text{In this case it is } \overline{CD}").next_to(med,DOWN*0.3).scale(0.8)
         self.play(Write(med,run_time=5))
         self.wait(3)
         self.play(Write(mte,run_time=4))
@@ -347,18 +349,21 @@ class TrianglesAndItsProperties(AbstractAnim):
         label_F = Text("F",font_size=24).next_to(midpoint_CA, LEFT*0.4)
         self.play(Write(label_D),Write(label_E),Write(label_F))
         label_G=Text("G", font_size=20).next_to(A,RIGHT*4.3 + UP*1.4)
+        centroid = [(A[0] + B[0] + C[0]) / 3, (A[1] + B[1] + C[1]) / 3, 0]
+        dot = Dot(centroid, color=RED)
         cen=Text("The point where all the 3 medians meet is called Centroid of a Triangle",font_size=24).next_to(triangle,DOWN*2)
         cen1=Text("In this case it is G",font_size=24).next_to(cen,DOWN*0.6)
         self.play(Write(label_G))
         self.play(Write(cen,run_time=4))
         self.play(Write(cen1,run_time=3))
+        self.add(dot)
         self.wait(4)
 
 
     def asp(self):
         self.isRandom=False
         self.setNumberOfCirclePositions(2)
-        p10=cvo.CVO().CreateCVO("Triangle","Property")
+        p10=cvo.CVO().CreateCVO("Triangle","")
         p11=cvo.CVO().CreateCVO("Angle Sum Property","The sum of the angles of a triangle is 180")
         p11.setcircleradius(2)
         p10.cvolist.append(p11)
@@ -407,7 +412,7 @@ class TrianglesAndItsProperties(AbstractAnim):
 
     def expro(self):
         self.isRandom=False
-        self.setNumberOfCirclePositions(2)
+        self.positionChoice=[[-3,0,0],[2,0,0]]
         p10=cvo.CVO().CreateCVO("Exterior Angle","")
         p11=cvo.CVO().CreateCVO("Property ","An Exterior angle is equal to sum of its interior opposite angles")
         p11.setcircleradius(2)
