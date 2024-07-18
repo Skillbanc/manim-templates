@@ -3,19 +3,19 @@ from AbstractAnim import AbstractAnim
 import cvo
 class Grade6Chapter3PlayingWithNumbers(AbstractAnim):
     def construct(self):
-        self.RenderSkillbancLogo()
-        self.fadeOutCurrentScene()
-        self.show_divisibility_rules()
-        self.fadeOutCurrentScene()
+        # self.RenderSkillbancLogo()
+        # self.fadeOutCurrentScene()
+        # self.show_divisibility_rules()
+        # self.fadeOutCurrentScene()
         self.show_number_concepts()
-        self.fadeOutCurrentScene()
-        self.PrimeFactorization()
-        self.fadeOutCurrentScene()
-        self.HCF()
-        self.fadeOutCurrentScene()
-        self.LCM()
-        self.fadeOutCurrentScene()
-        self.GithubSourceCodeReference()
+        # self.fadeOutCurrentScene()
+        # self.PrimeFactorization()
+        # self.fadeOutCurrentScene()
+        # self.HCF()
+        # self.fadeOutCurrentScene()
+        # self.LCM()
+        # self.fadeOutCurrentScene()
+        # self.GithubSourceCodeReference()
  
     def show_divisibility_rules(self):
         self.display_title("Divisibility Rules")
@@ -103,13 +103,14 @@ class Grade6Chapter3PlayingWithNumbers(AbstractAnim):
 
     def show_number_concepts(self):
         self.isRandom=False
-        self.positionChoice = [[0,2.5,0],[5,0,0],[-4,-2,0],[0,-2.5,0],[4,-2,0],[-5,0,0]]
-        p10=cvo.CVO().CreateCVO("Number Concepts","Types").setangle(-TAU/5)
-        p11=cvo.CVO().CreateCVO("","Factors")
-        p12=cvo.CVO().CreateCVO("","Prime")
-        p13=cvo.CVO().CreateCVO("","Composite")
-        p14=cvo.CVO().CreateCVO("","Co-Prime")
-        p15=cvo.CVO().CreateCVO("","Twin Prime")
+        self.play(Write(NumberPlane()))
+        self.positionChoice = [[0,2.5,0],[-5,1,0],[-4,-2,0],[0,-2.5,0],[4,-2,0],[5,1,0]]
+        p10=cvo.CVO().CreateCVO("Number Concepts","").setangle(-TAU/5)
+        p11=cvo.CVO().CreateCVO("Factors","")
+        p12=cvo.CVO().CreateCVO("Prime","")
+        p13=cvo.CVO().CreateCVO("Composite","")
+        p14=cvo.CVO().CreateCVO("Co-Prime","")
+        p15=cvo.CVO().CreateCVO("Twin Prime","")
 
         p10.setcircleradius(1.25)
         p11.setcircleradius(1.25)
@@ -128,10 +129,10 @@ class Grade6Chapter3PlayingWithNumbers(AbstractAnim):
         self.wait(1)
         self.clear_screen()
 
-        self.display_title("Number Concepts")
-        self.show_factors()
-        self.wait(1)
-        self.clear_screen()
+        # self.display_title("Number Concepts")
+        # self.show_factors()
+        # self.wait(1)
+        #self.clear_screen()
 
         self.show_prime_numbers()
         self.wait(1)
@@ -151,6 +152,7 @@ class Grade6Chapter3PlayingWithNumbers(AbstractAnim):
 
     def display_title(self, title_text):
         title = Text(title_text).scale(1.2).to_edge(UP)
+        title1 = Text
         self.play(Write(title))
         self.wait(1)
         self.play(FadeOut(title))
