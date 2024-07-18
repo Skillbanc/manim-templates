@@ -62,11 +62,11 @@ class testshapes(ThreeDScene,AbstractAnim):
     #     self.play(Unwrite(cyc))
 
 
-    #     cube = Cube(side_length=2, fill_opacity=0.7, fill_color="#6A53C6")
-    #     cube.move_to([-2, -3, 0])
-    #     text4=Text("Cube").scale(2).set_shade_in_3d(True) 
-    #     text4.rotate(PI/2,axis=RIGHT)
-    #     text4.to_corner(UL*3)
+        # cube = Cube(side_length=2, fill_opacity=0.7, fill_color="#6A53C6")
+        # cube.move_to([-2, -3, 0])
+        # text4=Text("Cube").scale(2).set_shade_in_3d(True) 
+        # text4.rotate(PI/2,axis=RIGHT)
+        # text4.to_corner(UL*3)
         
     #     self.play(Write(cube))
     #     self.play(Write(text4))
@@ -305,9 +305,6 @@ class testshapes(ThreeDScene,AbstractAnim):
 
         a = ((-6,-1.25,0),(-4.6,-1,0),(-3.8,-1.7,0),(-6,-1.25,0))
         base = Polygon(*a,color="#6DC9CD",fill_opacity=0.5,stroke_width=5)
-       
-
-        # top = Dot([-4.8,1,0],color="#6DC9CD")
 
 
         c = ((-4.8,1,0),(-6.1,-1.25,0),(-3.8,-1.7,0),(-4.8,1,0))
@@ -330,7 +327,6 @@ class testshapes(ThreeDScene,AbstractAnim):
 
 
         self.play(Write(base))
-        # self.play(Write(top))
         self.play(Write(face1))
         self.play(Write(face2))
         self.play(Write(face3))
@@ -372,8 +368,7 @@ class testshapes(ThreeDScene,AbstractAnim):
         self.play(Write(face2))
         self.play(Write(face3))
         self.play(Write(face1))
-        self.play(Write(t1))
-        # self.wait()      
+        self.play(Write(t1))     
     
 
     def sqpyramid(self):
@@ -381,18 +376,12 @@ class testshapes(ThreeDScene,AbstractAnim):
 
         a = ((1,-1.75,0),(-0.75,-1.75,0),(-2,-2.25,0),(-0.25,-2.25,0),(1,-1.75,0))
         base = Polygon(*a,color="#6DC9CD",fill_opacity=0.5,stroke_width=5)
-       
-
-        # top = Dot([-0.2,1,0],color="#6DC9CD")
-      
 
         c = ((-0.2,1,0),(1,-1.75,0),(-0.75,-1.75,0),(-0.2,1,0))
         face1 = Polygon(*c,color="#6DC9CD",fill_opacity=0.2,stroke_width=5)
 
-
         d = ((-0.2,1,0),(1,-1.75,0),(-0.25,-2.25,0),(-0.2,1,0))
         face2 = Polygon(*d,color="#6DC9CD",fill_opacity=0.2,stroke_width=5)
-
 
         e = ((-0.2,1,0),(-0.75,-1.75,0),(-2,-2.25,0),(-0.2,1,0))
         face3 = Polygon(*e,color="#6DC9CD",fill_opacity=0.2,stroke_width=5)
@@ -408,14 +397,13 @@ class testshapes(ThreeDScene,AbstractAnim):
 
 
         self.play(Write(base))
-        # self.play(Write(top))
         self.play(Write(face1))
         self.play(Write(face2))
         self.play(Write(face3))
         self.play(Write(face4))
         self.play(Write(t1))
         self.play(Write(t2))
-        # self.wait()  
+  
     
 
 

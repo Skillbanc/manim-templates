@@ -559,11 +559,7 @@ class Grade6Chapter143DShapesAnim(AbstractAnim,ThreeDScene):
         self.play(Write(d3))
         self.wait()
 
-        # a = Arc(0.5,TAU*1/4,-TAU*2.6/4,color=BLUE,stroke_width=2)
-
-        # a.move_to([-5,0,0])
-        # self.play(Create(a))
-    
+       
     def intro5(self):
 
         self.isRandom =  False
