@@ -451,7 +451,7 @@ class TrianglesAndItsProperties(AbstractAnim):
        self.DeveloperList="T Sai Rohith Reddy" 
 
     def SetSourceCodeFileName(self):
-       self.SourceCodeFileName="Grade7Chapter5Triangles.py"
+       self.SourceCodeFileName="Grade7Chapter5TrianglesAndItsProperties.py"
 if __name__=="__main__":
     scene=TrianglesAndItsProperties()
     scene.render()
