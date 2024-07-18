@@ -41,10 +41,10 @@ class KnowingNumbers(AbstractAnim):
     def Subtopics_1(self):
         self.isRandom=False
         self.setNumberOfCirclePositions(2)
-        p10=cvo.CVO().CreateCVO("Knowing our Numbers","").setPosition([-4,0,0])
-        p11=cvo.CVO().CreateCVO("Estimating and Comparing Numbers","").setPosition([0,2,0]).setangle(-TAU/4)
-        p12=cvo.CVO().CreateCVO("Estimating and Rounding Off Numbers","").setPosition([3.25,-0.2,0])
-        p13=cvo.CVO().CreateCVO("Revision of Place Value","").setPosition([1,-3,0])
+        p10=cvo.CVO().CreateCVO("Knowing our Numbers","").setPosition([-4.3,1.8,0])
+        p11=cvo.CVO().CreateCVO("Estimating and Comparing Numbers","").setPosition([0,2.4,0])
+        p12=cvo.CVO().CreateCVO("Estimating and Rounding Off Numbers","").setPosition([2.15,-3,0])
+        p13=cvo.CVO().CreateCVO("Revision of Place Value","").setPosition([3,-0.2,0])
         p10.cvolist.append(p11)
         p10.cvolist.append(p12)
         p10.cvolist.append(p13)
@@ -517,11 +517,12 @@ class KnowingNumbers(AbstractAnim):
 
     def Subtopics_2(self):
         self.isRandom=False
+        self.angleChoice = [TAU/4,TAU/4,TAU/4]
         self.setNumberOfCirclePositions(2)
-        p10=cvo.CVO().CreateCVO("Knowing our Numbers","").setPosition([-4,0,0])
-        p11=cvo.CVO().CreateCVO("Place value of larger numbers","").setPosition([0,2,0]).setangle(-TAU/4)
-        p12=cvo.CVO().CreateCVO("Indian vs. International Numeration Systems","").setPosition([3.25,-0.2,0])
-        p13=cvo.CVO().CreateCVO("Large Numbers Used In Daily Life Situations","").setPosition([1,-3,0])
+        p10=cvo.CVO().CreateCVO("Knowing our Numbers","").setPosition([-4.3,1.8,0])
+        p11=cvo.CVO().CreateCVO("Place value of larger numbers","").setPosition([0,2.4,0])
+        p12=cvo.CVO().CreateCVO("Large Numbers Used In Daily Life Situations","").setPosition([2.15,-3,0])
+        p13=cvo.CVO().CreateCVO("Indian vs. International Numeration Systems","").setPosition([3,-0.2,0])
         p10.cvolist.append(p11)
         p10.cvolist.append(p12)
         p10.cvolist.append(p13)
@@ -865,6 +866,7 @@ class KnowingNumbers(AbstractAnim):
         self.wait(2)
     
         self.play(FadeOut(sub_title8),FadeOut(sub_title7),FadeOut(sub_title6), FadeOut(sub_title5), FadeOut(sub_title4), FadeOut(sub_title3), FadeOut(sub_title2), FadeOut(sub_title1), FadeOut(title))
+
 
 
     def SetDeveloperList(self):  
