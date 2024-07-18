@@ -29,7 +29,7 @@ class PatternAnimation(AbstractAnim):
         p10=cvo.CVO().CreateCVO("Patterns","Patterns are recurring sequences that can be observed in various contexts.").setPosition([0,2.5,0])
         p11=cvo.CVO().CreateCVO("Types of Patterns","").setPosition([0,0.2,0])
         p12=cvo.CVO().CreateCVO("Patterns in numbers","").setPosition([-5,-1.2,0])
-        p13=cvo.CVO().CreateCVO("Patterns with turns","").setPosition([-2.5,-2.3,0])
+        p13=cvo.CVO().CreateCVO("Patterns with turns","").setPosition([2.15,-3,0])
         p14=cvo.CVO().CreateCVO("Patterns in the calendar","").setPosition([3.5,-2.7,0])
 
         p10.cvolist.append(p11)
@@ -59,6 +59,7 @@ class PatternAnimation(AbstractAnim):
         sub_title11 = Text("7,  5,  3",font_size=30,color=BLUE).to_edge(UP*13.75+LEFT * 10.75)
         
         self.play(Write(heading))
+        self.wait(0.6)
         self.play(Write(sub_title1))
         self.wait(1)
         self.play(Write(sub_title2))
@@ -142,6 +143,7 @@ class PatternAnimation(AbstractAnim):
         heading2 = Text("(a)",font_size=30).to_edge(UP*10.25 +LEFT*1)
         
         self.play(Write(heading))
+        self.wait(0.6)
         self.play(Write(sub_title1))
         self.wait(1)
         self.play(Write(sub_title2))

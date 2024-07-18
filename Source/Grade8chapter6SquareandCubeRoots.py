@@ -284,7 +284,7 @@ class SquarecubeOperations(AbstractAnim):
         #self.play()
     
 
-    
+
     def SquareRoot(self):
         self.setNumberOfCirclePositions(4)
         #self.angleChoice = [0,0,0]
