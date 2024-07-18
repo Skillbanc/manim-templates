@@ -147,14 +147,16 @@ class AlgebraicExpression(AbstractAnim):
 
     def Types(self):
         self.setNumberOfCirclePositions(5)
-        p10 = cvo.CVO().CreateCVO("Algebraic Expression", "").setPosition([0, 2.5, 0])
-        p11 = cvo.CVO().CreateCVO("monomial", "2x, 4z^2").setPosition([4, 2, 0])
+        self.isRandom = False
+        self.angleChoice = [TAU/4,TAU/4,TAU/4,TAU/4]
+        p10 = cvo.CVO().CreateCVO("Algebraic Expression", "").setPosition([-3.5, 0, 0])
+        p11 = cvo.CVO().CreateCVO("monomial", "2x, 4z^2").setPosition([2, 2.5, 0])
         p11.SetIsMathText(True)
-        p12 = cvo.CVO().CreateCVO("binomial", "3x + 2").setPosition([3.5, -2, 0])
+        p12 = cvo.CVO().CreateCVO("binomial", "3x + 2").setPosition([3.5, 1.5, 0])
         p12.SetIsMathText(True)
-        p13 = cvo.CVO().CreateCVO("trinomial", "x^2 + 3x + 2").setPosition([-4, 2, 0])
+        p13 = cvo.CVO().CreateCVO("trinomial", "x^2 + 3x + 2").setPosition([3.5, -1, 0])
         p13.SetIsMathText(True)
-        p14 = cvo.CVO().CreateCVO("polynomial", "4x^3 + 3x^2 - x + 7").setPosition([-3, -2, 0])
+        p14 = cvo.CVO().CreateCVO("polynomial", "4x^3 + 3x^2 - x + 7").setPosition([1.7, -2.5, 0])
         p14.SetIsMathText(True)
 
         p10.cvolist.append(p11)
@@ -163,17 +165,18 @@ class AlgebraicExpression(AbstractAnim):
         p10.cvolist.append(p14)
 
         self.construct1(p10, p10)
-
-    
+        
     def Polynomials(self):
         self.setNumberOfCirclePositions(7)
-        p10 = cvo.CVO().CreateCVO("polynomials", "").setPosition([0, 2.5, 0])
-        p11 = cvo.CVO().CreateCVO("Linear Polynomial", "A polynomial of degree 1 ").setPosition([4, 2, 0])
-        p12 = cvo.CVO().CreateCVO("Quadratic Polynomial", "A polynomial of degree 2 ").setPosition([5, -2, 0])
-        p13 = cvo.CVO().CreateCVO("Cubic Polynomial", "A polynomial of degree 3 ").setPosition([-4, 2, 0])
-        p14 = cvo.CVO().CreateCVO("Quartic Polynomial", "A polynomial of degree 4").setPosition([-4, -2, 0])
-        p15 = cvo.CVO().CreateCVO("Quintic Polynomial", "A polynomial of degree 5").setPosition([0, -2.5, 0])
-        p16 = cvo.CVO().CreateCVO("Sextic Polynomial", "A polynomial of degree 6 ").setPosition([0, 0, 0])
+        self.isRandom = False
+        self.angleChoice = [TAU/4,TAU/4,TAU/4,TAU/4,-TAU/2,TAU/2]
+        p10 = cvo.CVO().CreateCVO("polynomials", "").setPosition([-3.5, 0, 0])
+        p11 = cvo.CVO().CreateCVO("Linear Polynomial", "A polynomial of degree 1 ").setPosition([2, 2.5, 0])
+        p12 = cvo.CVO().CreateCVO("Quadratic Polynomial", "A polynomial of degree 2 ").setPosition([4.7, 1.5, 0])
+        p13 = cvo.CVO().CreateCVO("Cubic Polynomial", "A polynomial of degree 3 ").setPosition([4.7, -0.8, 0])
+        p14 = cvo.CVO().CreateCVO("Quartic Polynomial", "A polynomial of degree 4").setPosition([2, -2.5, 0])
+        p15 = cvo.CVO().CreateCVO("Quintic Polynomial", "A polynomial of degree 5").setPosition([-3.5, 2.5, 0])
+        p16 = cvo.CVO().CreateCVO("Sextic Polynomial", "A polynomial of degree 6 ").setPosition([-3.5, -2.5, 0])
 
         p10.cvolist.append(p11)
         p10.cvolist.append(p12)
@@ -183,6 +186,7 @@ class AlgebraicExpression(AbstractAnim):
         p10.cvolist.append(p16)
 
         self.construct1(p10, p10)
+        
 
     def Relations(self):
         self.setNumberOfCirclePositions(4)
@@ -538,14 +542,15 @@ class AlgebraicExpression(AbstractAnim):
     def identities(self):
         self.setNumberOfCirclePositions(5)
         self.isRandom = False
-        p10 = cvo.CVO().CreateCVO("identities", "").setPosition([0, 2.5, 0])
-        p11 = cvo.CVO().CreateCVO("(a+b)^2", "a^2+b^2+2ab")
+        self.angleChoice = [TAU/4,TAU/4,TAU/4,TAU/4]
+        p10 = cvo.CVO().CreateCVO("identities", "").setPosition([-3.5, 0, 0])
+        p11 = cvo.CVO().CreateCVO("(a+b)^2", "a^2+b^2+2ab").setPosition([2, 2.5, 0])
         p11.SetIsMathText(True)
-        p12 = cvo.CVO().CreateCVO("(a-b)^2", "a^2+b^2-2ab")
+        p12 = cvo.CVO().CreateCVO("(a-b)^2", "a^2+b^2-2ab").setPosition([3.5, 1.5, 0])
         p12.SetIsMathText(True)
-        p13 = cvo.CVO().CreateCVO("(a+b)(a-b)", "a^2-b^2")
+        p13 = cvo.CVO().CreateCVO("(a+b)(a-b)", "a^2-b^2").setPosition([3.5, -1, 0])
         p13.SetIsMathText(True)
-        p14 = cvo.CVO().CreateCVO("(x+a)(x+b)", "x^2+(a+b)x+ab")
+        p14 = cvo.CVO().CreateCVO("(x+a)(x+b)", "x^2+(a+b)x+ab").setPosition([1.7, -2.5, 0])
         p14.SetIsMathText(True)
         
         p10.cvolist.append(p11)
@@ -594,7 +599,7 @@ class AlgebraicExpression(AbstractAnim):
 
     def finding1962(self):
         # Title
-        title = Text("Finding (196)^2")
+        title = Tex("Finding","$ (196)^2 $")
         title.to_edge(UP)
         self.play(Write(title))
         self.wait(1)

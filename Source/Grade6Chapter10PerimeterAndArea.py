@@ -72,9 +72,9 @@ class PerimeterAndAreas(AbstractAnim):
         
         self.setNumberOfCirclePositions(3)
         self.isRandom = False
-        p10 = cvo.CVO().CreateCVO("Perimeter and Area", "")
-        p12 = cvo.CVO().CreateCVO("Perimeter", "Perimeter is the distance around the outside of a shape.")
-        p13 = cvo.CVO().CreateCVO("Area", "Area is the amount of space inside a shape.")
+        p10 = cvo.CVO().CreateCVO("Perimeter and Area", "").setPosition([-3,0,0])
+        p12 = cvo.CVO().CreateCVO("Perimeter", "the perimeter of a shape is defined as the total length of its boundary.").setPosition([1,2,0])
+        p13 = cvo.CVO().CreateCVO("Area", "Area is the amount of space inside a shape.").setPosition([1,-2,0])
 
         p10.cvolist.append(p12)
         p10.cvolist.append(p13)
@@ -131,8 +131,8 @@ class PerimeterAndAreas(AbstractAnim):
         
         # Create perimeter calculation text
         perimeter_text = MathTex(
-            r"Perimeter = a + b + c", color=WHITE
-        ).to_edge(DOWN)
+            r"Perimeter = (a + b + c)", color=WHITE
+        ).to_corner(DL*3, buff=0.3)
         
         self.play(Write(heading))
         # Animate the drawing of the triangle
@@ -152,6 +152,8 @@ class PerimeterAndAreas(AbstractAnim):
         # Keep the animation on screen for a few seconds
         self.wait(2)
         
+        self.isRandom = False
+        self.angleChoice = [TAU/2,-TAU/2]
         p10=cvo.CVO().CreateCVO("formula","a + b + c").setPosition([2,1,0])
         p11=cvo.CVO().CreateCVO("example","a=4,b=3,c=5").setPosition([4,1,0])
         p12=cvo.CVO().CreateCVO("perimeter","4+3+5 = 12").setPosition([3,-2,0]).setangle(-TAU/4)
@@ -192,6 +194,10 @@ class PerimeterAndAreas(AbstractAnim):
         label_cd = MathTex("s", color=WHITE).next_to(side_cd, DOWN)
         label_da = MathTex("s", color=WHITE).next_to(side_da, LEFT)
         
+        perimeter_text = MathTex(
+            r"Perimeter = 4*length of a side", color=WHITE
+        ).to_corner(DL*3, buff=0.3)
+        
         self.play(Write(heading))
         # Animate the drawing of the square
         self.play(Create(square))
@@ -205,11 +211,15 @@ class PerimeterAndAreas(AbstractAnim):
         # Show vertex labels
         self.play(Write(label_a), Write(label_b), Write(label_c), Write(label_d))
         
+        self.play(Write(perimeter_text))
+        
         # Keep the animation on screen for a few seconds
         self.wait(2)
         
-        p10=cvo.CVO().CreateCVO("formula","4*length of a side(a)").setPosition([2,1,0])
-        p11=cvo.CVO().CreateCVO("example","a=4").setPosition([4,1,0])
+        self.isRandom = False
+        self.angleChoice = [TAU/2,-TAU/2]
+        p10=cvo.CVO().CreateCVO("formula","4*length of a side(s)").setPosition([2,1,0])
+        p11=cvo.CVO().CreateCVO("example","s=4").setPosition([4,1,0])
         p12=cvo.CVO().CreateCVO("perimeter","4*4 = 16").setPosition([3,-2,0]).setangle(-TAU/4)
         p10.cvolist.append(p11)
         p11.cvolist.append(p12)
@@ -248,6 +258,11 @@ class PerimeterAndAreas(AbstractAnim):
         label_cd = MathTex("l", color=WHITE).next_to(side_cd, DOWN)
         label_da = MathTex("b", color=WHITE).next_to(side_da, LEFT)
         
+        perimeter_text = MathTex(
+            r"Perimeter = 2(l + b)", color=WHITE
+        ).to_corner(DL*3, buff=0.3)
+        
+        
         self.play(Write(heading))
         # Animate the drawing of the rectangle
         self.play(Create(rectangle))
@@ -260,10 +275,13 @@ class PerimeterAndAreas(AbstractAnim):
         
         # Show vertex labels
         self.play(Write(label_a), Write(label_b), Write(label_c), Write(label_d))
+        self.play(Write(perimeter_text))
         
         # Keep the animation on screen for a few seconds
         self.wait(2)
-
+        
+        self.isRandom = False
+        self.angleChoice = [TAU/2,-TAU/2]
         p10=cvo.CVO().CreateCVO("formula","2(l+b)").setPosition([2,1,0])
         p11=cvo.CVO().CreateCVO("example","l=2,b=3").setPosition([4,1,0])
         p12=cvo.CVO().CreateCVO("perimeter","2(2+3) = 10").setPosition([3,-2,0]).setangle(-TAU/4)
@@ -273,7 +291,7 @@ class PerimeterAndAreas(AbstractAnim):
         self.construct1(p10,p10)    
 
     def perimeterofpentagon(self):
-         # Create a heading
+        
         heading = Text("Perimeter of a Regular Polygon (Pentagon)")
         heading.to_edge(UP)
 
@@ -288,8 +306,8 @@ class PerimeterAndAreas(AbstractAnim):
         # Get vertices of the pentagon
         vertices = pentagon.get_vertices()
 
-        # Choose one side of the pentagon (for example, the first side)
-        side_index = 0
+        # Choose one side of the pentagon (for example, the bottom side)
+        side_index = 3  # Changed to 3 for bottom side
         start_point = vertices[side_index]
         end_point = vertices[(side_index + 1) % 5]
 
@@ -297,16 +315,18 @@ class PerimeterAndAreas(AbstractAnim):
         direction_vector = (end_point - start_point) / np.linalg.norm(end_point - start_point)
         perpendicular_vector = np.array([-direction_vector[1], direction_vector[0], 0])
 
-        # Position arrow and label
-        arrow_start = start_point + perpendicular_vector * 0.5
-        arrow_end = end_point + perpendicular_vector * 0.5
+        # Position arrow and label below the pentagon
+        arrow_offset = 0.5  # Adjust this value to move the arrow further down
+        arrow_start = start_point - perpendicular_vector * arrow_offset
+        arrow_end = end_point - perpendicular_vector * arrow_offset
         arrow = DoubleArrow(arrow_start, arrow_end, buff=0.2, stroke_width=8, color=BLUE)
-        label = MathTex("a", color=WHITE).next_to((arrow_start + arrow_end) / 2, perpendicular_vector, buff=0.2)
+        label = MathTex("a", color=WHITE).next_to(arrow, DOWN, buff=0.1)
+        self.wait(2)
 
         # Calculate perimeter formula
         perimeter_formula = MathTex("P = 5 \\times a")
-        perimeter_formula.to_corner(DR)
-
+        perimeter_formula.next_to(pentagon, DOWN, buff=1)  # Increased buffer to avoid overlap with arrow
+   
         # Add heading, pentagon, arrow, label, and formula to the scene
         self.play(Write(heading))
         self.play(Create(pentagon))
@@ -316,72 +336,79 @@ class PerimeterAndAreas(AbstractAnim):
         # Hold the final frame for a few seconds
         self.wait(2)
         
+        self.isRandom = False
+        self.angleChoice = [TAU/4,TAU/2,TAU/4]
         p10=cvo.CVO().CreateCVO("pentagon","5-sided polygon(all sides are equal)").setPosition([2,1,0])
         p11=cvo.CVO().CreateCVO("formula","5 x length of any side(a)").setPosition([5,1,0])
-        p12=cvo.CVO().CreateCVO("example","a=3").setPosition([2,-2,0]).setangle(-TAU/4)
-        p13=cvo.CVO().CreateCVO("perimeter","5*3 = 15").setPosition([5,-2,0]).setangle(-TAU/4)
+        p12=cvo.CVO().CreateCVO("example","a=3").setPosition([5,-2,0])
+        p13=cvo.CVO().CreateCVO("perimeter","5*3 = 15").setPosition([2,-2,0])
         p10.cvolist.append(p11)
         p11.cvolist.append(p12)
         p12.cvolist.append(p13)
-         
-        self.construct1(p10,p10)  
-    
+     
+        self.construct1(p10,p10)
+        
     def perimeterofhexagon(self):
         heading = Text("Perimeter of a Regular polygon(Hexagon)")
         heading.to_edge(UP)
 
-        # Define side length of the hexagon
+    # Define side length of the hexagon
         side_length = 2
 
-        # Create a hexagon
+    # Create a hexagon
         hexagon = RegularPolygon(n=6, start_angle=0, color=WHITE)
         hexagon.set_width(side_length)
         hexagon.move_to(LEFT * 4)
 
-        # Get vertices of the hexagon
+    # Get vertices of the hexagon
         vertices = hexagon.get_vertices()
 
-        # Animate the drawing of the hexagon
+    # Animate the drawing of the hexagon
         hexagon_edges = VGroup()
         for i in range(6):
             edge = Line(vertices[i], vertices[(i + 1) % 6], color=WHITE)
             hexagon_edges.add(edge)
 
-        # Create arrow and label for one side (e.g., side A)
+    # Create arrow and label for one side (e.g., side A)
         side_label = "s"
         start_point = vertices[0]
         end_point = vertices[1]
         direction_vector = (end_point - start_point) / np.linalg.norm(end_point - start_point)
         perpendicular_vector = np.array([-direction_vector[1], direction_vector[0], 0])
 
-        # Calculate arrow positions
-        arrow_start = start_point + perpendicular_vector * 0.5
-        arrow_end = end_point + perpendicular_vector * 0.5
+    # Calculate arrow positions (outside the hexagon)
+        arrow_offset = 1  # Adjust this value to move the arrow further out
+        arrow_start = start_point + perpendicular_vector * (1 + arrow_offset)
+        arrow_end = end_point + perpendicular_vector * (1 + arrow_offset)
 
         arrow = DoubleArrow(arrow_start, arrow_end, buff=0.2, stroke_width=8, color=BLUE)
-        label = MathTex(side_label, color=WHITE).next_to((start_point + end_point) / 2, perpendicular_vector, buff=0.2)
+        label = MathTex(side_label, color=WHITE).next_to((arrow_start + arrow_end) / 2, perpendicular_vector, buff=0.2)
+        
+        self.wait(2)
 
-        # Calculate perimeter formula
+    # Calculate perimeter formula
         perimeter_formula = MathTex("P = 6 \\times s")
-        perimeter_formula.to_corner(DR)
+        perimeter_formula.next_to(hexagon, DOWN, buff=0.5)  # Position below the hexagon
 
-        # Add heading, hexagon, arrow, label, and formula to the scene
+    # Add heading, hexagon, arrow, label, and formula to the scene
         self.play(Write(heading))
         self.play(Create(hexagon_edges), run_time=3)
         self.play(Create(arrow), Write(label))
         self.play(Write(perimeter_formula))
 
-        # Hold the final frame for a few seconds
+    # Hold the final frame for a few seconds
         self.wait(2)
         
-        p10=cvo.CVO().CreateCVO("pentagon","6-sided polygon(all sides are equal)").setPosition([2,1,0])
-        p11=cvo.CVO().CreateCVO("formula","6 x length of any side(a)").setPosition([5,1,0])
-        p12=cvo.CVO().CreateCVO("example","a=3").setPosition([2,-2,0]).setangle(-TAU/4)
-        p13=cvo.CVO().CreateCVO("perimeter","6*3 = 18").setPosition([5,-2,0]).setangle(-TAU/4)
+        self.isRandom = False
+        self.angleChoice = [TAU/4,TAU/4,-TAU/2,TAU/4]
+        p10=cvo.CVO().CreateCVO("hexagon","6-sided polygon(all sides are equal)").setPosition([2,1,0])
+        p11=cvo.CVO().CreateCVO("formula","6 x length of any side(s)").setPosition([5,1,0])
+        p12=cvo.CVO().CreateCVO("example","s=3").setPosition([5,-2,0])
+        p13=cvo.CVO().CreateCVO("perimeter","6*3 = 18").setPosition([2,-2,0])
         p10.cvolist.append(p11)
         p11.cvolist.append(p12)
         p12.cvolist.append(p13)
-         
+     
         self.construct1(p10,p10)
           
     def perimeterofoctagon(self):
@@ -413,16 +440,17 @@ class PerimeterAndAreas(AbstractAnim):
         direction_vector = (end_point - start_point) / np.linalg.norm(end_point - start_point)
         perpendicular_vector = np.array([-direction_vector[1], direction_vector[0], 0])
 
-        # Calculate arrow positions
-        arrow_start = start_point + perpendicular_vector * 0.3 + UP * 0.15
-        arrow_end = end_point + perpendicular_vector * 0.3 + UP * 0.15
+        # Calculate arrow positions (outside the octagon)
+        arrow_offset = 1  # Adjust this value to move the arrow further out
+        arrow_start = start_point + perpendicular_vector * (1 + arrow_offset)
+        arrow_end = end_point + perpendicular_vector * (1 + arrow_offset)
 
         arrow = DoubleArrow(arrow_start, arrow_end, buff=0.2, stroke_width=8, color=BLUE)
-        label = MathTex(side_label, color=WHITE).next_to(arrow_end, DOWN, buff=0.2)
+        label = MathTex(side_label, color=WHITE).next_to((arrow_start + arrow_end) / 2, perpendicular_vector, buff=0.2)
 
         # Calculate perimeter formula
         perimeter_formula = MathTex("P = 8 \\times s")
-        perimeter_formula.to_corner(DR)
+        perimeter_formula.next_to(octagon, DOWN, buff=0.5)  # Position below the octagon
 
         # Add heading, octagon, arrow, label, and formula to the scene
         self.play(Write(heading))
@@ -433,11 +461,13 @@ class PerimeterAndAreas(AbstractAnim):
         # Hold the final frame for a few seconds
         self.wait(2)
 
-        
+
+        self.isRandom = False
+        self.angleChoice = [TAU/4,TAU/4,-TAU/2,TAU/4]
         p10=cvo.CVO().CreateCVO("octagon","8-sided polygon(all sides are equal)").setPosition([2,1,0])
-        p11=cvo.CVO().CreateCVO("formula","8 x length of any side(a)").setPosition([5,1,0])
-        p12=cvo.CVO().CreateCVO("example","a=2").setPosition([2,-2,0]).setangle(-TAU/4)
-        p13=cvo.CVO().CreateCVO("Perimeter","8*3 = 16").setPosition([5,-2,0]).setangle(-TAU/4)
+        p11=cvo.CVO().CreateCVO("formula","8 x length of any side(s)").setPosition([5,1,0])
+        p12=cvo.CVO().CreateCVO("example","s=2").setPosition([5,-2,0])
+        p13=cvo.CVO().CreateCVO("Perimeter","8*3 = 16").setPosition([2,-2,0])
         p10.cvolist.append(p11)
         p11.cvolist.append(p12)
         p12.cvolist.append(p13)
@@ -457,14 +487,14 @@ class PerimeterAndAreas(AbstractAnim):
         self.play(Write(heading))
         self.wait(1)
 
-        # Define the vertices of the triangle
-        A = np.array([-4, -2, 0])
-        B = np.array([-1, -2, 0])
-        C = np.array([-2, 2, 0])
+        # Define the vertices of the triangle (moved further left)
+        A = np.array([-6, -2, 0])  # Changed from -4 to -6
+        B = np.array([-3, -2, 0])  # Changed from -1 to -3
+        C = np.array([-4, 2, 0])   # Changed from -2 to -4
 
         # Create the triangle outline
         triangle_outline = Polygon(A, B, C, stroke_color=WHITE, stroke_width=2, fill_opacity=0)
-        
+
         # Create the triangle with shading
         triangle = Polygon(A, B, C, fill_color=BLUE, fill_opacity=0.5)
 
@@ -494,7 +524,9 @@ class PerimeterAndAreas(AbstractAnim):
         self.play(GrowArrow(arrow_base), Write(label_base))
         self.play(GrowArrow(arrow_height), Write(label_height))
         self.wait(1)
-     
+        
+        self.isRandom = False
+        self.angleChoice = [TAU/2,-TAU/2]
         p10=cvo.CVO().CreateCVO("formula","1/2(b*h)").setPosition([2,1,0])
         p11=cvo.CVO().CreateCVO("example","b=2,h=3").setPosition([4,1,0])
         p12=cvo.CVO().CreateCVO("area","1/2(2*3) = 3").setPosition([3,-2,0]).setangle(-TAU/4)
@@ -551,7 +583,9 @@ class PerimeterAndAreas(AbstractAnim):
 
         # Keep the animation on screen for a few seconds
         self.wait(2)
-
+        
+        self.isRandom = False
+        self.angleChoice = [TAU/2,-TAU/2]
         p10=cvo.CVO().CreateCVO("formula","side x side").setPosition([2,1,0])
         p11=cvo.CVO().CreateCVO("example","s=3").setPosition([4,1,0])
         p12=cvo.CVO().CreateCVO("area","3*3 = 9").setPosition([3,-2,0]).setangle(-TAU/4)
@@ -607,8 +641,10 @@ class PerimeterAndAreas(AbstractAnim):
 
         # Keep the animation on screen for a few seconds
         self.wait(2)
-
-        p10=cvo.CVO().CreateCVO("formula","length(l) x breadth(b)").setPosition([2,1,0])
+        
+        self.isRandom = False
+        self.angleChoice = [TAU/2,-TAU/2]
+        p10=cvo.CVO().CreateCVO("formula","l x b").setPosition([2,1,0])
         p11=cvo.CVO().CreateCVO("example","l=3,b=4").setPosition([4,1,0])
         p12=cvo.CVO().CreateCVO("area","3*4= 12").setPosition([3,-2,0]).setangle(-TAU/4)
         p10.cvolist.append(p11)
@@ -616,9 +652,7 @@ class PerimeterAndAreas(AbstractAnim):
          
         self.construct1(p10,p10) 
     
-    def SetDeveloperList(self):
-        self.developerlist="vasudha"  
-        
+
 if __name__ == "__main__":
     scene = PerimeterAndAreas()
     scene.render()

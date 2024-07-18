@@ -182,41 +182,64 @@ class grade2(AbstractAnim):
         central_box_border.move_to(UP * 1.5)
 
         # Line from T O to the bottom of the last text
-        line = Line(central_box_texts[0].get_bottom(), central_box_texts[-1].get_bottom(), color=WHITE)
+        # line = Line(central_box_texts[0].get_bottom(), central_box_texts[-1].get_bottom(), color=WHITE)
 
         # Showing the boxes and line
         self.play(
             Write(central_box_border),
             Write(central_box),
-            Write(line),
+            # Write(line),
         )
         self.wait(2)
+        right_arrow = Arrow(
+            start=right_box_border.get_left(), 
+            end=central_box[4].get_right() + RIGHT * 0.2,
+            buff=0.1,
+            color=PINK
+        )
 
         # Showing right_box with its border and then displaying the circle around "1" and "5"
         self.play(
             Write(right_box_border),
             Write(right_box),
         )
-        self.wait(2)
         self.play(
-            central_box[1].animate.set_color(YELLOW),  # Highlight the circle around "1"
-            central_box[4].animate.set_color(YELLOW),  # Highlight "1 5"
+            Create(right_arrow),
         )
+        
         self.wait(2)
+        # self.play(
+        #     central_box[1].animate.set_color(YELLOW),  # Highlight the circle around "1"
+        #     central_box[4].animate.set_color(YELLOW),  # Highlight "1 5"
+        # )
+        # self.wait(2)
+        left_arrow = Arrow(
+            start=left_box_border.get_right(), 
+            end=central_box[4].get_left() + LEFT * 0.2,
+            buff=0.1,
+            color=YELLOW
+        )
 
         # Showing left_box with its border and then displaying "4" in the central box
         self.play(
             Write(left_box_border),
             Write(left_box),
         )
-        self.wait(2)
+        
         self.play(
-            central_box[4].animate.set_color(YELLOW),  # Highlight "4"
+            Create(left_arrow),
         )
+        self.wait(2)
+        # self.play(
+        #     central_box[4].animate.set_color(YELLOW),  # Highlight "4"
+        # )
+        self.wait(2)
+        
         self.wait(2)
 
     def multiplycationofnumbers1(self):
-        heading = Text("multiplication of numbers").scale(1.0)
+       # Heading
+        heading = Text("Multiplication of Numbers").scale(1.0)
         heading.move_to(UP * 3 + LEFT * 3)  # Position on the top-left corner
         self.play(Write(heading))
         self.wait(2)
@@ -231,14 +254,10 @@ class grade2(AbstractAnim):
 
         # Creating the lines with reduced spacing
         line1 = Line(color=WHITE).set_width(text_star_3.get_width()).next_to(text_star_3, DOWN, buff=0.3)
-        line2 = Line(color=WHITE).set_width(text_star_3.get_width()).next_to(line1, DOWN*2, buff=0.3)
-
-        # Create the "108" text
-        text_108 = Text("108").scale(0.7)
-        text_108.move_to((line1.get_center() + line2.get_center()) / 2)
+        line2 = Line(color=WHITE).set_width(text_star_3.get_width()).next_to(line1, DOWN * 2, buff=0.3)
 
         # Combine texts and lines
-        display_group = VGroup(texts_group, line1, text_108, line2)
+        display_group = VGroup(texts_group, line1, line2)
 
         # Aligning everything to the left side
         display_group.move_to(LEFT * 4)
@@ -247,10 +266,15 @@ class grade2(AbstractAnim):
         self.play(Write(display_group))
         self.wait(2)
 
-        
-         # Create all Text objects
+        # # Create the "108" text
+        # text_108 = Text("108").scale(0.7)
+        # text_108.move_to((line1.get_center() + line2.get_center()) / 2)
+        # self.play(Write(text_108))
+        # self.wait(2)
+
+        # Create all Text objects
         texts = [
-            Text("= (30 + 6)*3"),
+            Text("= (30 + 6) * 3"),
             Text("= 90 + 18"),
             Text("= 90 + 10 + 8"),
             Text("= 100 + 8"),
@@ -258,7 +282,7 @@ class grade2(AbstractAnim):
         ]
 
         # Additional text to be inserted between two lines
-        additional_text = Text("30*3 + 6*3")
+        additional_text = Text("30 * 3 + 6 * 3")
         additional_text.scale(0.8)  # Scale down the additional text
 
         # Scale down all texts uniformly
@@ -273,14 +297,20 @@ class grade2(AbstractAnim):
 
         # Move texts to the right side of the screen
         texts_group.move_to(RIGHT * 4)
+
         # Display the texts one by one on the screen
         for text in texts_group:
             self.play(Write(text))
             self.wait(2)
 
-        # Display the texts on the screen
-        self.play(Write(texts_group))
         self.wait(2)
+        
+        # Create the "108" text
+        text_108 = Text("108").scale(0.7)
+        text_108.move_to((line1.get_center() + line2.get_center()) / 2)
+        self.play(Write(text_108))
+        self.wait(2)
+
         
     def multiplycationofnumbers2(self):  
            
@@ -301,12 +331,8 @@ class grade2(AbstractAnim):
         line1 = Line(color=WHITE).set_width(text_star_3.get_width()).next_to(text_star_3, DOWN, buff=0.3)
         line2 = Line(color=WHITE).set_width(text_star_3.get_width()).next_to(line1, DOWN*2, buff=0.3)
 
-        # Create the "108" text
-        text_108 = Text("108").scale(0.7)
-        text_108.move_to((line1.get_center() + line2.get_center()) / 2)
-
         # Combine texts and lines
-        display_group = VGroup(texts_group, line1, text_108, line2)
+        display_group = VGroup(texts_group, line1, line2)
 
         # Aligning everything to the left side
         display_group.move_to(LEFT * 4)
@@ -339,11 +365,12 @@ class grade2(AbstractAnim):
             self.play(Write(text))
             self.wait(2)
 
-        # Display the texts on the screen
-        self.play(Write(texts_group))
-        self.wait(2)
         
-
+        # Create the "108" text
+        text_108 = Text("108").scale(0.7)
+        text_108.move_to((line1.get_center() + line2.get_center()) / 2)
+        self.play(Write(text_108))
+        self.wait(2)
         
     def box(self):
         # Create the table with reduced size
@@ -408,37 +435,47 @@ class grade2(AbstractAnim):
         for i, (start, continuation, explanation) in enumerate(series):
             # Create the initial series text
             text = Text(start, font_size=36)
-            text.to_edge(LEFT).shift(UP * (1 - i * 1))  # Increased vertical spacing
+            text.to_edge(LEFT).shift(UP * (1 - i * 1.2))  # Adjusted vertical spacing
 
             # Create explanation text box
             explain_box = Text(explanation, font_size=24, color=BLUE)
             explain_box.to_edge(RIGHT).align_to(text, UP)
 
             # Add the initial text and explanation
-            self.play(Write(text), Write(explain_box))
+            self.play(Write(text))
+            self.wait(1)
+            self.play(Write(explain_box))
+            self.wait(1)
 
             # Create placeholders and underlines for new numbers
             new_nums = []
             underlines = []
             for j, num in enumerate(continuation):
                 new_num = Text(str(num) + (", " if j < 2 else ""), font_size=36)
-                new_num.next_to(text, RIGHT, buff=(j + 1) * 0.8)  # Increased horizontal spacing
+                new_num.next_to(text, RIGHT, buff=0.8)  # Adjusted horizontal spacing
                 underline = Underline(new_num, color=YELLOW).shift(DOWN * 0.1)  # Shifted underline down
                 new_nums.append(new_num)
                 underlines.append(underline)
 
+                # Update text to include new_num for positioning the next number
+                text = VGroup(text, new_num)
+
             # Show all underlines first
             self.play(*[Create(underline) for underline in underlines])
 
+            # Show the explanation after underlines
+            # explanation_text = Text(explanation, font_size=24, color=BLUE)
+            # explanation_text.next_to(underlines[-1], RIGHT*2, buff=1)
+            # self.play(Write(explanation_text))
+            
             # Then reveal each new number
             for new_num in new_nums:
                 self.play(Write(new_num))
-                text = VGroup(text, new_num)
 
             self.wait(0.5)
 
         self.wait(2)
-
+        
     def pyramid(self): 
         # Title
         title = Text("Multiplication Pyramid", font_size=36)
