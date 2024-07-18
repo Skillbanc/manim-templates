@@ -22,29 +22,29 @@ config.max_files_cached = 800  # Change this number to your desired value
 class Grade5Chapter17TripToGolkonda(AbstractAnim):
     
     def construct(self):
-        self.RenderSkillbancLogo()
-        self.fadeOutCurrentScene()
-        self.heading()
-        self.fadeOutCurrentScene()
-        self.introduction()
-        self.fadeOutCurrentScene()
-        self.intro1()
-        self.fadeOutCurrentScene()
-        self.intro2()
-        self.fadeOutCurrentScene()
-        self.daytrip()
-        self.fadeOutCurrentScene()
-        self.intro3()
-        self.fadeOutCurrentScene()
-        self.intro4()
-        self.fadeOutCurrentScene()
-        self.intro5()
-        self.fadeOutCurrentScene()
-        self.intro6()
-        self.fadeOutCurrentScene()
+        # self.RenderSkillbancLogo()
+        # self.fadeOutCurrentScene()
+        # self.heading()
+        # self.fadeOutCurrentScene()
+        # self.introduction()
+        # self.fadeOutCurrentScene()
+        # self.intro1()
+        # self.fadeOutCurrentScene()
+        # self.intro2()
+        # self.fadeOutCurrentScene()
+        # self.daytrip()
+        # self.fadeOutCurrentScene()
+        # self.intro3()
+        # self.fadeOutCurrentScene()
+        # self.intro4()
+        # self.fadeOutCurrentScene()
+        # self.intro5()
+        # self.fadeOutCurrentScene()
+        # self.intro6()
+        # self.fadeOutCurrentScene()
         self.intro7()
-        self.fadeOutCurrentScene()
-        self.GithubSourceCodeReference()
+        # self.fadeOutCurrentScene()
+        # self.GithubSourceCodeReference()
     
     def SetDeveloperList(self):
         self.DeveloperList="Vasudha"
@@ -380,7 +380,7 @@ class Grade5Chapter17TripToGolkonda(AbstractAnim):
         
         self.construct1(p14,p14) 
         
-        self.play(Create(CurvedArrow(p11.pos,p14.pos)),Create(CurvedArrow(p13.pos,p14.pos)))
+        self.play(Create(CurvedArrow(p11.pos,p14.pos)),Create(CurvedArrow(p13.pos,p14.pos,angle=TAU/4)))
         
 if __name__ == "__main__":
     scene = Grade5Chapter17TripToGolkonda()
