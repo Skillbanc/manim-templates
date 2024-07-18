@@ -337,7 +337,7 @@ class StatisticsAnim(AbstractAnim):
         self.isRandom = False
         self.angleChoice = [TAU/5]
         p10=cvo.CVO().CreateCVO("Mode", "").setPosition([-3,0,0])
-        p11=cvo.CVO().CreateCVO("Formula", "l + ((f1 - f0) / ((2 * f1) - f0 - f2)) * h\n").setPosition([3,2,0])
+        p11=cvo.CVO().CreateCVO("Formula", r"l + \left( \frac{f_1 - f_0}{2f_1 - f_0 - f_2} \right) \cdot h").SetIsMathText(True).setPosition([3,2,0])
         
         p10.cvolist.append(p11)
 
@@ -464,8 +464,8 @@ class StatisticsAnim(AbstractAnim):
         self.angleChoice = [TAU/5,TAU/5,TAU/5]
         p10=cvo.CVO().CreateCVO("Median", "").setPosition([-4,0,0])
         p11=cvo.CVO().CreateCVO("Formula", "").setPosition([-1.5,0,0])
-        p12=cvo.CVO().CreateCVO("n=odd", "M = (n + 1) / 2 th term\n").setPosition([3,2,0])
-        p13=cvo.CVO().CreateCVO("n=even", "M = [(n / 2) + 1) th term + (n / 2) th term] / 2\n").setPosition([3,-2,0])
+        p12=cvo.CVO().CreateCVO("n=odd", r"M = \left(\frac{n + 1}{2}\right)").SetIsMathText(True).setPosition([3,2,0])
+        p13=cvo.CVO().CreateCVO("n=even", r"M = \left[ \frac{{\left( \frac{n}{2} + 1 \right)\text{th term} + \left( \frac{n}{2} \right)\text{th term}}}{2} \right]").SetIsMathText(True).setPosition([3,-2,0])
         
         p10.cvolist.append(p11)
         p11.cvolist.append(p12)
