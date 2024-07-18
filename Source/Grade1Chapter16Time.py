@@ -14,7 +14,7 @@ import cvo
 config.max_files_cached = 800  # Change this number to your desired value
 
 
-class Grade1Chapter16Time1(AbstractAnim):
+class Grade1Chapter16Time(AbstractAnim):
     def construct(self):
         self.RenderSkillbancLogo()
         self.fadeOutCurrentScene()
@@ -50,7 +50,7 @@ class Grade1Chapter16Time1(AbstractAnim):
         title = Text("Hours", font_size=36).to_edge(UP)
         self.play(Create(title))
         self.isRandom = False
-        self.angleChoice = [-TAU/4]
+        self.angleChoice = [TAU/4]
         p10 = cvo.CVO().CreateCVO("Hours", "1").setPosition([-2,0,0])
         p11 = cvo.CVO().CreateCVO("Minutes", "60").setPosition([2,0,0])
     
@@ -69,7 +69,7 @@ class Grade1Chapter16Time1(AbstractAnim):
         self.play(Create(title))
         
         self.isRandom = False
-        self.angleChoice = [-TAU/4]
+        self.angleChoice = [TAU/4]
         p10=cvo.CVO().CreateCVO("Minutes", "1").setPosition([-2,0,0])
         p11=cvo.CVO().CreateCVO("Seconds", "60").setPosition([2,0,0])
         p10.cvolist.append(p11)
@@ -81,6 +81,9 @@ class Grade1Chapter16Time1(AbstractAnim):
         self.construct1(p10,p10)
 
     def intro(self):
+        title = Text("Minutes", font_size=36).to_edge(UP)
+        self.play(Create(title))
+        
         circle = Circle(radius=2, color=WHITE)
     
         # Add numbers inside the clock with correct positioning
@@ -134,24 +137,26 @@ class Grade1Chapter16Time1(AbstractAnim):
         self.wait(5)
     
     def intro1(self):
-        title = Text("let us learn how to tell time", font_size=36).to_edge(UP)
+        title = Text("Let us learn how to tell time", font_size=36).to_edge(UP)
         self.play(Create(title))
         
          # Create the clock and initial time
         clock, hour_hand, minute_hand = self.create_clock()
-        time_label = Text("1:00").scale(0.5).next_to(clock, DOWN)
+        label = Text("1:00").scale(0.5).next_to(clock, DOWN)
         
-        self.play(Create(clock), Write(time_label))
+        self.play(Create(clock), Write(label))
         self.wait(1)
 
-        # Define hour and minute hands with labels
-        # hour_text = Text("Hour hand", color=BLUE, font_size=24).next_to(clock, DOWN, buff=0.5)
-        # minute_text = Text("Minute hand", color=RED, font_size=24).next_to(hour_text, DOWN, buff=0.5)
+        # Create the clock and initial time
+        initial_time = "1:00"
+        time_label_prefix = "It is showing "
+        final_time = "pm"
+        time_label = Text(f"{time_label_prefix}{initial_time}{final_time}").scale(0.5).next_to(clock, LEFT, buff=1)
+        time_box = SurroundingRectangle(time_label, color=WHITE, buff=0.2)
         
-        # self.play(Write(hour_text), Indicate(hour_hand, color=BLUE, scale_factor=1.2))
-        # self.play(Write(minute_text), Indicate(minute_hand, color=RED, scale_factor=1.2))
-        # self.wait(2)
-        
+        self.play( Write(time_label), Create(time_box))
+        self.wait(1)
+
         # Define times and corresponding transformations
         times = [
             (1, 0, "1:00"), 
@@ -164,15 +169,18 @@ class Grade1Chapter16Time1(AbstractAnim):
         
         for hour, minute, time_text in times:
             new_hour_hand, new_minute_hand = self.create_clock_hands(hour, minute)
-            new_time_label = Text(time_text).scale(0.5).next_to(clock, DOWN)
+            new_label = Text(time_text).scale(0.5).next_to(clock, DOWN)
+            new_time_label = Text(f"{time_label_prefix}{time_text}{final_time}").scale(0.5).move_to(time_label, LEFT)
+            new_time_box = SurroundingRectangle(new_time_label, color=WHITE, buff=0.2).move_to(time_box)
 
-            self.play(Transform(hour_hand, new_hour_hand), Transform(minute_hand, new_minute_hand), Transform(time_label, new_time_label))
+            self.play(
+                Transform(hour_hand, new_hour_hand), 
+                Transform(minute_hand, new_minute_hand), 
+                Transform(label, new_label),
+                Transform(time_label, new_time_label), 
+                Transform(time_box, new_time_box)
+            )
             self.wait(2)
-
-        # # Conclusion
-        # conclusion = Text("Now you can read different times!", font_size=24).next_to(clock, DOWN, buff=1.5)
-        # self.play(Transform(conclusion))
-        # self.wait(3)
 
     def create_clock(self):
         clock = VGroup()
@@ -186,28 +194,17 @@ class Grade1Chapter16Time1(AbstractAnim):
             number = Text(str(num), font_size=24).move_to(number_position)
             numbers.add(number)
 
-        # Create initial hour and minute hands with different colors
-        # hour_hand = Arrow(ORIGIN*2, UP * 0.7, color=BLUE).set_stroke(width=8)
-        # minute_hand = Arrow(ORIGIN*2, UP * 1.3, color=RED).set_stroke(width=5)
-        
         # Create clock hands (one-sided arrows)
-        hour_hand = Arrow(start=ORIGIN*1, end=UP*0.8, buff=0, color=BLUE)
-        minute_hand = Arrow(start=ORIGIN*1, end=UP*1.2, buff=0, color=GREEN)
-        self.wait(2)
+        hour_hand = Arrow(start=ORIGIN, end=UP * 0.8, buff=0, color=BLUE)
+        minute_hand = Arrow(start=ORIGIN, end=UP * 1.2, buff=0, color=GREEN)
         
         clock.add(circle, numbers, hour_hand, minute_hand)
         return clock, hour_hand, minute_hand
-    
-        # self.wait(2)
 
     def create_clock_hands(self, hour, minute):
-        # Create new hour and minute hands for transformation
-        # hour_hand = Arrow(ORIGIN*2, UP * 0.7, color=BLUE).set_stroke(width=8)
-        # minute_hand = Arrow(ORIGIN*2, UP * 1.3, color=RED).set_stroke(width=5)
-        
         # Create clock hands (one-sided arrows)
-        hour_hand = Arrow(start=ORIGIN*1, end=UP*0.8, buff=0, color=BLUE)
-        minute_hand = Arrow(start=ORIGIN*1, end=UP*1.2, buff=0, color=GREEN)
+        hour_hand = Arrow(start=ORIGIN, end=UP * 0.8, buff=0, color=BLUE)
+        minute_hand = Arrow(start=ORIGIN, end=UP * 1.2, buff=0, color=GREEN)
 
         # Adjust the rotation of the hands
         hour_angle = (hour % 12 + minute / 60) * 30 * DEGREES
@@ -215,9 +212,8 @@ class Grade1Chapter16Time1(AbstractAnim):
 
         hour_hand.rotate(-hour_angle, about_point=ORIGIN)
         minute_hand.rotate(-minute_angle, about_point=ORIGIN)
-        self.wait(2)
+        
         return hour_hand, minute_hand
-        # self.wait(2)
         
     def intro2(self):
         # Define heading for the amount to be paid to the bus agency
@@ -247,5 +243,5 @@ class Grade1Chapter16Time1(AbstractAnim):
         self.construct1(p10,p10)    
     
 if __name__ == "__main__":
-    scene = Grade1Chapter16Time1()
+    scene = Grade1Chapter16Time()
     scene.render()

@@ -19,7 +19,7 @@ import cvo
 
 config.max_files_cached = 800  # Change this number to your desired value
 
-class Grade5Chapter17TripToGolkonda(AbstractAnim):
+class Grade5Chapter17TripToGolkonda1(AbstractAnim):
     
     def construct(self):
         # self.RenderSkillbancLogo()
@@ -61,39 +61,34 @@ class Grade5Chapter17TripToGolkonda(AbstractAnim):
         self.play(title.animate.to_edge(UP))
         
     def introduction(self):
-        # Define text for the introduction
-        intro_text = Text("The teachers of Gummadidala Primary School are\nplanning to take the children of\n"
-                          "class 4 and 5 to Golkonda Fort.\nThe head teacher is estimating the expenditure for\n"
-                          "the trip.").scale(0.6)
-        
-        # Define text for each expectation
-        text1 = Text("The Golkonda Fort is about 56 km from our school.\n"
-                     "The bus agency will charge ₹ 24 per km").scale(0.6)
-        text2 = Text("61 students and 3 teachers will go for the trip.\n"
-                     "The entry ticket at the Fort (including the sound and light show) is ₹ 40.").scale(0.6)
-        text3 = Text("Rupees 20 per person on the snacks and food").scale(0.6)
-        
-        # # Position texts off-screen above the visible area
-        # intro_text.move_to(UP * 3)
-        # text1.move_to(UP * 3)
-        # text2.move_to(UP * 3)
-        # text3.move_to(UP * 3)
-        
-        # Animate texts to slide up to the center, then move up and out of the visible area
-        self.play(intro_text.animate.move_to(ORIGIN), run_time=2)
+         
+        lines = [
+            "The teachers of Gummadidala Primary School are",
+            "planning to take the children of",
+            "class 4 and 5 to Golkonda Fort.",
+            "The head teacher is estimating the expenditure for",
+            "the trip.",
+            "The Golkonda Fort is about 56 km from our school.",
+            "The bus agency will charge ₹ 24 per km",
+            "61 students and 3 teachers will go for the trip.",
+            "The entry ticket at the Fort (including the sound ",
+            "and light show) is ₹ 40.",
+            "Rupees 20 per person on the snacks and food"
+        ]
+
+        text_group = VGroup()
+        for i, line in enumerate(lines):
+            text_line = Text(line, font_size=24)
+            if i == 0:
+                text_line.to_edge(UP)
+            else:
+                text_line.next_to(text_group[-1], DOWN, aligned_edge=LEFT)
+            text_group.add(text_line)
+            self.play(Write(text_line))
+            self.wait(0.5)
+
         self.wait(2)
-        self.play(AnimationGroup(intro_text.animate.move_to(UP * 6), text1.animate.move_to(ORIGIN), run_time=2)) # Move intro_text up and bring text1 to the center
         
-        self.wait(2)
-        self.play(AnimationGroup(text1.animate.move_to(UP * 6), text2.animate.move_to(ORIGIN), run_time=2)) # Move text1 up and bring text2 to the center
-        
-        self.wait(2)
-        self.play(AnimationGroup(text2.animate.move_to(UP * 6), text3.animate.move_to(ORIGIN), run_time=2)) # Move text2 up and bring text3 to the center
-        
-        self.wait(2)
-        self.play(text3.animate.move_to(UP * 6), run_time=2) # Move text3 up and out
-        self.wait(2)
-    
     def intro1(self):
         # Define heading for the amount to be paid to the bus agency
         heading = MarkupText("Q1:Amount to be paid to the bus agency", font_size=20, color=BLUE)
@@ -129,12 +124,12 @@ class Grade5Chapter17TripToGolkonda(AbstractAnim):
         heading.to_edge(UP + LEFT)
         self.play(FadeIn(heading))
         self.isRandom = False
-        self.angleChoice = [TAU/4,TAU/4,TAU/4,-TAU/2,-TAU/2]
-        p10=cvo.CVO().CreateCVO("travel cost per person","2688 INR / 64 people\n=42 INR ").setPosition([-4,0,0])
-        p11=cvo.CVO().CreateCVO("(1)travel cost","42 INR").setPosition([3.5,-2.5,0])
-        p12=cvo.CVO().CreateCVO("(2) ticket cost","40 INR").setPosition([3.5,0,0])
-        p13=cvo.CVO().CreateCVO("(3) additional cost","110 INR").setPosition([3.5,2.5,0])
-        p14=cvo.CVO().CreateCVO("Total cost per person","40 + 42= 102 INR ").setPosition([0,0,0])
+        self.angleChoice = [-TAU/4,TAU/4,-TAU/2,-TAU/2,TAU/2]
+        p10=cvo.CVO().CreateCVO("travel cost per person","2688 INR / 64 people\n=42 INR ").setPosition([0,2.2,0])
+        p11=cvo.CVO().CreateCVO("travel cost","42 INR").setPosition([-4,0,0])
+        p12=cvo.CVO().CreateCVO("ticket cost","40 INR").setPosition([4,0,0])
+        p13=cvo.CVO().CreateCVO("additional cost","110 INR").setPosition([4,2,0])
+        p14=cvo.CVO().CreateCVO("Total cost per person","40 + 42= 102 INR ").setPosition([0,-2,0])
         p10.cvolist.append(p11)
         p10.cvolist.append(p12)
         p10.cvolist.append(p13)
@@ -143,7 +138,7 @@ class Grade5Chapter17TripToGolkonda(AbstractAnim):
         
         self.construct1(p10,p10)
         self.construct1(p14,p14)
-        self.play(Create(CurvedArrow(p11.pos,p14.pos)),Create(CurvedArrow(p12.pos,p14.pos)))
+        self.play(Create(CurvedArrow(p11.pos,p14.pos)),Create(CurvedArrow(p12.pos,p14.pos,angle=TAU/4)))
         
         
     def daytrip(self):
@@ -254,11 +249,11 @@ class Grade5Chapter17TripToGolkonda(AbstractAnim):
         
         # Create points of interest
         p10 = cvo.CVO().CreateCVO("Golkonda Fort", "").setPosition([0, 2, 0])
-        p11 = cvo.CVO().CreateCVO("Fateh Darwaza", "").setPosition([-3, 0, 0])
-        p12 = cvo.CVO().CreateCVO("Mosque", "").setPosition([3, 0, 0])
-        p13 = cvo.CVO().CreateCVO("Bala Hisar gate", "").setPosition([3, -3, 0])
-        p14 = cvo.CVO().CreateCVO("Balahisar Pavilion", "").setPosition([0, -3, 0])
-        p15 = cvo.CVO().CreateCVO("Nagina Bagh", "").setPosition([0, 0, 0])
+        p11 = cvo.CVO().CreateCVO("Fateh Darwaza", "").setPosition([-4, 0, 0])
+        p12 = cvo.CVO().CreateCVO("Mosque", "").setPosition([4, 0, 0])
+        p13 = cvo.CVO().CreateCVO("Bala Hisar gate", "").setPosition([-4, -2.7, 0])
+        p14 = cvo.CVO().CreateCVO("Balahisar Pavilion", "").setPosition([4, -2.7, 0])
+        p15 = cvo.CVO().CreateCVO("Nagina Bagh", "").setPosition([0, -2.7, 0])
         
         # Link points of interest
         p10.cvolist.extend([p11, p12, p13, p14, p15])
@@ -383,5 +378,5 @@ class Grade5Chapter17TripToGolkonda(AbstractAnim):
         self.play(Create(CurvedArrow(p11.pos,p14.pos)),Create(CurvedArrow(p13.pos,p14.pos,angle=TAU/4)))
         
 if __name__ == "__main__":
-    scene = Grade5Chapter17TripToGolkonda()
+    scene = Grade5Chapter17TripToGolkonda1()
     scene.render()

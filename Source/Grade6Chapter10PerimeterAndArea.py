@@ -400,7 +400,7 @@ class PerimeterAndAreas(AbstractAnim):
         self.wait(2)
         
         self.isRandom = False
-        self.angleChoice = [TAU/4,TAU/4,-TAU/2,TAU/4]
+        self.angleChoice = [TAU/4,TAU/2,TAU/4,]
         p10=cvo.CVO().CreateCVO("hexagon","6-sided polygon(all sides are equal)").setPosition([2,1,0])
         p11=cvo.CVO().CreateCVO("formula","6 x length of any side(s)").setPosition([5,1,0])
         p12=cvo.CVO().CreateCVO("example","s=3").setPosition([5,-2,0])
@@ -463,7 +463,7 @@ class PerimeterAndAreas(AbstractAnim):
 
 
         self.isRandom = False
-        self.angleChoice = [TAU/4,TAU/4,-TAU/2,TAU/4]
+        self.angleChoice = [TAU/4,TAU/2,-TAU/4]
         p10=cvo.CVO().CreateCVO("octagon","8-sided polygon(all sides are equal)").setPosition([2,1,0])
         p11=cvo.CVO().CreateCVO("formula","8 x length of any side(s)").setPosition([5,1,0])
         p12=cvo.CVO().CreateCVO("example","s=2").setPosition([5,-2,0])
@@ -505,12 +505,12 @@ class PerimeterAndAreas(AbstractAnim):
 
         # Create the double-sided arrows for the base (from A to B)
         arrow_base = DoubleArrow(A, B, buff=0.1, stroke_width=5)
-        label_base = MathTex("base").next_to(arrow_base, DOWN, buff=0.1)
+        label_base = MathTex("base(b)").next_to(arrow_base, DOWN, buff=0.1)
 
         # Create the double-sided arrows for the height (from C to the perpendicular point on AB)
         height_point_on_AB = np.array([C[0], A[1], 0])  # Point on AB directly above C
         arrow_height = DoubleArrow(C, height_point_on_AB, buff=0.1, stroke_width=5)
-        label_height = MathTex("height").next_to(arrow_height, RIGHT, buff=0.1)
+        label_height = MathTex("height(h)").next_to(arrow_height, RIGHT, buff=0.1)
 
         # Add triangle outline to the scene
         self.play(Create(triangle_outline))
@@ -586,7 +586,7 @@ class PerimeterAndAreas(AbstractAnim):
         
         self.isRandom = False
         self.angleChoice = [TAU/2,-TAU/2]
-        p10=cvo.CVO().CreateCVO("formula","side x side").setPosition([2,1,0])
+        p10=cvo.CVO().CreateCVO("formula","side(s) x side(s)").setPosition([2,1,0])
         p11=cvo.CVO().CreateCVO("example","s=3").setPosition([4,1,0])
         p12=cvo.CVO().CreateCVO("area","3*3 = 9").setPosition([3,-2,0]).setangle(-TAU/4)
         p10.cvolist.append(p11)
