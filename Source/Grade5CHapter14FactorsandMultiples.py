@@ -152,7 +152,7 @@ class FactorsAnim(AbstractAnim):
            num_text = Text(str(num), font_size=24, color=color)
            angle = np.pi  # 180 degrees (left side)
            radius = circle.radius * 0.7
-           num_text.move_to(circle.get_center() + radius * np.array([np.cos(angle), np.sin(angle), 0]) + position_offset)
+           num_text.move_to(circle.get_center() + radius * np.array([np.cos(angle), np.sin(angle), 0]) + np.array([position_offset, 0, 0]))
            self.play(FadeIn(num_text))
 
         # Place multiples of 3 in the red circle
