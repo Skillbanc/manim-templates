@@ -24,13 +24,14 @@ class PatternAnimation(AbstractAnim):
     def introduction(self):
         self.setNumberOfCirclePositions(5)
         #self.angleChoice = [0,0,0]
+        self.angleChoice = [TAU/4,TAU/4,TAU/4,TAU/4]
         self.isRandom = False
 
-        p10=cvo.CVO().CreateCVO("Patterns","Patterns are recurring sequences that can be observed in various contexts.").setPosition([0,2.5,0])
-        p11=cvo.CVO().CreateCVO("Types of Patterns","").setPosition([0,0.2,0])
-        p12=cvo.CVO().CreateCVO("Patterns in numbers","").setPosition([-5,-1.2,0])
-        p13=cvo.CVO().CreateCVO("Patterns with turns","").setPosition([2.15,-3,0])
-        p14=cvo.CVO().CreateCVO("Patterns in the calendar","").setPosition([3.5,-2.7,0])
+        p10=cvo.CVO().CreateCVO("Patterns","Patterns are recurring sequences that can be observed in various contexts.").setPosition([-3,2.5,0])
+        p11=cvo.CVO().CreateCVO("Types of Patterns","").setPosition([-2.25,-1,0])
+        p12=cvo.CVO().CreateCVO("Patterns in numbers","").setPosition([2.75,1.8,0])
+        p13=cvo.CVO().CreateCVO("Patterns with turns","").setPosition([4.5,-0.1,0])
+        p14=cvo.CVO().CreateCVO("Patterns in the calendar","").setPosition([4,-3,0])
 
         p10.cvolist.append(p11)
         p11.cvolist.append(p12)
@@ -244,52 +245,84 @@ class PatternAnimation(AbstractAnim):
 
     
     def Patternsinthecalender(self):
-        # Title
-        title = Text("Patterns with Calendars")
-        title.to_edge(UP)
-        self.play(Write(title))
+        heading = Text("Patterns in the calendar",color=PINK,font_size=37).to_edge(UP*1)
+        sub_title1 = Text("Patterns in calendars are recurring cycles of days, weeks,",font_size=28).to_edge(UP*3)
+        sub_title2 = Text(" months, and years used to track time.",font_size=28).to_edge(UP*4.5)
+        sub_title3 = Text("example:",font_size=28,color=BLUE).to_edge(UP*7+LEFT*1)
+        sub_title4 = Text("Choose any 5 numbers as shown in the calendar",font_size=28).to_edge(UP*8.5+LEFT*1.2)
+        sub_title5 = Text("What is their sum?",font_size=28).to_edge(UP*10+LEFT*2.25)
+        sub_title6 = Text("2 + 9 + 16 + 23 + 30 = 80",font_size=28).to_edge(UP*11.5+LEFT*2.25)
+        sub_title7 = Text("we can do it faster by simply multiply the middle",font_size=28).to_edge(UP*13+LEFT*1.2)
+        sub_title8 = Text("number by 9 and get the answer- 9 x 21 = 189",font_size=28).to_edge(UP*14.5+LEFT*1.2)
+
+        self.play(Write(heading))
+        self.wait(0.8)
+        self.play(Write(sub_title1))
+        self.wait(0.5)
+        self.play(Write(sub_title2))
+        self.wait(1)
+        self.play(Write(sub_title3))
+        self.wait(1)
+        self.play(Write(sub_title4))
+        self.wait(1)
+        self.play(Write(sub_title5))
+        self.wait(1)
+        self.play(Write(sub_title6))
+        self.wait(1)
+        self.play(Write(sub_title7))
+        self.wait(0.5)
+        self.play(Write(sub_title8))
         self.wait(1)
 
-        # Calendar Dates and Days
-        dates = ["1", "8", "15", "22", "29"]
-        days = ["Monday", "Monday", "Monday", "Monday", "Monday"]
 
-        # Create Text objects for dates and days
-        date_texts = VGroup(*[Text(date) for date in dates])
-        day_texts = VGroup(*[Text(day) for day in days])
+        table_data = [
+            ["S", "M", "T", "W", "Th", "F", "Sa"],
+            ["", "", "", "1", "2", "3", "4"],
+            ["5", "6", "7", "8", "9", "10", "11"],
+            ["12", "13", "14", "15", "16", "17", "18"],
+            ["19", "20", "21", "22", "23", "24", "25"],
+            ["26", "27", "28", "29", "30", "31", ""], 
+        ]
 
-        # Arrange dates horizontally
-        date_texts.arrange(RIGHT, buff=1.5).shift(UP * 1)
+        # Create the table with the title
+        table = Table(
+            table_data,
+            include_outer_lines=True,
+            h_buff=0.35,
+            v_buff=0.3
+        )
+    
+        # Change the color of the table lines to blue
+        table.get_horizontal_lines().set_color(BLUE)
+        table.get_vertical_lines().set_color(BLUE)
 
-        # Arrange days below the dates, with staggered vertical positions to prevent overlap
-        for i, (day, date) in enumerate(zip(day_texts, date_texts)):
-            day.next_to(date, DOWN, buff=0.3).shift(DOWN * i * 0.4)
+        # Change the color of the headings to pink
+        for i in range(1, 8):
+            table.get_entries((1, i)).set_color(PINK)
 
-        # Animate the appearance of each date and day
-        for date, day in zip(date_texts, day_texts):
-            self.play(FadeIn(date), FadeIn(day))
-            self.wait(1)
+        # Position the table at the specific location
+        table.scale(0.6)
+        table.to_edge(UP*7.5 + RIGHT*3)
+
+        # Play the title and table together
+        self.play(Create(table.get_horizontal_lines()), Create(table.get_vertical_lines()))
+        self.wait(1)
+
+        # Sequentially play each cell in the table
+        for row in table.get_entries():
+            for cell in row:
+                self.play(FadeIn(cell))
+                self.wait(0.004)
 
         self.wait(2)
 
-        # Create curved arrows and texts for patterns
-        arrows = VGroup()
-        pattern_texts = VGroup()
-        for i in range(len(date_texts) - 1):
-            start_point = date_texts[i].get_right()
-            end_point = date_texts[i + 1].get_left()
-            arrow = CurvedArrow(start_point, end_point, angle=-PI / 2)  # Adjust the angle to get the desired curve
-            arrows.add(arrow)
-
-        # Calculate the position for the text above the arrow
-            midpoint = (start_point + end_point) / 2
-            text = Text("+7").move_to(midpoint + UP * 0.5)  # Adjust the UP value to position text as needed
-            pattern_texts.add(text)
-
-       # Animate the appearance of each arrow and text
-        for arrow, text in zip(arrows, pattern_texts):
-            self.play(Create(arrow), FadeIn(text))
-            self.wait(1)
+        # Create and add a surrounding rectangle for the specific entries
+        entries_to_highlight = [(2, 5), (3, 5), (4, 5), (5, 5), (6, 5)]
+        cells = VGroup(*[table.get_entries(entry) for entry in entries_to_highlight])
+        combined_rect = SurroundingRectangle(cells, color=YELLOW, buff=0.12)
+        self.play(Create(combined_rect))
+  
+        self.wait(2)
 
         
 
