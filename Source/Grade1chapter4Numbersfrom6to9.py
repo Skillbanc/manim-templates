@@ -25,29 +25,28 @@ class Grade1chapter4Numbersfrom6to9(AbstractAnim):
         
     def c1c2(self):
         self.isRandom = False
-        self.positionChoice = [[0, 2.5, 0],[-6,0,0],[-3,-2,0],[3,-2,0], [6, 0, 0]]
-        p10 = cvo.CVO().CreateCVO("Numbers from 6 to 9", "Numbers")
-        p11 = cvo.CVO().CreateCVO("", "6")
-        p12 = cvo.CVO().CreateCVO("", "7")
-        p13 = cvo.CVO().CreateCVO("", "8")
-        p14 = cvo.CVO().CreateCVO("", "9")
+        self.positionChoice = [[-3.5,0,0],[3,0,0]]
+        p10 = cvo.CVO().CreateCVO("Numbers", "")
+        p11 = cvo.CVO().CreateCVO("", "")
+        p11.extendOname(["6","7","8","9"])
 
-        p10.setcircleradius(1.25)
-        p11.setcircleradius(1.25)
-        p12.setcircleradius(1.25)
-        p13.setcircleradius(1.25)
-        p14.setcircleradius(1.25) 
-        
+        p10.setcircleradius(1.8)
+        p11.setcircleradius(1.8)
+
         p10.cvolist.append(p11)
-        p10.cvolist.append(p12) 
-        p10.cvolist.append(p13)
-        p10.cvolist.append(p14)
 
         self.construct1(p10, p10)
         self.wait(1)
         self.fadeOutCurrentScene()
 
     def WriteNumbersWithWords(self):
+
+     #def title(self):
+        title = Text("Numbers From 6 to 9", font_size=34, color= YELLOW)
+        title.to_edge(UP)
+        self.play(Write(title))
+        self.wait(1)
+    
         # Define the numbers and their words
         numbers_and_words = [
             ("6", "Six"),
@@ -94,43 +93,43 @@ class Grade1chapter4Numbersfrom6to9(AbstractAnim):
         self.wait(2)
 
     def construc2(self):
-        self.t2 = Text('🕯️🕯️🕯️🕯️🕯️', font_size=28).move_to([-3, 2, 0])
+        self.t2 = Text('🕯️🕯️🕯️🕯️🕯️', font_size=28, color=WHITE).move_to([-3, 2, 0])
         self.play(FadeIn(self.t2))
 
     def construc3(self):
-        self.t3 = Text('⚽⚽⚽⚽⚽', font_size=28).move_to([-3, 0.5, 0])
+        self.t3 = Text('⚽⚽⚽⚽⚽', font_size=28, color=BLUE).move_to([-3, 0.5, 0])
         self.play(FadeIn(self.t3))
 
     def construc4(self):
-        self.t4 = Text('⭐⭐⭐⭐⭐⭐', font_size=28).move_to([-3, -1, 0])
+        self.t4 = Text('⭐⭐⭐⭐⭐⭐', font_size=28, color=GOLD_B).move_to([-3, -1, 0])
         self.play(FadeIn(self.t4))
 
     def construc5(self):
-        self.t5 = Text('🌹🌹🌹🌹🌹🌹', font_size=28).move_to([-3, -2.5, 0])
+        self.t5 = Text('🌹🌹🌹🌹🌹🌹', font_size=28, color=RED).move_to([-3, -2.5, 0])
         self.play(FadeIn(self.t5))
 
     def construc6(self):
-        self.t6 = Text('⚽⚽⚽⚽⚽', font_size=28).move_to([3, 2, 0])
+        self.t6 = Text('⚽⚽⚽⚽⚽', font_size=28,color=BLUE).move_to([3, 2, 0])
         self.play(FadeIn(self.t6))
 
     def construc7(self):
-        self.t7 = Text('🕯️🕯️🕯️🕯️🕯️', font_size=28).move_to([3, 0.5, 0])
+        self.t7 = Text('🕯️🕯️🕯️🕯️🕯️', font_size=28,color=WHITE).move_to([3, 0.5, 0])
         self.play(FadeIn(self.t7))
 
     def construc8(self):
-        self.t8 = Text('🌹🌹🌹🌹🌹🌹', font_size=28).move_to([3, -1, 0])
+        self.t8 = Text('🌹🌹🌹🌹🌹🌹', font_size=28,color=RED).move_to([3, -1, 0])
         self.play(FadeIn(self.t8))
 
     def construc9(self):
-        self.t9 = Text('⭐⭐⭐⭐⭐⭐', font_size=28).move_to([3, -2.5, 0])
+        self.t9 = Text('⭐⭐⭐⭐⭐⭐', font_size=28,color=GOLD_B).move_to([3, -2.5, 0])
         self.play(FadeIn(self.t9))
 
     def add_matching_lines(self):
         # Draw lines to match
         lines = [
-            Line(self.t2.get_right(), self.t7.get_left(), color=YELLOW),
-            Line(self.t3.get_right(), self.t6.get_left(), color=YELLOW),
-            Line(self.t4.get_right(), self.t9.get_left(), color=YELLOW),
+            Line(self.t2.get_right(), self.t7.get_left(), color=RED_B),
+            Line(self.t3.get_right(), self.t6.get_left(), color=BLUE_D),
+            Line(self.t4.get_right(), self.t9.get_left(), color=WHITE),
             Line(self.t5.get_right(), self.t8.get_left(), color=YELLOW),
         ]
 
@@ -140,14 +139,14 @@ class Grade1chapter4Numbersfrom6to9(AbstractAnim):
 
     def Same_Number_of_Dots(self):
         self.add_title()
-        self.construct10()
-        self.construct11()
-        self.construct12()
-        self.construct13()
-        self.construct14()
-        self.construct15()
-        self.construct16()
-        self.construct17()
+        self.construc10()
+        self.construc11()
+        self.construc12()
+        self.construc13()
+        self.construc14()
+        self.construc15()
+        self.construc16()
+        self.construc17()
         self.add_matching_lines()
 
     def add_title(self):
@@ -156,44 +155,44 @@ class Grade1chapter4Numbersfrom6to9(AbstractAnim):
         self.play(Write(title))
         self.wait(2)
 
-    def construct10(self):
-        self.t2 = Text('🐟🐟🐟🐟🐟🐟', font_size=28).move_to([-3, 2, 0])
+    def construc10(self):
+        self.t2 = Text('🐟🐟🐟🐟🐟🐟', font_size=28, color=BLUE).move_to([-3, 2, 0])
         self.play(FadeIn(self.t2))
 
-    def construct11(self):
-        self.t3 = Text('🪑🪑🪑🪑🪑🪑🪑', font_size=28).move_to([-3, 0.5, 0])
+    def construc11(self):
+        self.t3 = Text('🪑🪑🪑🪑🪑🪑🪑', font_size=28, color=PURPLE).move_to([-3, 0.5, 0])
         self.play(FadeIn(self.t3))
 
-    def construct12(self):
-        self.t4 = Text('🕛🕛🕛🕛🕛🕛🕛🕛', font_size=28).move_to([-3, -1, 0])
+    def construc12(self):
+        self.t4 = Text('🕛🕛🕛🕛🕛🕛🕛🕛', font_size=28,color= BLUE_C).move_to([-3, -1, 0])
         self.play(FadeIn(self.t4))
 
-    def construct13(self):
-        self.t5 = Text('⚾⚾⚾⚾⚾⚾⚾⚾⚾', font_size=28).move_to([-3, -2.5, 0])
+    def construc13(self):
+        self.t5 = Text('⚾⚾⚾⚾⚾⚾⚾⚾⚾', font_size=28,color= YELLOW).move_to([-3, -2.5, 0])
         self.play(FadeIn(self.t5))
 
-    def construct14(self):
+    def construc14(self):
         self.t6 = Text('⚪⚪⚪⚪⚪⚪⚪', font_size=28).move_to([3, 2, 0])
         self.play(FadeIn(self.t6))
 
-    def construct15(self):
+    def construc15(self):
         self.t7 = Text('⚪⚪⚪⚪⚪⚪', font_size=28).move_to([3, 0.5, 0])
         self.play(FadeIn(self.t7))
 
-    def construct16(self):
+    def construc16(self):
         self.t8 = Text('⚪⚪⚪⚪⚪⚪⚪⚪⚪', font_size=28).move_to([3, -1, 0])
         self.play(FadeIn(self.t8))
 
-    def construct17(self):
+    def construc17(self):
         self.t9 = Text('⚪⚪⚪⚪⚪⚪⚪⚪', font_size=28).move_to([3, -2.5, 0])
         self.play(FadeIn(self.t9))
 
     def add_matching_lines(self):
         # Draw lines to match
         lines = [
-            Line(self.t2.get_right(), self.t7.get_left(), color=YELLOW),
-            Line(self.t3.get_right(), self.t6.get_left(), color=YELLOW),
-            Line(self.t4.get_right(), self.t9.get_left(), color=YELLOW),
+            Line(self.t2.get_right(), self.t7.get_left(), color=RED_B),
+            Line(self.t3.get_right(), self.t6.get_left(), color=BLUE_D),
+            Line(self.t4.get_right(), self.t9.get_left(), color=WHITE),
             Line(self.t5.get_right(), self.t8.get_left(), color=YELLOW),
         ]
 
@@ -288,31 +287,31 @@ class Grade1chapter4Numbersfrom6to9(AbstractAnim):
         self.play(Write(title))
         self.wait(1)
         
-        self.construct18()
-        self.construct19()
-        self.construct20()
-        self.construct21()
+        self.construc18()
+        self.construc19()
+        self.construc20()
+        self.construc21()
 
-    def construct18(self):
-        t = Text('📱📱📱📱📱📱📱', font_size=30).move_to([-3, 2, 0])
+    def construc18(self):
+        t = Text('📱📱📱📱📱📱📱', font_size=30,color= PURPLE).move_to([-3, 2, 0])
         count = Text('7', font_size=34).move_to([3, 2, 0])
         self.play(FadeIn(t))
         self.play(FadeIn(count))
 
-    def construct19(self):
-        t = Text('🦜🦜🦜🦜', font_size=30).move_to([-3, 0.5, 0])
+    def construc19(self):
+        t = Text('🦜🦜🦜🦜', font_size=30,color= GREEN).move_to([-3, 0.5, 0])
         count = Text('4', font_size=34).move_to([3, 0.5, 0])
         self.play(FadeIn(t))
         self.play(FadeIn(count))
 
-    def construct20(self):
-        t = Text('🦋🦋🦋🦋🦋🦋', font_size=30).move_to([-3, -1, 0])
+    def construc20(self):
+        t = Text('🦋🦋🦋🦋🦋🦋', font_size=30, color= RED).move_to([-3, -1, 0])
         count = Text('6', font_size=34).move_to([3, -1, 0])
         self.play(FadeIn(t))
         self.play(FadeIn(count))
 
-    def construct21(self):
-        t = Text('🐧🐧🐧🐧🐧🐧🐧🐧', font_size=30).move_to([-3, -2.5, 0])
+    def construc21(self):
+        t = Text('🐧🐧🐧🐧🐧🐧🐧🐧', font_size=30, color= BLUE).move_to([-3, -2.5, 0])
         count = Text('8', font_size=34).move_to([3, -2.5, 0])
         self.play(FadeIn(t))
         self.play(FadeIn(count))
