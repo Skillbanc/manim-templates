@@ -3,22 +3,23 @@ from AbstractAnim import AbstractAnim
 import cvo
 class Grade6Chapter3PlayingWithNumbers(AbstractAnim):
     def construct(self):
-        # self.RenderSkillbancLogo()
-        # self.fadeOutCurrentScene()
-        # self.show_divisibility_rules()
-        # self.fadeOutCurrentScene()
+        self.RenderSkillbancLogo()
+        self.fadeOutCurrentScene()
+        self.show_divisibility_rules()
+        self.fadeOutCurrentScene()
         self.show_number_concepts()
-        # self.fadeOutCurrentScene()
-        # self.PrimeFactorization()
-        # self.fadeOutCurrentScene()
-        # self.HCF()
-        # self.fadeOutCurrentScene()
-        # self.LCM()
-        # self.fadeOutCurrentScene()
-        # self.GithubSourceCodeReference()
+        self.fadeOutCurrentScene()
+        self.PrimeFactorization()
+        self.fadeOutCurrentScene()
+        self.HCF()
+        self.fadeOutCurrentScene()
+        self.LCM()
+        self.fadeOutCurrentScene()
+        self.GithubSourceCodeReference()
  
     def show_divisibility_rules(self):
         self.display_title("Divisibility Rules")
+        self.clear_screen()
         
         rules_and_examples = [
             ("Divisibility Rule for 2", [
@@ -72,7 +73,7 @@ class Grade6Chapter3PlayingWithNumbers(AbstractAnim):
 
         for rule in rules_and_examples:
             self.show_rule(rule)
-            self.wait(2)
+            self.wait(1)
             self.clear_screen()
 
     def show_rule(self, rule):
@@ -103,7 +104,6 @@ class Grade6Chapter3PlayingWithNumbers(AbstractAnim):
 
     def show_number_concepts(self):
         self.isRandom=False
-        self.play(Write(NumberPlane()))
         self.positionChoice = [[0,2.5,0],[-5,1,0],[-4,-2,0],[0,-2.5,0],[4,-2,0],[5,1,0]]
         p10=cvo.CVO().CreateCVO("Number Concepts","").setangle(-TAU/5)
         p11=cvo.CVO().CreateCVO("Factors","")
@@ -129,36 +129,39 @@ class Grade6Chapter3PlayingWithNumbers(AbstractAnim):
         self.wait(1)
         self.clear_screen()
 
-        # self.display_title("Number Concepts")
-        # self.show_factors()
-        # self.wait(1)
-        #self.clear_screen()
+        self.display_title("Number Concepts")
+        self.show_factors()
+        self.wait(1)
+        self.clear_screen()
 
+        self.display_title("Number Concepts")
         self.show_prime_numbers()
         self.wait(1)
         self.clear_screen()
 
+        self.display_title("Number Concepts")
         self.show_composite_numbers()
         self.wait(1)
         self.clear_screen()
 
+        self.display_title("Number Concepts")
         self.show_co_prime_numbers()
         self.wait(1)
         self.clear_screen()
 
+        self.display_title("Number Concepts")
         self.show_twin_prime_numbers()
         self.wait(1)
         self.clear_screen()
 
     def display_title(self, title_text):
         title = Text(title_text).scale(1.2).to_edge(UP)
-        title1 = Text
         self.play(Write(title))
         self.wait(1)
-        self.play(FadeOut(title))
+        #self.play(FadeOut(title))
 
     def show_factors(self):
-        title = Text("Factors").scale(0.8).to_edge(UP)
+        title = Text("Factors",color= YELLOW).scale(0.8).to_edge(UP*3.5)
         lines = [
             "Factors of a number are the numbers that divide",
             "it exactly without leaving a remainder.",
@@ -167,7 +170,7 @@ class Grade6Chapter3PlayingWithNumbers(AbstractAnim):
         self.show_concept(title, lines)
 
     def show_prime_numbers(self):
-        title = Text("Prime Numbers").scale(0.8).to_edge(UP)
+        title = Text("Prime Numbers",color= YELLOW).scale(0.8).to_edge(UP*3.5)
         lines = [
             "A prime number is a natural number greater than 1",
             "that has no positive divisors other than 1 and itself.",
@@ -176,7 +179,7 @@ class Grade6Chapter3PlayingWithNumbers(AbstractAnim):
         self.show_concept(title, lines)
 
     def show_composite_numbers(self):
-        title = Text("Composite Numbers").scale(0.8).to_edge(UP)
+        title = Text("Composite Numbers",color= YELLOW).scale(0.8).to_edge(UP*3.5)
         lines = [
             "A composite number is a natural number greater than 1",
             "that is not a prime number.",
@@ -186,7 +189,7 @@ class Grade6Chapter3PlayingWithNumbers(AbstractAnim):
         self.show_concept(title, lines)
 
     def show_co_prime_numbers(self):
-        title = Text("Co-prime Numbers").scale(0.8).to_edge(UP)
+        title = Text("Co-prime Numbers",color= YELLOW).scale(0.8).to_edge(UP*3.5)
         lines = [
             "Two numbers are co-prime if their greatest",
             "common divisor (GCD) is 1.",
@@ -195,7 +198,7 @@ class Grade6Chapter3PlayingWithNumbers(AbstractAnim):
         self.show_concept(title, lines)
 
     def show_twin_prime_numbers(self):
-        title = Text("Twin Prime Numbers").scale(0.8).to_edge(UP)
+        title = Text("Twin Prime Numbers",color= YELLOW).scale(0.8).to_edge(UP*3.5)
         lines = [
             "Twin prime numbers are pairs of prime numbers",
             "that have a difference of 2.",
@@ -206,9 +209,9 @@ class Grade6Chapter3PlayingWithNumbers(AbstractAnim):
     def PrimeFactorization(self):
         self.isRandom=False
         self.positionChoice = [[0,2,0],[-3,-2,0],[3,-2,0]]
-        p10=cvo.CVO().CreateCVO("Prime Factorisation","Methods of Prime Factorisation").setangle(-TAU/5)
-        p11=cvo.CVO().CreateCVO("","Division Method")
-        p12=cvo.CVO().CreateCVO("","Factor Tree Method")
+        p10=cvo.CVO().CreateCVO("Methods of Prime Factorisation","").setangle(-TAU/5)
+        p11=cvo.CVO().CreateCVO("Division Method","")
+        p12=cvo.CVO().CreateCVO("Factor Tree Method","")
 
         p10.setcircleradius(1.25)
         p11.setcircleradius(1.25)
@@ -281,9 +284,9 @@ class Grade6Chapter3PlayingWithNumbers(AbstractAnim):
     def HCF(self):
         self.isRandom=False
         self.positionChoice = [[0,2,0],[-3,-2,0],[3,-2,0]]
-        p10=cvo.CVO().CreateCVO("Highest Common Factor(HCF)","Methods of Finding HCF").setangle(-TAU/5)
-        p11=cvo.CVO().CreateCVO("","Prime Factorisation")
-        p12=cvo.CVO().CreateCVO("","Continued Division Method")
+        p10=cvo.CVO().CreateCVO("Methods of Finding HCF","").setangle(-TAU/5)
+        p11=cvo.CVO().CreateCVO("Prime Factorisation","")
+        p12=cvo.CVO().CreateCVO("Continued Division Method","")
        
         p10.setcircleradius(1.25)
         p11.setcircleradius(1.25)
@@ -315,9 +318,9 @@ class Grade6Chapter3PlayingWithNumbers(AbstractAnim):
         self.wait(1)
 
         steps = [
-            "1. Find the prime factors of each number.",
-            "2. Identify the common prime factors.",
-            "3. Multiply the lowest powers of the common factors."
+            "Step 1. Find the prime factors of each number.",
+            "Step 2. Identify the common prime factors.",
+            "Step 3. Multiply the lowest powers of the common factors."
         ]
 
         explanation = VGroup(*[Text(step, font_size=24) for step in steps])
@@ -391,10 +394,10 @@ class Grade6Chapter3PlayingWithNumbers(AbstractAnim):
         self.wait(1)
 
         steps = [
-            "1. Divide the larger number by the smaller number.",
-            "2. Replace the larger number with the smaller number and the smaller number with the remainder.",
-            "3. Repeat the process until the remainder is 0.",
-            "4. The last non-zero remainder is the HCF."
+            "Step 1. Divide the larger number by the smaller number.",
+            "Step 2. Replace the larger number with the smaller number and the smaller number with the remainder.",
+            "Step 3. Repeat the process until the remainder is 0.",
+            "Step 4. The last non-zero remainder is the HCF."
         ]
 
         explanation = VGroup(*[Text(step, font_size=23) for step in steps])
@@ -432,9 +435,9 @@ class Grade6Chapter3PlayingWithNumbers(AbstractAnim):
     def LCM(self):
         self.isRandom=False
         self.positionChoice = [[0,2,0],[-3,-2,0],[3,-2,0]]
-        p10=cvo.CVO().CreateCVO("Least Common Multiple (LCM)","Methods of Finding LCM").setangle(-TAU/5)
-        p11=cvo.CVO().CreateCVO("","Prime Factorisation")
-        p12=cvo.CVO().CreateCVO("","Division Method")
+        p10=cvo.CVO().CreateCVO("Methods of Finding LCM","").setangle(-TAU/5)
+        p11=cvo.CVO().CreateCVO("Prime Factorisation","")
+        p12=cvo.CVO().CreateCVO("Division Method","")
        
         p10.setcircleradius(1.25)
         p11.setcircleradius(1.25)
@@ -466,9 +469,9 @@ class Grade6Chapter3PlayingWithNumbers(AbstractAnim):
         self.wait(1)
 
         steps = [
-            "1. Find the prime factors of each number.",
-            "2. Identify all prime factors.",
-            "3. Multiply the highest powers of all factors."
+            "Step 1. Find the prime factors of each number.",
+            "Step 2. Identify all prime factors.",
+            "Step 3. Multiply the highest powers of all factors."
         ]
 
         explanation = VGroup(*[Text(step, font_size=24) for step in steps])
@@ -511,11 +514,11 @@ class Grade6Chapter3PlayingWithNumbers(AbstractAnim):
         self.wait(1)
 
         steps = [
-            "1. Write the numbers in a horizontal line.",
-            "2. Divide the numbers by their common prime factors, starting with the smallest prime.",
-            "3. Write the quotient below each number.",
-            "4. Repeat until all quotients are 1.",
-            "5. Multiply all the prime factors to get the LCM."
+            "Step 1. Write the numbers in a horizontal line.",
+            "Step 2. Divide the numbers by their common prime factors, starting with the smallest prime.",
+            "Step 3. Write the quotient below each number.",
+            "Step 4. Repeat until all quotients are 1.",
+            "Step 5. Multiply all the prime factors to get the LCM."
         ]
 
         explanation = VGroup(*[Text(step, font_size=24) for step in steps])
