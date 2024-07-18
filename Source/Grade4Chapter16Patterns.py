@@ -135,6 +135,9 @@ class PatternAnimation(AbstractAnim):
         self.wait(1)
 
 
+
+
+
     def Patternswithturns(self):
 
         heading = Text("Patterns with turns",color=PINK,font_size=37).to_edge(UP*1.25)
