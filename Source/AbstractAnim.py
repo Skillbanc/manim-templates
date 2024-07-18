@@ -200,7 +200,7 @@ class AbstractAnim(Scene):
                 arrow2 = CurvedArrow(cvoParent.pos,starLocal.get_center(),angle=cvo.angle,stroke_width=0.5, tip_length=0.1)
                 self.play(Create(starLocal),Create(onameLocalText))#grpLocal.animate.move_to(cir1.get_center()).scale(0.5).shift(DOWN * 2))#scale(0.25))
                 self.play(onameLocalText.animate.scale(2.0),run_time=1)
-                self.play(onameLocalText.animate.scale(0.7),run_time=1)
+                self.play(onameLocalText.animate.scale(0.6).next_to(starLocal).shift(LEFT * .20),run_time=1)
                 if (cvo != cvoParent):
                     self.play(Create(arrow2))
         else:
@@ -212,7 +212,7 @@ class AbstractAnim(Scene):
                 arrow2 = CurvedArrow(cvoParent.pos,starLocal.get_center(),angle=cvo.angle,stroke_width=0.5, tip_length=0.1)
                 self.play(Create(starLocal),Create(onameLocalText))#grpLocal.animate.move_to(cir1.get_center()).scale(0.5).shift(DOWN * 2))#scale(0.25))
                 self.play(onameLocalText.animate.scale(2.0),run_time=1)
-                self.play(onameLocalText.animate.scale(0.7),run_time=1)
+                self.play(onameLocalText.animate.scale(0.6).next_to(starLocal).shift(LEFT * .20),run_time=1)
                 if (cvo != cvoParent):
                     self.play(Create(arrow2))
                             
@@ -223,14 +223,14 @@ class AbstractAnim(Scene):
         
        
                 
-        if (self.positionChoice.__contains__(cvo.pos)):
+        if (self.positionChoice._contains_(cvo.pos)):
             self.positionChoice.remove(cvo.pos)
             
         if (cvo != cvoParent):
-            if (self.angleChoice.__contains__(cvo.angle)):
+            if (self.angleChoice._contains_(cvo.angle)):
                 self.angleChoice.remove(cvo.angle)
                 
-        if (self.colorChoice.__contains__(cvo.color)):
+        if (self.colorChoice._contains_(cvo.color)):
             self.colorChoice.remove(cvo.color)
         
         if (len(cvo.cvolist) > 0):
@@ -503,5 +503,3 @@ class AbstractAnim(Scene):
         #     self.add(self.grpAll)
   
         self.wait(1)
-
-   
