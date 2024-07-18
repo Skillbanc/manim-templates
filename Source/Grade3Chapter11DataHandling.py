@@ -43,7 +43,7 @@ class DataHandling(AbstractAnim):
         self.construct1(p10,p10)  
 
     def Table(self):
-        text = Text("Example", color=YELLOW).scale(0.9)
+        text = Text("Example 1", color=YELLOW).scale(0.9)
         text.center()
         text.to_edge(UP)
         self.play(Write(text))
@@ -123,6 +123,10 @@ class DataHandling(AbstractAnim):
         text2.center()
         text2.shift(UP * 2.9,LEFT)
         self.play(Write(text2))
+        text3 =Text("Ans. Star - 7",color=PURPLE_A).scale(0.6)
+        text3.center()
+        text3.shift(UP * 2,LEFT * 5)
+       
       
         circles = [Circle(radius=0.4, color=BLUE, fill_opacity =0.5) for _ in range(5)]
         squares = [Square(side_length=0.8, color=GREEN,fill_opacity =0.5) for _ in range(3)]
@@ -179,14 +183,21 @@ class DataHandling(AbstractAnim):
         v3.shift(RIGHT * 5)
         h3 = Line(start=LEFT*7, end=RIGHT*5, color=WHITE, stroke_width=4)
         h3.shift(DOWN * 3.7)
-        self.play(Create(vertical_line),Create(horizontal_line),Create(h2),Create(v2),Create(v3),Create(h3),Write(title),Write(title2),Write(circ_title),Write(sq_title),Write(tri_title),Write(star_title),Write(circ),Write(sq),Write(tri),Write(star))
-        self.wait(3)
-        rect2 = Rectangle(width=9, height=1.2, color= LIGHT_PINK ,fill_opacity =0.5)
+        group = VGroup(vertical_line, horizontal_line,h2,v2,v3,h3)
+        group2= VGroup(title,title2,circ_title,sq_title,tri_title,star_title,circ,tri ,sq,star)
+        group.scale(0.8)
+        group2.scale(0.8)
+        group.shift(DOWN * 0.5)
+        group2.shift(DOWN * 0.5)
+        self.add(group)
+        self.add(group2)
+        self.wait(5)
+        rect2 = Rectangle(width=7.2, height=1, color= LIGHT_PINK ,fill_opacity =0.5)
         self.add(rect2)
-        rect2.shift(DOWN * 3.1 , RIGHT * 0.5)
-        star_large = star.copy().scale(1.5).set_color(YELLOW)
+        rect2.shift(DOWN * 3 , RIGHT * 0.2)
+        star_large = star.copy().scale(1.2).set_color(YELLOW)
         star_large.move_to(star.get_center())
-
+        self.play(Write(text3))
         self.play(Transform(star, star_large))
         self.wait(1)
 
@@ -197,9 +208,13 @@ class DataHandling(AbstractAnim):
     def Q2(self):
         text = Text("(b).Which Shape is more in number - Circle or Triangle?", color=GREEN_C).scale(0.6)
         text.center()
-        text.shift( UP * 3.2 ,LEFT * 1.5)
+        text.shift(UP * 2.9,LEFT)
         self.play(Write(text))
-
+        text3 =Text("Ans. Triangle - 6",color=PURPLE_A).scale(0.6)
+        text3.center()
+        text3.shift(UP * 2,LEFT * 5)
+       
+      
         circles = [Circle(radius=0.4, color=BLUE, fill_opacity =0.5) for _ in range(5)]
         squares = [Square(side_length=0.8, color=GREEN,fill_opacity =0.5) for _ in range(3)]
         triangles = [Polygon(
@@ -255,28 +270,39 @@ class DataHandling(AbstractAnim):
         v3.shift(RIGHT * 5)
         h3 = Line(start=LEFT*7, end=RIGHT*5, color=WHITE, stroke_width=4)
         h3.shift(DOWN * 3.7)
-        self.play(Create(vertical_line),Create(horizontal_line),Create(h2),Create(v2),Create(v3),Create(h3),Write(title),Write(title2),Write(circ_title),Write(sq_title),Write(tri_title),Write(star_title),Write(circ),Write(sq),Write(tri),Write(star))
-        self.wait(3)
-        rect2 = Rectangle(width=9, height=1.2, color= LIGHT_PINK ,fill_opacity =0.5)
+        group = VGroup(vertical_line, horizontal_line,h2,v2,v3,h3)
+        group2= VGroup(title,title2,circ_title,sq_title,tri_title,star_title,circ,tri ,sq,star)
+        group.scale(0.8)
+        group2.scale(0.8)
+        group.shift(DOWN * 0.5)
+        group2.shift(DOWN * 0.5)
+        self.add(group)
+        self.add(group2)
+        self.wait(5)
+        rect2 = Rectangle(width=7.2, height=1, color= LIGHT_PINK ,fill_opacity =0.5)
         self.add(rect2)
-        rect2.shift(DOWN * 1.7 , RIGHT * 0.5)
-       
-        star_large = tri.copy().scale(1.5).set_color(YELLOW)
+        rect2.shift(DOWN * 2, RIGHT * 0.2)
+        star_large = tri.copy().scale(1.2).set_color(YELLOW)
         star_large.move_to(tri.get_center())
-
+        self.play(Write(text3))
         self.play(Transform(tri, star_large))
         self.wait(1)
 
         # Zoom out the star group
-        self.play(Transform(tri,tri.copy().scale(1/1.5).set_color(ORANGE)))
+        self.play(Transform(tri, tri.copy().scale(1/1.5).set_color(ORANGE)))
         self.wait(3)
-
 
     def Q3(self): 
 
         text3 =Text("(c). Which shape is the least in number?", color=GREEN_C).scale(0.6)
-        text3.shift( UP * 3.2 ,LEFT * 1.5)
+        text3.center()
+        text3.shift(UP * 2.9,LEFT * 2)
         self.play(Write(text3))
+        text3 =Text("Ans. Square - 3",color=PURPLE_A).scale(0.6)
+        text3.center()
+        text3.shift(UP * 2,LEFT * 4.3)
+       
+      
         circles = [Circle(radius=0.4, color=BLUE, fill_opacity =0.5) for _ in range(5)]
         squares = [Square(side_length=0.8, color=GREEN,fill_opacity =0.5) for _ in range(3)]
         triangles = [Polygon(
@@ -332,15 +358,21 @@ class DataHandling(AbstractAnim):
         v3.shift(RIGHT * 5)
         h3 = Line(start=LEFT*7, end=RIGHT*5, color=WHITE, stroke_width=4)
         h3.shift(DOWN * 3.7)
-        self.play(Create(vertical_line),Create(horizontal_line),Create(h2),Create(v2),Create(v3),Create(h3),Write(title),Write(title2),Write(circ_title),Write(sq_title),Write(tri_title),Write(star_title),Write(circ),Write(sq),Write(tri),Write(star))
-        self.wait(3)
-        rect2 = Rectangle(width=9, height=1.2, color= LIGHT_PINK ,fill_opacity =0.5)
+        group = VGroup(vertical_line, horizontal_line,h2,v2,v3,h3)
+        group2= VGroup(title,title2,circ_title,sq_title,tri_title,star_title,circ,tri ,sq,star)
+        group.scale(0.8)
+        group2.scale(0.8)
+        group.shift(DOWN * 0.5)
+        group2.shift(DOWN * 0.5)
+        self.add(group)
+        self.add(group2)
+        self.wait(5)
+        rect2 = Rectangle(width=7.2, height=1, color= LIGHT_PINK ,fill_opacity =0.5)
         self.add(rect2)
-        rect2.shift(DOWN * 0.5, RIGHT * 0.5)
-       
-        star_large = sq.copy().scale(1.5).set_color(YELLOW)
+        rect2.shift(DOWN , RIGHT * 0.2)
+        star_large = sq.copy().scale(1.2).set_color(YELLOW)
         star_large.move_to(sq.get_center())
-
+        self.play(Write(text3))
         self.play(Transform(sq, star_large))
         self.wait(1)
 
@@ -420,6 +452,10 @@ class DataHandling(AbstractAnim):
         text2.center()
         text2.shift(UP * 2.5,LEFT)
         self.play(Write(text2))
+        text3 =Text("Ans. 42 Students",color=PURPLE).scale(0.7)
+        text3.center()
+        text3.shift(UP * 1.5,LEFT * 3.8)
+       
      
         table_content = [
             ["Class", "Total Students", "Present", "Absent"],
@@ -441,7 +477,7 @@ class DataHandling(AbstractAnim):
                 start=start_position + np.array([-cell_width / 2, -j * cell_height - cell_height / 2, 0]),
                 end=start_position + np.array([(len(table_content[0])) * cell_width - cell_width / 2, -j * cell_height - cell_height / 2, 0])
             )
-            for j in range(len(table_content) + 1)
+            for j in range(len(table_content) )
         ])
 
         extra_h_line_top = Line(
@@ -459,7 +495,8 @@ class DataHandling(AbstractAnim):
 
         table_with_lines = VGroup( h_lines, v_lines, extra_h_line_top)
         table_with_lines.shift(LEFT * 5)
-        table_with_lines.shift(DOWN)
+        table_with_lines.shift(DOWN * 2)
+        table_with_lines.scale(0.8)
         self.add(table_with_lines)
 
         table = VGroup(*[
@@ -469,14 +506,15 @@ class DataHandling(AbstractAnim):
             ])
             for j, row in enumerate(table_content)
         ])
-        table.shift(LEFT * 5 + DOWN )
+        table.shift(LEFT * 5 + DOWN *2 )
         self.add(table)
+        table.scale(0.8)
         self.wait(3)
-
-        rect2 = Rectangle(width=3.3, height=0.8, color= LIGHT_PINK ,fill_opacity =0.5)
+        self.play(Write(text3))
+        rect2 = Rectangle(width=2.6, height=0.6, color= LIGHT_PINK ,fill_opacity =0.5)
         self.add(rect2)
         rect2.center()
-        rect2.shift(DOWN * 1.4 , RIGHT* 1.6)
+        rect2.shift(DOWN * 2.25 , RIGHT* 1.25)
       
         cell = table[4][2] 
      
@@ -493,9 +531,13 @@ class DataHandling(AbstractAnim):
 
         text = Text(" (b). Which class has the highest number of absent students?", color=GREEN_C).scale(0.6)
         text.center()
-        text.shift(UP * 2.8)
+        text.shift(UP * 2.8, LEFT * 0.5)
         self.play(Write(text))
+        text3 =Text("Ans. Class 1 - 7 Students",color=PURPLE).scale(0.7)
+        text3.center()
+        text3.shift(UP * 1.7,LEFT * 3)
        
+     
         table_content = [
             ["Class", "Total Students", "Present", "Absent"],
             ["Class 1", "32", "25", "7"],
@@ -516,7 +558,7 @@ class DataHandling(AbstractAnim):
                 start=start_position + np.array([-cell_width / 2, -j * cell_height - cell_height / 2, 0]),
                 end=start_position + np.array([(len(table_content[0])) * cell_width - cell_width / 2, -j * cell_height - cell_height / 2, 0])
             )
-            for j in range(len(table_content) + 1)
+            for j in range(len(table_content) )
         ])
 
         extra_h_line_top = Line(
@@ -534,7 +576,8 @@ class DataHandling(AbstractAnim):
 
         table_with_lines = VGroup( h_lines, v_lines, extra_h_line_top)
         table_with_lines.shift(LEFT * 5)
-        table_with_lines.shift(DOWN)
+        table_with_lines.shift(DOWN * 2)
+        table_with_lines.scale(0.8)
         self.add(table_with_lines)
 
         table = VGroup(*[
@@ -544,13 +587,15 @@ class DataHandling(AbstractAnim):
             ])
             for j, row in enumerate(table_content)
         ])
-        table.shift(LEFT * 5 + DOWN )
+        table.shift(LEFT * 5 + DOWN *2 )
         self.add(table)
+        table.scale(0.8)
         self.wait(3)
-
-        rect2 = Rectangle(width=3.3, height=0.8, color= LIGHT_PINK ,fill_opacity =0.5)
+        self.play(Write(text3))
+        rect2 = Rectangle(width=2.6, height=0.6, color= LIGHT_PINK ,fill_opacity =0.5)
         self.add(rect2)
-        rect2.shift(UP , RIGHT* 4.9)
+        rect2.center()
+        rect2.shift( RIGHT* 3.9, DOWN *0.3)
       
         cell = table[1][3] 
      
@@ -567,7 +612,11 @@ class DataHandling(AbstractAnim):
         text3 =Text("(c). Which class has the least number of absent students?", color=GREEN_C).scale(0.6)
         text3.shift(UP * 2.8)
         self.play(Write(text3))
+        text3 =Text("Ans. Class 3 - 1 Student",color=PURPLE).scale(0.7)
+        text3.center()
+        text3.shift(UP * 1.8,LEFT * 3)
        
+     
         table_content = [
             ["Class", "Total Students", "Present", "Absent"],
             ["Class 1", "32", "25", "7"],
@@ -588,7 +637,7 @@ class DataHandling(AbstractAnim):
                 start=start_position + np.array([-cell_width / 2, -j * cell_height - cell_height / 2, 0]),
                 end=start_position + np.array([(len(table_content[0])) * cell_width - cell_width / 2, -j * cell_height - cell_height / 2, 0])
             )
-            for j in range(len(table_content) + 1)
+            for j in range(len(table_content) )
         ])
 
         extra_h_line_top = Line(
@@ -606,7 +655,8 @@ class DataHandling(AbstractAnim):
 
         table_with_lines = VGroup( h_lines, v_lines, extra_h_line_top)
         table_with_lines.shift(LEFT * 5)
-        table_with_lines.shift(DOWN)
+        table_with_lines.shift(DOWN * 2)
+        table_with_lines.scale(0.8)
         self.add(table_with_lines)
 
         table = VGroup(*[
@@ -616,13 +666,15 @@ class DataHandling(AbstractAnim):
             ])
             for j, row in enumerate(table_content)
         ])
-        table.shift(LEFT * 5 + DOWN )
+        table.shift(LEFT * 5 + DOWN *2 )
         self.add(table)
+        table.scale(0.8)
         self.wait(3)
-
-        rect2 = Rectangle(width=3.3, height=0.8, color= LIGHT_PINK ,fill_opacity =0.5)
+        self.play(Write(text3))
+        rect2 = Rectangle(width=2.6, height=0.6, color= LIGHT_PINK ,fill_opacity =0.5)
         self.add(rect2)
-        rect2.shift(DOWN * 0.6 , RIGHT* 4.9)
+        rect2.center()
+        rect2.shift(DOWN * 1.6 , RIGHT* 3.9)
       
         cell = table[3][3] 
      
@@ -633,10 +685,6 @@ class DataHandling(AbstractAnim):
         self.play(Transform(cell, cell_large))
         self.wait(1)
         self.play(ReplacementTransform(cell_large, cell))
-
-        texta = Text("Ans. 7 Students", color=GREEN).scale(0.7)
-        texta.center()
-        texta.shift(DOWN * 3)
         self.wait(3)
 
     def Question4(self):
@@ -645,6 +693,11 @@ class DataHandling(AbstractAnim):
         text2.shift(UP * 2.8,LEFT)
         self.play(Write(text2))
              
+        text3 =Text("Ans. 7 Students",color=PURPLE).scale(0.7)
+        text3.center()
+        text3.shift(UP * 1.8,LEFT * 3.8)
+       
+     
         table_content = [
             ["Class", "Total Students", "Present", "Absent"],
             ["Class 1", "32", "25", "7"],
@@ -665,7 +718,7 @@ class DataHandling(AbstractAnim):
                 start=start_position + np.array([-cell_width / 2, -j * cell_height - cell_height / 2, 0]),
                 end=start_position + np.array([(len(table_content[0])) * cell_width - cell_width / 2, -j * cell_height - cell_height / 2, 0])
             )
-            for j in range(len(table_content) + 1)
+            for j in range(len(table_content) )
         ])
 
         extra_h_line_top = Line(
@@ -683,7 +736,8 @@ class DataHandling(AbstractAnim):
 
         table_with_lines = VGroup( h_lines, v_lines, extra_h_line_top)
         table_with_lines.shift(LEFT * 5)
-        table_with_lines.shift(DOWN)
+        table_with_lines.shift(DOWN * 2)
+        table_with_lines.scale(0.8)
         self.add(table_with_lines)
 
         table = VGroup(*[
@@ -693,13 +747,15 @@ class DataHandling(AbstractAnim):
             ])
             for j, row in enumerate(table_content)
         ])
-        table.shift(LEFT * 5 + DOWN )
+        table.shift(LEFT * 5 + DOWN *2 )
         self.add(table)
+        table.scale(0.8)
         self.wait(3)
-
-        rect2 = Rectangle(width=3.3, height=0.8, color= LIGHT_PINK ,fill_opacity =0.5)
+        self.play(Write(text3))
+        rect2 = Rectangle(width=2.6, height=0.6, color= LIGHT_PINK ,fill_opacity =0.5)
         self.add(rect2)
-        rect2.shift(UP , RIGHT* 4.9)
+        rect2.center()
+        rect2.shift( RIGHT* 3.9, DOWN *0.3)
       
         cell = table[1][3] 
      
@@ -710,17 +766,18 @@ class DataHandling(AbstractAnim):
         self.play(Transform(cell, cell_large))
         self.wait(1)
         self.play(ReplacementTransform(cell_large, cell))
-
-        texta = Text("Ans. 7 Students", color=GREEN).scale(0.7)
-        texta.center()
-        texta.shift(DOWN * 3)
         self.wait(3)
 
     def Question5(self):
-        text = Text("(e).  How many students are absent in all classes?", color=GREEN_C).scale(0.6)
+        text = Text("(e).  How many students are absent in total ?", color=GREEN_C).scale(0.6)
         text.center()
-        text.shift(UP * 2.8)
+        text.shift(UP * 2.8, LEFT * 1.3 )
         self.play(Write(text))
+     
+        text3 =Text("Ans. 19 Students",color=PURPLE).scale(0.7)
+        text3.center()
+        text3.shift(UP *2,LEFT * 3.6)
+       
      
         table_content = [
             ["Class", "Total Students", "Present", "Absent"],
@@ -742,7 +799,7 @@ class DataHandling(AbstractAnim):
                 start=start_position + np.array([-cell_width / 2, -j * cell_height - cell_height / 2, 0]),
                 end=start_position + np.array([(len(table_content[0])) * cell_width - cell_width / 2, -j * cell_height - cell_height / 2, 0])
             )
-            for j in range(len(table_content) + 1)
+            for j in range(len(table_content) )
         ])
 
         extra_h_line_top = Line(
@@ -760,7 +817,8 @@ class DataHandling(AbstractAnim):
 
         table_with_lines = VGroup( h_lines, v_lines, extra_h_line_top)
         table_with_lines.shift(LEFT * 5)
-        table_with_lines.shift(DOWN)
+        table_with_lines.shift(DOWN * 2)
+        table_with_lines.scale(0.8)
         self.add(table_with_lines)
 
         table = VGroup(*[
@@ -770,13 +828,15 @@ class DataHandling(AbstractAnim):
             ])
             for j, row in enumerate(table_content)
         ])
-        table.shift(LEFT * 5 + DOWN )
+        table.shift(LEFT * 5 + DOWN *2 )
         self.add(table)
+        table.scale(0.8)
         self.wait(3)
-
-        rect2 = Rectangle(width=3.3, height=0.8, color= LIGHT_PINK ,fill_opacity =0.5)
+        self.play(Write(text3))
+        rect2 = Rectangle(width=2.6, height=0.6, color= LIGHT_PINK ,fill_opacity =0.5)
         self.add(rect2)
-        rect2.shift(DOWN * 3 , RIGHT* 4.9)
+        rect2.center()
+        rect2.shift(DOWN * 3.5 , RIGHT* 3.9)
       
         cell = table[6][3] 
      
@@ -790,10 +850,15 @@ class DataHandling(AbstractAnim):
         self.wait(3)
     
     def Question6(self):
-        text3 =Text("(f). How many students are present in all classes?", color=GREEN_C).scale(0.6)
+        text3 =Text("(f). How many students are present in total?", color=GREEN_C).scale(0.7)
         text3.shift(UP  * 2.8)
         text3.shift(LEFT)
         self.play(Write(text3))
+     
+        text3 =Text("Ans. 201 Students",color=PURPLE).scale(0.7)
+        text3.center()
+        text3.shift(UP * 1.9,LEFT * 3.6)
+       
      
         table_content = [
             ["Class", "Total Students", "Present", "Absent"],
@@ -815,7 +880,7 @@ class DataHandling(AbstractAnim):
                 start=start_position + np.array([-cell_width / 2, -j * cell_height - cell_height / 2, 0]),
                 end=start_position + np.array([(len(table_content[0])) * cell_width - cell_width / 2, -j * cell_height - cell_height / 2, 0])
             )
-            for j in range(len(table_content) + 1)
+            for j in range(len(table_content) )
         ])
 
         extra_h_line_top = Line(
@@ -833,7 +898,8 @@ class DataHandling(AbstractAnim):
 
         table_with_lines = VGroup( h_lines, v_lines, extra_h_line_top)
         table_with_lines.shift(LEFT * 5)
-        table_with_lines.shift(DOWN)
+        table_with_lines.shift(DOWN * 2)
+        table_with_lines.scale(0.8)
         self.add(table_with_lines)
 
         table = VGroup(*[
@@ -843,13 +909,15 @@ class DataHandling(AbstractAnim):
             ])
             for j, row in enumerate(table_content)
         ])
-        table.shift(LEFT * 5 + DOWN )
+        table.shift(LEFT * 5 + DOWN *2 )
         self.add(table)
+        table.scale(0.8)
         self.wait(3)
-
-        rect2 = Rectangle(width=3.3, height=0.8, color= LIGHT_PINK ,fill_opacity =0.5)
+        self.play(Write(text3))
+        rect2 = Rectangle(width=2.6, height=0.6, color= LIGHT_PINK ,fill_opacity =0.5)
         self.add(rect2)
-        rect2.shift(DOWN * 3 , RIGHT* 1.6)
+        rect2.center()
+        rect2.shift(DOWN * 3.5, RIGHT * 1.25)
       
         cell = table[6][2] 
      
