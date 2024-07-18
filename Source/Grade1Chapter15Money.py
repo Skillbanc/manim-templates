@@ -11,19 +11,11 @@ class Grade1Chapter15Money(AbstractAnim):
         self.fadeOutCurrentScene()
         self.Display_currency_relationships()
         self.fadeOutCurrentScene()
-        #self.create_equation()
-        #self.fadeOutCurrentScene()
         self.Combinations()
         self.fadeOutCurrentScene()
-        #self.combined_equation()
-        #self.fadeOutCurrentScene()
         self.Pricewithcoins()
         self.fadeOutCurrentScene()
-        #self.create_coins()
-        #self.fadeOutCurrentScene()
         self.GithubSourceCodeReference()
-
-    
 
     def Introduce_currency(self):
         self.angleChoice=[TAU/4,TAU/4]
@@ -86,84 +78,114 @@ class Grade1Chapter15Money(AbstractAnim):
         title = Text("Equivalent combinations of Currency", font_size=36).set_color(YELLOW).to_edge(UP)
         self.play(Write(title))
         
-        # 2 Rupee in Circle = 1 Rupee of two Circles
-        equation_1 = self.create_equation("₹2",["₹1","₹1"], use_circle=True)
-        #equation_2 = self.create_equation(["₹1","₹1"], use_circle=True)
-        #explanation = Tex("A frog jumped 3 steps in a single jump. It jumped 6 times.",font_size=35).next_to(number_line, DOWN,buff=1)
-        #title1 = Text("Two Rupee coin is equivalent to two one rupee coins", font_size=32).set_color(BLUE).to_edge(DOWN)
-        self.play(Write(title))
-        self.play(FadeIn(equation_1))
+        # 2 Rupee coin
+        two_rupee = self.create_equation("₹2", [], use_circle=True)
+        self.play(FadeIn(two_rupee))
         self.wait(2)
-        #self.play(FadeIn(equation_2))
-        self.wait(1)
-        #self.play(Write(title1))
-        self.play(FadeOut(equation_1))
-
-        # 5 Rupee in Circle = 1 Rupee of five Circles
-        equation_2_1 = self.create_equation("₹5", ["₹1", "₹1","₹1","₹1","₹1"], use_circle=True).shift(UP * 2)
-        # 5 Rupee in Circle = 2 Rupee of one Circle + 1 Rupee of three Circles
-        equation_2_2 = self.create_equation("₹5", ["₹2", "₹1", "₹1", "₹1"], use_circle=True)
-        # 5 Rupee in Circle = 2 Rupee of two Circles + 1 Rupee of one Circle
-        equation_2_3 = self.create_equation("₹5", ["₹2", "₹2", "₹1"], use_circle=True).shift(DOWN * 2)
-        self.play(FadeIn(equation_2_1))
-        self.wait(2)
-        self.play(FadeIn(equation_2_2))
-        self.wait(2)
-        self.play(FadeIn(equation_2_3))
-        self.wait(2)
-        self.play(FadeOut(equation_2_1), FadeOut(equation_2_2), FadeOut(equation_2_3))
-
-        # 10 Rupee in Rectangle = 5 Rupee of one Circle + 2 Rupee of two Circles + 1 Rupee of one Circle
-        high_val_rect = Rectangle(height=0.8, width=1.5, color=BLUE, fill_opacity=0.8)
-        high_val_text = Text("₹10", font_size=24).move_to(high_val_rect.get_center())
-
-        # Create circles for lower values
-        low_values = [("₹5", 0.55), ("₹2", 0.5), ("₹2", 0.5), ("₹1", 0.4)]
-        circles = VGroup()
+        self.play(FadeOut(two_rupee))
         
-        for val, radius in low_values:
-            circle = Circle(radius=radius, color="#C0C0C0", fill_opacity=0.8)
-            circle_text = Text(val, font_size=20).move_to(circle.get_center())
-            circles.add(VGroup(circle, circle_text))
-
-        # Arrange circles and texts
-        circles.arrange(RIGHT, buff=0.5)
-
-        # Combine high value rectangle and circles
-        equals = Text("=", font_size=36)
-        left = VGroup(high_val_rect, high_val_text)
-        right = circles
-
-        equation3 = VGroup(left, equals, right).arrange(RIGHT, buff=0.5)
-
-        # Display equation
-        self.play(FadeIn(equation3))
+        one_rupees = self.create_equation("₹2", ["₹1", "₹1"], use_circle=True)
+        self.play(FadeIn(one_rupees))
+        
+        explanation = Text("Two Rupee coin is equivalent to two one rupee coins", font_size=24).set_color(BLUE).next_to(one_rupees, DOWN)
+        self.play(Write(explanation))
         self.wait(2)
-        self.play(FadeOut(equation3))
+        self.play( FadeOut(one_rupees), FadeOut(explanation))
 
-        # 20 Rupee in Rectangle = 10 Rupee of one Rectangle + 10 Rupee of one Rectangle
-        equation_4 = self.create_equation("₹20", ["₹10", "₹10"], use_circle=False)
-        self.play(FadeIn(equation_4))
+        # 5 Rupee coin representations
+        five_rupee = self.create_equation("₹5", [], use_circle=True)
+        self.play(FadeIn(five_rupee))
         self.wait(2)
-        self.play(FadeOut(equation_4))
+        self.play(FadeOut(five_rupee))
 
-        # 50 Rupee in Rectangle = 20 Rupee of two Rectangles + 10 Rupee of one Rectangle
-        equation_5 = self.create_equation("₹50", ["₹20", "₹20", "₹10"], use_circle=False)
-        self.play(FadeIn(equation_5))
+        # First representation: 5 one-rupee coins
+        eq_1 = self.create_equation("₹5", ["₹1", "₹1", "₹1", "₹1", "₹1"], use_circle=True)
+        exp_1 = Text("Five Rupee coin is equivalent to five one rupee coins", font_size=24).set_color(BLUE).next_to(eq_1, DOWN)
+        self.play(FadeIn(eq_1), Write(exp_1))
         self.wait(2)
-        self.play(FadeOut(equation_5))
+        self.play(FadeOut(eq_1), FadeOut(exp_1))
+        self.play(FadeIn(five_rupee))
+        self.wait(2)
+        self.play(FadeOut(five_rupee))
 
-        # 100 Rupee in Rectangle = 50 Rupee of two Rectangles (with plus signs)
-        equation_6 = self.create_equation("₹100", ["₹50", "₹50"], use_circle=False)
-        self.play(FadeIn(equation_6))
+        # Second representation: 2 two-rupee coins + 1 one-rupee coin
+        eq_2 = self.create_equation("₹5", ["₹2", "₹2", "₹1"], use_circle=True)
+        exp_2 = Text("Five Rupee coin is equivalent to two two-rupee coins and one one-rupee coin", font_size=24).set_color(BLUE).next_to(eq_2, DOWN)
+        self.play(FadeIn(eq_2), Write(exp_2))
         self.wait(2)
-        self.play(FadeOut(equation_6))
+        self.play(FadeOut(eq_2), FadeOut(exp_2))
+        self.play(FadeIn(five_rupee))
+        self.wait(2)
+        self.play(FadeOut(five_rupee))
 
-        # 500 Rupee in Rectangle = 100 Rupee of five Rectangles (with plus signs)
-        equation_7 = self.create_equation("₹500", ["₹100", "₹100", "₹100", "₹100", "₹100"], use_circle=False)
-        self.play(Create(equation_7))
+        # Third representation: 1 two-rupee coin + 3 one-rupee coins
+        eq_3 = self.create_equation("₹5", ["₹2", "₹1", "₹1", "₹1"], use_circle=True)
+        exp_3 = Text("Five Rupee coin is equivalent to one two-rupee coin and three one-rupee coins", font_size=24).set_color(BLUE).next_to(eq_3, DOWN)
+        self.play(FadeIn(eq_3), Write(exp_3))
         self.wait(2)
-        self.play(FadeOut(equation_7))
+        self.play( FadeOut(eq_3), FadeOut(exp_3))
+       
+        # 10 Rupee note
+        ten_rupee = self.create_equation("₹10", [], use_circle=False)
+        self.play(FadeIn(ten_rupee))
+        self.wait(2)
+        self.play(FadeOut(ten_rupee))
+
+        eq_10 = self.create_equation("₹10", ["₹5", "₹2", "₹2", "₹1"], use_circle=True)
+        exp_10 = Text("Ten Rupee note is equivalent to one 5-rupee coin, two 2-rupee coins, and one 1-rupee coin", font_size=24).set_color(BLUE).next_to(eq_10, DOWN)
+        self.play(FadeIn(eq_10), Write(exp_10))
+        self.wait(2)
+        self.play( FadeOut(eq_10), FadeOut(exp_10))
+
+        # 20 Rupee note
+        twenty_rupee = self.create_equation("₹20", [], use_circle=False)
+        self.play(FadeIn(twenty_rupee))
+        self.wait(2)
+        self.play(FadeOut(twenty_rupee))
+
+        eq_20 = self.create_equation("₹20", ["₹10", "₹10"], use_circle=False)
+        exp_20 = Text("Twenty Rupee note is equivalent to two ten-rupee notes", font_size=24).set_color(BLUE).next_to(eq_20, DOWN)
+        self.play(FadeIn(eq_20), Write(exp_20))
+        self.wait(2)
+        self.play(FadeOut(eq_20), FadeOut(exp_20))
+
+        # 50 Rupee note
+        fifty_rupee = self.create_equation("₹50", [], use_circle=False)
+        self.play(FadeIn(fifty_rupee))
+        self.wait(2)
+        self.play(FadeOut(fifty_rupee))
+
+        eq_50 = self.create_equation("₹50", ["₹20", "₹20", "₹10"], use_circle=False)
+        exp_50 = Text("Fifty Rupee note is equivalent to two twenty-rupee notes and one ten-rupee note", font_size=24).set_color(BLUE).next_to(eq_50, DOWN)
+        self.play(FadeIn(eq_50), Write(exp_50))
+        self.wait(2)
+        self.play( FadeOut(eq_50), FadeOut(exp_50))
+
+        # 100 Rupee note
+        hundred_rupee = self.create_equation("₹100", [], use_circle=False)
+        self.play(FadeIn(hundred_rupee))
+        self.wait(2)
+        self.play(FadeOut(hundred_rupee))
+
+        eq_100 = self.create_equation("₹100", ["₹50", "₹50"], use_circle=False)
+        exp_100 = Text("Hundred Rupee note is equivalent to two fifty-rupee notes", font_size=24).set_color(BLUE).next_to(eq_100, DOWN)
+        self.play(FadeIn(eq_100), Write(exp_100))
+        self.wait(2)
+        self.play(FadeOut(eq_100), FadeOut(exp_100))
+
+        # 500 Rupee note
+        five_hundred_rupee = self.create_equation("₹500", [], use_circle=False)
+        self.play(FadeIn(five_hundred_rupee))
+        self.wait(2)
+        self.play(FadeOut(five_hundred_rupee))
+
+        eq_500 = self.create_equation("₹500", ["₹100", "₹100", "₹100", "₹100", "₹100"], use_circle=False)
+        exp_500 = Text("Five Hundred Rupee note is equivalent to five hundred-rupee notes", font_size=24).set_color(BLUE).next_to(eq_500, DOWN)
+        self.play(FadeIn(eq_500), Write(exp_500))
+        self.wait(2)
+        self.play( FadeOut(eq_500), FadeOut(exp_500))
+
+        self.play(FadeOut(title))
 
     def create_equation(self, high_val, low_vals, use_circle=False):
         shape = Circle(radius=0.6, color=YELLOW, fill_opacity=0.8) if use_circle else Rectangle(height=0.8, width=1.5, color=BLUE, fill_opacity=0.8)
@@ -182,60 +204,55 @@ class Grade1Chapter15Money(AbstractAnim):
         return equation
 
     def Combinations(self):
-        text = Text("Look at the coins and add their values",font_size=36).to_edge(UP).set_color(YELLOW)
+        text = Text("Look at the coins and add their values", font_size=36).to_edge(UP).set_color(YELLOW)
         self.play(Write(text))
-        # Example 1: ₹2 + ₹5 = ₹7
-        eq_1 = self.combined_equation(["₹2", "₹1"], 3)
-        eq_1.shift(UP * 1)
-        self.play(Create(eq_1))
+        # Create 2 rupee and 1 rupee coins
+        two_rupee = self.create_coin("₹2")
+        one_rupee = self.create_coin("₹1")
+        coins = VGroup(two_rupee, one_rupee).arrange(RIGHT, buff=0.5)
+        coins.move_to(ORIGIN)
+        # Display coins
+        self.play(FadeIn(coins))
+        self.wait(1)
+        # Add plus sign
+        plus_sign = Text("+", font_size=36, color=WHITE).move_to(coins.get_center())
+        self.play(FadeIn(plus_sign))
+        self.wait(1)
+        # Create result
+        equals_sign = Text("=", font_size=36, color=WHITE).next_to(coins, RIGHT, buff=0.5)
+        result_box = Square(side_length=1.0, color=WHITE).next_to(equals_sign, RIGHT, buff=0.5)
+        result_text = Text("₹3", font_size=24, color=WHITE).move_to(result_box.get_center())
+        # Display result
+        self.play(FadeIn(equals_sign), FadeIn(result_box))
+        
         self.wait(2)
+        self.play(FadeIn(result_text))
+        # Fade out everything
+        self.play(FadeOut(text), FadeOut(coins), FadeOut(plus_sign), 
+                  FadeOut(equals_sign), FadeOut(result_box), FadeOut(result_text))
 
-        # Example 2: ₹2 + ₹2 + ₹1 = ₹5
-        eq_2 = self.combined_equation(["₹2", "₹5", "₹1"], 8)
-        eq_2.shift(DOWN * 1)
-        self.play(Create(eq_2))
-        self.wait(2)
-        self.play(FadeOut(text,eq_1,eq_2))
+    def create_coin(self, value):
+        coin = Circle(radius=0.4, color=GREEN, fill_opacity=0.8)
+        coin_text = Text(value, font_size=20, color=WHITE).move_to(coin.get_center())
+        return VGroup(coin, coin_text)
 
-    def combined_equation(self, coin_values, total_value):
-        # Create coin shapes with text inside
-        coins_and_texts = VGroup()
-        for val in coin_values:
-            coin = Circle(radius=0.4, color=GREEN, fill_opacity=0.8)
-            coin_text = Text(val, font_size=20, color=WHITE).move_to(coin.get_center())
-            coins_and_texts.add(VGroup(coin, coin_text))
-            plus_sign = Text("+", font_size=24, color=WHITE)
-            coins_and_texts.add(plus_sign)
-        coins_and_texts.remove(plus_sign)  # Remove the last unnecessary plus sign
-        coins_and_texts.arrange(RIGHT, buff=0.2)
-
-        # Create the box with the total value
-        box = Square(side_length=1.0)
-        box_text = Text(f"₹{total_value}", font_size=24, color=WHITE).move_to(box)
-
-        # Arrange the equation
-        equation = VGroup(
-            coins_and_texts,
-            Text("=", font_size=36, color=WHITE),
-            VGroup(box, box_text)
-        ).arrange(RIGHT, buff=0.5)
-
-        return equation
+   
 
     def Pricewithcoins(self):
-        # Example: Pen costing Rs. 6
         example_text = Text("Identify value of coins equal to the price", font_size=36, color=BLUE).to_edge(UP)
-        pen_image = Text("✏️").scale(1).shift(LEFT*2,UP*2)
+        pen_image = Text("✏").scale(1).shift(LEFT*2,UP*2)
         equals_text = Text("=", font_size=36, color=WHITE).next_to(pen_image, RIGHT, buff=0.5)
         coins_example = self.create_coins(["₹5", "₹1"]).next_to(equals_text,RIGHT,buff=0.5)
         price_example = Text("Rs. 6", font_size=28, color=BLUE).next_to(pen_image, DOWN, buff=0.5)
         imagegroup = VGroup(pen_image, price_example)
         example_group = VGroup(equals_text, coins_example)
 
-        self.play(Create(example_text), Write(imagegroup))
+        self.play(Create(example_text))
+        self.wait(2)
+        self.play(Write(imagegroup))
         self.wait(2)
         self.play(Write(example_group))
-        # Example: chocolate costing Rs. 10
+
         chocolate_image = Text("🍫").scale(1).next_to(pen_image,DOWN,buff=1)
         equals_text1 = Text("=", font_size=36, color=WHITE).next_to(chocolate_image, RIGHT, buff=0.5).shift(DOWN*1)
         coins_example1 = self.create_coins(["₹5", "₹5"]).next_to(equals_text1,RIGHT,buff=0.5)
@@ -266,10 +283,9 @@ class Grade1Chapter15Money(AbstractAnim):
        self.DeveloperList="Medha Masanam" 
 
     def SetSourceCodeFileName(self):
-       self.SourceCodeFileName="Grade1Chapter15Money.py"
-    
+       self.SourceCodeFileName="Grade2Chapter13LengthofThings.py"
 
-
+   
 # To render the scene
 if __name__ == "__main__":
     scene = Grade1Chapter15Money()
