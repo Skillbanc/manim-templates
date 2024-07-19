@@ -15,6 +15,8 @@ class ratioandproportion(AbstractAnim):
         self.fadeOutCurrentScene()
         self.equiratio()
         self.fadeOutCurrentScene()
+        self.equic1c2()
+        self.fadeOutCurrentScene()
         self.squareexample()
         self.fadeOutCurrentScene()
         self.quantityratio()
@@ -48,19 +50,42 @@ class ratioandproportion(AbstractAnim):
         self.isRandom = False
 
         p10=cvo.CVO().CreateCVO("RATIO","A:B").setPosition([0,2,0])
-        p12=cvo.CVO().CreateCVO("A","Antecedent").setPosition([-2,-2,0])
-        p13=cvo.CVO().CreateCVO("B","Consequent").setPosition([2,-2,0])
+        p12=cvo.CVO().CreateCVO("A","Antecedent").setPosition([-3,0,0])
+        p13=cvo.CVO().CreateCVO("B","Consequent").setPosition([3,0,0])
         p10.cvolist.append(p12)
         p10.cvolist.append(p13)
         self.construct1(p10,p10)
         
     def equiratio(self):
         text = Text("EQUIVALENT RATIO")
-        text1 = Text("Equivalent ratios are those that can be simplified or reduced to the same value.\n\n\n the ratio 30 : 20 and 24 : 16, in lowest form are same as 3 : 2.\nThese are equivalent ratios.")
+        text1 = Text("Equivalent ratios are those that can be simplified or reduced to the same value.\n\n\n the ratio 30 : 20 and 24 : 16, in lowest form are same as 3 : 2.\n\n\nThese are equivalent ratios.")
         text1.scale(0.6)
         text.to_edge(UP)
         self.play(Write(text))
         self.play(Write(text1), run_time=5)
+        self.wait(1.5)
+
+
+    def equic1c2(self):
+
+        self.setNumberOfCirclePositions(4)
+        #self.angleChoice = [0,0,0]
+        self.isRandom = False
+
+        p10=cvo.CVO().CreateCVO("Equivalent Ratio","").setPosition([-4,2,0])
+        p12=cvo.CVO().CreateCVO("Ratio 1","30:20").setPosition([4,2,0])
+        p13=cvo.CVO().CreateCVO("Ratio 2", "24:16").setPosition([3,0,0])
+        p14=cvo.CVO().CreateCVO("Ratio 3","15:10").setPosition([1,-2,0])
+        p10.cvolist.append(p12)
+        p10.cvolist.append(p13)
+        p10.cvolist.append(p14)
+        self.construct1(p10,p10)
+        
+        text = Text("The lowest form of above three ratios are 3:2, this is called Equivalent Ratios")
+        text.scale(0.6)
+        text.to_edge(DOWN)
+        self.play(Write(text))
+        self.wait(2)
 
     def squareexample(self):
         text = Text("COMPARING SHADED AND UNSHADED AREA WITH RATIO")
@@ -104,7 +129,7 @@ class ratioandproportion(AbstractAnim):
 
         text1 = Text("Shaded Parts=4\n\nUnshaded Parts=12\n\nRatio= 4:12\n\nSimplest Ratio=1:3")
         text1.scale(0.5)
-        self.play(text1.animate.shift(RIGHT * 3))
+        self.play(text1.animate.shift(RIGHT * 3), rumn_time=3)
         
         self.wait(3)
 
@@ -119,8 +144,8 @@ class ratioandproportion(AbstractAnim):
         text2.scale(0.5)
         text2.shift(DOWN)
         self.play(Write(text))
-        self.play(Write(text1))
-        self.play(Write(text2))
+        self.play(Write(text1), run_time=5)
+        self.play(Write(text2), run_time=5)
         self.wait(3)
 
     def proportion(self):
@@ -133,8 +158,8 @@ class ratioandproportion(AbstractAnim):
         text2.scale(0.5)
         #text2.shift(DOWN)
         self.play(Write(text))
-        self.play(Write(text1))
-        self.play(Write(text2))
+        self.play(Write(text1), runtime=3)
+        self.play(Write(text2), run_time=4)
         self.wait(3)
 
     def proportionderivation(self):
@@ -144,11 +169,11 @@ class ratioandproportion(AbstractAnim):
 
         p10=cvo.CVO().CreateCVO("PROPORTION","A:B::C:D").setPosition([-4,2,0])
         p12=cvo.CVO().CreateCVO("","A/B=C/D").setPosition([-2,-3,0])
-        p13=cvo.CVO().CreateCVO("", "AD=BC").setPosition([1,3,0])
-        p14=cvo.CVO().CreateCVO("AD","Product of Means").setPosition([3,0,0])
+        p13=cvo.CVO().CreateCVO("", "AD=BC").setPosition([1,2,0])
+        p14=cvo.CVO().CreateCVO("AD","Product of Means").setPosition([4,1,0])
         p15=cvo.CVO().CreateCVO("BC","Product of Extreams").setPosition([2,-2,0])
         p10.cvolist.append(p12)
-        p12.cvolist.append(p13)
+        p10.cvolist.append(p13)
         p13.cvolist.append(p14)
         p13.cvolist.append(p15)
         self.construct1(p10,p10)
@@ -162,12 +187,12 @@ class ratioandproportion(AbstractAnim):
         text1.scale(0.5)
         text1.shift(UP)
         self.play(Write(text))
-        self.play(Write(text1))
+        self.play(Write(text1),run_time=2)
         self.wait(3)
 
     def unitaryproblem(self):
         text = Text("UNITARY METHOD EXAMPLE")
-        text1 = Text("If the cost of 12 pencils is ` 24, then find the cost of 10 pencils.")
+        text1 = Text("If the cost of 12 pencils is  24, then find the cost of 10 pencils.")
         text2 = Text("First we find the cost of 1 pencil by dividing 24 by 12.\n\nCost of 12 pencils = 24\n\nCost of 1 pencil = 24 ÷ 12 = 2\n\nCost of 10 pencils = 2 × 10 = 20\n\nCost of 10 pencils is 20.")
         text.scale(0.75)
         text.to_edge(UP)
@@ -176,8 +201,8 @@ class ratioandproportion(AbstractAnim):
         text2.scale(0.5)
         text2.shift(DOWN)
         self.play(Write(text))
-        self.play(Write(text1))
-        self.play(Write(text2))
+        self.play(Write(text1), run_time=2)
+        self.play(Write(text2), run_time=4)
         self.wait(3)
 
     def SetDeveloperList(self):

@@ -8,6 +8,8 @@ class MatchSimilarShapes(AbstractAnim):
     def construct(self):
         self.RenderSkillbancLogo()
         self.fadeOutCurrentScene()
+        self.diffshapes()
+        self.fadeOutCurrentScene()
         self.matchshapes()
         self.fadeOutCurrentScene()
         self.shapecolor()
@@ -18,38 +20,69 @@ class MatchSimilarShapes(AbstractAnim):
         self.fadeOutCurrentScene()
         self.GithubSourceCodeReference()
 
+
+    def diffshapes(self):
+
+        self.setNumberOfCirclePositions(5)
+        #self.angleChoice = [0,0,0]
+        self.isRandom = False
+
+        p10=cvo.CVO().CreateCVO("Shapes","").setPosition([-4,2,0])
+        p12=cvo.CVO().CreateCVO("Square","").setPosition([3,2,0])
+        p13=cvo.CVO().CreateCVO("Rectangle", "").setPosition([4,0,0])
+        p14=cvo.CVO().CreateCVO("Triangle","").setPosition([2,-3,0])
+        p15=cvo.CVO().CreateCVO("Circle", "").setPosition([-4,-3,0])
+        p10.cvolist.append(p12)
+        p10.cvolist.append(p13)
+        p10.cvolist.append(p14)
+        p10.cvolist.append(p15)
+        self.construct1(p10,p10)
+        self.wait(3)
+
         
     def matchshapes(self):
+
+        text = Text("Match the shapes that are same.")
+        text.to_edge(UP)
+        self.play(Write(text))
+
 
         square1 = Square(side_length=1, color=BLUE)
         square2 = Square(side_length=1, color=BLUE)
         rectangle1 = Rectangle(width=2, height=1, color=GREEN)
         rectangle2 = Rectangle(width=2, height=1, color=GREEN)
-
         triangle1 = Triangle().scale(0.7).set_color(RED)
         triangle2 = Triangle().scale(0.7).set_color(RED)
         circle1 = Circle(radius=0.7, color=WHITE)
         circle2 = Circle(radius=0.7, color=WHITE)
 
-        
-        shapes_col1 = VGroup(square1, rectangle1, triangle1, circle1).arrange(DOWN, buff=0.8)
-        shapes_col2 = VGroup(circle2, triangle2, square2, rectangle2).arrange(DOWN, buff=0.8)
+        # Arrange shapes in columns
+        shapes_col1 = VGroup(square1, rectangle1, triangle1, circle1).arrange(DOWN, buff=0.5)
+        shapes_col2 = VGroup(circle2, triangle2, square2, rectangle2).arrange(DOWN, buff=0.5)
 
+        # Position the columns
         shapes_col1.move_to(LEFT * 3)
         shapes_col2.move_to(RIGHT * 3)
         
-        
-        line1 = Line(square1.get_right(), square2.get_left(), color=YELLOW)
-        line2 = Line(rectangle1.get_right(), rectangle2.get_left(), color=YELLOW)
-        line3 = Line(triangle1.get_right(), triangle2.get_left(), color=YELLOW)
-        line4 = Line(circle1.get_right(), circle2.get_left(), color=YELLOW)
+        # Create arrows
+        arrow1 = Arrow(square1.get_right(), square2.get_left(), color=BLUE, buff=0)
+        arrow2 = Arrow(rectangle1.get_right(), rectangle2.get_left(), color=GREEN, buff=0)
+        arrow3 = Arrow(triangle1.get_right(), triangle2.get_left(), color=RED, buff=0)
+        arrow4 = Arrow(circle1.get_right(), circle2.get_left(), color=WHITE, buff=0)
 
-        
+        # Animate shapes and arrows step by step
         self.play(FadeIn(shapes_col1), FadeIn(shapes_col2))
         self.wait(1)
         
-        self.play(Create(line1), Create(line2), Create(line3), Create(line4))
-        self.wait(2)
+        self.play(Create(arrow1))
+        self.wait(1)
+        self.play(Create(arrow2))
+        self.wait(1)
+        self.play(Create(arrow3))
+        self.wait(1)
+        self.play(Create(arrow4))
+        self.wait(3)
+
 
     def shapecolor(self):
         text = Text("Colour the shapes of the following picture with the same colours.")
