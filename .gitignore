@@ -1,4 +1,5 @@
-﻿################################################################################
+﻿
+################################################################################
 # This .gitignore file was automatically created by Microsoft(R) Visual Studio.
 ################################################################################
 
@@ -8,4 +9,10 @@
 /Source/c1anim1.py
 /.venv
 /venv
-.DS_Store
+/.vscode
+/folder/manim-templates
+/Scripts
+/pyvenv.cfg
+/book.png
+/book.svg.png
+/ffmpeg
