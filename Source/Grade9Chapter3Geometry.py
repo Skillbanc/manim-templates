@@ -9,8 +9,17 @@ class geometry(AbstractAnim):
     def construct(self):
         self.RenderSkillbancLogo()
         self.geo()
-        self.Axiom()
-        self.postulate()
+        self.axiom_1()
+        self.axiom_2()
+        self.axiom_3()
+        self.axiom_4()
+        self.axiom_5()
+        self.axiom_6()
+        self.postulate_1()
+        self.postulate_2()
+        self.postulate_3()
+        self.postulate_4()
+        self.postulate_5()
         self.GithubSourceCodeReference()
         
 
@@ -39,64 +48,157 @@ class geometry(AbstractAnim):
 
         self.fadeOutCurrentScene()
 
-    def Axiom(self):
-        self.isRandom = False
+    def axiom_1(self):
 
-        p1 = cvo.CVO().CreateCVO("Axioms discovered by", "EUCLID")
-        p1.setPosition([0, 2.5, 0])
-
-        p2 = cvo.CVO().CreateCVO("Axiom: 1", "Things which are equal to the same things are equal to one another")
-        p2.setPosition([-4,0.5, 0])
-        p1.cvolist.append(p2)
-
-        p3 = cvo.CVO().CreateCVO("Axiom: 2", "If equals are added to equals, the wholes are also equal")
-        p3.setPosition([-4, -1, 0])
-        p1.cvolist.append(p3)
-
-        p4 = cvo.CVO().CreateCVO("Axiom: 3", "If equals are subtracted from equals, the remainders are also equal.")
-        p4.setPosition([-4, -3, 0])
-        p1.cvolist.append(p4)
-
-        p5 = cvo.CVO().CreateCVO("Axiom: 4", "Things which coincide with one another are equal to one another")
-        p5.setPosition([4, 0.5, 0])
-        p1.cvolist.append(p5)
-
-        p6 = cvo.CVO().CreateCVO("Axiom: 5", "Things which are double of the same things are equal to one another")
-        p6.setPosition([4, -1, 0])
-        p1.cvolist.append(p6)
-
-        p7 = cvo.CVO().CreateCVO("Axiom: 6", "Things which are halves of the same things are equal to one another")
-        p7.setPosition([4, -3, 0])
-        p1.cvolist.append(p7)
-
-        self.construct1(p1,p1)
-     
+        text = Text("AXIOMS").scale(1)
+        self.play(Write(text))
+        self.wait(1)
         self.fadeOutCurrentScene()
 
-    def postulate(self):
-         
-        self.isRandom=False
-
-        p11=cvo.CVO().CreateCVO("postulates","Euclid has given 5 postulates")
-        p11.setPosition([0,3,0])
-
-        p12=cvo.CVO().CreateCVO("postulate-1","There is a unique line that passes through the given two distinct points.").setPosition([-4,1,0])
-        p11.cvolist.append(p12)
-
-        p13=cvo.CVO().CreateCVO("postulate-2","A line segment can be extended on either side to form a line.").setPosition([-4,-1,0])
-        p11.cvolist.append(p13)
-
-        p14=cvo.CVO().CreateCVO("postulate-3","We can describe a circle with any centre and radius.").setPosition([0,-3,0])
-        p11.cvolist.append(p14)
-
-        p15=cvo.CVO().CreateCVO("postulate-4","All right angles are equal to one another").setPosition([4,1,0])
-        p11.cvolist.append(p15)
-
-        p16=cvo.CVO().CreateCVO("postulate-5","If a line passes through two intersecting straight lines then the sum of internal agles on that side is less than 180 degrees").setPosition([4,-1,0])
-        p11.cvolist.append(p16)
-
-        self.construct1(p11,p11)
+        title = Text("Axiom 1", font_size=36).to_edge(UP)
+        description = Text("Things which are equal to the same thing are equal to one another.", font_size=24).next_to(title, DOWN)
+        eq1 = MathTex("a = c", font_size=36).shift(UP)
+        eq2 = MathTex("b = c", font_size=36).shift(DOWN)
+        conclusion = MathTex("\\therefore a = b", font_size=36).next_to(eq2, DOWN)
+        self.play(Write(title), Write(description))
+        self.play(Write(eq1), Write(eq2))
+        self.play(Write(conclusion))
+        self.wait(2)
         self.fadeOutCurrentScene()
+
+    def axiom_2(self):
+        title = Text("Axiom 2", font_size=36).to_edge(UP)
+        description = Text("If equals are added to equals, the wholes are equal.", font_size=24).next_to(title, DOWN)
+        eq1 = MathTex("a = b", font_size=36).shift(UP)
+        eq2 = MathTex("c = d", font_size=36).shift(DOWN)
+        addition = MathTex("a + c = b + d", font_size=36).next_to(eq2, DOWN)
+        self.play(Write(title), Write(description))
+        self.play(Write(eq1), Write(eq2))
+        self.play(Write(addition))
+        self.wait(2)
+        self.fadeOutCurrentScene()
+
+    def axiom_3(self):
+        title = Text("Axiom 3", font_size=36).to_edge(UP)
+        description = Text("If equals are subtracted from equals, the remainders are equal.", font_size=24).next_to(title, DOWN)
+        eq1 = MathTex("a = b", font_size=36).shift(UP)
+        eq2 = MathTex("c = d", font_size=36).shift(DOWN)
+        subtraction = MathTex("a - c = b - d", font_size=36).next_to(eq2, DOWN)
+        self.play(Write(title), Write(description))
+        self.play(Write(eq1), Write(eq2))
+        self.play(Write(subtraction))
+        self.wait(2)
+        self.fadeOutCurrentScene()
+
+    def axiom_4(self):
+        title = Text("Axiom 4", font_size=36).to_edge(UP)
+        description = Text("Things which coincide with one another are equal to one another.", font_size=24).next_to(title, DOWN)
+        square1 = Square().move_to([-2,0,0])
+        square2 = Square().move_to([2,0,0])
+        self.play(Write(title), Write(description))
+        self.play(Create(square1), Create(square2))
+        self.play(square2.animate.move_to(square1))
+        self.wait(2)
+        self.fadeOutCurrentScene()
+
+    def axiom_5(self):
+        title = Text("Axiom 5", font_size=36).to_edge(UP)
+        description = Text("Things which are double of the same things are equal to one another.", font_size=24).next_to(title, DOWN)
+        eq1 = MathTex("a = b", font_size=36).shift(UP)
+        double = MathTex("2a = 2b", font_size=36).next_to(eq1, DOWN)
+        self.play(Write(title), Write(description))
+        self.play(Write(eq1))
+        self.play(Write(double))
+        self.wait(2)
+        self.fadeOutCurrentScene()
+
+    def axiom_6(self):
+        title = Text("Axiom 6", font_size=36).to_edge(UP)
+        description = Text("Things which are halves of the same things are equal to one another.", font_size=24).next_to(title, DOWN)
+        eq1 = MathTex("a = b", font_size=36).shift(UP)
+        half = MathTex("\\frac{a}{2} = \\frac{b}{2}", font_size=36).next_to(eq1, DOWN)
+        self.play(Write(title), Write(description))
+        self.play(Write(eq1))
+        self.play(Write(half))
+        self.wait(2)
+        self.fadeOutCurrentScene()
+
+    def postulate_1(self):
+
+        text = Text("Euclid's Postulates").scale(1)
+        self.play(Write(text))
+        self.fadeOutCurrentScene()
+
+        title = Text("Euclid's First Postulate", font_size=36).to_edge(UP)
+        description = Text("A straight line segment can be drawn joining any two points.", font_size=24).next_to(title, DOWN)
+        point_A = Dot(LEFT * 2)
+        point_B = Dot(RIGHT * 2)
+        label_A = Text("A", font_size=24).next_to(point_A, DOWN)
+        label_B = Text("B", font_size=24).next_to(point_B, DOWN)
+        line_AB = Line(point_A.get_center(), point_B.get_center())
+        self.play(Write(title), Write(description))
+        self.wait(1)
+        self.play(GrowFromCenter(point_A), GrowFromCenter(point_B))
+        self.play(Write(label_A), Write(label_B))
+        self.play(Create(line_AB))
+        self.wait(2)
+        self.fadeOutCurrentScene()
+
+    def postulate_2(self):
+        title = Text("Euclid's Second Postulate", font_size=36).to_edge(UP)
+        description = Text("A line segment can be extended indefinitely in both directions.", font_size=24).next_to(title, DOWN)
+        point_A = Dot(ORIGIN)
+        point_B = Dot(RIGHT*2)
+        label_A = Text("A", font_size=24).next_to(point_A, DOWN)
+        label_B = Text("B", font_size=24).next_to(point_B, DOWN)
+        line = Line(LEFT * 4, RIGHT * 4)
+        self.play(Write(title), Write(description))
+        self.wait(1)
+        self.play(GrowFromCenter(point_A),GrowFromCenter(point_B))
+        self.play(Write(label_A),Write(label_B))
+        self.play(Create(line))
+        self.wait(2)
+        self.fadeOutCurrentScene()
+
+    def postulate_3(self):
+        title = Text("Euclid's Third Postulate", font_size=36).to_edge(UP)
+        description = Text("A circle can be drawn with any center and radius.", font_size=24).next_to(title, DOWN)
+        center = Dot(ORIGIN)
+        label_center = Text("O", font_size=24).next_to(center, DOWN)
+        circle = Circle(radius=2)
+        self.play(Write(title), Write(description))
+        self.wait(1)
+        self.play(GrowFromCenter(center))
+        self.play(Write(label_center))
+        self.play(Create(circle))
+        self.wait(2)
+        self.fadeOutCurrentScene()
+
+    def postulate_4(self):
+        title = Text("Euclid's Fourth Postulate", font_size=36).to_edge(UP)
+        description = Text("All right angles are equal to each other.", font_size=24).next_to(title, DOWN)
+        right_angle_1 = VGroup(Line(LEFT, RIGHT), Line(LEFT, LEFT + UP)).move_to(LEFT * 2)
+        right_angle_2 = VGroup(Line(LEFT, RIGHT), Line(LEFT, LEFT + UP*2)).move_to(RIGHT * 2)
+        self.play(Write(title), Write(description))
+        self.wait(1)
+        self.play(Create(right_angle_1))
+        self.play(Create(right_angle_2))
+        self.wait(2)
+        self.fadeOutCurrentScene()
+
+    def postulate_5(self):
+        title = Text("Euclid's Fifth Postulate", font_size=36).to_edge(UP)
+        description = Text("If a straight line falling on two straight lines makes the interior angles on the same side less than two right angles, the two straight lines, if extended indefinitely, meet on that side.", font_size=24).scale(0.5).next_to(title, DOWN)
+        
+        pic= "media/images/euclid5.svg"
+
+        postulate = SVGMobject(pic).scale(1).move_to([0,0,0])
+
+        self.play(Write(title),Write(description))
+        self.play(Create(postulate))
+        self.wait(2)
+        self.fadeOutCurrentScene()
+
 
     def SetDeveloperList(self):
         self.DeveloperList="Bhaskar"
