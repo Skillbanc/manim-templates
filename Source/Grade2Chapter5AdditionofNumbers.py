@@ -5,17 +5,17 @@ import cvo
 
 class AdditionofNumbers(AbstractAnim):
     def construct(self):
-        # self.RenderSkillbancLogo()
-        # self.fadeOutCurrentScene()
-        # self.Extra_text()
-        # self.fadeOutCurrentScene()
+        self.RenderSkillbancLogo()
+        self.fadeOutCurrentScene()
+        self.Extra_text()
+        self.fadeOutCurrentScene()
         self.addition()
-        # self.fadeOutCurrentScene()
-        # self.vertical_addition_exercise_1()
-        # self.fadeOutCurrentScene()
-        # self.horizontal_additionExercise()
-        # self.fadeOutCurrentScene()
-        # self.GithubSourceCodeReference()
+        self.fadeOutCurrentScene()
+        self.vertical_addition_exercise_1()
+        self.fadeOutCurrentScene()
+        self.horizontal_additionExercise()
+        self.fadeOutCurrentScene()
+        self.GithubSourceCodeReference()
 
 
     def Extra_text(self):
