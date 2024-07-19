@@ -43,30 +43,31 @@ class Grade8Chapter15PlayingWithNumbers(AbstractAnim):
         self.DivisibilityRule9()
         self.fadeOutCurrentScene()
         #self.Introduction2()
-        #self.fadeOutCurrentScene()
+        
         self.DivisibilityRule10()
         self.fadeOutCurrentScene()
         self.DivisibilityRule11()
         self.fadeOutCurrentScene()
         self.DivisibilityRule12()
+        self.fadeOutCurrentScene()
         self.Introduction3()
         self.fadeOutCurrentScene()
         self.Example()
         self.fadeOutCurrentScene()
-        self.fadeOutCurrentScene()
-        
+               
         self.GithubSourceCodeReference()
         
     
     
     def Playing_numbers(self):
          self.isRandom = False
+         self.angleChoice = [TAU/4,-TAU/2,-TAU/3]
         #  p1=cvo.CVO().CreateCVO("o1name","o2name","c1name","c2name")
          p10=cvo.CVO().CreateCVO("Place Value","").setPosition([0,2.5,0])
          p11=cvo.CVO().CreateCVO("Example","64").setPosition([4,2,0])
-         p12=cvo.CVO().CreateCVO("Expansion","$60+4$").setPosition([5,-2,0])
+         p12=cvo.CVO().CreateCVO("Expansion","$60+4$").setPosition([3,-2,0])
         
-         p13=cvo.CVO().CreateCVO("In words","sixty four").setPosition([-4,2,0]).setangle(-TAU/4)
+         p13=cvo.CVO().CreateCVO("In words","sixty four").setPosition([-4,2,0])
          
          p11.cvolist.append(p12)
          
@@ -77,14 +78,14 @@ class Grade8Chapter15PlayingWithNumbers(AbstractAnim):
          self.construct1(p10,p10)
          self.fadeOutCurrentScene()
 
-         title = Text("Addition").to_edge(UP)
+         title = Text("Place Value").to_edge(UP)
          self.play(Write(title))
 
          examples = [
-            r"32\quad \text{example:}\quad 30+2(thirty two)",
-            r"76 \quad \text{example:} \quad 70+6(seventy six)",
-            r"22 \quad \text{example:} \quad 20+2(twenty two)",
-            r"108 \quad \text{example:}\quad 100+8(one hundred and eight)"
+            r"\text{example:}\quad32=30+2(thirtytwo)",
+            r"\text{example:}\quad76=70+6(seventysix)",
+            r"\text{example:}\quad22=20+2(twentytwo)",
+            r"\text{example:}\quad18=10+8(eighteen)"
          ]
          example1 = MathTex(examples[0]).scale(0.8).next_to(title, DOWN, buff=1)
          example2 = MathTex(examples[1]).scale(0.8).next_to(example1, DOWN, aligned_edge=LEFT, buff=0.5)
@@ -106,12 +107,12 @@ class Grade8Chapter15PlayingWithNumbers(AbstractAnim):
 
     def Expanded_Form(self):
          self.isRandom = False
+         self.angleChoice = [TAU/4,-TAU/2,-TAU/3]
         #  p1=cvo.CVO().CreateCVO("o1name","o2name","c1name","c2name")
          p10=cvo.CVO().CreateCVO("Expanded Form","").setPosition([0,2.5,0])
          p11=cvo.CVO().CreateCVO("Example","64").setPosition([4,2,0])
-         p12=cvo.CVO().CreateCVO("Expansion","$60+4$").setPosition([5,-2,0])
-        
-         p13=cvo.CVO().CreateCVO("Equal to","$(10*6)+(8)$").setPosition([-4,2,0]).setangle(-TAU/4)
+         p12=cvo.CVO().CreateCVO("Expansion","$60+4$").setPosition([3,-2,0]) 
+         p13=cvo.CVO().CreateCVO("Equal to","$(10*6)+(8)$").setPosition([-4,2,0])
          
          p11.cvolist.append(p12)
          
@@ -122,14 +123,14 @@ class Grade8Chapter15PlayingWithNumbers(AbstractAnim):
          self.construct1(p10,p10)
          self.fadeOutCurrentScene()
 
-         title = Text("Addition").to_edge(UP)
+         title = Text("Expanded Form").to_edge(UP)
          self.play(Write(title))
 
          examples = [
-            r"32\quad \text{example:}\quad (10*3)+(2)=thirty two",
-            r"76 \quad \text{example:} \quad (10*7)+(6)=seventy six",
-            r"22 \quad \text{example:} \quad (10*2)+(2)=twenty two",
-            r"108 \quad \text{example:}\quad (10*10)+(8)=one hundred and eight"
+            r"\text{example:}\quad 32=(10*3)+(2)=thirtytwo",
+            r"\text{example:}\quad 76=(10*7)+(6)=seventysix",
+            r"\text{example:}\quad 22=(10*2)+(2)=twentytwo",
+            r"\text{example:}\quad 18=(10*1)+(8)=eighteen"
          ]
          example1 = MathTex(examples[0]).scale(0.8).next_to(title, DOWN, buff=1)
          example2 = MathTex(examples[1]).scale(0.8).next_to(example1, DOWN, aligned_edge=LEFT, buff=0.5)
@@ -149,16 +150,18 @@ class Grade8Chapter15PlayingWithNumbers(AbstractAnim):
 
 
     def create_animation(self):
+         self.isRandom = False
+         self.angleChoice = [-TAU/4,TAU/2,-TAU/2,TAU/4,TAU/2,-TAU/2,TAU/2]
         #  p1=cvo.CVO().CreateCVO("o1name","o2name","c1name","c2name")
          p10=cvo.CVO().CreateCVO("Factors","every number has factors").setPosition([0,2.5,0])
          p11=cvo.CVO().CreateCVO("Type-1","Prime Numbers").setPosition([-4,2,0])
-         p12=cvo.CVO().CreateCVO("Type-2","Composite Numbers").setPosition([4,2,0])
+         p15=cvo.CVO().CreateCVO("Defination","having 1 and itself as factors").setPosition([-4,-0.5,0])
+         p13=cvo.CVO().CreateCVO("Example","2,3,5,7").setPosition([-4,-3,0])
+         p12=cvo.CVO().CreateCVO("Type-2","Composite Numbers").setPosition([4,2,0]) 
+         p16=cvo.CVO().CreateCVO("Defination","having factors other than 1 or itself").setPosition([4,0.5,0])   
         
+         p14=cvo.CVO().CreateCVO("Example","4,6,8,9").setPosition([4,-3,0])
         
-         p13=cvo.CVO().CreateCVO("Example","2,3,5,7").setPosition([-4,-3,0]).setangle(-TAU/4)
-         p14=cvo.CVO().CreateCVO("Example","4,6,8,9").setPosition([4,-3,0]).setangle(-TAU/4)
-         p15=cvo.CVO().CreateCVO("Defination","having 1 and itself as factors").setPosition([-4,0,0]).setangle(-TAU/4)
-         p16=cvo.CVO().CreateCVO("Defination","having factors other than 1 or itself").setPosition([4,0,0]).setangle(-TAU/4)
          p10.cvolist.append(p11)
          
          p10.cvolist.append(p12)
@@ -171,235 +174,218 @@ class Grade8Chapter15PlayingWithNumbers(AbstractAnim):
     
     def Introduction(self):
         self.setNumberOfCirclePositions(2)
-        self.angleChoice = [-TAU/4]
+        self.angleChoice = [TAU/4]
         self.isRandom = False
         p10=cvo.CVO().CreateCVO("Playing With Numbers","")
         p11=cvo.CVO().CreateCVO("Divisibility Rules", "")
         p11.extendOname(["2","3","4","5","6","7","8","9","10","11","12"])
-        p11.setcircleradius(2.0)
+        p11.setcircleradius(1.5)
         p10.cvolist.append(p11)
         self.construct1(p10,p10)
 
     def DivisibilityRule2(self):
-        self.setNumberOfCirclePositions(4)
-        #self.angleChoice = [0,0,0]
+        self.positionChoice = [[-4,-2,0],[3,-2,0],[4,2,0],[0,2,0],[-4,2,0]]
+        self.angleChoice = [TAU/4,TAU/2,-TAU/4,-TAU/4]
         self.isRandom = False
-
-        p10=cvo.CVO().CreateCVO("Divisibility Rule 2","Units Place-2,4,6,8,0")
-        p11=cvo.CVO().CreateCVO("example","28")
-        p12=cvo.CVO().CreateCVO("units place","8")
-        p13=cvo.CVO().CreateCVO("Divisibility Rule of 2", "satisfied")
-        p10.cvolist.append(p11)
-        p11.cvolist.append(p12)
-        p12.cvolist.append(p13)
-        self.construct1(p10,p10)
-        #self.construct1(p13,p13)
-        #self.play(Create(CurvedArrow(p11.pos,p13.pos)),Create(CurvedArrow(p12.pos,p13.pos)))
-        #self.play()
-
-    def DivisibilityRule3(self):
-        self.setNumberOfCirclePositions(4)
-        #self.angleChoice = [0,0,0]
-        self.isRandom = False
-
-        p10=cvo.CVO().CreateCVO("Divisibility Rule 3","sum of digits divisible by 3")
-        p11=cvo.CVO().CreateCVO("example","12")
-        p12=cvo.CVO().CreateCVO("sum of digits","1+2=3(divisible by 3)")
-        p13=cvo.CVO().CreateCVO("Divisibility Rule of 3", "satisfied")
-        p10.cvolist.append(p11)
-        p11.cvolist.append(p12)
-        p12.cvolist.append(p13)
-        self.construct1(p10,p10)
-        #self.construct1(p13,p13)
-        #self.play(Create(CurvedArrow(p11.pos,p13.pos)),Create(CurvedArrow(p12.pos,p13.pos)))
-        #self.play()
-
-    def DivisibilityRule4(self):
-        self.setNumberOfCirclePositions(4)
-        #self.angleChoice = [0,0,0]
-        self.isRandom = False
-
-        p10=cvo.CVO().CreateCVO("Divisibility Rule 4","last 2 digits divisible by 4")
-        p11=cvo.CVO().CreateCVO("example","116")
-        p12=cvo.CVO().CreateCVO("last 2 digits ","16(divisible by 4)")
-        p13=cvo.CVO().CreateCVO("Divisibility Rule of 4", "satisfied")
-        p10.cvolist.append(p11)
-        p11.cvolist.append(p12)
-        p12.cvolist.append(p13)
-        self.construct1(p10,p10)
-        #self.construct1(p13,p13)
-        #self.play(Create(CurvedArrow(p11.pos,p13.pos)),Create(CurvedArrow(p12.pos,p13.pos)))
-        #self.play()
-
-    def DivisibilityRule5(self):
-        self.setNumberOfCirclePositions(4)
-        #self.angleChoice = [0,0,0]
-        self.isRandom = False
-
-        p10=cvo.CVO().CreateCVO("Divisibility Rule 5","units place- 0 or 5")
-        p11=cvo.CVO().CreateCVO("example","45")
-        p12=cvo.CVO().CreateCVO("units digit ","5")
-        p13=cvo.CVO().CreateCVO("Divisibility Rule of 5", "satisfied")
-        p10.cvolist.append(p11)
-        p11.cvolist.append(p12)
-        p12.cvolist.append(p13)
-        self.construct1(p10,p10)
-        #self.construct1(p13,p13)
-        #self.play(Create(CurvedArrow(p11.pos,p13.pos)),Create(CurvedArrow(p12.pos,p13.pos)))
-        #self.play()
-
-    """def Introduction1(self):
-        self.setNumberOfCirclePositions(2)
-        self.angleChoice = [-TAU/4]
-        self.isRandom = False
-        p10=cvo.CVO().CreateCVO("Playing With Numbers","")
-        p11=cvo.CVO().CreateCVO("Divisibility Rules", "")
-        p11.extendOname(["6","7","8","9"])
-        p11.setcircleradius(1.5)
-        p10.cvolist.append(p11)
-        self.construct1(p10,p10)"""
-
-    def DivisibilityRule6(self):
-        self.setNumberOfCirclePositions(7)
-        #self.angleChoice = [0,0,0]
-        #self.isRandom = False
-
-        p10=cvo.CVO().CreateCVO("Divisibility Rule 6","divisible by both 2 and 3").setPosition([0,2.5,0])
-        p11=cvo.CVO().CreateCVO("example","30").setPosition([4,2,0])
-        p12=cvo.CVO().CreateCVO("units place","0").setPosition([4,0,0]).setangle(-TAU/4)
-        p13=cvo.CVO().CreateCVO("Divisibility Rule of 2", "satisfied").setPosition([4,-2,0]).setangle(-TAU/4)
-        p14=cvo.CVO().CreateCVO("sum of digits ","3+0=3(divisible)").setPosition([-4,2,0]).setangle(-TAU/4)
-        p15=cvo.CVO().CreateCVO("Divisibility Rule of 3", "satisfied").setPosition([-4,-2,0]).setangle(-TAU/4)
-        p16=cvo.CVO().CreateCVO("Divisibility Rule of 6", "satisfied").setPosition([0,-2.5,0])
-        p10.cvolist.append(p11)
-        p11.cvolist.append(p12)
-        p12.cvolist.append(p13)
-        p11.cvolist.append(p14)
-        p14.cvolist.append(p15)
-        self.construct1(p10,p10)
-        self.construct1(p16,p16)
-        self.play(Create(CurvedArrow(p13.pos,p16.pos)),Create(CurvedArrow(p15.pos,p16.pos)))
-        #self.play()
-
-    def DivisibilityRule7(self):
-        self.setNumberOfCirclePositions(4)
-        #self.angleChoice = [0,0,0]
-        self.isRandom = False
-
-        p10=cvo.CVO().CreateCVO("Divisibility Rule 7","$unit digit*2-given number,check if divisible by 7$")
-        p11=cvo.CVO().CreateCVO("example","7")
-        p12=cvo.CVO().CreateCVO("$unit digit*2-given number$","$7*2=14-7=7(divisible)$")
-        p13=cvo.CVO().CreateCVO("Divisibility Rule of 7", "satisfied")
-        p10.cvolist.append(p11)
-        p11.cvolist.append(p12)
-        p12.cvolist.append(p13)
-        self.construct1(p10,p10)
-        #self.construct1(p13,p13)
-        #self.play(Create(CurvedArrow(p11.pos,p13.pos)),Create(CurvedArrow(p12.pos,p13.pos)))
-        #self.play()
-
-    
-
-    def DivisibilityRule8(self):
-        self.setNumberOfCirclePositions(4)
-        #self.angleChoice = [0,0,0]
-        self.isRandom = False
-
-        p10=cvo.CVO().CreateCVO("Divisibility Rule 8","last 3 digits divisible by 8")
-        p11=cvo.CVO().CreateCVO("example","328")
-        p12=cvo.CVO().CreateCVO("last 3 digits ","328(divisble by 8)")
-        p13=cvo.CVO().CreateCVO("Divisibility Rule of 8", "satisfied")
-        p10.cvolist.append(p11)
-        p11.cvolist.append(p12)
-        p12.cvolist.append(p13)
-        self.construct1(p10,p10)
-        #self.construct1(p13,p13)
-        #self.play(Create(CurvedArrow(p11.pos,p13.pos)),Create(CurvedArrow(p12.pos,p13.pos)))
-        #self.play()
-
-        
-    def DivisibilityRule9(self):
-        self.setNumberOfCirclePositions(4)
-        #self.angleChoice = [0,0,0]
-        self.isRandom = False
-
-        p10=cvo.CVO().CreateCVO("Divisibility Rule 9","sum of digits divisible by 9")
-        p11=cvo.CVO().CreateCVO("example","27")
-        p12=cvo.CVO().CreateCVO("sum of digits","7+2=9(divisible by 9)")
-        p13=cvo.CVO().CreateCVO("Divisibility Rule of 9", "satisfied")
-        p10.cvolist.append(p11)
-        p11.cvolist.append(p12)
-        p12.cvolist.append(p13)
-        self.construct1(p10,p10)
-        #self.construct1(p13,p13)
-        #self.play(Create(CurvedArrow(p11.pos,p13.pos)),Create(CurvedArrow(p12.pos,p13.pos)))
-        #self.play()
-
-
-    def DivisibilityRule10(self):
-        self.setNumberOfCirclePositions(4)
-        #self.angleChoice = [0,0,0]
-        self.isRandom = False
-
-        p10=cvo.CVO().CreateCVO("Divisibility Rule 10","units place- 0 ")
-        p11=cvo.CVO().CreateCVO("example","50")
-        p12=cvo.CVO().CreateCVO("units digit ","0")
-        p13=cvo.CVO().CreateCVO("Divisibility Rule of 10", "satisfied")
-        p10.cvolist.append(p11)
-        p11.cvolist.append(p12)
-        p12.cvolist.append(p13)
-        self.construct1(p10,p10)
-        #self.construct1(p13,p13)
-        #self.play(Create(CurvedArrow(p11.pos,p13.pos)),Create(CurvedArrow(p12.pos,p13.pos)))
-        #self.play() 
-
-    
-
-    def DivisibilityRule11(self):
-        self.setNumberOfCirclePositions(5)
-        #self.angleChoice = [0,0,0]
-        #self.isRandom = False
-
-        p10=cvo.CVO().CreateCVO("Divisibility Rule 11","$sum of odd place-sum of even place =divisible by 11$")
-        p11=cvo.CVO().CreateCVO("example","11")
-        p12=cvo.CVO().CreateCVO("$sum of odd place-sum of even place$","$1-1=0$")
-        p13=cvo.CVO().CreateCVO("Divisibile by 11", "0 is divisble by 11")
-        p14=cvo.CVO().CreateCVO("Divisibility Rule of 11", "satisfied")
+        p10=cvo.CVO().CreateCVO("Divisibility Rule 2","")
+        p11=cvo.CVO().CreateCVO("Condition","Units Place is even number")
+        p12=cvo.CVO().CreateCVO("example","28")
+        p13=cvo.CVO().CreateCVO("units place","8")
+        p14=cvo.CVO().CreateCVO("Divisibililty Rule of 2?", "satisfied")
         p10.cvolist.append(p11)
         p11.cvolist.append(p12)
         p12.cvolist.append(p13)
         p13.cvolist.append(p14)
         self.construct1(p10,p10)
-        #self.construct1(p13,p13)
-        #self.play(Create(CurvedArrow(p11.pos,p13.pos)),Create(CurvedArrow(p12.pos,p13.pos)))
-        #self.play()
 
-    def DivisibilityRule12(self):
-        self.setNumberOfCirclePositions(7)
-        #self.angleChoice = [0,0,0]
+    def DivisibilityRule3(self):
+        self.positionChoice = [[-4,-2,0],[2,-2,0],[4,1,0],[1,2,0],[-4,2,0]]
+        self.angleChoice = [TAU/4,TAU/2,-TAU/4,-TAU/4]
         self.isRandom = False
-
-        p10=cvo.CVO().CreateCVO("Divisibility Rule 12","both by 4 and 3").setPosition([0,2.5,0])
-        p11=cvo.CVO().CreateCVO("example","24").setPosition([4,2,0])
-        p12=cvo.CVO().CreateCVO("last 2 digits","24(divisible)").setPosition([4,0,0]).setangle(-TAU/4)
-        p13=cvo.CVO().CreateCVO("Divisibility Rule of 4", "satisfied").setPosition([4,-2,0]).setangle(-TAU/4)
-        p14=cvo.CVO().CreateCVO("sum of digits ","2+4=6").setPosition([-4,2,0]).setangle(-TAU/4)
-        p15=cvo.CVO().CreateCVO("Divisibility Rule of 3", "satisfied").setPosition([-4,-2,0]).setangle(-TAU/4)
-        p16=cvo.CVO().CreateCVO("Divisibility Rule of 12", "satisfied").setPosition([0,-2.5,0])
+        p10=cvo.CVO().CreateCVO("Divisibility Rule 3","")
+        p11=cvo.CVO().CreateCVO("Condition","sum of digits should be divisible by 3")
+        p12=cvo.CVO().CreateCVO("example","12")
+        p13=cvo.CVO().CreateCVO("sum of digits","1+2=3(divisible by 3)")
+        p14=cvo.CVO().CreateCVO("Divisibililty Rule of 3?", "satisfied")
         p10.cvolist.append(p11)
-        p11.cvolist.append(p14)
-        p14.cvolist.append(p15)
         p11.cvolist.append(p12)
         p12.cvolist.append(p13)
+        p13.cvolist.append(p14)
         self.construct1(p10,p10)
-        self.construct1(p16,p16)
-        self.play(Create(CurvedArrow(p13.pos,p16.pos)),Create(CurvedArrow(p15.pos,p16.pos)))
-        #self.play()
+
+    def DivisibilityRule4(self):
+        self.positionChoice = [[-4,-2,0],[2,-2,0],[4,1,0],[1,2,0],[-4,2,0]]
+        self.angleChoice = [TAU/4,TAU/2,-TAU/4,-TAU/4]
+        self.isRandom = False
+        p10=cvo.CVO().CreateCVO("Divisibility Rule 4","")
+        p11=cvo.CVO().CreateCVO("Condition","last 2 digits should be divisible by 4")
+        p12=cvo.CVO().CreateCVO("example","116")
+        p13=cvo.CVO().CreateCVO("last 2 digits ","16(divisible by 4)")
+        p14=cvo.CVO().CreateCVO("Divisibililty Rule of 4?", "satisfied")
+        p10.cvolist.append(p11)
+        p11.cvolist.append(p12)
+        p12.cvolist.append(p13)
+        p13.cvolist.append(p14)
+        self.construct1(p10,p10)
+
+    def DivisibilityRule5(self):
+        self.positionChoice = [[-4,-2,0],[4,-2,0],[4,2,0],[0,2,0],[-4,2,0]]
+        self.angleChoice = [TAU/4,TAU/2,-TAU/4,-TAU/4]
+        self.isRandom = False
+
+        p10=cvo.CVO().CreateCVO("Divisibility Rule 5","")
+        p11=cvo.CVO().CreateCVO("Condition","units place- 0 or 5")
+        p12=cvo.CVO().CreateCVO("example","45")
+        p13=cvo.CVO().CreateCVO("units digit ","5")
+        p14=cvo.CVO().CreateCVO("Divisibililty Rule of 5?", "satisfied")
+        p10.cvolist.append(p11)
+        p11.cvolist.append(p12)
+        p12.cvolist.append(p13)
+        p13.cvolist.append(p14)
+        self.construct1(p10,p10)
+    
+    def DivisibilityRule6(self):
+        self.setNumberOfCirclePositions(8)
+        self.angleChoice = [-TAU/4,TAU/4,-TAU/2,TAU/2,-TAU/4,TAU/2]
+        self.isRandom = False
+
+        #self.angleChoice = [0,0,0]
+        #self.isRandom = False
+
+        p10=cvo.CVO().CreateCVO("Divisibility Rule 6","").setPosition([0,2.5,0])
+        p11=cvo.CVO().CreateCVO("Condition","divisible by both 2 and 3").setPosition([-4,2,0])
+        p12=cvo.CVO().CreateCVO("example","30").setPosition([4,2,0])
+        p13=cvo.CVO().CreateCVO("units place","0").setPosition([4,0,0])
+        p14=cvo.CVO().CreateCVO("Divisibility Rule of 2?", "satisfied").setPosition([4,-2,0])
+        p15=cvo.CVO().CreateCVO("sum of digits ","3+0=3(divisible)").setPosition([-4,0,0])
+        p16=cvo.CVO().CreateCVO("Divisibility Rule of 3?", "satisfied").setPosition([-4,-2,0])
+        p17=cvo.CVO().CreateCVO("Divisibility Rule of 6?", "satisfied").setPosition([0,-2.5,0])
+        p10.cvolist.append(p11)
+        p10.cvolist.append(p12)
+        p12.cvolist.append(p13)
+        p13.cvolist.append(p14)
+        p12.cvolist.append(p15)
+        p15.cvolist.append(p16)
+        
+        self.construct1(p10,p10)
+        self.construct1(p17,p17)
+        self.play(Create(CurvedArrow(p14.pos,p17.pos)),Create(CurvedArrow(p16.pos,p17.pos)))
+
+    def DivisibilityRule7(self):
+        self.positionChoice = [[-4,-2,0],[2,-2,0],[4,1,0],[1,2,0],[-4,2,0]]
+        self.angleChoice = [TAU/4,TAU/2,-TAU/4,-TAU/4]
+        self.isRandom = False
+        p10=cvo.CVO().CreateCVO("Divisibility Rule 7","")
+        p11=cvo.CVO().CreateCVO("Condition","unit digit*2-given number,check if divisible by 7")
+        p12=cvo.CVO().CreateCVO("example","7")
+        p13=cvo.CVO().CreateCVO("$unit digit*2-given number$","$7*2=14-7=7(divisible)$")
+        p14=cvo.CVO().CreateCVO("Divisibililty Rule of 7?", "satisfied")
+        p10.cvolist.append(p11)
+        p11.cvolist.append(p12)
+        p12.cvolist.append(p13)
+        p13.cvolist.append(p14)
+        self.construct1(p10,p10)
+
+    
+
+    def DivisibilityRule8(self):
+        self.positionChoice = [[-4,-2,0],[2,-2,0],[4,1,0],[1,2,0],[-4,2,0]]
+        self.angleChoice = [TAU/4,TAU/2,-TAU/4,-TAU/4]
+        self.isRandom = False
+
+        p10=cvo.CVO().CreateCVO("Divisibility Rule 8","")
+        p11=cvo.CVO().CreateCVO("Condition","last 3 digits should be divisible by 8")
+        p12=cvo.CVO().CreateCVO("example","328")
+        p13=cvo.CVO().CreateCVO("last 3 digits ","328(divisble by 8)")
+        p14=cvo.CVO().CreateCVO("Divisibililty Rule of 8?", "satisfied")
+        p10.cvolist.append(p11)
+        p11.cvolist.append(p12)
+        p12.cvolist.append(p13)
+        p13.cvolist.append(p14)
+        self.construct1(p10,p10)
+
+        
+    def DivisibilityRule9(self):
+        self.positionChoice = [[-4,-2,0],[2,-2,0],[4,1,0],[1,2,0],[-4,2,0]]
+        self.angleChoice = [TAU/4,TAU/2,-TAU/4,-TAU/4]
+        self.isRandom = False
+
+        p10=cvo.CVO().CreateCVO("Divisibility Rule 9","")
+        p11=cvo.CVO().CreateCVO("Condition","sum of digits should be divisible by 9")
+        p12=cvo.CVO().CreateCVO("example","27")
+        p13=cvo.CVO().CreateCVO("sum of digits","2+7=9(divisible by 9)")
+        p14=cvo.CVO().CreateCVO("Divisibililty Rule of 9?", "satisfied")
+        p10.cvolist.append(p11)
+        p11.cvolist.append(p12)
+        p12.cvolist.append(p13)
+        p13.cvolist.append(p14)
+        self.construct1(p10,p10)
+
+
+    def DivisibilityRule10(self):
+        self.positionChoice = [[-4,-2,0],[4,-2,0],[4,2,0],[0,2,0],[-4,2,0]]
+        self.angleChoice = [TAU/4,TAU/2,-TAU/4,-TAU/4]
+        self.isRandom = False
+
+
+        p10=cvo.CVO().CreateCVO("Divisibility Rule 10","")
+        p11=cvo.CVO().CreateCVO("Condition","units place- 0")
+        p12=cvo.CVO().CreateCVO("example","50")
+        p13=cvo.CVO().CreateCVO("units digit ","0")
+        p14=cvo.CVO().CreateCVO("Divisibililty Rule of 10?", "satisfied")
+        p10.cvolist.append(p11)
+        p11.cvolist.append(p12)
+        p12.cvolist.append(p13)
+        p13.cvolist.append(p14)
+        self.construct1(p10,p10)
+    
+
+    def DivisibilityRule11(self):
+        self.positionChoice = [[-4,-2,0],[0,-2,0],[4,-2,0],[4,2,0],[0,1,0],[-4,2,0]]
+        self.angleChoice = [TAU/4,TAU/4,TAU/2,-TAU/4,-TAU/4]
+        self.isRandom = False
+
+        p10=cvo.CVO().CreateCVO("Divisibility Rule 11","")
+        p11=cvo.CVO().CreateCVO("Condition","sum of odd place-sum of even place=solution(divisible by 11)")
+        p12=cvo.CVO().CreateCVO("example","11")
+        p13=cvo.CVO().CreateCVO("$sum of odd place-sum of even place$","$1-1=0$")
+        p14=cvo.CVO().CreateCVO("Divisibile by 11", "0 is divisble by 11")
+        p15=cvo.CVO().CreateCVO("Divisibililty Rule of 11?", "satisfied")
+        p10.cvolist.append(p11)
+        p11.cvolist.append(p12)
+        p12.cvolist.append(p13)
+        p13.cvolist.append(p14)
+        p14.cvolist.append(p15)
+        self.construct1(p10,p10)
+
+    def DivisibilityRule12(self):
+        self.setNumberOfCirclePositions(8)
+        self.angleChoice = [-TAU/4,TAU/4,-TAU/2,TAU/2,-TAU/4,-TAU/4]
+        self.isRandom = False
+
+        p10=cvo.CVO().CreateCVO("Divisibility Rule 12","").setPosition([0,2.5,0])
+        p11=cvo.CVO().CreateCVO("Condition","divisible by both 4 and 3").setPosition([-4,2,0])
+        p12=cvo.CVO().CreateCVO("example","24").setPosition([4,2,0])
+        p13=cvo.CVO().CreateCVO("last 2 digits","24(divisible)").setPosition([4,0,0])
+        p14=cvo.CVO().CreateCVO("Divisibility Rule of 4?", "satisfied").setPosition([4,-2,0])
+        p15=cvo.CVO().CreateCVO("sum of digits ","2+4=6").setPosition([-4,0,0])
+        p16=cvo.CVO().CreateCVO("Divisibility Rule of 3?", "satisfied").setPosition([-4,-2,0])
+        p17=cvo.CVO().CreateCVO("Divisibility Rule of 12?", "satisfied").setPosition([0,-2.5,0])
+        p10.cvolist.append(p11)
+        p10.cvolist.append(p12)
+        p12.cvolist.append(p13)
+        p13.cvolist.append(p14)
+        p12.cvolist.append(p15)
+        p15.cvolist.append(p16)
+        
+        self.construct1(p10,p10)
+        self.construct1(p17,p17)
+        self.play(Create(CurvedArrow(p14.pos,p17.pos)),Create(CurvedArrow(p16.pos,p17.pos)))
 
         
     def Introduction3(self):
-        self.setNumberOfCirclePositions(4)
-        #self.angleChoice = [0,0,0]
+        self.positionChoice = [[-4,-2,0],[2,-2,0],[3,1,0],[-4,2,0]]
+        self.angleChoice = [TAU/4,TAU/2,-TAU/4]
         self.isRandom = False
 
         p10=cvo.CVO().CreateCVO("Playing With Numbers","Puzzles with Missing Digits")
@@ -417,10 +403,9 @@ class Grade8Chapter15PlayingWithNumbers(AbstractAnim):
     
 
     def Example(self):
-        self.setNumberOfCirclePositions(4)
-        #self.angleChoice = [0,0,0]
+        self.positionChoice = [[-4,-2,0],[3,-2,0],[3,2,0],[-4,2,0]]
+        self.angleChoice = [TAU/4,TAU/2,-TAU/4]
         self.isRandom = False
-
         p10=cvo.CVO().CreateCVO("Example","$17A + 2A4 = 407$")
         p11=cvo.CVO().CreateCVO("Step 1(units place)","$A + 4 = 7$")
         p12=cvo.CVO().CreateCVO("Step 2","$A = 7-4 = 3$")

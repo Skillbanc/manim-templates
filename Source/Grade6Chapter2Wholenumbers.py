@@ -31,15 +31,19 @@ class Grade6Chapter2Wholenumbers(AbstractAnim):
         self.GithubSourceCodeReference()
 
     def Introduction(self):
-        self.setNumberOfCirclePositions(3)
+        self.setNumberOfCirclePositions(4)
         #self.angleChoice = [0,0,0]
         self.isRandom = False
+        self.isRandom = False
+        self.angleChoice = [TAU/2,TAU/3,-TAU/2]
 
-        p10=cvo.CVO().CreateCVO(" Whole Numbers"," collection of positive numbers and zero")
-        p11=cvo.CVO().CreateCVO("Denoted by","W")
-        p12=cvo.CVO().CreateCVO("Representation", "W={0,1,2,3....}")
+        p10=cvo.CVO().CreateCVO(" Whole Numbers","").setPosition([0,2.5,0])
+        p11=cvo.CVO().CreateCVO("Definition","any number between zero to infinity, not including decimals or fractions").setPosition([3,-1,0]) 
+        p12=cvo.CVO().CreateCVO("Denoted by","W").setPosition([4,2,0])
+        p13=cvo.CVO().CreateCVO("Representation", "W={0,1,2,3....}").setPosition([-4,2,0])
         p10.cvolist.append(p11)
         p10.cvolist.append(p12)
+        p10.cvolist.append(p13)
         self.construct1(p10,p10)
         #self.construct1(p13,p13)
         #self.play(Create(CurvedArrow(p11.pos,p13.pos)),Create(CurvedArrow(p12.pos,p13.pos)))
@@ -90,12 +94,12 @@ class Grade6Chapter2Wholenumbers(AbstractAnim):
 
         if operation == "addition":
             dot.move_to(number_line.number_to_point(a))
-            explanation = f"A dot starts at {a} and jumps forward {b} times."
+            explanation = f"A dot starts at {a} and jumps forward for {b} times."
             jumps = b
             step = 1
         elif operation == "subtraction":
             dot.move_to(number_line.number_to_point(a))
-            explanation = f"A dot starts at {a} and jumps backward {b} times."
+            explanation = f"A dot starts at {a} and jumps backward for {b} times."
             jumps = b
             step = -1
         elif operation == "multiplication":
@@ -123,7 +127,7 @@ class Grade6Chapter2Wholenumbers(AbstractAnim):
         self.play(Write(result))
         self.wait(1)
         self.play(FadeOut(dot, title, underline, explanation_text, result))
-        self.wait(1)
+        #self.wait(1)
 
     def get_result_text(self, a, b, operation):
         if operation == "addition":
@@ -146,7 +150,7 @@ class Grade6Chapter2Wholenumbers(AbstractAnim):
         self.construct1(p10, p10)
     
     def Addition(self):
-        self.positionChoice=[[-4,0,0],[0,0,0],[4,0,0]]        
+        self.positionChoice=[[-4,0,0],[0,-2,0],[4,0,0]]        
         self.isRandom = False
 
         p10 = cvo.CVO().CreateCVO(" Whole Numbers", "2,3")
@@ -186,7 +190,7 @@ class Grade6Chapter2Wholenumbers(AbstractAnim):
         self.wait(3)
 
     def Subtraction(self):
-        self.positionChoice=[[-4,0,0],[0,0,0],[4,0,0]]        
+        self.positionChoice=[[-4,0,0],[0,-2,0],[4,0,0]]        
         self.isRandom = False
         
         p10 = cvo.CVO().CreateCVO("Whole Numbers", "3,2")
@@ -224,7 +228,7 @@ class Grade6Chapter2Wholenumbers(AbstractAnim):
         self.wait(3)
 
     def Multiplication(self):
-        self.positionChoice=[[-4,0,0],[0,0,0],[4,0,0]]        
+        self.positionChoice=[[-4,0,0],[0,-2,0],[4,0,0]]        
         self.isRandom = False
 
         p10 = cvo.CVO().CreateCVO("Whole Numbers", "2,3")
@@ -264,7 +268,7 @@ class Grade6Chapter2Wholenumbers(AbstractAnim):
 
 
     def Division(self):
-        self.positionChoice=[[-4,0,0],[0,0,0],[4,0,0]]        
+        self.positionChoice=[[-4,0,0],[0,-2,0],[4,0,0]]        
         self.isRandom = False
 
         p10 = cvo.CVO().CreateCVO("Whole Numbers", "6,3")
@@ -309,7 +313,7 @@ class Grade6Chapter2Wholenumbers(AbstractAnim):
         p10 = cvo.CVO().CreateCVO("Whole Numbers", "")
         p11 = cvo.CVO().CreateCVO("Properties of Whole Numbers", "")
         p11.extendOname([ "Commutative property", "Associative property", "Additive identity"])
-        p11.setcircleradius(2.5)
+        p11.setcircleradius(2.0)
         p10.cvolist.append(p11)
         self.construct1(p10, p10)
 
@@ -330,12 +334,38 @@ class Grade6Chapter2Wholenumbers(AbstractAnim):
         p10.cvolist.append(p13)
         p10.cvolist.append(p14)
         self.construct1(p10, p10)
+        self.fadeOutCurrentScene()
+
+        title = Text("Commutative Property for Two Numbers 4,5").to_edge(UP)
+        self.play(Write(title))
+
+        examples = [
+        r"\text{For Addition :} X + Y = Y + X \quad \text{example:}\quad 4+5=5+4==9",
+        r"\text{For Subtraction :} X - Y = Y - X \quad \text{not possible}",
+        r"\text{For Multiplication :} X * Y = Y * X \quad \text{example:}\quad 4*5=5*4==20",
+        r"\text{For Division :} X / Y = Y / X \quad \text{not possible}",
+       
+        
+        ]
+        example1 = MathTex(examples[0]).scale(0.8).next_to(title, DOWN, buff=1)
+        example2 = MathTex(examples[1]).scale(0.8).next_to(example1, DOWN, aligned_edge=LEFT, buff=0.5)
+        example3 = MathTex(examples[2]).scale(0.8).next_to(example2, DOWN, aligned_edge=LEFT, buff=0.5)
+        example4 = MathTex(examples[3]).scale(0.8).next_to(example3, DOWN, aligned_edge=LEFT, buff=0.5)
+        self.play(Write(example1))
+        self.wait(1)
+        self.play(Write(example2))
+        self.wait(1)
+        self.play(Write(example3))
+        self.wait(1)
+        self.play(Write(example4))
+        self.wait(1)
+ 
+        self.wait(3)
     
 
     def Associativeproperty(self):
-        self.setNumberOfCirclePositions(5)
+        self.positionChoice = [[-4,-2,0],[4,-2,0],[-4,2,0],[4,2,0],[0,0,0]]
         self.isRandom = False
-
         p10 = cvo.CVO().CreateCVO("Associative for 3 Whole Numbers", "2,3,4")
         p11 = cvo.CVO().CreateCVO("Associative for additiion", "(2 + 3) + 4 = 2 + (3 + 4) = 9")
         p12 = cvo.CVO().CreateCVO("Associative for subtraction", "not possible")
@@ -346,13 +376,48 @@ class Grade6Chapter2Wholenumbers(AbstractAnim):
         p10.cvolist.append(p13)
         p10.cvolist.append(p14)
         self.construct1(p10, p10)
+        self.fadeOutCurrentScene()
+
+        title = Text("Associative Property for Three Numbers 5,6,1").to_edge(UP)
+        self.play(Write(title))
+
+        examples = [
+        r"\text{For Addition :} (X+Y)+Z=X+(Y+Z)",
+        r"\text{example:} \quad (5+6)+1=5+(6+1)==12",
+        r"\text{For Subtraction :} (X - Y) - Z = X - (Y - Z) \quad \text{not possible}",
+        r"\text{For Multiplication :}(X*Y)*Z=X*(Y*Z)",
+        r"\text{example:}\quad (5*6)*1=5*(6*1)==30",
+        r"\text{For Division :}(X / Y) / Z = X / (Y / Z) \quad \text{not possible}",
+       
+        
+        ]
+        example1 = MathTex(examples[0]).scale(0.8).next_to(title, DOWN, buff=1)
+        example2 = MathTex(examples[1]).scale(0.8).next_to(example1, DOWN, aligned_edge=LEFT, buff=0.5)
+        example3 = MathTex(examples[2]).scale(0.8).next_to(example2, DOWN, aligned_edge=LEFT, buff=0.5)
+        example4 = MathTex(examples[3]).scale(0.8).next_to(example3, DOWN, aligned_edge=LEFT, buff=0.5)
+        example5 = MathTex(examples[4]).scale(0.8).next_to(example4, DOWN, aligned_edge=LEFT, buff=0.5)
+        example6 = MathTex(examples[5]).scale(0.8).next_to(example5, DOWN, aligned_edge=LEFT, buff=0.5)
+        self.play(Write(example1))
+        self.wait(1)
+        self.play(Write(example2))
+        self.wait(1)
+        self.play(Write(example3))
+        self.wait(1)
+        self.play(Write(example4))
+        self.wait(1)
+        self.play(Write(example5))
+        self.wait(1)
+        self.play(Write(example6))
+        self.wait(1)
+ 
+        self.wait(3)
 
 
     def Additiveidentity(self):
         self.setNumberOfCirclePositions(5)
         self.isRandom = False
 
-        p10 = cvo.CVO().CreateCVO("Idedntity of Whole Numbers", "2,a(identity element)")
+        p10 = cvo.CVO().CreateCVO("Identity of Whole Numbers", "2,x(identity element)")
         p11 = cvo.CVO().CreateCVO(" Identity of addition", "2 + 0 = 2")
         p12 = cvo.CVO().CreateCVO(" Identity of subtraction", "not applicable")
         p13 = cvo.CVO().CreateCVO(" Identity of multiplication", "2 * 1 = 2")
@@ -362,6 +427,33 @@ class Grade6Chapter2Wholenumbers(AbstractAnim):
         p10.cvolist.append(p13)
         p10.cvolist.append(p14)
         self.construct1(p10, p10)
+        self.fadeOutCurrentScene()
+
+        title = Text("Identity of Whole Numbers").to_edge(UP)
+        self.play(Write(title))
+
+        examples = [
+        r"\text{For Addition :} X + 0 = X \quad \text{example:}\quad 3+0=3",
+        r"\text{For Subtraction :} \quad \text{not possible}",
+        r"\text{For Multiplication :} X * 1 = X\quad \text{example:}\quad 3*1=3",
+        r"\text{For Division :} \quad \text{not possible}",
+       
+        
+        ]
+        example1 = MathTex(examples[0]).scale(0.8).next_to(title, DOWN, buff=1)
+        example2 = MathTex(examples[1]).scale(0.8).next_to(example1, DOWN, aligned_edge=LEFT, buff=0.5)
+        example3 = MathTex(examples[2]).scale(0.8).next_to(example2, DOWN, aligned_edge=LEFT, buff=0.5)
+        example4 = MathTex(examples[3]).scale(0.8).next_to(example3, DOWN, aligned_edge=LEFT, buff=0.5)
+        self.play(Write(example1))
+        self.wait(1)
+        self.play(Write(example2))
+        self.wait(1)
+        self.play(Write(example3))
+        self.wait(1)
+        self.play(Write(example4))
+        self.wait(1)
+ 
+        self.wait(3)
    
     def SetDeveloperList(self): 
        self.DeveloperList="Medha Masanam" 
