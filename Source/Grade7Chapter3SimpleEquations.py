@@ -19,9 +19,9 @@ class simpleEquation(AbstractAnim):
     def gen(self):
         self.isRandom=False
 
-        p1=cvo.CVO().CreateCVO("Simple Equations","X=15").setPosition([0,3,0])
+        p1=cvo.CVO().CreateCVO("Simple Equations","X=15").setPosition([0,2.5,0])
 
-        p2=cvo.CVO().CreateCVO("Variable term","X").setPosition([-2,0,0])
+        p2=cvo.CVO().CreateCVO("Variable term","X").setPosition([-2,0,0]).setangle(-TAU/3)
 
         p3=cvo.CVO().CreateCVO("constant term","15").setPosition([2,0,0])
 
