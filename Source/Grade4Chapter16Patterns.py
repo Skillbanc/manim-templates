@@ -6,6 +6,8 @@ class PatternAnimation(AbstractAnim):
 
         self.RenderSkillbancLogo()
         self.fadeOutCurrentScene()
+        self.Extra_text()
+        self.fadeOutCurrentScene()
         self.introduction()
         self.fadeOutCurrentScene()
         self.Patternsinnumbers()
@@ -19,6 +21,13 @@ class PatternAnimation(AbstractAnim):
 
 
         
+
+    def Extra_text(self):
+        title = Text("Chapter 16 : Patterns", font_size=48)
+        self.play(Write(title))
+        self.wait(2)
+        self.play(FadeOut(title))
+
 
 
     def introduction(self):
@@ -364,6 +373,7 @@ class PatternAnimation(AbstractAnim):
        self.SourceCodeFileName="Grade4Chapter16Patterns.py" 
     
         
+
 
 if __name__ == "__main__":
     scene = PatternAnimation()
