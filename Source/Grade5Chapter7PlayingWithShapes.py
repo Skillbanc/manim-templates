@@ -177,6 +177,18 @@ class Playingwithshapes(AbstractAnim):
         p10.cvolist.append(p11)
         self.construct1(p10,p10)
         
+    def create_properties_text(self, properties, start_position):
+        text_lines = []
+        for prop in properties:
+            line = f"{prop['name']}: {prop['value']}"
+            text_lines.append(Text(line, font="Comic Sans MS", font_size=20, color=WHITE))
+
+        text_group = VGroup(*text_lines)
+        text_group.arrange(DOWN, aligned_edge=LEFT)
+        text_group.next_to(start_position, RIGHT)
+
+        return text_group
+    
     def sphani(self):
         title = Text("Sphere", color=LIGHT_PINK, weight=BOLD)
         title.move_to([0, 3, 0])
