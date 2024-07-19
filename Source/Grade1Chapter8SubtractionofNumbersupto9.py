@@ -241,8 +241,12 @@ class SubtractionofNumbersupto9(AbstractAnim):
         self.play(Write(box7, run_time=2), Write(box8, run_time=2))
         self.play(Write(result))
 
+
+
+
+
     
-        # Circles for the number5 -1 = 4 
+        # Circles for the number 5 -1 = 4 
         box1 = Square(side_length=1, color=PURPLE).to_edge(LEFT * 1+UP*11.2)
         box2 = Square(side_length=1, color=PURPLE).next_to(box1, RIGHT * 1.2)
         box3 = Square(side_length=1, color=PURPLE).next_to(box2, RIGHT * 1.2)
