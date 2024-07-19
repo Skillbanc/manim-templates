@@ -237,18 +237,58 @@ class Grade6Chapter3PlayingWithNumbers(AbstractAnim):
         
         lines1 = [
             "A factor tree breaks down a number into its prime factors.",
-            "For example, the factor tree of 18:",]
+            "For example, the factor tree of 60:",]
         self.wait(1)
         self.clear_screen()
-        lines2 = [     "18",
-                     "/  \\",
-                     "2    9",
-                     "    / \\",
-                     "   3   3"
-        ]
         self.show_concept(title, lines1)
         self.clear_screen()
-        self.show_concept(title, lines2)
+
+        title = Text("Factor Tree of 60", font_size=30)
+        title.to_edge(UP)
+        self.play(Write(title))
+        self.wait(1)
+
+        # Main number
+        main_num = Text("60", font_size=34)
+        main_num.to_edge(UP, buff=1)
+        self.play(Write(main_num))
+        self.wait(1)
+
+        # First factors: 2 and 30
+        factor_2 = Text("2", font_size=34)
+        factor_30 = Text("30", font_size=34)
+        factor_2.next_to(main_num, DOWN + LEFT, buff=1)
+        factor_30.next_to(main_num, DOWN + RIGHT, buff=1)
+        self.play(Write(factor_2), Write(factor_30))
+        self.play(Create(Line(main_num, factor_2)), Create(Line(main_num, factor_30)))
+        self.wait(1)
+
+        # Factors of 30: 2 and 15
+        factor_2_30 = Text("2", font_size=34)
+        factor_15 = Text("15", font_size=34)
+        factor_2_30.next_to(factor_30, DOWN + LEFT, buff=1)
+        factor_15.next_to(factor_30, DOWN + RIGHT, buff=1)
+        self.play(Write(factor_2_30), Write(factor_15))
+        self.play(Create(Line(factor_30, factor_2_30)), Create(Line(factor_30, factor_15)))
+        self.wait(1)
+
+        # Factors of 15: 3 and 5
+        factor_3 = Text("3", font_size=34)
+        factor_5 = Text("5", font_size=34)
+        factor_3.next_to(factor_15, DOWN + LEFT, buff=1)
+        factor_5.next_to(factor_15, DOWN + RIGHT, buff=1)
+        self.play(Write(factor_3), Write(factor_5))
+        self.play(Create(Line(factor_15, factor_3)), Create(Line(factor_15, factor_5)))
+        self.wait(1)
+
+        # Displaying prime factors at the bottom
+        prime_factors = Text("Prime factors: 2, 2, 3, 5", font_size=30)
+        prime_factors.to_edge(DOWN*2, buff=0.6)
+        self.play(Write(prime_factors))
+        self.wait(2)
+
+        self.play(FadeOut(*self.mobjects))
+
 
     def show_division_method(self):
         title = Text("Division Method").to_edge(UP)
@@ -406,30 +446,46 @@ class Grade6Chapter3PlayingWithNumbers(AbstractAnim):
 
         self.play(Write(explanation))
         self.wait(2)
+     
 
     def hcf_continued_division(self):
-        heading = Text("Continued Division Method", color=DARK_BROWN, font_size=37).to_edge(UP * 1.25 + LEFT * 2)
-        sub_title1 = Text("The HCF of 56 and 98 can be found using the continued division method as follows:", font_size=29).to_edge(UP * 3 + LEFT * 1)
-        
-        division_steps = [
-            "98 ÷ 56 = 1 remainder 42",
-            "56 ÷ 42 = 1 remainder 14",
-            "42 ÷ 14 = 3 remainder 0"
-        ]
+        # Create the text elements
+        title = Text("Find the HCF of 56 and 64", font_size=36).to_edge(UP)
+        step1 = MathTex(r"56) \quad 64 \quad (1", font_size=36).next_to(title, DOWN, buff=1)
+        sub1 = MathTex(r"-56", font_size=36).next_to(step1, DOWN, buff=0.5)
+        line1 = Line(start=sub1.get_left() + LEFT*0.2, end=sub1.get_right() + RIGHT*0.2, color=WHITE, stroke_width=2).next_to(sub1, DOWN, buff=0.1)
+        step2 = Text("Last divisor", font_size=36).next_to(line1, LEFT*2.8+DOWN*1.1, buff=0.2)
+        step3 = MathTex(r"8) \quad 56 \quad (7", font_size=36).next_to(line1, DOWN, buff=0.3)
+        sub2 = MathTex(r"-56", font_size=36).next_to(step3, DOWN, buff=0.5)
+        line2 = Line(start=sub2.get_left() + LEFT*0.2, end=sub2.get_right() + RIGHT*0.2, color=WHITE, stroke_width=2).next_to(sub2, DOWN, buff=0.1)
+        step4 = Text("Remainder", font_size=36).next_to(line2, LEFT*2.8+DOWN*1.1, buff=0.2)
+        step5 = MathTex(r"0", font_size=36).next_to(line2, DOWN, buff=0.3)
+        conclusion = Text("The HCF of 56 and 64 is 8.", font_size=36).next_to(step5, DOWN, buff=1)
 
-        division_texts = [Text(step, font_size=29).move_to([0, 1 - i * 0.75, 0]) for i, step in enumerate(division_steps)]
-        conclusion_text = Text("Hence, HCF of 56 and 98 is 14.", font_size=29).move_to([0, -1.75, 0])
-
-        self.play(Write(heading))
-        self.play(Write(sub_title1))
+        # Animate the text elements
+        self.play(Write(title))
         self.wait(1)
-
-        for division_text in division_texts:
-            self.play(Write(division_text))
-            self.wait(1)
-
-        self.play(Write(conclusion_text))
+        self.play(Write(step1))
+        self.wait(1)
+        self.play(Write(sub1))
+        self.play(Create(line1))
+        self.wait(1)
+        self.play(Write(step2))
+        self.wait(1)
+        self.play(Write(step3))
+        self.wait(1)
+        self.play(Write(sub2))
+        self.play(Create(line2))
+        self.wait(1)
+        self.play(Write(step4))
+        self.wait(1)
+        self.play(Write(step5))
+        self.wait(1)
+        self.play(Write(conclusion))
         self.wait(2)
+
+        # Fade out all elements
+        self.play(FadeOut(title, step1, sub1, line1, step2, step3, sub2, line2, step4, step5, conclusion))
 
 
     def LCM(self):
@@ -532,8 +588,8 @@ class Grade6Chapter3PlayingWithNumbers(AbstractAnim):
     def lcm_division_method(self):
         heading = Text("Division Method", color=DARK_BROWN, font_size=37).to_edge(UP * 1.25 + LEFT * 2)
         sub_title1 = Text("To find the LCM of 24 and 90:", font_size=29).to_edge(UP * 3 + LEFT * 1)
-        sub_title2 = Text("Thus, the LCM of 24 and 90 is 2 × 3 × 4 × 15 = 360", font_size=29).to_edge(UP * 12.25 + LEFT * 1)
-        
+        sub_title2 = Text("Factors of 24 and 90 = 2 × 3 × 4 × 15", font_size=29).to_edge(UP * 9.25 + LEFT * 1)
+        sub_title3 = Text("Thus, the LCM of 24 and 90 is 2 × 3 × 4 × 15 = 360", font_size=29).to_edge(UP * 12.25 + LEFT * 1)
 
         t0 = Table(
             [["2", "24,90"],
@@ -549,7 +605,10 @@ class Grade6Chapter3PlayingWithNumbers(AbstractAnim):
         self.wait(1)
         self.play(Write(sub_title2))
         self.wait(1)
-        self.play(FadeOut(sub_title2),FadeOut(t0), FadeOut(sub_title1), FadeOut(heading))
+        self.play(Write(sub_title3))
+        self.wait(1)
+        self.play(FadeOut(sub_title3),FadeOut(sub_title2), FadeOut(t0), FadeOut(sub_title1), FadeOut(heading))
+
     def SetDeveloperList(self):
         self.DeveloperList="Bommi Yaswanth"
 
@@ -561,3 +620,4 @@ if __name__ == "__main__":
 
     scene = Grade6Chapter3PlayingWithNumbers()
     scene.render()
+
