@@ -168,8 +168,8 @@ class ratioandproportion(AbstractAnim):
         self.isRandom = False
 
         p10=cvo.CVO().CreateCVO("PROPORTION","A:B::C:D").setPosition([-4,2,0])
-        p12=cvo.CVO().CreateCVO("","A/B=C/D").setPosition([-2,-3,0])
-        p13=cvo.CVO().CreateCVO("", "AD=BC").setPosition([1,2,0])
+        p12=cvo.CVO().CreateCVO("Representation","A/B=C/D").setPosition([-2,-3,0])
+        p13=cvo.CVO().CreateCVO("Simplest Form", "AD=BC").setPosition([1,2,0])
         p14=cvo.CVO().CreateCVO("AD","Product of Means").setPosition([4,1,0])
         p15=cvo.CVO().CreateCVO("BC","Product of Extreams").setPosition([2,-2,0])
         p10.cvolist.append(p12)
