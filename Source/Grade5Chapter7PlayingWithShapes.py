@@ -9,13 +9,19 @@ class Playingwithshapes(AbstractAnim):
         self.fadeOutCurrentScene()
         self.cube()
         self.fadeOutCurrentScene()
-        # self.cubani()
-        # self.fadeOutCurrentScene()
+        self.cubeani()
+        self.fadeOutCurrentScene()
         self.cubshadow()
         self.fadeOutCurrentScene()
         self.cuboid()
         self.fadeOutCurrentScene()
+        self.cuboanim()
+        self.fadeOutCurrentScene()
         self.dicecut()
+        self.fadeOutCurrentScene()
+        self.sphani()
+        self.fadeOutCurrentScene()
+        self.sphshadow()
         self.fadeOutCurrentScene()
         self.GithubSourceCodeReference()
 
@@ -121,6 +127,48 @@ class Playingwithshapes(AbstractAnim):
 
         self.construct1(p10,p10)
 
+    def cuboanim(self):
+        text = Text("Cuboid", font_size=36).to_edge(UP * 0.1)
+        text.add(Underline(text, buff=0.1))
+        self.play(Write(text))
+
+        vertices = [
+            [-1, -1, 0],   # 0: front bottom left
+            [2, -1, 0],    # 1: front bottom right
+            [2, 1, 0],     # 2: front top right
+            [-1, 1, 0],    # 3: front top left
+            [-0.5, -0.5, 0],  # 4: back bottom left
+            [2.5, -0.5, 0],   # 5: back bottom right
+            [2.5, 1.5, 0],    # 6: back top right
+            [-0.5, 1.5, 0]    # 7: back top left
+        ]
+
+        edges_front = [
+            (0, 1), (1, 2), (2, 3), (3, 0)
+        ]
+
+        edges_back = [
+            (4, 5), (5, 6), (6, 7), (7, 4)
+        ]
+
+        edges_connect = [
+            (0, 4), (1, 5), (2, 6), (3, 7)
+        ]
+
+        for start, end in edges_front:
+            line = Line(start=vertices[start], end=vertices[end], color=BLUE)
+            self.play(Create(line))
+
+        for start, end in edges_back:
+            line = Line(start=vertices[start], end=vertices[end], color=BLUE)
+            self.play(Create(line))
+
+        for start, end in edges_connect:
+            line = Line(start=vertices[start], end=vertices[end], color=BLUE)
+            self.play(Create(line))
+
+        self.wait(2)
+
     def cuboshadow(self):
         self.isRandom= False
         self.setNumberOfAngleChoices(2)
@@ -129,6 +177,53 @@ class Playingwithshapes(AbstractAnim):
         p10.cvolist.append(p11)
         self.construct1(p10,p10)
         
+    def sphani(self):
+        title = Text("Sphere", color=LIGHT_PINK, weight=BOLD)
+        title.move_to([0, 3, 0])
+        
+         # Create the circle representing the sphere
+        sphere = Circle(radius=2, color=WHITE)
+        
+        # Create the horizontal ellipse (equator)
+        equator = Ellipse(width=4, height=0.4, color=WHITE).shift(DOWN*0.5)
+        
+        # Create the dashed line representing the radius
+        radius_line_horizontal = DashedLine(start=[0, 0, 0], end=[2, 0, 0], color=WHITE).shift(DOWN*0.5)
+        
+        # Create the small filled circle at the center of the horizontal ellipse
+        center_dot = Dot(point=[0, 0, 0], color=WHITE).shift(DOWN*0.5)
+        
+        # Create the label "r"
+        radius_label_horizontal = MathTex("r", color=WHITE)
+        radius_label_horizontal.next_to(radius_line_horizontal, UP*0.1)
+        
+        # Position elements
+        sphere.shift(DOWN*0.5)
+        radius_label_horizontal.shift(DOWN*0.5)
+        
+        # Play animations
+        self.play(Create(title))
+        self.play(Create(sphere))
+        self.play(Create(equator))
+        self.play(Create(radius_line_horizontal))
+        self.play(Create(center_dot))
+        self.play(Write(radius_label_horizontal))
+        
+        # Final animation
+        self.wait(4)
+
+
+        sphere_properties = [
+            {"name": "Vertices", "value": "0"},
+            {"name": "Edges", "value": "0"},
+            {"name": "Faces", "value": "1"}
+        ]
+        properties_text = self.create_properties_text(sphere_properties, sphere.get_center() + RIGHT * 4)
+
+        self.play(Create(sphere))
+        self.play(Write(properties_text))
+        self.wait(3)
+
 
     def sphshadow(self):
         self.isRandom= False
