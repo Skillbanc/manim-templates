@@ -108,133 +108,71 @@ class grade2(AbstractAnim):
         self.wait(2)
         
     def pencil2(self):
-        heading = Text("Alternative").scale(1.0)
-        heading.move_to(UP * 3 + LEFT * 4)  # Position on the top-left corner
-        self.play(Write(heading))
-        self.wait(2)
-
-        # New: Add T = tens, O = ones box at top right
-        to_explanation = VGroup(
-            Text("T = tens", font_size=24),
-            Text("O = ones", font_size=24)
-        ).arrange(DOWN, aligned_edge=LEFT)
-        to_box = SurroundingRectangle(to_explanation, buff=0.1)
-        to_group = VGroup(to_explanation, to_box).move_to(UP * 3 + RIGHT * 4)
-    
-        self.play(Write(to_group))
+        
+        title = Text("cont....", font_size=48)
+        self.play(Write(title))
+        self.play(title.animate.to_edge(UP))
         self.wait(1)
 
-        # Rest of the code remains the same
-        # Calculation steps - Left side (for "If tens are multiplied")
-        left_box_texts = [
-            Text("If tens are multiplied.").scale(0.8),
-            Text("3 x 1 = 3 tens").scale(0.8),
-            Text("3 tens + 1 ten = 4 tens").scale(0.8),
-        ]
-        left_box = VGroup(*left_box_texts).arrange(DOWN, buff=0.2)
-        left_box.move_to(LEFT * 4)
+        # Create larger packets
+        packets = VGroup(*[Rectangle(height=3, width=2.5, fill_opacity=0.5, fill_color=BLUE) for _ in range(3)])
+        packets.arrange(RIGHT, buff=0.8)
+        packets.next_to(title, DOWN, buff=0.8)
 
-        # Create a box around left_box
-        left_box_border = SurroundingRectangle(left_box, buff=0.1)
+        # Label packets
+        labels = VGroup(*[Text(f"Packet {i+1}", font_size=28).next_to(packet, UP) for i, packet in enumerate(packets)])
 
-        # Calculation steps - Right side (for "If ones are multiplied")
-        right_box_texts = [
-            Text("If ones are multiplied.").scale(0.8),
-            Text("5 x 3 = 15 ones").scale(0.8),
-            Text("5 ones + 1 ten = 15 ones").scale(0.8),
-        ]
-        right_box = VGroup(*right_box_texts).arrange(DOWN, buff=0.2)
-        right_box.move_to(RIGHT * 4)
+        self.play(Create(packets), Write(labels))
+        self.wait(1)
 
-        # Create a box around right_box
-        right_box_border = SurroundingRectangle(right_box, buff=0.1)
+        # Create larger pencils
+        pencil = Rectangle(height=0.5, width=0.1, fill_opacity=1, fill_color=YELLOW, stroke_color=DARK_BROWN)
+        pencil_tip = Triangle(fill_color=DARK_BROWN, fill_opacity=1).scale(0.1).rotate(PI).next_to(pencil, DOWN, buff=0)
+        pencil_group = VGroup(pencil, pencil_tip)
 
-        # Central box (for "T O 1 1 5 I 3 4 5")
-        central_box_texts = [
-            Text("T O").scale(1.0),
-            VGroup(   # VGroup to include the circle around "1"
-                Circle(radius=0.2, color=WHITE, stroke_width=2),
-                Text("1").scale(0.8),  # Scale down the text to fit within the circle
-            ),
-            Text("1 5").scale(1.0),
-            VGroup(   # VGroup for "* 3" and line underneath
-                Text("x 3").scale(1.0),
-                Line(color=WHITE).set_width(Text("* 3").get_width()).move_to(DOWN * 0.5),  # Line below "* 3"
-            ),
-            Text("4 5").scale(1.0),
-        ]
-        central_box = VGroup(*central_box_texts).arrange(DOWN, buff=0.2)
-        central_box[0].set_color(YELLOW)  # Color T O in yellow
+        # Function to create and arrange pencils in a packet
+        def create_pencils_in_packet(packet):
+            pencils = VGroup(*[pencil_group.copy() for _ in range(15)])
+            
+            # Calculate the available space in the packet
+            packet_width = packet.width * 0.9
+            packet_height = packet.height * 0.9
+            
+            # Arrange pencils in a 3x5 grid (3 rows, 5 columns)
+            rows, cols = 3, 5
+            x_spacing = packet_width / cols
+            y_spacing = packet_height / rows
+            
+            for i, pencil in enumerate(pencils):
+                row = i // cols
+                col = i % cols
+                x = packet.get_left()[0] + (col + 0.5) * x_spacing
+                y = packet.get_bottom()[1] + (row + 0.5) * y_spacing
+                pencil.move_to(np.array([x, y, 0]))
+            
+            return pencils
 
-        # Calculate dimensions for the central box
-        central_box_width = max([text.get_width() for text in central_box_texts])
-        central_box_height = sum([text.get_height() for text in central_box_texts]) + (len(central_box_texts) - 1) * 0.2
+        # Show pencils in each packet
+        all_pencils = VGroup()
+        for i, packet in enumerate(packets):
+            pencils = create_pencils_in_packet(packet)
+            all_pencils.add(pencils)
+            self.play(FadeIn(pencils), run_time=1)
+            count = Text(f"15 pencils", font_size=24).next_to(packet, DOWN)
+            self.play(Write(count))
+            self.wait(2)
 
-        # Positioning the texts within the central box
-        for text in central_box_texts:
-            text.align_to(central_box[0], LEFT)
+        # Show multiplication
+        equation = MathTex("15 + 15 + 15", "=", "15 ","*"," 3 = 45") 
+        equation.scale(1)
+        equation.next_to(packets, DOWN, buff=1.2)
+        self.play(Write(equation))
+        self.wait(1)
 
-        # Create a bounding box around central_box_texts
-        central_box_border = SurroundingRectangle(central_box, buff=0.1)
-
-        # Positioning
-        central_box.move_to(UP * 1.5)
-        central_box_border.move_to(UP * 1.5)
-
-        # Line from T O to the bottom of the last text
-        # line = Line(central_box_texts[0].get_bottom(), central_box_texts[-1].get_bottom(), color=WHITE)
-
-        # Showing the boxes and line
-        self.play(
-            Write(central_box_border),
-            Write(central_box),
-            # Write(line),
-        )
-        self.wait(2)
-        right_arrow = Arrow(
-            start=right_box_border.get_left(), 
-            end=central_box[4].get_right() + RIGHT * 0.2,
-            buff=0.1,
-            color=PINK
-        )
-
-        # Showing right_box with its border and then displaying the circle around "1" and "5"
-        self.play(
-            Write(right_box_border),
-            Write(right_box),
-        )
-        self.play(
-            Create(right_arrow),
-        )
-        
-        self.wait(2)
-        # self.play(
-        #     central_box[1].animate.set_color(YELLOW),  # Highlight the circle around "1"
-        #     central_box[4].animate.set_color(YELLOW),  # Highlight "1 5"
-        # )
-        # self.wait(2)
-        left_arrow = Arrow(
-            start=left_box_border.get_right(), 
-            end=central_box[4].get_left() + LEFT * 0.2,
-            buff=0.1,
-            color=YELLOW
-        )
-
-        # Showing left_box with its border and then displaying "4" in the central box
-        self.play(
-            Write(left_box_border),
-            Write(left_box),
-        )
-        
-        self.play(
-            Create(left_arrow),
-        )
-        self.wait(2)
-        # self.play(
-        #     central_box[4].animate.set_color(YELLOW),  # Highlight "4"
-        # )
-        self.wait(2)
-        
+        # Final answer
+        answer = Text("There are 45 pencils in total!", font_size=30, color=YELLOW)
+        answer.next_to(equation, DOWN, buff=0.7)
+        self.play(Write(answer))
         self.wait(2)
 
     def multiplycationofnumbers1(self):

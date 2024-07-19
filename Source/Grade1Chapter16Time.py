@@ -39,6 +39,9 @@ class Grade1Chapter16Time(AbstractAnim):
         self.SourceCodeFileName="Grade1Chapter16Time.py"   
         
     def time(self):
+        
+        self.isRandom = False
+        self.angleChoice = [TAU/4]
         p10=cvo.CVO().CreateCVO("Time", "").setPosition([-3,1.5,0])
         p11=cvo.CVO().CreateCVO("Definition", "Time helps us understand when things happen\nand how long they take.").setPosition([2,-1.5,0])
         
@@ -81,7 +84,7 @@ class Grade1Chapter16Time(AbstractAnim):
         self.construct1(p10,p10)
 
     def intro(self):
-        title = Text("Minutes", font_size=36).to_edge(UP)
+        title = Text("CLOCK", font_size=36).to_edge(UP)
         self.play(Create(title))
         
         circle = Circle(radius=2, color=WHITE)
@@ -142,13 +145,13 @@ class Grade1Chapter16Time(AbstractAnim):
         
          # Create the clock and initial time
         clock, hour_hand, minute_hand = self.create_clock()
-        label = Text("1:00").scale(0.5).next_to(clock, DOWN)
+        label = Text("12:00").scale(0.5).next_to(clock, DOWN)
         
         self.play(Create(clock), Write(label))
         self.wait(1)
 
         # Create the clock and initial time
-        initial_time = "1:00"
+        initial_time = "12:00"
         time_label_prefix = "It is showing "
         final_time = "pm"
         time_label = Text(f"{time_label_prefix}{initial_time}{final_time}").scale(0.5).next_to(clock, LEFT, buff=1)

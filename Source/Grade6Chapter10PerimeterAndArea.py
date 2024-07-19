@@ -21,7 +21,7 @@ import cvo
 config.max_files_cached = 1000  # Change this number to your desired value
 
 
-class PerimeterAndAreas(AbstractAnim):
+class Grade6Chapter10PerimeterAndAreas(AbstractAnim):
     def construct(self):
         self.RenderSkillbancLogo()
         self.fadeOutCurrentScene()
@@ -291,7 +291,6 @@ class PerimeterAndAreas(AbstractAnim):
         self.construct1(p10,p10)    
 
     def perimeterofpentagon(self):
-        
         heading = Text("Perimeter of a Regular Polygon (Pentagon)")
         heading.to_edge(UP)
 
@@ -306,8 +305,8 @@ class PerimeterAndAreas(AbstractAnim):
         # Get vertices of the pentagon
         vertices = pentagon.get_vertices()
 
-        # Choose one side of the pentagon (for example, the bottom side)
-        side_index = 3  # Changed to 3 for bottom side
+        # Choose the top-right side of the pentagon
+        side_index = 0  # Top-right side
         start_point = vertices[side_index]
         end_point = vertices[(side_index + 1) % 5]
 
@@ -315,18 +314,18 @@ class PerimeterAndAreas(AbstractAnim):
         direction_vector = (end_point - start_point) / np.linalg.norm(end_point - start_point)
         perpendicular_vector = np.array([-direction_vector[1], direction_vector[0], 0])
 
-        # Position arrow and label below the pentagon
-        arrow_offset = 0.5  # Adjust this value to move the arrow further down
-        arrow_start = start_point - perpendicular_vector * arrow_offset
-        arrow_end = end_point - perpendicular_vector * arrow_offset
-        arrow = DoubleArrow(arrow_start, arrow_end, buff=0.2, stroke_width=8, color=BLUE)
-        label = MathTex("a", color=WHITE).next_to(arrow, DOWN, buff=0.1)
+        # Position arrow and label above the side
+        arrow_offset = -0.2  # Adjust this value to move the arrow further out
+        arrow_start = start_point + perpendicular_vector * arrow_offset
+        arrow_end = end_point + perpendicular_vector * arrow_offset
+        arrow = DoubleArrow(arrow_start, arrow_end, buff=0.1, stroke_width=6, color=BLUE)
+        label = MathTex("a", color=WHITE).next_to(arrow, UP + RIGHT, buff=0.05)
         self.wait(2)
 
         # Calculate perimeter formula
         perimeter_formula = MathTex("P = 5 \\times a")
-        perimeter_formula.next_to(pentagon, DOWN, buff=1)  # Increased buffer to avoid overlap with arrow
-   
+        perimeter_formula.next_to(pentagon, DOWN, buff=1)
+
         # Add heading, pentagon, arrow, label, and formula to the scene
         self.play(Write(heading))
         self.play(Create(pentagon))
@@ -337,7 +336,7 @@ class PerimeterAndAreas(AbstractAnim):
         self.wait(2)
         
         self.isRandom = False
-        self.angleChoice = [TAU/4,TAU/2,TAU/4]
+        self.angleChoice = [TAU/4,TAU/2,-TAU/4]
         p10=cvo.CVO().CreateCVO("pentagon","5-sided polygon(all sides are equal)").setPosition([2,1,0])
         p11=cvo.CVO().CreateCVO("formula","5 x length of any side(a)").setPosition([5,1,0])
         p12=cvo.CVO().CreateCVO("example","a=3").setPosition([5,-2,0])
@@ -352,55 +351,54 @@ class PerimeterAndAreas(AbstractAnim):
         heading = Text("Perimeter of a Regular polygon(Hexagon)")
         heading.to_edge(UP)
 
-    # Define side length of the hexagon
+        # Define side length of the hexagon
         side_length = 2
 
-    # Create a hexagon
+        # Create a hexagon
         hexagon = RegularPolygon(n=6, start_angle=0, color=WHITE)
         hexagon.set_width(side_length)
         hexagon.move_to(LEFT * 4)
 
-    # Get vertices of the hexagon
+        # Get vertices of the hexagon
         vertices = hexagon.get_vertices()
 
-    # Animate the drawing of the hexagon
+        # Animate the drawing of the hexagon
         hexagon_edges = VGroup()
         for i in range(6):
             edge = Line(vertices[i], vertices[(i + 1) % 6], color=WHITE)
             hexagon_edges.add(edge)
 
-    # Create arrow and label for one side (e.g., side A)
+        # Create arrow and label for the top-right side
         side_label = "s"
-        start_point = vertices[0]
-        end_point = vertices[1]
+        start_point = vertices[0]  # Top vertex
+        end_point = vertices[1]    # Top-right vertex
         direction_vector = (end_point - start_point) / np.linalg.norm(end_point - start_point)
         perpendicular_vector = np.array([-direction_vector[1], direction_vector[0], 0])
 
-    # Calculate arrow positions (outside the hexagon)
-        arrow_offset = 1  # Adjust this value to move the arrow further out
-        arrow_start = start_point + perpendicular_vector * (1 + arrow_offset)
-        arrow_end = end_point + perpendicular_vector * (1 + arrow_offset)
+        # Calculate arrow positions (outside the hexagon)
+        arrow_offset = -0.2  # Adjust this value to move the arrow further out
+        arrow_start = start_point + perpendicular_vector * arrow_offset
+        arrow_end = end_point + perpendicular_vector * arrow_offset
 
         arrow = DoubleArrow(arrow_start, arrow_end, buff=0.2, stroke_width=8, color=BLUE)
-        label = MathTex(side_label, color=WHITE).next_to((arrow_start + arrow_end) / 2, perpendicular_vector, buff=0.2)
-        
+        label = MathTex(side_label, color=WHITE).next_to(arrow, UP + RIGHT, buff=0.1)
+
         self.wait(2)
 
-    # Calculate perimeter formula
+        # Calculate perimeter formula
         perimeter_formula = MathTex("P = 6 \\times s")
         perimeter_formula.next_to(hexagon, DOWN, buff=0.5)  # Position below the hexagon
 
-    # Add heading, hexagon, arrow, label, and formula to the scene
+        # Add heading, hexagon, arrow, label, and formula to the scene
         self.play(Write(heading))
         self.play(Create(hexagon_edges), run_time=3)
         self.play(Create(arrow), Write(label))
         self.play(Write(perimeter_formula))
 
-    # Hold the final frame for a few seconds
+        # Hold the final frame for a few seconds
         self.wait(2)
-        
         self.isRandom = False
-        self.angleChoice = [TAU/4,TAU/2,TAU/4,]
+        self.angleChoice = [TAU/4,TAU/2,-TAU/4,]
         p10=cvo.CVO().CreateCVO("hexagon","6-sided polygon(all sides are equal)").setPosition([2,1,0])
         p11=cvo.CVO().CreateCVO("formula","6 x length of any side(s)").setPosition([5,1,0])
         p12=cvo.CVO().CreateCVO("example","s=3").setPosition([5,-2,0])
@@ -433,20 +431,20 @@ class PerimeterAndAreas(AbstractAnim):
             edge = Line(vertices[i], vertices[(i + 1) % 8], color=WHITE)
             octagon_edges.add(edge)
 
-        # Create double-sided arrow and label for one side (e.g., side A)
+        # Create double-sided arrow and label for the right side
         side_label = "s"
-        start_point = vertices[0]
-        end_point = vertices[1]
+        start_point = vertices[2]  # Right-top vertex
+        end_point = vertices[3]    # Right-bottom vertex
         direction_vector = (end_point - start_point) / np.linalg.norm(end_point - start_point)
         perpendicular_vector = np.array([-direction_vector[1], direction_vector[0], 0])
 
         # Calculate arrow positions (outside the octagon)
-        arrow_offset = 1  # Adjust this value to move the arrow further out
-        arrow_start = start_point + perpendicular_vector * (1 + arrow_offset)
-        arrow_end = end_point + perpendicular_vector * (1 + arrow_offset)
+        arrow_offset = -0.2  # Adjust this value to move the arrow further out
+        arrow_start = start_point + perpendicular_vector * arrow_offset
+        arrow_end = end_point + perpendicular_vector * arrow_offset
 
-        arrow = DoubleArrow(arrow_start, arrow_end, buff=0.2, stroke_width=8, color=BLUE)
-        label = MathTex(side_label, color=WHITE).next_to((arrow_start + arrow_end) / 2, perpendicular_vector, buff=0.2)
+        arrow = DoubleArrow(arrow_start, arrow_end, buff=0.1, stroke_width=8, color=BLUE)
+        label = MathTex(side_label, color=WHITE).next_to(arrow, UP, buff=0.1)
 
         # Calculate perimeter formula
         perimeter_formula = MathTex("P = 8 \\times s")
@@ -460,8 +458,7 @@ class PerimeterAndAreas(AbstractAnim):
 
         # Hold the final frame for a few seconds
         self.wait(2)
-
-
+        
         self.isRandom = False
         self.angleChoice = [TAU/4,TAU/2,-TAU/4]
         p10=cvo.CVO().CreateCVO("octagon","8-sided polygon(all sides are equal)").setPosition([2,1,0])
@@ -654,5 +651,5 @@ class PerimeterAndAreas(AbstractAnim):
     
 
 if __name__ == "__main__":
-    scene = PerimeterAndAreas()
+    scene = Grade6Chapter10PerimeterAndAreas()
     scene.render()

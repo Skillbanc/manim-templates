@@ -14,7 +14,7 @@ import cvo
 # Configure Manim to allow more cached files
 config.max_files_cached = 600  # Change this number to your desired value
 
-class AlgebraicExpression(AbstractAnim):
+class Grade8Chapter11AlgebraicExpression(AbstractAnim):
     def construct(self):
         self.RenderSkillbancLogo()
         self.fadeOutCurrentScene()
@@ -25,8 +25,6 @@ class AlgebraicExpression(AbstractAnim):
         self.intro()
         self.fadeOutCurrentScene()
         self.Types()
-        self.fadeOutCurrentScene()
-        self.Polynomials()
         self.fadeOutCurrentScene()
         self.Relations()
         self.fadeOutCurrentScene()
@@ -65,7 +63,7 @@ class AlgebraicExpression(AbstractAnim):
     def Introduction(self):
         self.setNumberOfCirclePositions(3)
         self.isRandom = False
-        p10 = cvo.CVO().CreateCVO("Algebraic Expression", "ax+by+c=0")
+        p10 = cvo.CVO().CreateCVO("Algebraic Expression", "")
         p12 = cvo.CVO().CreateCVO("like terms", "")
         p13 = cvo.CVO().CreateCVO("unlike term", "")
 
@@ -148,45 +146,24 @@ class AlgebraicExpression(AbstractAnim):
     def Types(self):
         self.setNumberOfCirclePositions(5)
         self.isRandom = False
-        self.angleChoice = [TAU/4,TAU/4,TAU/4,TAU/4]
-        p10 = cvo.CVO().CreateCVO("Algebraic Expression", "").setPosition([-3.5, 0, 0])
-        p11 = cvo.CVO().CreateCVO("monomial", "2x, 4z^2").setPosition([2, 2.5, 0])
+        self.angleChoice = [TAU/4,-TAU/4,TAU/4,-TAU/4]
+        p10 = cvo.CVO().CreateCVO("Algebraic Expression", "").setPosition([0, 2.5, 0])
+        p11 = cvo.CVO().CreateCVO("monomial", "2x, 4z^2").setPosition([3.5, 2, 0])
         p11.SetIsMathText(True)
-        p12 = cvo.CVO().CreateCVO("binomial", "3x + 2").setPosition([3.5, 1.5, 0])
+        p12 = cvo.CVO().CreateCVO("binomial", "3x + 2").setPosition([-3.5, 2, 0])
         p12.SetIsMathText(True)
-        p13 = cvo.CVO().CreateCVO("trinomial", "x^2 + 3x + 2").setPosition([3.5, -1, 0])
+        p13 = cvo.CVO().CreateCVO("trinomial", "x^2 + 3x + 2").setPosition([3.5, -2, 0])
         p13.SetIsMathText(True)
-        p14 = cvo.CVO().CreateCVO("polynomial", "4x^3 + 3x^2 - x + 7").setPosition([1.7, -2.5, 0])
+        p14 = cvo.CVO().CreateCVO("polynomial", "4x^3 + 3x^2 - x + 7").setPosition([-3.5, -2, 0])
         p14.SetIsMathText(True)
 
         p10.cvolist.append(p11)
         p10.cvolist.append(p12)
         p10.cvolist.append(p13)
         p10.cvolist.append(p14)
-
-        self.construct1(p10, p10)
         
-    def Polynomials(self):
-        self.setNumberOfCirclePositions(7)
-        self.isRandom = False
-        self.angleChoice = [TAU/4,TAU/4,TAU/4,TAU/4,-TAU/2,TAU/2]
-        p10 = cvo.CVO().CreateCVO("polynomials", "").setPosition([-3.5, 0, 0])
-        p11 = cvo.CVO().CreateCVO("Linear Polynomial", "A polynomial of degree 1 ").setPosition([2, 2.5, 0])
-        p12 = cvo.CVO().CreateCVO("Quadratic Polynomial", "A polynomial of degree 2 ").setPosition([4.7, 1.5, 0])
-        p13 = cvo.CVO().CreateCVO("Cubic Polynomial", "A polynomial of degree 3 ").setPosition([4.7, -0.8, 0])
-        p14 = cvo.CVO().CreateCVO("Quartic Polynomial", "A polynomial of degree 4").setPosition([2, -2.5, 0])
-        p15 = cvo.CVO().CreateCVO("Quintic Polynomial", "A polynomial of degree 5").setPosition([-3.5, 2.5, 0])
-        p16 = cvo.CVO().CreateCVO("Sextic Polynomial", "A polynomial of degree 6 ").setPosition([-3.5, -2.5, 0])
-
-        p10.cvolist.append(p11)
-        p10.cvolist.append(p12)
-        p10.cvolist.append(p13)
-        p10.cvolist.append(p14)
-        p10.cvolist.append(p15)
-        p10.cvolist.append(p16)
-
         self.construct1(p10, p10)
-        
+    
 
     def Relations(self):
         self.setNumberOfCirclePositions(4)
@@ -542,15 +519,15 @@ class AlgebraicExpression(AbstractAnim):
     def identities(self):
         self.setNumberOfCirclePositions(5)
         self.isRandom = False
-        self.angleChoice = [TAU/4,TAU/4,TAU/4,TAU/4]
-        p10 = cvo.CVO().CreateCVO("identities", "").setPosition([-3.5, 0, 0])
-        p11 = cvo.CVO().CreateCVO("(a+b)^2", "a^2+b^2+2ab").setPosition([2, 2.5, 0])
+        self.angleChoice = [TAU/4,-TAU/4,TAU/4,-TAU/4]
+        p10 = cvo.CVO().CreateCVO("identities", "").setPosition([0, 2.5, 0])
+        p11 = cvo.CVO().CreateCVO("(a+b)^2", "a^2+b^2+2ab").setPosition([3.5, 2, 0])
         p11.SetIsMathText(True)
-        p12 = cvo.CVO().CreateCVO("(a-b)^2", "a^2+b^2-2ab").setPosition([3.5, 1.5, 0])
+        p12 = cvo.CVO().CreateCVO("(a-b)^2", "a^2+b^2-2ab").setPosition([-3.5, 2, 0])
         p12.SetIsMathText(True)
-        p13 = cvo.CVO().CreateCVO("(a+b)(a-b)", "a^2-b^2").setPosition([3.5, -1, 0])
+        p13 = cvo.CVO().CreateCVO("(a+b)(a-b)", "a^2-b^2").setPosition([3.5, -2, 0])
         p13.SetIsMathText(True)
-        p14 = cvo.CVO().CreateCVO("(x+a)(x+b)", "x^2+(a+b)x+ab").setPosition([1.7, -2.5, 0])
+        p14 = cvo.CVO().CreateCVO("(x+a)(x+b)", "x^2+(a+b)x+ab").setPosition([-3.5, -2, 0])
         p14.SetIsMathText(True)
         
         p10.cvolist.append(p11)
@@ -580,12 +557,21 @@ class AlgebraicExpression(AbstractAnim):
         expanded_expression.next_to(split_expression, DOWN, buff=0.5)
         calculated_terms.next_to(expanded_expression, DOWN, buff=0.5)
         final_result.next_to(calculated_terms, DOWN, buff=0.5)
+        
+        sentence = Tex("Here we are using\n\n","$(a+b)^2$"," identity", font_size=26)
+        rectangle = SurroundingRectangle(sentence, color=BLUE, buff=0.5)
+        
+        # Position the rectangle and text in the center
+        sentence.move_to(LEFT*5)
+        rectangle.move_to(sentence.get_center())
 
         # Writing expressions step by step
         self.play(Write(original_expression))
         self.wait(1)
         self.play(Write(split_expression))
         self.wait(1)
+        self.play(Create(rectangle), Write(sentence))
+        self.wait(2)
         self.play(Write(expanded_expression))
         self.wait(1)
         self.play(Write(calculated_terms))
@@ -594,8 +580,11 @@ class AlgebraicExpression(AbstractAnim):
         self.wait(2)
 
         # Clean up
-        self.play(FadeOut(original_expression), FadeOut(split_expression), FadeOut(expanded_expression), FadeOut(calculated_terms), FadeOut(final_result), FadeOut(title))
+        self.play(FadeOut(original_expression), FadeOut(split_expression), FadeOut(rectangle), FadeOut(sentence), FadeOut(expanded_expression), FadeOut(calculated_terms), FadeOut(final_result), FadeOut(title))
         self.wait(1)
+        
+        self.fadeOutCurrentScene()
+        
 
     def finding1962(self):
         # Title
@@ -617,12 +606,21 @@ class AlgebraicExpression(AbstractAnim):
         expanded_expression.next_to(split_expression, DOWN, buff=0.5)
         calculated_terms.next_to(expanded_expression, DOWN, buff=0.5)
         final_result.next_to(calculated_terms, DOWN, buff=0.5)
-
+        
+        sentence = Tex("Here we are using\n\n","$(a-b)^2$"," identity", font_size=26)
+        rectangle = SurroundingRectangle(sentence, color=BLUE, buff=0.5)
+        
+        # Position the rectangle and text in the center
+        sentence.move_to(LEFT*5)
+        rectangle.move_to(sentence.get_center())
+        
         # Writing expressions step by step
         self.play(Write(original_expression))
         self.wait(1)
         self.play(Write(split_expression))
         self.wait(1)
+        self.play(Create(rectangle), Write(sentence))
+        self.wait(2)
         self.play(Write(expanded_expression))
         self.wait(1)
         self.play(Write(calculated_terms))
@@ -634,12 +632,16 @@ class AlgebraicExpression(AbstractAnim):
         self.play(
             FadeOut(original_expression),
             FadeOut(split_expression),
+            FadeOut(rectangle), 
+            FadeOut(sentence),
             FadeOut(expanded_expression),
             FadeOut(calculated_terms),
             FadeOut(final_result),
             FadeOut(title)
         )
         self.wait(1)
+        
+        self.fadeOutCurrentScene()
         
     def application2(self):
         
@@ -662,12 +664,21 @@ class AlgebraicExpression(AbstractAnim):
         expanded_expression.next_to(split_expression, DOWN, buff=0.5)
         calculated_terms.next_to(expanded_expression, DOWN, buff=0.5)
         final_result.next_to(calculated_terms, DOWN, buff=0.5)
+        
+        sentence = Tex("Here we are using\n\n","$((a)^2-(b)^2)$"," identity", font_size=26)
+        rectangle = SurroundingRectangle(sentence, color=BLUE, buff=0.5)
+        
+        # Position the rectangle and text in the center
+        sentence.move_to(LEFT*5)
+        rectangle.move_to(sentence.get_center())
 
         # Writing expressions step by step
         self.play(Write(original_expression))
         self.wait(1)
         self.play(Write(split_expression))
         self.wait(1)
+        self.play(Create(rectangle), Write(sentence))
+        self.wait(2)
         self.play(Write(expanded_expression))
         self.wait(1)
         self.play(Write(calculated_terms))
@@ -679,14 +690,17 @@ class AlgebraicExpression(AbstractAnim):
         self.play(
             FadeOut(original_expression),
             FadeOut(split_expression),
+            FadeOut(rectangle), 
+            FadeOut(sentence),
             FadeOut(expanded_expression),
             FadeOut(calculated_terms),
             FadeOut(final_result),
             FadeOut(title)
         )
         self.wait(1)
+        self.fadeOutCurrentScene()
 
 
 if __name__ == "__main__":
-    scene = AlgebraicExpression()
+    scene = Grade8Chapter11AlgebraicExpression()
     scene.render()

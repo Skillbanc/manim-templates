@@ -22,29 +22,29 @@ config.max_files_cached = 800  # Change this number to your desired value
 class Grade5Chapter17TripToGolkonda1(AbstractAnim):
     
     def construct(self):
-        # self.RenderSkillbancLogo()
-        # self.fadeOutCurrentScene()
-        # self.heading()
-        # self.fadeOutCurrentScene()
-        # self.introduction()
-        # self.fadeOutCurrentScene()
-        # self.intro1()
-        # self.fadeOutCurrentScene()
-        # self.intro2()
-        # self.fadeOutCurrentScene()
-        # self.daytrip()
-        # self.fadeOutCurrentScene()
-        # self.intro3()
-        # self.fadeOutCurrentScene()
-        # self.intro4()
-        # self.fadeOutCurrentScene()
-        # self.intro5()
-        # self.fadeOutCurrentScene()
-        # self.intro6()
-        # self.fadeOutCurrentScene()
+        self.RenderSkillbancLogo()
+        self.fadeOutCurrentScene()
+        self.heading()
+        self.fadeOutCurrentScene()
+        self.introduction()
+        self.fadeOutCurrentScene()
+        self.intro1()
+        self.fadeOutCurrentScene()
+        self.intro2()
+        self.fadeOutCurrentScene()
+        self.daytrip()
+        self.fadeOutCurrentScene()
+        self.intro3()
+        self.fadeOutCurrentScene()
+        self.intro4()
+        self.fadeOutCurrentScene()
+        self.intro5()
+        self.fadeOutCurrentScene()
+        self.intro6()
+        self.fadeOutCurrentScene()
         self.intro7()
-        # self.fadeOutCurrentScene()
-        # self.GithubSourceCodeReference()
+        self.fadeOutCurrentScene()
+        self.GithubSourceCodeReference()
     
     def SetDeveloperList(self):
         self.DeveloperList="Vasudha"
@@ -124,7 +124,7 @@ class Grade5Chapter17TripToGolkonda1(AbstractAnim):
         heading.to_edge(UP + LEFT)
         self.play(FadeIn(heading))
         self.isRandom = False
-        self.angleChoice = [-TAU/4,TAU/4,-TAU/2,-TAU/2,TAU/2]
+        self.angleChoice = [-TAU/4,TAU/4,0,-TAU/2,TAU/2]
         p10=cvo.CVO().CreateCVO("travel cost per person","2688 INR / 64 people\n=42 INR ").setPosition([0,2.2,0])
         p11=cvo.CVO().CreateCVO("travel cost","42 INR").setPosition([-4,0,0])
         p12=cvo.CVO().CreateCVO("ticket cost","40 INR").setPosition([4,0,0])
@@ -138,7 +138,7 @@ class Grade5Chapter17TripToGolkonda1(AbstractAnim):
         
         self.construct1(p10,p10)
         self.construct1(p14,p14)
-        self.play(Create(CurvedArrow(p11.pos,p14.pos)),Create(CurvedArrow(p12.pos,p14.pos,angle=TAU/4)))
+        self.play(Create(CurvedArrow(p11.pos,p14.pos)),Create(CurvedArrow(p12.pos,p14.pos,angle=-TAU/4)))
         
         
     def daytrip(self):
@@ -242,13 +242,15 @@ class Grade5Chapter17TripToGolkonda1(AbstractAnim):
 
 
     def intro3(self):
+        
         # Define heading for the amount to be paid to the bus agency
         heading = Text("Places in Golkonda Fort", font_size=24, color=BLUE)
-        heading.to_edge(UP + ORIGIN)
+        heading.to_edge(UP + LEFT)
         self.play(FadeIn(heading))
-        
+        self.isRandom = False
+        self.angleChoice = [-TAU/4,TAU/4,-TAU/4,TAU/4,TAU/4]
         # Create points of interest
-        p10 = cvo.CVO().CreateCVO("Golkonda Fort", "").setPosition([0, 2, 0])
+        p10 = cvo.CVO().CreateCVO("Golkonda Fort", "").setPosition([0, 2.7, 0])
         p11 = cvo.CVO().CreateCVO("Fateh Darwaza", "").setPosition([-4, 0, 0])
         p12 = cvo.CVO().CreateCVO("Mosque", "").setPosition([4, 0, 0])
         p13 = cvo.CVO().CreateCVO("Bala Hisar gate", "").setPosition([-4, -2.7, 0])
@@ -324,7 +326,7 @@ class Grade5Chapter17TripToGolkonda1(AbstractAnim):
         heading.to_edge(UP + LEFT)
         self.play(FadeIn(heading))
         self.isRandom = False
-        self.angleChoice = [-TAU/2,-TAU/2,-TAU/4]
+        self.angleChoice = [TAU/4,-TAU/2,-TAU/4]
         p10=cvo.CVO().CreateCVO("formula","2(l+b)").setPosition([-4.5,1,0])
         p11=cvo.CVO().CreateCVO("l,b","3,1.5").setPosition([-2.2,1,0])
         p12=cvo.CVO().CreateCVO("perimeter","2(3+1.5)=9m").setPosition([-2.2,-2,0])
@@ -375,7 +377,7 @@ class Grade5Chapter17TripToGolkonda1(AbstractAnim):
         
         self.construct1(p14,p14) 
         
-        self.play(Create(CurvedArrow(p11.pos,p14.pos)),Create(CurvedArrow(p13.pos,p14.pos,angle=TAU/4)))
+        self.play(Create(CurvedArrow(p11.pos,p14.pos)),Create(CurvedArrow(p13.pos,p14.pos,angle=-TAU/4)))
         
 if __name__ == "__main__":
     scene = Grade5Chapter17TripToGolkonda1()
