@@ -49,9 +49,9 @@ class PatternAnimation(AbstractAnim):
         heading = Text("Patterns in numbers",color=PINK,font_size=37).to_edge(UP*1.25)
         sub_title1 = Text("Recurring sequences or relationships observed in numerical data.",font_size=29).to_edge(UP*3)
         sub_title2 = Text("Identify the patterns in the series of numbers given below. ",font_size=29).to_edge(UP*5+LEFT*1)
-        sub_title3 = Text("1.  What will be the next three numbers in these series of numbers ?",font_size=29).to_edge(UP*7+LEFT*1)
+        sub_title3 = Text("1.  What will be the next three numbers in these series of numbers ?",font_size=29,color=DARK_BROWN).to_edge(UP*7+LEFT*1)
         heading2 = Text("(a)   2,  4,  6,  8, ______________",font_size=30).to_edge(UP*9+LEFT * 4)
-        sub_title5 = Text("(b)   3,  6,  9,  12, ____________",font_size=30).to_edge(UP*10.75+LEFT * 4)
+        sub_title5 = Text("(b)   3,  6,  9,  12, _____________",font_size=30).to_edge(UP*10.75+LEFT * 4)
         sub_title6 = Text("(c)   11, 15, 19, 23, ____________ ",font_size=30).to_edge(UP*12.5+LEFT * 4)
         sub_title7 = Text("(d)  15, 13, 11, 9, _____________",font_size=30).to_edge(UP*13.75+LEFT * 4)
         sub_title8 = Text("10,  12,  14",font_size=30,color=BLUE).to_edge(UP*9+LEFT * 10)
@@ -101,8 +101,8 @@ class PatternAnimation(AbstractAnim):
 
         sub_title1 = Text("(e)   40,  35,  30,  25, ____________", font_size=29).to_edge(UP * 1.5 + LEFT * 4)
         sub_title2 = Text("(f)   3,  6, 10,  15, _______________", font_size=29).to_edge(UP * 3.25 + LEFT * 4)
-        sub_title3 = Text("(g)   8,  16,  24,  32, ______________", font_size=29).to_edge(UP * 5 + LEFT * 4)
-        heading2 = Text("(h)   49,  42,  35,  28, _____________", font_size=30).to_edge(UP * 6.75 + LEFT * 4)
+        sub_title3 = Text("(g)   8,  16,  24,  32, _____________", font_size=29).to_edge(UP * 5 + LEFT * 4)
+        heading2 = Text("(h)   49,  42,  35,  28, ___________", font_size=30).to_edge(UP * 6.75 + LEFT * 4)
         sub_title5 = Text("(i)   70,  60,  50,  40, ____________", font_size=30).to_edge(UP * 8.5 + LEFT * 4)
         sub_title6 = Text("(j)   9,  19,  29,  39, _____________", font_size=30).to_edge(UP * 10.25 + LEFT * 4)
         sub_title7 = Text("(k)   4,  8,  16,  32, ______________", font_size=30).to_edge(UP * 12 + LEFT * 4)
@@ -154,7 +154,8 @@ class PatternAnimation(AbstractAnim):
         self.wait(1)
         self.play(Write(sub_title3))
         self.wait(1)
-        
+        self.play(Write(heading2))
+        self.wait(0.6)
  
         # Create four triangles with increased gap
         triangle1 = Polygon(UP, DOWN + LEFT, DOWN + RIGHT).to_edge(UP*9+LEFT*4)
@@ -172,7 +173,7 @@ class PatternAnimation(AbstractAnim):
         self.play(FadeIn(triangle1), FadeIn(dot1))
         self.wait(0.5)
         self.play(FadeIn(triangle2), FadeIn(dot2))
-        self.wait(2)
+        self.wait(1.5)
         self.play(FadeIn(triangle3), FadeIn(dot3))
         self.wait(1)
         self.play(FadeIn(triangle4), FadeIn(dot4))
@@ -331,10 +332,11 @@ class PatternAnimation(AbstractAnim):
  
 
 
-        sub_title5 = Text("What is their sum?",font_size=28).to_edge(UP*10+LEFT*1.85)
-        sub_title6 = Text("2 + 9 + 16 + 23 + 30 = 80",font_size=28).to_edge(UP*11.5+LEFT*3)
-        sub_title7 = Text("we can do it faster by simply multiply the middle",font_size=28).to_edge(UP*13+LEFT*1.2)
-        sub_title8 = Text("number by 9 and get the answer- 9 x 21 = 189",font_size=28).to_edge(UP*14.5+LEFT*1.2)
+        sub_title5 = Text("their sum = 2 + 9 + 16 + 23 + 30 = 80",font_size=28).to_edge(UP*10+LEFT*1.7)
+        sub_title6 = Text("we can calulate sum faster by simply multiplying",font_size=28).to_edge(UP*11.5+LEFT*1.2)
+        sub_title7 = Text("middle number x number of digits choosen",font_size=28).to_edge(UP*13+LEFT*2.2)
+        rectangle = SurroundingRectangle(sub_title7, color=GREEN)
+        sub_title8 = Text("So here 16 x 5 = 80",font_size=28).to_edge(UP*14.5+LEFT*4)
 
 
         self.play(Write(sub_title5))
@@ -342,7 +344,10 @@ class PatternAnimation(AbstractAnim):
         self.play(Write(sub_title6))
         self.wait(1)
         self.play(Write(sub_title7))
+        table.get_entries((4, 5)).set_color(ORANGE)
         self.wait(0.5)
+        self.add(rectangle)
+        self.wait(1)
         self.play(Write(sub_title8))
         self.wait(1)
         
@@ -352,7 +357,7 @@ class PatternAnimation(AbstractAnim):
 
     
     def SetDeveloperList(self): 
-       self.DeveloperList="Raghu" 
+       self.DeveloperList="Raghu,Preetham" 
 
 
 
