@@ -565,32 +565,32 @@ class Grade6Chapter143DShapesAnim(AbstractAnim,ThreeDScene):
         self.isRandom =  False
         self.positionChoice=[[-5,2,0],[-3,2,0],[-1,2,0],[1,2,0],[-5,-2,0],[-3,-2,0],[-1,-2,0],[1,-2,0],[3,2,0],[5,2,0],[3,-2,0],[5,-2,0]]
 
-        p1= cvo.CVO().CreateCVO("Name","Triangle")
+        p1= cvo.CVO().CreateCVO("Triangle","")
         p2= cvo.CVO().CreateCVO("No. of sides","3")
         p1.cvolist.append(p2)
         self.construct1(p1,p1)
 
-        p3= cvo.CVO().CreateCVO("Name","Quadrilateral")
+        p3= cvo.CVO().CreateCVO("Quadrilateral","")
         p4= cvo.CVO().CreateCVO("No. of sides","4")
         p3.cvolist.append(p4)
         self.construct1(p3,p3)
 
-        p5= cvo.CVO().CreateCVO("Name","Pentagon")
+        p5= cvo.CVO().CreateCVO("Pentagon","")
         p6= cvo.CVO().CreateCVO("No. of sides","5")
         p5.cvolist.append(p6)
         self.construct1(p5,p5)
 
-        p7= cvo.CVO().CreateCVO("Name","Hexagon")
+        p7= cvo.CVO().CreateCVO("Hexagon","")
         p8= cvo.CVO().CreateCVO("No. of sides","6")
         p7.cvolist.append(p8)
         self.construct1(p7,p7)
 
-        p9= cvo.CVO().CreateCVO("Name","Septagon")
+        p9= cvo.CVO().CreateCVO("Septagon","")
         p10= cvo.CVO().CreateCVO("No. of sides","7")
         p9.cvolist.append(p10)
         self.construct1(p9,p9)
 
-        p11= cvo.CVO().CreateCVO("Name","Octagon")
+        p11= cvo.CVO().CreateCVO("Octagon","")
         p12= cvo.CVO().CreateCVO("No. of sides","8")
         p11.cvolist.append(p12)
         self.construct1(p11,p11)

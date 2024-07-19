@@ -134,64 +134,58 @@ class report(AbstractAnim):
 
         self.fadeOutCurrentScene()
 
+
+        # t = Text(
+        #     "A net is a sort of skeleton - outline in 2-D, when folded gives\n\n"
+        #     "a 3-D shape. We can make prisms, pyramids by using net diagrams."
+        #     ,font_size=27).move_to([-1, 2.5, 0])
+        
+        # self.play(Write(t))
+        
+        # self.angleChoice = [(TAU/4)]
+        # p11=cvo.CVO().CreateCVO("Polyhedron Name","Tetrahedron").setPosition([-5,-0.5,0])
+        # p12=cvo.CVO().CreateCVO("Face of polygons","4 Triangles").setPosition([-2,-1.5,0])
+        # p11.cvolist.append(p12)        
+        # self.construct1(p11,p11)
+
+        # t1 = Text("Net diagram of Tetrahedron",color=BLUE,font_size=27).move_to([3.5, 0.8, 0])
+        # self.play(Write(t1))
+
+
+        # d = ((2,-2.5,0),(5,-2.5,0),(3.5,0,0),(2,-2.5,0))
+        # d1 = Polygon(*d,color=WHITE,fill_color=BLUE,fill_opacity=1,stroke_width=3)
+        # self.play(Create(d1))
+        # d = ((3.5,-2.5,0),(2.65,-1.3,0),(4.25,-1.3,0),(3.5,-2.5,0))
+        # d1 = Polygon(*d,color=WHITE,fill_color=LIGHT_GRAY,fill_opacity=1,stroke_width=3)
+        # self.play(Create(d1))
+
         # self.play(Write(NumberPlane()))
 
+        self.angleChoice = [(TAU/4)]
+        p11=cvo.CVO().CreateCVO("Polyhedron Name","Cube").setPosition([-5,1.5,0])
+        p12=cvo.CVO().CreateCVO("Face of polygons","6 Squares").setPosition([-2,0.5,0])
+        p11.cvolist.append(p12)        
+        self.construct1(p11,p11)
 
-        a = ((5,-1.75,0),(3.2,-1.75,0),(2.9,-2.25,0),(5,-1.75,0))
-        base = Polygon(*a,color="#6DC9CD",fill_opacity=0.5,stroke_width=5)
-       
-
-        b = ((5,1.25,0),(3.2,1.25,0),(2.9,0.75,0),(5,1.25,0))
-        top = Polygon(*b,color="#6DC9CD",fill_opacity=0.5,stroke_width=5)
-
-
-        c = ((5.1,-1.75,0),(5.1,1.25,0),(2.9,0.75,0),(2.9,-2.25,0),(5,-1.75,0))
-        face1 = Polygon(*c,color="#6DC9CD",fill_opacity=0.2,stroke_width=5)
-
-
-        d = ((5.1,-1.75,0),(5.1,1.25,0),(3.2,1.25,0),(3.2,-1.75,0),(5.1,-1.75,0))
-        face2 = Polygon(*d,color="#6DC9CD",fill_opacity=0.2,stroke_width=5)
-
-
-        e = ((3.2,1.25,0),(3.2,-1.75,0),(2.9,-2.25,0),(2.9,0.75,0),(3.2,1.25,0))
-        face3 = Polygon(*e,color="#6DC9CD",fill_opacity=0.2,stroke_width=5)
-        self.play(Write(base))
-        self.play(Write(top))
-        self.play(Write(face2))
-        self.play(Write(face3))
-        self.play(Write(face1))
-
-       
-        t = Text("The solid object with two parallel and\n\n"
-                 "congruent polygonal faces and lateral faces\n\n"
-                 "as rectangles/parallelograms is called a prism.",font_size= 22).move_to([3.2,2.5,0])
-        self.play(Write(t))
-
-        a = ((-6,-1.25,0),(-4.6,-1,0),(-3.8,-1.7,0),(-6,-1.25,0))
-        base = Polygon(*a,color="#6DC9CD",fill_opacity=0.5,stroke_width=5)
-
-
-        c = ((-4.8,1,0),(-6.1,-1.25,0),(-3.8,-1.7,0),(-4.8,1,0))
-        face1 = Polygon(*c,color="#6DC9CD",fill_opacity=0.2,stroke_width=5)
-
-
-        d = ((-4.8,1,0),(-4.6,-1,0),(-6.1,-1.25,0),(-4.8,1,0))
-        face2 = Polygon(*d,color="#6DC9CD",fill_opacity=0.2,stroke_width=5)
-
-
-        e = ((-4.8,1,0),(-4.6,-1,0),(-3.8,-1.7,0),(-4.8,1,0))
-        face3 = Polygon(*e,color="#6DC9CD",fill_opacity=0.2,stroke_width=5)
-        self.play(Write(base))
-        self.play(Write(face1))
-        self.play(Write(face2))
-        self.play(Write(face3))
-        t1 = Text("A solid object whose base is a polygon and\n\n"
-                 "its lateral faces are triangular faces is\n\n"
-                  "called pyramid",font_size= 22).move_to([-4,2.5,0])
+        t1 = Text("Net diagram of Cube",color=BLUE,font_size=27).move_to([3.5, 2, 0])
         self.play(Write(t1))
- 
 
 
+        s1 = Square(side_length=1,color=WHITE,fill_color=LIGHT_GRAY,fill_opacity=1).move_to([3.5,0.5,0])
+        self.play(Create(s1))
+        s2 = Square(side_length=1,color=WHITE,fill_color=BLUE,fill_opacity=1).move_to([3.5,-0.5,0])
+        self.play(Create(s2))
+        s3 = Square(side_length=1,color=WHITE,fill_color=LOGO_BLUE,fill_opacity=1).move_to([2.5,-0.5,0])
+        self.play(Create(s3))
+        s4 = Square(side_length=1,color=WHITE,fill_color=LOGO_BLUE,fill_opacity=1).move_to([4.5,-0.5,0])
+        self.play(Create(s4))
+        s5 = Square(side_length=1,color=WHITE,fill_color=LIGHT_GRAY,fill_opacity=1).move_to([3.5,-1.5,0])
+        self.play(Create(s5))
+        s6 = Square(side_length=1,color=WHITE,fill_color=LIGHT_GRAY,fill_opacity=1).move_to([3.5,-2.5,0])
+        self.play(Create(s6))
+
+
+                              
 
 if __name__ == "__main__":
     scene = report()
