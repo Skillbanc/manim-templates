@@ -18,11 +18,14 @@ class AdditionofNumbers(AbstractAnim):
         self.GithubSourceCodeReference()
 
 
+
     def Extra_text(self):
         title = Text("Chapter 5 : Addition of Numbers", font_size=44)
         self.play(Write(title))
         self.wait(2)
         self.play(FadeOut(title))
+
+
 
 
     def addition(self):
@@ -38,18 +41,14 @@ class AdditionofNumbers(AbstractAnim):
         p3=cvo.CVO().CreateCVO("Symbol","+").setPosition([3.5,0,0])
         p4=cvo.CVO().CreateCVO("Example","35+15=50").setPosition([-2,-2.5,0])
         p1.cvolist.append(p2)
-        p1.cvolist.append(p2)
         p1.cvolist.append(p3)
+        p1.cvolist.append(p4)
 
         p1.setcircleradius(1.25)
         self.construct1(p1,p1)
 
 
     
-
-
-
-
 
     def vertical_addition_exercise_1(self):
         # Title
