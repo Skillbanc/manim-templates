@@ -50,8 +50,8 @@ class PatternAnimation(AbstractAnim):
         sub_title1 = Text("Recurring sequences or relationships observed in numerical data.",font_size=29).to_edge(UP*3)
         sub_title2 = Text("Identify the patterns in the series of numbers given below. ",font_size=29).to_edge(UP*5+LEFT*1)
         sub_title3 = Text("1.  What will be the next three numbers in these series of numbers ?",font_size=29).to_edge(UP*7+LEFT*1)
-        heading2 = Text("(a)   2,  4,  6,  8, _____________",font_size=30).to_edge(UP*9+LEFT * 4)
-        sub_title5 = Text("(b)   3,  6,  9,  12, _____________",font_size=30).to_edge(UP*10.75+LEFT * 4)
+        heading2 = Text("(a)   2,  4,  6,  8, ______________",font_size=30).to_edge(UP*9+LEFT * 4)
+        sub_title5 = Text("(b)   3,  6,  9,  12, ____________",font_size=30).to_edge(UP*10.75+LEFT * 4)
         sub_title6 = Text("(c)   11, 15, 19, 23, ____________ ",font_size=30).to_edge(UP*12.5+LEFT * 4)
         sub_title7 = Text("(d)  15, 13, 11, 9, _____________",font_size=30).to_edge(UP*13.75+LEFT * 4)
         sub_title8 = Text("10,  12,  14",font_size=30,color=BLUE).to_edge(UP*9+LEFT * 10)
@@ -99,13 +99,13 @@ class PatternAnimation(AbstractAnim):
         self.wait(1)
 
 
-        sub_title1 = Text("(e)   40,  35,  30,  25, _____________", font_size=29).to_edge(UP * 1.5 + LEFT * 4)
-        sub_title2 = Text("(f)   3,  6, 10,  15, _____________", font_size=29).to_edge(UP * 3.25 + LEFT * 4)
-        sub_title3 = Text("(g)   8,  16,  24,  32, _____________", font_size=29).to_edge(UP * 5 + LEFT * 4)
+        sub_title1 = Text("(e)   40,  35,  30,  25, ____________", font_size=29).to_edge(UP * 1.5 + LEFT * 4)
+        sub_title2 = Text("(f)   3,  6, 10,  15, _______________", font_size=29).to_edge(UP * 3.25 + LEFT * 4)
+        sub_title3 = Text("(g)   8,  16,  24,  32, ______________", font_size=29).to_edge(UP * 5 + LEFT * 4)
         heading2 = Text("(h)   49,  42,  35,  28, _____________", font_size=30).to_edge(UP * 6.75 + LEFT * 4)
-        sub_title5 = Text("(i)   70,  60,  50,  40, _____________", font_size=30).to_edge(UP * 8.5 + LEFT * 4)
+        sub_title5 = Text("(i)   70,  60,  50,  40, ____________", font_size=30).to_edge(UP * 8.5 + LEFT * 4)
         sub_title6 = Text("(j)   9,  19,  29,  39, _____________", font_size=30).to_edge(UP * 10.25 + LEFT * 4)
-        sub_title7 = Text("(k)   4,  8,  16,  32, _____________", font_size=30).to_edge(UP * 12 + LEFT * 4)
+        sub_title7 = Text("(k)   4,  8,  16,  32, ______________", font_size=30).to_edge(UP * 12 + LEFT * 4)
         sub_title8 = Text("(l)   36,  45,  54,  63, _____________", font_size=30).to_edge(UP * 13.75 + LEFT * 4)
         sub_title9 = Text("20,  15,  10", font_size=30, color=BLUE).to_edge(UP * 1.5 + LEFT * 11.9)
         sub_title10 = Text("21,  28,  36", font_size=30, color=BLUE).to_edge(UP * 3.25 + LEFT * 10.5)
@@ -243,20 +243,18 @@ class PatternAnimation(AbstractAnim):
         self.wait(1)
 
         self.play(FadeOut(pattern_f, pattern_s, pattern_t, pattern_fo,sub_title2))
-        self.play(FadeOut(first_arrow, second_arrow, third_arrow, fourth_arrow,sub_title1))
         self.wait(1)
+
 
     
     def Patternsinthecalender(self):
-        heading = Text("Patterns in the calendar",color=PINK,font_size=37).to_edge(UP*1)
+
+
+        heading = Text("Patterns in the calendar",color=DARK_BROWN,font_size=37).to_edge(UP*1)
         sub_title1 = Text("Patterns in calendars are recurring cycles of days, weeks,",font_size=28).to_edge(UP*3)
         sub_title2 = Text(" months, and years used to track time.",font_size=28).to_edge(UP*4.5)
-        sub_title3 = Text("example:",font_size=28,color=BLUE).to_edge(UP*7+LEFT*1)
-        sub_title4 = Text("Choose any 5 numbers as shown in the calendar",font_size=28).to_edge(UP*8.5+LEFT*1.2)
-        sub_title5 = Text("What is their sum?",font_size=28).to_edge(UP*10+LEFT*2.25)
-        sub_title6 = Text("2 + 9 + 16 + 23 + 30 = 80",font_size=28).to_edge(UP*11.5+LEFT*2.25)
-        sub_title7 = Text("we can do it faster by simply multiply the middle",font_size=28).to_edge(UP*13+LEFT*1.2)
-        sub_title8 = Text("number by 9 and get the answer- 9 x 21 = 189",font_size=28).to_edge(UP*14.5+LEFT*1.2)
+        sub_title3 = Text("example:",font_size=28,color=PURPLE).to_edge(UP*6.75+LEFT*1)
+        
 
         self.play(Write(heading))
         self.wait(0.8)
@@ -266,18 +264,15 @@ class PatternAnimation(AbstractAnim):
         self.wait(1)
         self.play(Write(sub_title3))
         self.wait(1)
-        self.play(Write(sub_title4))
-        self.wait(1)
-        self.play(Write(sub_title5))
-        self.wait(1)
-        self.play(Write(sub_title6))
-        self.wait(1)
-        self.play(Write(sub_title7))
-        self.wait(0.5)
-        self.play(Write(sub_title8))
-        self.wait(1)
+        
 
+        sub_title9 = Text("May-2023",font_size=28,color=RED).to_edge(UP*8.25 + RIGHT*3.5  )
+        self.play(Write(sub_title9))
+        self.wait(1) 
+    
+        
 
+        # Define the table data
         table_data = [
             ["S", "M", "T", "W", "Th", "F", "Sa"],
             ["", "", "", "1", "2", "3", "4"],
@@ -294,52 +289,77 @@ class PatternAnimation(AbstractAnim):
             h_buff=0.35,
             v_buff=0.3
         )
-    
+
         # Change the color of the table lines to blue
         table.get_horizontal_lines().set_color(BLUE)
         table.get_vertical_lines().set_color(BLUE)
 
-        # Change the color of the headings to pink
-        for i in range(1, 8):
-            table.get_entries((1, i)).set_color(PINK)
+        
+        # Change the color of the headings to pink without using a loop
+        table.get_entries((1, 0)).set_color(PINK)
+        table.get_entries((1, 1)).set_color(PINK)
+        table.get_entries((1, 2)).set_color(PINK)
+        table.get_entries((1, 3)).set_color(PINK)
+        table.get_entries((1, 4)).set_color(PINK)
+        table.get_entries((1, 5)).set_color(PINK)
+        table.get_entries((1, 6)).set_color(PINK)
+        table.get_entries((1, 7)).set_color(PINK)
+
+
 
         # Position the table at the specific location
         table.scale(0.6)
-        table.to_edge(UP*7.5 + RIGHT*3)
+        table.to_edge(UP*9.25 + RIGHT*1)
 
         # Play the title and table together
-        self.play(Create(table.get_horizontal_lines()), Create(table.get_vertical_lines()))
+        self.play(Create(table))
+        self.wait(2)
+    
+
+        sub_title4 = Text("Choose any 5 numbers as shown in the calendar",font_size=28).to_edge(UP*8.5+LEFT*1.2)
+        self.play(Write(sub_title4))
         self.wait(1)
 
-        # Sequentially play each cell in the table
-        for row in table.get_entries():
-            for cell in row:
-                self.play(FadeIn(cell))
-                self.wait(0.004)
-
-        self.wait(2)
 
         # Create and add a surrounding rectangle for the specific entries
         entries_to_highlight = [(2, 5), (3, 5), (4, 5), (5, 5), (6, 5)]
         cells = VGroup(*[table.get_entries(entry) for entry in entries_to_highlight])
-        combined_rect = SurroundingRectangle(cells, color=YELLOW, buff=0.12)
+        combined_rect = SurroundingRectangle(cells, color=YELLOW, buff=0.1  )
         self.play(Create(combined_rect))
   
         self.wait(2)
+ 
 
+
+        sub_title5 = Text("What is their sum?",font_size=28).to_edge(UP*10+LEFT*1.85)
+        sub_title6 = Text("2 + 9 + 16 + 23 + 30 = 80",font_size=28).to_edge(UP*11.5+LEFT*3)
+        sub_title7 = Text("we can do it faster by simply multiply the middle",font_size=28).to_edge(UP*13+LEFT*1.2)
+        sub_title8 = Text("number by 9 and get the answer- 9 x 21 = 189",font_size=28).to_edge(UP*14.5+LEFT*1.2)
+
+
+        self.play(Write(sub_title5))
+        self.wait(1)
+        self.play(Write(sub_title6))
+        self.wait(1)
+        self.play(Write(sub_title7))
+        self.wait(0.5)
+        self.play(Write(sub_title8))
+        self.wait(1)
         
 
+
     
+
     
-        self.wait(2)
     def SetDeveloperList(self): 
        self.DeveloperList="Raghu" 
+
+
 
     def SetSourceCodeFileName(self):
        self.SourceCodeFileName="Grade4Chapter16Patterns.py" 
     
-    
-    
+        
 
 if __name__ == "__main__":
     scene = PatternAnimation()
