@@ -264,8 +264,6 @@ class Progression(AbstractAnim):
 
 
 
-
-
     def GP(self):
         self.setNumberOfCirclePositions(2)
         self.angleChoice = [TAU/4]
