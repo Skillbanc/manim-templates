@@ -17,6 +17,7 @@ class DataHandling(AbstractAnim):
         self.meanani()
         self.fadeOutCurrentScene()
         self.median()
+        self.fadeOutCurrentScene()
         self.medani()
         self.fadeOutCurrentScene()
         self.mode()
@@ -28,6 +29,7 @@ class DataHandling(AbstractAnim):
         self.piechart()
         self.fadeOutCurrentScene()
         self.dblgrph()
+        self.fadeOutCurrentScene()
         self.GithubSourceCodeReference()
         self.fadeOutCurrentScene()
     # render using CVO data object
@@ -57,7 +59,7 @@ class DataHandling(AbstractAnim):
     def dblgrph(self):
         data1 = [0, 6, 3, 5]
         data2 = [2, 4, 5, 3]
-        labels = ["0", "A", "B", "C"]
+        # labels = ["0", "A", "B", "C"]
         colors1 = [RED, GREEN, BLUE, YELLOW]
         colors2 = [BLACK, ORANGE, BLUE, PINK]
 
@@ -103,8 +105,8 @@ class DataHandling(AbstractAnim):
             bars2.add(bar2)
 
             # Label for each bar group
-            bar_label = Text(labels[i], font_size=16, color=WHITE).next_to(bar1, DOWN)
-            bar_labels.add(bar_label)
+            # bar_label = Text(labels[i], font_size=16, color=WHITE).next_to(bar1, DOWN)
+            # bar_labels.add(bar_label)
 
         # Add a title
         title = Text("Double Bar Graph Example", font_size=24).to_edge(UP)
@@ -186,20 +188,19 @@ class DataHandling(AbstractAnim):
 
     def median(self):
         self.isRandom=False
-        self.positionChoice = [[0,2.5,0],[-4,0,0],[0,-2,0],[4,0,0],[4,-3,0]]
+        self.positionChoice = [[0,2.5,0],[-4,1,0],[-3,-2,0],[4,0,0],[4,-3,0]]
 
         p10=cvo.CVO().CreateCVO("Median","")
         p11=cvo.CVO().CreateCVO("Formulae","odd no. of observations, even no. of observations")
         p11.setcircleradius(1.5)
         p1111=cvo.CVO().CreateCVO("odd","(n+1)/2 th term,")
-        p1112=cvo.CVO().CreateCVO("even","((N/2)+1^th term + N/2^th term)/2").SetIsMathText(True)
-        p1112.setcircleradius(1.5)
+        p1112=cvo.CVO().CreateCVO("even", r"\left(\frac{\text{n/2-th term} + \text{(n/2 + 1)-th term}}{\phantom{00}2}\right)").SetIsMathText(True)
+        p1112.setcircleradius(2)
         p10.cvolist.append(p11)
         p11.cvolist.append(p1111)
         p11.cvolist.append(p1112)
         
         self.construct1(p10,p10)
-        self.fadeOutCurrentScene()
     
     def medani(self):
         title=Text("Median for even number of observations:").to_edge(UP)
@@ -416,11 +417,11 @@ class DataHandling(AbstractAnim):
         
         self.wait(2)
 
-    # def SetDeveloperList(self): 
-    #    self.DeveloperList="T Sai Rohith Reddy" 
+    def SetDeveloperList(self): 
+       self.DeveloperList="T Sai Rohith Reddy" 
 
-    # def SetSourceCodeFileName(self):
-    #    self.SourceCodeFileName="Grade7Chapter7DataHandling.py" 
+    def SetSourceCodeFileName(self):
+       self.SourceCodeFileName="Grade7Chapter7DataHandling.py" 
 
 if __name__ == "__main__":
     scene = DataHandling()
