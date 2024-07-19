@@ -22,17 +22,18 @@ class FactorsAnim(AbstractAnim):
     def Factors(self):
         
         self.isRandom = False
-        p10=cvo.CVO().CreateCVO("Factors and Multiples", "").setPosition([0,2,0])
-        p11=cvo.CVO().CreateCVO("Multiples", "Numbers you get when you multiply a certain number by an integer.").setPosition([-3,0,0]).setangle(-TAU/4)
-        p12=cvo.CVO().CreateCVO("Factors", "Number that divide a certain number").setPosition([3,0,0]).setangle(-TAU/4)
+        p10=cvo.CVO().CreateCVO("Factors and Multiples", "").setPosition([-4,0,0])
+        p11=cvo.CVO().CreateCVO("Multiples", "").setPosition([0,2,0]).setangle(-TAU/4)
         
-       
+        p12=cvo.CVO().CreateCVO("Factors", "").setPosition([0,-2,0]).setangle(-TAU/4)
+        
         
         p10.cvolist.append(p11)
         p10.cvolist.append(p12)
+        
+        
 
-        p11.setcircleradius(1.5)
-        p12.setcircleradius(1.5)
+        
 
         self.setNumberOfCirclePositions(3)
         self.construct1(p10,p10)
@@ -42,16 +43,16 @@ class FactorsAnim(AbstractAnim):
         
         self.isRandom = False
         p10=cvo.CVO().CreateCVO("Multiples", "").setPosition([-3,0,0])
-        p11=cvo.CVO().CreateCVO("Multiples of 2", "Numbers that are divisible by 2").setPosition([1,2,0]).setangle(-TAU/4)
-        p12=cvo.CVO().CreateCVO("Multiples of 5", "Numbers that are divisible by 5").setPosition([1,-2,0]).setangle(-TAU/4)
+        p11=cvo.CVO().CreateCVO("Definition","Numbers you get when you multiply a certain number by an integer.").setPosition([2,2,0]).setangle(-TAU/4)
+        
         
        
         
         p10.cvolist.append(p11)
-        p10.cvolist.append(p12)
+        
 
         p11.setcircleradius(1.5)
-        p12.setcircleradius(1.5)
+        
 
         self.setNumberOfCirclePositions(3)
         self.construct1(p10,p10)
@@ -64,7 +65,7 @@ class FactorsAnim(AbstractAnim):
         self.play(Write(title))
         
         # Introduction
-        intro_text = Text("A multiple of 2 is a number that can be expressed as 2 times an integer.",font_size=30, color=BLUE)
+        intro_text = Text("Numbers that are divisible by 2.",font_size=30, color=BLUE)
         intro_text.next_to(title, DOWN)
         self.play(FadeIn(intro_text))
         self.wait(2)
@@ -117,67 +118,50 @@ class FactorsAnim(AbstractAnim):
         title = Text("Common Multiples", font_size=48)
         title.to_edge(UP)
         self.play(Write(title))
+
+         # Create the circles
+        multiples_of_3_circle = Circle(color=BLUE, radius=2).shift(LEFT*1.5)
+        multiples_of_5_circle = Circle(color=GREEN, radius=2).shift(RIGHT*1.5)
+
+        # Create labels for the circles
+        multiples_of_3_label = Text("Multiples of 3", color=BLUE,font_size=30).next_to(multiples_of_3_circle, UP)
+        multiples_of_5_label = Text("Multiples of 5", color=GREEN,font_size=30).next_to(multiples_of_5_circle, UP)
+
+        # Create number sets
+        multiples_of_3_numbers = Text("3, 6, 9, 12, 15", color=BLUE,font_size=20).move_to(multiples_of_3_circle.get_center())
+        multiples_of_5_numbers = Text("5, 10, 15, 20, 25", color=GREEN,font_size=20).move_to(multiples_of_5_circle.get_center())
+        common_multiples_numbers = Text("15", color=RED,font_size=20).move_to(
+            multiples_of_3_circle.get_center() + RIGHT*1.5
+        )
+
+        # Animate circles and labels
+        self.play(Create(multiples_of_3_circle), Write(multiples_of_3_label))
+        self.play(Create(multiples_of_5_circle), Write(multiples_of_5_label))
+
+        # Animate number sets
+        self.play(Write(multiples_of_3_numbers))
+        self.play(Write(multiples_of_5_numbers))
+        self.play(Write(common_multiples_numbers))
         
-        # Venn Diagram circles
-        red_circle = Circle(radius=2, color=RED, fill_opacity=0.5)
-        blue_circle = Circle(radius=2, color=BLUE, fill_opacity=0.5)
-        yellow_circle = Circle(radius=2, color=YELLOW, fill_opacity=0.5)
-
-        red_circle.shift(LEFT * 2 + DOWN)
-        blue_circle.shift(RIGHT * 2 + DOWN)
-        yellow_circle.shift(DOWN)
-
-        self.play(FadeIn(red_circle), FadeIn(blue_circle), FadeIn(yellow_circle))
-
-        # Labels for the circles
-        red_label = Text("Multiples of 3", font_size=20, color=RED).to_edge(LEFT)
-        blue_label = Text("Multiples of 5", font_size=20, color=BLUE).to_edge(RIGHT)
-        yellow_label = Text("Common Multiples", font_size=20, color=YELLOW)
-        
-        red_label.next_to(red_circle, DOWN)
-        blue_label.next_to(blue_circle, DOWN)
-        yellow_label.next_to(yellow_circle, UP)
-
-        self.play(Write(red_label), Write(blue_label), Write(yellow_label))
-
-        # Multiples lists
-        multiples_of_3 = [3, 6, 9, 12, 18]
-        multiples_of_5 = [5, 10, 20, 25]
-        common_multiples = [15, 30]
-
-        # Place numbers in circles
-        def place_numbers(multiples, circle, color, is_common=False):
-            for i, num in enumerate(multiples):
-                num_text = Text(str(num), font_size=24, color=color)
-                if is_common:
-                    num_text.move_to(circle.get_center() + 0.5 * RIGHT * i)
-                else:
-                    angle = i * TAU / len(multiples)
-                    radius = circle.radius * 0.7
-                    num_text.move_to(circle.get_center() + radius * np.array([np.cos(angle), np.sin(angle), 0]))
-                self.play(FadeIn(num_text))
-
-        place_numbers(multiples_of_3, red_circle, RED)
-        place_numbers(multiples_of_5, blue_circle, BLUE)
-        place_numbers(common_multiples, yellow_circle, YELLOW, is_common=True)
-        
+        label = Text("Commom Multiple = 15", color=RED,font_size=30).next_to(multiples_of_3_circle, DOWN)
+        self.play(Write(label))
+        self.wait(2)
         self.fadeOutCurrentScene()
 
     def Important1(self):
         
         self.isRandom = False
         p10=cvo.CVO().CreateCVO("Factors", "").setPosition([-3,0,0])
-        p11=cvo.CVO().CreateCVO("Factors of 12", "Numbers that divide 12 without leaving a remainder").setPosition([1,2,0]).setangle(-TAU/4)
-        p12=cvo.CVO().CreateCVO("Factors of 30", "Numbers that divide 30 without leaving a remainder").setPosition([1,-2,0]).setangle(-TAU/4)
+        p11=cvo.CVO().CreateCVO("Definition", "Numbers that divide a certain number without leaving a remainder").setPosition([1,2,0]).setangle(-TAU/4)
+        
         
        
         
         p10.cvolist.append(p11)
-        p10.cvolist.append(p12)
+        
 
         p11.setcircleradius(1.5)
-        p12.setcircleradius(1.5)
-
+        
         self.setNumberOfCirclePositions(3)
         self.construct1(p10,p10)
         self.fadeOutCurrentScene()
@@ -185,9 +169,8 @@ class FactorsAnim(AbstractAnim):
 
     def Example(self):
     
-        title = Text("Factors of 12", font_size=48).to_edge(UP)
+        title = Text("Factors of 12", font_size=48,color=YELLOW).to_edge(UP)
         self.play(Write(title))
-        
 
         # Introduction
         intro_text = Text("Let's find the factors of 12!", font_size=36)
@@ -232,12 +215,14 @@ class FactorsAnim(AbstractAnim):
             self.play(Transform(dots, factor_group), Write(factor_text))
             self.wait(1.5)
             self.play(FadeOut(factor_text))
-            self.fadeOutCurrentScene()
+            self.remove(dots)
+        
 
         # Conclusion
-        conclusion_text = Text("1,2,3,4,6,12 are all the factors of 12!", font_size=36)
+        conclusion_text = Text("1, 2, 3, 4, 6, 12 are all the factors of 12!", font_size=36)
         self.play(Write(conclusion_text))
         self.wait(2)
+        self.play(FadeOut(conclusion_text))
 
         self.fadeOutCurrentScene()
 
