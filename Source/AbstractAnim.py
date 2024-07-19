@@ -223,14 +223,14 @@ class AbstractAnim(Scene):
         
        
                 
-        if (self.positionChoice._contains_(cvo.pos)):
+        if (self.positionChoice.__contains__(cvo.pos)):
             self.positionChoice.remove(cvo.pos)
             
         if (cvo != cvoParent):
-            if (self.angleChoice._contains_(cvo.angle)):
+            if (self.angleChoice.__contains__(cvo.angle)):
                 self.angleChoice.remove(cvo.angle)
                 
-        if (self.colorChoice._contains_(cvo.color)):
+        if (self.colorChoice.__contains__(cvo.color)):
             self.colorChoice.remove(cvo.color)
         
         if (len(cvo.cvolist) > 0):
