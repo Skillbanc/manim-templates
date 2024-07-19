@@ -103,19 +103,19 @@ class EqualPartsAnim(AbstractAnim):
         self.play(Write(squaretext))
 
         # Transform circle to square
-        self.play(Transform(circle, square))
-        self.wait(2)
+        #self.play(Transform(circle, square))
+        #self.wait(2)
         
         # Divide square into 4 parts
         square_lines = VGroup(
             Line(square.get_top(), square.get_bottom()),
             Line(square.get_left(), square.get_right())
         )
-        self.play(Transform(circle_lines, square_lines))
+        self.play(Transform(circle, square),Transform(circle_lines, square_lines))
         self.wait(2)
         self.play(FadeOut(squaretext))
 
-        triangletext = Text("Dividing a triangle into 3 parts").scale(0.8).next_to(title, DOWN*1.5)
+        triangletext = Text("Dividing a triangle into 6 parts").scale(0.8).next_to(title, DOWN*1.5)
         self.play(Write(triangletext))
         
         # Transform square to triangle

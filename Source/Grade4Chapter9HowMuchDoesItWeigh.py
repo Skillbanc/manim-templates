@@ -23,14 +23,14 @@ class weights(AbstractAnim):
         self.isRandom = False
         self.positionChoice = [[-5,0,0],[3,0,0]]
         p=cvo.CVO().CreateCVO("Measurements","")
-        p1=cvo.CVO().CreateCVO("Measured Through","")
+        p1=cvo.CVO().CreateCVO("Units","")
         p1.appendOname=["kg","gm"]
         p.cvolist.append(p1)
         p1.extendOname(p1.appendOname)
         self.construct1(p,p)
         self.fadeOutCurrentScene()
     def example(self):
-        text = Text("EXAMPLE 1", font_size=22,color=RED)
+        text = Text("Least Weight Example", font_size=22,color=RED)
         text.add(Underline(text, buff=0.1))
         text.to_corner(UP + LEFT)
         self.play(Write(text))
@@ -60,7 +60,7 @@ class weights(AbstractAnim):
         self.play(Write(least_weight_text))
         self.fadeOutCurrentScene()
     def example2(self):
-        text = Text("EXAMPLE 2", font_size=22,color=ORANGE)
+        text = Text("Total Weight Example", font_size=22,color=ORANGE)
         text.add(Underline(text, buff=0.1))
         text.to_corner(UP + LEFT)
         self.play(Write(text))   
@@ -89,7 +89,7 @@ class weights(AbstractAnim):
        self.DeveloperList="Abhiram" 
 
     def SetSourceCodeFileName(self):
-       self.SourceCodeFileName="Class4Chap9HowMuchDoesItWeigh.py"
+       self.SourceCodeFileName="Grade4Chapter9HowMuchDoesItWeigh.py"
 
 if __name__ == "__main__":
     scene = weights()

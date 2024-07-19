@@ -5,6 +5,8 @@ import cvo
 
 class EqualShapesandEqualGroups(AbstractAnim):
     def construct(self):
+        self.RenderSkillbancLogo()
+        self.fadeOutCurrentScene()
         self.group()
         self.fadeOutCurrentScene()
         self.division()
@@ -23,7 +25,7 @@ class EqualShapesandEqualGroups(AbstractAnim):
         
     def division(self):
         t1=Text("To divide a group using division, you split the group into equal parts.",font_size=24).to_edge(UP)
-        t2=Text("example:",font_size=24).next_to(t1,DOWN)
+        t2=Text("Example:",font_size=24).next_to(t1,DOWN)
         t3=Text(" If 12 is to be divided into 4 equal groups",font_size=24).next_to(t2,DOWN)
         self.play(Write(t1,run_time=4))
         self.play(Write(t2,run_time=2))
@@ -43,7 +45,7 @@ class EqualShapesandEqualGroups(AbstractAnim):
         t6.shift(RIGHT*0.25)
         t7=MathTex(r"\overline{ \,0").next_to(t6,DOWN*0.2)
         t8=MathTex(r"\therefore 12 \div4 = 3").to_edge(DOWN*2)
-        
+        m11=Text("-").next_to(t6,LEFT*0.3)
         mul.shift(LEFT*2)
         t5.shift(LEFT*2)
         self.play(Write(mul))
