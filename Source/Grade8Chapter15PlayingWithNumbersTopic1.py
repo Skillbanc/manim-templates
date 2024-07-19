@@ -15,31 +15,36 @@ import cvo
 class Grade8Chapter15PlayingWithNumbersTopic1(AbstractAnim):
 
     def construct(self):
-       # self.RenderSkillbancLogo()
+        self.RenderSkillbancLogo()
         self.Playing_numbers()
         self.fadeOutCurrentScene()
-        #self.GithubSourceCodeReference()
+        self.GithubSourceCodeReference()
         
     
     
     def Playing_numbers(self):
-         self.isRandom = False
-         self.angleChoice = [TAU/4,-TAU/2,-TAU/3]
         #  p1=cvo.CVO().CreateCVO("o1name","o2name","c1name","c2name")
-         p10=cvo.CVO().CreateCVO("Expanded Form","").setPosition([0,2.5,0])
+         p10=cvo.CVO().CreateCVO("PlayingWithNumbers","Place Value").setPosition([0,2.5,0])
          p11=cvo.CVO().CreateCVO("Example","64").setPosition([4,2,0])
-         p12=cvo.CVO().CreateCVO("Expansion","$60+4$").setPosition([3,-2,0]) 
-         p13=cvo.CVO().CreateCVO("Equal to","$(10*6)+(8)$").setPosition([-4,2,0])
+         p12=cvo.CVO().CreateCVO("Expansion","$60+4$").setPosition([5,-2,0])
+        
+         p13=cvo.CVO().CreateCVO("In words","sixty four").setPosition([-4,2,0]).setangle(-TAU/4)
          
          p11.cvolist.append(p12)
          
          p10.cvolist.append(p11)
         
-         p12.cvolist.append(p13)
+         p11.cvolist.append(p13)
          
          self.construct1(p10,p10)
-         self.fadeOutCurrentScene()
-    
+         
+    def SetDeveloperList(self): 
+       self.DeveloperList="Medha Masanam" 
+
+    def SetSourceCodeFileName(self):
+       self.SourceCodeFileName="Grade8Chapter15PlayingWithNumbersTopic1.py"
+  
+      
 if __name__ == "__main__":
     scene = Grade8Chapter15PlayingWithNumbersTopic1()
     scene.render()
