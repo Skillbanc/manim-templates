@@ -148,22 +148,25 @@ class ShapesWithText(AbstractAnim, ThreeDScene):
     
         Title = Text("Cube").to_edge(UP)
         self.add(Title)
+        colors = [RED, GREEN, BLUE, YELLOW, WHITE, PURPLE]
     
-        # Create the cube
-        cube = Cube(side_length=2, fill_opacity=0.5, color=BLUE)
+        # Create the cube with different colors for each face
+        cube = Cube(side_length=2, fill_opacity=0.8)
+        for i, face in enumerate(cube):
+            face.set_fill(color=colors[i % len(colors)], opacity=0.8)
         cube.move_to([-4, 2, 0])
         self.add(cube)
 
-        # Front view
-        front_view = Cube(side_length=1, fill_opacity=0.5, color=BLUE)
+        # Create the front view with colors
+        front_view = Square(side_length=1, fill_opacity=0.8,color=GREEN)
         front_view_label = Text("Front View").next_to(front_view, DOWN)
 
-        # Side view
-        side_view = Cube(side_length=1, fill_opacity=0.5, color=BLUE).rotate(PI/2, axis=UP)
+        # Create the side view with colors
+        side_view = Square(side_length=1, fill_opacity=0.8,color=YELLOW)
         side_view_label = Text("Side View").next_to(side_view, DOWN)
 
-        # Top view
-        top_view = Cube(side_length=1, fill_opacity=0.5, color=BLUE).rotate(-PI/2, axis=RIGHT)
+        # Create the top view with colors
+        top_view = Square(side_length=1, fill_opacity=0.8,color=WHITE)
         top_view_label = Text("Top View").next_to(top_view, DOWN)
 
         # Arrange the views
@@ -172,8 +175,13 @@ class ShapesWithText(AbstractAnim, ThreeDScene):
         top_view_group = VGroup(top_view, top_view_label).arrange(DOWN, buff=0.2).next_to(side_view_group, RIGHT*2, buff=2)
 
         # Add all views to the scene
-        self.add(front_view_group, side_view_group, top_view_group)
+        self.add(front_view_group)
+        self.wait(2)
+        self.add(side_view_group)
+        self.wait(2)
+        self.add(top_view_group)
         self.wait(4)
+       
 
     def SetDeveloperList(self):  
         self.DeveloperList="Shanmukha Priya"
