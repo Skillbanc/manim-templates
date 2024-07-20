@@ -14,10 +14,11 @@ class NUM10to20(AbstractAnim):
         self.fadeOutCurrentScene()
         
     def ten(self):
-        p1=cvo.CVO().CreateCVO("Number 10","").setPosition([-4,0,0])
-        p2=cvo.CVO().CreateCVO("10 is the smallest two digit number","").setPosition([2,0,0])
-        p1.cvolist.append(p2)
-        self.construct1(p1,p1)
+        text=Text("Number 10",font_size=60).to_edge(UP)
+        self.play(Write(text))
+        self.wait(1)
+        text1=Text("10 is the smallest two digit number",font_size=60).next_to(text,DOWN,buff=3)
+        self.play(Write(text1))
         self.wait(1)
         self.fadeOutCurrentScene()
 
