@@ -85,12 +85,12 @@ class NUM10to99(AbstractAnim):
             return bundle
 
         row0_bundles=[create_bundle(-6.5,3)]
-        row1_bundles = [create_bundle(-6.5, 2), create_bundle(-5, 2)]
-        row2_bundles = [create_bundle(-6.5, 1), create_bundle(-5.5, 1), create_bundle(-4, 1)]
-        row3_bundles = [create_bundle(-6.5, 0), create_bundle(-5.5, 0), create_bundle(-4.5, 0), create_bundle(-3, 0)]
-        row4_bundles = [create_bundle(-6.5, -1), create_bundle(-5.5,-1),create_bundle(-4.5,-1),create_bundle(-3.5,-1),create_bundle(-2,-1)]
-        row5_bundles = [create_bundle(-6.5, -2), create_bundle(-5.5,-2),create_bundle(-4.5,-2),create_bundle(-3.5,-2),create_bundle(-2.5,-2),create_bundle(-1,-2)]
-        row6_bundles = [create_bundle(-6.5, -3), create_bundle(-5.5,-3),create_bundle(-4.5,-3),create_bundle(-3.5,-3),create_bundle(-2.5,-3),create_bundle(-1.5,-3),create_bundle(0,-3)]
+        row1_bundles = [create_bundle(-6.5, 2), Tex("+").shift(LEFT*5.75,UP*2),create_bundle(-5, 2)]
+        row2_bundles = [create_bundle(-6.5, 1), create_bundle(-5.5, 1), Tex("+").shift(LEFT*4.75,UP*1), create_bundle(-4, 1)]
+        row3_bundles = [create_bundle(-6.5, 0), create_bundle(-5.5, 0), create_bundle(-4.5, 0),Tex("+").shift(LEFT*3.75,UP*0), create_bundle(-3, 0)]
+        row4_bundles = [create_bundle(-6.5, -1), create_bundle(-5.5,-1),create_bundle(-4.5,-1),create_bundle(-3.5,-1),Tex("+").shift(LEFT*2.75,DOWN*1),create_bundle(-2,-1)]
+        row5_bundles = [create_bundle(-6.5, -2), create_bundle(-5.5,-2),create_bundle(-4.5,-2),create_bundle(-3.5,-2),create_bundle(-2.5,-2),Tex("+").shift(LEFT*1.75,DOWN*2),create_bundle(-1,-2)]
+        row6_bundles = [create_bundle(-6.5, -3), create_bundle(-5.5,-3),create_bundle(-4.5,-3),create_bundle(-3.5,-3),create_bundle(-2.5,-3),create_bundle(-1.5,-3),Tex("+").shift(LEFT*0.75,DOWN*3),create_bundle(0,-3)]
 
         row0_equation = MathTex("10").move_to([4,3,0]).scale(0.7)
         row1_equation = MathTex("10", "+", "10", "=", "20").move_to([5, 2, 0]).scale(0.7)
@@ -130,9 +130,9 @@ class NUM10to99(AbstractAnim):
         self.wait(2)
         self.fadeOutCurrentScene()
 
-        row7_bundles = [create_bundle(-6.5, 3), create_bundle(-5.5,3),create_bundle(-4.5,3),create_bundle(-3.5,3),create_bundle(-2.5,3),create_bundle(-1.5,3),create_bundle(-0.5,3),create_bundle(1,3)]
-        row8_bundles = [create_bundle(-6.5, 2), create_bundle(-5.5,2),create_bundle(-4.5,2),create_bundle(-3.5,2),create_bundle(-2.5,2),create_bundle(-1.5,2),create_bundle(-0.5,2),create_bundle(0.5,2),create_bundle(2,2)]
-        row9_bundles = [create_bundle(-6.5, 1), create_bundle(-5.5,1),create_bundle(-4.5,1),create_bundle(-3.5,1),create_bundle(-2.5,1),create_bundle(-1.5,1),create_bundle(-0.5,1),create_bundle(0.5,1),create_bundle(1.5,1),create_bundle(2.5,1)]
+        row7_bundles = [create_bundle(-6.5, 3), create_bundle(-5.5,3),create_bundle(-4.5,3),create_bundle(-3.5,3),create_bundle(-2.5,3),create_bundle(-1.5,3),create_bundle(-0.5,3),Tex("+").shift(RIGHT*0.25,UP*3),create_bundle(1,3)]
+        row8_bundles = [create_bundle(-6.5, 2), create_bundle(-5.5,2),create_bundle(-4.5,2),create_bundle(-3.5,2),create_bundle(-2.5,2),create_bundle(-1.5,2),create_bundle(-0.5,2),create_bundle(0.5,2),Tex("+").shift(RIGHT*1.25,UP*2),create_bundle(2,2)]
+        row9_bundles = [create_bundle(-6.5, 1), create_bundle(-5.5,1),create_bundle(-4.5,1),create_bundle(-3.5,1),create_bundle(-2.5,1),create_bundle(-1.5,1),create_bundle(-0.5,1),create_bundle(0.5,1),create_bundle(1.5,1),Tex("+").shift(RIGHT*2.25,UP*1),create_bundle(3,1)]
 
 
 
@@ -265,7 +265,7 @@ class NUM10to99(AbstractAnim):
         self.wait(2)
         self.fadeOutCurrentScene()
 
-        part_b_title = Text("Fill in the blank boxes with the correct numbers", font_size=24).to_edge(UP)
+        part_b_title = Text("Fill in the blank boxes with the correct number and tens", font_size=24).to_edge(UP)
         self.play(Write(part_b_title))
 
         fill_table = [
