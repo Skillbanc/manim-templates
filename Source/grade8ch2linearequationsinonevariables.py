@@ -44,10 +44,9 @@ class LinearEquation(AbstractAnim):
         p10.onameList.append("Solve the linear equation 3y+39=8")
         p10.onameList.append("Given linear equation : 3y+39=8")
         p10.onameList.append(r"step1 : 3y = 8 - 39 (Transposing 39 to RHS)")
-        p10.onameList.append(r"7 (7x + 10) = 9 (5x + 10)")
         p10.onameList.append(r"3y = -31")
         p10.onameList.append(r"step2 : y = -31/3 (Transposing 3 to RHS)")
-        p10.onameList.append(r"y\ =\-31/3")
+        p10.onameList.append(r"y\ =\ -31/3")
        
         # Render the CVO object
         self.construct2(p10, p10)
@@ -77,7 +76,7 @@ class LinearEquation(AbstractAnim):
         p10.onameList.append(r"solve\ x/2 - 1/4 = x/3 + 1/2")
         p10.onameList.append(r"x/2 - 1/4 = x/3 + 1/2")
         p10.onameList.append(r"x/2 - x/3 = 1/2 + 1/4")
-        p10.onameList.append(r"3x-2x/6 = 2+1/4")
+        p10.onameList.append(r"(3x-2x)/6 = (2+1)/4")
         p10.onameList.append(r"x/6 = 3/4")
         p10.onameList.append(r"x = (3/4)*6")
         p10.onameList.append(r"x\ =\ 9/2")
