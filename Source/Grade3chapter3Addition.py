@@ -241,10 +241,7 @@ class Addition(AbstractAnim):
         self.wait(1)
 
         self.play(FadeOut(sub_title9), FadeOut(sub_title10), FadeOut(title), FadeOut(underline))
-
-
-
-
+        self.fadeOutCurrentScene()
 
     def vertical_addition(self, top_number, bottom_number, result):
         numbers = VGroup(
@@ -262,9 +259,6 @@ class Addition(AbstractAnim):
         numbers[5].next_to(numbers[1], LEFT)
 
         return numbers
-
-
-        
 
     def SetDeveloperList(self):
         self.DeveloperList="Bhaskar"
