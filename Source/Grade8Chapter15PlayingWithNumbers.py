@@ -112,7 +112,7 @@ class Grade8Chapter15PlayingWithNumbers(AbstractAnim):
          p10=cvo.CVO().CreateCVO("Expanded Form","").setPosition([0,2.5,0])
          p11=cvo.CVO().CreateCVO("Example","64").setPosition([4,2,0])
          p12=cvo.CVO().CreateCVO("Expansion","$60+4$").setPosition([3,-2,0]) 
-         p13=cvo.CVO().CreateCVO("Equal to","$(10*6)+(8)$").setPosition([-4,2,0])
+         p13=cvo.CVO().CreateCVO("Expanded as ","$(10*6)+(8)$").setPosition([-4,2,0])
          
          p11.cvolist.append(p12)
          
@@ -155,10 +155,10 @@ class Grade8Chapter15PlayingWithNumbers(AbstractAnim):
         #  p1=cvo.CVO().CreateCVO("o1name","o2name","c1name","c2name")
          p10=cvo.CVO().CreateCVO("Factors","every number has factors").setPosition([0,2.5,0])
          p11=cvo.CVO().CreateCVO("Type-1","Prime Numbers").setPosition([-4,2,0])
-         p15=cvo.CVO().CreateCVO("Defination","having 1 and itself as factors").setPosition([-4,-0.5,0])
+         p15=cvo.CVO().CreateCVO("Definition","having 1 and itself as factors").setPosition([-4,-0.5,0])
          p13=cvo.CVO().CreateCVO("Example","2,3,5,7").setPosition([-4,-3,0])
          p12=cvo.CVO().CreateCVO("Type-2","Composite Numbers").setPosition([4,2,0]) 
-         p16=cvo.CVO().CreateCVO("Defination","having factors other than 1 or itself").setPosition([4,0.5,0])   
+         p16=cvo.CVO().CreateCVO("Definition","having factors other than 1 or itself").setPosition([4,0.5,0])   
         
          p14=cvo.CVO().CreateCVO("Example","4,6,8,9").setPosition([4,-3,0])
         
@@ -278,7 +278,7 @@ class Grade8Chapter15PlayingWithNumbers(AbstractAnim):
         p10=cvo.CVO().CreateCVO("Divisibility Rule 7","")
         p11=cvo.CVO().CreateCVO("Condition","unit digit*2-given number,check if divisible by 7")
         p12=cvo.CVO().CreateCVO("example","7")
-        p13=cvo.CVO().CreateCVO("$unit digit*2-given number$","$7*2=14-7=7(divisible)$")
+        p13=cvo.CVO().CreateCVO("As per Condition","$7*2=14-7=7(divisible)$")
         p14=cvo.CVO().CreateCVO("Divisibililty Rule of 7?", "satisfied")
         p10.cvolist.append(p11)
         p11.cvolist.append(p12)
