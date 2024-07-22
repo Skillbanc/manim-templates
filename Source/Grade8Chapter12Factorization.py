@@ -196,41 +196,6 @@ class Grade8Chapter12Factorization(AbstractAnim):
 
 
 
-        
-
-        # # Subtitle
-        # sub_title1 = Text("Example:         (4x²-1) ÷ (2x-1)", font_size=27).to_edge(UP*1.5 + LEFT*1)
-        # sub_title1[0:8].set_color(PURPLE)
-        # self.play(Write(sub_title1))
-        # self.wait(2)
-
-        # # Step 1: Write the initial expression
-        # initial_expression = MathTex(r"\frac{4x^2 - 1}{2x - 1}").to_edge(UP*3)
-        # step_1 = MathTex(r"= \frac{(2x)^2 - 1^2}{2x - 1}").to_edge(UP*5)
-        # step_2 = MathTex(r"= \frac{(2x + 1)(2x - 1)}{2x - 1}").to_edge(UP*7)
-        # final_step = MathTex(r"= 2x + 1").to_edge(UP*9)  # Simplified final step
-
-        # # Arrange them
-        # step_1.next_to(initial_expression, DOWN*0.75, buff=1)
-        # step_2.next_to(step_1, DOWN*0.75, buff=1)
-        # final_step.next_to(step_3, DOWN*0.75, buff=1)
-
-        # # Animation sequence
-        # self.play(Write(initial_expression))
-        # self.wait(1)
-        # self.play(Transform(initial_expression.copy(), step_1))
-        # self.wait(1)
-        # self.play(Transform(step_1.copy(), step_2))
-        # self.wait(1)
-        # self.play(Transform(step_2.copy(), final_step))
-        # self.wait(1)
-
-        # self.wait(2)  # Optional wait at the end
-
-        # # Add the final expressions to the scene
-        # self.add(final_step)
-
-
     def MethodofCommonfactors(self):
         # Title
         sub_title1 = Text("Method of common factors :",font_size=29,color=BLUE).to_edge(UP*1.75)
@@ -378,31 +343,133 @@ class Grade8Chapter12Factorization(AbstractAnim):
         self.play(FadeOut(elements_to_fade))
         self.wait(1)
 
+
     def divisionofalgebraicexpression(self):
+        self.c1c2()
+        self.fadeOutCurrentScene()
+        self.divisionofmonomialbymonomial()
+        self.fadeOutCurrentScene()
+        self.divisionofexpressionbymonomial()
+        self.fadeOutCurrentScene()
+        self.DivisionExpressionByExpression()
 
-        sub_title2 = Text("Division of Algebraic Expression",font_size=30,color=YELLOW).to_edge(UP*1+LEFT*1)
-        sub_title3 = Text("Example 1. Let us consider 3x × 5³ = 15x⁴ ",font_size=29).to_edge(UP* 3+LEFT*4)
-        sub_title4 = Text("Then 15x⁴ ÷ 5x³ = 3x and 15x⁴ ÷ 3x = 5x³",font_size=29).to_edge(UP*4.5+LEFT*4)
-        sub_title5 = Text("Example 2.Let us consider 6a(a+5) = 6a² + 30a",font_size=29).to_edge(UP*6.5+LEFT*4)
-        sub_title6 = Text("(6a² + 30a) ÷ 6a = a + 5",font_size=29).to_edge(UP*7.5+LEFT*4)
-        sub_title7 = Text("(6a² + 30a) + (a+5) = 6a",font_size=29).to_edge(UP*9+LEFT*4)
-       
-        self.play(Write(sub_title2))
-        self.wait(2)
-        self.play(Write(sub_title3))
-        self.wait(2)
-        self.play(Write(sub_title4))
-        self.wait(2)
-        self.play(Write(sub_title5))
-        self.wait(2)
-        self.play(Write(sub_title6))
-        self.wait(2)
-        self.play(Write(sub_title7))
-        self.wait(2)
+    def c1c2(self):
+        self.isRandom = False
+        p10=cvo.CVO().CreateCVO("Division of Algebraic Expression","").setPosition([-4,0,0])
+        p11=cvo.CVO().CreateCVO("Division by Monomial by Monomial", "").setPosition([3,2.7,0])
+        p12=cvo.CVO().CreateCVO("Division by Expression by Monomial", "").setPosition([3,-2.7,0])
+        p13=cvo.CVO().CreateCVO("Division by Expression by Expression", "").setPosition([3,0,0])
+        
+        
+        p10.cvolist.append(p11)
+        p10.cvolist.append(p12)
+        p10.cvolist.append(p13)
+        self.construct1(p10,p10)
+   
+    
+    def divisionofmonomialbymonomial(self):
+        # Title
+        title = Text("Division of Monomial by Another Monomial",color=YELLOW_C).to_edge(UP)
+        
+        # Equations
+        eq1 = MathTex(r"Divide \ 70x^4 \div 14x^2")
+        eq2 = MathTex(r"=", r"\frac{2 \times 5 \times 7 \times x \times x \times x \times x}{2 \times 7 \times x \times x}")
+        eq3 = MathTex(r"=", r"\frac{5 \times x \times x}{1}")
+        eq4 = MathTex(r"=", r"5x^2")
 
-        elements_to_fade = VGroup(sub_title2, sub_title3, sub_title4, sub_title5, sub_title6,sub_title7)
-        self.play(FadeOut(elements_to_fade))
+        eq1.next_to(title, DOWN * 1.5)
+        eq2.next_to(eq1, DOWN * 1.5)
+        eq3.next_to(eq2, DOWN * 1.5)
+        eq4.next_to(eq3, DOWN * 1.5)
+
+        # Display title and equations
+        self.play(Write(title))
         self.wait(1)
+        self.play(Write(eq1))
+        self.wait(1)
+        self.play(Write(eq2))
+        self.wait(1)
+        self.play(Write(eq3))
+        self.wait(1)
+        self.play(Write(eq4))
+        self.wait(1)
+
+
+
+    def divisionofexpressionbymonomial(self):
+        title = Text("Division of Expression by Monomial",color=YELLOW_C).scale(0.9).to_edge(UP)
+
+        # Writing equations step by step
+        eq0 = MathTex(r"Divide \ 30(a^2bc + ab^2c + abc^2) \div 6abc")
+        eq1 = MathTex(r"30(a^2bc + ab^2c + abc^2) \div 6abc")
+        eq2 = MathTex(r"= 2 \times 3 \times 5 (a \times a \times b \times c + a \times b \times b \times c + a \times b \times c \times c)")
+        eq3 = MathTex(r"= 2 \times 3 \times 5 \times a \times b \times c (a + b + c)")
+        eq4 = MathTex(r"= \frac{2 \times 3 \times 5 \times abc(a + b + c)}{2 \times 3 \times abc}")
+        eq5 = MathTex(r"= 5(a + b + c)")
+        
+        eq6 = MathTex(r"Alternatively,")
+        eq7 = MathTex(r"30(a^2bc + ab^2c + abc^2) = 30abc^2 + 30ab^2c + 30a^2bc")
+        eq8 = MathTex(r"= \frac{30a^2bc}{6abc} + \frac{30ab^2c}{6abc} + \frac{30abc^2}{6abc}")
+        eq9 = MathTex(r"= 5a + 5b + 5c")
+        eq10 = MathTex(r"= 5(a + b + c)")
+
+        equations = VGroup(title,eq0,eq1, eq2, eq3, eq4, eq5, eq6, eq7, eq8, eq9, eq10)
+        equations.arrange(DOWN, aligned_edge=LEFT, buff=0.25).scale(0.7)
+        
+        # Adding title
+        # self.add(title)
+        # self.wait(2)
+        #self.clear()
+        #Animating equations
+        for eq in equations:
+            self.play(Write(eq))
+            self.wait(0.5)
+        
+        self.wait(2)
+
+
+    def DivisionExpressionByExpression(self):
+        # Title
+        title = Text("Division of Expression by Expression",color=YELLOW_C).to_edge(UP)
+        
+        # Equations
+        eq1 = MathTex(r"\text{Example: Divide } 42(a^4 - 13a^3 + 36a^2) \text{ by } 7a(a - 4)").scale(0.7).next_to(title, DOWN * 1, aligned_edge=LEFT,buff=0.3)
+        eq2 = MathTex(r"\text{Solution:} \ 42(a^4 - 13a^3 + 36a^2)").scale(0.7).next_to(eq1, DOWN * 1, aligned_edge=LEFT,buff=0.3)
+        eq3 = MathTex(r"= 2 \times 3 \times 7 \times a \times a \times (a^2 - 13a + 36)").scale(0.7).next_to(eq2, DOWN * 1, aligned_edge=LEFT,buff=0.3)
+        eq4 = MathTex(r"= 2 \times 3 \times 7 \times a \times a \times (a^2 - 9a - 4a + 36)").scale(0.7).next_to(eq3, DOWN * 1, aligned_edge=LEFT,buff=0.3)
+        eq5 = MathTex(r"= 2 \times 3 \times 7 \times a \times a \times [(a(a - 9) - 4(a - 9))]").scale(0.7).next_to(eq4, DOWN * 1, aligned_edge=LEFT,buff=0.3)
+        eq6 = MathTex(r"= 2 \times 3 \times 7 \times a \times a \times (a - 9)(a - 4)").scale(0.7).next_to(eq5, DOWN * 1, aligned_edge=LEFT,buff=0.3)
+        eq7 = MathTex(r"= 2 \times 3 \times 7 \times a \times a \times (a - 9)(a - 4)").scale(0.7).next_to(eq6, DOWN * 1, aligned_edge=LEFT,buff=0.3)
+        eq8 = MathTex(r"42(a^4 - 13a^3 + 36a^2) \div 7a(a - 4)").scale(0.7).next_to(eq7, DOWN * 1, aligned_edge=LEFT,buff=0.3)
+        eq9 = MathTex(r"= \frac{2 \times 3 \times 7 \times a \times a \times (a - 9)(a - 4)}{7a(a - 4)}").scale(0.7).next_to(eq8, DOWN * 1, aligned_edge=LEFT,buff=0.3)
+        eq10 = MathTex(r"= 6a (a - 9)").scale(0.7).next_to(eq9, RIGHT*1.5, aligned_edge=LEFT,buff=0.3)
+
+        # Display title and equations
+        self.play(Write(title))
+        self.wait(1)
+        self.play(Write(eq1))
+        self.wait(1)
+        self.play(Write(eq2))
+        self.wait(1)
+        self.play(Write(eq3))
+        self.wait(1)
+        self.play(Write(eq4))
+        self.wait(1)
+        self.play(Write(eq5))
+        self.wait(1)
+        self.play(Write(eq6))
+        self.wait(1)
+        self.play(Write(eq7))
+        self.wait(1)
+        self.play(Write(eq8))
+        self.wait(1)
+        self.play(Write(eq9))
+        self.wait(1)
+        self.play(Write(eq10))
+        self.wait(1)
+
+
+
 
 
     def SetDeveloperList(self):
