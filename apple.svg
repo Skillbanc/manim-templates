@@ -1,6 +1,4 @@
 
 <svg height="100" width="100" xmlns="http://www.w3.org/2000/svg">
-  <circle cx="50" cy="50" r="40" stroke="black" stroke-width="3" fill="red" />
-  <line x1="50" y1="20" x2="50" y2="10" stroke="brown" stroke-width="4" />
-  <circle cx="50" cy="8" r="4" fill="green" />
+  <circle cx="50" cy="50" r="40" stroke="green" stroke-width="4" fill="red" />
 </svg>

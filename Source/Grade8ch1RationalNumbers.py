@@ -2,7 +2,7 @@ from manim import *
 from AbstractAnim import AbstractAnim
 import cvo
 from numpy import size
-class add(AbstractAnim):
+class Grade8Ch1RationalNumbers(AbstractAnim):
 
     def construct(self):
         self.RenderSkillbancLogo()
@@ -29,7 +29,13 @@ class add(AbstractAnim):
         self.fadeOutCurrentScene()
         self.divisionexample2()
         self.fadeOutCurrentScene()
-        self.prop()
+        self.prop ()
+        self.fadeOutCurrentScene()
+        self.commutativepropexample()
+        self.fadeOutCurrentScene()
+        self.associativepropexample()
+        self.fadeOutCurrentScene()
+        self.distributivepropexample()
         self.fadeOutCurrentScene()
         self.Rules()
         self.fadeOutCurrentScene()
@@ -37,9 +43,10 @@ class add(AbstractAnim):
        
 
     def Introduction(self):
+        
         count = 0
         # starting object
-        p10=cvo.CVO().CreateCVO("Rational Numbers","").setPosition([0,2.5,0])
+        p10=cvo.CVO().CreateCVO("Rational Numbers","").setPosition([-5.5,0,0])
         count += 1
 
                 # 2nd c2 object
@@ -56,24 +63,26 @@ class add(AbstractAnim):
         p11=cvo.CVO().CreateCVO("operations","").setPosition([-3,0,0])
         count += 1
         # Level 2 
-        p14=cvo.CVO().CreateCVO("Addition","+").setPosition([2,1,2])
-        count += 1
-        p11.cvolist.append(p14)
 
-        p15=cvo.CVO().CreateCVO("Subtraction","-").setPosition([2,-1,2])
+
+        p15=cvo.CVO().CreateCVO("Addition","+").setPosition([4.5,2.6,0])
         count += 1
         p11.cvolist.append(p15)
 
-        p16=cvo.CVO().CreateCVO("multiplication","*").setPosition([2,-3,2])
+        p16=cvo.CVO().CreateCVO("Subtraction","-").setPosition([5.5,0,0])
         count += 1
         p11.cvolist.append(p16)
 
-        p17=cvo.CVO().CreateCVO("Division","/").setPosition([0,-2,2])
+        p17=cvo.CVO().CreateCVO("Multiplication","X").setPosition([4.5,-2.3,0])
         count += 1
         p11.cvolist.append(p17)
+
+        p14=cvo.CVO().CreateCVO("Division","/").setPosition([2,-2.3,0])
+        p11.cvolist.append(p14)
         
         p10.cvolist.append(p11)
-
+        self.angleChoice = [TAU/4,-TAU/4,-TAU/4,-TAU/4,-TAU/4]
+        self.isRandom = False
             
 
 
@@ -193,7 +202,7 @@ class add(AbstractAnim):
         p10=cvo.CVO().CreateCVO("Multiplication of Rational Numbers","X*Y")
         p11=cvo.CVO().CreateCVO("X variable","2/3")
         p12=cvo.CVO().CreateCVO("Y variable","3/4")
-        p13=cvo.CVO().CreateCVO("Product", "2*3/3*4 = 6/12")
+        p13=cvo.CVO().CreateCVO("Product", "2/3*3/4 = 6/12")
         p13.setcircleradius(1.6)
         p10.cvolist.append(p11)
         p10.cvolist.append(p12)
@@ -210,7 +219,7 @@ class add(AbstractAnim):
         p10=cvo.CVO().CreateCVO("Division of Rational numbers","X / Y")
         p11=cvo.CVO().CreateCVO("x","(1/2)")
         p12=cvo.CVO().CreateCVO("Y","(5/2)")
-        p13=cvo.CVO().CreateCVO("Answer", "1*5/2*2 = 5/4")
+        p13=cvo.CVO().CreateCVO("Answer", "1*5/2*2 = 2/10")
         p13.setcircleradius(1.6)
         p10.cvolist.append(p11)
         p10.cvolist.append(p12)
@@ -233,17 +242,42 @@ class add(AbstractAnim):
          p10.cvolist.append(p13)
          p10.cvolist.append(p14)
          self.construct1(p10,p10)
-         self.play     
+         self.play  
+
+    def propexample(self):
+        title = Text("Property Examples",color=PURPLE).to_edge(UP)
+        self.play(Write(title))
+
+        examples = [
+        r"\text{associative property :} \quad 4+(3+2) = (4+3)+2 \quad\text{or}\quad 5\times(3\times2)=(5\times3)\times2",
+        r"\text{commutative property :} \quad 6 \times 3 = 3 \times 6 \quad \text{or} \quad 6 + 3 =3 + 6",
+        r"\text{distributive property:} \quad 3 \times (2+1) = 3\times2 +3\times 1",
+        
+        ]
+        example1 = MathTex(examples[0]).scale(0.8).next_to(title, DOWN, buff=1)
+        example2 = MathTex(examples[1]).scale(0.8).next_to(example1, DOWN, aligned_edge=LEFT, buff=0.5)
+        example3 = MathTex(examples[2]).scale(0.8).next_to(example2, DOWN, aligned_edge=LEFT, buff=0.5)
+        # example4 = MathTex(examples[3]).scale(0.8).next_to(example3, DOWN, aligned_edge=LEFT, buff=0.5)
+        self.play(Write(example1))
+        self.wait(1)
+        self.play(Write(example2))
+        self.wait(1)
+        self.play(Write(example3))
+        self.wait(1)
+        # self.play(Write(example4))
+        # self.wait(1)
+ 
+        self.wait(3)   
          
     def Rules(self):
         #  p1=cvo.CVO().CreateCVO("o1name","o2name","c1name","c2name")
          p10=cvo.CVO().CreateCVO("Identities","").setPosition([0,2.5,0])
          p11=cvo.CVO().CreateCVO("Additive identity ","x+0 =x").setPosition([3 ,1,0])
          p12=cvo.CVO().CreateCVO("Multiplicative identity "," x*1 =x").setPosition([3,-2,0])
-         p13=cvo.CVO().CreateCVO("Multiplicative Inverse","a/b = 1/(c/b) or vise versa").setPosition([-3,-2,0]).setangle(-TAU/4)
+         p13=cvo.CVO().CreateCVO("Multiplicative Inverse","a/b X b/a = 1").setPosition([-3,-2,0]).setangle(-TAU/4)
          p10.cvolist.append(p12)
          p10.cvolist.append(p11)
-         p10.cvolist.append(p13)
+         p10.cvolist.append(p13) 
          self.construct1(p10,p10)
        
   
@@ -254,8 +288,7 @@ class add(AbstractAnim):
         
         # Explanation text
         explanation_text = Text(
-            "Now, we learn how to multiply the rational numbers. In class 7 we have learnt\n how to multiply fractional numbers. "
-            "We follow a similar process for multiplication of \nrational numbers also.\n\n"
+            "Now, we learn how to multiply the rational numbers. "
             "Consider the rational numbers ",color=BLUE
             ).scale(0.5).next_to(title, DOWN)
         
@@ -269,7 +302,7 @@ class add(AbstractAnim):
         
         # Equation
         equation = MathTex(
-            "\\frac{2}{3}", "\\times", "\\frac{5}{7}", "=", "\\frac{2 \\times 5}{3 \\times 7}", "=", "\\frac{10}{21}",color=GREEN
+            "\\frac{2}{3}", "\\times", "\\frac{5}{7}", "=", "\\frac{2 \\times 5}{3 \\times 7}", "=", "\\frac{10}{21}"
             ).scale(0.8).next_to(multiply_statement, DOWN)
         
         # Explanation of steps
@@ -294,7 +327,7 @@ class add(AbstractAnim):
         self.wait(2)
         
         # self.play(Write(steps_explanation))
-        # self.wait(3)
+        self.wait(3)
 
     def divisionexample1(self):
     
@@ -351,7 +384,178 @@ class add(AbstractAnim):
         
         self.play(Write(explanation_text_3))
         self.wait(4)
+
+    def associativepropexample(self):
+        # Title
+        title = Text("Associative Property Example", font_size=40,color=RED)
+        title.to_edge(UP)
+ 
+        # Rational numbers and equation setup
+        intro_text = MathTex(r"\frac{2}{7},{5},\frac{1}{2}",font_size=35)
+        intro_text.next_to(title, DOWN, buff=0.5)
         
+        eq1 = MathTex(r"\frac{2}{7}", r"+", r"\left[ 5 + \left( \frac{1}{2} \right) \right]", r"=", r"\left[ \left( \frac{2}{7} + 5 \right) \right] + \left( \frac{1}{2} \right)",font_size=26)
+        
+        lhs_title = Text("L.H.S.", font_size=30)
+        lhs1 = MathTex(r"=", r"\frac{2}{7}", r"+", r"\left[ 5 + \left( \frac{1}{2} \right) \right]",font_size=26)
+        lhs2 = MathTex(r"=", r"\frac{2}{7}", r"+", r"\left[ \frac{10 + 1}{2} \right]",font_size=26)
+        lhs3 = MathTex(r"=", r"\frac{2}{7}", r"+", r"\left[ \frac{11}{2} \right]",font_size=26)
+        lhs4 = MathTex(r"=", r"\frac{4 + 77}{14}",font_size=26)
+        lhs5 = MathTex(r"=", r"\frac{81}{14}",font_size=26)
+        
+        rhs_title = Text("R.H.S.", font_size=30)
+        rhs1 = MathTex(r"=", r"\left[ \frac{2}{7} + 5 \right] + \frac{1}{2}",font_size=26)
+        rhs2 = MathTex(r"=", r"\left[ \frac{2 + 35}{7} \right] + \frac{1}{2}",font_size=26)
+        rhs3 = MathTex(r"=", r"\frac{37}{7} + \frac{1}{2}",font_size=26)
+        rhs4 = MathTex(r"=", r"\frac{74 + 7}{14}",font_size=26)
+        rhs5 = MathTex(r"=", r"\frac{81}{14}",font_size=26)
+        
+        # Position elements
+        eq1.next_to(intro_text, DOWN, buff=0.5)
+        
+        lhs_title.next_to(eq1, DOWN,buff=1).to_edge(LEFT*3)
+        lhs1.next_to(lhs_title, DOWN)
+        lhs2.next_to(lhs1, DOWN)
+        lhs3.next_to(lhs2, DOWN)
+        lhs4.next_to(lhs3, RIGHT)
+        lhs5.next_to(lhs4,RIGHT)
+        
+        rhs_title.next_to(lhs_title, RIGHT*5, buff=1)
+        rhs1.next_to(rhs_title, DOWN)
+        rhs2.next_to(rhs1, DOWN)
+        rhs3.next_to(rhs2, DOWN)
+        rhs4.next_to(rhs3, RIGHT)
+        rhs5.next_to(rhs4, RIGHT)
+        
+        # Display equations
+        self.play(Write(title))
+        self.play(Write(intro_text))
+        
+        self.play(Write(eq1))
+        self.wait(1)
+        
+        self.play(Write(lhs_title))
+        self.play(Write(lhs1))
+        self.wait(1)
+        self.play(Write(lhs2))
+        self.wait(1)
+        self.play(Write(lhs3))
+        self.wait(1)
+        self.play(Write(lhs4))
+        self.wait(1)
+        self.play(Write(lhs5))
+        self.wait(1)
+        
+        self.play(Write(rhs_title))
+        self.play(Write(rhs1))
+        self.wait(1)
+        self.play(Write(rhs2))
+        self.wait(1)
+        self.play(Write(rhs3))
+        self.wait(1)
+        self.play(Write(rhs4))
+        self.wait(1)
+        self.play(Write(rhs5))
+        self.wait(1)
+
+        # Emphasize the final results
+        box1 = SurroundingRectangle(lhs5, color=YELLOW, buff=0.1)
+        box2 = SurroundingRectangle(rhs5, color=YELLOW, buff=0.1)
+        
+        self.play(Create(box1))
+        self.wait(1)
+        self.play(Create(box2))
+        self.wait(1)
+
+        self.play(Uncreate(box1), Uncreate(box2))
+        self.wait(1)
+
+        
+    def distributivepropexample(self):
+        # Title
+        title = Text(" Distributive Property Example", font_size=36,color=RED)
+        title.to_edge(UP)
+
+        # Rational numbers and equation setup
+        intro_text =  MathTex( r"\frac{2}{5},\frac{1}{2},\frac{3}{4}", font_size=36)
+        intro_text.next_to(title, DOWN, buff=0.5)
+        
+        eq1 = MathTex(r"\frac{2}{5} \times \left( \frac{1}{2} + \frac{3}{4} \right) = \left( \frac{2}{5} \right) \times \left( \frac{1}{2} \right) + \left( \frac{2}{5} \right) \times \left( \frac{3}{4} \right)", font_size=26)
+        
+        lhs_title = Text("L.H.S.", font_size=30)
+        lhs1 = MathTex(r"=", r"\frac{2}{5} \times \left( \frac{1}{2} + \frac{3}{4} \right)", font_size=26)
+        lhs2 = MathTex(r"=", r"\frac{2}{5} \times \left( \frac{2 + 3}{4} \right)", font_size=26)
+        lhs3 = MathTex(r"=", r"\frac{2}{5} \times \left( \frac{5}{4} \right)", font_size=26)
+        lhs4 = MathTex(r"=", r"\frac{10}{20}", font_size=26)
+        lhs5 = MathTex(r"=", r"\frac{1}{2}", font_size=26)
+        
+        rhs_title = Text("R.H.S.", font_size=30)
+        rhs1 = MathTex(r"=", r"\frac{2}{5} \times \left( \frac{1}{2} \right) + \frac{2}{5} \times \left( \frac{3}{4} \right)", font_size=26)
+        rhs2 = MathTex(r"=", r"\frac{2}{10} + \frac{6}{20}", font_size=26)
+        rhs3 = MathTex(r"=", r"\frac{4}{20} + \frac{6}{20}", font_size=26)
+        rhs4 = MathTex(r"=", r"\frac{10}{20}", font_size=26)
+        rhs5 = MathTex(r"=", r"\frac{1}{2}", font_size=26)
+        
+        # Position elements
+        eq1.next_to(intro_text, DOWN, buff=0.5)
+        
+        lhs_title.next_to(eq1, DOWN, buff=1).to_edge(LEFT*3)
+        lhs1.next_to(lhs_title, DOWN)
+        lhs2.next_to(lhs1, DOWN)
+        lhs3.next_to(lhs2, DOWN)
+        lhs4.next_to(lhs3, RIGHT)
+        lhs5.next_to(lhs4, RIGHT)
+        
+        rhs_title.next_to(lhs_title, RIGHT*5, buff=1)
+        rhs1.next_to(rhs_title, DOWN)
+        rhs2.next_to(rhs1, DOWN)
+        rhs3.next_to(rhs2, DOWN)
+        rhs4.next_to(rhs3, RIGHT)
+        rhs5.next_to(rhs4, RIGHT)
+        
+        # Display equations
+        self.play(Write(title))
+        self.play(Write(intro_text))
+        
+        self.play(Write(eq1))
+        self.wait(1)
+        
+        self.play(Write(lhs_title))
+        self.play(Write(lhs1))
+        self.wait(1)
+        self.play(Write(lhs2))
+        self.wait(1)
+        self.play(Write(lhs3))
+        self.wait(1)
+        self.play(Write(lhs4))
+        self.wait(1)
+        self.play(Write(lhs5))
+        self.wait(1)
+        
+        self.play(Write(rhs_title))
+        self.play(Write(rhs1))
+        self.wait(1)
+        self.play(Write(rhs2))
+        self.wait(1)
+        self.play(Write(rhs3))
+        self.wait(1)
+        self.play(Write(rhs4))
+        self.wait(1)
+        self.play(Write(rhs5))
+        self.wait(1)
+
+        # Emphasize the final results
+        box1 = SurroundingRectangle(lhs5, color=YELLOW, buff=0.1)
+        box2 = SurroundingRectangle(rhs5, color=YELLOW, buff=0.1)
+        
+        self.play(Create(box1))
+        self.wait(1)
+        self.play(Create(box2))
+        self.wait(1)
+
+        self.play(Uncreate(box1), Uncreate(box2))
+        self.wait(1)
+
     def divisionexample2(self):
         # Title
         title = Text("Division of Rational Numbers", font_size=36,color=RED)
@@ -375,16 +579,17 @@ class add(AbstractAnim):
         equation1 = MathTex(
             "\\frac{3}{4}", "\\div", "\\frac{7}{11}", "=", "\\frac{3}{4}", "\\times", "\\frac{11}{7}",
         ).scale(0.8).next_to(explanation_text , DOWN*8)
-        
-        inverse_explanation = Text("(Multiplicative inverse of ", font_size=20).next_to(equation1[6], RIGHT)
-        inverse_number = MathTex("\\frac{7}{11})",color=RED_C).next_to(inverse_explanation, RIGHT)
+
+        inverse1=MathTex("(\\frac{11}{7}\quad",color=RED_B).next_to(equation1, RIGHT)
+        inverse_explanation = Text(" Is Multiplicative inverse of ", font_size=20).next_to(inverse1, RIGHT)
+        inverse_number = MathTex("\\frac{7}{11})",color=RED_B).next_to(inverse_explanation, RIGHT)
         
         equation2 = MathTex(
             "=", "\\frac{3 \\times 11}{4 \\times 7}", "=", "\\frac{33}{28}"
         ).scale(0.8).next_to(equation1, DOWN)
         
         final_simplification = MathTex(
-            "=", "\\frac{33}{28}", "=", "1", "\\frac{5}{28}",color=RED_B
+            "=", "\\frac{33}{28}"
         ).scale(0.8).next_to(equation2, DOWN)
 
         # Add and animate
@@ -405,7 +610,8 @@ class add(AbstractAnim):
         
         self.play(Write(equation1))
         self.wait(2)
-        
+
+        self.play(Write(inverse1))
         self.play(Write(inverse_explanation))
         self.play(Write(inverse_number))
         self.wait(2)
@@ -416,17 +622,18 @@ class add(AbstractAnim):
         self.play(Write(final_simplification))
         self.wait(4)
     def additionexample(self):
+         
         title = Text("ADDITION OF RATIONAL NUMBERS",color=RED)
         title.to_edge(UP)
 
-        subtitle = Text(" Addition",color=RED_B)
+        subtitle = Text("Consider the Rational Numbers",color=BLUE,font_size=25)
         subtitle.next_to(title, DOWN)
 
         self.play(Write(title))
         self.play(Write(subtitle))
 
         # Display the two rational numbers
-        r1 = MathTex(r"\frac{2}{7}")
+        r1 = MathTex(r"\frac{2}{7}\quad\text{and}")
         r2 = MathTex(r"\frac{5}{8}")
         r1.next_to(subtitle, DOWN, buff=1)
         r2.next_to(r1, RIGHT, buff=1)
@@ -446,12 +653,12 @@ class add(AbstractAnim):
         self.play(Write(intermediate))
 
         # Show the final result
-        result = MathTex(r"= \frac{51}{56}")
+        result = MathTex(r"")
         result.next_to(intermediate, RIGHT, buff=1)
         self.play(Write(result))
 
         # Final display
-        final_result = MathTex(r"\frac{2}{7} + \frac{5}{8} = \frac{51}{56}",color=RED_B)
+        final_result = MathTex(r"\frac{16}{56} + \frac{35}{56} = \frac{51}{56}")
         final_result.next_to(equals, DOWN, buff=1)
         self.play(Write(final_result))
 
@@ -460,23 +667,83 @@ class add(AbstractAnim):
         # closure_text.next_to(final_result, DOWN, buff=1)
         # self.play(Write(closure_text))
 
-        # self.wait(2)
+        self.wait(4)
 
 # To render the scene, run the following command in the terminal:
 # manim -pql script_name.py RationalNumbersClosureProperty
+        
+    def commutativepropexample(self):
+        # Title
+        title = Text("Commutative Property Example", font_size=40,color=RED)
+        title.to_edge(UP)
+
+        # Rational numbers and equation setup
+        eq1 = MathTex(r"\frac{5}{2}", r"+", r"\left(-\frac{3}{4}\right)", "=", r"\frac{2 \times 5 + 1 \times (-3)}{4}")
+        eq2 = MathTex(r"=", r"\frac{10 - 3}{4}")
+        eq3 = MathTex(r"=", r"\frac{7}{4}")
+        
+        eq4 = MathTex(r"\left(-\frac{3}{4}\right)", r"+", r"\frac{5}{2}", "=", r"\frac{1 \times (-3) + 2 \times 5}{4}")
+        eq5 = MathTex(r"=", r"\frac{-3 + 10}{4}")
+        eq6 = MathTex(r"=", r"\frac{7}{4}")
+        
+        # eq7 = MathTex(r"\frac{5}{2}", r"+", r"\left(-\frac{3}{4}\right)", r"=", r"\left(-\frac{3}{4}\right)", r"+", r"\frac{5}{2}")
+
+        # Position equations
+        eq1.next_to(title, DOWN, buff=1)
+        eq2.next_to(eq1, RIGHT)
+        eq3.next_to(eq2, RIGHT)
+       
+        eq4.next_to(eq1, DOWN, buff=1)
+        eq5.next_to(eq4, RIGHT)
+        eq6.next_to(eq5, DOWN)
+        
+        # eq7.next_to(eq6, DOWN, buff=1)
+
+        # Display equations
+        self.play(Write(title))
+        
+        self.play(Write(eq1))
+        self.wait(1)
+        self.play(Write(eq2))
+        self.wait(1)
+        self.play(Write(eq3))
+        self.wait(1)
+        
+        self.play(Write(eq4))
+        self.wait(1)
+        self.play(Write(eq5))
+        self.wait(1)
+        self.play(Write(eq6))
+        self.wait(1)
+        
+        # self.play(Write(eq7))
+        # self.wait(1)
+
+        # Emphasize the final results
+        box1 = SurroundingRectangle(eq3, color=YELLOW, buff=0.1)
+        box2 = SurroundingRectangle(eq6, color=YELLOW, buff=0.1)
+        
+        self.play(Create(box1))
+        self.wait(1)
+        self.play(Create(box2))
+        self.wait(1)
+
+        self.play(Uncreate(box1), Uncreate(box2))
+        self.wait(1)
+
 
     def subtractionexample(self):
         title = Text("Subtraction of Rational numbers ",color=RED)
         title.to_edge(UP)
 
-        subtitle = Text("Subtraction",color=BLUE)
+        subtitle = Text("Consider the Rational Numbers",color=BLUE,font_size=25)
         subtitle.next_to(title, DOWN)
-
+ 
         self.play(Write(title))
         self.play(Write(subtitle))
 
         # Display the two rational numbers
-        r1 = MathTex(r"\frac{5}{9}")
+        r1 = MathTex(r"\frac{5}{9}\quad\text{and}")
         r2 = MathTex(r"\frac{3}{4}")
         r1.next_to(subtitle, DOWN, buff=1)
         r2.next_to(r1, RIGHT, buff=1)
@@ -496,9 +763,11 @@ class add(AbstractAnim):
         self.play(Write(intermediate1))
 
         # Show the intermediate step 2
-        intermediate2 = MathTex(r"\frac{20 - 27}{36}  = \frac{-7}{36}",color=GREEN)
+        intermediate2 = MathTex(r"\frac{20 - 27}{36}  = \frac{-7}{36}")
         intermediate2.next_to(intermediate1, DOWN, buff=0.5)
         self.play(Write(intermediate2))
+
+        self.wait(4)
 
         # # Show the final result
         # result = MathTex(r"= \frac{-7}{36}")
@@ -522,5 +791,5 @@ class add(AbstractAnim):
   
 
 if __name__ == "__main__":
-    scene =add()
+    scene =Grade8Ch1RationalNumbers()
     scene.render()

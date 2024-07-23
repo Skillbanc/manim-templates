@@ -3,7 +3,7 @@ from AbstractAnim import AbstractAnim
 import cvo
 from numpy import size
 
-class multiplication(AbstractAnim):
+class Grade2Ch9Multiplication(AbstractAnim):
  
     def construct(self):
         self.RenderSkillbancLogo()
@@ -16,11 +16,15 @@ class multiplication(AbstractAnim):
         self.fadeOutCurrentScene()
         self.multiplication_symbol()
         self.fadeOutCurrentScene()
+        self.example1()
+        self.fadeOutCurrentScene()
+        self.frog()
+        self.fadeOutCurrentScene()
         self.Two()
         self.fadeOutCurrentScene()
         self.multiplicationexample()
         self.fadeOutCurrentScene()
-        self.example1()
+        self.example2()
         self.fadeOutCurrentScene()
         self.GithubSourceCodeReference()
 
@@ -125,11 +129,16 @@ class multiplication(AbstractAnim):
         example_text = MathTex("4 + 4 + 4 + 4 + 4", "=", "5", r"\times", "4", "=", "20")
         example_text.scale(0.8).next_to(title, DOWN, buff=1)
         
-        self.play(Write(example_text))
+        # self.play(Write(example_text))
+        # self.wait(1)
+        
+        self.play(Write(example_text[0:2]))
         self.wait(1)
         
-        # self.play(Write(example_text[3:]))
-        # self.wait(1)
+
+        self.play(Write(example_text[2:]))
+        self.wait(1)
+        
         
         # self.play(example_text.animate.set_color(YELLOW))
         self.wait(1)
@@ -138,10 +147,14 @@ class multiplication(AbstractAnim):
         a_text = MathTex("7 + 7 + 7 + 7", "=", "4", r"\times", "7", "=", "28")
         a_text.scale(0.8).next_to(example_text, DOWN, buff=0.8, aligned_edge=LEFT)
         
-        self.play(Write(a_text))
-        self.wait(1)
+        # self.play(Write(a_text))
+        # self.wait(1)
         
-        # self.play(Write(a_text[3:]))
+        self.play(Write(a_text[0:2]))
+        # self.play(a_text.set_color(YELLOW))
+        self.wait(1)
+
+        self.play(Write(a_text[2:]))
         # self.play(a_text.set_color(YELLOW))
         self.wait(1)
 
@@ -149,10 +162,13 @@ class multiplication(AbstractAnim):
         b_text = MathTex("3 + 3 + 3 + 3 + 3 + 3 + 3", "=", "7", r"\times", "3", "=", "21")
         b_text.scale(0.8).next_to(a_text, DOWN, buff=0.5, aligned_edge=LEFT)
         
-        self.play(Write(b_text))
-        self.wait(1)
+        # self.play(Write(b_text))
+        # self.wait(1)
         
-        # self.play(Write(b_text[3:]))
+        self.play(Write(b_text[0:2]))
+        # self.play(b_text.set_color(YELLOW))
+        self.wait(1)
+        self.play(Write(b_text[2:]))
         # self.play(b_text.set_color(YELLOW))
         self.wait(1)
 
@@ -160,10 +176,13 @@ class multiplication(AbstractAnim):
         c_text = MathTex("6 + 6 + 6 + 6 + 6", "=", "5", r"\times", "6", "=", "30")
         c_text.scale(0.8).next_to(b_text, DOWN, buff=0.5, aligned_edge=LEFT)
         
-        self.play(Write(c_text))
-        self.wait(1)
+        # self.play(Write(c_text))
+        # self.wait(1)
         
-        # self.play(Write(c_text[3:]))
+        self.play(Write(c_text[0:2]))
+        # self.play(c_text.set_color(YELLOW))
+        self.wait(1)
+        self.play(Write(c_text[2:]))
         # self.play(c_text.set_color(YELLOW))
         self.wait(1)
 
@@ -171,30 +190,39 @@ class multiplication(AbstractAnim):
         d_text = MathTex("2 + 2 + 2 + 2 + 2 + 2", "=", "6", r"\times", "2", "=", "12")
         d_text.scale(0.8).next_to(c_text, DOWN, buff=0.5, aligned_edge=LEFT)
         
-        self.play(Write(d_text))
-        self.wait(1)
+        # self.play(Write(d_text))
+        # self.wait(1)
         
-        # self.play(Write(d_text[3:]))
+        self.play(Write(d_text[0:2]))
+        # self.play(d_text.set_color(YELLOW))
+        self.wait(1)
+        self.play(Write(d_text[2:]))
         # self.play(d_text.set_color(YELLOW))
         self.wait(1)
 
         self.wait(2)
 
+
 # To run the animation, use the following command in your terminal:
 # manim -pql your_script.py RepeatedAdditionToMultiplication
+
+
     def introc1(self):
          
         self.setNumberOfCirclePositions(3)
         #self.angleChoice = [0,0,0]
         self.isRandom = False
         p8=cvo.CVO().CreateCVO("MULTIPLICATION","")
-        p9=cvo.CVO().CreateCVO("Defination","Multiplication is adding a number to itself\na certain number of times.").setPosition([2,2,2])
+        p9=cvo.CVO().CreateCVO("Definition","Multiplication is adding a number to itself\na certain number of times.").setPosition([2,2,2])
         p7=cvo.CVO().CreateCVO("Symbol","'X'").setPosition([2,0,2])
         p10=cvo.CVO().CreateCVO("Example","4 X 5=20").setPosition([2,-2.5,2])
+        self.angleChoice = [-TAU/4,-TAU/4,-TAU/4,-TAU/4,-TAU/4]
+        self.isRandom =False
         p8.cvolist.append(p9)
         p8.cvolist.append(p7)
         p8.cvolist.append(p10)
         self.construct1(p8,p8)
+
 
     def SetDeveloperList(self):
         self.DeveloperList="Sai Krishna Bikkumalla"
@@ -241,6 +269,125 @@ class multiplication(AbstractAnim):
 # To render the scene, use the following command in your terminal:
 # manim -pql multiplication_scene.py MultiplicationScene
 
+    def frog(self):
+        number_line = NumberLine(
+            x_range=[0, 18, 1], 
+            length=10, 
+            color=BLUE, 
+            include_numbers=True, 
+            label_direction=DOWN
+        )
+        
+
+        # Create the frog as a Dot
+        frog = Dot(color=GREEN).scale(1.5)
+        frog.move_to(number_line.n2p(0))  # Start at 0 on the number line
+
+        # Create text for the title
+        title = Text("Frogie Jumps", font_size=48).to_edge(UP)
+        underline = Line(
+            start=title.get_left() + DOWN * 0.3,
+            end=title.get_right() + DOWN * 0.3,
+            color=YELLOW
+        )
+        
+
+        # Create text for the multiplication explanation
+        explanation = Tex("A frog jumped 3 steps in a single jump. It jumped 6 times.",font_size=35).next_to(number_line, DOWN,buff=1)
+
+        explanation1 = Tex("So the frog jumped a total of 3 x 6 = 18 steps",font_size=35).next_to(explanation, DOWN,buff=0.6)
+
+        # Add number line, texts, and frog to the scene
+        #self.add(number_line, frog, title, explanation)
+        self.play(Write(title))
+        self.play(Create(underline))
+        self.wait(1)
+        self.play(Create(number_line))
+        self.wait(1)
+        self.add(frog)
+        
+
+        # Function to create a jumping path with a dashed line
+        def create_jump_path(start, end):
+            control_point = start + (end - start) / 2 + UP * 1.5  # Control point for the jump
+            path = CubicBezier(start, control_point, control_point, end)
+            dashed_path = DashedVMobject(path, num_dashes=15, color=GREEN)
+            return path, dashed_path
+
+        # Move the frog in steps of 3, six times, with a jumping effect and dashed lines
+        for i in range(1, 7):
+            start_position = number_line.n2p(3 * (i - 1))
+            end_position = number_line.n2p(3 * i)
+            jump_path, dashed_jump_path = create_jump_path(start_position, end_position)
+            
+            self.play(Create(dashed_jump_path), run_time=0.5)
+            self.play(MoveAlongPath(frog, jump_path), run_time=0.5)
+            self.wait(0.5)
+        
+        self.wait(1)
+
+        self.play(Write(explanation))
+        self.wait(1)
+        self.play(Write(explanation1))
+        self.wait(1)
+
+
+    def example2(self):
+        title = Text("What is 5 times 3?", font_size=48).to_edge(UP)
+        underline = Line(
+            start=title.get_left() + DOWN * 0.3,
+            end=title.get_right() + DOWN * 0.3,
+            color=YELLOW
+        )
+        self.play(Write(title))
+        #self.play(Create(underline))  
+        self.wait(1)
+
+        # Represent 5 times 3 as 5 x 3
+        step1 = Text("5 times 3 is represented as", font_size=36).next_to(title, DOWN, buff=1)
+        self.play(Write(step1))
+        self.wait(1)
+
+        # 5 x 3
+        representation = Text("5 x 3", font_size=48)
+        representation.next_to(step1, DOWN, buff=1)
+        self.play(Write(representation))
+        self.wait(1)
+
+        # Arrow to x indicating multiplication
+        arrow = Arrow(start=representation[1].get_bottom(), end=representation[1].get_bottom() + DOWN * 1.5, buff=0.1)
+        arrow_text = Text("multiplication symbol", font_size=24).next_to(arrow.get_end(), DOWN)
+        self.play(Create(arrow), Write(arrow_text))
+        self.wait(2)
+
+        # Clear representations
+        self.play(FadeOut(step1), FadeOut(representation), FadeOut(arrow), FadeOut(arrow_text))
+
+        # Visualize Multiplication as Repeated Addition
+        step2 = Text("5 times 3 means adding 5 three times:", font_size=36).next_to(title, DOWN, buff=1)
+        self.play(Write(step2))
+        self.wait(1)
+
+        addition_visual = VGroup(
+            Text("5", font_size=36),
+            Text("+ 5", font_size=36),
+            Text("+ 5", font_size=36)
+        ).arrange(RIGHT, buff=0.2).next_to(step2, DOWN, buff=1)
+        self.play(Write(addition_visual))
+        self.wait(1)
+
+        # Show Calculation Process
+        calculation = Text("5 x 3 = 5 + 5 + 5", font_size=36).next_to(addition_visual, DOWN, buff=1)
+        self.play(Write(calculation))
+        self.wait(1)
+
+        # Display the Result
+        result = Text("= 15", font_size=48, color=YELLOW).next_to(calculation, DOWN, buff=1)
+        self.play(Write(result))
+        self.wait(2)
+
+        # Fade out
+        self.play(FadeOut(title), FadeOut(step2), FadeOut(addition_visual), FadeOut(calculation), FadeOut(result))
 
     def define_multiplication(self):
         # Title for the definition
@@ -294,5 +441,5 @@ with open("apple.svg", "w") as f:
 
 
 if __name__ == "__main__":
-    scene = multiplication()
+    scene = Grade2Ch9Multiplication()
     scene.render()

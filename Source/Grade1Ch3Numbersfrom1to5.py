@@ -3,7 +3,7 @@ from AbstractAnim import AbstractAnim
 import cvo
 from numpy import size
 
-class num1to5(AbstractAnim):
+class Grade1Ch3Numbersfrom1to5(AbstractAnim):
     def construct(self):
         self.RenderSkillbancLogo()
         self.fadeOutCurrentScene()
@@ -97,5 +97,5 @@ class num1to5(AbstractAnim):
 
 
 if __name__ == "__main__":
-    scene = num1to5()
+    scene = Grade1Ch3Numbersfrom1to5()
     scene.render()

@@ -3,13 +3,14 @@ from AbstractAnim import AbstractAnim
 import cvo
 from numpy import size
 
-class division(AbstractAnim):
+class Grade3Ch7Division(AbstractAnim):
     def construct(self):
         self.RenderSkillbancLogo()
         self.fadeOutCurrentScene()
+        self.show_intro()
+        self.fadeOutCurrentScene()
         self.introc1()
         self.fadeOutCurrentScene()
-        self.show_intro()
         self.fadeOutCurrentScene()
         self.define_division()
         self.fadeOutCurrentScene()
@@ -28,7 +29,7 @@ class division(AbstractAnim):
 
     def show_intro(self):
         # Title for the scene
-        intro_title = Text("CH-DIVISION", font_size=72, color=BLUE)
+        intro_title = Text("DIVISION", font_size=72, color=BLUE)
         self.play(Write(intro_title))
         self.wait(2)
         self.play(FadeOut(intro_title))
@@ -42,8 +43,10 @@ class division(AbstractAnim):
         p9=cvo.CVO().CreateCVO("Defination","Division is splitting a number into equal parts.\n"
             "It is the process of finding out how many times\n"
             "one number is contained within another number.").setPosition([2,2,2])
-        p7=cvo.CVO().CreateCVO("Symbol","'/'").setPosition([2,0,2])
+        p7=cvo.CVO().CreateCVO("Symbol","/").setPosition([2,0,2])
         p10=cvo.CVO().CreateCVO("Example","20/5=4").setPosition([2,-2.5,2])
+        self.angleChoice = [-TAU/4,-TAU/4,-TAU/4,-TAU/4,-TAU/4]
+        self.isRandom =False
         p8.cvolist.append(p9)
         p8.cvolist.append(p7)
         p8.cvolist.append(p10)
@@ -437,7 +440,7 @@ with open("apple.svg", "w") as f:
     f.write(SVG_CODE)
 
 if __name__ == "__main__":
-        scene = division()
+        scene = Grade3Ch7Division()
         scene.render()
         
 #transorm

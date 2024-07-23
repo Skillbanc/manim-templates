@@ -9,7 +9,7 @@ from AbstractAnim import AbstractAnim
 
 import cvo
 
-class int6(AbstractAnim):
+class Grade6Ch6Integers(AbstractAnim):
 
     # use the appropriate method based on how the data is stored
     def construct(self):
@@ -153,6 +153,9 @@ class int6(AbstractAnim):
         count += 1
         p10.cvolist.append(p21)
 
+        self.angleChoice = [-TAU/4,-TAU/4,-TAU/4,-TAU/4,-TAU/4]
+        self.isRandom = False 
+
         self.setNumberOfCirclePositions(count)
        
        
@@ -180,10 +183,10 @@ class int6(AbstractAnim):
         self.play(Write(title))
 
         examples = [
-            r"X + Y \quad \text{example:}\quad 2+3 =5",
-            r"(-X) + Y \quad \text{example:} \quad -2 + 3 = 1",
-            r"(-X) +(-Y) \quad \text{example:} \quad -2 + -3 = -5",
-            r"X + (-Y) \quad \text{example:}\quad 2 + (-3) = -1"
+            r"X + Y \quad \text{example:}\quad 2+4 =6",
+            r"(-X) + Y \quad \text{example:} \quad -2 + 4 = 2",
+            r"(-X) +(-Y) \quad \text{example:} \quad -2 + -4 = -6",
+            r"X + (-Y) \quad \text{example:}\quad 2 + (-4) = -2"
         ]
         example1 = MathTex(examples[0]).scale(0.8).next_to(title, DOWN, buff=1)
         example2 = MathTex(examples[1]).scale(0.8).next_to(example1, DOWN, aligned_edge=LEFT, buff=0.5)
@@ -224,10 +227,10 @@ class int6(AbstractAnim):
         self.play(Write(title))
 
         examples = [
-        r"X - Y \quad \text{example:} \quad 2 - 3 = -1",
-        r"(-X) - Y \quad \text{example:} \quad -2 - 3 = -5",
-        r"(-X) - (-Y) \quad \text{example:} \quad -2 - (-3) = 1",
-        r"X - (-Y) \quad \text{example:} \quad 2 - (-3) = 5"
+        r"X - Y \quad \text{example:} \quad 2 - 4 = -2",
+        r"(-X) - Y \quad \text{example:} \quad -2 - 5 = -7",
+        r"(-X) - (-Y) \quad \text{example:} \quad -5 - (-3) = -2",
+        r"X - (-Y) \quad \text{example:} \quad 2 - (-1) = 3"
          ]
         example1 = MathTex(examples[0]).scale(0.8).next_to(title, DOWN, buff=1)
         example2 = MathTex(examples[1]).scale(0.8).next_to(example1, DOWN, aligned_edge=LEFT, buff=0.5)
@@ -267,11 +270,10 @@ class int6(AbstractAnim):
         self.play(Write(title))
 
         examples = [
-            r"X \times Y \quad \text{example:} \quad 2 \times 3 = 6",
-            r"(-X) \times Y \quad \text{example:} \quad -2 \times 3 = -6",
+            r"X \times Y \quad \text{example:} \quad 2 \times 5 = 10",
+            r"(-X) \times Y \quad \text{example:} \quad -2 \times 2 = -4",
             r"(-X) \times (-Y) \quad \text{example:} \quad -2 \times -3 = 6",
-            r"X \times (-Y) \quad \text{example:} \quad 2 \times (-3) = -6"
-        ]
+            r"X \times (-Y) \quad \text{example:} \quad 2 \times (-6) = -12"        ]
         example1 = MathTex(examples[0]).scale(0.8).next_to(title, DOWN, buff=1)
         example2 = MathTex(examples[1]).scale(0.8).next_to(example1, DOWN, aligned_edge=LEFT, buff=0.5)
         example3 = MathTex(examples[2]).scale(0.8).next_to(example2, DOWN, aligned_edge=LEFT, buff=0.5)
@@ -311,10 +313,10 @@ class int6(AbstractAnim):
         self.play(Write(title))
 
         examples = [
-        r"X \div Y \quad \text{example:} \quad 6 \div 3 = 2",
+        r"X \div Y \quad \text{example:} \quad 6 \div 2 = 3",
         r"(-X) \div Y \quad \text{example:} \quad -6 \div 3 = -2",
-        r"(-X) \div (-Y) \quad \text{example:} \quad -6 \div -3 = 2",
-        r"X \div (-Y) \quad \text{example:} \quad 6 \div (-3) = -2"
+        r"(-X) \div (-Y) \quad \text{example:} \quad -12 \div -6 = 2",
+        r"X \div (-Y) \quad \text{example:} \quad 4 \div (-2) = -2"
         ]
         example1 = MathTex(examples[0]).scale(0.8).next_to(title, DOWN, buff=1)
         example2 = MathTex(examples[1]).scale(0.8).next_to(example1, DOWN, aligned_edge=LEFT, buff=0.5)
@@ -389,7 +391,7 @@ class int6(AbstractAnim):
         explanation_text = Text("Let us add 2 and 3 on a number line.", font_size=24).to_edge(UP)
         step_text_a = Text("Starting at 0, move 2 units to the right.", font_size=20).next_to(explanation_text, DOWN)
         step_text_b = Text("Then move 3 more units to the right.", font_size=20).next_to(step_text_a, DOWN)
-        result_text = Text("We reach 5, so 2 + 3 = 5.", font_size=24).to_edge(DOWN)
+        result_text = Text("We reach 5, so 2 + 3 = 5.", font_size=24).to_edge(DOWN*3.5)
 
         # Animate the number line, dots, arrows, and text
         self.play(Write(explanation_text))
@@ -449,7 +451,7 @@ class int6(AbstractAnim):
         explanation_text = Text("Let us add -2 and -3 on a number line.", font_size=24).to_edge(UP)
         step_text_a = Text("Starting at 0, move -2 units to the left.", font_size=20).next_to(explanation_text, DOWN)
         step_text_b = Text("Then move -3 more units to the left.", font_size=20).next_to(step_text_a, DOWN)
-        result_text = Text("We reach -5, so -2 +-3 = -5.", font_size=24).to_edge(DOWN)
+        result_text = Text("We reach -5, so -2 +-3 = -5.", font_size=24).to_edge(DOWN*3.5)
 
         # Animate the number line, dots, arrows, and text
         self.play(Write(explanation_text))
@@ -508,7 +510,7 @@ class int6(AbstractAnim):
         explanation_text = Text("Let us add 6 and -3 on a number line.", font_size=24).to_edge(UP)
         step_text_a = Text("Starting at 0, move 6 units to the right.", font_size=20).next_to(explanation_text, DOWN)
         step_text_b = Text("Then move -3 more units to the left.", font_size=20).next_to(step_text_a, DOWN)
-        result_text = Text("We reach 3, so 6 -3 = 3.", font_size=24).to_edge(DOWN)
+        result_text = Text("We reach 3, so 6 -3 = 3.", font_size=24).to_edge(DOWN*3.5)
 
         # Animate the number line, dots, arrows, and text
         self.play(Write(explanation_text))
@@ -543,6 +545,6 @@ class int6(AbstractAnim):
         # Hold the text on the screen for 2 seconds
         self.wait(1)
 if __name__ == "__main__":
-    scene = int6()
+    scene = Grade6Ch6Integers()
     scene.render()
     
