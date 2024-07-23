@@ -181,9 +181,9 @@ class Chap8G10_SimilarTriangles(AbstractAnim):
         
 
         # Labels
-        A_label = MathTex("A").next_to(A, DOWN).shift(1.5*DOWN)
-        B_label = MathTex("B").next_to(B, DOWN).shift(1.5*DOWN)
-        C_label = MathTex("C").next_to(C, UP).shift(1.5*DOWN)
+        A_label = MathTex("B").next_to(A, DOWN).shift(1.5*DOWN)
+        B_label = MathTex("C").next_to(B, DOWN).shift(1.5*DOWN)
+        C_label = MathTex("A").next_to(C, UP).shift(1.5*DOWN)
         D_label = MathTex("D").next_to(D, LEFT).shift(1.5*DOWN)
         E_label = MathTex("E").next_to(E, RIGHT).shift(1.5*DOWN)
 
@@ -664,9 +664,9 @@ class Chap8G10_SimilarTriangles(AbstractAnim):
         
 
         # Labels for vertices
-        label_A = MathTex("A").next_to(A, DOWN).shift(2*DOWN)
-        label_B = MathTex("B").next_to(B, DOWN).shift(2*DOWN)
-        label_C = MathTex("C").next_to(C, LEFT).shift(2*DOWN)
+        label_A = MathTex("B").next_to(A, DOWN).shift(2*DOWN)
+        label_B = MathTex("C").next_to(B, DOWN).shift(2*DOWN)
+        label_C = MathTex("A").next_to(C, LEFT).shift(2*DOWN)
         right_angle = Square(side_length=0.5).move_to(triangle.get_vertices()[0] + np.array([0.25, 0.25, 0]))
         self.play(Create(triangle))
         self.play(Write(label_A), Write(label_B), Write(label_C), Write(right_angle))
