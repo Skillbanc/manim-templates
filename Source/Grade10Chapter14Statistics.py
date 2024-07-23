@@ -39,10 +39,11 @@ class StatisticsAnim(AbstractAnim):
     def Statistics(self):
 
         self.isRandom = False
+        self.angleChoice = [TAU/5,TAU/5,TAU/5]
         p10=cvo.CVO().CreateCVO("Statistics", "").setPosition([-4,0,0])
-        p11=cvo.CVO().CreateCVO("Mean", "").setPosition([1,2.5,0]).setangle(-TAU/4)
-        p12=cvo.CVO().CreateCVO("Median", "").setPosition([2,0,0]).setangle(-TAU/4)
-        p13=cvo.CVO().CreateCVO("Mode", "").setPosition([1,-2.5,0]).setangle(-TAU/4)
+        p11=cvo.CVO().CreateCVO("Mean", "").setPosition([1,2.5,0])
+        p12=cvo.CVO().CreateCVO("Median", "").setPosition([2,0,0])
+        p13=cvo.CVO().CreateCVO("Mode", "").setPosition([1,-2.5,0])
         
         p10.cvolist.append(p11)
         p10.cvolist.append(p12)
@@ -55,11 +56,12 @@ class StatisticsAnim(AbstractAnim):
     def Mean(self):
 
         self.isRandom = False
+        self.angleChoice = [TAU/5,TAU/5,TAU/5]
         p10=cvo.CVO().CreateCVO("Mean", "").setPosition([-4,0,0])
-        p11=cvo.CVO().CreateCVO("Direct Method", "").setPosition([1,2.5,0]).setangle(-TAU/4)
+        p11=cvo.CVO().CreateCVO("Direct Method", "").setPosition([1,2.5,0])
         
-        p12=cvo.CVO().CreateCVO("Assumed Mean Method", "").setPosition([1,0,0]).setangle(-TAU/4)
-        p13=cvo.CVO().CreateCVO("Step Deviation Method", "").setPosition([1,-2.5,0]).setangle(-TAU/4)
+        p12=cvo.CVO().CreateCVO("Assumed Mean Method", "").setPosition([1,0,0])
+        p13=cvo.CVO().CreateCVO("Step Deviation Method", "").setPosition([1,-2.5,0])
 
         p10.cvolist.append(p11)
         p10.cvolist.append(p12)
@@ -297,7 +299,7 @@ class StatisticsAnim(AbstractAnim):
             include_outer_lines=True
         )
         table.scale(0.4)
-        table.shift(LEFT + UP)
+        table.move_to(title,DOWN)
         
         # Add the table lines
         self.add(table.get_horizontal_lines(), table.get_vertical_lines())
@@ -333,8 +335,9 @@ class StatisticsAnim(AbstractAnim):
     def Mode(self):
         
         self.isRandom = False
+        self.angleChoice = [TAU/5]
         p10=cvo.CVO().CreateCVO("Mode", "").setPosition([-3,0,0])
-        p11=cvo.CVO().CreateCVO("Formula", "l + ((f1 - f0) / ((2 * f1) - f0 - f2)) * h\n").setPosition([3,2,0]).setangle(-TAU/4)
+        p11=cvo.CVO().CreateCVO("Formula", r"l + \left( \frac{f_1 - f_0}{2f_1 - f_0 - f_2} \right) \cdot h").SetIsMathText(True).setPosition([3,2,0])
         
         p10.cvolist.append(p11)
 
@@ -458,10 +461,11 @@ class StatisticsAnim(AbstractAnim):
 
     def Median(self):
         self.isRandom = False
+        self.angleChoice = [TAU/5,TAU/5,TAU/5]
         p10=cvo.CVO().CreateCVO("Median", "").setPosition([-4,0,0])
-        p11=cvo.CVO().CreateCVO("Formula", "").setPosition([-1.5,0,0]).setangle(-TAU/6)
-        p12=cvo.CVO().CreateCVO("n=odd", "M = (n + 1) / 2 th term\n").setPosition([3,2,0]).setangle(-TAU/6)
-        p13=cvo.CVO().CreateCVO("n=even", "M = [(n / 2) + 1) th term + (n / 2) th term] / 2\n").setPosition([3,-2,0]).setangle(-TAU/6)
+        p11=cvo.CVO().CreateCVO("Formula", "").setPosition([-1.5,0,0])
+        p12=cvo.CVO().CreateCVO("n=odd", r"M = \left(\frac{n + 1}{2}\right)").SetIsMathText(True).setPosition([3,2,0])
+        p13=cvo.CVO().CreateCVO("n=even", r"M = \left[ \frac{{\left( \frac{n}{2} + 1 \right)\text{th term} + \left( \frac{n}{2} \right)\text{th term}}}{2} \right]").SetIsMathText(True).setPosition([3,-2,0])
         
         p10.cvolist.append(p11)
         p11.cvolist.append(p12)
@@ -566,11 +570,11 @@ class StatisticsAnim(AbstractAnim):
     def Median4(self):
 
         self.isRandom = False
-
+        self.angleChoice = [TAU/5,TAU/5,TAU/5]
         p10=cvo.CVO().CreateCVO("Cumulative Frequency Distribution","").setPosition([-4,2,0])
-        p11=cvo.CVO().CreateCVO("Graphical Representation", "").setPosition([-1,0,0]).setangle(-TAU/4)
-        p12=cvo.CVO().CreateCVO("Less than type ogive", "").setPosition([3,2,0]).setangle(-TAU/4)
-        p13=cvo.CVO().CreateCVO("More than type ogive", "").setPosition([3,-2,0]).setangle(-TAU/4)
+        p11=cvo.CVO().CreateCVO("Graphical Representation", "").setPosition([-1,0,0])
+        p12=cvo.CVO().CreateCVO("Less than type ogive", "").setPosition([3,2,0])
+        p13=cvo.CVO().CreateCVO("More than type ogive", "").setPosition([3,-2,0])
         
         
         
