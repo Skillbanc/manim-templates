@@ -17,6 +17,7 @@ class DataHandling(AbstractAnim):
         self.meanani()
         self.fadeOutCurrentScene()
         self.median()
+        self.fadeOutCurrentScene()
         self.medani()
         self.fadeOutCurrentScene()
         self.mode()
@@ -28,6 +29,7 @@ class DataHandling(AbstractAnim):
         self.piechart()
         self.fadeOutCurrentScene()
         self.dblgrph()
+        self.fadeOutCurrentScene()
         self.GithubSourceCodeReference()
         self.fadeOutCurrentScene()
     # render using CVO data object
@@ -55,12 +57,69 @@ class DataHandling(AbstractAnim):
     #     self.fadeOutCurrentScene()
 
     def dblgrph(self):
-        self.isRandom = False
-        self.positionChoice=[[-3,0,0]]
-        p10=cvo.CVO().CreateCVO("doublebargraph","similar as bar graph but has 2 columns attached for each element of y axis")
-        p10.setcircleradius(2)
-        self.construct1(p10,p10)
-        self.fadeOutCurrentScene()
+        data1 = [0, 6, 3, 5]
+        data2 = [2, 4, 5, 3]
+        # labels = ["0", "A", "B", "C"]
+        colors1 = [RED, GREEN, BLUE, YELLOW]
+        colors2 = [BLACK, ORANGE, BLUE, PINK]
+
+        # Create axes
+        axes = Axes(
+            x_range=[0, len(data1), 1],
+            y_range=[0, max(max(data1), max(data2)) + 2, 1],
+            axis_config={"color": WHITE},
+            tips=False,
+        ).add_coordinates()
+
+        # Manually add labels for axes
+        x_axis_label = Text("x-axis", font_size=16, color=WHITE).next_to(axes.x_axis.get_end(), DOWN)
+        y_axis_label = Text("y-axis", font_size=16, color=WHITE).next_to(axes.y_axis.get_end(), LEFT)
+        yaxislabel = Text("values", font_size=16, color=WHITE).next_to(axes.y_axis.get_center(), LEFT)
+        xaxislabel = Text("categories", font_size=16, color=WHITE).next_to(axes.x_axis.get_center(), DOWN)
+
+        y_axis_label.shift(LEFT*0.25)
+        xaxislabel.shift(DOWN*0.1)
+
+        # Create bars and labels
+        bars1 = VGroup()
+        bars2 = VGroup()
+        bar_labels = VGroup()
+
+        for i, (value1, value2) in enumerate(zip(data1, data2)):
+            bar1 = Rectangle(
+                width=0.35,
+                height=value1,
+                fill_color=colors1[i],
+                fill_opacity=0.8,
+                stroke_width=0
+            ).move_to(axes.c2p(i - 0.2, 0), aligned_edge=DOWN)
+            bars1.add(bar1)
+
+            bar2 = Rectangle(
+                width=0.35,
+                height=value2,
+                fill_color=colors2[i],
+                fill_opacity=0.8,
+                stroke_width=0
+            ).move_to(axes.c2p(i + 0.2, 0), aligned_edge=DOWN)
+            bars2.add(bar2)
+
+            # Label for each bar group
+            # bar_label = Text(labels[i], font_size=16, color=WHITE).next_to(bar1, DOWN)
+            # bar_labels.add(bar_label)
+
+        # Add a title
+        title = Text("Double Bar Graph Example", font_size=24).to_edge(UP)
+        self.play(Write(title))
+        self.wait(1)
+
+        # Display elements
+        self.play(Create(axes), Write(x_axis_label), Write(y_axis_label))
+        self.play(Create(bars1), Create(bars2))
+        self.play(Write(xaxislabel), Write(yaxislabel))
+        self.play(Write(bar_labels))
+        
+        self.wait(4)
 
     # def piechart(self):
     #     self.isRandom = False
@@ -129,20 +188,19 @@ class DataHandling(AbstractAnim):
 
     def median(self):
         self.isRandom=False
-        self.positionChoice = [[0,2.5,0],[-4,0,0],[0,-2,0],[4,0,0],[4,-3,0]]
+        self.positionChoice = [[0,2.5,0],[-4,1,0],[-3,-2,0],[4,0,0],[4,-3,0]]
 
         p10=cvo.CVO().CreateCVO("Median","")
         p11=cvo.CVO().CreateCVO("Formulae","odd no. of observations, even no. of observations")
         p11.setcircleradius(1.5)
         p1111=cvo.CVO().CreateCVO("odd","(n+1)/2 th term,")
-        p1112=cvo.CVO().CreateCVO("even","((N/2)+1^th term + N/2^th term)/2").SetIsMathText(True)
-        p1112.setcircleradius(1.5)
+        p1112=cvo.CVO().CreateCVO("even", r"\left(\frac{\text{n/2-th term} + \text{(n/2 + 1)-th term}}{\phantom{00}2}\right)").SetIsMathText(True)
+        p1112.setcircleradius(2)
         p10.cvolist.append(p11)
         p11.cvolist.append(p1111)
         p11.cvolist.append(p1112)
         
         self.construct1(p10,p10)
-        self.fadeOutCurrentScene()
     
     def medani(self):
         title=Text("Median for even number of observations:").to_edge(UP)

@@ -39,7 +39,7 @@ class Integers(AbstractAnim):
         p11.setcircleradius(1.5)
         p10.cvolist.append(p11)
         self.construct1(p10, p10)
-
+    
     def Addition(self):
         self.positionChoice=[[-4,0,0],[0,0,0],[4,0,0]]        
         self.isRandom = False
@@ -58,18 +58,24 @@ class Integers(AbstractAnim):
         self.play(Write(title))
 
         examples = [
-            r"X + Y \quad \text{example:} 2+3 =5",
-            r"(-X) + Y \quad \text{example:} -2 + 3 = 1",
-            r"(-X) +(-Y) \quad \text{example:} -2 + -3 = -5",
-            r"X + (-Y) \quad \text{example:}2 + (-3) = -1"
+            r"X + Y \quad \text{example:}\quad 2+3 =5",
+            r"(-X) + Y \quad \text{example:} \quad -2 + 3 = 1",
+            r"(-X) +(-Y) \quad \text{example:} \quad -2 + -3 = -5",
+            r"X + (-Y) \quad \text{example:}\quad 2 + (-3) = -1"
         ]
         example1 = MathTex(examples[0]).scale(0.8).next_to(title, DOWN, buff=1)
         example2 = MathTex(examples[1]).scale(0.8).next_to(example1, DOWN, aligned_edge=LEFT, buff=0.5)
         example3 = MathTex(examples[2]).scale(0.8).next_to(example2, DOWN, aligned_edge=LEFT, buff=0.5)
         example4 = MathTex(examples[3]).scale(0.8).next_to(example3, DOWN, aligned_edge=LEFT, buff=0.5)
 
-
-        self.play(Write(example1), Write(example2), Write(example3), Write(example4))
+        self.play(Write(example1))
+        self.wait(1)
+        self.play(Write(example2))
+        self.wait(1)
+        self.play(Write(example3))
+        self.wait(1)
+        self.play(Write(example4))
+        self.wait(1)
 
         self.wait(3)
 
@@ -99,9 +105,15 @@ class Integers(AbstractAnim):
         example2 = MathTex(examples[1]).scale(0.8).next_to(example1, DOWN, aligned_edge=LEFT, buff=0.5)
         example3 = MathTex(examples[2]).scale(0.8).next_to(example2, DOWN, aligned_edge=LEFT, buff=0.5)
         example4 = MathTex(examples[3]).scale(0.8).next_to(example3, DOWN, aligned_edge=LEFT, buff=0.5)
-
-        self.play(Write(example1), Write(example2), Write(example3), Write(example4))
-
+        self.play(Write(example1))
+        self.wait(1)
+        self.play(Write(example2))
+        self.wait(1)
+        self.play(Write(example3))
+        self.wait(1)
+        self.play(Write(example4))
+        self.wait(1)
+ 
         self.wait(3)
 
     def Multiplication(self):
@@ -130,9 +142,15 @@ class Integers(AbstractAnim):
         example2 = MathTex(examples[1]).scale(0.8).next_to(example1, DOWN, aligned_edge=LEFT, buff=0.5)
         example3 = MathTex(examples[2]).scale(0.8).next_to(example2, DOWN, aligned_edge=LEFT, buff=0.5)
         example4 = MathTex(examples[3]).scale(0.8).next_to(example3, DOWN, aligned_edge=LEFT, buff=0.5)
-
-        self.play(Write(example1), Write(example2), Write(example3), Write(example4))
-
+        self.play(Write(example1))
+        self.wait(1)
+        self.play(Write(example2))
+        self.wait(1)
+        self.play(Write(example3))
+        self.wait(1)
+        self.play(Write(example4))
+        self.wait(1)
+ 
         self.wait(3)
 
 
@@ -162,9 +180,15 @@ class Integers(AbstractAnim):
         example2 = MathTex(examples[1]).scale(0.8).next_to(example1, DOWN, aligned_edge=LEFT, buff=0.5)
         example3 = MathTex(examples[2]).scale(0.8).next_to(example2, DOWN, aligned_edge=LEFT, buff=0.5)
         example4 = MathTex(examples[3]).scale(0.8).next_to(example3, DOWN, aligned_edge=LEFT, buff=0.5)
-
-        self.play(Write(example1), Write(example2), Write(example3), Write(example4))
-
+        self.play(Write(example1))
+        self.wait(1)
+        self.play(Write(example2))
+        self.wait(1)
+        self.play(Write(example3))
+        self.wait(1)
+        self.play(Write(example4))
+        self.wait(1)
+ 
         self.wait(3)
 
     def Introduction2(self):
@@ -196,7 +220,7 @@ class Integers(AbstractAnim):
 
 
     def Commutativeproperty(self):
-        self.setNumberOfCirclePositions(5)
+        self.positionChoice = [[-4,-2,0],[4,-2,0],[-4,2,0],[4,2,0],[0,0,0]]
         self.isRandom = False
 
         p10 = cvo.CVO().CreateCVO("Commutative for 2 integers", "2 , 3 ")
