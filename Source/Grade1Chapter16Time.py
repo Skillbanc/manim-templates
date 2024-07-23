@@ -14,14 +14,17 @@ import cvo
 config.max_files_cached = 800  # Change this number to your desired value
 
 
-class Grade1CH16Time(AbstractAnim):
+class Grade1Chapter16Time(AbstractAnim):
     def construct(self):
         self.RenderSkillbancLogo()
         self.fadeOutCurrentScene()
         self.time()
         self.fadeOutCurrentScene()
         self.Hour()
+        self.fadeOutCurrentScene()
         self.Minutes()
+        self.fadeOutCurrentScene()
+        self.intro()
         self.fadeOutCurrentScene()
         self.intro1()
         self.fadeOutCurrentScene()
@@ -36,6 +39,9 @@ class Grade1CH16Time(AbstractAnim):
         self.SourceCodeFileName="Grade1Chapter16Time.py"   
         
     def time(self):
+        
+        self.isRandom = False
+        self.angleChoice = [TAU/4]
         p10=cvo.CVO().CreateCVO("Time", "").setPosition([-3,1.5,0])
         p11=cvo.CVO().CreateCVO("Definition", "Time helps us understand when things happen\nand how long they take.").setPosition([2,-1.5,0])
         
@@ -47,79 +53,28 @@ class Grade1CH16Time(AbstractAnim):
         title = Text("Hours", font_size=36).to_edge(UP)
         self.play(Create(title))
         self.isRandom = False
-        self.angleChoice = [TAU/2]
-        p10=cvo.CVO().CreateCVO("Hours", "1").setPosition([-4.5,1.5,0])
-        p11=cvo.CVO().CreateCVO("Minutes", "60").setPosition([-4.5,-1.5,0])
-        
-        p10.cvolist.append(p11)
-        
-        p10.setcircleradius(1)
-        p11.setcircleradius(1)
-       
-        self.setNumberOfCirclePositions(2)
-        self.construct1(p10,p10)
-
-
-        # Create clock face
-        clock_face = Circle(radius=2, color=WHITE)
-        self.play(Create(clock_face))
-
-        # Create hour and minute labels
-        hour_labels = VGroup()
-        for hour in range(1, 13):
-            angle = (hour / 12) * TAU  # Convert hour to angle in radians
-            label = Text(str(hour), font_size=24)
-            label.move_to(2.3 * np.array([np.sin(angle), np.cos(angle), 0]))
-            hour_labels.add(label)
-
-        
-
-        self.play(Create(hour_labels))
-        
-
-        # Create hour, minute, and second hands
-        hour_hand = Line(ORIGIN, 0.5 * UP, color=RED, stroke_width=8)
-        minute_hand = Line(ORIGIN, RIGHT, color=BLUE, stroke_width=6)
-        second_hand = Line(ORIGIN, 1.2 * DOWN, color=GREEN, stroke_width=4)
-        self.play(Create(hour_hand))
-        self.wait(2)
-        self.play(Create (minute_hand))
-        self.wait(2)
-        self.play(Create(second_hand))
-        self.wait(2)
-
-        # Animation of the clock
-        def update_clock(mob, dt):
-            # Update time
-            mob.second += dt
-            total_seconds = mob.second
-            # Calculate the angles for each hand
-            hour_angle =  PI * (total_seconds / 3600) / 12
-            minute_angle = -2 * PI * (total_seconds / 60) / 60
-            second_angle = -4 * PI * (total_seconds % 60) / 60
-            # Rotate hands
-            hour_hand.set_angle(hour_angle)
-            minute_hand.set_angle(minute_angle)
-            second_hand.set_angle(second_angle)
-
-        clock = VGroup(hour_hand, minute_hand, second_hand)
-        clock.second = 0
-        clock.add_updater(update_clock)
-
-        self.add(clock)
-        self.wait(5)  # Run the animation for 5 seconds
-        
-        
-        self.fadeOutCurrentScene()
-
+        self.angleChoice = [TAU/4]
+        p10 = cvo.CVO().CreateCVO("Hours", "1").setPosition([-2,0,0])
+        p11 = cvo.CVO().CreateCVO("Minutes", "60").setPosition([2,0,0])
     
+        p10.cvolist.append(p11)
+    
+        p10.setcircleradius(1)
+        
+        p11.setcircleradius(1)
+   
+        self.setNumberOfCirclePositions(2)
+        self.construct1(p10, p10)
+
+
     def Minutes(self):
         title = Text("Minutes", font_size=36).to_edge(UP)
         self.play(Create(title))
         
         self.isRandom = False
-        p10=cvo.CVO().CreateCVO("Minutes", "1").setPosition([-4.5,1.5,0])
-        p11=cvo.CVO().CreateCVO("Seconds", "60").setPosition([-4.5,-1.5,0])
+        self.angleChoice = [TAU/4]
+        p10=cvo.CVO().CreateCVO("Minutes", "1").setPosition([-2,0,0])
+        p11=cvo.CVO().CreateCVO("Seconds", "60").setPosition([2,0,0])
         p10.cvolist.append(p11)
         
         p10.setcircleradius(1)
@@ -128,76 +83,83 @@ class Grade1CH16Time(AbstractAnim):
         self.setNumberOfCirclePositions(2)
         self.construct1(p10,p10)
 
+    def intro(self):
+        title = Text("CLOCK", font_size=36).to_edge(UP)
+        self.play(Create(title))
         
-        # Create clock face
-        clock_face = Circle(radius=2, color=WHITE)
-        self.play(Create(clock_face))
+        circle = Circle(radius=2, color=WHITE)
+    
+        # Add numbers inside the clock with correct positioning
+        numbers = VGroup()
+        for i in range(1, 13):  # Start from 12, go counter-clockwise
+            angle = i * TAU / 12  # Start from top (12 o'clock position)
+            number = Text(str(i), font_size=24)
+            number_pos = circle.get_center() + 1.7 * np.array([np.sin(angle), np.cos(angle), 0])
+            number.move_to(number_pos)
+            numbers.add(number)
 
+        # Create clock hands (one-sided arrows)
+        hour_hand = Arrow(start=ORIGIN, end=UP, buff=0, color=BLUE).scale(0.8)
+        minute_hand = Arrow(start=ORIGIN, end=UP, buff=0, color=GREEN).scale(1.2)
+        second_hand = Arrow(start=ORIGIN, end=UP, buff=0, color=RED).scale(1.4)
 
-        minute_labels = VGroup()
-        for minute in range(5, 61, 5):
-            angle = (minute / 60) * TAU  # Convert minute to angle in radians
-            label = Text(str(minute), font_size=16, color=YELLOW)
-            label.move_to(2.3 * np.array([np.sin(angle), np.cos(angle), 0]))
-            minute_labels.add(label)
+        # Rotate hands to show a specific time (e.g., 3:25:45)
+        hour_hand.rotate(angle=-PI/2 + (3/12 + 25/720) * 2*PI, about_point=ORIGIN)
+        minute_hand.rotate(angle=-PI/2 + (25/60) * 2*PI, about_point=ORIGIN)
+        second_hand.rotate(angle=-PI/2 + (45/60) * 2*PI, about_point=ORIGIN)
 
-        
-        self.play(Create(minute_labels))
+        hands = VGroup(hour_hand, minute_hand, second_hand)
 
-        # Create hour, minute, and second hands
-        hour_hand = Line(ORIGIN, 0.5 * UP, color=RED, stroke_width=8)
-        minute_hand = Line(ORIGIN, RIGHT, color=BLUE, stroke_width=6)
-        second_hand = Line(ORIGIN, 1.2 * DOWN, color=GREEN, stroke_width=4)
-        self.play(Create(hour_hand))
-        self.wait(2)
-        self.play(Create (minute_hand))
-        self.wait(2)
-        self.play(Create(second_hand))
-        self.wait(2)
+        # Create rectangular box for hand labels
+        box = Rectangle(height=1.5, width=4, color=WHITE).to_corner(UR, buff=0.5)
+    
+        # Create hand labels
+        hour_label = Text("Hour hand", color=BLUE, font_size=24)
+        minute_label = Text("Minute hand", color=GREEN, font_size=24)
+        second_label = Text("Second hand", color=RED, font_size=24)
+    
+        labels = VGroup(hour_label, minute_label, second_label).arrange(DOWN, aligned_edge=LEFT).move_to(box)
+    
+        # Group box and labels
+        box_group = VGroup(box, labels)
 
-        # Animation of the clock
-        def update_clock(mob, dt):
-            # Update time
-            mob.second += dt
-            total_seconds = mob.second
-            # Calculate the angles for each hand
-            hour_angle =  PI * (total_seconds / 3600) / 12
-            minute_angle = -2 * PI * (total_seconds / 60) / 60
-            second_angle = -4 * PI * (total_seconds % 60) / 60
-            # Rotate hands
-            hour_hand.set_angle(hour_angle)
-            minute_hand.set_angle(minute_angle)
-            second_hand.set_angle(second_angle)
+        # Animate the clock elements one by one
+        self.play(Create(circle))
+        self.wait(0.5)
+    
+        self.play(Write(numbers))
+        self.wait(0.5)
+    
+        self.play(Create(hands))
+        self.wait(0.5)
 
-        clock = VGroup(hour_hand, minute_hand, second_hand)
-        clock.second = 0
-        clock.add_updater(update_clock)
+        # Animate the box and labels
+        self.play(Create(box), Write(labels))
 
-        self.add(clock)
-        self.wait(5)  # Run the animation for 5 seconds
-        
-
-        self.fadeOutCurrentScene() 
+        # Display for 5 seconds
+        self.wait(5)
     
     def intro1(self):
-        title = Text("let us learn how to tell time", font_size=36).to_edge(UP)
+        title = Text("Let us learn how to tell time", font_size=36).to_edge(UP)
         self.play(Create(title))
         
          # Create the clock and initial time
         clock, hour_hand, minute_hand = self.create_clock()
-        time_label = Text("1:00").scale(0.5).next_to(clock, DOWN)
+        label = Text("12:00").scale(0.5).next_to(clock, DOWN)
         
-        self.play(Create(clock), Write(time_label))
+        self.play(Create(clock), Write(label))
         self.wait(1)
 
-        # Define hour and minute hands with labels
-        hour_text = Text("Hour hand", color=BLUE, font_size=24).next_to(clock, DOWN, buff=0.5)
-        minute_text = Text("Minute hand", color=RED, font_size=24).next_to(hour_text, DOWN, buff=0.5)
+        # Create the clock and initial time
+        initial_time = "12:00"
+        time_label_prefix = "It is showing "
+        final_time = "pm"
+        time_label = Text(f"{time_label_prefix}{initial_time}{final_time}").scale(0.5).next_to(clock, LEFT, buff=1)
+        time_box = SurroundingRectangle(time_label, color=WHITE, buff=0.2)
         
-        self.play(Write(hour_text), Indicate(hour_hand, color=BLUE, scale_factor=1.2))
-        self.play(Write(minute_text), Indicate(minute_hand, color=RED, scale_factor=1.2))
-        self.wait(2)
-        
+        self.play( Write(time_label), Create(time_box))
+        self.wait(1)
+
         # Define times and corresponding transformations
         times = [
             (1, 0, "1:00"), 
@@ -210,15 +172,18 @@ class Grade1CH16Time(AbstractAnim):
         
         for hour, minute, time_text in times:
             new_hour_hand, new_minute_hand = self.create_clock_hands(hour, minute)
-            new_time_label = Text(time_text).scale(0.5).next_to(clock, DOWN)
+            new_label = Text(time_text).scale(0.5).next_to(clock, DOWN)
+            new_time_label = Text(f"{time_label_prefix}{time_text}{final_time}").scale(0.5).move_to(time_label, LEFT)
+            new_time_box = SurroundingRectangle(new_time_label, color=WHITE, buff=0.2).move_to(time_box)
 
-            self.play(Transform(hour_hand, new_hour_hand), Transform(minute_hand, new_minute_hand), Transform(time_label, new_time_label))
-            self.wait(1)
-
-        # Conclusion
-        conclusion = Text("Now you can read different times!", font_size=24).next_to(clock, DOWN, buff=1.5)
-        self.play(Transform(hour_text, conclusion), FadeOut(minute_text))
-        self.wait(3)
+            self.play(
+                Transform(hour_hand, new_hour_hand), 
+                Transform(minute_hand, new_minute_hand), 
+                Transform(label, new_label),
+                Transform(time_label, new_time_label), 
+                Transform(time_box, new_time_box)
+            )
+            self.wait(2)
 
     def create_clock(self):
         clock = VGroup()
@@ -232,17 +197,17 @@ class Grade1CH16Time(AbstractAnim):
             number = Text(str(num), font_size=24).move_to(number_position)
             numbers.add(number)
 
-        # Create initial hour and minute hands with different colors
-        hour_hand = Line(ORIGIN, UP * 0.7, color=BLUE).set_stroke(width=8)
-        minute_hand = Line(ORIGIN, UP * 1.3, color=RED).set_stroke(width=5)
+        # Create clock hands (one-sided arrows)
+        hour_hand = Arrow(start=ORIGIN, end=UP * 0.8, buff=0, color=BLUE)
+        minute_hand = Arrow(start=ORIGIN, end=UP * 1.2, buff=0, color=GREEN)
         
         clock.add(circle, numbers, hour_hand, minute_hand)
         return clock, hour_hand, minute_hand
 
     def create_clock_hands(self, hour, minute):
-        # Create new hour and minute hands for transformation
-        hour_hand = Line(ORIGIN, UP * 0.7, color=BLUE).set_stroke(width=8)
-        minute_hand = Line(ORIGIN, UP * 1.3, color=RED).set_stroke(width=5)
+        # Create clock hands (one-sided arrows)
+        hour_hand = Arrow(start=ORIGIN, end=UP * 0.8, buff=0, color=BLUE)
+        minute_hand = Arrow(start=ORIGIN, end=UP * 1.2, buff=0, color=GREEN)
 
         # Adjust the rotation of the hands
         hour_angle = (hour % 12 + minute / 60) * 30 * DEGREES
@@ -281,5 +246,5 @@ class Grade1CH16Time(AbstractAnim):
         self.construct1(p10,p10)    
     
 if __name__ == "__main__":
-    scene = Grade1CH16Time()
+    scene = Grade1Chapter16Time()
     scene.render()
