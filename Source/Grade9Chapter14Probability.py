@@ -51,7 +51,7 @@ class ProbabilityAnim(AbstractAnim):
     def Equal(self):
         self.isRandom = False
         self.angleChoice=[TAU/5,TAU/5]
-        p10=cvo.CVO().CreateCVO("Equally Likely Outcomes","").setPosition([3,1.7,0])
+        p10=cvo.CVO().CreateCVO("Equally Likely Outcomes","").setPosition([-3,1.7,0])
         p11=cvo.CVO().CreateCVO("Definition","Having Equal Chances to occur").setPosition([3,1.7,0])
         p12=cvo.CVO().CreateCVO("Example","Rolling a Dice").setPosition([-3,-1.7,0])
         p13=cvo.CVO().CreateCVO("Outcome","Each number has equal chance to occur").setPosition([3,-1.7,0])
@@ -95,8 +95,8 @@ class ProbabilityAnim(AbstractAnim):
         p10.cvolist.append(p11)
         p12.cvolist.append(p13)
 
-        p11.setcircleradius(1.5)
-        p12.setcircleradius(1.5)
+        p11.setcircleradius(1.7)
+        p13.setcircleradius(1.7)
 
         self.setNumberOfCirclePositions(4)
 
