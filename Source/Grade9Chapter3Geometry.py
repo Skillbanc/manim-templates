@@ -188,17 +188,29 @@ class geometry(AbstractAnim):
 
     def postulate_5(self):
         title = Text("Euclid's Fifth Postulate", font_size=36).to_edge(UP)
-        description = Text("If a straight line falling on two straight lines makes the interior angles on the same side less than two right angles, the two straight lines, if extended indefinitely, meet on that side.", font_size=24).scale(0.5).next_to(title, DOWN)
+        description = Text("If a straight line falling on two straight lines makes the interior angles on the \n\n same side less than two right angles, the two straight lines, if extended indefinitely, meet on that side.", font_size=24).scale(0.7).next_to(title, DOWN)
         
-        pic= "media/images/euclid5.svg"
-
-        postulate = SVGMobject(pic).scale(1).move_to([0,0,0])
 
         self.play(Write(title),Write(description))
-        self.play(Create(postulate))
+
+        line_1 = Line(LEFT * 3, RIGHT * 3)
+        line_2 = Line(LEFT * 3 + DOWN , RIGHT * 3 + DOWN * 2)
+        transversal = Line(LEFT + DOWN * 2, RIGHT + UP * 2)
+
+        lines = VGroup(line_1, line_2, transversal).scale(0.8)
+        self.play(Create(lines))
+
+        angles = [
+            Angle(line_1, transversal, radius=0.5, quadrant=(-1,-1), other_angle=False, color=YELLOW),
+            Angle(line_2, transversal, radius=0.5, quadrant=(-1,1), other_angle=True, color=GREEN)]
+        
+        labels = [
+            MathTex(r"\angle 1").next_to(angles[0].point_from_proportion(0.5), UP*2 +LEFT, buff=0.2),
+            MathTex(r"\angle 2").next_to(angles[1].point_from_proportion(0.5), DOWN*3+ LEFT*2, buff=0.2)]
+        
+        self.play(Create(VGroup(*angles, *labels)))
         self.wait(2)
         self.fadeOutCurrentScene()
-
 
     def SetDeveloperList(self):
         self.DeveloperList="Bhaskar"
