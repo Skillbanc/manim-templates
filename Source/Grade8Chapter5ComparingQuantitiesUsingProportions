@@ -475,22 +475,35 @@ class Grade8Ch5ComparingQuantitiesUsingProportions(AbstractAnim):
         self.wait(2)
         
     def compoundinterest(self):
-        self.colorChoice=[RED,BLUE,GREEN,PURPLE]
+        self.colorChoice=[RED,BLUE,PURPLE]
         self.isRandom = False
-        self.angleChoice=[TAU/2,TAU/5,TAU/5]
-        p3 = cvo.CVO().CreateCVO("Compound Interest", "").setPosition([-5,2.4,0])
-        p4 = cvo.CVO().CreateCVO("Formula", "Amount - Principal").setPosition([-3,-2,0])
-        p5 = cvo.CVO().CreateCVO("Amount(Annually)", "$p(1 + r/100)^t$").setPosition([5,-2,0])
-        p9 = cvo.CVO().CreateCVO("Amount(Half yearly)", "$p(1 + (r/2)/100)^{2t}$").setPosition([4,1.9,0])
+        self.angleChoice=[TAU/2,TAU/5]
+        p3 = cvo.CVO().CreateCVO("Interest", "").setPosition([-5,2.4,0])
+        p4 = cvo.CVO().CreateCVO("Formula", "Amount - Principal").setPosition([-3.5,-1.5,0])
+        p9 = cvo.CVO().CreateCVO("Amount Formula", "$p(1 + (r/n)/100))^{nt}$").setPosition([4,1.9,0])
         p3.cvolist.append(p4)
-        p4.cvolist.append(p5)
         p4.cvolist.append(p9)
-        self.setNumberOfCirclePositions(4)
+        self.setNumberOfCirclePositions(3)
         p4.setcircleradius(2)
         p9.setcircleradius(2)
         # self.setNumberOfAngleChoices(9)
         self.construct1(p3,p3)
         self.wait(1)
+        t= Text(" Note : ",font_size=25,color=PINK)
+        t.move_to([1,-1.5, 0])
+        self.play(Write(t))
+        t1= Text("r  is  rate  of  interest.",font_size=20)
+        t1.move_to([1.4,-2, 0])
+        self.play(Write(t1))
+        self.wait(1)
+        t2= Text(" n is  the  frequency  per year  the  interest  is  calculated.",font_size=20)
+        t2.move_to([3.6,-2.5, 0])
+        self.play(Write(t2))
+        self.wait(1)
+        t3= Text(" t is the number  of  years. ",font_size=20)
+        t3.move_to([1.7,-3, 0])
+        self.play(Write(t3))
+        self.wait(1.5)
         
     def exampleci(self):
         t= Text(" Example : ",font_size=30,color=PINK)
@@ -500,8 +513,8 @@ class Grade8Ch5ComparingQuantitiesUsingProportions(AbstractAnim):
         t1.move_to([-1,2, 0])
         self.play(Write(t1))
         self.wait(1)
-        t2= MathTex(r" \text{Solution} : Given ,  Principal = 5000; Rate = 8%  and  Time(n or t) = 2 years ",font_size=30)
-        t2.move_to([-3.5,1.3, 0])
+        t2= Text(" Solution : Given ,  Principal = 5000 ; Rate = 8% ; Time  = 2 years ",font_size=20)
+        t2.move_to([-3,1.3, 0])
         self.play(Write(t2))
         self.wait(1)
         t3= MathTex(r" \text{Amount}  = p(1 + r/100)^t ",font_size=30)
@@ -512,7 +525,7 @@ class Grade8Ch5ComparingQuantitiesUsingProportions(AbstractAnim):
         t4.move_to([-3.2,-0.3, 0])
         self.play(Write(t4))
         self.wait(1)
-        t5= MathTex(r" \text{Interest earned}= Amount – Principal ",font_size=30)
+        t5= Text("Interest earned= Amount – Principal ",font_size=20)
         t5.move_to([-4.2,-1, 0])
         self.play(Write(t5))
         self.wait(1)
