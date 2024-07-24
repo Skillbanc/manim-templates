@@ -110,7 +110,7 @@ class Grade5Chapter17TripToGolkonda1(AbstractAnim):
         self.play(FadeIn(heading1))
         self.isRandom = False
         self.angleChoice = [-TAU/2,-TAU/4]
-        p10=cvo.CVO().CreateCVO("total people ","61 students+\n3 students\n= 64").setPosition([4.6,-2,0])
+        p10=cvo.CVO().CreateCVO("total people ","61 students+\n3 teachers\n= 64").setPosition([4.6,-2,0])
         p11=cvo.CVO().CreateCVO("ticket cost per person","40 INR").setPosition([1.5,-2,0])
         p12=cvo.CVO().CreateCVO("Total ticket cost","64 people x 40 INR/person\n= 2560 INR").setPosition([3,1,0]).setangle(-TAU/4)
         p10.cvolist.append(p11)
@@ -357,8 +357,8 @@ class Grade5Chapter17TripToGolkonda1(AbstractAnim):
         self.play(FadeIn(heading))
         self.isRandom = False
         self.angleChoice = [-TAU/2]
-        p10=cvo.CVO().CreateCVO("school boundary","l=100,b=100").setPosition([-4.5,1,0])
-        p11=cvo.CVO().CreateCVO("perimeter","2(100+100)=400").setPosition([-4.5,-2,0])
+        p10=cvo.CVO().CreateCVO("school boundary","l=1km,b=1km").setPosition([-4.5,1,0])
+        p11=cvo.CVO().CreateCVO("perimeter","2(1+1)=4km").setPosition([-4.5,-2,0])
         p11.setcircleradius(1.5)
         p10.cvolist.append(p11)
         
@@ -366,8 +366,8 @@ class Grade5Chapter17TripToGolkonda1(AbstractAnim):
         
         self.isRandom = False
         self.angleChoice = [-TAU/2]
-        p12=cvo.CVO().CreateCVO("fort boundary ","l=3000,b=2000").setPosition([4.6,1,0])
-        p13=cvo.CVO().CreateCVO("perimeter","2(3000+2000)=10000").setPosition([4.6,-2,0])
+        p12=cvo.CVO().CreateCVO("fort boundary ","l=30km,b=20km").setPosition([4.6,1,0])
+        p13=cvo.CVO().CreateCVO("perimeter","2(30+20)=100km").setPosition([4.6,-2,0])
         p13.setcircleradius(1.5)
         p12.cvolist.append(p13)
         
