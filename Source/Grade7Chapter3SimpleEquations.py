@@ -10,7 +10,6 @@ class simpleEquation(AbstractAnim):
         self.RenderSkillbancLogo()
         self.gen()
         self.Equ()
-        self.solve()
         self.transpose1()
         self.ADD()
         self.SUB()
@@ -58,16 +57,6 @@ class simpleEquation(AbstractAnim):
         self.construct1(p1,p1)
         self.fadeOutCurrentScene()
 
-    def solve(self):
-        self.isRandom=False
-
-        text = Text("Solve the equation x + 3 = 7").scale(1).move_to([0,3,0])
-        e1 = Text("L.H.S is x + 3 \n\n x + 3 = 7 \n\n x + 3 - 3 = 7 - 3 \n\n x = 7 - 3 \n\n x = 4").scale(0.7)
-
-        self.play(Write(text))
-        self.play(Write(e1))
-        self.wait(2)
-        self.fadeOutCurrentScene()
 
     def transpose1(self):
 
@@ -77,42 +66,90 @@ class simpleEquation(AbstractAnim):
     def ADD(self):
         
         t1 = Text("1. '+ quantity' becomes '- quantity'").scale(0.7).move_to([0,2,0])
-        eg = Text("example:").move_to([-5,1,0]).scale(0.7)
-        eg1 = Text("x + 3 = 5 \n\n On Transposing 3 from L.H.S to R.H.S it becomes -3 \n\n x = 5 - 3 \n\n x = 2").scale(0.7).move_to([0,-1,0])
+        eg = Text("Example:").move_to([-5,1,0]).scale(0.7)
+        eg1 = Text("x + 3 = 5 ").scale(0.7).move_to([0,0,0])
+        eg2 = Text("On Transposing 3 from L.H.S to R.H.S it becomes -3").scale(0.7).next_to(eg1,DOWN)
+        eg3 = Text("x = 5 - 3").scale(0.7).next_to(eg2,DOWN)
+        eg4 = Text("x = 2").scale(0.7).next_to(eg3,DOWN)
 
         self.play(FadeIn(t1))
-        self.play(FadeIn(eg),FadeIn(eg1),Wait(2))
-        self.play(FadeOut(t1),FadeOut(eg),FadeOut(eg1))
+        self.play(FadeIn(eg))
+        self.wait(1)
+        self.play(FadeIn(eg1))
+        self.wait(1)
+        self.play(FadeIn(eg2))
+        self.wait(1)
+        self.play(FadeIn(eg3))
+        self.wait(1)
+        self.play(FadeIn(eg4))
+        self.wait(2)
+        self.play(FadeOut(t1),FadeOut(eg),FadeOut(eg1),FadeOut(eg2),FadeOut(eg3),FadeOut(eg4))
 
         
     def SUB(self):
         
         t1 = Text("1. '- quantity' becomes '+ quantity'").scale(0.7).move_to([0,2,0])
         eg = Text("example:").move_to([-5,1,0]).scale(0.7)
-        eg1 = Text("x - 3 = 4 \n\n On Transposing -3 from L.H.S to R.H.S it becomes +3 \n\n x = 4 + 3 \n\n x = 7").scale(0.7).move_to([0,-1,0])
+        eg1 = Text("x - 3 = 4 ").scale(0.7).move_to([0,0,0])
+        eg2 = Text("On Transposing -3 from L.H.S to R.H.S it becomes +3").scale(0.7).next_to(eg1,DOWN)
+        eg3 = Text("x = 4 + 3").scale(0.7).next_to(eg2,DOWN)
+        eg4 = Text("x = 7").scale(0.7).next_to(eg3,DOWN)
 
         self.play(FadeIn(t1))
-        self.play(FadeIn(eg),FadeIn(eg1),Wait(2))
-        self.play(FadeOut(t1),FadeOut(eg),FadeOut(eg1))
+        self.play(FadeIn(eg))
+        self.wait(1)
+        self.play(FadeIn(eg1))
+        self.wait(1)
+        self.play(FadeIn(eg2))
+        self.wait(1)
+        self.play(FadeIn(eg3))
+        self.wait(1)
+        self.play(FadeIn(eg4))
+        self.wait(2)
+        self.play(FadeOut(t1),FadeOut(eg),FadeOut(eg1),FadeOut(eg2),FadeOut(eg3),FadeOut(eg4))
 
     def MUL(self):
         t1 = Text("1. ‘× quantity’ becomes ÷ quantity").scale(0.7).move_to([0,2,0])
         eg = Text("example:").move_to([-5,1,0]).scale(0.7)
-        eg1 = Text("x ×  3 = 15 \n\n On Transposing 3 from L.H.S to R.H.S it becomes 1/3 \n\n x = 15/ 3 \n\n x = 5").scale(0.7).move_to([0,-1,0])
+        eg1 = Text("x × 3 = 15 ").scale(0.7).move_to([0,0,0])
+        eg2 = Text("On Transposing 3 from L.H.S to R.H.S it becomes 1/3").scale(0.7).next_to(eg1,DOWN)
+        eg3 = Text("x = 15 / 3").scale(0.7).next_to(eg2,DOWN)
+        eg4 = Text("x = 5").scale(0.7).next_to(eg3,DOWN)
 
         self.play(FadeIn(t1))
-        self.play(FadeIn(eg),FadeIn(eg1),Wait(2))
-        self.play(FadeOut(t1),FadeOut(eg),FadeOut(eg1))
+        self.play(FadeIn(eg))
+        self.wait(1)
+        self.play(FadeIn(eg1))
+        self.wait(1)
+        self.play(FadeIn(eg2))
+        self.wait(1)
+        self.play(FadeIn(eg3))
+        self.wait(1)
+        self.play(FadeIn(eg4))
+        self.wait(2)
+        self.play(FadeOut(t1),FadeOut(eg),FadeOut(eg1),FadeOut(eg2),FadeOut(eg3),FadeOut(eg4))
 
     def DIV(self):
        
         t1 = Text("1. ‘÷ quantity’ becomes ‘ × quantity’").scale(0.7).move_to([0,2,0])
         eg = Text("example:").move_to([-5,1,0]).scale(0.7)
-        eg1 = Text("x ÷ 3 = 5 \n\n On Transposing 1/3 from L.H.S to R.H.S it becomes 3 \n\n x = 5 * 3 \n\n x = 15").scale(0.7).move_to([0,-1,0])
+        eg1 = Text("x ÷ 3 = 5 ").scale(0.7).move_to([0,0,0])
+        eg2 = Text("On Transposing 3 from L.H.S to R.H.S it becomes ×3").scale(0.7).next_to(eg1,DOWN)
+        eg3 = Text("x = 5 × 3").scale(0.7).next_to(eg2,DOWN)
+        eg4 = Text("x = 15").scale(0.7).next_to(eg3,DOWN)
 
         self.play(FadeIn(t1))
-        self.play(FadeIn(eg),FadeIn(eg1),Wait(2))
-        self.play(FadeOut(t1),FadeOut(eg),FadeOut(eg1))
+        self.play(FadeIn(eg))
+        self.wait(1)
+        self.play(FadeIn(eg1))
+        self.wait(1)
+        self.play(FadeIn(eg2))
+        self.wait(1)
+        self.play(FadeIn(eg3))
+        self.wait(1)
+        self.play(FadeIn(eg4))
+        self.wait(2)
+        self.play(FadeOut(t1),FadeOut(eg),FadeOut(eg1),FadeOut(eg2),FadeOut(eg3),FadeOut(eg4))
         self.fadeOutCurrentScene()
 
     def SetDeveloperList(self):
