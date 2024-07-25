@@ -12,14 +12,12 @@ from AbstractAnim import AbstractAnim
 import cvo
 
 
-class Smarttable(AbstractAnim):
+class Grade4chapter13Smarttables(AbstractAnim):
     
     def construct(self):
         self.RenderSkillbancLogo()
         self.fadeOutCurrentScene()
         self.Title()
-        self.fadeOutCurrentScene()
-        self.define()
         self.fadeOutCurrentScene()
         self.t1()
         self.fadeOutCurrentScene()
@@ -54,6 +52,7 @@ class Smarttable(AbstractAnim):
         self.question()
         self.fadeOutCurrentScene()
         self.GithubSourceCodeReference()
+        
 
 
 
@@ -70,73 +69,6 @@ class Smarttable(AbstractAnim):
         self.wait(2)
 
 
-
-
-    def define(self):
-    #          # Create question text
-    #   a = Text(" Smart tables in mathematics typically refer to an innovative approach to learning and practicing multiplication facts.", color=WHITE).scale(0.65)
-    #   a.to_edge( UP*3.7+LEFT)
-
-        
-    #from manim import *
-
-        # Title
-        title = Text("Smart Tables", font_size=60, color=BLUE)
-        subtitle = Text("Reinventing Multiplication Learning And Practice", font_size=32)
-        title_group = VGroup(title, subtitle).arrange(DOWN)
-        self.play(Write(title_group))
-        self.play(title_group.animate.to_edge(UP))
-
-        # Create dynamic multiplication circles
-        circles = VGroup(*[Circle(radius=0.5, color=WHITE) for _ in range(12)])
-        circles.arrange_in_grid(rows=3, cols=4, buff=0.5)
-        numbers = VGroup(*[Text(str(i), font_size=24) for i in range(1, 13)])
-        for number, circle in zip(numbers, circles):
-            number.move_to(circle.get_center())
-
-        self.play(Create(circles), Write(numbers))
-
-        # Animate connections between circles
-        connections = VGroup()
-        for i in range(len(circles)):
-            for j in range(i+1, len(circles)):
-                line = Line(circles[i].get_center(), circles[j].get_center(), stroke_width=1, color=YELLOW)
-                connections.add(line)
-
-        self.play(Create(connections))
-
-        # Key features
-        features = [
-            "Interactive",
-            "Pattern Recognition",
-            "Adaptive Learning",
-            "Visual Aids",
-            "Instant Feedback"
-        ]
-        feature_texts = VGroup(*[Text(feature, font_size=28) for feature in features])
-        feature_texts.arrange(DOWN, aligned_edge=LEFT, buff=0.5)
-        feature_texts.to_edge(LEFT)
-
-        for feature in feature_texts:
-            self.play(Write(feature))
-            circle = Circle(radius=0.12, color=GREEN)
-            circle.next_to(feature, LEFT)
-            self.play(Create(circle))
-
-        # Animated multiplication example
-        example = Text("3 × 4 = 12", font_size=48, color=YELLOW)
-        example.to_edge(RIGHT)
-        self.play(Write(example))
-
-        highlight_circles = VGroup(circles[2], circles[3], circles[11])
-        self.play(highlight_circles.animate.set_color(YELLOW))
-
-        # Final message
-        final_message = Text("Efficient, Engaging, and Fun!", font_size=40, color=PINK)
-        final_message.to_edge(DOWN)
-        self.play(Write(final_message))
-
-        self.wait(3)
 
     
     def t1(self):
@@ -393,14 +325,23 @@ class Smarttable(AbstractAnim):
         
         # Add the title
         title = Text("Types of houses ",  color=YELLOW).scale(0.85)
-        title.next_to(table, UP)
+        title.to_edge( UP)
 
         # Create the scene
         self.play(Write(title))
         self.wait(2)
+        # Add the title
+        title1 = Text("In a small village, there are 3 types of houses. The information has been\n given below. With the help of tally marks fill this tables.",  color=ORANGE).scale(0.57)
+        title1.next_to(table, UP)
+
+        # Create the scene
+        self.play(Write(title1))
+        self.wait(5)
         self.play(Create(table))
         self.wait(5)
         
+
+
 
 
 
@@ -720,12 +661,6 @@ class Smarttable(AbstractAnim):
         self.wait(2)
 
 
-
-
-
-
-
-
     def box(self):
       
         chart = BarChart(
@@ -739,7 +674,7 @@ class Smarttable(AbstractAnim):
 
         c_bar_lbls = chart.get_bar_labels(font_size=36)
         # Add the title
-        title = Text("How much oil is in stock?",  color=ORANGE).scale(0.4)
+        title = Text("How much oil is in stock?",  color=ORANGE).scale(0.5)
         title.to_edge(UP*0.5)
 
         
@@ -842,4 +777,4 @@ class Smarttable(AbstractAnim):
 if __name__ == "__main__":
     from manim import config
     config.background_color = BLACK
-    Smarttable().render()
+    Grade4chapter13Smarttables().render()
