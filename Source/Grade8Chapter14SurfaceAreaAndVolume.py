@@ -2,7 +2,7 @@ from manim import *
 from AbstractAnim import AbstractAnim
 import cvo
 
-class SAV(AbstractAnim):
+class Surfaceareaandvolume(AbstractAnim):
 
     def construct(self):
         self.RenderSkillbancLogo()
@@ -457,5 +457,5 @@ class SAV(AbstractAnim):
         self.SourceCodeFileName="Grade8Chapter14SurfaceAreaAndVolume.py"
 
 if __name__ == "__main__":
-    scene = SAV()
+    scene = Surfaceareaandvolume()
     scene.render()

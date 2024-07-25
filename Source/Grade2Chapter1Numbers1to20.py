@@ -2,11 +2,13 @@ from manim import *
 from AbstractAnim import AbstractAnim
 import cvo
 
-class numbers(AbstractAnim):
+class Grade2Chapter1Numbers1to20(AbstractAnim):
 
     def construct(self):
 
         self.RenderSkillbancLogo()
+        self.fadeOutCurrentScene()
+        self.numbdef()
         self.fadeOutCurrentScene()
         self.six()
         self.fadeOutCurrentScene()
@@ -14,6 +16,21 @@ class numbers(AbstractAnim):
         self.fadeOutCurrentScene()
         self.count()
         self.fadeOutCurrentScene()
+        self.numb()
+        self.fadeOutCurrentScene()
+        self.roundnumbers()
+        self.fadeOutCurrentScene()
+        self.smallbig()
+        self.fadeOutCurrentScene() 
+        self.GithubSourceCodeReference()
+
+
+    def numbdef(self):
+
+        p10 = cvo.CVO().CreateCVO("Numbers", "").setPosition([-3,1,0])
+        p11 = cvo.CVO().CreateCVO("Definition", "A symbol representing quantity or amount").setPosition([3,1,0])
+        p10.cvolist.append(p11)
+        self.construct1(p10,p10)
 
 
     def six(self):
@@ -63,7 +80,7 @@ class numbers(AbstractAnim):
         self.wait(2)
 
         #question1
-        textq1 = Text("1. Who is the third student? ", color=BLUE)
+        textq1 = Text("Question: Who is the third student? ", color=BLUE)
         textq1.scale(0.5)
         textq1.shift(DOWN  * 2)
         self.play(Write(textq1))
@@ -82,10 +99,11 @@ class numbers(AbstractAnim):
         self.play(FadeIn(number3))
         self.wait(1)
 
-        texta1 = Text("Ans: Latha")
+        texta1 = Text("Answer: Latha is the third student")
+        texta1.scale(0.5)
         texta1.shift(DOWN  * 3)
         self.play(Write(texta1))
-        self.wait(3)
+        self.wait(2)
 
 
 
@@ -145,7 +163,7 @@ class numbers(AbstractAnim):
 
 
 
-        textq1 = Text("What is the ordinal number of Latha ? ")
+        textq1 = Text("question: What is the ordinal number of Latha ? ")
         textq1.scale(0.4)
         textq1.shift(DOWN * 2)
         self.play(Write(textq1))
@@ -170,7 +188,8 @@ class numbers(AbstractAnim):
         self.play(FadeIn(number5))
         self.wait(1)
 
-        texta1 = Text("Ans: Fifth(5th)")
+        texta1 = Text("Answer: Fifth(5th) is the ordinal number of Latha")
+        texta1.scale(0.5)
         texta1.shift(DOWN  * 3)
         self.play(Write(texta1))
         self.wait(3)
@@ -178,7 +197,7 @@ class numbers(AbstractAnim):
 
     def count(self):
 
-        text =  Text("Count the pictures. Circle the correct number.",color=RED)
+        text =  Text("Count the circles. Circle the correct number.",color=RED)
         text.scale(0.5)
         text.to_edge(UP)
         self.play(Write(text))
@@ -221,12 +240,156 @@ class numbers(AbstractAnim):
         self.play(Create(circle))
         self.wait(3)
 
-    #def number(self):
+    def numb(self):
 
+        text = Text("Write the missing numbers in the sequence")
+        text.scale(0.5)
+        text.to_edge(UP)
+        self.play(Write(text))
+        self.wait(2)
         
+        numbers = [
+        [1, 2, 3, 4, 5],
+        [6, 7, 8, 9, 10],
+        [11, 12, 13, 14, 15],
+        [16, 17, 18, 19, 20]
+        ]
+
+        initial_numbers = {1, 2, 5, 6, 8, 11, 16, 20}
+        all_numbers = set(range(1, 21))
+        missing_numbers = all_numbers - initial_numbers
+
+        grid = VGroup()
+        for row in numbers:
+            row_group = VGroup()
+            for num in row:
+                num_text = Text(str(num))
+                if num not in initial_numbers:
+                    num_text.set_opacity(0)  # Initially invisible
+
+                box = Square(side_length=1)
+                num_text.move_to(box.get_center())
+                box_group = VGroup(box, num_text)
+                row_group.add(box_group)
+            row_group.arrange(RIGHT, buff=0.5)
+            grid.add(row_group)
+
+        grid.arrange(DOWN, buff=0.5)
+
+        self.play(FadeIn(grid))
+        self.wait(2)
+
+# Animate the missing numbers sequentially
+        animations = []
+        for i, row in enumerate(numbers):
+            for j, num in enumerate(row):
+                if num in missing_numbers:
+            # Access the correct element in the flattened grid
+                    box_group = grid[i][j]  # Get the box_group which contains the Square and Text
+                    num_text = box_group[1]  # Get the Text object
+                    animations.append(num_text.animate.set_opacity(1).set_color(RED))
+
+# Play animations sequentially
+        for anim in animations:
+            self.play(anim)
+            self.wait(0.5)
+
+        self.wait(2)
+
+    def roundnumbers(self):
+
+        text = Text("Draw a triangle around each number between 10 and 20 and circle around each number less than 10")
+        text.scale(0.4)
+        text.to_edge(UP)
+        self.play(Write(text))
+        self.wait(2)
+
+        # Create a matrix of numbers from 1 to 20
+        numbers = [[i + j*5 + 1 for i in range(5)] for j in range(4)]
+        
+        # Create a matrix of MathTex objects
+        matrix_tex = [[MathTex(str(number)) for number in row] for row in numbers]
+        
+        # Create VGroups for each row and then a VGroup for the entire matrix
+        rows = [VGroup(*row).arrange(RIGHT, buff=1) for row in matrix_tex]
+        matrix = VGroup(*rows).arrange(DOWN, buff=1)
+        
+        # Center the matrix on the screen
+        matrix.move_to(ORIGIN)
+        
+        # Add the numbers to the scene
+        for row in matrix_tex:
+            for number in row:
+                self.add(number)
+        
+        self.wait(1)
+        
+        # Draw triangles around numbers between 10 and 20
+        for row in matrix_tex:
+            for number in row:
+                num = int(number.get_tex_string())
+                if 10 < num < 20:
+                    triangle = Polygon(
+                        number.get_center() + UP * 0.5,
+                        number.get_center() + LEFT * 0.5 + DOWN * 0.5,
+                        number.get_center() + RIGHT * 0.5 + DOWN * 0.5,
+                        color=BLUE
+                    )
+                    self.play(Create(triangle))
+        
+        self.wait(1)
+        
+        # Numbers to circle
+        circle_numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+        
+        # Draw circles around specific numbers
+        for row in matrix_tex:
+            for number in row:
+                num = int(number.get_tex_string())
+                if num in circle_numbers:
+                    circle = Circle(radius=0.5, color=RED).move_to(number.get_center())
+                    self.play(Create(circle))
+        
+        self.wait(3)
+
+
+    def smallbig(self):
+
+        text = Text("Write numbers in small to big order and big to small order")
+        text.scale(0.5)
+        text.to_edge(UP)
+        self.play(Write(text))
+        self.wait(2)
+
+        text1 = Text("Given Numbers : 6, 0, 8, 3, 5, 2")
+        text1.scale(0.75)
+        text1.shift(UP)
+        self.play(Write(text1))
+        self.wait(1)
+
+        text2 = Text("Big to small order : 8, 6, 5, 3, 2, 0")
+        text2.scale(0.75)
+        #text1.shift(UP)
+        self.play(Write(text2))
+        self.wait(1)
+
+        text3 = Text("Small To Big order : 0, 2, 3, 5, 6, 8")
+        text3.scale(0.75)
+        text3.shift(DOWN)
+        self.play(Write(text3))
+        self.wait(2)
+
+
+
+
+    def SetDeveloperList(self):
+        self.DeveloperList="SURADHYA REDDY"
+
+    def SetSourceCodeFileName(self):
+        self.SourceCodeFileName="Grade2Chapter1Numbers1to20.py"
 
 
 
 if __name__ == "__main__":
-    scene = numbers()
+    scene = Grade2Chapter1Numbers1to20()
     scene.render()

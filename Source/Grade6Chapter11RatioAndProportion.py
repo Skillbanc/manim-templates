@@ -2,7 +2,7 @@ from manim import *
 from AbstractAnim import AbstractAnim
 import cvo
 
-class ratioandproportion(AbstractAnim):
+class Grade6Chapter11Ratioandproportion(AbstractAnim):
 
     def construct(self):
         self.RenderSkillbancLogo()
@@ -50,7 +50,7 @@ class ratioandproportion(AbstractAnim):
         self.isRandom = False
 
         p10=cvo.CVO().CreateCVO("RATIO","A:B").setPosition([0,2,0])
-        p12=cvo.CVO().CreateCVO("A","Antecedent").setPosition([-3,0,0])
+        p12=cvo.CVO().CreateCVO("A","Antecedent").setPosition([-3,0,0]).setangle(TAU/3)
         p13=cvo.CVO().CreateCVO("B","Consequent").setPosition([3,0,0])
         p10.cvolist.append(p12)
         p10.cvolist.append(p13)
@@ -170,8 +170,8 @@ class ratioandproportion(AbstractAnim):
         p10=cvo.CVO().CreateCVO("PROPORTION","A:B::C:D").setPosition([-4,2,0])
         p12=cvo.CVO().CreateCVO("Representation","A/B=C/D").setPosition([-2,-3,0])
         p13=cvo.CVO().CreateCVO("Simplest Form", "AD=BC").setPosition([1,2,0])
-        p14=cvo.CVO().CreateCVO("AD","Product of Means").setPosition([4,1,0])
-        p15=cvo.CVO().CreateCVO("BC","Product of Extreams").setPosition([2,-2,0])
+        p14=cvo.CVO().CreateCVO("AD","Product of Extreams").setPosition([4,1,0])
+        p15=cvo.CVO().CreateCVO("BC","Product of Means").setPosition([2,-2,0])
         p10.cvolist.append(p12)
         p10.cvolist.append(p13)
         p13.cvolist.append(p14)
@@ -209,8 +209,8 @@ class ratioandproportion(AbstractAnim):
         self.DeveloperList="SURADHYA REDDY"
 
     def SetSourceCodeFileName(self):
-        self.SourceCodeFileName="RatioAndProportion.py"
+        self.SourceCodeFileName="Grade6Chapter11RatioAndProportion.py"
 
 if __name__ == "__main__":
-    scene = ratioandproportion()
+    scene = Grade6Chapter11Ratioandproportion()
     scene.render()
