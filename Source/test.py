@@ -2,35 +2,51 @@ from AbstractAnim import AbstractAnim
 import cvo
 from manim import *
 
-class MoveImageeee(AbstractAnim):
-    def construct(self):
-        #self.construct2()
-        self.GithubSourceCodeReference()
-        
-    def construct2(self):
-        self.isRandom = False
-        self.angleChoice=[TAU/2]
-        p10=cvo.CVO().CreateCVO("Diagonals", "").setPosition([-3,2,0])
-        p11=cvo.CVO().CreateCVO("Definition", "Line segment joining opposite vertices").setPosition([-3,-2,0])
-        p10.cvolist.append(p11)
-        
-        diagonalline = Line(start=[-1,0.5,0], end=[2,1.5,0], color = RED )
-        diagonalline.shift(RIGHT * 2)
-        diaglabel=Tex("Diagonal").next_to(diagonalline, LEFT, buff=0.1).set_color(RED).scale(0.5).shift(RIGHT*1.8)
-        
-        Quadrilaterals = Polygon([-1, 0.5, 0], [1, 0.5, 0], [2, 1.5, 0], [-2,1.5,0], color=BLUE)
-        Quadrilaterals.shift(RIGHT * 2 )
-        quadlabel=Tex("Quadrilateral").next_to(Quadrilaterals, DOWN, buff = 0.1)
-        
-        self.setNumberOfCirclePositions(2)
-        self.construct1(p10,p10)
-        self.play(Create(Quadrilaterals),Create(quadlabel))
-        self.play(Create(diagonalline),Create(diaglabel))
-        self.wait(3)
-        self.fadeOutCurrentScene()
+class photo(AbstractAnim):
 
-# To render the scene
+    def construct(self):
+
+        self.emoji_anim()
+
+    def emoji_anim(self):
+        # Paths to your emoji SVG files (replace with actual paths)
+        emoji1_path = "media\images\man1.svg"
+        emoji2_path = "media\images\man1.svg"
+        emoji3_path = "media\images\man1.svg"
+        emoji4_path = "media\images\man1.svg"
+        emoji5_path = "media\images\man1.svg"
+
+        
+
+        radius = 1
+
+        emojis_1 = SVGMobject(emoji1_path).scale(radius)
+        emojis_2 = SVGMobject(emoji2_path).scale(radius)
+        emojis_3 = SVGMobject(emoji3_path).scale(radius)
+        emojis_4 = SVGMobject(emoji4_path).scale(radius)
+        emojis_5 = SVGMobject(emoji5_path).scale(radius)
+
+        emojis_1.to_edge(LEFT)
+        emojis_2.next_to(emojis_1, RIGHT, buff=1)
+        emojis_3.next_to(emojis_2, RIGHT, buff=1)
+        emojis_4.next_to(emojis_3, RIGHT, buff=1)
+        emojis_5.next_to(emojis_4, RIGHT, buff=1)
+
+
+        self.play(FadeIn(emojis_1), FadeIn(emojis_2), FadeIn(emojis_3), FadeIn(emojis_4), FadeIn(emojis_5))
+        self.wait(2)
+
+        # Add text below each image
+        text1 = Text("Image 1").next_to(emojis_1, DOWN)
+        text2 = Text("Image 2").next_to(emojis_2, DOWN)
+        text3 = Text("Image 3").next_to(emojis_3, DOWN)
+        text4 = Text("Image 3").next_to(emojis_4, DOWN)
+        text5 = Text("Image 3").next_to(emojis_5, DOWN)  # Add text for additional images
+
+        self.play(Write(text1), Write(text2), Write(text3), Write(text4), Write(text5))
+        self.wait(2)
+    
+
 if __name__ == "__main__":
-    from manim import *
-    scene = MoveImageeee()
+    scene = photo()
     scene.render()
