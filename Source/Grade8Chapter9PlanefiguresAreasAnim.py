@@ -49,29 +49,37 @@ class Grade8Chapter9PlanefiguresAreasAnim(AbstractAnim):
         
         self.isRandom = False
         
-        self.positionChoice=[[-4.5,2,0],[0,2,0],[-5,-2,0],[-1,0,0],[-1,-2,0],[1,0,0],[1,-2,0],[5,0,0],[5,-2,0]]
+        self.positionChoice=[[-4.5,2,0],[0,2,0],[-5,-2,0],[5,0,0],[5,2,0],[-1,-2,0],[1,-2,0],[-1,0,0],[1,0,0]]
 
         p1=cvo.CVO().CreateCVO("Plane Figures and their Areas","")
         p2=cvo.CVO().CreateCVO("Types of plane figures", "")
        
-        p12=cvo.CVO().CreateCVO("Rectangle","")
-        p13=cvo.CVO().CreateCVO("Triangle", "")
-        p14=cvo.CVO().CreateCVO("Square","")
-        p15=cvo.CVO().CreateCVO("parallelogram", "")
-        p16=cvo.CVO().CreateCVO("Rhombus", "")
-        p17=cvo.CVO().CreateCVO("Trapezium","")
-        p18=cvo.CVO().CreateCVO("Circle", "")
+        p12=cvo.CVO().CreateCVO("","")
+        p12.appendOname("Triangle")
+        p12.appendOname("Rectangle")
+        p14=cvo.CVO().CreateCVO("","")
+        p14.appendOname("Parallelogram")
+        p14.appendOname("Square")
+        p16=cvo.CVO().CreateCVO("","")
+        p16.appendOname("Trapezium")
+        p16.appendOname("Rhombus")
+        p18=cvo.CVO().CreateCVO("","")
+        p18.appendOname("Sector")
+        p18.appendOname("Circle")
+        p15=cvo.CVO().CreateCVO("","")
+        p15.appendOname("Polygon")
+        p15.appendOname("Quadrilateral")
+
 
         p1.cvolist.append(p2)
         p2.cvolist.append(p12)
-        p2.cvolist.append(p13)
         p2.cvolist.append(p14)
         p2.cvolist.append(p15)
         p2.cvolist.append(p16)
-        p2.cvolist.append(p17)
         p2.cvolist.append(p18)
         
         self.construct1(p1,p1)
+        
 
     
     def shape1(self):
@@ -96,7 +104,7 @@ class Grade8Chapter9PlanefiguresAreasAnim(AbstractAnim):
 
         self.isRandom = False
 
-        p2=cvo.CVO().CreateCVO("Area Formula","1/2(3.14)r*r").setPosition([2.5,2,0])
+        p2=cvo.CVO().CreateCVO("Area Formula","(3.14)r*r").setPosition([2.5,2,0])
         p3=cvo.CVO().CreateCVO("Radius","r").setPosition([6,2,0])
     
         p2.cvolist.append(p3)
@@ -104,7 +112,7 @@ class Grade8Chapter9PlanefiguresAreasAnim(AbstractAnim):
         self.construct1(p2,p2)
       
 
-        a1 = Text("Area Formula = 1/2(3.14)r*r \n\n Example: r=7 \n\n Area of Circle = 1/2(3.14)(7*7) = 77",font_size=25).move_to([0,-2,0])
+        a1 = Text("Area Formula = (3.14)r*r \n\n Example: r=3 \n\n Area of Circle = (3.14)(3*3) = 28.26",font_size=25).move_to([0,-2,0])
         self.play(Write(a1),run_time=6)
        
 
@@ -683,7 +691,7 @@ class Grade8Chapter9PlanefiguresAreasAnim(AbstractAnim):
         self.wait()
 
         formula_steps = [
-            MathTex(r"Hence,\ Area\ of\ sector\ OAB = \frac{x^\circ}{360^\circ}* \pi r^2\ \ \ \ \ [\pi r^2 = \pi r *\frac{2r}{r}] ", font_size=40, color=WHITE).shift(UP*3 + LEFT*1.2),
+            MathTex(r"Hence,\ Area\ of\ sector\ OAB = \frac{x^\circ}{360^\circ}* \pi r^2\ \ \ \ \ [\pi r^2 = \pi r *\frac{2r}{2}] ", font_size=40, color=WHITE).shift(UP*3 + LEFT*1.2),
             MathTex(r"= \frac{x^\circ}{360^\circ}*2 \pi r * \frac{r}{2}", font_size=40, color=WHITE).shift(UP*2),
             MathTex(r"=l *\frac{r}{2}",font_size=40,color=WHITE).shift(UP),
             MathTex(r"=\frac{lr}{2} \ \ \ [l\ is\ length\ of\ the\ arc]",font_size=40,color=WHITE),     
