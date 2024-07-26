@@ -497,13 +497,13 @@ class NUM10to20(AbstractAnim):
         number_line.shift(UP * 2)
         self.play(Create(number_line))
 
-        heading_first = Text("Write the first number").scale(0.5)
-        heading_last = Text("Write the last number").scale(0.5)
-        heading_middle = Text("Write the middle number").scale(0.5)
+        heading_first = Text("Write the number which \ncomes before the \nnumber in the box").scale(0.35)
+        heading_last = Text("Write the number which \ncomes after the \nnumber in the box").scale(0.35)
+        heading_middle = Text("Write the number which \ncomes in between the \nnumbers in the box").scale(0.35)
         
         heading_first.to_edge(LEFT)
-        heading_last.next_to(heading_first, RIGHT, buff=1)
-        heading_middle.next_to(heading_last, RIGHT, buff=1)
+        heading_last.next_to(heading_first, RIGHT, buff=2)
+        heading_middle.next_to(heading_last, RIGHT, buff=2)
         self.play(Write(heading_first), Write(heading_last), Write(heading_middle))
         first_numbers = [
             ("", "4"), 
