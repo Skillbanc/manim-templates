@@ -27,7 +27,7 @@ class Grade1chapter4Numbersfrom6to9(AbstractAnim):
         self.isRandom = False
         self.positionChoice = [[-3.5,0,0],[3,0,0]]
         p10 = cvo.CVO().CreateCVO("Numbers", "")
-        p11 = cvo.CVO().CreateCVO("", "")
+        p11 = cvo.CVO().CreateCVO("Numbers From 6 to 9", "")
         p11.extendOname(["6","7","8","9"])
 
         p10.setcircleradius(1.8)
@@ -150,7 +150,7 @@ class Grade1chapter4Numbersfrom6to9(AbstractAnim):
         self.add_matching_lines()
 
     def add_title(self):
-        title = Text("Count the pictures in each box on the left.\nMatch them with the same number of dots on the right.", font_size=24)
+        title = Text("Count the pictures in each box on the left.\nMatch them with the same number of circles on the right.", font_size=24)
         title.to_edge(UP)
         self.play(Write(title))
         self.wait(2)
