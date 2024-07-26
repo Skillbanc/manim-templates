@@ -161,78 +161,146 @@ class Grade8Ch1RationalNumbers(AbstractAnim):
         self.wait(2)
 
     def Addition(self):
-        self.setNumberOfCirclePositions(4)
-        #self.angleChoice = [0,0,0]
-        self.isRandom = False
+        # self.setNumberOfCirclePositions(4)
+        # #self.angleChoice = [0,0,0]
+        # self.isRandom = False
 
-        p10=cvo.CVO().CreateCVO("Addition of RationalNumbers","X+Y")
-        p11=cvo.CVO().CreateCVO("X variable","2/3")
-        p12=cvo.CVO().CreateCVO("Y variable","3/4")
-        p13=cvo.CVO().CreateCVO("Sum", "(2/3)+(3/4)= ((2*4)+(3*3))/(3*4) = 17  /12")
-        p13.setcircleradius(2.8)
-        p10.cvolist.append(p11)
-        p10.cvolist.append(p12)
+        # p10=cvo.CVO().CreateCVO("Addition of RationalNumbers","X+Y")
+        # p11=cvo.CVO().CreateCVO("X variable","2/3").setPosition([4.5,-2.7,0])
+        # p12=cvo.CVO().CreateCVO("Y variable","3/4").setPosition([-3,2,0])
+        # p13=cvo.CVO().CreateCVO("Sum", "(2/3)+(3/4)= ((2*4)+(3*3))/(3*4) = 17/12").setPosition([4,1.2,0])
+        # p13.setcircleradius(2.8)
+        # p10.cvolist.append(p11)
+        # p10.cvolist.append(p12)
+        # self.construct1(p10,p10)
+        # self.construct1(p13,p13)
+        # self.play(Create(CurvedArrow(p11.pos,p13.pos)),Create(CurvedArrow(p12.pos,p13.pos)))
+        
+        self.isRandom = False
+        self.angleChoice = [-TAU/2,TAU/5,TAU/5,-TAU/2,-TAU/2]
+        p10=cvo.CVO().CreateCVO("Addition of Rational numbers","X + Y").setPosition([-4,-2.5,0])
+        p7= cvo.CVO().CreateCVO("x,y values", "X=2/3,Y=3/4").setPosition([-4,2.5,0])
+        # p7onamelist=["x=2/3","y=3/4"]
+        p13=cvo.CVO().CreateCVO("Step 1", "(2/3)+(3/4)").setPosition([0,2.5,0])
+        p14=cvo.CVO().CreateCVO("Step 2", "((2X4)+(3X3))/(3X4)").setPosition([5,2.5,0])
+        p15=cvo.CVO().CreateCVO("Step 3", "(8+9)/12").setPosition([5,0,0])
+        p16=cvo.CVO().CreateCVO("Answer", "17/12").setPosition([5,-2.5,0])
+        
+        p10.cvolist.append(p7)
+        # p7.extendOname(p7onamelist)
+        p7.cvolist.append(p13)
+        p13.cvolist.append(p14)
+        p14.setcircleradius(1.4)
+        p14.cvolist.append(p15)
+        p15.cvolist.append(p16)
+        p15.setcircleradius(1.4)
         self.construct1(p10,p10)
-        self.construct1(p13,p13)
-        self.play(Create(CurvedArrow(p11.pos,p13.pos)),Create(CurvedArrow(p12.pos,p13.pos)))
-        #self.play()
+        self.setNumberOfCirclePositions(6)
 
     def Subtraction(self):
-        self.setNumberOfCirclePositions(4)
-        #self.angleChoice = [0,0,0]
-        self.isRandom = False
+        # self.setNumberOfCirclePositions(4)
+        # #self.angleChoice = [0,0,0]
+        # self.isRandom = False
 
-        p10=cvo.CVO().CreateCVO("Subtraction of Rational Numbers","x-y")
-        p11=cvo.CVO().CreateCVO("Variable x","4/3")
-        p12=cvo.CVO().CreateCVO("Variable y","3/3")
-        p13=cvo.CVO().CreateCVO("Difference", "(4/3)/(3/3)=(4-3)/3 = 1/3")
-        p13.setcircleradius(2)
-        p10.cvolist.append(p11)
-        p10.cvolist.append(p12)
+        # p10=cvo.CVO().CreateCVO("Subtraction of Rational Numbers","x-y")
+        # p11=cvo.CVO().CreateCVO("Variable x","4/3")
+        # p12=cvo.CVO().CreateCVO("Variable y","3/3")
+        # p13=cvo.CVO().CreateCVO("Difference", "(4/3)/(3/3)=(4-3)/3 = 1/3")
+        # p13.setcircleradius(2)
+        # p10.cvolist.append(p11)
+        # p10.cvolist.append(p12)
+        # self.construct1(p10,p10)
+        # self.construct1(p13,p13)
+        # self.play(Create(CurvedArrow(p11.pos,p13.pos)),Create(CurvedArrow(p12.pos,p13.pos)))
+        # #self.play()
+
+        self.isRandom = False
+        self.angleChoice = [-TAU/2,TAU/5,TAU/5,-TAU/2,-TAU/2]
+        p10=cvo.CVO().CreateCVO("subtraction of Rational numbers","X - Y").setPosition([-4,-2.5,0])
+        p7= cvo.CVO().CreateCVO("x,y values", "X=4/3,Y=3/3").setPosition([-4,2.5,0])
+        # p7onamelist=["x=4/3","y=3/3"]
+        p13=cvo.CVO().CreateCVO("Step 1", "(4/3)-(3/3)").setPosition([0,2.5,0])
+        p14=cvo.CVO().CreateCVO("Step 2", "(4-3)/3").setPosition([5,2.5,0])
+        p15=cvo.CVO().CreateCVO("Answer", "1/3").setPosition([5,0,0])
+        # p16=cvo.CVO().CreateCVO("Answer", "1/5").setPosition([5,-2.5,0])
+        
+        p10.cvolist.append(p7)
+        # p7.extendOname(p7onamelist)
+        p7.cvolist.append(p13)
+        p13.cvolist.append(p14)
+        p14.cvolist.append(p15)
+        # p15.cvolist.append(p16)
+        p15.setcircleradius(1.4)
         self.construct1(p10,p10)
-        self.construct1(p13,p13)
-        self.play(Create(CurvedArrow(p11.pos,p13.pos)),Create(CurvedArrow(p12.pos,p13.pos)))
-        #self.play()
+        self.setNumberOfCirclePositions(6)
 
     def Multiplication(self):
-        self.setNumberOfCirclePositions(4)
-        #self.angleChoice = [0,0,0]
-        self.isRandom = False
+        # self.setNumberOfCirclePositions(4)
+        # #self.angleChoice = [0,0,0]
+        # self.isRandom = False
 
-        p10=cvo.CVO().CreateCVO("Multiplication of Rational Numbers","X*Y")
-        p11=cvo.CVO().CreateCVO("X variable","2/3")
-        p12=cvo.CVO().CreateCVO("Y variable","3/4")
-        p13=cvo.CVO().CreateCVO("Product", "(2/3)*(3/4)=(2*3)/(3*4) = 6/12")
-        p13.setcircleradius(2)
-        p10.cvolist.append(p11)
-        p10.cvolist.append(p12)
+        # p10=cvo.CVO().CreateCVO("Multiplication of Rational Numbers","X*Y")
+        # p11=cvo.CVO().CreateCVO("X variable","2/3")
+        # p12=cvo.CVO().CreateCVO("Y variable","3/4")
+        # p13=cvo.CVO().CreateCVO("Product", "(2/3)*(3/4)=(2*3)/(3*4) = 6/12")
+        # p13.setcircleradius(2)
+        # p10.cvolist.append(p11)
+        # p10.cvolist.append(p12)
+        # self.construct1(p10,p10)
+        # self.construct1(p13,p13)
+        # self.play(Create(CurvedArrow(p11.pos,p13.pos)),Create(CurvedArrow(p12.pos,p13.pos)))
+        # #self.play()
+
+        self.isRandom = False
+        self.angleChoice = [-TAU/2,TAU/5,TAU/5,-TAU/2,-TAU/2]
+        p10=cvo.CVO().CreateCVO("Multiplication of Rational numbers","X * Y").setPosition([-4,-2.5,0])
+        p7= cvo.CVO().CreateCVO("x,y values", "X=2/3,Y=3/4").setPosition([-4,2.5,0])
+        # p7onamelist=["x=2/3","y=3/4"]
+        p13=cvo.CVO().CreateCVO("Step 1", "(2/3) X (3/4)").setPosition([0,2.5,0])
+        p14=cvo.CVO().CreateCVO("Step 2", "(2 x 3) / (3 x 4)").setPosition([5,2.5,0])
+        p15=cvo.CVO().CreateCVO("Step 3", "6/12").setPosition([5,0,0])
+        p16=cvo.CVO().CreateCVO("Answer", "1/2").setPosition([5,-2.5,0])
+        
+        p10.cvolist.append(p7)
+        # p7.extendOname(p7onamelist)
+        p7.cvolist.append(p13)
+        p13.cvolist.append(p14)
+        p14.setcircleradius(1.3)
+        p14.cvolist.append(p15)
+        p15.cvolist.append(p16)
+        p15.setcircleradius(1.4)
         self.construct1(p10,p10)
-        self.construct1(p13,p13)
-        self.play(Create(CurvedArrow(p11.pos,p13.pos)),Create(CurvedArrow(p12.pos,p13.pos)))
-        #self.play()
+        self.setNumberOfCirclePositions(6)
+
+         
 
     def Division(self):
-        self.setNumberOfCirclePositions(4)
-        #self.angleChoice = [0,0,0]
         self.isRandom = False
-
-        p10=cvo.CVO().CreateCVO("Division of Rational numbers","X / Y")
-        p11=cvo.CVO().CreateCVO("x","(1/2)")
-        p12=cvo.CVO().CreateCVO("Y","(5/2)")
-        p13=cvo.CVO().CreateCVO("Answer", "(1/2)/(5/2)=(1*2)/(2*5)=2/10 = 1/5")
-        p13.setcircleradius(2.2)
-        p10.cvolist.append(p11)
-        p10.cvolist.append(p12)
+        self.angleChoice = [-TAU/2,TAU/5,TAU/5,-TAU/2,-TAU/2]
+        p10=cvo.CVO().CreateCVO("Division of Rational numbers","X / Y").setPosition([-4,-2.5,0])
+        p7= cvo.CVO().CreateCVO("x,y values", "X=1/2,Y=5/2").setPosition([-4,2.5,0])
+        # p7onamelist=["x=1/2","y=5/2"]
+        p13=cvo.CVO().CreateCVO("Step 1", "(1/2)/(5/2)").setPosition([0,2.5,0])
+        p14=cvo.CVO().CreateCVO("Step 2", "(1/2)*(2/5)").setPosition([5,2.5,0])
+        p15=cvo.CVO().CreateCVO("Step 3", "(1/2)*(2/5)=2/10").setPosition([5,0,0])
+        p16=cvo.CVO().CreateCVO("Answer", "1/5").setPosition([5,-2.5,0])
+        
+        p10.cvolist.append(p7)
+        # p7.extendOname(p7onamelist)
+        p7.cvolist.append(p13)
+        p13.cvolist.append(p14)
+        p14.cvolist.append(p15)
+        p15.cvolist.append(p16)
+        p15.setcircleradius(1.4)
         self.construct1(p10,p10)
-        self.construct1(p13,p13)
-        self.play(Create(CurvedArrow(p11.pos,p13.pos)),Create(CurvedArrow(p12.pos,p13.pos)))
+        self.setNumberOfCirclePositions(6)
 
     def prop(self):
         #  p1=cvo.CVO().CreateCVO("o1name","o2name","c1name","c2name")
          p10=cvo.CVO().CreateCVO("Properties","").setPosition([0,2.5,0])
          p11=cvo.CVO().CreateCVO("closure","Result of mathematical operation on operands\n belongs to the same group of operands").setPosition([3 ,1,0])
          p12=cvo.CVO().CreateCVO("Commutative ","a+b=b+a (or) a*b=b*a").setPosition([3,-2,0])
-         p13=cvo.CVO().CreateCVO("Associative","a+(b+c)=(a+b)+c (or) a*(b*c)=(a*b)*c22").setPosition([-3,-2,0]).setangle(-TAU/4)
+         p13=cvo.CVO().CreateCVO("Associative","a+(b+c)=(a+b)+c (or) a*(b*c)=(a*b)*c").setPosition([-3,-2,0]).setangle(-TAU/4)
          p14=cvo.CVO().CreateCVO("Distributive","a*(b+c)=(a*b)+(a*c)").setPosition([-4,2,0]).setangle(-TAU/4)
          p12.setcircleradius(2)
          p13.setcircleradius(2)
@@ -790,6 +858,9 @@ class Grade8Ch1RationalNumbers(AbstractAnim):
         self.SourceCodeFileName="Grade8CH1RationalNumbers.py"
   
 
+if __name__ == "__main__":
+    scene =Grade8Ch1RationalNumbers()
+    scene.render()
 if __name__ == "__main__":
     scene =Grade8Ch1RationalNumbers()
     scene.render()

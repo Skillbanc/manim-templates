@@ -80,7 +80,7 @@ class Grade1Ch3Numbersfrom1to5(AbstractAnim):
         #self.angleChoice = [0,0,0]
         self.isRandom = False
         p8=cvo.CVO().CreateCVO("NUMBERS","")
-        p9=cvo.CVO().CreateCVO("Defination","The term 'number' refers to a mathematical object\n used to count, measure, and label..").setPosition([2,0,2])
+        p9=cvo.CVO().CreateCVO("Definition","The term 'number' refers to a mathematical object\n used to count, measure, and label..").setPosition([2,0,2])
         # p7=cvo.CVO().CreateCVO("Symbol","'X'").setPosition([2,0,2])
         # p10=cvo.CVO().CreateCVO("Example","4 X 5=20").setPosition([2,-2.5,2])
         p8.cvolist.append(p9)
