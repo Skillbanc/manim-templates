@@ -14,7 +14,7 @@ import cvo
 # Configure Manim to allow more cached files
 config.max_files_cached = 600  # Change this number to your desired value
 
-class AlgebraicExpression(AbstractAnim):
+class Grade8Chapter11AlgebraicExpression(AbstractAnim):
     def construct(self):
         self.RenderSkillbancLogo()
         self.fadeOutCurrentScene()
@@ -22,9 +22,9 @@ class AlgebraicExpression(AbstractAnim):
         self.fadeOutCurrentScene()
         self.Introduction()
         self.fadeOutCurrentScene()
-        self.Types()
+        self.intro()
         self.fadeOutCurrentScene()
-        self.Polynomials()
+        self.Types()
         self.fadeOutCurrentScene()
         self.Relations()
         self.fadeOutCurrentScene()
@@ -35,13 +35,14 @@ class AlgebraicExpression(AbstractAnim):
         self.MultiplyingTrinomialByMonomial()
         self.MultiplyingBinomialByBinomial()
         self.MultiplyingBinomialByTrinomial()
+        self.MultiplyingTrinomialByTrinomial()
         self.identities()
         self.fadeOutCurrentScene()
         self.ApplicationOfIdentities()
-        self.GeometricVerification1()
-        self.GeometricVerification2()
-        self.GeometricVerification3()
-        self.GeometricVerification4()
+        self.fadeOutCurrentScene()
+        self.finding1962()
+        self.fadeOutCurrentScene()
+        self.application2()
         self.fadeOutCurrentScene()
         self.GithubSourceCodeReference()
         
@@ -62,62 +63,116 @@ class AlgebraicExpression(AbstractAnim):
     def Introduction(self):
         self.setNumberOfCirclePositions(3)
         self.isRandom = False
-        p10 = cvo.CVO().CreateCVO("algebraic expression", "ax+by+c=0")
-        p12 = cvo.CVO().CreateCVO("like terms", "having same variables(eg..,3x,3y)")
-        p13 = cvo.CVO().CreateCVO("unlike term", "having different variables(eg..,3xy,7yz")
+        p10 = cvo.CVO().CreateCVO("Algebraic Expression", "")
+        p12 = cvo.CVO().CreateCVO("like terms", "")
+        p13 = cvo.CVO().CreateCVO("unlike term", "")
 
         p10.cvolist.append(p12)
         p10.cvolist.append(p13)
 
         self.construct1(p10, p10)
+        
+    def intro(self):
+        
+        heading = Text("Differentiating like terms and unlike terms",font_size=28,color=PURPLE)
+        heading.to_edge(ORIGIN + UP*3) 
+        self.play(Write(heading))
+        self.wait(2)
+        # Define the terms
+        terms = [
+            MathTex(r"ax^2y"),
+            MathTex(r"2x"),
+            MathTex(r"5y^2"),
+            MathTex(r"-9x^2"),
+            MathTex(r"-6x"),
+            MathTex(r"7xy"),
+            MathTex(r"18y^2")
+        ]
+
+        # Scale down the terms
+        for term in terms:
+            term.scale(0.8)
+
+        # Position the terms at the center horizontally
+        terms_group = VGroup(*terms).arrange(RIGHT, buff=1)  # Arrange terms with equal spacing
+
+        # Center the group of terms on the screen
+        terms_group.move_to(ORIGIN + UP*1)
+
+        # Display the terms
+        self.play(FadeIn(terms_group))
+        self.wait(2)
+
+        # Highlight like terms
+        like_terms = [terms[2], terms[6]]
+        self.play(*[Transform(term, term.copy().set_color(YELLOW)) for term in like_terms])
+        self.wait(1)
+
+        # Create boxes around like terms
+        like_boxes = VGroup(*[SurroundingRectangle(term, color=YELLOW, buff=0.2) for term in like_terms])
+        self.play(Create(like_boxes))
+        self.wait(1)
+        
+        self.play(FadeOut(like_boxes))
+
+        # Fade out and move like terms to one side, then fade in
+        like_target_positions = [DOWN * 0.5 + LEFT * 2.5, DOWN * 0.5 + LEFT * 1.5]
+        self.play(*[FadeOut(term) for term in like_terms])
+        for term, pos in zip(like_terms, like_target_positions):
+            term.move_to(pos)
+        self.play(*[FadeIn(term) for term in like_terms])
+
+        # Fade out and move unlike terms to the other side, then fade in
+        unlike_terms = [terms[0], terms[1], terms[3], terms[4], terms[5]]
+        unlike_target_positions = [
+            DOWN * 0.5 + RIGHT * 1,
+            DOWN * 0.5 + RIGHT * 2,
+            DOWN * 0.5 + RIGHT * 3,
+            DOWN * 0.5 + RIGHT * 4,
+            DOWN * 0.5 + RIGHT * 5
+        ]
+        self.play(*[FadeOut(term) for term in unlike_terms])
+        for term, pos in zip(unlike_terms, unlike_target_positions):
+            term.move_to(pos)
+        self.play(*[FadeIn(term) for term in unlike_terms])
+        self.wait(2)
+
+        # Label the groups
+        like_label = Text("Like Terms", color=YELLOW).scale(0.8).next_to(VGroup(*like_terms), UP)
+        unlike_label = Text("Unlike Terms", color=WHITE).scale(0.8).next_to(VGroup(*unlike_terms), UP)
+        self.play(FadeIn(like_label), FadeIn(unlike_label))
+        self.wait(2)
 
     def Types(self):
         self.setNumberOfCirclePositions(5)
-        p10 = cvo.CVO().CreateCVO("algebraic expression", "types").setPosition([0, 2.5, 0])
-        p11 = cvo.CVO().CreateCVO("monomial", "An algebraic expression with a single term(eg..,2x, 4z^2)").setPosition([4, 2, 0])
+        self.isRandom = False
+        self.angleChoice = [TAU/4,-TAU/4,TAU/4,-TAU/4]
+        p10 = cvo.CVO().CreateCVO("Algebraic Expression", "").setPosition([0, 2.5, 0])
+        p11 = cvo.CVO().CreateCVO("monomial", "2x, 4z^2").setPosition([3.5, 2, 0])
         p11.SetIsMathText(True)
-        p12 = cvo.CVO().CreateCVO("binomial", "An algebraic expression with two terms(eg..,3x + 2)").setPosition([3.5, -2, 0])
+        p12 = cvo.CVO().CreateCVO("binomial", "3x + 2").setPosition([-3.5, 2, 0])
         p12.SetIsMathText(True)
-        p13 = cvo.CVO().CreateCVO("trinomial", "An algebraic expression with three terms(eg..,x^2 + 3x + 2)").setPosition([-4, 2, 0])
+        p13 = cvo.CVO().CreateCVO("trinomial", "x^2 + 3x + 2").setPosition([3.5, -2, 0])
         p13.SetIsMathText(True)
-        p14 = cvo.CVO().CreateCVO("polynomial", "An algebraic expression with one or more terms(eg..,4x^3 + 3x^2 - x + 7)").setPosition([-3, -2, 0])
+        p14 = cvo.CVO().CreateCVO("polynomial", "4x^3 + 3x^2 - x + 7").setPosition([-3.5, -2, 0])
         p14.SetIsMathText(True)
 
         p10.cvolist.append(p11)
         p10.cvolist.append(p12)
         p10.cvolist.append(p13)
         p10.cvolist.append(p14)
-
+        
         self.construct1(p10, p10)
-
     
-    def Polynomials(self):
-        self.setNumberOfCirclePositions(7)
-        p10 = cvo.CVO().CreateCVO("polynomials", "types").setPosition([0, 2.5, 0])
-        p11 = cvo.CVO().CreateCVO("Linear Polynomial", "A polynomial of degree 1 ").setPosition([4, 2, 0])
-        p12 = cvo.CVO().CreateCVO("Quadratic Polynomial", "A polynomial of degree 2 ").setPosition([5, -2, 0])
-        p13 = cvo.CVO().CreateCVO("Cubic Polynomial", "A polynomial of degree 3 ").setPosition([-4, 2, 0])
-        p14 = cvo.CVO().CreateCVO("Quartic Polynomial", "A polynomial of degree 4").setPosition([-4, -2, 0])
-        p15 = cvo.CVO().CreateCVO("Quintic Polynomial", "A polynomial of degree 5").setPosition([0, -2.5, 0])
-        p16 = cvo.CVO().CreateCVO("Sextic Polynomial", "A polynomial of degree 6 ").setPosition([0, 0, 0])
-
-        p10.cvolist.append(p11)
-        p10.cvolist.append(p12)
-        p10.cvolist.append(p13)
-        p10.cvolist.append(p14)
-        p10.cvolist.append(p15)
-        p10.cvolist.append(p16)
-
-        self.construct1(p10, p10)
 
     def Relations(self):
         self.setNumberOfCirclePositions(4)
-        p10 = cvo.CVO().CreateCVO("operations", "+,-,x").setPosition([0, 2.5, 0])
-        p11 = cvo.CVO().CreateCVO("addition", "Combining like terms(eg..,(3a^2 + 2a^2) = 5a^2)").setPosition([4, 2, 0])
+        p10 = cvo.CVO().CreateCVO("operations", "").setPosition([0, 2.5, 0])
+        p11 = cvo.CVO().CreateCVO("addition", "").setPosition([4, 2, 0])
         p11.SetIsMathText(True)
-        p12 = cvo.CVO().CreateCVO("substraction", "Finding the difference between like terms(ex,,.(2x^2 + 3x) - (x^2 + 2x) = x^2 + x)").setPosition([2, -2.5, 0])
+        p12 = cvo.CVO().CreateCVO("subtraction", "").setPosition([2, -2.5, 0])
         p12.SetIsMathText(True)
-        p13 = cvo.CVO().CreateCVO("multiplication", "Distributing terms and combining like terms(eg..,(x + 2)(x + 3) = x^2 + 5x + 6)").setPosition([-3, -1, 0])
+        p13 = cvo.CVO().CreateCVO("multiplication", "").setPosition([-3, -1, 0])
         p13.SetIsMathText(True)
 
         p10.cvolist.append(p11)
@@ -254,7 +309,7 @@ class AlgebraicExpression(AbstractAnim):
         
     def MultiplyingBinomialByMonomial(self):
         # Title
-        title = Text("Multiplying a Binomial by a Monomial",color=PINK)
+        title = Text("Multiplying a Binomial and a Monomial",color=PINK)
         title.to_edge(UP)
         self.play(Write(title))
         self.wait(1)
@@ -296,7 +351,7 @@ class AlgebraicExpression(AbstractAnim):
 
     def MultiplyingTrinomialByMonomial(self):
         # Title
-        title = Text("Multiplying a Trinomial by a Monomial",color=PINK)
+        title = Text("Multiplying a Trinomial and a Monomial",color=PINK)
         title.to_edge(UP)
         self.play(Write(title))
         self.wait(1)
@@ -338,7 +393,7 @@ class AlgebraicExpression(AbstractAnim):
 
     def MultiplyingBinomialByBinomial(self):
         # Title
-        title = Text("Multiplying a Binomial by a Binomial",color=PINK)
+        title = Text("Multiplying a Binomials",color=PINK)
         title.to_edge(UP)
         self.play(Write(title))
         self.wait(1)
@@ -379,7 +434,7 @@ class AlgebraicExpression(AbstractAnim):
 
     def MultiplyingBinomialByTrinomial(self):
         # Title
-        title = Text("Multiplying a Binomial by a Trinomial",color=PINK)
+        title = Text("Multiplying a Binomial and a Trinomial",color=PINK)
         title.to_edge(UP)
         self.play(Write(title))
         self.wait(1)
@@ -418,18 +473,61 @@ class AlgebraicExpression(AbstractAnim):
         # Clean up
         self.play(FadeOut(binomial), FadeOut(trinomial), FadeOut(multiply_expr_step1), FadeOut(multiply_expr_step2), FadeOut(multiply_expr_step3), FadeOut(multiply_expr_step4), FadeOut(title))
         self.wait(1)
+        
+    def MultiplyingTrinomialByTrinomial(self):
+        # Title
+        title = Text("Multiplying Trinomials",color=PINK)
+        title.to_edge(UP)
+        self.play(Write(title))
+        self.wait(1)
+
+        # Expressions
+        binomial = MathTex("eq(1):a + b + c",color=YELLOW)
+        trinomial = MathTex("eq(2):d + e + f",color=YELLOW)
+        multiply_expr_step1 = MathTex("eq(1) * eq(2)")
+        multiply_expr_step2 = MathTex("(a + b + c)(d + e + f)")
+        multiply_expr_step3 = MathTex("= a(d + e + f) + b(d + e + f) + C(d + e + f)")
+        multiply_expr_step4 = MathTex("= ad + ae + af + bd + be + bf + cd + ce + cf")
+       
+        # Positioning
+        binomial.shift(UP*2 + 3*LEFT)
+        trinomial.shift(UP*2 + 3*RIGHT)
+        multiply_expr_step1.next_to(binomial, DOWN, buff=1).shift(1.5*RIGHT)
+        multiply_expr_step2.next_to(multiply_expr_step1, DOWN, buff=0.5)
+        multiply_expr_step3.next_to(multiply_expr_step2, DOWN, buff=0.5)
+        multiply_expr_step4.next_to(multiply_expr_step3, DOWN, buff=0.5)
+
+        # Writing expressions
+        self.play(Write(binomial))
+        self.play(Write(trinomial))
+        self.wait(1)
+
+        # Showing multiplication step by step
+        self.play(Write(multiply_expr_step1))
+        self.wait(1)
+        self.play(Write(multiply_expr_step2))
+        self.wait(1)
+        self.play(Write(multiply_expr_step3))
+        self.wait(1)
+        self.play(Write(multiply_expr_step4))
+        self.wait(1)
+
+        # Clean up
+        self.play(FadeOut(binomial), FadeOut(trinomial), FadeOut(multiply_expr_step1), FadeOut(multiply_expr_step2), FadeOut(multiply_expr_step3), FadeOut(multiply_expr_step4), FadeOut(title))
+        self.wait(1)
 
     def identities(self):
         self.setNumberOfCirclePositions(5)
         self.isRandom = False
+        self.angleChoice = [TAU/4,-TAU/4,TAU/4,-TAU/4]
         p10 = cvo.CVO().CreateCVO("identities", "").setPosition([0, 2.5, 0])
-        p11 = cvo.CVO().CreateCVO("(1) (a+b)^2", "a^2+b^2+2ab")
+        p11 = cvo.CVO().CreateCVO("(a+b)^2", "a^2+b^2+2ab").setPosition([3.5, 2, 0])
         p11.SetIsMathText(True)
-        p12 = cvo.CVO().CreateCVO("(2) (a-b)^2", "a^2+b^2-2ab")
+        p12 = cvo.CVO().CreateCVO("(a-b)^2", "a^2+b^2-2ab").setPosition([-3.5, 2, 0])
         p12.SetIsMathText(True)
-        p13 = cvo.CVO().CreateCVO("(3) (a+b)(a-b)", "a^2-b^2")
+        p13 = cvo.CVO().CreateCVO("(a+b)(a-b)", "a^2-b^2").setPosition([3.5, -2, 0])
         p13.SetIsMathText(True)
-        p14 = cvo.CVO().CreateCVO("(4) (x+a)(x+b)", "x^2+(a+b)x+ab")
+        p14 = cvo.CVO().CreateCVO("(x+a)(x+b)", "x^2+(a+b)x+ab").setPosition([-3.5, -2, 0])
         p14.SetIsMathText(True)
         
         p10.cvolist.append(p11)
@@ -459,12 +557,21 @@ class AlgebraicExpression(AbstractAnim):
         expanded_expression.next_to(split_expression, DOWN, buff=0.5)
         calculated_terms.next_to(expanded_expression, DOWN, buff=0.5)
         final_result.next_to(calculated_terms, DOWN, buff=0.5)
+        
+        sentence = Tex("Here we are using\n\n","$(a+b)^2$"," identity", font_size=26)
+        rectangle = SurroundingRectangle(sentence, color=BLUE, buff=0.5)
+        
+        # Position the rectangle and text in the center
+        sentence.move_to(LEFT*5)
+        rectangle.move_to(sentence.get_center())
 
         # Writing expressions step by step
         self.play(Write(original_expression))
         self.wait(1)
         self.play(Write(split_expression))
         self.wait(1)
+        self.play(Create(rectangle), Write(sentence))
+        self.wait(2)
         self.play(Write(expanded_expression))
         self.wait(1)
         self.play(Write(calculated_terms))
@@ -473,191 +580,127 @@ class AlgebraicExpression(AbstractAnim):
         self.wait(2)
 
         # Clean up
-        self.play(FadeOut(original_expression), FadeOut(split_expression), FadeOut(expanded_expression), FadeOut(calculated_terms), FadeOut(final_result), FadeOut(title))
+        self.play(FadeOut(original_expression), FadeOut(split_expression), FadeOut(rectangle), FadeOut(sentence), FadeOut(expanded_expression), FadeOut(calculated_terms), FadeOut(final_result), FadeOut(title))
         self.wait(1)
+        
+        self.fadeOutCurrentScene()
+        
 
-    def GeometricVerification1(self):
+    def finding1962(self):
         # Title
-        title = Text("Geometrical Verification of Identity(1)")
+        title = Tex("Finding","$ (196)^2 $")
         title.to_edge(UP)
         self.play(Write(title))
         self.wait(1)
 
-        # Create squares and rectangles
-        a_square = Square(side_length=2, color=BLUE)
-        b_square = Square(side_length=2, color=GREEN)
-        ab_rectangle = Rectangle(width=4, height=2, color=WHITE)
+        # Step by step calculation
+        original_expression = MathTex("196^2")
+        split_expression = MathTex("= (200 - 4)^2")
+        expanded_expression = MathTex("= (200)^2 - 2(200)(4) + 4^2")
+        calculated_terms = MathTex("= 40000 - 1600 + 16")
+        final_result = MathTex("= 38416")
 
-        # Positioning squares and rectangles
-        a_square.move_to(LEFT * 3)
-        b_square.move_to(RIGHT * 3)
-        ab_rectangle.move_to(ORIGIN)
-
-        # Labels for squares and rectangle
-        a_label = MathTex("a^2", color=BLUE).next_to(a_square, DOWN)
-        b_label = MathTex("b^2", color=GREEN).next_to(b_square, DOWN)
-        ab_label = MathTex("2ab", color=WHITE).next_to(ab_rectangle, DOWN)
-
-        # Group all objects together
-        shapes_group = VGroup(a_square, b_square, ab_rectangle, a_label, b_label, ab_label)
-
-        # Show squares and rectangles
-        self.play(Create(a_square), Create(b_square), Create(ab_rectangle))
-        self.wait()
-
-        # Show labels
-        self.play(Write(a_label), Write(b_label), Write(ab_label))
-        self.wait()
-
-        # Identity text
-        identity_text = MathTex("(a + b)^2 = a^2 + 2ab + b^2").to_edge(DOWN)
-        self.play(Write(identity_text))
+        # Positioning
+        original_expression.next_to(title, DOWN, buff=1.5)
+        split_expression.next_to(original_expression, DOWN, buff=0.5)
+        expanded_expression.next_to(split_expression, DOWN, buff=0.5)
+        calculated_terms.next_to(expanded_expression, DOWN, buff=0.5)
+        final_result.next_to(calculated_terms, DOWN, buff=0.5)
+        
+        sentence = Tex("Here we are using\n\n","$(a-b)^2$"," identity", font_size=26)
+        rectangle = SurroundingRectangle(sentence, color=BLUE, buff=0.5)
+        
+        # Position the rectangle and text in the center
+        sentence.move_to(LEFT*5)
+        rectangle.move_to(sentence.get_center())
+        
+        # Writing expressions step by step
+        self.play(Write(original_expression))
+        self.wait(1)
+        self.play(Write(split_expression))
+        self.wait(1)
+        self.play(Create(rectangle), Write(sentence))
+        self.wait(2)
+        self.play(Write(expanded_expression))
+        self.wait(1)
+        self.play(Write(calculated_terms))
+        self.wait(1)
+        self.play(Write(final_result))
         self.wait(2)
 
-        # Fade out all objects
-        self.play(FadeOut(shapes_group), FadeOut(identity_text), FadeOut(title))
-        self.wait()
-
-    def GeometricVerification2(self):
+        # Clean up
+        self.play(
+            FadeOut(original_expression),
+            FadeOut(split_expression),
+            FadeOut(rectangle), 
+            FadeOut(sentence),
+            FadeOut(expanded_expression),
+            FadeOut(calculated_terms),
+            FadeOut(final_result),
+            FadeOut(title)
+        )
+        self.wait(1)
+        
+        self.fadeOutCurrentScene()
+        
+    def application2(self):
+        
         # Title
-        title = Text("Geometrical Verification of Identity(2)")
-        title.to_edge(UP)
-        self.play(Write(title))
-        self.wait(1)
-        
-        # Create squares and rectangles
-        a_square = Square(side_length=2, color=BLUE)
-        b_square = Square(side_length=2, color=GREEN)
-        ab_rectangle = Rectangle(width=4, height=2, color=WHITE)
-
-        # Positioning squares and rectangles
-        a_square.move_to(LEFT * 3)
-        b_square.move_to(RIGHT * 3)
-        ab_rectangle.move_to(ORIGIN)
-
-        # Labels for squares and rectangle
-        a_label = MathTex("a^2", color=BLUE).next_to(a_square, DOWN)
-        b_label = MathTex("b^2", color=GREEN).next_to(b_square, DOWN)
-        ab_label = MathTex("-2ab", color=WHITE).next_to(ab_rectangle, DOWN)
-
-        # Group all objects together
-        shapes_group = VGroup(a_square, b_square, ab_rectangle, a_label, b_label, ab_label)
-
-        # Show squares and rectangles
-        self.play(Create(a_square), Create(b_square), Create(ab_rectangle))
-        self.wait()
-
-        # Show labels
-        self.play(Write(a_label), Write(b_label), Write(ab_label))
-        self.wait()
-
-        # Identity text
-        identity_text = MathTex("(a - b)^2 = a^2 - 2ab + b^2").to_edge(DOWN)
-        self.play(Write(identity_text))
-        self.wait(2)
-
-        # Fade out all objects
-        self.play(FadeOut(shapes_group), FadeOut(identity_text), FadeOut(title))
-        self.wait()
-
-    def GeometricVerification3(self):
-       # Title
-        title = Text("Geometrical Verification of Identity(3)")
+        title = Text("Finding 407 × 393")
         title.to_edge(UP)
         self.play(Write(title))
         self.wait(1)
 
-        # Create squares and rectangles
-        a_square = Square(side_length=2, color=BLUE)
-        b_square = Square(side_length=2, color=GREEN)
-        ab_rect_outer = Rectangle(width=6, height=2, color=WHITE)
-        ab_rect_inner = Rectangle(width=2, height=2, color=WHITE)
+        # Step by step calculation
+        original_expression = MathTex("407 \\times 393")
+        split_expression = MathTex("= (400 + 7)(400 - 7)")
+        expanded_expression = MathTex("= 400^2 - 7^2")
+        calculated_terms = MathTex("= 160000 - 49")
+        final_result = MathTex("= 159951")
 
-        # Positioning squares and rectangles
-        a_square.move_to(LEFT * 3 + UP)
-        b_square.move_to(RIGHT * 3 + UP)
-        ab_rect_outer.move_to(ORIGIN)
-        ab_rect_inner.move_to(ORIGIN)
+        # Positioning
+        original_expression.next_to(title, DOWN, buff=1.5)
+        split_expression.next_to(original_expression, DOWN, buff=0.5)
+        expanded_expression.next_to(split_expression, DOWN, buff=0.5)
+        calculated_terms.next_to(expanded_expression, DOWN, buff=0.5)
+        final_result.next_to(calculated_terms, DOWN, buff=0.5)
+        
+        sentence = Tex("Here we are using\n\n","$((a)^2-(b)^2)$"," identity", font_size=26)
+        rectangle = SurroundingRectangle(sentence, color=BLUE, buff=0.5)
+        
+        # Position the rectangle and text in the center
+        sentence.move_to(LEFT*5)
+        rectangle.move_to(sentence.get_center())
 
-        # Labels for squares and rectangle
-        a_label = MathTex("a^2", color=BLUE).next_to(a_square, DOWN)
-        b_label = MathTex("b^2", color=GREEN).next_to(b_square, DOWN)
-        ab_label_outer = MathTex("(a+b)(a-b)", color=WHITE).next_to(ab_rect_outer, DOWN)
-        ab_label_inner = MathTex("=a^2-b^2", color=WHITE).next_to(ab_rect_inner, DOWN)
-
-        # Group all objects together
-        shapes_group = VGroup(a_square, b_square, ab_rect_outer, ab_rect_inner, a_label, b_label, ab_label_outer, ab_label_inner)
-
-        # Show squares and rectangles
-        self.play(Create(a_square), Create(b_square), Create(ab_rect_outer))
-        self.wait()
-
-        # Show labels
-        self.play(Write(a_label), Write(b_label), Write(ab_label_outer))
-        self.wait()
-
-        # Inner rectangle for subtraction
-        self.play(Transform(ab_rect_outer, ab_rect_inner))
-        self.play(Transform(ab_label_outer, ab_label_inner))
+        # Writing expressions step by step
+        self.play(Write(original_expression))
+        self.wait(1)
+        self.play(Write(split_expression))
+        self.wait(1)
+        self.play(Create(rectangle), Write(sentence))
+        self.wait(2)
+        self.play(Write(expanded_expression))
+        self.wait(1)
+        self.play(Write(calculated_terms))
+        self.wait(1)
+        self.play(Write(final_result))
         self.wait(2)
 
-        # Fade out all objects
-        self.play(FadeOut(shapes_group), FadeOut(title))
-        self.wait()
-        
-    def GeometricVerification4(self):
-        # Title
-        title = Tex("Geometrical Verification of Identity (4)")
-        title.to_edge(UP)
-        self.play(Write(title))
+        # Clean up
+        self.play(
+            FadeOut(original_expression),
+            FadeOut(split_expression),
+            FadeOut(rectangle), 
+            FadeOut(sentence),
+            FadeOut(expanded_expression),
+            FadeOut(calculated_terms),
+            FadeOut(final_result),
+            FadeOut(title)
+        )
+        self.wait(1)
+        self.fadeOutCurrentScene()
 
-         # Define the lengths
-        x = 2
-        a = 1
-        b = 1
-        
-        # Create the main rectangle (x + a) * (x + b)
-        main_rect = Rectangle(width=x+a, height=x+b)
-        main_rect.set_fill(WHITE, opacity=0.5)
-        main_rect.set_stroke(BLUE, width=2)
-        
-        # Create smaller rectangles to represent x^2, ax, bx, and ab
-        square_x2 = Square(side_length=x)
-        rect_ax = Rectangle(width=a, height=x)
-        rect_bx = Rectangle(width=x, height=b)
-        square_ab = Square(side_length=1)
-        
-        # Position smaller rectangles
-        square_x2.move_to(main_rect.get_corner(UP + LEFT) + np.array([x/2, -x/2, 0]))
-        rect_ax.next_to(square_x2, RIGHT, buff=0)
-        rect_bx.next_to(square_x2, DOWN, buff=0)
-        square_ab.next_to(rect_ax, DOWN, buff=0)
-        
-        # Add labels
-        label_x2 = MathTex("x^2").move_to(square_x2.get_center())
-        label_ax = MathTex("ax").move_to(rect_ax.get_center())
-        label_bx = MathTex("bx").move_to(rect_bx.get_center())
-        label_ab = MathTex("ab").move_to(square_ab.get_center())
-        
-        # Add labels to the sides
-        label_x1 = MathTex("x").next_to(square_x2, LEFT, buff=0.1)
-        label_x2 = MathTex("x").next_to(square_x2, UP, buff=0.1)
-        label_a = MathTex("a").next_to(rect_ax, RIGHT, buff=0.1)
-        label_b = MathTex("b").next_to(rect_bx, DOWN, buff=0.1)
-        
-        # Create the equation
-        equation = MathTex("(x + a)(x + b) = x^2 + ax + bx + ab").to_edge(DOWN)
-        
-        # Animate the construction
-        self.play(FadeIn(main_rect))
-        self.play(FadeIn(square_x2), FadeIn(rect_ax), FadeIn(rect_bx), FadeIn(square_ab))
-        self.play(FadeIn(label_x2), FadeIn(label_ax), FadeIn(label_bx), FadeIn(label_ab))
-        self.play(FadeIn(label_x1), FadeIn(label_x2), FadeIn(label_a), FadeIn(label_b))
-        self.play(Write(equation))
-        
-        # Pause to view
-        self.wait(2)
 
 if __name__ == "__main__":
-    scene = AlgebraicExpression()
+    scene = Grade8Chapter11AlgebraicExpression()
     scene.render()
