@@ -45,6 +45,13 @@ class Chap8G9_Quadrilaterals(AbstractAnim):
         self.fadeOutCurrentScene()
         self.mpt2()
         self.fadeOutCurrentScene()
+        self.GithubSourceCodeReference()
+        
+    def SetDeveloperList(self):  
+        self.DeveloperList="Prithiv Shiv M V"
+
+    def SetSourceCodeFileName(self):
+        self.SourceCodeFileName="Grade9Chapter8Quadrilaterals.py"
 
 
     def Definition(self):

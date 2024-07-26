@@ -26,11 +26,13 @@ class ProbabilityAnim(AbstractAnim):
         
     
     def Probability(self):
+        self.isRandom = False
+        self.angleChoice=[TAU/5,TAU/5,TAU/5,TAU/5]
         p10=cvo.CVO().CreateCVO("Probability","").setPosition([-6,0,0])
-        p11=cvo.CVO().CreateCVO("Random experiment", "").setPosition([-3,0,0]).setangle(-TAU/4)
-        p12=cvo.CVO().CreateCVO("Property", "More than one possible outcome").setPosition([3,2.5,0]).setangle(-TAU/4)
-        p13=cvo.CVO().CreateCVO("Property", "Possible outcome cannot be predicted").setPosition([4.5,0,0]).setangle(-TAU/4)
-        p14=cvo.CVO().CreateCVO("Example","Flipping a coin").setPosition([3,-2.5,0]).setangle(-TAU/4)
+        p11=cvo.CVO().CreateCVO("Random experiment", "").setPosition([-3,0,0])
+        p12=cvo.CVO().CreateCVO("Property", "More than one possible outcome").setPosition([3,2.5,0])
+        p13=cvo.CVO().CreateCVO("Property", "Possible outcome cannot be predicted").setPosition([4.5,0,0])
+        p14=cvo.CVO().CreateCVO("Example","Flipping a coin").setPosition([3,-2.5,0])
         
         
         p10.cvolist.append(p11)
@@ -47,17 +49,18 @@ class ProbabilityAnim(AbstractAnim):
         self.fadeOutCurrentScene()
 
     def Equal(self):
-        
-        p10=cvo.CVO().CreateCVO("Equally Likely Outcomes","").setPosition([-2,2,0])
-        p11=cvo.CVO().CreateCVO("Definition","Having Equal Chances to occur").setPosition([-2,-2,0]).setangle(-TAU/4)  
-        p12=cvo.CVO().CreateCVO("Example","Rolling a Dice").setPosition([3,2,0]).setangle(-TAU/4)
-        p13=cvo.CVO().CreateCVO("Outcome","Each number has equal chance to occur").setPosition([2,-2,0]).setangle(-TAU/4)
+        self.isRandom = False
+        self.angleChoice=[TAU/5,TAU/5]
+        p10=cvo.CVO().CreateCVO("Equally Likely Outcomes","").setPosition([-3,1.7,0])
+        p11=cvo.CVO().CreateCVO("Definition","Having Equal Chances to occur").setPosition([3,1.7,0])
+        p12=cvo.CVO().CreateCVO("Example","Rolling a Dice").setPosition([-3,-1.7,0])
+        p13=cvo.CVO().CreateCVO("Outcome","Each number has equal chance to occur").setPosition([3,-1.7,0])
 
         p10.cvolist.append(p11)
         p12.cvolist.append(p13)
 
-        p11.setcircleradius(1.5)
-        p13.setcircleradius(1.5)
+        p11.setcircleradius(2)
+        p13.setcircleradius(2)
         
         self.setNumberOfCirclePositions(4)
         self.construct1(p10,p10)
@@ -65,30 +68,36 @@ class ProbabilityAnim(AbstractAnim):
         self.fadeOutCurrentScene()
 
     def Trial(self):
-        
-        p10=cvo.CVO().CreateCVO("Trial and Event","").setPosition([0,2,0])
-        p11=cvo.CVO().CreateCVO("Trial Definition","Performing an Experiment").setPosition([-2,-1,0]).setangle(-TAU/4)
-        p12=cvo.CVO().CreateCVO("Event Definition","Outcomes of Experiment").setPosition([2,-1,0]).setangle(-TAU/4)
+        self.isRandom = False
+        self.angleChoice=[TAU/5,TAU/5]
+        p10=cvo.CVO().CreateCVO("Trial and Event","").setPosition([-3,0,0])
+        p11=cvo.CVO().CreateCVO("Trial Definition","Performing an Experiment").setPosition([2,1.7,0])
+        p12=cvo.CVO().CreateCVO("Event Definition","Outcomes of Experiment").setPosition([2,-1.7,0])
         
         p10.cvolist.append(p11)
         p10.cvolist.append(p12)
 
-        p11.setcircleradius(1.5)
-        p12.setcircleradius(1.5)
+        p11.setcircleradius(2)
+        p12.setcircleradius(2)
         
         self.setNumberOfCirclePositions(3)
         self.construct1(p10,p10)
         self.fadeOutCurrentScene()
     
     def Certain(self):
+        self.isRandom = False
+        self.angleChoice=[TAU/5,TAU/5]
         p10=cvo.CVO().CreateCVO("Certain Event","").setPosition([-2,2,0])
-        p11=cvo.CVO().CreateCVO("Definition","Probability is equal to 1").setPosition([2,2,0]).setangle(-TAU/6)
-        p12=cvo.CVO().CreateCVO("Impossible Event","").setPosition([-2,-2,0]).setangle(-TAU/6)
-        p13=cvo.CVO().CreateCVO("Definition","Probability is equal to 0").setPosition([2,-2,0]).setangle(-TAU/6)
+        p11=cvo.CVO().CreateCVO("Definition","Probability is equal to 1").setPosition([2,2,0])
+        p12=cvo.CVO().CreateCVO("Impossible Event","").setPosition([-2,-1.7,0])
+        p13=cvo.CVO().CreateCVO("Definition","Probability is equal to 0").setPosition([2,-1.7,0])
         
         p10.cvolist.append(p11)
         p12.cvolist.append(p13)
-        
+
+        p11.setcircleradius(1.7)
+        p13.setcircleradius(1.7)
+
         self.setNumberOfCirclePositions(4)
 
         self.construct1(p10,p10)
@@ -96,14 +105,15 @@ class ProbabilityAnim(AbstractAnim):
         self.fadeOutCurrentScene()
 
     def Formula(self):
-
-        p10=cvo.CVO().CreateCVO("Probability","").setPosition([-2,2,0])
-        p11=cvo.CVO().CreateCVO("Formula","Favourable outcomes / Total number of outcomes").setPosition([2,0,0]).setangle(-TAU/4)
+        self.isRandom = False
+        self.angleChoice=[TAU/4]
+        p10=cvo.CVO().CreateCVO("Probability","").setPosition([-3,0,0])
+        p11=cvo.CVO().CreateCVO("Formula","Favourable outcomes / Total number of outcomes").setPosition([3,0,0])
  
         p10.cvolist.append(p11)
         
 
-        p11.setcircleradius(1.5)
+        p11.setcircleradius(2.5)
         
         
         self.setNumberOfCirclePositions(2)
@@ -111,22 +121,24 @@ class ProbabilityAnim(AbstractAnim):
         self.fadeOutCurrentScene()
 
     def Properties(self):
-        
-        p10=cvo.CVO().CreateCVO("Probability","").setPosition([0,2,0])
-        p11=cvo.CVO().CreateCVO("Property","Sum of all probabilities is equal to 1").setPosition([-2,-1,0])
-        p12=cvo.CVO().CreateCVO("Property","Probability lies between 0 and 1").setPosition([2,-1,0])
+        self.isRandom = False
+        self.angleChoice=[TAU/5,TAU/5]
+        p10=cvo.CVO().CreateCVO("Probability","").setPosition([-3,0,0])
+        p11=cvo.CVO().CreateCVO("Property","Sum of all probabilities is equal to 1").setPosition([2,1.7,0])
+        p12=cvo.CVO().CreateCVO("Property","Probability lies between 0 and 1").setPosition([2,-1.7,0])
         
         p10.cvolist.append(p11)
         p10.cvolist.append(p12)
 
-        p11.setcircleradius(1.5)
-        p12.setcircleradius(1.5)
+        p11.setcircleradius(2)
+        p12.setcircleradius(2)
         
         self.setNumberOfCirclePositions(3)
         self.construct1(p10,p10)
         self.fadeOutCurrentScene()
 
     def Example(self):
+        
         title1 = Text("Probability",font_size=40,color=BLUE).scale(0.7).to_edge(UP)
         self.play(Write(title1))
         self.wait(1)
@@ -188,7 +200,7 @@ class ProbabilityAnim(AbstractAnim):
             sector.shift(RIGHT * 3)
             sectors.add(sector)
 
-        self.play(Create(sectors))
+        self.play(Create(sectors),run_time = 0.2)
 
         # Draw the division lines from the center of the circle
         for i in range(len(colors)):
@@ -200,7 +212,7 @@ class ProbabilityAnim(AbstractAnim):
             angle_pos = angle * i + angle / 2
             label_position = 2.2 * np.array([np.cos(angle_pos), np.sin(angle_pos), 0]) + np.array([3, 0, 0])
             label_text = Text(label, font_size=24).move_to(label_position)
-            self.play(Write(label_text))
+            self.play(Write(label_text),run_time = 0.2)
 
         # Answering the questions, positioned side by side to avoid overlap
 
@@ -216,21 +228,14 @@ class ProbabilityAnim(AbstractAnim):
         equal_label = Text("Equally likely: Red and Blue (2/8 each)", font_size=24, color=PURPLE).next_to(yellow_label, DOWN).align_to(yellow_label, LEFT)
         self.play(Write(equal_label))
 
-        # d) Probability of stopping on White (0%)
-        white_label = Text("Probability on White: 0%", font_size=24).next_to(equal_label, DOWN).align_to(equal_label, LEFT)
-        self.play(Write(white_label))
-
-        # e) No certain color to stop
-        certain_label = Text("No color is certain to stop", font_size=24).next_to(white_label, DOWN).align_to(white_label, LEFT)
-        self.play(Write(certain_label))
-        self.wait(2)
 
         self.fadeOutCurrentScene()
 
     def RealLife(self):
-
+        self.isRandom = False
+        self.angleChoice=[TAU/4]
         p10=cvo.CVO().CreateCVO("Probability","").setPosition([-2,0,0])
-        p11=cvo.CVO().CreateCVO("Real Life Uses","Exit Poll in Elections").setPosition([2,0,0]).setangle(-TAU/4)
+        p11=cvo.CVO().CreateCVO("Real Life Uses","Exit Poll in Elections").setPosition([2,0,0])
         
 
         p10.cvolist.append(p11)
@@ -250,7 +255,7 @@ class ProbabilityAnim(AbstractAnim):
 
     def SetDeveloperList(self):  
         self.DeveloperList="Lagichetty Kushal"
-    
+     
 if __name__ == "__main__":
     scene = ProbabilityAnim()
     scene.render()
