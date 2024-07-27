@@ -12,7 +12,7 @@ from AbstractAnim import AbstractAnim
 import cvo
 
 
-class BeforeandAfter(AbstractAnim):
+class Grade1chapter5BeforeAfterBetweenMoreLess(AbstractAnim):
 
     def construct(self):
         self.RenderSkillbancLogo()
@@ -179,10 +179,12 @@ class BeforeandAfter(AbstractAnim):
         self.play(Write(pot_label), Write(plant_label))
         self.play(Write(question_text))
         self.wait(4)
+        self.play(Create(pot_image))        
         self.play(Create(answer_boxes), Write(more_less_labels))
-        self.play(Create(pot_image))
-        self.play(Create(answer_boxes1), Write(more_less_labels1))        
+        # self.play(Create(pot_image))
         self.play(Create(plant_image))
+        self.play(Create(answer_boxes1), Write(more_less_labels1))        
+        # self.play(Create(plant_image))
         self.wait(2)
 
         # Fill in the answer boxes and show answers
@@ -193,7 +195,7 @@ class BeforeandAfter(AbstractAnim):
            
         )
 
-        self.wait(3)
+        self.wait(1.5)
 
         
         # Fill in the answer boxes and show answers
@@ -204,7 +206,7 @@ class BeforeandAfter(AbstractAnim):
            
         )
 
-        self.wait(5)
+        self.wait(3.5)
 
     def cranes(self):
   
@@ -749,7 +751,7 @@ class BeforeandAfter(AbstractAnim):
 
         rows.arrange(DOWN, buff=0.3).next_to(title, DOWN, buff=0.5)
         self.play(Create(rows))
-        self.wait(3)
+        self.wait(2.5)
 
                 # Animate answers
         for i, row in enumerate(rows):
@@ -762,7 +764,7 @@ class BeforeandAfter(AbstractAnim):
             )
 
         # Final pause
-        self.wait(5)
+        self.wait(3)
 
         # Animate answers
         for i, row in enumerate(rows):
@@ -923,7 +925,7 @@ class BeforeandAfter(AbstractAnim):
 
         rows.arrange(DOWN, buff=0.3).next_to(title, DOWN, buff=0.5)
         self.play(Create(rows))
-        self.wait(3)
+        self.wait(2)
 
        
 
@@ -938,7 +940,7 @@ class BeforeandAfter(AbstractAnim):
             )
 
         # Final pause
-        self.wait(4)
+        self.wait(34)
 
          # Animate answers
         for i, row in enumerate(rows):
@@ -1203,11 +1205,11 @@ class BeforeandAfter(AbstractAnim):
         self.DeveloperList = "Uday Kiran"   
 
     def SetSourceCodeFileName(self):
-        self.SourceCodeFileName="Grade1Before-After-Between-More-Less.py"      
+        self.SourceCodeFileName="Grade1chapter5Before-After-Between-More-Less.py"      
 
 
 
 
 if __name__ == "__main__":
-    scene = BeforeandAfter()
+    scene = Grade1chapter5BeforeAfterBetweenMoreLess()
     scene.render()
