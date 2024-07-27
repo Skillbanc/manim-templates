@@ -12,14 +12,12 @@ from AbstractAnim import AbstractAnim
 import cvo
 
 
-class Smarttable(AbstractAnim):
+class Grade4chapter13Smarttables(AbstractAnim):
     
     def construct(self):
         self.RenderSkillbancLogo()
         self.fadeOutCurrentScene()
         self.Title()
-        self.fadeOutCurrentScene()
-        self.define()
         self.fadeOutCurrentScene()
         self.t1()
         self.fadeOutCurrentScene()
@@ -54,6 +52,7 @@ class Smarttable(AbstractAnim):
         self.question()
         self.fadeOutCurrentScene()
         self.GithubSourceCodeReference()
+        
 
 
 
@@ -70,73 +69,6 @@ class Smarttable(AbstractAnim):
         self.wait(2)
 
 
-
-
-    def define(self):
-    #          # Create question text
-    #   a = Text(" Smart tables in mathematics typically refer to an innovative approach to learning and practicing multiplication facts.", color=WHITE).scale(0.65)
-    #   a.to_edge( UP*3.7+LEFT)
-
-        
-    #from manim import *
-
-        # Title
-        title = Text("Smart Tables", font_size=60, color=BLUE)
-        subtitle = Text("Reinventing Multiplication Learning And Practice", font_size=32)
-        title_group = VGroup(title, subtitle).arrange(DOWN)
-        self.play(Write(title_group))
-        self.play(title_group.animate.to_edge(UP))
-
-        # Create dynamic multiplication circles
-        circles = VGroup(*[Circle(radius=0.5, color=WHITE) for _ in range(12)])
-        circles.arrange_in_grid(rows=3, cols=4, buff=0.5)
-        numbers = VGroup(*[Text(str(i), font_size=24) for i in range(1, 13)])
-        for number, circle in zip(numbers, circles):
-            number.move_to(circle.get_center())
-
-        self.play(Create(circles), Write(numbers))
-
-        # Animate connections between circles
-        connections = VGroup()
-        for i in range(len(circles)):
-            for j in range(i+1, len(circles)):
-                line = Line(circles[i].get_center(), circles[j].get_center(), stroke_width=1, color=YELLOW)
-                connections.add(line)
-
-        self.play(Create(connections))
-
-        # Key features
-        features = [
-            "Interactive",
-            "Pattern Recognition",
-            "Adaptive Learning",
-            "Visual Aids",
-            "Instant Feedback"
-        ]
-        feature_texts = VGroup(*[Text(feature, font_size=28) for feature in features])
-        feature_texts.arrange(DOWN, aligned_edge=LEFT, buff=0.5)
-        feature_texts.to_edge(LEFT)
-
-        for feature in feature_texts:
-            self.play(Write(feature))
-            circle = Circle(radius=0.12, color=GREEN)
-            circle.next_to(feature, LEFT)
-            self.play(Create(circle))
-
-        # Animated multiplication example
-        example = Text("3 × 4 = 12", font_size=48, color=YELLOW)
-        example.to_edge(RIGHT)
-        self.play(Write(example))
-
-        highlight_circles = VGroup(circles[2], circles[3], circles[11])
-        self.play(highlight_circles.animate.set_color(YELLOW))
-
-        # Final message
-        final_message = Text("Efficient, Engaging, and Fun!", font_size=40, color=PINK)
-        final_message.to_edge(DOWN)
-        self.play(Write(final_message))
-
-        self.wait(4)
 
     
     def t1(self):
@@ -197,7 +129,7 @@ class Smarttable(AbstractAnim):
         table.set_row_colors(YELLOW)
         
         # Add the title
-        title = Text("This information is written from the given table. ", 
+        title = Text("The information is written from the given table. ", 
                      color=BLUE).scale(0.9)
         title.next_to(table, UP)
 
@@ -206,7 +138,7 @@ class Smarttable(AbstractAnim):
         self.play(Write(title))
         self.wait(2)
         self.play(Create(table))
-        self.wait(6)
+        self.wait(5)
 
     def ques1(self):
 
@@ -261,7 +193,7 @@ class Smarttable(AbstractAnim):
         
         # Create the scene
         self.play(Write(a2))
-        self.wait(5)
+        self.wait(2)
 
 
 
@@ -296,7 +228,7 @@ class Smarttable(AbstractAnim):
         
         # Create the scene
         self.play(Write(title))
-        self.wait(3)
+        self.wait(2)
         self.play(Create(table))
         self.wait(15) 
         
@@ -309,7 +241,7 @@ class Smarttable(AbstractAnim):
         
         # Create the scene
         self.play(Write(q1))
-        self.wait(3)
+        self.wait(2)
         
         a = Text("  Answer:  Circket ", color=BLUE).scale(0.7)
         a.to_edge( UP*3.6+LEFT)
@@ -328,7 +260,7 @@ class Smarttable(AbstractAnim):
         
         # Create the scene
         self.play(Write(q2))
-        self.wait(3)
+        self.wait(2)
         
         a1 = Text("  Answer:   Ludo ",   color=BLUE).scale(0.7)
         a1.to_edge( UP*8.6+LEFT)
@@ -336,7 +268,7 @@ class Smarttable(AbstractAnim):
         
         # Create the scene
         self.play(Write(a1))
-        self.wait(4)
+        self.wait(2)
 
        
     def t4(self):
@@ -368,7 +300,7 @@ class Smarttable(AbstractAnim):
         
         # Create the scene
         self.play(Write(title))
-        self.wait(3)
+        self.wait(2)
         self.play(Create(table))
         self.wait(11)
 
@@ -393,14 +325,23 @@ class Smarttable(AbstractAnim):
         
         # Add the title
         title = Text("Types of houses ",  color=YELLOW).scale(0.85)
-        title.next_to(table, UP)
+        title.to_edge( UP)
 
         # Create the scene
         self.play(Write(title))
-        self.wait(3)
+        self.wait(2)
+        # Add the title
+        title1 = Text("In a small village, there are 3 types of houses. The information has been\n given below. With the help of tally marks fill this tables.",  color=ORANGE).scale(0.57)
+        title1.next_to(table, UP)
+
+        # Create the scene
+        self.play(Write(title1))
+        self.wait(5)
         self.play(Create(table))
-        self.wait(6)
+        self.wait(5)
         
+
+
 
 
 
@@ -434,9 +375,9 @@ class Smarttable(AbstractAnim):
 
         # Create the scene
         self.play(Write(title))
-        self.wait(3)
+        self.wait(2)
         self.play(Create(table))
-        self.wait(8)
+        self.wait(4)
         
 
     def question7(self):
@@ -447,7 +388,7 @@ class Smarttable(AbstractAnim):
         
         # Create the scene
         self.play(Write(q1))
-        self.wait(3)
+        self.wait(2)
         
         a = Text("  Answer:   Bus", color=BLUE).scale(0.7)
         a.to_edge( UP*2.8+LEFT)
@@ -466,7 +407,7 @@ class Smarttable(AbstractAnim):
         
         # Create the scene
         self.play(Write(q2))
-        self.wait(3)
+        self.wait(2)
         
         a1 = Text("  Answer:   Aeroplane ",   color=BLUE).scale(0.7)
         a1.to_edge( UP*6.1+LEFT)
@@ -483,7 +424,7 @@ class Smarttable(AbstractAnim):
         
         # Create the scene
         self.play(Write(q3))
-        self.wait(6)
+        self.wait(2)
         
         a2 = Text("  Answer:   Aeroplane",   color=BLUE).scale(0.7)
         a2.to_edge( UP*10.9+LEFT)
@@ -491,7 +432,7 @@ class Smarttable(AbstractAnim):
         
         # Create the scene
         self.play(Write(a2))
-        self.wait(3)
+        self.wait(2)
 
 # Add the title
         q4 = Text("(d)   Which other toys are popular with children?", color=WHITE).scale(0.65)
@@ -500,7 +441,7 @@ class Smarttable(AbstractAnim):
         
         # Create the scene
         self.play(Write(q4))
-        self.wait(4)
+        self.wait(2)
         
         a3 = Text("  Answer:    Bike,Car,Doll,Train,Parrot,Teddy ",   color=BLUE).scale(0.7)
         a3.to_edge( UP*13.6+LEFT)
@@ -508,7 +449,7 @@ class Smarttable(AbstractAnim):
         
         # Create the scene
         self.play(Write(a3))
-        self.wait(4)
+        self.wait(2)
 
 
 ###
@@ -520,7 +461,7 @@ class Smarttable(AbstractAnim):
         
         # Create the scene
         self.play(Write(q1))
-        self.wait(3)
+        self.wait(2)
         
         a = Text(" Class 4 students of Palampet Primary School were given a target of \n\ncollecting300 in a week for an orphanage home. They asked  5 donation\n\n from eachperson they approached.", color=WHITE).scale(0.65)
         a.to_edge( UP*3.7+LEFT)
@@ -528,7 +469,7 @@ class Smarttable(AbstractAnim):
         
         # Create the scene
         self.play(Write(a))
-        self.wait(6)
+        self.wait(5)
         
       
  
@@ -570,7 +511,7 @@ class Smarttable(AbstractAnim):
         #         run_time=1.2
         #     )
         self.play(Create(table))
-        self.wait(7)
+        self.wait(5)
 
 
     def question8(self):
@@ -581,7 +522,7 @@ class Smarttable(AbstractAnim):
         
         # Create the scene
         self.play(Write(q1))
-        self.wait(3)
+        self.wait(2)
         
         a = Text("  Answer:   Sunday", color=BLUE).scale(0.7)
         a.to_edge( UP*2.8+LEFT)
@@ -600,7 +541,7 @@ class Smarttable(AbstractAnim):
         
         # Create the scene
         self.play(Write(q2))
-        self.wait(3)
+        self.wait(2)
         
         a1 = Text("  Answer:   wednesday and  Friday ",   color=BLUE).scale(0.7)
         a1.to_edge( UP*6.1+LEFT)
@@ -617,7 +558,7 @@ class Smarttable(AbstractAnim):
         
         # Create the scene
         self.play(Write(q3))
-        self.wait(3)
+        self.wait(2)
         
         a2 = Text("  Answer:   yes ",   color=BLUE).scale(0.7)
         a2.to_edge( UP*10.5+LEFT)
@@ -625,7 +566,7 @@ class Smarttable(AbstractAnim):
         
         # Create the scene
         self.play(Write(a2))
-        self.wait(4)
+        self.wait(2)
 
 
 
@@ -653,7 +594,7 @@ class Smarttable(AbstractAnim):
         
         # Create the scene
         self.play(Write(title))
-        self.wait(4)
+        self.wait(2)
 
         self.add(chart, c_bar_lbls)
            # Create title
@@ -661,7 +602,7 @@ class Smarttable(AbstractAnim):
         title1 = Text("Years", color=WHITE,font_size=26).to_edge(DOWN*2+RIGHT*0.7)
         self.play(Write(title),Write(title1))
         
-        self.wait(9)
+        self.wait(8)
 
     
  
@@ -673,7 +614,7 @@ class Smarttable(AbstractAnim):
         
         # Create the scene
         self.play(Write(q1))
-        self.wait(4)
+        self.wait(2)
         
         a = Text("  Answer:   2012 and 14bags(each 50kgs)", color=BLUE).scale(0.7)
         a.to_edge( UP*2.8+LEFT)
@@ -692,7 +633,7 @@ class Smarttable(AbstractAnim):
         
         # Create the scene
         self.play(Write(q2))
-        self.wait(3)
+        self.wait(2)
         
         a1 = Text("  Answer:   2012 ",   color=BLUE).scale(0.7)
         a1.to_edge( UP*6.1+LEFT)
@@ -709,7 +650,7 @@ class Smarttable(AbstractAnim):
         
         # Create the scene
         self.play(Write(q3))
-        self.wait(6)
+        self.wait(2)
         
         a2 = Text("  Answer:   Usage of good fertilizers and multicroping system.",   color=BLUE).scale(0.7)
         a2.to_edge( UP*10.5+LEFT)
@@ -717,13 +658,7 @@ class Smarttable(AbstractAnim):
         
         # Create the scene
         self.play(Write(a2))
-        self.wait(4)
-
-
-
-
-
-
+        self.wait(2)
 
 
     def box(self):
@@ -745,7 +680,7 @@ class Smarttable(AbstractAnim):
         
         # Create the scene
         self.play(Write(title))
-        self.wait(3)
+        self.wait(2)
 
         self.add(chart, c_bar_lbls)
           # Create title
@@ -753,7 +688,7 @@ class Smarttable(AbstractAnim):
         title1 = Text("Name of\n oil", color=WHITE,font_size=24).to_edge(DOWN*1.8+RIGHT*0.5)
         self.play(Write(title),Write(title1))
         
-        self.wait(9)
+        self.wait(8)
  
     def question(self):
            # Add the title
@@ -763,7 +698,7 @@ class Smarttable(AbstractAnim):
         
         # Create the scene
         self.play(Write(q1))
-        self.wait(3)
+        self.wait(2)
         
         a = Text("  Answer:   Coconut oil", color=BLUE).scale(0.7)
         a.to_edge( UP*2.8+LEFT)
@@ -782,7 +717,7 @@ class Smarttable(AbstractAnim):
         
         # Create the scene
         self.play(Write(q2))
-        self.wait(3)
+        self.wait(2)
         
         a1 = Text("  Answer:   Groundnut oil ",   color=BLUE).scale(0.7)
         a1.to_edge( UP*6.1+LEFT)
@@ -799,7 +734,7 @@ class Smarttable(AbstractAnim):
         
         # Create the scene
         self.play(Write(q3))
-        self.wait(5)
+        self.wait(2)
         
         a2 = Text("  Answer:   Two",   color=BLUE).scale(0.7)
         a2.to_edge( UP*10.4+LEFT)
@@ -816,7 +751,7 @@ class Smarttable(AbstractAnim):
         
         # Create the scene
         self.play(Write(q4))
-        self.wait(5)
+        self.wait(2)
         
         a3 = Text("  Answer:    Five ",   color=BLUE).scale(0.7)
         a3.to_edge( UP*13.9+LEFT)
@@ -824,7 +759,7 @@ class Smarttable(AbstractAnim):
         
         # Create the scene
         self.play(Write(a3))
-        self.wait(5)
+        self.wait(2)
 
 
 
@@ -842,4 +777,4 @@ class Smarttable(AbstractAnim):
 if __name__ == "__main__":
     from manim import config
     config.background_color = BLACK
-    Smarttable().render()
+    Grade4chapter13Smarttables().render()
