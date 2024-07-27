@@ -12,7 +12,7 @@ from AbstractAnim import AbstractAnim
 import cvo
 
 
-class table(AbstractAnim):
+class Grade2chapter10MultiplicationTables1to10(AbstractAnim):
     
     def construct(self):
         self.RenderSkillbancLogo()
@@ -33,9 +33,9 @@ class table(AbstractAnim):
         self.fadeOutCurrentScene()
         self.SEVEN()
         self.fadeOutCurrentScene()
-        self.NINE()
+        self.eight()
         self.fadeOutCurrentScene()
-        self.ADDtables()
+        self.NINE()
         self.fadeOutCurrentScene()
         self.Flower()
         self.fadeOutCurrentScene()
@@ -266,34 +266,39 @@ class table(AbstractAnim):
         self.play(Write(tit))
         self.wait(2)
 
-        equations = VGroup(
-            *[MathTex(f"3 \\times {i} =", 3 * i) for i in range(1, 11)]
-        ).arrange(DOWN, buff=0.3).shift(RIGHT*5).set_color(ORANGE)
+         # Create a grid of squares
+        grid = VGroup(*[
+            VGroup(*[
+                Square(side_length=0.6).set_stroke(width=3)
+                for _ in range(10)
+            ]).arrange(RIGHT, buff=0)
+            for _ in range(10)
+        ]).arrange(DOWN, buff=0)
 
+        grid.move_to(ORIGIN)
 
-        # Create grid
-        grid = VGroup()
-        for i in range(10):
-            for j in range(10):
-                cell = Square(side_length=0.6, stroke_width=1.1)
-                cell.set_stroke(color=WHITE,opacity=20,width=2)
-              #  line_config={"stroke_width": 3, "color": RED}
-                if j < 3:
-                    cell.set_fill(PINK, opacity=0.8)
-                grid.add(cell)
-        grid.arrange_in_grid(rows=10, cols=10, buff=0)
-      
-        self.play(Create(grid))
-        # Animate
-        self.wait(3)
-        # Display equations one by one
-        for equation in equations:
-            self.play(Write(equation))
-            self.wait(0.5)
+        # Add the grid to the scene
+        self.add(grid)
 
-        self.wait(6)
-        # Fade out equations
-        self.play(FadeOut(equations))
+        # Loop to animate each multiplication step
+        for i in range(1, 11):
+            rows = i
+            cols = 3
+            text = f"3 x {i} = {3*i}"
+            highlight_squares = VGroup(*[
+                grid[row][col].copy().set_fill(PINK, opacity=0.7).set_stroke(width=0.5)
+                for row in range(rows)
+                for col in range(cols)
+            ])
+            self.play(FadeIn(highlight_squares))
+
+            multiplication_text = Text(text)
+            multiplication_text.next_to(highlight_squares, RIGHT*4.65, buff=1)
+            self.play(Write(multiplication_text))
+
+            self.wait(3)
+            self.play(FadeOut(multiplication_text), FadeOut(highlight_squares))
+
         self.wait()
  
     def FOUR(self):
@@ -311,43 +316,40 @@ class table(AbstractAnim):
         self.wait(2)   
   
 
-        equations = VGroup(
-            *[MathTex(f"4 \\times {i} =", 4 * i) for i in range(1, 11)]
-        ).arrange(DOWN, buff=0.3).shift(RIGHT*5).set_color(ORANGE)
+         # Create a grid of squares
+        grid = VGroup(*[
+            VGroup(*[
+                Square(side_length=0.6).set_stroke(width=3)
+                for _ in range(10)
+            ]).arrange(RIGHT, buff=0)
+            for _ in range(10)
+        ]).arrange(DOWN, buff=0)
 
-    
-        # Create grid
-        grid = VGroup()
-        for i in range(10):
-            for j in range(10):
-                cell = Square(side_length=0.6, stroke_width=1.1)
-                cell.set_stroke(color=YELLOW,opacity=20,width=2)
-              #  line_config={"stroke_width": 3, "color": RED}
-                if j < 4:
-                    cell.set_fill(BLUE, opacity=1)
-                grid.add(cell)
-        grid.arrange_in_grid(rows=10, cols=10, buff=0)
-       # grid.next_to(table2, LEFT, buff=1)
-        
-        # Add labels
-    #    table2_label = Text("Table 4", font_size=36).next_to(table2, UP)
-       # table3_label = Text("Table 3", font_size=24).next_to(table3, UP)
-        self.play(Create(grid))
-        # Animate
-        self.wait(3)
-           # Display equations one by one
-        for equation in equations:
-            self.play(Write(equation))
-            self.wait(0.5)
+        grid.move_to(ORIGIN)
 
-        self.wait(6)
-        # Fade out equations
-        self.play(FadeOut(equations))
+        # Add the grid to the scene
+        self.add(grid)
+
+        # Loop to animate each multiplication step
+        for i in range(1, 11):
+            rows = i
+            cols = 4
+            text = f"4 x {i} = {4*i}"
+            highlight_squares = VGroup(*[
+                grid[row][col].copy().set_fill(BLUE, opacity=0.7).set_stroke(width=0.5)
+                for row in range(rows)
+                for col in range(cols)
+            ])
+            self.play(FadeIn(highlight_squares))
+
+            multiplication_text = Text(text)
+            multiplication_text.next_to(highlight_squares, RIGHT*4.3, buff=1)
+            self.play(Write(multiplication_text))
+
+            self.wait(3)
+            self.play(FadeOut(multiplication_text), FadeOut(highlight_squares))
+
         self.wait()
-       # self.play(Write(table2), Write(table2_label))
-        
-       # self.play(Write(table3), Write(table3_label))
-
         
     def SIX(self):
     
@@ -363,42 +365,41 @@ class table(AbstractAnim):
         self.play(Write(tit))
         self.wait(2)
 
-        equations = VGroup(
-            *[MathTex(f"6 \\times {i} =", 6 * i) for i in range(1, 11)]
-        ).arrange(DOWN, buff=0.3).shift(RIGHT*5).set_color(WHITE)
+         # Create a grid of squares
+        grid = VGroup(*[
+            VGroup(*[
+                Square(side_length=0.6).set_stroke(width=3)
+                for _ in range(10)
+            ]).arrange(RIGHT, buff=0)
+            for _ in range(10)
+        ]).arrange(DOWN, buff=0)
 
-        # Create grid
-        grid = VGroup()
-        for i in range(10):
-            for j in range(10):
-                cell = Square(side_length=0.6, stroke_width=1.1)
-                cell.set_stroke(color=WHITE,opacity=40,width=2.3)
-              #  line_config={"stroke_width": 3, "color": RED}
-                if j < 6:
-                    cell.set_fill(YELLOW, opacity=0.7)
-                grid.add(cell)
-        grid.arrange_in_grid(rows=10, cols=10, buff=0)
-       # grid.next_to(table2, LEFT, buff=1)
-        
-        # Add labels
-     #   table2_label = Text("Table 6", font_size=36).next_to(table2, UP)
-       # table3_label = Text("Table 3", font_size=24).next_to(table3, UP)
-        self.play(Create(grid))
-        # Animate
-        self.wait(3)
-        for equation in equations:
-            self.play(Write(equation))
-            self.wait(0.5)
-        
-        
-        self.wait(6)
-        # Fade out equations
-        self.play(FadeOut(equations))
+        grid.move_to(ORIGIN)
+
+        # Add the grid to the scene
+        self.add(grid)
+
+        # Loop to animate each multiplication step
+        for i in range(1, 11):
+            rows = i
+            cols = 6
+            text = f"6 x {i} = {6*i}"
+            highlight_squares = VGroup(*[
+                grid[row][col].copy().set_fill(YELLOW, opacity=0.7).set_stroke(width=0.5)
+                for row in range(rows)
+                for col in range(cols)
+            ])
+            self.play(FadeIn(highlight_squares))
+
+            multiplication_text = Text(text)
+            multiplication_text.next_to(highlight_squares, RIGHT*3, buff=1)
+            self.play(Write(multiplication_text))
+
+            self.wait(3)
+            self.play(FadeOut(multiplication_text), FadeOut(highlight_squares))
+
         self.wait()
-     #   self.play(Write(table2), Write(table2_label))
-        
-  
-
+      
     def SEVEN(self):
     
         # Create title
@@ -411,39 +412,40 @@ class table(AbstractAnim):
         self.play(Write(tit))
         self.wait(2) 
 
-    
-        equations = VGroup(
-            *[MathTex(f"7 \\times {i} =", 7 * i) for i in range(1, 11)]
-        ).arrange(DOWN, buff=0.3).shift(RIGHT*5).set_color(BLUE)
+      # Create a grid of squares
+        grid = VGroup(*[
+            VGroup(*[
+                Square(side_length=0.6).set_stroke(width=3,color=YELLOW)
+                for _ in range(10)
+            ]).arrange(RIGHT, buff=0)
+            for _ in range(10)
+        ]).arrange(DOWN, buff=0)
 
-        # Create grid
-        grid = VGroup()
-        for i in range(10):
-            for j in range(10):
-                cell = Square(side_length=0.6, stroke_width=1.1)
-                cell.set_stroke(color=YELLOW,opacity=40,width=2.3)
-              #  line_config={"stroke_width": 3, "color": RED}
-                if j < 7:
-                    cell.set_fill(WHITE, opacity=0.7)
-                grid.add(cell)
-        grid.arrange_in_grid(rows=10, cols=10, buff=0)
-       # grid.next_to(table2, LEFT, buff=1)
-        
-        self.play(Create(grid))
-        # Animate
-        self.wait(4)
-      #  self.play(Write(table2), Write(table2_label))
-        
-       # self.play(Write(table3), Write(table3_label))
-        for equation in equations:
-            self.play(Write(equation))
-            self.wait(0.5)
-        self.wait(5)
-        # Fade out equations
-        self.play(FadeOut(equations))
+        grid.move_to(ORIGIN)
+
+        # Add the grid to the scene
+        self.add(grid)
+
+        # Loop to animate each multiplication step
+        for i in range(1, 11):
+            rows = i
+            cols = 7
+            text = f"7 x {i} = {7*i}"
+            highlight_squares = VGroup(*[
+                grid[row][col].copy().set_fill(WHITE, opacity=0.7).set_stroke(width=0.5)
+                for row in range(rows)
+                for col in range(cols)
+            ])
+            self.play(FadeIn(highlight_squares))
+
+            multiplication_text = Text(text)
+            multiplication_text.next_to(highlight_squares, RIGHT*2.3, buff=1)
+            self.play(Write(multiplication_text))
+
+            self.wait(3)
+            self.play(FadeOut(multiplication_text), FadeOut(highlight_squares))
+
         self.wait()
-
-
 
     def NINE(self):
     
@@ -456,73 +458,42 @@ class table(AbstractAnim):
         # Add title to scene
         self.play(Write(tit))
         self.wait(2)
+  # Create a grid of squares
+        grid = VGroup(*[
+            VGroup(*[
+                Square(side_length=0.6).set_stroke(width=3,color=PINK)
+                for _ in range(10)
+            ]).arrange(RIGHT, buff=0)
+            for _ in range(10)
+        ]).arrange(DOWN, buff=0)
 
-        equations = VGroup(
-            *[MathTex(f"9 \\times {i} =", 9 * i) for i in range(1, 11)]
-        ).arrange(DOWN, buff=0.3).shift(RIGHT*5).set_color(PINK)
+        grid.move_to(ORIGIN)
 
-        # Create grid
-        grid = VGroup()
-        for i in range(10):
-            for j in range(10):
-                cell = Square(side_length=0.6, stroke_width=1.1)
-                cell.set_stroke(color=WHITE,opacity=40,width=2.4)
-              #  line_config={"stroke_width": 3, "color": RED}
-                if j < 9:
-                    cell.set_fill(YELLOW, opacity=0.7)
-                grid.add(cell)
-        grid.arrange_in_grid(rows=10, cols=10, buff=0)
-       # grid.next_to(table2, LEFT, buff=1)
-        
-        # Add labels
-     #   table2_label = Text("Table 9", font_size=36).next_to(table2, UP)
-       # table3_label = Text("Table 3", font_size=24).next_to(table3, UP)
-        self.play(Create(grid))
-        # Animate
-        self.wait(2)
-        for equation in equations:
-            self.play(Write(equation))
-            self.wait(0.5)
-        self.wait(5)
-        # Fade out equations
-        self.play(FadeOut(equations))
+        # Add the grid to the scene
+        self.add(grid)
+
+        # Loop to animate each multiplication step
+        for i in range(1, 11):
+            rows = i
+            cols = 9
+            text = f"9 x {i} = {9*i}"
+            highlight_squares = VGroup(*[
+                grid[row][col].copy().set_fill(BLUE, opacity=0.7).set_stroke(width=0.5)
+                for row in range(rows)
+                for col in range(cols)
+            ])
+            self.play(FadeIn(highlight_squares))
+
+            multiplication_text = Text(text)
+            multiplication_text.next_to(highlight_squares, RIGHT*1.2, buff=1)
+            self.play(Write(multiplication_text))
+
+            self.wait()
+            self.play(FadeOut(multiplication_text), FadeOut(highlight_squares))
+
         self.wait()
-      #  self.play(Write(table2), Write(table2_label))
-        
-       # self.play(Write(table3), Write(table3_label)
 
-    def ADDtables(self):
-    
-  
-        # Create the table
-        table = Table(
-            [["Table 2", "2", "4", "6", "8", "10", "12", "14", "16", "18", "20"],
-             ["Table 1  +", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10"],
-           #  ["+", "", "", "", "", "", "", "", "", "", ""],
-             ["Table 3", "3", "6", "9", "12", "15", "18", "21", "24", "27", "30"],
-             ["", "", "", "", "", "", "", "", "", "", ""],
-             ["Table 5", "5", "10", "15", "20", "25", "30", "35", "40", "45", "50"],
-             ["Table 1  +", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10"],
-           #  ["+", "", "", "", "", "", "", "", "", "", ""],
-             ["Table 6", "6", "12", "18", "24", "30", "36", "42", "48", "54", "60"]],
-            include_outer_lines=True
-        )
-        
-        # Style the table
-        table.scale(0.52)  # Adjust scale as needed
-        table.set_column_colors(BLUE, WHITE, WHITE, WHITE, WHITE, WHITE, WHITE, WHITE, WHITE, WHITE, WHITE)
-        
-        # Add the title
-        title = Text("Look at the following table. Identify how table 3 has been written. In the same\nmanner write Table 6.", 
-                     color=YELLOW).scale(0.58)
-        title.next_to(table, UP)
 
-        
-        # Create the scene
-        self.play(Write(title))
-        self.wait(5)
-        self.play(Create(table))
-        self.wait(9)
 
 
            
@@ -569,7 +540,7 @@ class table(AbstractAnim):
         self.play(Create(pot_group))
         self.wait(2)
         self.play(Create(boxes))
-        self.wait(3)
+        self.wait(7.2)
         self.play(Write(number1),Write(number2),Write(number3),Write(number4),Write(number5))
         self.wait(4)
 
@@ -623,6 +594,8 @@ class table(AbstractAnim):
         grid.scale(0.4)
 
         grid.set_color(WHITE)
+        grid.set_column_colors(YELLOW,YELLOW,YELLOW,YELLOW,YELLOW,YELLOW,YELLOW,YELLOW,YELLOW,YELLOW,YELLOW)
+        
         
         # Position the grid
         grid.next_to(title, DOWN, buff=0.7)
@@ -632,11 +605,24 @@ class table(AbstractAnim):
         self.wait(3)
         self.play(Create(grid))
         self.wait(15)
+
+
+
     def multizero(self):
         # Create title
         title = Text("Multiplication Table of 0", font_size=40)
         title.to_edge(UP)
         self.play(Write(title))
+        self.wait(3)
+        
+     # Create title
+        pot1 = Triangle(color=ORANGE, fill_color=ORANGE, fill_opacity=1).scale(0.4)
+        pot1.rotate(PI).to_edge(LEFT*3)
+        self.play(Create(pot1))  # Flip the triangle upside down
+        
+        title1 = Text("empty pot with zero\n\n flowers ", font_size=25,color=BLUE)
+        title1.next_to(pot1,DOWN)
+        self.play(Write(title1))
         self.wait(3)
 
         # Create rows
@@ -691,13 +677,64 @@ class table(AbstractAnim):
         cup = VGroup(pot)
         cup.scale(0.48)  # Adjust size as needed
         return cup
+    
+
+    
+ 
+    def eight(self):
+    
+        # Create title
+        title = Text("Multiplication Tables OF 8", font_size=36,color=WHITE).to_edge(UP*0.75)
+        self.play(Write(title))
+        self.wait(3)
+
+        tit = Text("8", color=WHITE,fill_opacity=0.45).scale(6)
+        # Add title to scene
+        self.play(Write(tit))
+        self.wait(2)
+  # Create a grid of squares
+        grid = VGroup(*[
+            VGroup(*[
+                Square(side_length=0.6).set_stroke(width=3,color=BLUE)
+                for _ in range(10)
+            ]).arrange(RIGHT, buff=0)
+            for _ in range(10)
+        ]).arrange(DOWN, buff=0)
+
+        grid.move_to(ORIGIN)
+
+        # Add the grid to the scene
+        self.add(grid)
+
+        # Loop to animate each multiplication step
+        for i in range(1, 11):
+            rows = i
+            cols = 8
+            text = f"8 x {i} = {8*i}"
+            highlight_squares = VGroup(*[
+                grid[row][col].copy().set_fill(PINK, opacity=0.7).set_stroke(width=0.5)
+                for row in range(rows)
+                for col in range(cols)
+            ])
+            self.play(FadeIn(highlight_squares))
+
+            multiplication_text = Text(text)
+            multiplication_text.next_to(highlight_squares, RIGHT*2.2, buff=1)
+            self.play(Write(multiplication_text))
+
+            self.wait()
+            self.play(FadeOut(multiplication_text), FadeOut(highlight_squares))
+
+        self.wait()
+
+
 
 
     def SetDeveloperList(self):
         self.DeveloperList = "Uday Kiran"   
 
     def SetSourceCodeFileName(self):
-        self.SourceCodeFileName="Grade2Multiplication Tables (1 to 10).py"      
+        self.SourceCodeFileName="Grade2chapter10MultiplicationTables(1to10).py"      
 
 
 
@@ -706,4 +743,4 @@ class table(AbstractAnim):
 if __name__ == "__main__":
     from manim import config
     config.background_color = BLACK
-    table().render()
+    Grade2chapter10MultiplicationTables1to10().render()
