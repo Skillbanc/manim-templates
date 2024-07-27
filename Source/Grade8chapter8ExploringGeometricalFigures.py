@@ -12,15 +12,13 @@ from AbstractAnim import AbstractAnim
 import cvo
 
 
-class ExploringGeometricalFigures(AbstractAnim):
+class Grade8chapter8ExploringGeometricalFigures(AbstractAnim):
 
     def construct(self):
         self.RenderSkillbancLogo()
         self.Title()
         self.fadeOutCurrentScene()
         self.Introduction()
-        self.fadeOutCurrentScene()
-        self.GeometricFigures()
         self.fadeOutCurrentScene()
         self.congruency()
         self.fadeOutCurrentScene()
@@ -30,11 +28,13 @@ class ExploringGeometricalFigures(AbstractAnim):
         self.fadeOutCurrentScene()
         self.flipping()
         self.fadeOutCurrentScene()
-        self.similarshapes()
+        self.similaritycheck1()
         self.fadeOutCurrentScene()
-        self.similaritycheck()
+        self.similaritycheck2()
         self.fadeOutCurrentScene()
         self.constructDataByCVO() #
+        self.fadeOutCurrentScene()
+        self.constdilation()
         self.fadeOutCurrentScene()
         self.symmetry()
         self.fadeOutCurrentScene()
@@ -62,100 +62,68 @@ class ExploringGeometricalFigures(AbstractAnim):
 
 
     def Introduction(self):
-         
-         
-         self.colorChoice = [PINK,BLUE,LOGO_GREEN,ORANGE,WHITE,YELLOW]
-        #  p1=cvo.CVO().CreateCVO("o1name","o2name","c1name","c2name")
-         p10=cvo.CVO().CreateCVO("Exploring Geometrical Figures","Introduction").setPosition([0,2.5,0])
-         p11=cvo.CVO().CreateCVO("triangles","").setPosition([4,2,0])
-         p12=cvo.CVO().CreateCVO("rectangles","").setPosition([5,-2,0])
-         p13=cvo.CVO().CreateCVO("rhombus","").setPosition([-4,1,0]).setangle(-TAU/4)
-         p14=cvo.CVO().CreateCVO("circles","").setPosition([-4,-1,0]).setangle(-TAU/4)
-         p15=cvo.CVO().CreateCVO("squares","").setPosition([4,0,0]).setangle(-TAU/6)
 
-         p10.cvolist.append(p12)
-         p10.cvolist.append(p11)
-         p10.cvolist.append(p13)
-         p10.cvolist.append(p14)
-         p10.cvolist.append(p15)
-         self.construct1(p10,p10)
-         self.wait(4)
+        # Create a title
+        title = Text("Geometric Shapes").scale(1.2).to_edge(UP)
+        self.play(Write(title))
+        self.wait(1)
 
+        # Circle
+        circle = Circle(radius=1.5, color=RED)
+        circle_text = Text("Circle").next_to(circle, DOWN)
+        self.play(Create(circle), Write(circle_text))
+        self.wait(2)
+        self.play(FadeOut(circle), FadeOut(circle_text))
 
-#geometric 
-    def GeometricFigures(self):
-         title = Text("Geometrical Figures", font_size=40).shift(UP * 3.5)
-        
+        # Rectangle
+        rectangle = Rectangle(width=3, height=2, color=BLUE)
+        rectangle_text = Text("Rectangle").next_to(rectangle, DOWN)
+        self.play(Create(rectangle), Write(rectangle_text))
+        self.wait(2)
+        self.play(FadeOut(rectangle), FadeOut(rectangle_text))
 
-        # Create a group
-         group = VGroup( title)
- 
-         self.add(group)
-         self.wait(2)
+        # Square
+        square = Square(side_length=2, color=GREEN)
+        square_text = Text("Square").next_to(square, DOWN)
+        self.play(Create(square), Write(square_text))
+        self.wait(2)
+        self.play(FadeOut(square), FadeOut(square_text))
 
+        # Rhombus
+        rhombus = Polygon([-1,0,0], [0,1,0], [1,0,0], [0,-1,0], color=YELLOW)
+        rhombus_text = Text("Rhombus").next_to(rhombus, DOWN)
+        self.play(Create(rhombus), Write(rhombus_text))
+        self.wait(2)
+        self.play(FadeOut(rhombus), FadeOut(rhombus_text))
 
-        # Create a circle
-         circle = Circle(radius=2, color=BLUE)
-         circle_label = Text("Circle", font_size=24).next_to(circle, DOWN)
-        
-        # Create a square
-         square = Square(side_length=3, color=GREEN)
-         square_label = Text("Square", font_size=24).next_to(square, DOWN)
-        
-        # Create a triangle
-         triangle = Triangle(color=RED)
-         triangle_label = Text("Triangle", font_size=24).next_to(triangle, DOWN)
-        
-        # Position the figures in a row
-         circle.shift(LEFT * 4)
-         square.shift(RIGHT * 4)
-        
-        # Animate the creation of the circle
-         self.play(Create(circle), Write(circle_label))
-         self.wait(1)
-        
-        # Animate the transformation from circle to square
-         self.play(Transform(circle, square), Transform(circle_label, square_label))
-         self.wait(1)
-        
-        # Animate the transformation from square to triangle
-         self.play(Transform(circle, triangle), Transform(circle_label, triangle_label))
-         self.wait(2)
+        # Triangle
+        triangle = Triangle(color=PURPLE)
+        triangle_text = Text("Triangle").next_to(triangle, DOWN)
+        self.play(Create(triangle), Write(triangle_text))
+        self.wait(2)
+        self.play(FadeOut(triangle), FadeOut(triangle_text))
 
-        # Reset labels
-         self.remove(circle_label)
-         self.remove(triangle_label)
-
-        # Create new shapes
-         circle = Circle(radius=2, color=BLUE).shift(LEFT * 4)
-         square = Square(side_length=3, color=GREEN).shift(RIGHT * 4)
-         triangle = Triangle(color=RED)
-
-        # Animate the drawing of shapes simultaneously
-         self.play(
-            Create(circle),
-            Create(square),
-            Create(triangle)
-        )
-        
-         self.wait(4)
+        # Fade out title
+        self.play(FadeOut(title))
+        self.wait(1)
 
 
 
 #Congruency
     def congruency(self):
-         
-         self.colorChoice = [ORANGE,WHITE,YELLOW]
-        #  p1=cvo.CVO().CreateCVO("o1name","o2name","c1name","c2name")
-         p10=cvo.CVO().CreateCVO("congruency ","Object").setPosition([0,2.5,0])
-         p11=cvo.CVO().CreateCVO("Equal sides","").setPosition([4,-2,0])
-         p12=cvo.CVO().CreateCVO("Equal angles ","").setPosition([-4,-2,0])
-         
-         p10.cvolist.append(p11)
-         p10.cvolist.append(p12)
-        
-         self.construct1(p10,p10)
-         self.wait(4)
+        self.colorChoice = [WHITE,YELLOW,BLUE]
+        self.isRandom= False
+        p10=cvo.CVO().CreateCVO("congruency","").setPosition([-5,0,0])
+        p11=cvo.CVO().CreateCVO("Equal sides", "").setPosition([1.5,2,0]).setangle(TAU/3)
+        p12=cvo.CVO().CreateCVO("Equal angles", "").setPosition([1.5,-2,0]).setangle(TAU/4)
+        p10.setcircleradius(1.5)
+        p11.setcircleradius(1.5)
+        p12.setcircleradius(1.5)
+        p10.cvolist.append(p11)
+        p10.cvolist.append(p12)
+      
+        self.construct1(p10,p10)
+        self.wait(3.5)
 
 
 
@@ -204,172 +172,441 @@ class ExploringGeometricalFigures(AbstractAnim):
 
 #rotation
     def rotation(self):
-        
-
-        title = Text("Rotation ", font_size=53)
-        title.to_edge(UP)
-
-        axes = ThreeDAxes()
-        self.add(axes)
-
-        square = Square(side_length=2, fill_color=YELLOW, fill_opacity=4)
-        square.shift(UP + RIGHT)
-
-        self.play(Write(title))
-        self.wait(1)
-
-        self.play(Create(square))
-        self.wait(2)
-
-        rotation_animation = Rotate(square, 2*PI, axis=OUT, rate_func=linear)
-        self.play(rotation_animation)
-        self.wait(1)
-
-        self.play(Unwrite(title))
-        self.wait(3)
-
-
-
-#flipping
-    def flipping(self):
-        
-        title = Text("Flipping ", font_size=48)
-        title.to_edge(UP)
-
-        grid = NumberPlane(x_range=[-10, 10], y_range=[-10, 10], background_line_style={"stroke_color": BLUE})
+   
+        # Create a grid
+        grid = NumberPlane(
+            x_range=(-7, 7),
+            y_range=(-7, 7),
+            axis_config={"color": WHITE},
+        )
         self.add(grid)
+     
+    
+        a = Text("Rotation ",color =ORANGE, font_size=48).to_edge(UP)
+        self.play(Write(a))
+        self.wait(1.9)
 
-        square = Square(side_length=2.0, fill_color=ORANGE, fill_opacity =6)
-        square.shift(UP + RIGHT)
 
-        self.play(Write(title))
-        self.wait(2)
+        # Create a square
+        square = Square(side_length=2, color=YELLOW)
 
-        self.play(Create(square))
-        self.wait()
+        # Create labels for vertices
+        labels = VGroup(
+            Text("A").scale(0.5).next_to(square.get_corner(UL), UL, buff=0.1),
+            Text("B").scale(0.5).next_to(square.get_corner(UR), UR, buff=0.1),
+            Text("C").scale(0.5).next_to(square.get_corner(DR), DR, buff=0.1),
+            Text("D").scale(0.5).next_to(square.get_corner(DL), DL, buff=0.1)
+        )
 
-        flip_animation = square.animate.flip(axis=UP)
-        self.play(flip_animation)
-        self.wait(3)
+        # Group the square and labels together
+        square_group = VGroup(square, labels)
 
-        self.play(Unwrite(title))
+        # Add the grid to the scene
+        self.play(Create(grid))
         self.wait(1)
 
+        # Add the square and labels to the scene
+        self.play(Create(square), Write(labels))
+        self.wait(2.2)
 
+        # Rotate the square group
+        self.play(Rotate(square_group, angle=PI, about_point=ORIGIN, rate_func=linear, run_time=4))
+        self.wait(1)
 
-#similar shapes
-    def similarshapes(self):
-        
-        # Create squares
-        square1 = Square(side_length=2, color=RED)
-        square2 = Square(side_length=1, color=BLUE)
-        square3 = Square(side_length=3, color=GREEN)
-
-        # Create circles
-        circle1 = Circle(radius=1, color=YELLOW)
-        circle2 = Circle(radius=0.5, color=PURPLE)
-        circle3 = Circle(radius=1.5, color=ORANGE)
-
-        # Set starting positions of shapes
-        square1.shift(LEFT * 4)
-        square2.shift(LEFT * 2)
-        square3.shift(RIGHT * 2)
-
-        circle1.shift(LEFT * 4 + UP * 2)
-        circle2.shift(LEFT * 2 + UP * 2)
-        circle3.shift(RIGHT * 2 + UP * 2)
-
-        # Create titles
-        square_title = Text("Similarity of Squares & Circles", font_size=40).shift(UP * 3.5)
-        circle_title = Text("", font_size=40).shift(UP * 5.5)
-
-        # Create a group
-        group = VGroup(square1, square2, square3, circle1, circle2, circle3, square_title, circle_title)
-
-        self.add(group)
+        # Rotate back to original position
+        self.play(Rotate(square_group, angle=-PI, about_point=ORIGIN, rate_func=linear, run_time=4))
         self.wait(3)
-        self.play(group.animate.shift(DOWN))  # shift all shapes down
-        self.play(square1.animate.shift(RIGHT))  # move only one square
-        self.play(circle1.animate.shift(UP))  # move only one circle
-        self.play(group.animate.shift(RIGHT))  # shift all shapes to the right
-        self.wait(4)
+        
+
+
+
+
+    def flipping(self):
+  # Create a grid
+        grid = NumberPlane(
+            x_range=(0, 0),
+            y_range=(-7, 7),
+            axis_config={"color": WHITE},
+        )
+        self.add(grid)
+        # Create title
+        title = Text("Flipping of square", font_size=35)
+        title.to_edge(UP)
+        self.play(Write(title))
+
+        # Create the initial square
+        square = Square(side_length=2, color=BLUE)
+        
+        # Create vertex dots
+        vertices = [Dot(point, color=YELLOW) for point in square.get_vertices()]
+        
+        # Create vertex labels
+        labels = ['A', 'B', 'C', 'D']
+        vertex_labels = VGroup(*[
+            Text(label, font_size=24).next_to(vertex, direction=UP+LEFT, buff=0.1)
+            for label, vertex in zip(labels, vertices)
+        ])
+
+        # Group square, vertices, and labels
+        square_group = VGroup(square, *vertices, vertex_labels)
+        square_group.move_to(LEFT * 3)
+
+        # Add square group to the scene
+        self.play(Create(square_group))
+        self.wait(1)
+
+        # Add "Before" label
+        before_label = Text("Before", font_size=24).next_to(square_group, DOWN)
+        self.play(Write(before_label))
+        self.wait(1)
+
+        # # Flip animation for initial square
+        # self.play(Rotate(square_group, angle=PI, axis=RIGHT, run_time=2))
+        # self.wait(1)
+
+        # # Flip back
+        # self.play(Rotate(square_group, angle=PI, axis=RIGHT, run_time=2))
+        # self.wait(1)
+
+        # Create arrow for transformation
+        arrow = Arrow(square_group.get_right(), RIGHT * 2.5, buff=0.5)
+        transform_label = Text("Flipping", font_size=30).next_to(arrow, UP, buff=0.1)
+        self.play(Create(arrow), Write(transform_label))
+        self.wait(1)
+        self.play(Unwrite(before_label))
+
+        # Transform the square
+        transformed_square = square.copy().set_color(RED)
+        transformed_vertices = [Dot(point, color=GREEN) for point in transformed_square.get_vertices()]
+        transformed_labels = ['A', 'B', 'C', 'D']
+        transformed_vertex_labels = VGroup(*[
+            Text(label, font_size=24).next_to(vertex, direction=UP+LEFT, buff=0.1)
+            for label, vertex in zip(transformed_labels, transformed_vertices)
+        ])
+        transformed_group = VGroup(transformed_square, *transformed_vertices, transformed_vertex_labels)
+        transformed_group.move_to(RIGHT * 3)
+
+        # Animate the transformation
+        self.play(Transform(square_group, transformed_group))
+      
+
+        # Add "After" label
+        after_label = Text("After", font_size=24).next_to(square_group, DOWN)
+        self.play(Write(after_label))
+      
+
+        # Flip animation for transformed square
+        self.play(Rotate(square_group, angle=PI, axis=RIGHT, run_time=2))
+        self.wait(3.5)
+
+
 
 
 
 #similarity  check
 
-    def similaritycheck(self):
-        
-         title = Text(" Checking Similarity Of Two Objects", font_size=40).shift(UP * 3.5)
-        
-
-        # Create a group
-         group = VGroup( title)
-
-         self.add(group)
-         self.wait(2)
-
-         
-          #  p1=cvo.CVO().CreateCVO("o1name","o2name","c1name","c2name")
-         self.colorChoice = [WHITE,BLUE,PINK,ORANGE,YELLOW]
-         p10=cvo.CVO().CreateCVO("Sides and Angles","Each Shape ").setPosition([2,1,0])
-         p11=cvo.CVO().CreateCVO("Square"," 1/2 and   90 degree").setPosition([4.5,1,0])
-         p12=cvo.CVO().CreateCVO("Equilateral triangle","2/3 and   60 degree").setPosition([5,-2,0])
-         p13=cvo.CVO().CreateCVO("Rectangle","2/3 and   90 degree").setPosition([-5,0,0]).setangle(-TAU/4)
-         p14=cvo.CVO().CreateCVO("Right angled triangle","3/6 and   90 degree").setPosition([-2,-0.5,0]).setangle(-TAU/4)
-         
-
-         p10.cvolist.append(p12)
-         p10.cvolist.append(p11)
-         p10.cvolist.append(p13)
-         p10.cvolist.append(p14)
-        
-
-         p11.setcircleradius(1.5)
-         p12.setcircleradius(1.5)
-         p13.setcircleradius(1.5)
-         p14.setcircleradius(1.5)
-        
+    def similaritycheck1(self):
 
 
-         self.construct1(p10,p10)
-         self.wait(5)
+    # Title
+     title = Text("Checking Similarity", color=YELLOW).scale(1.2).to_edge(UP)
+     self.play(Write(title))
+     self.wait(2.3)
+
+    # Create two squares
+     square1 = Square(side_length=2, color=BLUE)
+     square2 = Square(side_length=2.5, color=RED)
+
+    # Position the squares
+     square1.shift(LEFT * 2.5)
+     square2.shift(RIGHT * 2.5)
+
+    # Add labels
+     label1 = Text("Square 1", font_size=27).next_to(square1, UP*2.1)
+     label2 = Text("Square 2", font_size=27).next_to(square2, UP*2.33)
+
+    # Create angle indicators (small squares)
+     angle_indicators1 = self.create_angle_indicators1(square1, BLUE)
+     angle_indicators2 = self.create_angle_indicators1(square2, RED)
+
+    # Create side labels with lengths in cm
+     side_labels1 = self.create_side_labels1(square1, "2 cm")
+     side_labels2 = self.create_side_labels1(square2, "3 cm")
+
+    # Create 90-degree labels
+     degree_labels1 = self.create_degree_labels1(square1)
+     degree_labels2 = self.create_degree_labels1(square2)
+
+    # Animation
+     self.play(Create(square1), Create(square2))
+     self.play(Write(label1), Write(label2))
+     self.wait(1)
+
+     self.play(Create(VGroup(*angle_indicators1)), Create(VGroup(*angle_indicators2)))
+     self.wait(1)
+     self.play(Write(VGroup(*degree_labels1)), Write(VGroup(*degree_labels2)))
+     self.wait(3)
+     self.play(Write(VGroup(*side_labels1)), Write(VGroup(*side_labels2)))
+     self.wait(3)
 
 
 
-#dilation
+    # Show angle equality
+     angle_text = Text("All angles = 90°", font_size=26).to_edge(DOWN*2.5)
+     self.play(Write(angle_text))
+     self.wait(2.2)
+
+    # Show similarity conclusion
+     similarity_text = Text("Squares are similar!", font_size=30).next_to(angle_text, DOWN)
+     self.play(Write(similarity_text))
+     self.wait(3)
+
+    def create_angle_indicators1(self, square, color):
+     indicators = []
+     for i in range(4):
+        indicator = Square(side_length=0.2, color=color)
+        indicator.move_to(square.get_vertices()[i])
+        indicator.shift((square.get_center() - square.get_vertices()[i]) * 0.09)
+        indicators.append(indicator)
+     return indicators
+
+    def create_side_labels1(self, square, label):
+     labels = []
+     for i in range(4):
+        mid_point = (square.get_vertices()[i] + square.get_vertices()[(i+1) % 4]) / 2
+        direction = mid_point - square.get_center()
+        side_label = Text(label).scale(0.4).move_to(mid_point + direction * 0.4)
+        labels.append(side_label)
+     return labels
+
+    def create_degree_labels1(self, square):
+     labels1 = []
+     for i in range(4):
+        vertex = square.get_vertices()[i]
+        direction = vertex - square.get_center()
+        degree_label = Text("90°", font_size=20).move_to(vertex + direction * -0.32)
+        labels1.append(degree_label)
+     return labels1
+
+
+
     
+    def similaritycheck2(self):
+        # Title
+        title = Text("Checking Similarity", color=YELLOW).scale(1.2).to_edge(UP)
+        self.play(Write(title))
+        self.wait(2.3)
+
+        # Create two triangles
+        triangle1 = Triangle(color=BLUE).scale(1.5)
+        triangle2 = Triangle(color=RED).scale(2)
+
+        # Position the triangles
+        triangle1.shift(LEFT * 3)
+        triangle2.shift(RIGHT * 3)
+
+        # Add labels
+        label1 = Text("Triangle 1", font_size=27).next_to(triangle1, UP*2.1)
+        label2 = Text("Triangle 2", font_size=27).next_to(triangle2, UP*2.33)
+
+        # Create angle indicators (small triangles)
+        angle_indicators1 = self.create_angle_indicators(triangle1, BLUE)
+        angle_indicators2 = self.create_angle_indicators(triangle2, RED)
+
+        # Create side labels with lengths
+        side_labels1 = self.create_side_labels(triangle1, ["3 cm", " 3 cm", "3 cm"])
+        side_labels2 = self.create_side_labels(triangle2, ["5 cm", "5 cm", "5 cm"])
+
+        # Create degree labels
+        degree_labels1 = self.create_degree_labels(triangle1, ["60°", "60°", "60°"])
+        degree_labels2 = self.create_degree_labels(triangle2, ["60°", "60°", "60°"])
+
+        # Animation
+        self.play(Create(triangle1), Create(triangle2))
+        self.play(Write(label1), Write(label2))
+        self.wait(1)
+
+        self.play(Create(VGroup(*angle_indicators1)), Create(VGroup(*angle_indicators2)))
+        self.wait(1)
+        self.play(Write(VGroup(*degree_labels1)), Write(VGroup(*degree_labels2)))
+        self.wait(3)
+        self.play(Write(VGroup(*side_labels1)), Write(VGroup(*side_labels2)))
+        self.wait(3)
+
+        # Show angle equality
+        angle_text = Text("All angles = 60°", font_size=27).to_edge(DOWN*2.5)
+        self.play(Write(angle_text))
+        self.wait(2.2)
+
+        # Show similarity conclusion
+        similarity_text = Text("Triangles are similar!", font_size=30).next_to(angle_text, DOWN)
+        self.play(Write(similarity_text))
+        self.wait(3)
+
+    def create_angle_indicators(self, triangle, color):
+        indicators = []
+        for i in range(3):
+            indicator = Triangle(color=color).scale(0.1)
+            indicator.move_to(triangle.get_vertices()[i])
+            indicator.shift((triangle.get_center() - triangle.get_vertices()[i]) * 0.05)
+            indicators.append(indicator)
+        return indicators
+
+    def create_side_labels(self, triangle, labels):
+        side_labels = []
+        for i in range(3):
+            mid_point = (triangle.get_vertices()[i] + triangle.get_vertices()[(i+1) % 3]) / 2
+            direction = mid_point - triangle.get_center()
+            side_label = Text(labels[i], font_size=20).move_to(mid_point + direction * 0.5)
+            side_labels.append(side_label)
+        return side_labels
+
+    def create_degree_labels(self, triangle, angles):
+        labels = []
+        for i in range(3):
+            vertex = triangle.get_vertices()[i]
+            direction = vertex - triangle.get_center()
+            degree_label = Text(angles[i], font_size=20).move_to(vertex + direction * -0.3)
+            labels.append(degree_label)
+        return labels
+
         
-        # self.fadeOut()
-        # self.constructDataByJSON()
-        # self.fadeOut()
-        
+#linesymmetry
+ #rotationalsymmetry
     # render using CVO data object
     def constructDataByCVO(self):
-        self.colorChoice = [ORANGE,WHITE,YELLOW,BLUE,GREEN,PINK,RED]
-        p10=cvo.CVO().CreateCVO("Dilation","").setPosition([0,2.5,0])
-        p11=cvo.CVO().CreateCVO("Defination", "transformation of shape with keeping same proportions").setPosition([4,2,0])
-        p12=cvo.CVO().CreateCVO("scale factor", "proportion that changes the size of a shape").setPosition([5,-2,0])
-        p13=cvo.CVO().CreateCVO("construction", "").setPosition([-4,2.8,0]).setangle(-TAU/4)
-        p14=cvo.CVO().CreateCVO("Step:1", "Choose a center").setPosition([-4,0.5,0]).setangle(-TAU/4)
-        
-        p15=cvo.CVO().CreateCVO("step:2", "Stretch or shrink shapes").setPosition([-4,-1.2,0]).setangle(-TAU/4)
-        p16=cvo.CVO().CreateCVO("step:3", "Stretch the projected points").setPosition([-4,-3,0]).setangle(-TAU/4)
+        self.colorChoice = [WHITE,YELLOW,BLUE]
+        self.isRandom = False
+        p10=cvo.CVO().CreateCVO("Dilation","").setPosition([-5,0,0])
+        p11=cvo.CVO().CreateCVO("Definition", "Dilation is a transformation that changes the size\n\n of a figure without changing its shape.").setPosition([1.5,2,0]).setangle(TAU/3)
+        p12=cvo.CVO().CreateCVO("scale factor", "proportion that changes the size of a shape after transformation").setPosition([1.5,-2,0]).setangle(TAU/4)
+        p11.setcircleradius(1.75)
+        p12.setcircleradius(1.75)
         p10.cvolist.append(p11)
         p10.cvolist.append(p12)
-        p10.cvolist.append(p13)
-        p13.cvolist.append(p14)
-        p14.cvolist.append(p15)
-        p15.cvolist.append(p16)
+      
+ 
         
         self.construct1(p10,p10)
+        self.wait(7)
+
+        
+
+   
+    def constdilation(self):
+        a = Text("Dialtion Construction ",font_size=37,color=PINK).to_edge(UP)
+        self.play(Write(a))
+        self.wait(1.8)
+   
+
+        # Create the original triangle
+        triangle = Polygon([-3, -2, 0], [1, -2, 0], [-1, 1, 0], color=BLUE)
+        
+        # Create the center of dilation
+        center = Dot([4, -1, 0], color=RED)
+        center_label = Text("C", font_size=28,color = ORANGE).next_to(center, DOWN)
+        
+        # Create labels for the original triangle
+        labels = VGroup(
+            Text("P", font_size=24,color = BLUE).next_to(triangle.get_vertices()[0], DOWN+LEFT),
+            Text("Q", font_size=24,color = BLUE).next_to(triangle.get_vertices()[1], DOWN+RIGHT),
+            Text("R", font_size=24,color = BLUE).next_to(triangle.get_vertices()[2], UP),
+        )
+        lab = VGroup(
+            Dot(color = BLUE).move_to(triangle.get_vertices()[0]),
+            Dot(color = BLUE).move_to(triangle.get_vertices()[1]),
+            Dot(color = BLUE).move_to(triangle.get_vertices()[2]),
+
+        )
+
+        # Create a text box for step descriptions
+        description = Text("", font_size=24).to_edge(UP)
+
+        # Step 1: Draw the original triangle and center
+        self.play(
+
+         
+            Write(description.become(Text("Step 1: Draw a  triangle PQR and choose the center of dilation C \nwhich is not on the triangle. ", font_size=29,color = YELLOW).to_edge(DOWN))),
+                   
+        )
+        self.wait(5)
+        self.play( Create(triangle), Create(center),Create(lab), Write(center_label), Write(labels))
+        self.wait(3)
+
+        # Step 2: Draw lines from center to vertices
+        lines = VGroup(*[DashedLine(center.get_center(), vertex) for vertex in triangle.get_vertices()])
+        self.play(
+            
+            description.animate.become(Text("Step 2: Draw lines from C to P, Q, and R", font_size=29,color = YELLOW).to_edge(DOWN))
+        )
+        self.wait(3)
+        self.play(Create(lines))
+        self.wait(2)
+
+        # Step 3: Extend the lines
+        extended_lines = VGroup(*[
+            DashedLine(center.get_center(), vertex + 1.5*(vertex - center.get_center()))
+            for vertex in triangle.get_vertices()
+        ])
+        self.play(
+            
+            description.animate.become(Text("Step 3: Extend the lines from C", font_size=29,color = YELLOW).to_edge(DOWN))
+        )
+        self.wait(2.1)
+        self.play(Transform(lines, extended_lines))
+        self.wait(3)
+
+        # Step 4: Create the dilated triangle
+        scale_factor = 1.5
+        dilated_triangle = Polygon(
+            *[center.get_center() + scale_factor * (vertex - center.get_center())
+              for vertex in triangle.get_vertices()],
+            color=GREEN
+        )
+        
+        # Create labels for the dilated triangle
+        dilated_labels = VGroup(
+            Text("P'", font_size=24,color=GREEN).next_to(dilated_triangle.get_vertices()[0], UP+LEFT),
+            Text("Q'", font_size=24,color=GREEN).next_to(dilated_triangle.get_vertices()[1], UP+RIGHT),
+            Text("R'", font_size=24,color=GREEN).next_to(dilated_triangle.get_vertices()[2], UP),
+        )
+
+        dot = VGroup(
+            Dot(color=GREEN).move_to(dilated_triangle.get_vertices()[0]),
+            Dot(color=GREEN).move_to(dilated_triangle.get_vertices()[1]),
+            Dot(color=GREEN).move_to(dilated_triangle.get_vertices()[2]),
+            
+        )
+
+        
+
+        self.play(
+            
+            description.animate.become(Text("Step 4: By using compasses, Mark\n\n three points P' , Q' and R' \n\non the projections'", font_size=26,color = YELLOW).to_edge(DOWN*9+RIGHT))
+        )
         self.wait(4)
+        self.play(Create(dot))
+        self.wait(2)
         
-        #self.play()
-        
+        self.play(Write(dilated_labels))
+        self.wait(3)
+        b = Text("K = Scale factor",font_size=29,color=PINK).to_edge(RIGHT+DOWN*4)
+        self.play(Write(b))
+        self.wait(2)
+
+        a = description.animate.become(Text("CP'= k (CP) ",font_size=30,color=YELLOW).to_edge(DOWN+RIGHT*3.5))
+        self.play(a)
+        self.wait(4)
+
+        # Final step: Show the complete construction
+        self.play(
+            description.animate.become(Text("Step 5: Join P'Q', Q'R' and R'P'. So that  P'Q' R' ~  PQR", font_size=29,color = YELLOW).to_edge(DOWN))
+        )
+        self.wait(3)
+        self.play(Create(dilated_triangle))
+        self.wait(4)
 
 
-        
 
 #symmetry
     def symmetry(self):
@@ -390,10 +627,9 @@ class ExploringGeometricalFigures(AbstractAnim):
         square = Text("B",font_size=240,color=BLUE)
 
         # Create axes
-        axes = Line(ORIGIN).set_length(7).shift(UP*0)
+        axes = DashedLine(ORIGIN).set_length(7).shift(UP*0)
            
-        # Add square and axes to the scene
-        self.play(Create(axes), Create(square))
+        
 
         # Rotate the square to demonstrate rotational symmetry
         # self.play(Rotate(square, angle=PI/2, about_point=ORIGIN), run_time=2)
@@ -402,173 +638,223 @@ class ExploringGeometricalFigures(AbstractAnim):
         # self.play(Rotate(square, angle=PI/2, about_point=ORIGIN), run_time=2)
 
         # Pause to show the square back in its original position
-        self.wait(3)
-        squar = Text("Symmetry is a property where an object remains unchanged after a specific \ntransformation is applied to it.",font_size=30,color=YELLOW).shift(DOWN*2)
+        
+        squar = Text("Symmetry is a property where an object remains unchanged after a specific \n\ntransformation is applied to it.",font_size=30,color=YELLOW)
         self.play(Write(squar))
         self.wait(6)
+        self.play(squar.animate.to_edge(DOWN*2.5 ))
+        self.wait(1.4)
+        
+        self.play(Create(axes), Create(square))
+        self.wait(3)
 
     
        
-
-
-
-#linesymmetry
     def linesymmetry(self):
+        # Title
+ 
+        # Title
+        a = Text("Line Symmetry", font_size=37.8, color=YELLOW).to_edge(UP)
+        self.play(Write(a))
+        self.wait(2)
+
+        # Create a square
+        square = Square(side_length=4, color=BLUE)
+
+        # Add vertex labels
+        vertices = square.get_vertices()
+        vertex_labels = VGroup(*[
+            Text(label, font_size=24).next_to(vertex, direction)
+            for label, vertex, direction in zip(
+                ['B', 'A', 'C', 'D'],
+                vertices,
+                [UL, UR, DR, DL]
+            )
+        ])
+
+        # Create symmetry lines
+        diag1 = DashedLine(square.get_corner(UL), square.get_corner(DR), color=RED)
+        diag2 = DashedLine(square.get_corner(UR), square.get_corner(DL), color=RED)
+        vert = DashedLine(square.get_top(), square.get_bottom(), color=GREEN)
+        horiz = DashedLine(square.get_left(), square.get_right(), color=GREEN)
+
+        # Create labels
+        diag_label = Text("", font_size=24, color=RED).next_to(square, UP, buff=0.5)
+        axis_label = Text("", font_size=24, color=GREEN).next_to(diag_label, DOWN)
+
+        # Add square and vertex labels to the scene
+        self.play(Create(square), Write(vertex_labels))
+        self.wait(1)
+
+        # Show diagonal symmetry lines
+        self.play(Create(diag1), Create(diag2), Write(diag_label))
+        self.wait(2.3)
+
+     
+
+
+        # Show axis symmetry lines
+        self.play(Create(vert), Create(horiz), Write(axis_label))
+        self.wait(2.6)
+
         
-        title = Title("Line Of Symmetry  or  Mirror Line",color = PINK)
-        self.add(title)
 
-        square1 = Square(color=BLUE, fill_opacity=5)
-        square1.shift(LEFT * 3 + DOWN * 2)
-
-        square2 = Square(color=BLUE, fill_opacity=5)
-        square2.shift(RIGHT * 3 + UP * 2)
-######
-        line1 = Line(start=DOWN * 2 + LEFT * 0, end=UP * 2 + LEFT * 0, color=YELLOW)
-        self.add( line1)
-
-        self.play(Write(square1), Write(square2))
-
-        self.play(
-            square1.animate.shift(RIGHT * 2),
-            square2.animate.shift(LEFT * 2),
-            #line_of_symmetry.animate.shift(RIGHT * 2),
-            run_time=2
-        )
-
-        self.play(
-            square1.animate.shift(UP * 2),
-            square2.animate.shift(DOWN * 2),
-           # line_of_symmetry.animate.shift(UP * 2),
-            run_time=3
-        )
-
-        self.play(
-            square1.animate.shift(LEFT * 2),
-            square2.animate.shift(RIGHT * 2),
-           # line_of_symmetry.animate.shift(LEFT * 2),
-            run_time=2
-        )
-
-       
-
-        self.wait(5)
+        # Final message
+        final_text = Text("A square has four lines of symmetry.Because it consists of\n 2 diagonals , 1 x-axis and 1 y-axis.", font_size=32).next_to(square, DOWN, buff=0.5)
+        self.play(Write(final_text))
+        self.wait(6.5)
 
 
-#rotationalsymmetry
     def rotationalsymmetry(self):
+         
+        a = Text("Rotational Symmetry", font_size=40, color=YELLOW).to_edge(UP)
+        self.play(Write(a))
+        self.wait(2)
+
+
+        specific_condition = Text("Rotational symmetry is a geometric property where an object looks the\n\n same after being rotated by a certain angle around a fixed point.", font_size=30,color=BLUE).to_edge(DOWN*7.5)
+        self.play( Write(specific_condition))
+        self.wait(6.7)
+        self.play(
         
-        title = Text("Rotational Symmetry", font_size=40).shift(UP * 3.5)
+        FadeOut(specific_condition),
+        FadeOut(a)
+        )
+    
+        self.wait(1)
+
+        shapes = [
+        (Circle(radius=2, color=BLUE), "Circle", "Infinite"),
+        (Square(side_length=4, color=GREEN), "Square", 4),
+        (Triangle(color=RED).scale(2), "Triangle", 3),
+        (Rectangle(width=4, height=2, color=YELLOW), "Rectangle", 2)
+         ]
+
+        for shape, name, symmetries in shapes:
+           self.show_symmetry(shape, name, symmetries)
+           self.wait(2)
+           self.clear()
+    def show_symmetry(self, shape, shape_name, symmetries):
         
+       # Create the shape
+     shape.move_to(ORIGIN)
 
-        # Create a group
-        group = VGroup( title)
+    # Create a dot at the center
+     center_dot = Dot(color=WHITE)
 
-        self.add(group)
+    # Create an arrow to show rotation
+     arrow = Arrow(start=ORIGIN, end=shape.get_top(), color=ORANGE)
+
+    # Group the shape and arrow
+     group = VGroup(shape, arrow)
+
+# Create and display the shape name
+     name_text = Text(shape_name, font_size=36).to_edge(UP)
+     self.play(Write(name_text))
+     self.wait(2)
+    # Add elements to the scene
+     self.play(Create(group), Create(center_dot))
+     self.wait(2)
+
+    # # Create and display the shape name
+    #  name_text = Text(shape_name, font_size=36).to_edge(UP)
+    #  self.play(Write(name_text))
 
 
-
-        # Square
-        s = Rectangle(width=3, height=3)
-        s.set_color(ORANGE)
-        s.shift(RIGHT * 2)
-        self.add(s)
-
-        # Lines of Symmetry for Triangle
-        #line1 = DashedLine(start=DOWN * 2 + LEFT * 3, end=UP * 2 + LEFT * 3, color=YELLOW)
-        line2 = DashedLine(start=RIGHT*2 + RIGHT * 3, end=LEFT*2 + RIGHT * 3, color=YELLOW)
-        self.add( line2)
-        
-
-        # Rotational Symmetry Animation for Rectangle
+    # Rotate the shape
+     if symmetries == "Infinite":
+        self.play(Rotate(group, angle=2*PI, about_point=ORIGIN), run_time=5)
+        check_text = Text(" A circle has infinite rotational symmetry around at any angle.", color=GREEN, font_size=28).to_edge(DOWN*1.6)
+        self.play(Write(check_text))
         self.wait(2)
-        self.play(Rotating(s, about_point=s.get_center(), radians=PI/2, run_time=2))
-        self.wait(5)
+     else:
+        for i in range(symmetries):
+            self.play(
+                Rotate(group, angle=2*PI/symmetries, about_point=ORIGIN),
+                run_time=2
+            )
+            angle = 360 / symmetries * (i + 1)
+            check_text = Text(f" It is similar at {angle}° with compare to original position.", color=WHITE, font_size=30).to_edge(DOWN*1.6)
+            self.play(Write(check_text))
+            self.wait(2)
+            if i < symmetries - 1:
+                self.play(FadeOut(check_text))
 
-       
+     self.wait(2)
 
-        #
-
-        # Rectangle
-        rectangle = Rectangle(width=2, height=1)
-        rectangle.set_color(BLUE)
-        rectangle.shift(RIGHT * 2)
-        self.add(rectangle)
-
-        # Lines of Symmetry for Rectangle
-        line4 = DashedLine(start=DOWN + RIGHT * 2, end=UP + RIGHT * 2, color=YELLOW)
-        line5 = DashedLine(start=LEFT + RIGHT * 2, end=RIGHT + RIGHT * 2, color=YELLOW)
-        self.add(line4, line5)
-
-        # Rotational Symmetry Animation for Rectangle
-        self.wait(2)
-        self.play(Rotating(rectangle, about_point=rectangle.get_center(), radians=PI/2, run_time=2))
-        self.wait(3)
-
-        # Circle
-        circle = Circle(radius=1)
-        circle.set_color(GREEN)
-        circle.shift(UP * 2)
-        self.add(circle)
-
-        # Lines of Symmetry for Circle
-        line6 = DashedLine(start=DOWN + UP * 2, end=UP + UP * 2, color=YELLOW)
-        line7 = DashedLine(start=LEFT + UP * 2, end=RIGHT + UP * 2, color=YELLOW)
-        self.add(line6, line7)
-
-        # Rotational Symmetry Animation for Circle
-        self.wait(2)
-        self.play(Rotating(circle, about_point=circle.get_center(), radians=PI/4, run_time=2))
-        self.wait(3)
-
-
-
-    # Isosceles Triangle
-        isosceles_triangle = Polygon(np.array([-1, -1, 0]), np.array([1, -1, 0]), np.array([0, 1, 0]))
-        isosceles_triangle.set_color(WHITE)
-        isosceles_triangle.shift(LEFT + UP)
-        self.add(isosceles_triangle)
-
-        # Dashed Lines of Symmetry for Isosceles Triangle
-        line8 = DashedLine(start=DOWN + LEFT, end=UP + LEFT, color=YELLOW)
-        line9 = DashedLine(start=LEFT + UP, end=RIGHT + UP, color=YELLOW)
-        self.add(line8, line9)
-
-        # Rotational Symmetry Animation for Isosceles Triangle
-        self.wait(2)
-        self.play(Rotating(isosceles_triangle, about_point=isosceles_triangle.get_center(), radians=PI/2, run_time=2))
-        self.wait(5)
+    # Final message
+     if symmetries == "Infinite":
+        final_text = Text("Order of Rotation is Infinite. ", font_size=36).to_edge(DOWN)
+     else:
+        self.wait(1.5)
+        final_text = Text(f"Order of Rotation is {symmetries}. ", font_size=36).to_edge(DOWN)
+    
+     self.play(
+      
+        FadeOut(check_text),
+        Write(final_text)
+    )
+     self.wait(3)
 
 
 
 
-#pointsymmetry
+
+#    
+   
     def pointsymmetry(self):
-        
-        title = Title("Point Symmetry ",color = ORANGE)
-        self.add(title)
+        # Title
+        title = Text("Point Symmetry").scale(0.9).to_edge(UP)
+        self.play(Write(title))
         self.wait(2)
 
-        axis_x = DashedLine(start=LEFT * 4, end=RIGHT * 4, color=YELLOW)
-        axis_y = DashedLine(start=DOWN * 4, end=UP * 4, color=YELLOW)
-
-        self.play(Write(axis_x), Write(axis_y))
-
-        star = Star(n=5, outer_radius=1.5, inner_radius=0.6, color=BLUE, fill_opacity=3)
-        star.move_to(ORIGIN)
-
-        self.play(Write(star))
-
-        self.play(
-            star.animate.scale(-1, about_point=ORIGIN),
-            run_time=2
-        )
-        self.play(
-            star.animate.scale(-1, about_point=ORIGIN),
-            run_time=2
-        )
-
+        a = Text("Point symmetry occurs when every part has a matching part exactly \nopposite the center point.",font_size=30,color=PINK)
+        self.play(Write(a))
         self.wait(5)
+        self.play(a.animate.to_edge(DOWN ))
+        self.wait(1.5)
+        # Create star
+        star = Star(n=5, outer_radius=2, inner_radius=1, color=YELLOW)
+        star_label = Text("Star").next_to(star, DOWN)
+        self.wait(1.2)
+
+        # Create hourglass
+        hourglass = self.create_hourglass()
+        hourglass_label = Text("Hourglass").next_to(hourglass, DOWN)
+        self.wait(1)
+
+        # Position shapes
+        star.shift(LEFT * 3)
+        star_label.shift(LEFT * 3)
+        hourglass.shift(RIGHT * 3)
+        hourglass_label.shift(RIGHT * 3)
+
+        # Show shapes
+        self.play(Create(star), Create(hourglass))
+        self.wait(1.5)
+        self.play(Write(star_label), Write(hourglass_label))
+        self.wait(1.4)
+
+
+        # Show center points
+        star_center = Dot(star.get_center(), color=RED)
+        hourglass_center = Dot(hourglass.get_center(), color=RED)
+        self.play(Create(star_center), Create(hourglass_center))
+
+
+        # Wait before finishing
+        self.wait(4)
+        
+
+    def create_hourglass(self):
+        # Create an hourglass shape using two triangles
+        triangle1 = Triangle(color=BLUE).scale(1).shift(DOWN)
+        triangle2 = Triangle(color=BLUE).scale(1).rotate(PI).next_to(triangle1,UP*0.2)
+        hourglass = VGroup(triangle1, triangle2)
+        return hourglass
+
+
+
 
 
 
@@ -577,10 +863,10 @@ class ExploringGeometricalFigures(AbstractAnim):
         self.DeveloperList = "Uday Kiran"   
 
     def SetSourceCodeFileName(self):
-        self.SourceCodeFileName="ExploringGeometricalFigures.py"      
+        self.SourceCodeFileName="Grade8chapter8ExploringGeometricalFigures.py"      
         
      
       
 if __name__ == "__main__":
-    scene = ExploringGeometricalFigures()
+    scene = Grade8chapter8ExploringGeometricalFigures()
     scene.render()
