@@ -940,7 +940,7 @@ class Grade1chapter5BeforeAfterBetweenMoreLess(AbstractAnim):
             )
 
         # Final pause
-        self.wait(34)
+        self.wait(4)
 
          # Animate answers
         for i, row in enumerate(rows):
