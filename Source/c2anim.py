@@ -29,6 +29,7 @@ class C2Anim(AbstractAnim):
         self.angleChoice = [TAU/4]
         self.colorChoice=[ORANGE,YELLOW]
         self.isRandom = False
+        self.IsSquare = True
         self.construct1(p10,p10)
   
             

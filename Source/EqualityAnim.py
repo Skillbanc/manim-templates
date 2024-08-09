@@ -14,9 +14,9 @@ class EqualityAnim(AbstractAnim):
 
     # use the appropriate method based on how the data is stored
     def construct(self):
-        #self.RenderSkillbancLogo()
+        self.RenderSkillbancLogo()
         self.RenderEqualityC1C2Diagram()
-        #self.RenderEquality1()
+        self.RenderEquality1()
        
     def RenderEqualityC1C2Diagram(self):
         #self.positionChoice = [[0,0,0],[-6,-2,0],[4,-2,0],[2,0,0],[-6,2,0],[-4,-2,0],[-4,2,0],[-2,-2,0],[4,0,0],[-4,0,0],[-2,2,0],[2,-2,0],[-6,0,0],[2,2,0],[6,0,0],[4,2,0],[6,-2,0],[-2,0,0],[6,2,0]]
@@ -36,7 +36,7 @@ class EqualityAnim(AbstractAnim):
     def RenderEquality1(self):
         
         p10=cvo.CVO().CreateCVO("Equality","x=y")
-        
+        p10.SetIsMathText(True)
        
         p10.onameList.append("Equality")
         p10.onameList.append("1=1")

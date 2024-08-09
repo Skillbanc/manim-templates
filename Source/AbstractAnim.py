@@ -101,7 +101,12 @@ class AbstractAnim(Scene):
             
         shapeChoiceIndex = 0 # random.randint(0,3)
         # Circle to contain objects
-        cir1 = Circle(radius=cvo.circle_radius,color=self.colorChoice[colorChoiceIndex])
+        cir1 = None
+        if (self.IsSquare):
+            cir1 = Square(side_length=2,color=self.colorChoice[colorChoiceIndex])
+        else:
+            cir1 = Circle(radius=cvo.circle_radius,color=self.colorChoice[colorChoiceIndex])
+            
         star = Star(outer_radius=0.1, inner_radius=0.05,color=self.colorChoice[colorChoiceIndex]).move_to(cir1.get_center())
         
         c1nameposition = cvo.c1nameposition
